@@ -1,0 +1,41 @@
+import { z } from 'zod';
+
+export const envSchema = z.object({
+  CRON_SECRET: z.string().min(1, { message: "CRON_SECRET is not set" }),
+});
+
+export const openMeteoResponseSchema = z.object({
+  hourly: z.object({
+    time: z.array(z.string()),
+    wind_speed_1000hPa: z.array(z.number()),
+    wind_direction_1000hPa: z.array(z.number()),
+    wind_direction_925hPa: z.array(z.number()),
+    wind_speed_925hPa: z.array(z.number()),
+    wind_speed_850hPa: z.array(z.number()),
+    wind_direction_850hPa: z.array(z.number()),
+    wind_direction_700hPa: z.array(z.number()),
+    wind_speed_700hPa: z.array(z.number()),
+    temperature_1000hPa: z.array(z.number()),
+    temperature_925hPa: z.array(z.number()),
+    temperature_850hPa: z.array(z.number()),
+    temperature_700hPa: z.array(z.number()),
+    temperature_2m: z.array(z.number()),
+    precipitation: z.array(z.number()),
+    precipitation_probability: z.array(z.number()),
+    cloud_cover: z.array(z.number()),
+    wind_speed_10m: z.array(z.number()),
+    wind_direction_10m: z.array(z.number()),
+    wind_gusts_10m: z.array(z.number()),
+    weather_code: z.array(z.number()),
+    pressure_msl: z.array(z.number()),
+    convective_inhibition: z.array(z.number()),
+    cloud_cover_low: z.array(z.number()),
+    cloud_cover_mid: z.array(z.number()),
+    cloud_cover_high: z.array(z.number()),
+    is_day: z.array(z.union([z.literal(0), z.literal(1)])),
+    freezing_level_height: z.array(z.number()),
+    cape: z.array(z.number()),
+    lifted_index: z.array(z.number()),
+    boundary_layer_height: z.array(z.number()),
+  }),
+});
