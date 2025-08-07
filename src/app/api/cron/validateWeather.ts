@@ -2,8 +2,8 @@ import { WeatherDataPoint } from './types';
 
 const GOOD_CONDITIONS = {
   MIN_WIND_SPEED: 1.4, // m/s
-  MAX_WIND_SPEED: 4.2, // m/s
-  MAX_GUST_DIFFERENCE: 2.0, // m/s
+  MAX_WIND_SPEED: 8.2, // m/s
+  MAX_GUST_DIFFERENCE: 4.0, // m/s
   MAX_PRECIPITATION: 0, // mm
   THUNDERSTORM_CODES: [95, 96, 99],
   MAX_CAPE: 1000, // J/kg
