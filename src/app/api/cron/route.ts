@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { WeatherDataPoint } from './types';
 import { envSchema, openMeteoResponseSchema } from './validation';
+import { validateWeather } from './validateWeather';
 
 const keyMap: { [key: string]: string } = {
     "wind_speed_1000hPa": "windSpeed1000hPa",
@@ -73,7 +74,9 @@ export async function GET(request: NextRequest) {
             transformedData.push(dataPoint as WeatherDataPoint);
         }
 
-        return NextResponse.json(transformedData);
+        const isGood = validateWeather(transformedData);
+
+        return NextResponse.json(isGood ? "positive" : "negative");
 
     } catch (error) {
         console.error(error);
