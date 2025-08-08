@@ -1,4 +1,4 @@
-import { WeatherDataPoint } from './types';
+import { WeatherDataPoint } from '../types';
 
 const GOOD_CONDITIONS = {
   MIN_WIND_SPEED: 1.4, // m/s

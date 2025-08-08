@@ -1,0 +1,60 @@
+export const API_CONFIG = {
+    openMeteo: {
+        baseURL: "https://api.open-meteo.com/v1/forecast",
+        params: {
+            wind_speed_unit: "ms",
+            hourly: [
+                "wind_speed_1000hPa", "wind_direction_1000hPa",
+                "wind_direction_925hPa", "wind_speed_925hPa",
+                "wind_speed_850hPa", "wind_direction_850hPa",
+                "wind_direction_700hPa", "wind_speed_700hPa",
+                "temperature_1000hPa", "temperature_925hPa",
+                "temperature_850hPa", "temperature_700hPa",
+                "temperature_2m", "precipitation",
+                "precipitation_probability", "cloud_cover",
+                "wind_speed_10m", "wind_direction_10m",
+                "wind_gusts_10m", "weather_code",
+                "pressure_msl", "convective_inhibition",
+                "cloud_cover_low", "cloud_cover_mid",
+                "cloud_cover_high", "is_day",
+                "freezing_level_height", "cape",
+                "lifted_index", "boundary_layer_height"
+            ].join(','),
+            forecast_days: "3",
+            models: "best_match"
+        }
+    }
+};
+
+export const KEY_MAP: { [key: string]: string } = {
+    "wind_speed_1000hPa": "windSpeed1000hPa",
+    "wind_direction_1000hPa": "windDirection1000hPa",
+    "wind_direction_925hPa": "windDirection925hPa",
+    "wind_speed_925hPa": "windSpeed925hPa",
+    "wind_speed_850hPa": "windSpeed850hPa",
+    "wind_direction_850hPa": "windDirection850hPa",
+    "wind_direction_700hPa": "windDirection700hPa",
+    "wind_speed_700hPa": "windSpeed700hPa",
+    "temperature_1000hPa": "temperature1000hPa",
+    "temperature_925hPa": "temperature925hPa",
+    "temperature_850hPa": "temperature850hPa",
+    "temperature_700hPa": "temperature700hPa",
+    "temperature_2m": "temperature2m",
+    "precipitation": "precipitation",
+    "precipitation_probability": "precipitationProbability",
+    "cloud_cover": "cloudCover",
+    "wind_speed_10m": "windSpeed10m",
+    "wind_direction_10m": "windDirection10m",
+    "wind_gusts_10m": "windGusts10m",
+    "weather_code": "weatherCode",
+    "pressure_msl": "pressureMsl",
+    "convective_inhibition": "convectiveInhibition",
+    "cloud_cover_low": "cloudCoverLow",
+    "cloud_cover_mid": "cloudCoverMid",
+    "cloud_cover_high": "cloudCoverHigh",
+    "is_day": "isDay",
+    "freezing_level_height": "freezingLevelHeight",
+    "cape": "cape",
+    "lifted_index": "liftedIndex",
+    "boundary_layer_height": "boundaryLayerHeight"
+};
