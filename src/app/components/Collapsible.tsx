@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { HourlyData } from '../api/cron/types';
 import { getWeatherIcon } from '../lib/weather-icons';
+import { getWindDirection } from '../lib/wind';
 
 interface CollapsibleProps {
   title: string;
@@ -38,8 +39,8 @@ export default function Collapsible({ title, children, className, hour }: Collap
             </div>
             {hour && (
                 <div className="text-right">
-                    <div>Wind: {hour.weatherData.windSpeed10m} m/s</div>
-                    <div>Direction: {hour.weatherData.windDirection10m}°</div>
+                    <div>Wind: {hour.weatherData.windSpeed10m}({hour.weatherData.windGusts10m}) m/s</div>
+                    <div>Direction: {getWindDirection(hour.weatherData.windDirection10m)}</div>
                 </div>
             )}
         </div>
