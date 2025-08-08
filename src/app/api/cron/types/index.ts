@@ -105,7 +105,10 @@ export interface DayResult {
 }
 
 export interface LocationResult {
-  name: string;
+  alert_name: string;
+  locationName: string;
   result: 'positive' | 'negative' | 'error';
   dailyData: DayResult[];
+  lat: number;
+  long: number;
 }

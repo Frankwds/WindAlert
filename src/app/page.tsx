@@ -24,8 +24,8 @@ export default async function Home() {
         <div>
           {data.map((location) => (
             <Collapsible
-              key={location.name}
-              title={`${location.name}: ${location.result}`}
+              key={location.locationName}
+              title={`${location.alert_name} - ${location.locationName}: ${location.result} (${location.lat}, ${location.long})`}
               className={location.result === 'positive' ? 'bg-green-900' : 'bg-red-900'}
             >
               {location.dailyData.map((day) => (
