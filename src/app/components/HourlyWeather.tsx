@@ -18,7 +18,6 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
         <p>Temperature (2m): {hour.weatherData.temperature2m}°C</p>
         <p>Precipitation: {hour.weatherData.precipitation}mm</p>
         <p>Cloud Cover: {hour.weatherData.cloudCover}%</p>
-        <p>Wind Gusts (10m): {hour.weatherData.windGusts10m} m/s</p>
       </div>
 
       <div className="mt-4">
@@ -29,26 +28,29 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
           <div className="font-semibold">Wind Direction</div>
           <div className="font-semibold">Temperature (°C)</div>
 
-          <div className="font-medium">1000hPa</div>
-          <div>{hour.weatherData.windSpeed1000hPa?.toFixed(2)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection1000hPa)}</div>
-          <div>{hour.weatherData.temperature1000hPa?.toFixed(1)}</div>
-          <div className="font-medium">925hPa</div>
-          <div>{hour.weatherData.windSpeed925hPa?.toFixed(2)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection925hPa)}</div>
-          <div>{hour.weatherData.temperature925hPa?.toFixed(1)}</div>
-          <div className="font-medium">850hPa</div>
-          <div>{hour.weatherData.windSpeed850hPa?.toFixed(2)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection850hPa)}</div>
-          <div>{hour.weatherData.temperature850hPa?.toFixed(1)}</div>
-          <div className="font-medium">700hPa</div>
-          <div>{hour.weatherData.windSpeed700hPa?.toFixed(2)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection700hPa)}</div>
-          <div>{hour.weatherData.temperature700hPa?.toFixed(1)}</div>
           <div className="font-medium">10m</div>
-          <div>{hour.weatherData.windSpeed10m?.toFixed(2)}</div>
+          <div>
+            {Math.round(hour.weatherData.windSpeed10m)} ({" "}
+            {Math.round(hour.weatherData.windGusts10m)} )
+          </div>
           <div>{getWindDirection(hour.weatherData.windDirection10m)}</div>
-          <div>{hour.weatherData.temperature2m?.toFixed(1)}</div>
+          <div>{Math.round(hour.weatherData.temperature2m)}</div>
+          <div className="font-medium">110moh</div>
+          <div>{Math.round(hour.weatherData.windSpeed1000hPa)}</div>
+          <div>{getWindDirection(hour.weatherData.windDirection1000hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature1000hPa)}</div>
+          <div className="font-medium">800moh</div>
+          <div>{Math.round(hour.weatherData.windSpeed925hPa)}</div>
+          <div>{getWindDirection(hour.weatherData.windDirection925hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature925hPa)}</div>
+          <div className="font-medium">1500moh</div>
+          <div>{Math.round(hour.weatherData.windSpeed850hPa)}</div>
+          <div>{getWindDirection(hour.weatherData.windDirection850hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature850hPa)}</div>
+          <div className="font-medium">3000moh</div>
+          <div>{Math.round(hour.weatherData.windSpeed700hPa)}</div>
+          <div>{getWindDirection(hour.weatherData.windDirection700hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature700hPa)}</div>
         </div>
       </div>
       <div className="mt-4">
@@ -58,24 +60,24 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
           <div>Precipitation Probability:</div>
           <div>{hour.weatherData.precipitationProbability}%</div>
-          <div>MSL Pressure:</div>
-          <div>{hour.weatherData.pressureMsl} hPa</div>
           <div>Convective Inhibition:</div>
           <div>{hour.weatherData.convectiveInhibition} J/kg</div>
+          <div>Boundary Layer Height:</div>
+          <div>{hour.weatherData.boundaryLayerHeight} m</div>
+          <div>Lifted Index:</div>
+          <div>{hour.weatherData.liftedIndex}</div>
+          <div>CAPE:</div>
+          <div>{hour.weatherData.cape} J/kg</div>
+          <div>Freezing Level:</div>
+          <div>{hour.weatherData.freezingLevelHeight} m</div>
           <div>Low Cloud Cover:</div>
           <div>{hour.weatherData.cloudCoverLow}%</div>
           <div>Mid Cloud Cover:</div>
           <div>{hour.weatherData.cloudCoverMid}%</div>
           <div>High Cloud Cover:</div>
           <div>{hour.weatherData.cloudCoverHigh}%</div>
-          <div>Freezing Level:</div>
-          <div>{hour.weatherData.freezingLevelHeight} m</div>
-          <div>CAPE:</div>
-          <div>{hour.weatherData.cape} J/kg</div>
-          <div>Lifted Index:</div>
-          <div>{hour.weatherData.liftedIndex}</div>
-          <div>Boundary Layer Height:</div>
-          <div>{hour.weatherData.boundaryLayerHeight} m</div>
+          <div>MSL Pressure:</div>
+          <div>{hour.weatherData.pressureMsl} hPa</div>
         </div>
       </div>
     </div>
