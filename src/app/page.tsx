@@ -1,6 +1,7 @@
 import Collapsible from "./components/Collapsible";
 import { LocationResult, DayResult, HourlyData } from "./api/cron/types";
 import { getWeatherIcon } from "./lib/weather-icons";
+import HourlyWeather from "./components/HourlyWeather";
 
 async function getData(): Promise<LocationResult[]> {
   // When fetching on the server, we need to provide the full URL.
@@ -42,24 +43,19 @@ export default async function Home() {
                   }
                 >
                   {day.hourlyData.map((hour, index) => {
-                    const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode, hour.weatherData.isDay);
                     return (
-                        <Collapsible
+                      <Collapsible
                         key={index}
                         title={`Hour ${new Date(
-                            hour.weatherData.time
+                          hour.weatherData.time
                         ).getUTCHours()}:00 - ${
-                            hour.isGood ? "Positive" : "Negative"
+                          hour.isGood ? "Positive" : "Negative"
                         }`}
                         className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                         hour={hour}
-                        >
-                        <div>
-                            <p>{weatherIcon ? weatherIcon.description : "Weather data not available"}</p>
-                            <p>Temperature: {hour.weatherData.temperature2m}°C</p>
-                            <p>Precipitation: {hour.weatherData.precipitation}mm</p>
-                        </div>
-                        </Collapsible>
+                      >
+                        <HourlyWeather hour={hour} />
+                      </Collapsible>
                     );
                   })}
                 </Collapsible>
