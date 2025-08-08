@@ -5,7 +5,6 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
   const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
   const isPrecipitationGood = dp.precipitation <= alert_rule.MAX_PRECIPITATION;
-  const isWeatherCodeGood = !alert_rule.THUNDERSTORM_CODES.includes(dp.weatherCode);
   const isCapeGood = dp.cape < alert_rule.MAX_CAPE;
   const isLiftedIndexGood = dp.liftedIndex >= alert_rule.MIN_LIFTED_INDEX && dp.liftedIndex <= alert_rule.MAX_LIFTED_INDEX;
   const isCinGood = dp.convectiveInhibition > alert_rule.MIN_CONVECTIVE_INHIBITION;
@@ -14,8 +13,9 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
   const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.WIND_DIRECTIONS);
+  const isWmoCodeGood = dp.weatherCode <= alert_rule.WMO_CODE_MAX;
 
-  return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck;
+  return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood;
 }
 
 export function validateWeather(data: WeatherDataPoint[], alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
