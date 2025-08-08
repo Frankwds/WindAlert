@@ -35,19 +35,27 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
           </div>
           <div>{getWindDirection(hour.weatherData.windDirection10m)}</div>
           <div>{Math.round(hour.weatherData.temperature2m)}</div>
-          <div className="font-medium">{Math.round(hour.weatherData.geopotentialHeight1000hPa)}m</div>
+          <div className="font-medium">
+            {hour.weatherData.geopotentialHeight1000hPa}m
+          </div>
           <div>{Math.round(hour.weatherData.windSpeed1000hPa)}</div>
           <div>{getWindDirection(hour.weatherData.windDirection1000hPa)}</div>
           <div>{Math.round(hour.weatherData.temperature1000hPa)}</div>
-          <div className="font-medium">{Math.round(hour.weatherData.geopotentialHeight925hPa)}m</div>
+          <div className="font-medium">
+            {hour.weatherData.geopotentialHeight925hPa}m
+          </div>
           <div>{Math.round(hour.weatherData.windSpeed925hPa)}</div>
           <div>{getWindDirection(hour.weatherData.windDirection925hPa)}</div>
           <div>{Math.round(hour.weatherData.temperature925hPa)}</div>
-          <div className="font-medium">{Math.round(hour.weatherData.geopotentialHeight850hPa)}m</div>
+          <div className="font-medium">
+            {hour.weatherData.geopotentialHeight850hPa}m
+          </div>
           <div>{Math.round(hour.weatherData.windSpeed850hPa)}</div>
           <div>{getWindDirection(hour.weatherData.windDirection850hPa)}</div>
           <div>{Math.round(hour.weatherData.temperature850hPa)}</div>
-          <div className="font-medium">{Math.round(hour.weatherData.geopotentialHeight700hPa)}m</div>
+          <div className="font-medium">
+            {hour.weatherData.geopotentialHeight700hPa}m
+          </div>
           <div>{Math.round(hour.weatherData.windSpeed700hPa)}</div>
           <div>{getWindDirection(hour.weatherData.windDirection700hPa)}</div>
           <div>{Math.round(hour.weatherData.temperature700hPa)}</div>
