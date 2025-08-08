@@ -3,19 +3,6 @@ import { WeatherDataPoint } from './types';
 import { envSchema, openMeteoResponseSchema } from './validation';
 import { validateWeather } from './validateWeather';
 
-const COORDINATES = [
-    { name: "Bodø", latitude: 67.31493, longitude: 14.47845 },
-    { name: "Tromsø", latitude: 69.6496, longitude: 18.956 },
-    { name: "Oslo", latitude: 59.9139, longitude: 10.7522 },
-    { name: "Bergen", latitude: 60.39299, longitude: 5.32415 },
-    { name: "Stavanger", latitude: 58.969975, longitude: 5.733107 },
-    { name: "Trondheim", latitude: 63.43049, longitude: 10.39506 },
-    { name: "Kristiansand", latitude: 58.14671, longitude: 7.9956 },
-    { name: "Hvittingfoss", latitude: 59.512724, longitude: 10.024911 },
-    { name: "Nidwalden", latitude: 46.938416, longitude: 8.341309 },
-    { name: "Bois de Luan", latitude: 46.383855, longitude: 6.965955 }
-];
-
 const keyMap: { [key: string]: string } = {
     "wind_speed_1000hPa": "windSpeed1000hPa",
     "wind_direction_1000hPa": "windDirection1000hPa",
@@ -49,14 +36,29 @@ const keyMap: { [key: string]: string } = {
     "boundary_layer_height": "boundaryLayerHeight"
 };
 
+const COORDINATES = [
+    // { name: "Bodø", latitude: 67.31493, longitude: 14.47845 },
+    // { name: "Tromsø", latitude: 69.6496, longitude: 18.956 },
+    // { name: "Oslo", latitude: 59.9139, longitude: 10.7522 },
+    // { name: "Bergen", latitude: 60.39299, longitude: 5.32415 },
+    // { name: "Stavanger", latitude: 58.969975, longitude: 5.733107 },
+    // { name: "Trondheim", latitude: 63.43049, longitude: 10.39506 },
+    // { name: "Kristiansand", latitude: 58.14671, longitude: 7.9956 },
+    // { name: "Hvittingfoss", latitude: 59.512724, longitude: 10.024911 },
+    { name: "Nidwalden", latitude: 46.938416, longitude: 8.341309 },
+    { name: "Bois de Luan", latitude: 46.383855, longitude: 6.965955 }
+];
+
+
 async function fetchWeatherData(latitude: number, longitude: number) {
-    const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&wind_speed_unit=ms&hourly=wind_speed_1000hPa,wind_direction_1000hPa,wind_direction_925hPa,wind_speed_925hPa,wind_speed_850hPa,wind_direction_850hPa,wind_direction_700hPa,wind_speed_700hPa,temperature_1000hPa,temperature_925hPa,temperature_850hPa,temperature_700hPa,temperature_2m,precipitation,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,pressure_msl,convective_inhibition,cloud_cover_low,cloud_cover_mid,cloud_cover_high,is_day,freezing_level_height,cape,lifted_index,boundary_layer_height&forecast_days=1&models=best_match`;
-    const response = await fetch(API_URL);
+    const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&wind_speed_unit=ms&hourly=wind_speed_1000hPa,wind_direction_1000hPa,wind_direction_925hPa,wind_speed_925hPa,wind_speed_850hPa,wind_direction_850hPa,wind_direction_700hPa,wind_speed_700hPa,temperature_1000hPa,temperature_925hPa,temperature_850hPa,temperature_700hPa,temperature_2m,precipitation,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,pressure_msl,convective_inhibition,cloud_cover_low,cloud_cover_mid,cloud_cover_high,is_day,freezing_level_height,cape,lifted_index,boundary_layer_height&forecast_days=3&models=best_match`;
+    const response = await fetch(API_URL)
     if (!response.ok) {
         const errorText = await response.text();
         console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
         throw new Error(`Failed to fetch weather data`);
     }
+    await new Promise(r => setTimeout(r, 1000));
     return response.json();
 }
 
@@ -71,7 +73,7 @@ function transformWeatherData(rawData: any): WeatherDataPoint[] {
         for (const key in hourlyData) {
             if (key !== 'time') {
                 const camelCaseKey = keyMap[key];
-                if(camelCaseKey) {
+                if (camelCaseKey) {
                     dataPoint[camelCaseKey] = (hourlyData as any)[key][i];
                 }
             }
@@ -83,11 +85,12 @@ function transformWeatherData(rawData: any): WeatherDataPoint[] {
 
 export async function GET(request: NextRequest) {
     try {
-        const env = envSchema.parse(process.env);
-        const authHeader = request.headers.get('authorization');
-        if (authHeader !== `Bearer ${env.CRON_SECRET}`) {
-            return new Response('Unauthorized', { status: 401 });
-        }
+        // Disaabled for now, uncomment later:
+        // const env = envSchema.parse(process.env);
+        // const authHeader = request.headers.get('authorization');
+        // if (authHeader !== `Bearer ${env.CRON_SECRET}`) {
+        //     return new Response('Unauthorized', { status: 401 });
+        // }
 
         const results = await Promise.all(
             COORDINATES.map(async (location) => {

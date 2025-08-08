@@ -8,7 +8,7 @@ const GOOD_CONDITIONS = {
   THUNDERSTORM_CODES: [95, 96, 99],
   MAX_CAPE: 1000, // J/kg
   MIN_LIFTED_INDEX: -4,
-  MAX_LIFTED_INDEX: 0,
+  MAX_LIFTED_INDEX: 2,
   MIN_CONVECTIVE_INHIBITION: -50, // J/kg
   MAX_CLOUD_COVER: 70, // %
 };
@@ -29,8 +29,9 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
 export function validateWeather(data: WeatherDataPoint[]): boolean {
   const relevantHours = data.filter(dp => {
     const hour = new Date(dp.time).getUTCHours();
-    return hour >= 16 && hour <= 20;
+    return hour >= 8 && hour <= 20;
   });
+
 
   if (relevantHours.length < 3) {
     return false;
