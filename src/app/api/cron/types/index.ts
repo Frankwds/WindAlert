@@ -123,6 +123,7 @@ export interface AlertRule {
   MIN_WIND_SPEED: number;
   MAX_WIND_SPEED: number;
   MAX_GUST: number;
+  MAX_GUST_DIFFERENCE: number;
   MAX_PRECIPITATION: number;
   MAX_CAPE: number;
   MIN_LIFTED_INDEX: number;
