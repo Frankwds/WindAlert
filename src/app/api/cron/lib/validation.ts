@@ -38,5 +38,9 @@ export const openMeteoResponseSchema = z.object({
     cape: z.array(z.number()),
     lifted_index: z.array(z.number()),
     boundary_layer_height: z.array(z.number()),
+    geopotential_height_1000hPa: z.array(z.number()),
+    geopotential_height_925hPa: z.array(z.number()),
+    geopotential_height_850hPa: z.array(z.number()),
+    geopotential_height_700hPa: z.array(z.number()),
   }),
 });

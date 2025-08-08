@@ -91,6 +91,18 @@ export interface WeatherDataPoint {
 
   /** Atmospheric boundary layer height. Unit: m */
   boundaryLayerHeight: number;
+
+  /** Geopotential height at 1000hPa. Unit: m */
+  geopotentialHeight1000hPa: number;
+
+  /** Geopotential height at 925hPa. Unit: m */
+  geopotentialHeight925hPa: number;
+
+  /** Geopotential height at 850hPa. Unit: m */
+  geopotentialHeight850hPa: number;
+
+  /** Geopotential height at 700hPa. Unit: m */
+  geopotentialHeight700hPa: number;
 }
 
 export interface HourlyData {
