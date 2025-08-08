@@ -1,33 +1,33 @@
-name: '🏷️ Gemini Automated Issue Triage'
+name: "🏷️ Gemini Automated Issue Triage"
 
 on:
   issues:
     types:
-      - 'opened'
-      - 'reopened'
+      - "opened"
+      - "reopened"
   issue_comment:
     types:
-      - 'created'
+      - "created"
   workflow_dispatch:
     inputs:
       issue_number:
-        description: 'issue number to triage'
+        description: "issue number to triage"
         required: true
-        type: 'number'
+        type: "number"
 
 concurrency:
-  group: '${{ github.workflow }}-${{ github.event.issue.number }}'
+  group: "${{ github.workflow }}-${{ github.event.issue.number }}"
   cancel-in-progress: true
 
 defaults:
   run:
-    shell: 'bash'
+    shell: "bash"
 
 permissions:
-  contents: 'read'
-  id-token: 'write'
-  issues: 'write'
-  statuses: 'write'
+  contents: "read"
+  id-token: "write"
+  issues: "write"
+  statuses: "write"
 
 jobs:
   triage-issue:
@@ -40,39 +40,39 @@ jobs:
         contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
       )
     timeout-minutes: 5
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
 
     steps:
-      - name: 'Checkout repository'
-        uses: 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' # ratchet:actions/checkout@v4
+      - name: "Checkout repository"
+        uses: "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" # ratchet:actions/checkout@v4
 
-      - name: 'Generate GitHub App Token'
-        id: 'generate_token'
+      - name: "Generate GitHub App Token"
+        id: "generate_token"
         if: |-
           ${{ vars.APP_ID }}
-        uses: 'actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e' # ratchet:actions/create-github-app-token@v2
+        uses: "actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e" # ratchet:actions/create-github-app-token@v2
         with:
-          app-id: '${{ vars.APP_ID }}'
-          private-key: '${{ secrets.APP_PRIVATE_KEY }}'
+          app-id: "${{ vars.APP_ID }}"
+          private-key: "${{ secrets.APP_PRIVATE_KEY }}"
 
-      - name: 'Run Gemini Issue Triage'
-        uses: 'google-github-actions/run-gemini-cli@v0'
-        id: 'gemini_issue_triage'
+      - name: "Run Gemini Issue Triage"
+        uses: "google-github-actions/run-gemini-cli@v0"
+        id: "gemini_issue_triage"
         env:
-          GITHUB_TOKEN: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
-          ISSUE_TITLE: '${{ github.event.issue.title }}'
-          ISSUE_BODY: '${{ github.event.issue.body }}'
-          ISSUE_NUMBER: '${{ github.event.issue.number }}'
-          REPOSITORY: '${{ github.repository }}'
+          GITHUB_TOKEN: "${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}"
+          ISSUE_TITLE: "${{ github.event.issue.title }}"
+          ISSUE_BODY: "${{ github.event.issue.body }}"
+          ISSUE_NUMBER: "${{ github.event.issue.number }}"
+          REPOSITORY: "${{ github.repository }}"
         with:
-          gemini_cli_version: '${{ vars.GEMINI_CLI_VERSION }}'
-          gcp_workload_identity_provider: '${{ vars.GCP_WIF_PROVIDER }}'
-          gcp_project_id: '${{ vars.GOOGLE_CLOUD_PROJECT }}'
-          gcp_location: '${{ vars.GOOGLE_CLOUD_LOCATION }}'
-          gcp_service_account: '${{ vars.SERVICE_ACCOUNT_EMAIL }}'
-          gemini_api_key: '${{ secrets.GEMINI_API_KEY }}'
-          use_vertex_ai: '${{ vars.GOOGLE_GENAI_USE_VERTEXAI }}'
-          use_gemini_code_assist: '${{ vars.GOOGLE_GENAI_USE_GCA }}'
+          gemini_api_key: "${{ secrets.GEMINI_API_KEY }}"
+          gcp_workload_identity_provider: "${{ vars.GCP_WIF_PROVIDER }}"
+          gcp_project_id: "${{ vars.GOOGLE_CLOUD_PROJECT }}"
+          gcp_location: "${{ vars.GOOGLE_CLOUD_LOCATION }}"
+          gcp_service_account: "${{ vars.SERVICE_ACCOUNT_EMAIL }}"
+          use_vertex_ai: "${{ vars.GOOGLE_GENAI_USE_VERTEXAI }}"
+          use_gemini_code_assist: "${{ vars.GOOGLE_GENAI_USE_GCA }}"
+          gemini_cli_version: ${{ vars.GEMINI_CLI_VERSION }}
           settings: |-
             {
               "maxSessionTurns": 25,
@@ -115,12 +115,12 @@ jobs:
             - Assign all applicable labels based on the issue content
             - Reference all shell variables as "${VAR}" (with quotes and braces)
 
-      - name: 'Post Issue Triage Failure Comment'
+      - name: "Post Issue Triage Failure Comment"
         if: |-
           ${{ failure() && steps.gemini_issue_triage.outcome == 'failure' }}
-        uses: 'actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea'
+        uses: "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea"
         with:
-          github-token: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
+          github-token: "${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}"
           script: |-
             github.rest.issues.createComment({
               owner: '${{ github.repository }}'.split('/')[0],
