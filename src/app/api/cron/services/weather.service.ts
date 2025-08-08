@@ -1,9 +1,9 @@
 import { WeatherDataPoint } from '../types';
 
 const GOOD_CONDITIONS = {
-  MIN_WIND_SPEED: 1.4, // m/s
-  MAX_WIND_SPEED: 4.2, // m/s
-  MAX_GUST_DIFFERENCE: 2.0, // m/s
+  MIN_WIND_SPEED: 2, // m/s
+  MAX_WIND_SPEED: 7, // m/s
+  MAX_GUST: 9.0, // m/s
   MAX_PRECIPITATION: 0, // mm
   THUNDERSTORM_CODES: [95, 96, 99],
   MAX_CAPE: 1000, // J/kg
@@ -15,7 +15,7 @@ const GOOD_CONDITIONS = {
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= GOOD_CONDITIONS.MIN_WIND_SPEED && dp.windSpeed10m <= GOOD_CONDITIONS.MAX_WIND_SPEED;
-  const isGustGood = (dp.windGusts10m - dp.windSpeed10m) <= GOOD_CONDITIONS.MAX_GUST_DIFFERENCE;
+  const isGustGood = dp.windGusts10m <= GOOD_CONDITIONS.MAX_GUST;
   const isPrecipitationGood = dp.precipitation <= GOOD_CONDITIONS.MAX_PRECIPITATION;
   const isWeatherCodeGood = !GOOD_CONDITIONS.THUNDERSTORM_CODES.includes(dp.weatherCode);
   const isCapeGood = dp.cape < GOOD_CONDITIONS.MAX_CAPE;
