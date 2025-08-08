@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ALERT_RULES } from './config/locations';
+import { ALERT_RULES } from './config/alert-rules';
 import { envSchema } from './lib/validation';
 import { fetchWeatherData, transformWeatherData } from './services/open-meteo.service';
 import { validateWeather } from './services/weather.service';
@@ -14,22 +14,22 @@ export async function GET(request: NextRequest) {
         // }
 
         const results = await Promise.all(
-            ALERT_RULES.map(async (location) => {
+            ALERT_RULES.map(async (alertRule) => {
                 try {
-                    const rawData = await fetchWeatherData(location.lat, location.long);
+                    const rawData = await fetchWeatherData(alertRule.lat, alertRule.long);
                     const transformedData = transformWeatherData(rawData);
-                    const { overallResult, dailyData } = validateWeather(transformedData, location);
+                    const { overallResult, dailyData } = validateWeather(transformedData, alertRule);
                     return {
-                        alert_name: location.alert_name,
-                        locationName: location.locationName,
+                        alert_name: alertRule.alert_name,
+                        locationName: alertRule.locationName,
                         result: overallResult,
                         dailyData: dailyData,
-                        lat: location.lat,
-                        long: location.long,
+                        lat: alertRule.lat,
+                        long: alertRule.long,
                     };
                 } catch (error) {
-                    console.error(`Failed to process location ${location.locationName}:`, error);
-                    return { alert_name: location.alert_name, locationName: location.locationName, result: 'error', dailyData: [] };
+                    console.error(`Failed to process location ${alertRule.locationName}:`, error);
+                    return { alert_name: alertRule.alert_name, locationName: alertRule.locationName, result: 'error', dailyData: [] };
                 }
             })
         );
