@@ -11,6 +11,9 @@ const GOOD_CONDITIONS = {
   MAX_LIFTED_INDEX: 2,
   MIN_CONVECTIVE_INHIBITION: -50, // J/kg
   MAX_CLOUD_COVER: 70, // %
+  MAX_WIND_SPEED_925hPa: 10, // m/s
+  MAX_WIND_SPEED_850hPa: 15, // m/s
+  MAX_WIND_SPEED_700hPa: 20, // m/s
 };
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
@@ -22,8 +25,12 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
   const isLiftedIndexGood = dp.liftedIndex >= GOOD_CONDITIONS.MIN_LIFTED_INDEX && dp.liftedIndex <= GOOD_CONDITIONS.MAX_LIFTED_INDEX;
   const isCinGood = dp.convectiveInhibition > GOOD_CONDITIONS.MIN_CONVECTIVE_INHIBITION;
   const isCloudCoverGood = dp.cloudCover < GOOD_CONDITIONS.MAX_CLOUD_COVER;
+  const isWindSpeed700hPaGood = dp.windSpeed700hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_700hPa;
+  const isWindSpeed850hPaGood = dp.windSpeed850hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_850hPa;
+  const isWindSpeed925hPaGood = dp.windSpeed925hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_925hPa;
 
-  return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood;
+
+  return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood;
 }
 
 export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
