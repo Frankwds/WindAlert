@@ -1,6 +1,6 @@
 import Collapsible from "./components/Collapsible";
 import { LocationResult, DayResult, HourlyData } from "./api/cron/types";
-import HourlyWeather from "./components/HourlyWeather";
+import { getWeatherIcon } from "./lib/weather-icons";
 
 async function getData(): Promise<LocationResult[]> {
   // When fetching on the server, we need to provide the full URL.
@@ -41,21 +41,27 @@ export default async function Home() {
                     day.result === "positive" ? "bg-green-800" : "bg-red-800"
                   }
                 >
-                  {day.hourlyData.map((hour, index) => (
-                    <Collapsible
-                      key={index}
-                      title={`Hour ${new Date(
-                        hour.weatherData.time
-                      ).getUTCHours()}:00 - ${
-                        hour.isGood ? "Positive" : "Negative"
-                      }`}
-                      className={hour.isGood ? "bg-green-700" : "bg-red-700"}
-                    >
-                      <pre className="text-sm overflow-x-auto">
-                        {JSON.stringify(hour.weatherData, null, 2)}
-                      </pre>
-                    </Collapsible>
-                  ))}
+                  {day.hourlyData.map((hour, index) => {
+                    const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode, hour.weatherData.isDay);
+                    return (
+                        <Collapsible
+                        key={index}
+                        title={`Hour ${new Date(
+                            hour.weatherData.time
+                        ).getUTCHours()}:00 - ${
+                            hour.isGood ? "Positive" : "Negative"
+                        }`}
+                        className={hour.isGood ? "bg-green-700" : "bg-red-700"}
+                        hour={hour}
+                        >
+                        <div>
+                            <p>{weatherIcon ? weatherIcon.description : "Weather data not available"}</p>
+                            <p>Temperature: {hour.weatherData.temperature2m}°C</p>
+                            <p>Precipitation: {hour.weatherData.precipitation}mm</p>
+                        </div>
+                        </Collapsible>
+                    );
+                  })}
                 </Collapsible>
               ))}
             </Collapsible>
