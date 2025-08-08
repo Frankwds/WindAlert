@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
                 try {
                     const rawData = await fetchWeatherData(location.lat, location.long);
                     const transformedData = transformWeatherData(rawData);
-                    const { overallResult, dailyData } = validateWeather(transformedData);
+                    const { overallResult, dailyData } = validateWeather(transformedData, location);
                     return {
                         alert_name: location.alert_name,
                         locationName: location.locationName,

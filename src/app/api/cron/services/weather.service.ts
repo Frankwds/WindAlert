@@ -1,24 +1,7 @@
 import { WeatherDataPoint, HourlyData, DayResult } from '../types';
 import { isWindDirectionGood } from '../lib/wind';
 
-const alert_rule = {
-  MIN_WIND_SPEED: 2, // m/s
-  MAX_WIND_SPEED: 6, // m/s
-  MAX_GUST: 8.0, // m/s
-  MAX_PRECIPITATION: 0, // mm
-  THUNDERSTORM_CODES: [95, 96, 99],
-  MAX_CAPE: 1000, // J/kg
-  MIN_LIFTED_INDEX: -4,
-  MAX_LIFTED_INDEX: 2,
-  MIN_CONVECTIVE_INHIBITION: -50, // J/kg
-  MAX_CLOUD_COVER: 70, // %
-  MAX_WIND_SPEED_925hPa: 10, // m/s
-  MAX_WIND_SPEED_850hPa: 15, // m/s
-  MAX_WIND_SPEED_700hPa: 20, // m/s
-  WIND_DIRECTIONS: ['N', 'NE', 'SE', 'NW'],
-};
-
-function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
+function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: any): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
   const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
   const isPrecipitationGood = dp.precipitation <= alert_rule.MAX_PRECIPITATION;
@@ -32,11 +15,10 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
   const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.WIND_DIRECTIONS);
 
-
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck;
 }
 
-export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+export function validateWeather(data: WeatherDataPoint[], alert_rule: any): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
   const groupedByDay = data.reduce((acc, dp) => {
     const date = dp.time.split('T')[0];
     if (!acc[date]) {
@@ -53,7 +35,7 @@ export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'pos
     });
 
     const hourlyData: HourlyData[] = relevantHours.map(dp => ({
-      isGood: isGoodParaglidingCondition(dp),
+      isGood: isGoodParaglidingCondition(dp, alert_rule),
       weatherData: dp,
     }));
 
