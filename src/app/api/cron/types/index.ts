@@ -111,6 +111,7 @@ export interface LocationResult {
   dailyData: DayResult[];
   lat: number;
   long: number;
+  elevation: number;
 }
 
 export type WindDirection = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';

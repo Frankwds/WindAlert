@@ -26,10 +26,19 @@ export async function GET(request: NextRequest) {
                         dailyData: dailyData,
                         lat: alertRule.lat,
                         long: alertRule.long,
+                        elevation: rawData.elevation,
                     };
                 } catch (error) {
                     console.error(`Failed to process location ${alertRule.locationName}:`, error);
-                    return { alert_name: alertRule.alert_name, locationName: alertRule.locationName, result: 'error', dailyData: [] };
+                    return {
+                        alert_name: alertRule.alert_name,
+                        locationName: alertRule.locationName,
+                        result: 'error',
+                        dailyData: [],
+                        lat: alertRule.lat,
+                        long: alertRule.long,
+                        elevation: 0,
+                    };
                 }
             })
         );

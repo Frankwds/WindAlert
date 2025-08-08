@@ -5,6 +5,7 @@ export const envSchema = z.object({
 });
 
 export const openMeteoResponseSchema = z.object({
+  elevation: z.number(),
   hourly: z.object({
     time: z.array(z.string()),
     wind_speed_1000hPa: z.array(z.number()),
