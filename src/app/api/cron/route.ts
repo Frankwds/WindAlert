@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { COORDINATES } from '../config/locations';
-import { envSchema } from '../lib/validation';
-import { fetchWeatherData, transformWeatherData } from '../services/open-meteo.service';
-import { validateWeather } from '../services/weather.service';
+import { COORDINATES } from './config/locations';
+import { envSchema } from './lib/validation';
+import { fetchWeatherData, transformWeatherData } from './services/open-meteo.service';
+import { validateWeather } from './services/weather.service';
 
 export async function GET(request: NextRequest) {
     try {
