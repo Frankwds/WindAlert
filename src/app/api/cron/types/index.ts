@@ -92,3 +92,14 @@ export interface WeatherDataPoint {
     /** Atmospheric boundary layer height. Unit: m */
     boundaryLayerHeight: number;
 }
+
+export interface HourlyData {
+  isGood: boolean;
+  weatherData: WeatherDataPoint;
+}
+
+export interface LocationResult {
+  name: string;
+  result: 'positive' | 'negative' | 'error';
+  hourlyData: HourlyData[];
+}
