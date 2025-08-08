@@ -1,4 +1,4 @@
-import { WeatherDataPoint, HourlyData } from '../types';
+import { WeatherDataPoint, HourlyData, DayResult } from '../types';
 
 const GOOD_CONDITIONS = {
   MIN_WIND_SPEED: 2, // m/s
@@ -26,36 +26,54 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood;
 }
 
-export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'positive' | 'negative', hourlyData: HourlyData[] } {
-  const relevantHours = data.filter(dp => {
-    const hour = new Date(dp.time).getUTCHours();
-    return hour >= 8 && hour <= 20;
+export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+  const groupedByDay = data.reduce((acc, dp) => {
+    const date = dp.time.split('T')[0];
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(dp);
+    return acc;
+  }, {} as Record<string, WeatherDataPoint[]>);
+
+  const dailyData: DayResult[] = Object.entries(groupedByDay).map(([date, dayData]) => {
+    const relevantHours = dayData.filter(dp => {
+      const hour = new Date(dp.time).getUTCHours();
+      return hour >= 8 && hour <= 20;
+    });
+
+    const hourlyData: HourlyData[] = relevantHours.map(dp => ({
+      isGood: isGoodParaglidingCondition(dp),
+      weatherData: dp,
+    }));
+
+    let consecutiveGoodHours = 0;
+    let hasMetCondition = false;
+    if (relevantHours.length >= 3) {
+      for (const hour of hourlyData) {
+        if (hour.isGood) {
+          consecutiveGoodHours++;
+          if (consecutiveGoodHours >= 3) {
+            hasMetCondition = true;
+            break;
+          }
+        } else {
+          consecutiveGoodHours = 0;
+        }
+      }
+    }
+
+    return {
+      date,
+      result: hasMetCondition ? 'positive' : 'negative',
+      hourlyData,
+    };
   });
 
-  const hourlyData: HourlyData[] = relevantHours.map(dp => ({
-    isGood: isGoodParaglidingCondition(dp),
-    weatherData: dp,
-  }));
-
-  if (relevantHours.length < 3) {
-    return { overallResult: 'negative', hourlyData };
-  }
-
-  let consecutiveGoodHours = 0;
-  let hasMetCondition = false;
-  for (const dp of hourlyData) {
-    if (dp.isGood) {
-      consecutiveGoodHours++;
-      if (consecutiveGoodHours >= 3) {
-        hasMetCondition = true;
-      }
-    } else {
-      consecutiveGoodHours = 0;
-    }
-  }
+  const overallResult = dailyData.some(day => day.result === 'positive') ? 'positive' : 'negative';
 
   return {
-    overallResult: hasMetCondition ? 'positive' : 'negative',
-    hourlyData,
+    overallResult,
+    dailyData,
   };
 }

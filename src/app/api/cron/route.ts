@@ -18,15 +18,15 @@ export async function GET(request: NextRequest) {
                 try {
                     const rawData = await fetchWeatherData(location.latitude, location.longitude);
                     const transformedData = transformWeatherData(rawData);
-                    const { overallResult, hourlyData } = validateWeather(transformedData);
+                    const { overallResult, dailyData } = validateWeather(transformedData);
                     return {
                         name: location.name,
                         result: overallResult,
-                        hourlyData: hourlyData,
+                        dailyData: dailyData,
                     };
                 } catch (error) {
                     console.error(`Failed to process location ${location.name}:`, error);
-                    return { name: location.name, result: 'error', hourlyData: [] };
+                    return { name: location.name, result: 'error', dailyData: [] };
                 }
             })
         );

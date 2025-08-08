@@ -98,8 +98,14 @@ export interface HourlyData {
   weatherData: WeatherDataPoint;
 }
 
+export interface DayResult {
+  date: string;
+  result: 'positive' | 'negative';
+  hourlyData: HourlyData[];
+}
+
 export interface LocationResult {
   name: string;
   result: 'positive' | 'negative' | 'error';
-  hourlyData: HourlyData[];
+  dailyData: DayResult[];
 }
