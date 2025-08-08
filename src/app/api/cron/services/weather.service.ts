@@ -1,7 +1,7 @@
-import { WeatherDataPoint, HourlyData, DayResult } from '../types';
+import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../types';
 import { isWindDirectionGood } from '../lib/wind';
 
-function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: any): boolean {
+function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
   const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
   const isPrecipitationGood = dp.precipitation <= alert_rule.MAX_PRECIPITATION;
@@ -18,7 +18,7 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: any): bool
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck;
 }
 
-export function validateWeather(data: WeatherDataPoint[], alert_rule: any): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+export function validateWeather(data: WeatherDataPoint[], alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
   const groupedByDay = data.reduce((acc, dp) => {
     const date = dp.time.split('T')[0];
     if (!acc[date]) {

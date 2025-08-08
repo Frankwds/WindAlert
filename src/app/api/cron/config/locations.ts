@@ -1,4 +1,6 @@
-export const ALERT_RULES = [
+import { AlertRule } from '../types';
+
+export const ALERT_RULES: AlertRule[] = [
     {
         alert_name: "Alert for Bodø", locationName: "Bodø", lat: 67.31493, long: 14.47845,
         MIN_WIND_SPEED: 2, MAX_WIND_SPEED: 6, MAX_GUST: 8.0, MAX_PRECIPITATION: 0,
