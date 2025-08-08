@@ -1,6 +1,7 @@
 import { WeatherDataPoint, HourlyData, DayResult } from '../types';
+import { isWindDirectionGood } from '../lib/wind';
 
-const GOOD_CONDITIONS = {
+const alert_rule = {
   MIN_WIND_SPEED: 2, // m/s
   MAX_WIND_SPEED: 6, // m/s
   MAX_GUST: 8.0, // m/s
@@ -14,23 +15,25 @@ const GOOD_CONDITIONS = {
   MAX_WIND_SPEED_925hPa: 10, // m/s
   MAX_WIND_SPEED_850hPa: 15, // m/s
   MAX_WIND_SPEED_700hPa: 20, // m/s
+  windDirections: ['N', 'S', 'E', 'W'],
 };
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
-  const isWindSpeedGood = dp.windSpeed10m >= GOOD_CONDITIONS.MIN_WIND_SPEED && dp.windSpeed10m <= GOOD_CONDITIONS.MAX_WIND_SPEED;
-  const isGustGood = dp.windGusts10m <= GOOD_CONDITIONS.MAX_GUST;
-  const isPrecipitationGood = dp.precipitation <= GOOD_CONDITIONS.MAX_PRECIPITATION;
-  const isWeatherCodeGood = !GOOD_CONDITIONS.THUNDERSTORM_CODES.includes(dp.weatherCode);
-  const isCapeGood = dp.cape < GOOD_CONDITIONS.MAX_CAPE;
-  const isLiftedIndexGood = dp.liftedIndex >= GOOD_CONDITIONS.MIN_LIFTED_INDEX && dp.liftedIndex <= GOOD_CONDITIONS.MAX_LIFTED_INDEX;
-  const isCinGood = dp.convectiveInhibition > GOOD_CONDITIONS.MIN_CONVECTIVE_INHIBITION;
-  const isCloudCoverGood = dp.cloudCover < GOOD_CONDITIONS.MAX_CLOUD_COVER;
-  const isWindSpeed700hPaGood = dp.windSpeed700hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_700hPa;
-  const isWindSpeed850hPaGood = dp.windSpeed850hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_850hPa;
-  const isWindSpeed925hPaGood = dp.windSpeed925hPa <= GOOD_CONDITIONS.MAX_WIND_SPEED_925hPa;
+  const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
+  const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
+  const isPrecipitationGood = dp.precipitation <= alert_rule.MAX_PRECIPITATION;
+  const isWeatherCodeGood = !alert_rule.THUNDERSTORM_CODES.includes(dp.weatherCode);
+  const isCapeGood = dp.cape < alert_rule.MAX_CAPE;
+  const isLiftedIndexGood = dp.liftedIndex >= alert_rule.MIN_LIFTED_INDEX && dp.liftedIndex <= alert_rule.MAX_LIFTED_INDEX;
+  const isCinGood = dp.convectiveInhibition > alert_rule.MIN_CONVECTIVE_INHIBITION;
+  const isCloudCoverGood = dp.cloudCover < alert_rule.MAX_CLOUD_COVER;
+  const isWindSpeed700hPaGood = dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa;
+  const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
+  const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
+  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.windDirections);
 
 
-  return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood;
+  return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck;
 }
 
 export function validateWeather(data: WeatherDataPoint[]): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
