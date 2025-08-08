@@ -59,7 +59,7 @@ export default function Collapsible({
           )}
         </div>
       </button>
-      {isOpen && <div className="p-4 bg-gray-800 rounded-b-lg">{children}</div>}
+      {isOpen && <div className="bg-gray-800 rounded-b-lg">{children}</div>}
     </div>
   );
 }

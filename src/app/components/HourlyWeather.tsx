@@ -10,7 +10,7 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
   );
 
   return (
-    <div className="p-4 bg-gray-800 rounded-lg text-white">
+    <div className="p-4 text-white">
       <div className="mb-4">
         <p className="font-bold">
           {weatherIcon ? weatherIcon.description : "Weather data not available"}
