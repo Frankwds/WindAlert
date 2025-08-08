@@ -15,7 +15,7 @@ const alert_rule = {
   MAX_WIND_SPEED_925hPa: 10, // m/s
   MAX_WIND_SPEED_850hPa: 15, // m/s
   MAX_WIND_SPEED_700hPa: 20, // m/s
-  windDirections: ['N', 'S', 'E', 'W'],
+  WIND_DIRECTIONS: ['N', 'NE', 'SE', 'NW'],
 };
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
@@ -30,7 +30,7 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint): boolean {
   const isWindSpeed700hPaGood = dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa;
   const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
-  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.windDirections);
+  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.WIND_DIRECTIONS);
 
 
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isWeatherCodeGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck;
