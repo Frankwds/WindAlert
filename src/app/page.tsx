@@ -1,5 +1,6 @@
 import Collapsible from './components/Collapsible';
 import { LocationResult, DayResult, HourlyData } from './api/cron/types';
+import HourlyWeather from './components/HourlyWeather';
 
 async function getData(): Promise<LocationResult[]> {
   // When fetching on the server, we need to provide the full URL.
@@ -40,9 +41,7 @@ export default async function Home() {
                       title={`Hour ${new Date(hour.weatherData.time).getUTCHours()}:00 - ${hour.isGood ? 'Positive' : 'Negative'}`}
                       className={hour.isGood ? 'bg-green-700' : 'bg-red-700'}
                     >
-                      <pre className="text-sm overflow-x-auto">
-                        {JSON.stringify(hour.weatherData, null, 2)}
-                      </pre>
+                      <HourlyWeather hour={hour} />
                     </Collapsible>
                   ))}
                 </Collapsible>
