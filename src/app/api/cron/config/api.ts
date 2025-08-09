@@ -26,6 +26,9 @@ export const API_CONFIG = {
             models: "best_match",
             timezone: "auto"
         }
+    },
+    metno: {
+        baseURL: "https://api.met.no/weatherapi/locationforecast/2.0/complete"
     }
 };
 
