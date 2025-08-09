@@ -26,7 +26,7 @@ export default function Meteogram({
         }
         const svg = await res.text();
         const modifiedSvg = svg.replace(
-          `Weather forecast for ${lat}, ${long}`,
+          /Weather forecast for .*/,
           `Forecast for ${locationName}`
         );
         setSvgContent(modifiedSvg);
