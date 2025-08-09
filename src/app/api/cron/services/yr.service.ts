@@ -1,7 +1,7 @@
-import { metNoResponseSchema } from '../lib/yr-validation';
+import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/yr-validation';
 import { WeatherDataPointYr } from '../types/yr';
 
-export async function fetchWeatherData(latitude: number, longitude: number): Promise<any> {
+export async function fetchWeatherDataYr(latitude: number, longitude: number): Promise<any> {
     const url = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
 
     const response = await fetch(url, {
@@ -18,16 +18,28 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
     return response.json();
 }
 
-export function transformWeatherData(rawData: any): WeatherDataPointYr[] {
-    const validatedData = metNoResponseSchema.parse(rawData);
-    const timeseries = validatedData.properties.timeseries;
+function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
+    const index = timeseries.findIndex(item => !item.data.next_1_hours);
+    return index === -1 ? timeseries.length : index;
+}
 
-    const transformedData: WeatherDataPointYr[] = timeseries.map(item => {
+export function transformWeatherDataYr(rawData: any): WeatherDataPointYr[] {
+    const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
+    const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex);
+    const slicedSixHourData = rawData.properties.timeseries.slice(firstMissingIndex, 80);
+
+    const validatedMetaData = metNoResponseSchema.parse(rawData);
+    const validatedHourlyData = hourlySchema.parse(slicedHourlyData);
+    const validatedSixHourData = sixHourlySchema.parse(slicedSixHourData);
+    const updated_at = validatedMetaData.properties.meta.updated_at
+
+
+    const transformedData: WeatherDataPointYr[] = validatedHourlyData.map(item => {
         const dataPoint: WeatherDataPointYr = {
             time: item.time,
-            ...item.data.instant?.details,
-            ...item.data.next_1_hours?.details,
-            symbol_code: item.data.next_1_hours?.summary?.symbol_code,
+            ...item.data.instant.details,
+            ...item.data.next_1_hours.details,
+            symbol_code: item.data.next_1_hours.summary.symbol_code,
         };
         return dataPoint;
     });

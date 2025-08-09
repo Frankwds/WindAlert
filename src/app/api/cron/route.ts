@@ -3,6 +3,7 @@ import { ALERT_RULES } from './config/alert-rules';
 import { envSchema } from './lib/validation';
 import { fetchWeatherData, transformWeatherData } from './services/open-meteo.service';
 import { validateWeather } from './services/weather.service';
+import { fetchWeatherDataYr, transformWeatherDataYr } from './services/yr.service';
 
 export async function GET(request: NextRequest) {
     try {
@@ -16,6 +17,10 @@ export async function GET(request: NextRequest) {
         const results = await Promise.all(
             ALERT_RULES.map(async (alertRule) => {
                 try {
+
+                    const rawYrData = await fetchWeatherDataYr(alertRule.lat, alertRule.long);
+                    const transformedYrData = transformWeatherDataYr(rawYrData);
+
                     const rawData = await fetchWeatherData(alertRule.lat, alertRule.long);
                     const transformedData = transformWeatherData(rawData);
                     const { overallResult, dailyData } = validateWeather(transformedData, alertRule);
