@@ -7,6 +7,7 @@ export async function fetchWeatherData(latitude: number, longitude: number): Pro
     const url = new URL(baseURL);
     url.searchParams.append('latitude', latitude.toString());
     url.searchParams.append('longitude', longitude.toString());
+
     Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
     });

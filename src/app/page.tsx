@@ -29,7 +29,7 @@ export default async function Home() {
           {data.map((location) => (
             <Collapsible
               key={location.locationName}
-              title={`${location.alert_name} - ${location.locationName}: ${location.result} (${location.lat}, ${location.long}, ${location.elevation}m)`}
+              title={`${location.locationName} (${location.lat}, ${location.long}, ${location.elevation}m)`}
               className={
                 location.result === "positive" ? "bg-green-900" : "bg-red-900"
               }
@@ -48,9 +48,7 @@ export default async function Home() {
                         key={index}
                         title={`Hour ${new Date(
                           hour.weatherData.time
-                        ).getUTCHours()}:00 - ${
-                          hour.isGood ? "Positive" : "Negative"
-                        }`}
+                        ).getUTCHours()}:00`}
                         className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                         hour={hour}
                       >

@@ -20,10 +20,11 @@ export const API_CONFIG = {
                 "freezing_level_height", "cape",
                 "lifted_index", "boundary_layer_height",
                 "geopotential_height_1000hPa", "geopotential_height_925hPa",
-                "geopotential_height_850hPa", "geopotential_height_700hPa"
+                "geopotential_height_850hPa", "geopotential_height_700hPa",
             ].join(','),
             forecast_days: "3",
-            models: "best_match"
+            models: "best_match",
+            timezone: "auto"
         }
     }
 };
