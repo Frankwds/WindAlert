@@ -2,6 +2,7 @@ import Collapsible from "./components/Collapsible";
 import { LocationResult, DayResult, HourlyData } from "./api/cron/types";
 import { getWeatherIcon } from "./lib/weather-icons";
 import HourlyWeather from "./components/HourlyWeather";
+import Meteogram from "./components/Meteogram";
 
 async function getData(): Promise<LocationResult[]> {
   // When fetching on the server, we need to provide the full URL.
@@ -34,6 +35,11 @@ export default async function Home() {
                 location.result === "positive" ? "bg-green-900" : "bg-red-900"
               }
             >
+              <Meteogram
+                lat={location.lat}
+                long={location.long}
+                locationName={location.locationName}
+              />
               {location.dailyData.map((day) => (
                 <Collapsible
                   key={day.date}
