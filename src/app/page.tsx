@@ -46,9 +46,7 @@ export default async function Home() {
                     return (
                       <Collapsible
                         key={index}
-                        title={`Hour ${new Date(
-                          hour.weatherData.time
-                        ).getUTCHours()}:00`}
+                        title={`Hour ${hour.weatherData.time.split("T")[1]}`}
                         className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                         hour={hour}
                       >
