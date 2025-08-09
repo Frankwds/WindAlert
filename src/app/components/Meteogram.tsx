@@ -19,7 +19,7 @@ export default function Meteogram({
   useEffect(() => {
     async function fetchMeteogram() {
       try {
-        const url = `https://www.yr.no/en/content/${lat},${long}/meteogram.svg`;
+        const url = `/api/meteogram?lat=${lat}&long=${long}`;
         const res = await fetch(url);
         if (!res.ok) {
           throw new Error(`Failed to fetch meteogram: ${res.statusText}`);
