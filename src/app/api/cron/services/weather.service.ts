@@ -33,18 +33,20 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood && isGustDifferenceGood;
 }
 
-export function validateWeather(data: WeatherDataPoint[], yrData: WeatherDataPointYr1h[], alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): WeatherDataPoint[] {
   const yrDataMap = new Map(yrData.map(dp => [dp.time, dp]));
 
-  const combinedData = data.map(meteoDp => {
+  return meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
     if (yrDp) {
       return combineWeatherData(yrDp, meteoDp);
     }
     return meteoDp;
   });
+}
 
-  const groupedByDay = combinedData.reduce((acc, dp) => {
+export function groupByDay(data: WeatherDataPoint[]): Record<string, WeatherDataPoint[]> {
+  return data.reduce((acc, dp) => {
     const date = dp.time.split('T')[0];
     if (!acc[date]) {
       acc[date] = [];
@@ -52,8 +54,10 @@ export function validateWeather(data: WeatherDataPoint[], yrData: WeatherDataPoi
     acc[date].push(dp);
     return acc;
   }, {} as Record<string, WeatherDataPoint[]>);
+}
 
-  const dailyData: DayResult[] = Object.entries(groupedByDay).map(([date, dayData]) => {
+export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+  const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
     const relevantHours = dayData.filter(dp => {
       const hour = new Date(dp.time).getUTCHours();
       return hour >= 8 && hour <= 20;

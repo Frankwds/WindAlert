@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ALERT_RULES } from './config/alert-rules';
 import { envSchema } from './lib/validation';
 import { fetchWeatherData, transformWeatherData } from './services/open-meteo.service';
-import { validateWeather } from './services/weather.service';
+import { combineDataSources, groupByDay, validateWeather } from './services/weather.service';
 import { fetchWeatherDataYr, transformWeatherDataYr } from './services/yr.service';
 
 export async function GET(request: NextRequest) {
@@ -23,7 +23,10 @@ export async function GET(request: NextRequest) {
 
                     const rawData = await fetchWeatherData(alertRule.lat, alertRule.long);
                     const meteoData = transformWeatherData(rawData);
-                    const { overallResult, dailyData } = validateWeather(meteoData, yrData.weatherDataYr1h, alertRule);
+
+                    const combinedData = combineDataSources(meteoData, yrData.weatherDataYr1h);
+                    const groupedData = groupByDay(combinedData);
+                    const { overallResult, dailyData } = validateWeather(groupedData, alertRule);
                     return {
                         alert_name: alertRule.alert_name,
                         locationName: alertRule.locationName,
