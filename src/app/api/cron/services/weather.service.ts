@@ -34,7 +34,7 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
 }
 
 export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): WeatherDataPoint[] {
-  const yrDataMap = new Map(yrData.map(dp => [dp.time, dp]));
+  const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp]));
 
   return meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
