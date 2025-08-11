@@ -14,21 +14,21 @@ export const weatherIcons: WeatherIcons = {
   "0": {
     day: {
       description: "Sunny",
-      image: "https://openweathermap.org/img/wn/01d@2x.png",
+      image: "/weather-icons/clearsky_day.svg",
     },
     night: {
       description: "Clear",
-      image: "https://openweathermap.org/img/wn/01n@2x.png",
+      image: "/weather-icons/clearsky_night.svg",
     },
   },
   "1": {
     day: {
       description: "Mainly Sunny",
-      image: "https://openweathermap.org/img/wn/01d@2x.png",
+      image: "/weather-icons/clearsky_day.svg",
     },
     night: {
       description: "Mainly Clear",
-      image: "https://openweathermap.org/img/wn/01n@2x.png",
+      image: "/weather-icons/clearsky_night.svg",
     },
   },
   "2": {
