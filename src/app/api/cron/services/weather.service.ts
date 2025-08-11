@@ -1,6 +1,19 @@
 import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../types';
 import { isWindDirectionGood } from '../lib/wind';
 import { WeatherDataPointYr1h } from '../types/yr';
+import { getWeatherCode } from '../lib/yr-weather-map';
+
+function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: WeatherDataPoint): WeatherDataPoint {
+  return {
+    ...meteoDataPoint,
+    windSpeed10m: yrDataPoint.wind_speed,
+    windDirection10m: yrDataPoint.wind_from_direction,
+    windGusts10m: yrDataPoint.wind_speed_of_gust,
+    precipitation: yrDataPoint.precipitation_amount,
+    cloudCover: yrDataPoint.cloud_area_fraction,
+    weatherCode: getWeatherCode(yrDataPoint.symbol_code),
+  };
+}
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
@@ -21,7 +34,17 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
 }
 
 export function validateWeather(data: WeatherDataPoint[], yrData: WeatherDataPointYr1h[], alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
-  const groupedByDay = data.reduce((acc, dp) => {
+  const yrDataMap = new Map(yrData.map(dp => [dp.time, dp]));
+
+  const combinedData = data.map(meteoDp => {
+    const yrDp = yrDataMap.get(meteoDp.time);
+    if (yrDp) {
+      return combineWeatherData(yrDp, meteoDp);
+    }
+    return meteoDp;
+  });
+
+  const groupedByDay = combinedData.reduce((acc, dp) => {
     const date = dp.time.split('T')[0];
     if (!acc[date]) {
       acc[date] = [];
