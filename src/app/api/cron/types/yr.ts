@@ -33,9 +33,9 @@ export interface WeatherDataPointYr6h extends BaseWeatherDataPoint {
   air_temperature_min: number;
 }
 
-export interface WeatherDataPointYr {
-  weatherDataPointYr1h: WeatherDataPointYr1h[];
-  weatherDataPointYr6h: WeatherDataPointYr6h[];
+export interface WeatherDataYr {
+  weatherDataYr1h: WeatherDataPointYr1h[];
+  weatherDataYr6h: WeatherDataPointYr6h[];
   updated_at: string;
   elevation: number;
   location: {
