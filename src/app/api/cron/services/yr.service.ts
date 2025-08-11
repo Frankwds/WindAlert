@@ -1,5 +1,5 @@
 import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/yr-validation';
-import { WeatherDataPointYr1h } from '../types/yr';
+import { WeatherDataPointYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from '../types/yr';
 
 export async function fetchWeatherDataYr(latitude: number, longitude: number): Promise<any> {
     const url = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
@@ -23,7 +23,7 @@ function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
     return index === -1 ? timeseries.length : index;
 }
 
-export function transformWeatherDataYr(rawData: any): WeatherDataPointYr1h[] {
+export function transformWeatherDataYr(rawData: any): WeatherDataPointYr {
     const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
     const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex);
     const slicedSixHourData = rawData.properties.timeseries.slice(firstMissingIndex, 80);
@@ -31,10 +31,13 @@ export function transformWeatherDataYr(rawData: any): WeatherDataPointYr1h[] {
     const validatedMetaData = metNoResponseSchema.parse(rawData);
     const validatedHourlyData = hourlySchema.parse(slicedHourlyData);
     const validatedSixHourData = sixHourlySchema.parse(slicedSixHourData);
-    const updated_at = validatedMetaData.properties.meta.updated_at
 
+    const updated_at = validatedMetaData.properties.meta.updated_at;
+    const longitude = validatedMetaData.geometry.coordinates[0];
+    const latitude = validatedMetaData.geometry.coordinates[1];
+    const elevation = validatedMetaData.geometry.coordinates[2];
 
-    const transformedData: WeatherDataPointYr1h[] = validatedHourlyData.map(item => {
+    const weatherDataPointYr1h: WeatherDataPointYr1h[] = validatedHourlyData.map(item => {
         const dataPoint: WeatherDataPointYr1h = {
             time: item.time,
             ...item.data.instant.details,
@@ -44,5 +47,24 @@ export function transformWeatherDataYr(rawData: any): WeatherDataPointYr1h[] {
         return dataPoint;
     });
 
-    return transformedData;
+    const weatherDataPointYr6h: WeatherDataPointYr6h[] = validatedSixHourData.map(item => {
+        const dataPoint: WeatherDataPointYr6h = {
+            time: item.time,
+            ...item.data.instant.details,
+            ...item.data.next_6_hours.details,
+            symbol_code: item.data.next_6_hours.summary.symbol_code,
+        };
+        return dataPoint;
+    });
+
+    return {
+        weatherDataPointYr1h,
+        weatherDataPointYr6h,
+        updated_at,
+        elevation,
+        location: {
+            latitude,
+            longitude,
+        }
+    };
 }
