@@ -1,6 +1,7 @@
 import { API_CONFIG, KEY_MAP } from '../config/api';
 import { openMeteoResponseSchema } from '../lib/validation';
 import { WeatherDataPoint } from '../types';
+import { getMeteoWeatherCode } from '../lib/meteo-weather-map';
 
 export async function fetchWeatherData(latitude: number, longitude: number): Promise<any> {
     const { baseURL, params } = API_CONFIG.openMeteo;
@@ -41,6 +42,10 @@ export function transformWeatherData(rawData: any): WeatherDataPoint[] {
                     dataPoint[camelCaseKey] = (hourlyData as any)[key][i];
                 }
             }
+        }
+        // Apply the mapping for weatherCode
+        if (dataPoint.weatherCode !== undefined) {
+            dataPoint.weatherCode = getMeteoWeatherCode(dataPoint.weatherCode);
         }
         transformedData.push(dataPoint as WeatherDataPoint);
     }
