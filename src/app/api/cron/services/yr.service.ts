@@ -1,5 +1,5 @@
 import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/yr-validation';
-import { WeatherDataPointYr } from '../types/yr';
+import { WeatherDataPointYr1h } from '../types/yr';
 
 export async function fetchWeatherDataYr(latitude: number, longitude: number): Promise<any> {
     const url = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
@@ -23,7 +23,7 @@ function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
     return index === -1 ? timeseries.length : index;
 }
 
-export function transformWeatherDataYr(rawData: any): WeatherDataPointYr[] {
+export function transformWeatherDataYr(rawData: any): WeatherDataPointYr1h[] {
     const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
     const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex);
     const slicedSixHourData = rawData.properties.timeseries.slice(firstMissingIndex, 80);
@@ -34,8 +34,8 @@ export function transformWeatherDataYr(rawData: any): WeatherDataPointYr[] {
     const updated_at = validatedMetaData.properties.meta.updated_at
 
 
-    const transformedData: WeatherDataPointYr[] = validatedHourlyData.map(item => {
-        const dataPoint: WeatherDataPointYr = {
+    const transformedData: WeatherDataPointYr1h[] = validatedHourlyData.map(item => {
+        const dataPoint: WeatherDataPointYr1h = {
             time: item.time,
             ...item.data.instant.details,
             ...item.data.next_1_hours.details,

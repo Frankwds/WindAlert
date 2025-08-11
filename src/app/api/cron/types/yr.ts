@@ -19,7 +19,7 @@ interface BaseWeatherDataPoint {
   symbol_code: string;
 }
 
-export interface WeatherDataPointYr extends BaseWeatherDataPoint {
+export interface WeatherDataPointYr1h extends BaseWeatherDataPoint {
   fog_area_fraction: number;
   ultraviolet_index_clear_sky: number;
   wind_speed_of_gust: number;
@@ -31,4 +31,15 @@ export interface WeatherDataPointYr6h extends BaseWeatherDataPoint {
   wind_speed_percentile_90: number;
   air_temperature_max: number;
   air_temperature_min: number;
+}
+
+export interface WeatherDataPointYr {
+  weatherDataPointYr1h: WeatherDataPointYr1h[];
+  weatherDataPointYr6h: WeatherDataPointYr6h[];
+  updated_at: string;
+  elevation: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }
