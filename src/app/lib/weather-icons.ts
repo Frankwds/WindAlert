@@ -24,8 +24,8 @@ export const weatherIcons: WeatherIcons = {
     night: { description: "Partly cloudy", image: "/weather-icons/partlycloudy_night.svg" }
   },
   "4": {
-    day: { description: "Cloudy", image: "/weather-icons/cloudy_day.svg" },
-    night: { description: "Cloudy", image: "/weather-icons/cloudy_night.svg" }
+    day: { description: "Cloudy", image: "/weather-icons/cloudy.svg" },
+    night: { description: "Cloudy", image: "/weather-icons/cloudy.svg" }
   },
   "5": {
     day: { description: "Rain showers", image: "/weather-icons/rainshowers_day.svg" },
@@ -44,32 +44,32 @@ export const weatherIcons: WeatherIcons = {
     night: { description: "Snow showers", image: "/weather-icons/snowshowers_night.svg" }
   },
   "9": {
-    day: { description: "Rain", image: "/weather-icons/rain_day.svg" },
-    night: { description: "Rain", image: "/weather-icons/rain_night.svg" }
+    day: { description: "Rain", image: "/weather-icons/rain.svg" },
+    night: { description: "Rain", image: "/weather-icons/rain.svg" }
   },
   "10": {
-    day: { description: "Heavy rain", image: "/weather-icons/heavyrain_day.svg" },
-    night: { description: "Heavy rain", image: "/weather-icons/heavyrain_night.svg" }
+    day: { description: "Heavy rain", image: "/weather-icons/heavyrain.svg" },
+    night: { description: "Heavy rain", image: "/weather-icons/heavyrain.svg" }
   },
   "11": {
-    day: { description: "Heavy rain and thunder", image: "/weather-icons/heavyrainandthunder_day.svg" },
-    night: { description: "Heavy rain and thunder", image: "/weather-icons/heavyrainandthunder_night.svg" }
+    day: { description: "Heavy rain and thunder", image: "/weather-icons/heavyrainandthunder.svg" },
+    night: { description: "Heavy rain and thunder", image: "/weather-icons/heavyrainandthunder.svg" }
   },
   "12": {
-    day: { description: "Sleet", image: "/weather-icons/sleet_day.svg" },
-    night: { description: "Sleet", image: "/weather-icons/sleet_night.svg" }
+    day: { description: "Sleet", image: "/weather-icons/sleet.svg" },
+    night: { description: "Sleet", image: "/weather-icons/sleet.svg" }
   },
   "13": {
-    day: { description: "Snow", image: "/weather-icons/snow_day.svg" },
-    night: { description: "Snow", image: "/weather-icons/snow_night.svg" }
+    day: { description: "Snow", image: "/weather-icons/snow.svg" },
+    night: { description: "Snow", image: "/weather-icons/snow.svg" }
   },
   "14": {
-    day: { description: "Snow and thunder", image: "/weather-icons/snowandthunder_day.svg" },
-    night: { description: "Snow and thunder", image: "/weather-icons/snowandthunder_night.svg" }
+    day: { description: "Snow and thunder", image: "/weather-icons/snowandthunder.svg" },
+    night: { description: "Snow and thunder", image: "/weather-icons/snowandthunder.svg" }
   },
   "15": {
-    day: { description: "Fog", image: "/weather-icons/fog_day.svg" },
-    night: { description: "Fog", image: "/weather-icons/fog_night.svg" }
+    day: { description: "Fog", image: "/weather-icons/fog.svg" },
+    night: { description: "Fog", image: "/weather-icons/fog.svg" }
   },
   "20": {
     day: { description: "Sleet showers and thunder", image: "/weather-icons/sleetshowersandthunder_day.svg" },
@@ -80,12 +80,12 @@ export const weatherIcons: WeatherIcons = {
     night: { description: "Snow showers and thunder", image: "/weather-icons/snowshowersandthunder_night.svg" }
   },
   "22": {
-    day: { description: "Rain and thunder", image: "/weather-icons/rainandthunder_day.svg" },
-    night: { description: "Rain and thunder", image: "/weather-icons/rainandthunder_night.svg" }
+    day: { description: "Rain and thunder", image: "/weather-icons/rainandthunder.svg" },
+    night: { description: "Rain and thunder", image: "/weather-icons/rainandthunder.svg" }
   },
   "23": {
-    day: { description: "Sleet and thunder", image: "/weather-icons/sleetandthunder_day.svg" },
-    night: { description: "Sleet and thunder", image: "/weather-icons/sleetandthunder_night.svg" }
+    day: { description: "Sleet and thunder", image: "/weather-icons/sleetandthunder.svg" },
+    night: { description: "Sleet and thunder", image: "/weather-icons/sleetandthunder.svg" }
   },
   "24": {
     day: { description: "Light rain showers and thunder", image: "/weather-icons/lightrainshowersandthunder_day.svg" },
@@ -96,40 +96,40 @@ export const weatherIcons: WeatherIcons = {
     night: { description: "Heavy rain showers and thunder", image: "/weather-icons/heavyrainshowersandthunder_night.svg" }
   },
   "26": {
-    day: { description: "Light sleet showers and thunder", image: "/weather-icons/lightsleetshowersandthunder_day.svg" },
-    night: { description: "Light sleet showers and thunder", image: "/weather-icons/lightsleetshowersandthunder_night.svg" }
+    day: { description: "Light sleet showers and thunder", image: "/weather-icons/lightssleetshowersandthunder_day.svg" },
+    night: { description: "Light sleet showers and thunder", image: "/weather-icons/lightssleetshowersandthunder_night.svg" }
   },
   "27": {
     day: { description: "Heavy sleet showers and thunder", image: "/weather-icons/heavysleetshowersandthunder_day.svg" },
     night: { description: "Heavy sleet showers and thunder", image: "/weather-icons/heavysleetshowersandthunder_night.svg" }
   },
   "28": {
-    day: { description: "Light snow showers and thunder", image: "/weather-icons/lightsnowshowersandthunder_day.svg" },
-    night: { description: "Light snow showers and thunder", image: "/weather-icons/lightsnowshowersandthunder_night.svg" }
+    day: { description: "Light snow showers and thunder", image: "/weather-icons/lightssnowshowersandthunder_day.svg" },
+    night: { description: "Light snow showers and thunder", image: "/weather-icons/lightssnowshowersandthunder_night.svg" }
   },
   "29": {
     day: { description: "Heavy snow showers and thunder", image: "/weather-icons/heavysnowshowersandthunder_day.svg" },
     night: { description: "Heavy snow showers and thunder", image: "/weather-icons/heavysnowshowersandthunder_night.svg" }
   },
   "30": {
-    day: { description: "Light rain and thunder", image: "/weather-icons/lightrainandthunder_day.svg" },
-    night: { description: "Light rain and thunder", image: "/weather-icons/lightrainandthunder_night.svg" }
+    day: { description: "Light rain and thunder", image: "/weather-icons/lightrainandthunder.svg" },
+    night: { description: "Light rain and thunder", image: "/weather-icons/lightrainandthunder.svg" }
   },
   "31": {
-    day: { description: "Light sleet and thunder", image: "/weather-icons/lightsleetandthunder_day.svg" },
-    night: { description: "Light sleet and thunder", image: "/weather-icons/lightsleetandthunder_night.svg" }
+    day: { description: "Light sleet and thunder", image: "/weather-icons/lightsleetandthunder.svg" },
+    night: { description: "Light sleet and thunder", image: "/weather-icons/lightsleetandthunder.svg" }
   },
   "32": {
-    day: { description: "Heavy sleet and thunder", image: "/weather-icons/heavysleetandthunder_day.svg" },
-    night: { description: "Heavy sleet and thunder", image: "/weather-icons/heavysleetandthunder_night.svg" }
+    day: { description: "Heavy sleet and thunder", image: "/weather-icons/heavysleetandthunder.svg" },
+    night: { description: "Heavy sleet and thunder", image: "/weather-icons/heavysleetandthunder.svg" }
   },
   "33": {
-    day: { description: "Light snow and thunder", image: "/weather-icons/lightsnowandthunder_day.svg" },
-    night: { description: "Light snow and thunder", image: "/weather-icons/lightsnowandthunder_night.svg" }
+    day: { description: "Light snow and thunder", image: "/weather-icons/lightsnowandthunder.svg" },
+    night: { description: "Light snow and thunder", image: "/weather-icons/lightsnowandthunder.svg" }
   },
   "34": {
-    day: { description: "Heavy snow and thunder", image: "/weather-icons/heavysnowandthunder_day.svg" },
-    night: { description: "Heavy snow and thunder", image: "/weather-icons/heavysnowandthunder_night.svg" }
+    day: { description: "Heavy snow and thunder", image: "/weather-icons/heavysnowandthunder.svg" },
+    night: { description: "Heavy snow and thunder", image: "/weather-icons/heavysnowandthunder.svg" }
   },
   "40": {
     day: { description: "Light rain showers", image: "/weather-icons/lightrainshowers_day.svg" },
@@ -156,24 +156,24 @@ export const weatherIcons: WeatherIcons = {
     night: { description: "Heavy snow showers", image: "/weather-icons/heavysnowshowers_night.svg" }
   },
   "46": {
-    day: { description: "Light rain", image: "/weather-icons/lightrain_day.svg" },
-    night: { description: "Light rain", image: "/weather-icons/lightrain_night.svg" }
+    day: { description: "Light rain", image: "/weather-icons/lightrain.svg" },
+    night: { description: "Light rain", image: "/weather-icons/lightrain.svg" }
   },
   "47": {
-    day: { description: "Light sleet", image: "/weather-icons/lightsleet_day.svg" },
-    night: { description: "Light sleet", image: "/weather-icons/lightsleet_night.svg" }
+    day: { description: "Light sleet", image: "/weather-icons/lightsleet.svg" },
+    night: { description: "Light sleet", image: "/weather-icons/lightsleet.svg" }
   },
   "48": {
-    day: { description: "Heavy sleet", image: "/weather-icons/heavysleet_day.svg" },
-    night: { description: "Heavy sleet", image: "/weather-icons/heavysleet_night.svg" }
+    day: { description: "Heavy sleet", image: "/weather-icons/heavysleet.svg" },
+    night: { description: "Heavy sleet", image: "/weather-icons/heavysleet.svg" }
   },
   "49": {
-    day: { description: "Light snow", image: "/weather-icons/lightsnow_day.svg" },
-    night: { description: "Light snow", image: "/weather-icons/lightsnow_night.svg" }
+    day: { description: "Light snow", image: "/weather-icons/lightsnow.svg" },
+    night: { description: "Light snow", image: "/weather-icons/lightsnow.svg" }
   },
   "50": {
-    day: { description: "Heavy snow", image: "/weather-icons/heavysnow_day.svg" },
-    night: { description: "Heavy snow", image: "/weather-icons/heavysnow_night.svg" }
+    day: { description: "Heavy snow", image: "/weather-icons/heavysnow.svg" },
+    night: { description: "Heavy snow", image: "/weather-icons/heavysnow.svg" }
   }
 };
 
