@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
 import { HourlyData } from "../api/cron/types";
 import { getWindDirection } from "../lib/wind";
 import { getWeatherIcon } from "../lib/weather-icons";
 
-const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
+const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
   const weatherIcon = getWeatherIcon(
     hour.weatherData.weatherCode,
     hour.weatherData.isDay
@@ -92,4 +94,4 @@ const HourlyWeather = ({ hour }: { hour: HourlyData }) => {
   );
 };
 
-export default HourlyWeather;
+export default HourlyWeatherForAlertDebug;

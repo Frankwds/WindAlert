@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ALERT_RULES } from './config/alert-rules';
-import { envSchema } from './lib/validation';
-import { fetchWeatherData, transformWeatherData } from './services/open-meteo.service';
+import { envSchema, openMeteoResponseSchema } from './lib/openmeteo-validation';
+import { fetchWeatherData, mapOpenMeteoData } from './services/open-meteo.service';
 import { combineDataSources, groupByDay, validateWeather } from './services/weather.service';
-import { fetchWeatherDataYr, transformWeatherDataYr } from './services/yr.service';
+import { fetchWeatherDataYr, mapYrData } from './services/yr.service';
 
 export async function GET(request: NextRequest) {
     try {
@@ -19,10 +19,11 @@ export async function GET(request: NextRequest) {
                 try {
 
                     const rawYrData = await fetchWeatherDataYr(alertRule.lat, alertRule.long);
-                    const yrData = transformWeatherDataYr(rawYrData);
+                    const yrData = mapYrData(rawYrData);
 
                     const rawData = await fetchWeatherData(alertRule.lat, alertRule.long);
-                    const meteoData = transformWeatherData(rawData);
+                    const validatedData = openMeteoResponseSchema.parse(rawData);
+                    const meteoData = mapOpenMeteoData(validatedData);
 
                     const combinedData = combineDataSources(meteoData, yrData.weatherDataYr1h);
                     const groupedData = groupByDay(combinedData);

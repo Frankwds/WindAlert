@@ -18,12 +18,8 @@ export async function fetchWeatherDataYr(latitude: number, longitude: number): P
     return response.json();
 }
 
-function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
-    const index = timeseries.findIndex(item => !item.data.next_1_hours);
-    return index === -1 ? timeseries.length : index;
-}
 
-export function transformWeatherDataYr(rawData: any): WeatherDataYr {
+export function mapYrData(rawData: any): WeatherDataYr {
     const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
     const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex);
     const slicedSixHourData = rawData.properties.timeseries.slice(firstMissingIndex, 80);
@@ -67,4 +63,9 @@ export function transformWeatherDataYr(rawData: any): WeatherDataYr {
             longitude,
         }
     };
+}
+
+function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
+    const index = timeseries.findIndex(item => !item.data.next_1_hours);
+    return index === -1 ? timeseries.length : index;
 }

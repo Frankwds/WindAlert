@@ -1,7 +1,6 @@
-import Collapsible from "./components/Collapsible";
-import { LocationResult, DayResult, HourlyData } from "./api/cron/types";
-import { getWeatherIcon } from "./lib/weather-icons";
-import HourlyWeather from "./components/HourlyWeather";
+import CollapsibleForAlertDebug from "./components/collapsibleForAlertDebug";
+import { LocationResult } from "./api/cron/types";
+import HourlyWeatherForAlertDebug from "./components/hourlyWeatherForAlertDebug";
 
 async function getData(): Promise<LocationResult[]> {
   // When fetching on the server, we need to provide the full URL.
@@ -27,7 +26,7 @@ export default async function Home() {
         </h1>
         <div>
           {data.map((location) => (
-            <Collapsible
+            <CollapsibleForAlertDebug
               key={location.locationName}
               title={`${location.locationName} (${location.lat}, ${location.long}, ${location.elevation}m)`}
               className={
@@ -35,7 +34,7 @@ export default async function Home() {
               }
             >
               {location.dailyData.map((day) => (
-                <Collapsible
+                <CollapsibleForAlertDebug
                   key={day.date}
                   title={`${day.date}: ${day.result}`}
                   className={
@@ -44,19 +43,19 @@ export default async function Home() {
                 >
                   {day.hourlyData.map((hour, index) => {
                     return (
-                      <Collapsible
+                      <CollapsibleForAlertDebug
                         key={index}
                         title={`Hour ${hour.weatherData.time.split("T")[1]}`}
                         className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                         hour={hour}
                       >
-                        <HourlyWeather hour={hour} />
-                      </Collapsible>
+                        <HourlyWeatherForAlertDebug hour={hour} />
+                      </CollapsibleForAlertDebug>
                     );
                   })}
-                </Collapsible>
+                </CollapsibleForAlertDebug>
               ))}
-            </Collapsible>
+            </CollapsibleForAlertDebug>
           ))}
         </div>
       </div>
