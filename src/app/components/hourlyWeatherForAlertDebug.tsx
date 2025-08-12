@@ -2,14 +2,11 @@
 
 import React from "react";
 import { HourlyData } from "../api/cron/types";
-import { getWindDirection } from "../lib/wind";
-import { getWeatherIcon } from "../lib/weather-icons";
+import { getWindDirection } from "../lib/utils/windDirection";
+import { getWeatherIcon } from "../lib/utils/weather-icons";
 
 const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
-  const weatherIcon = getWeatherIcon(
-    hour.weatherData.weatherCode,
-    hour.weatherData.isDay
-  );
+  const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
 
   return (
     <div className="p-4 text-white">

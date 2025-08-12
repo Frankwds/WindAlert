@@ -1,21 +1,9 @@
-import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/yr-validation';
+import { fetchYrData } from '@/app/lib/api';
+import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/validation/yr-validation';
 import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from '../types/yr';
 
 export async function fetchWeatherDataYr(latitude: number, longitude: number): Promise<any> {
-    const url = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
-
-    const response = await fetch(url, {
-        headers: {
-            'User-Agent': 'paragliding-weather-app/1.0'
-        }
-    });
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
-        throw new Error(`Failed to fetch weather data`);
-    }
-    return response.json();
+    return fetchYrData(latitude, longitude);
 }
 
 

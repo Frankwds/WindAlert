@@ -1,30 +1,10 @@
-import { API_URL_CONFIG } from '../config/api';
-import { OpenMeteoResponse } from '../lib/openmeteo-validation';
+import { fetchMeteoData } from '@/app/lib/api';
+import { OpenMeteoResponse } from '../types/';
 import { WeatherDataPoint } from '../types';
-import { getYrWeatherCode } from '../config/api';
+import { mapWMOToYrWeatherCode } from '@/app/api/lib/mapWeatherCode';
 
 export async function fetchWeatherData(latitude: number, longitude: number): Promise<any> {
-    const { baseURL, params } = API_URL_CONFIG.openMeteo;
-    const url = new URL(baseURL);
-    url.searchParams.append('latitude', latitude.toString());
-    url.searchParams.append('longitude', longitude.toString());
-
-    Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.append(key, value);
-    });
-
-    const response = await fetch(url.toString());
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
-        throw new Error(`Failed to fetch weather data`);
-    }
-    // The 1-second delay is a temporary measure to avoid rate limiting.
-    // A more robust solution (e.g., using a proper queue or a more sophisticated rate-limiting strategy)
-    // should be implemented if this becomes a production system.
-    await new Promise(r => setTimeout(r, 1000));
-    return response.json();
+    return fetchMeteoData(latitude, longitude);
 }
 
 export function mapOpenMeteoData(validatedData: OpenMeteoResponse): WeatherDataPoint[] {
@@ -55,7 +35,7 @@ export function mapOpenMeteoData(validatedData: OpenMeteoResponse): WeatherDataP
             windSpeed10m: hourlyData.wind_speed_10m[i],
             windDirection10m: hourlyData.wind_direction_10m[i],
             windGusts10m: hourlyData.wind_gusts_10m[i],
-            weatherCode: getYrWeatherCode(hourlyData.weather_code[i]), // Apply mapping here
+            weatherCode: mapWMOToYrWeatherCode(hourlyData.weather_code[i], hourlyData.is_day[i]), // Apply mapping here
             pressureMsl: hourlyData.pressure_msl[i],
             convectiveInhibition: hourlyData.convective_inhibition[i],
             cloudCoverLow: hourlyData.cloud_cover_low[i],

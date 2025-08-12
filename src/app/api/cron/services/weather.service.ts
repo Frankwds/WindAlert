@@ -1,7 +1,6 @@
 import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../types';
-import { isWindDirectionGood } from '../lib/wind';
+import { isWindDirectionGood } from '../lib/utils/windDirection';
 import { WeatherDataPointYr1h } from '../types/yr';
-import { getWeatherCode } from '../lib/yr-weather-map';
 
 function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: WeatherDataPoint): WeatherDataPoint {
   return {
@@ -11,7 +10,7 @@ function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: W
     windGusts10m: yrDataPoint.wind_speed_of_gust,
     precipitation: yrDataPoint.precipitation_amount,
     cloudCover: yrDataPoint.cloud_area_fraction,
-    weatherCode: getWeatherCode(yrDataPoint.symbol_code),
+    weatherCode: yrDataPoint.symbol_code,
   };
 }
 
@@ -28,7 +27,7 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
   const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.WIND_DIRECTIONS);
-  const isWmoCodeGood = dp.weatherCode <= alert_rule.WMO_CODE_MAX;
+  const isWmoCodeGood = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'].includes(dp.weatherCode);
 
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood && isGustDifferenceGood;
 }
@@ -59,7 +58,7 @@ export function groupByDay(data: WeatherDataPoint[]): Record<string, WeatherData
 export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
   const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
     const relevantHours = dayData.filter(dp => {
-      const hour = new Date(dp.time).getUTCHours();
+      const hour = new Date(dp.time).getHours();
       return hour >= 8 && hour <= 20;
     });
 

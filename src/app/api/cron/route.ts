@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { ALERT_RULES } from './config/alert-rules';
-import { envSchema, openMeteoResponseSchema } from './lib/openmeteo-validation';
+import { openMeteoResponseSchema } from './lib/validation/openmeteo-validation';
 import { fetchWeatherData, mapOpenMeteoData } from './services/open-meteo.service';
 import { combineDataSources, groupByDay, validateWeather } from './services/weather.service';
 import { fetchWeatherDataYr, mapYrData } from './services/yr.service';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         // Disabled for now, uncomment later:
         // const env = envSchema.parse(process.env);

@@ -1,4 +1,4 @@
-const windDirectionMapping: { [key: string]: { min: number; max: number } } = {
+export const windDirectionMapping: { [key: string]: { min: number; max: number } } = {
     'N': { min: 337.5, max: 22.5 },
     'NE': { min: 22.5, max: 67.5 },
     'E': { min: 67.5, max: 112.5 },
