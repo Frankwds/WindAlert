@@ -31,9 +31,6 @@ export async function readCache(key: string): Promise<CacheData | null> {
         return JSON.parse(fileContent);
     } catch (error) {
         // If the file doesn't exist or there's a parsing error, return null
-        if (error.code === 'ENOENT') {
-            return null;
-        }
         console.error(`Failed to read cache file ${key}:`, error);
         return null;
     }
