@@ -33,11 +33,15 @@ export const API_URL_CONFIG = {
   }
 };
 
-export async function fetchMeteoData(latitude: number, longitude: number): Promise<any> {
+export async function fetchMeteoData(latitude: number | number[], longitude: number | number[]): Promise<any> {
     const { baseURL, params } = API_URL_CONFIG.openMeteo;
     const url = new URL(baseURL);
-    url.searchParams.append('latitude', latitude.toString());
-    url.searchParams.append('longitude', longitude.toString());
+
+    const latString = Array.isArray(latitude) ? latitude.join(',') : latitude.toString();
+    const lonString = Array.isArray(longitude) ? longitude.join(',') : longitude.toString();
+
+    url.searchParams.append('latitude', latString);
+    url.searchParams.append('longitude', lonString);
 
     Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
@@ -47,7 +51,7 @@ export async function fetchMeteoData(latitude: number, longitude: number): Promi
 
     if (!response.ok) {
         const errorText = await response.text();
-        console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
+        console.error(`Failed to fetch weather data for ${latString},${lonString}: ${response.statusText}`, errorText);
         throw new Error(`Failed to fetch weather data`);
     }
     // The 1-second delay is a temporary measure to avoid rate limiting.

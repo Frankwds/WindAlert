@@ -17,15 +17,18 @@ export async function GET() {
         //     return new Response('Unauthorized', { status: 401 });
         // }
 
-        const results = await Promise.all(
-            ALERT_RULES.map(async (alertRule) => {
-                try {
+        const latitudes = ALERT_RULES.map(rule => rule.lat);
+        const longitudes = ALERT_RULES.map(rule => rule.long);
+        const rawMeteoDataArray = await fetchMeteoData(latitudes, longitudes);
 
+        const results = await Promise.all(
+            ALERT_RULES.map(async (alertRule, index) => {
+                try {
                     const rawYrData = await fetchYrData(alertRule.lat, alertRule.long);
                     const yrData = mapYrData(rawYrData);
 
-                    const rawData = await fetchMeteoData(alertRule.lat, alertRule.long);
-                    const validatedData = openMeteoResponseSchema.parse(rawData);
+                    const rawMeteoData = rawMeteoDataArray[index];
+                    const validatedData = openMeteoResponseSchema.parse(rawMeteoData);
                     const meteoData = mapOpenMeteoData(validatedData);
 
                     const combinedData = combineDataSources(meteoData, yrData.weatherDataYr1h);
@@ -38,7 +41,7 @@ export async function GET() {
                         dailyData: dailyData,
                         lat: alertRule.lat,
                         long: alertRule.long,
-                        elevation: rawData.elevation,
+                        elevation: rawMeteoData.elevation,
                     };
                 } catch (error) {
                     console.error(`Failed to process location ${alertRule.locationName}:`, error);
