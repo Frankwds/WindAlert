@@ -19,6 +19,7 @@ const DEFAULT_VALUES = {
 
 export const ALERT_RULES: AlertRule[] = [
     {
+        id: 1,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Keiservarden, Bodø",
         locationName: "Keiservarden, Bodø",
@@ -27,6 +28,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['N', 'NW', 'W'],
     },
     {
+        id: 2,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Hoven, Gimsøya",
         locationName: "Hoven, Gimsøya",
@@ -35,6 +37,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['NW', 'N', 'NE', 'E', 'SE', 'S', 'SW'],
     },
     {
+        id: 3,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Liaset, Voss",
         locationName: "Liaset, Voss",
@@ -43,6 +46,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['NW', 'N', 'SW', 'W'],
     },
     // {
+    // id: 4,
     //     ...DEFAULT_VALUES,
     //     alert_name: "Alert for Hangur, sør-start, Voss",
     //     locationName: "Hangur, sør-start, Voss",
@@ -51,6 +55,7 @@ export const ALERT_RULES: AlertRule[] = [
     //     WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     // },
     {
+        id: 4,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Salknappen (Riksanlegget), Vågå",
         locationName: "Salknappen (Riksanlegget), Vågå",
@@ -59,6 +64,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     // {
+    //     id: 5,
     //     ...DEFAULT_VALUES,
     //     alert_name: "Alert for Grøtterud, Hvittingfoss",
     //     locationName: "Grøtterud , Hvittingfoss",
@@ -67,6 +73,7 @@ export const ALERT_RULES: AlertRule[] = [
     //     WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     // },
     // {
+    //     id: 6,
     //     ...DEFAULT_VALUES,
     //     alert_name: "Alert for Sundvollen, Viken",
     //     locationName: "Sundvollen, Viken",

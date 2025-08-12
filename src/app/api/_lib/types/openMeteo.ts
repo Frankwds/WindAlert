@@ -63,6 +63,7 @@ export interface LocationResult {
 export type WindDirection = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 
 export interface AlertRule {
+  id: number;
   alert_name: string;
   locationName: string;
   lat: number;
