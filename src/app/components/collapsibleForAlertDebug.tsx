@@ -22,7 +22,7 @@ export default function CollapsibleForAlertDebug({
   const [isOpen, setIsOpen] = useState(false);
 
   const weatherIcon = hour
-    ? getWeatherIcon(hour.weatherData.weatherCode, hour.weatherData.isDay)
+    ? getWeatherIcon(hour.weatherData.weatherCode)
     : null;
 
   return (
