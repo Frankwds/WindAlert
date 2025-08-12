@@ -1,18 +1,5 @@
-import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../types';
-import { isWindDirectionGood } from '../lib/utils/windDirection';
-import { WeatherDataPointYr1h } from '../types/yr';
-
-function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: WeatherDataPoint): WeatherDataPoint {
-  return {
-    ...meteoDataPoint,
-    windSpeed10m: yrDataPoint.wind_speed,
-    windDirection10m: yrDataPoint.wind_from_direction,
-    windGusts10m: yrDataPoint.wind_speed_of_gust,
-    precipitation: yrDataPoint.precipitation_amount,
-    cloudCover: yrDataPoint.cloud_area_fraction,
-    weatherCode: yrDataPoint.symbol_code,
-  };
-}
+import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../../../_lib/types/openMeteo';
+import { isWindDirectionGood } from './validateWindDirection';
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
@@ -30,29 +17,6 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   const isWmoCodeGood = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'].includes(dp.weatherCode);
 
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood && isGustDifferenceGood;
-}
-
-export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): WeatherDataPoint[] {
-  const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp]));
-
-  return meteoData.map(meteoDp => {
-    const yrDp = yrDataMap.get(meteoDp.time);
-    if (yrDp) {
-      return combineWeatherData(yrDp, meteoDp);
-    }
-    return meteoDp;
-  });
-}
-
-export function groupByDay(data: WeatherDataPoint[]): Record<string, WeatherDataPoint[]> {
-  return data.reduce((acc, dp) => {
-    const date = dp.time.split('T')[0];
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(dp);
-    return acc;
-  }, {} as Record<string, WeatherDataPoint[]>);
 }
 
 export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {

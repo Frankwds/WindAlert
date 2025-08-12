@@ -1,5 +1,5 @@
 import CollapsibleForAlertDebug from "./components/collapsibleForAlertDebug";
-import { LocationResult } from "./api/cron/types";
+import { LocationResult } from "./api/_lib/types/openMeteo";
 import HourlyWeatherForAlertDebug from "./components/hourlyWeatherForAlertDebug";
 
 async function getData(): Promise<LocationResult[]> {

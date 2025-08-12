@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { HourlyData } from "../api/cron/types";
-import { getWindDirection } from "../lib/utils/windDirection";
-import { getWeatherIcon } from "../lib/utils/weather-icons";
+import { HourlyData } from "../api/_lib/types/openMeteo";
+import { getWindDirection } from "../../lib/utils/windDirection";
+import { getWeatherIcon } from "../../lib/utils/weatherIcons";
 
 const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
   const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);

@@ -1,5 +1,5 @@
-import { isWindDirectionGood } from '@/app/api/cron/lib/utils/windDirection';
-import { windDirectionMapping as dirMap } from '@/app/lib/utils/windDirection';
+import { isWindDirectionGood } from '@/app/api/cron/_lib/validate/validateWindDirection';
+import { windDirectionMapping as dirMap } from '@/lib/utils/windDirection';
 
 // Test all directions
 const dir = { 'N': 0, 'NE': 45, 'E': 90, 'SE': 135, 'S': 180, 'SW': 225, 'W': 270, 'NW': 315 };

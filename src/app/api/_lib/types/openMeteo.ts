@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { openMeteoResponseSchema } from '../lib/validation/openmeteo-validation';
+import { openMeteoResponseSchema } from '../zodValidation/openmeteo';
 
 export interface WeatherDataPoint {
   time: string;
@@ -81,7 +81,7 @@ export interface AlertRule {
   MAX_WIND_SPEED_850hPa: number;
   MAX_WIND_SPEED_700hPa: number;
   WIND_DIRECTIONS: WindDirection[];
-  
+
 }
 
 export type OpenMeteoResponse = z.infer<typeof openMeteoResponseSchema>;

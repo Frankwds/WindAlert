@@ -1,10 +1,6 @@
-import { fetchYrData } from '@/app/lib/api';
-import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../lib/validation/yr-validation';
+import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../zodValidation/yr-validation';
 import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from '../types/yr';
 
-export async function fetchWeatherDataYr(latitude: number, longitude: number): Promise<any> {
-    return fetchYrData(latitude, longitude);
-}
 
 
 export function mapYrData(rawData: any): WeatherDataYr {

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { HourlyData } from "../api/cron/types";
-import { getWeatherIcon } from "../lib/utils/weather-icons";
-import { getWindDirection } from "../lib/utils/windDirection";
+import { HourlyData } from "../api/_lib/types/openMeteo";
+import { getWeatherIcon } from "../../lib/utils/weatherIcons";
+import { getWindDirection } from "../../lib/utils/windDirection";
 
 interface CollapsibleProps {
   title: string;

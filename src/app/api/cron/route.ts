@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
-import { ALERT_RULES } from './config/alert-rules';
-import { openMeteoResponseSchema } from './lib/validation/openmeteo-validation';
-import { fetchWeatherData, mapOpenMeteoData } from './services/open-meteo.service';
-import { combineDataSources, groupByDay, validateWeather } from './services/weather.service';
-import { fetchWeatherDataYr, mapYrData } from './services/yr.service';
+import { ALERT_RULES } from './mockdata/alert-rules';
+import { openMeteoResponseSchema } from '../_lib/zodValidation/openmeteo';
+import { mapOpenMeteoData } from '../_lib/mapping/mapOpenMeteo';
+import { validateWeather } from './_lib/validate/validateRule';
+import { mapYrData } from '../_lib/mapping/mapYr';
+import { fetchMeteoData, fetchYrData } from '@/lib/api';
+import { combineDataSources } from './_lib/utils/combineData';
+import { groupByDay } from './_lib/utils/groupData';
 
 export async function GET() {
     try {
@@ -18,10 +21,10 @@ export async function GET() {
             ALERT_RULES.map(async (alertRule) => {
                 try {
 
-                    const rawYrData = await fetchWeatherDataYr(alertRule.lat, alertRule.long);
+                    const rawYrData = await fetchYrData(alertRule.lat, alertRule.long);
                     const yrData = mapYrData(rawYrData);
 
-                    const rawData = await fetchWeatherData(alertRule.lat, alertRule.long);
+                    const rawData = await fetchMeteoData(alertRule.lat, alertRule.long);
                     const validatedData = openMeteoResponseSchema.parse(rawData);
                     const meteoData = mapOpenMeteoData(validatedData);
 
