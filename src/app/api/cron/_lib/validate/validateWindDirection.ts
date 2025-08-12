@@ -1,4 +1,4 @@
-import { windDirectionMapping } from "@/lib/utils/windDirection";
+import { windDirectionMapping } from "@/lib/utils/getWindDirection";
 
 export function isWindDirectionGood(windDirection: number, allowedDirections: string[]): boolean {
     if (allowedDirections.length === 0) {

@@ -2,8 +2,8 @@
 
 import React from "react";
 import { HourlyData } from "../api/_lib/types/openMeteo";
-import { getWindDirection } from "../../lib/utils/windDirection";
-import { getWeatherIcon } from "../../lib/utils/weatherIcons";
+import { getWindDirection } from "../../lib/utils/getWindDirection";
+import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 
 const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
   const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
