@@ -1,3 +1,4 @@
+import { getCacheKey, readCache, writeCache } from './cache';
 
 export const API_URL_CONFIG = {
   openMeteo: {
@@ -62,18 +63,61 @@ export async function fetchMeteoData(latitude: number | number[], longitude: num
 }
 
 export async function fetchYrData(latitude: number, longitude: number): Promise<any> {
-    const url = `${API_URL_CONFIG.yr.baseURL}?lat=${latitude}&lon=${longitude}`;
+    const lat = latitude.toFixed(4);
+    const lon = longitude.toFixed(4);
+    const url = `${API_URL_CONFIG.yr.baseURL}?lat=${lat}&lon=${lon}`;
+    const cacheKey = getCacheKey(latitude, longitude);
+    const cachedData = await readCache(cacheKey);
 
-    const response = await fetch(url, {
-        headers: {
-            'User-Agent': 'paragliding-weather-app/1.0'
+    const headers: HeadersInit = {
+        'User-Agent': 'paragliding-weather-app/1.0 (https://github.com/BerriJ/paragliding-weather-app)',
+    };
+
+    if (cachedData) {
+        if (cachedData.expires && new Date(cachedData.expires) > new Date()) {
+            console.log(`Cache hit for ${cacheKey}`);
+            return cachedData.data;
         }
-    });
+        console.log(`Cache expired for ${cacheKey}`);
+        if (cachedData.last_modified) {
+            headers['If-Modified-Since'] = cachedData.last_modified;
+        }
+    } else {
+        console.log(`Cache miss for ${cacheKey}`);
+    }
+
+    const response = await fetch(url, { headers });
+
+    if (response.status === 304) {
+        console.log(`304 Not Modified for ${cacheKey}. Returning stale data.`);
+        if (cachedData) {
+            // Update expires header in cache and return old data
+            await writeCache(cacheKey, cachedData.data, response.headers);
+            return cachedData.data;
+        } else {
+             // This case should ideally not happen. If we get 304, we must have sent If-Modified-Since,
+             // which means we had cachedData. But as a fallback, refetch.
+             return fetchYrData(latitude, longitude);
+        }
+    }
+
+    if (response.status === 429) {
+        console.warn(`Rate limited for ${cacheKey}. Returning stale data if available.`);
+        if (cachedData) {
+            return cachedData.data;
+        }
+        throw new Error(`Failed to fetch weather data: Rate limited and no cache available.`);
+    }
 
     if (!response.ok) {
         const errorText = await response.text();
         console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
         throw new Error(`Failed to fetch weather data`);
     }
-    return response.json();
+
+    const newJsonData = await response.json();
+    await writeCache(cacheKey, newJsonData, response.headers);
+
+    console.log(`Fetched new data for ${cacheKey}`);
+    return newJsonData;
 }
