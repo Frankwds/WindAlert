@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { HourlyData } from "../api/_lib/types/openMeteo";
+import { HourlyData } from "../../lib/openMeteo/types";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 import { getWindDirection } from "../../lib/utils/getWindDirection";
 

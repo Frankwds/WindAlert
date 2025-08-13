@@ -1,4 +1,4 @@
-import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../../../_lib/types/openMeteo';
+import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../../../../../lib/openMeteo/types';
 import { isWindDirectionGood } from './validateWindDirection';
 
 function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule): boolean {

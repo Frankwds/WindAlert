@@ -1,4 +1,4 @@
-import { WeatherDataPoint } from '../../../_lib/types/openMeteo';
+import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 
 export function groupByDay(data: WeatherDataPoint[]): Record<string, WeatherDataPoint[]> {
     return data.reduce((acc, dp) => {

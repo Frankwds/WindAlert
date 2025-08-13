@@ -1,4 +1,4 @@
-import { AlertRule } from '../../_lib/types/openMeteo';
+import { AlertRule } from '../../../../lib/openMeteo/types';
 
 const DEFAULT_VALUES = {
     MIN_WIND_SPEED: 0,

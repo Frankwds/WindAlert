@@ -1,5 +1,5 @@
-import { OpenMeteoResponse } from '../types/openMeteo';
-import { WeatherDataPoint } from '../types/openMeteo';
+import { OpenMeteoResponse } from './types';
+import { WeatherDataPoint } from './types';
 
 
 export function mapOpenMeteoData(validatedData: OpenMeteoResponse): WeatherDataPoint[] {

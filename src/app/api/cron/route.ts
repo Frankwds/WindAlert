@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { ALERT_RULES } from './mockdata/alert-rules';
-import { openMeteoResponseSchema } from '../_lib/zodValidation/openmeteo';
-import { mapOpenMeteoData } from '../_lib/mapping/mapOpenMeteo';
+import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
+import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { validateWeather } from './_lib/validate/validateRule';
-import { mapYrData } from '../_lib/mapping/mapYr';
+import { mapYrData } from '../../../lib/yr/mapping';
 import { fetchMeteoData, fetchYrData } from '@/lib/api';
 import { combineDataSources } from './_lib/utils/combineData';
 import { groupByDay } from './_lib/utils/groupData';

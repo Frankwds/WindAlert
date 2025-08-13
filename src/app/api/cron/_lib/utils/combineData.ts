@@ -1,5 +1,5 @@
-import { WeatherDataPointYr1h } from '../../../_lib/types/yr';
-import { WeatherDataPoint } from '../../../_lib/types/openMeteo';
+import { WeatherDataPointYr1h } from '../../../../../lib/yr/types';
+import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 
 function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: WeatherDataPoint): WeatherDataPoint {
     return {

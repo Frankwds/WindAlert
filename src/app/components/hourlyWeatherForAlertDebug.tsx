@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { HourlyData } from "../api/_lib/types/openMeteo";
+import { HourlyData } from "../../lib/openMeteo/types";
 import { getWindDirection } from "../../lib/utils/getWindDirection";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 

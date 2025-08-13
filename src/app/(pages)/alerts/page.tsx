@@ -1,4 +1,4 @@
-import { LocationResult } from "@/app/api/_lib/types/openMeteo";
+import { LocationResult } from "@/lib/openMeteo/types";
 import HourlyWeatherForAlertDebug from "@/app/components/hourlyWeatherForAlertDebug";
 import CollapsibleForAlertDebug from "@/app/components/collapsibleForAlertDebug";
 

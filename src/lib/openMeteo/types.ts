@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { openMeteoResponseSchema } from '../zodValidation/openmeteo';
+import { openMeteoResponseSchema } from './zod';
 
 export interface WeatherDataPoint {
   time: string;

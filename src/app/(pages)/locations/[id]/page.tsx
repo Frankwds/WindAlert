@@ -1,8 +1,8 @@
 import { API_URL_CONFIG } from "@/lib/api";
 import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { notFound } from "next/navigation";
-import { mapYrData } from "@/app/api/_lib/mapping/mapYr";
-import { WeatherDataYr } from "@/app/api/_lib/types/yr";
+import { mapYrData } from "@/lib/yr/mapping";
+import { WeatherDataYr } from "@/lib/yr/types";
 
 async function getYrData(
   latitude: number,

@@ -1,5 +1,5 @@
-import { metNoResponseSchema, hourlySchema, sixHourlySchema } from '../zodValidation/yr';
-import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from '../types/yr';
+import { metNoResponseSchema, hourlySchema, sixHourlySchema } from './zod';
+import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from './types';
 
 
 
