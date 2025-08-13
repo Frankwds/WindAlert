@@ -1,4 +1,6 @@
 
+'use cache';
+
 export const API_URL_CONFIG = {
     openMeteo: {
         baseURL: "https://api.open-meteo.com/v1/forecast",
@@ -47,7 +49,16 @@ export async function fetchMeteoData(latitude: number | number[], longitude: num
         url.searchParams.append(key, value);
     });
 
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), {
+        cache: 'force-cache',
+        next: {
+            revalidate: 300,
+            tags: ['open-meteo-weather'],
+        },
+        headers: {
+            'Cache-Control': 'public, max-age=300, must-revalidate',
+        },
+    });
 
     if (!response.ok) {
         const errorText = await response.text();
@@ -63,8 +74,14 @@ export async function fetchYrData(latitude: number, longitude: number): Promise<
 
     const response = await fetch(url, {
         headers: {
-            'User-Agent': 'paragliding-weather-app/1.0'
-        }
+            'User-Agent': 'windlord (https://windalert.vercel.app/)',
+            'Cache-Control': 'public, max-age=300, must-revalidate',
+        },
+        cache: 'force-cache',
+        next: {
+            revalidate: 300,
+            tags: ['yr-weather'],
+        },
     });
 
     if (!response.ok) {
