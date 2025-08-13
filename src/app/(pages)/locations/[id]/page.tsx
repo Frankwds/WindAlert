@@ -29,18 +29,17 @@ export default async function LocationPage({ params }: Props) {
         <p>Latitude: {location.lat}°</p>
         <p>Longitude: {location.long}°</p>
       </div>
-      <div className="mb-4 flex flex-row gap-4">
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Location</h2>
-          <GoogleMaps latitude={location.lat} longitude={location.long} />
+      <div className="mb-4 flex flex-row gap-4 justify-between">
+        <div className="flex-grow">
+          Description text, lorem ipsum dolor .....
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Allowed Wind Directions</h2>
+        <div className="flex-shrink-0">
           <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
         </div>
       </div>
-      <WindyWidget lat={location.lat} long={location.long} />
+      <GoogleMaps latitude={location.lat} longitude={location.long} />
       <HourlyWeather weatherData={mappedData.weatherDataYr1h} />
+      <WindyWidget lat={location.lat} long={location.long} />
     </div>
   );
 }
