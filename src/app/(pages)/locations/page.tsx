@@ -10,7 +10,7 @@ export default function LocationsPage() {
           {ALERT_RULES.map((location) => (
             <Link
               key={location.id}
-              href={`/location/${location.id}`}
+              href={`/locations/${location.id}`}
               className="p-4 bg-gray-800 rounded-lg hover:bg-gray-700"
             >
               <h2 className="text-xl font-semibold">{location.locationName}</h2>
