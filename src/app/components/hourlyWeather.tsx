@@ -48,25 +48,24 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
     {
       label: "",
       getValue: (hour: WeatherDataPointYr1h) => (
-        <div style={{ transform: `rotate(${hour.wind_from_direction}deg)` }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="arrow mx-auto"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            style={{
-              transform: `rotate(${hour.wind_from_direction}deg)`,
-              transformOrigin: "center",
-            }}
-            aria-label={`Wind direction: ${getWindDirection(
-              hour.wind_from_direction
-            )}`}
-          >
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-          </svg>
-        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="arrow mx-auto"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style={{
+            transform: `rotate(${hour.wind_from_direction}deg)`,
+            transformOrigin: "center",
+            display: "block", // Ensures consistent vertical spacing
+          }}
+          aria-label={`Wind direction: ${getWindDirection(
+            hour.wind_from_direction
+          )}`}
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+        </svg>
       ),
     },
   ];
@@ -87,7 +86,9 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
                 </td>
                 {weatherData.map((hour, colIndex) => (
                   <td key={colIndex} className="p-2 whitespace-nowrap">
-                    <div className="w-16">{row.getValue(hour)}</div>
+                    <div className="w-16 flex items-center justify-center">
+                      {row.getValue(hour)}
+                    </div>
                   </td>
                 ))}
               </tr>
