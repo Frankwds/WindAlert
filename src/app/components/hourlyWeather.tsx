@@ -5,9 +5,13 @@ import Image from "next/image";
 
 interface HourlyWeatherProps {
   weatherData: WeatherDataPointYr1h[];
+  timezone: string;
 }
 
-const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
+const HourlyWeather: React.FC<HourlyWeatherProps> = ({
+  weatherData,
+  timezone,
+}) => {
   if (!weatherData || weatherData.length === 0) {
     return <p>No hourly weather data available.</p>;
   }
@@ -16,7 +20,12 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
     {
       label: "",
       getValue: (hour: WeatherDataPointYr1h) =>
-        new Date(hour.time).getHours().toString() + ":00",
+        new Date(hour.time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+          timeZone: timezone,
+        }),
     },
     {
       label: "", // For the icon

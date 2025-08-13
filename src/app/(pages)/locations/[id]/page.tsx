@@ -38,7 +38,10 @@ export default async function LocationPage({ params }: Props) {
         </div>
       </div>
       <GoogleMaps latitude={location.lat} longitude={location.long} />
-      <HourlyWeather weatherData={mappedData.weatherDataYr1h} />
+      <HourlyWeather
+        weatherData={mappedData.weatherDataYr1h}
+        timezone="Europe/Oslo"
+      />
       <WindyWidget lat={location.lat} long={location.long} />
     </div>
   );
