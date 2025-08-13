@@ -55,7 +55,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
-        id: 4,
+        id: 5,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Salknappen (Riksanlegget), Vågå",
         locationName: "Salknappen (Riksanlegget), Vågå",
@@ -64,7 +64,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
-        id: 5,
+        id: 6,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Grøtterud, Hvittingfoss",
         locationName: "Grøtterud , Hvittingfoss",
@@ -73,7 +73,7 @@ export const ALERT_RULES: AlertRule[] = [
         WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
-        id: 6,
+        id: 7,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Sundvollen, Viken",
         locationName: "Sundvollen, Viken",

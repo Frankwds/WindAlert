@@ -8,7 +8,16 @@ interface WindyWidgetProps {
 }
 
 const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
-  const levels = ["surface", "1000h", "925h", "850h", "700h"];
+  const levelMapping = [
+    { display: "Surface", api: "surface" },
+    { display: "100m", api: "1000h" },
+    { display: "600m", api: "950h" },
+    { display: "750m", api: "925h" },
+    { display: "900m", api: "900h" },
+    { display: "1500m", api: "850h" },
+    { display: "3000m", api: "700h" },
+    { display: "4200m", api: "600h" },
+  ];
   const models = ["icon-eu", "ecmwf", "gfs", "icon"];
   const [levelIndex, setLevelIndex] = useState(0);
   const [modelIndex, setModelIndex] = useState(0);
@@ -21,7 +30,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
     setModelIndex(parseInt(event.target.value, 10));
   };
 
-  const level = levels[levelIndex];
+  const level = levelMapping[levelIndex].api;
   const model = models[modelIndex];
 
   return (
@@ -55,7 +64,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
               id="level-slider"
               type="range"
               min="0"
-              max={levels.length - 1}
+              max={levelMapping.length - 1}
               value={levelIndex}
               onChange={handleLevelChange}
               className="h-full w-2 [-webkit-appearance:slider-vertical] [writing-mode:bt-lr]"
@@ -63,7 +72,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
             <label htmlFor="level-slider" className="mt-2 text-center">
               Elevation:
               <br />
-              {level === "surface" ? "Surface" : `${level}`}
+              {levelMapping[levelIndex].display}
             </label>
           </div>
         </div>
