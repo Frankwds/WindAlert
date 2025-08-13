@@ -40,3 +40,15 @@ body {
   font-family: sans-serif;
   fill: #000000;
 }
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+}
