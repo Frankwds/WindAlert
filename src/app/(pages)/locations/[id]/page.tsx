@@ -1,43 +1,21 @@
 import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { notFound } from "next/navigation";
 import { mapYrData } from "@/lib/yr/mapping";
-import { WeatherDataYr } from "@/lib/yr/types";
-import { API_URL_CONFIG } from "@/lib/yr/apiClient";
+import { fetchYrData } from "@/lib/yr/apiClient";
 
-async function getYrData(
-  latitude: number,
-  longitude: number
-): Promise<WeatherDataYr> {
-  const { baseURL } = API_URL_CONFIG;
-  const url = new URL(baseURL);
-
-  const response = await fetch(`${url}?lat=${latitude}&lon=${longitude}`, {
-    headers: {
-      "User-Agent": "WindAlert/1.0 github.com/frankwds/windalert",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch YR data");
-  }
-
-  const data = await response.json();
-  return data;
+interface Props {
+  params: Promise<{ id: string }>;
 }
 
-export default async function LocationPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const id = await params.id;
-  const location = ALERT_RULES.find((rule) => rule.id === parseInt(id));
+export default async function LocationPage({ params }: Props) {
+  const locationId = (await params).id;
+  const location = ALERT_RULES.find((rule) => rule.id === parseInt(locationId));
 
   if (!location) {
     notFound();
   }
 
-  const weatherData = await getYrData(location.lat, location.long);
+  const weatherData = await fetchYrData(location.lat, location.long);
   const mappedData = mapYrData(weatherData);
 
   return (
