@@ -4,6 +4,7 @@ import { mapYrData } from "@/lib/yr/mapping";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import HourlyWeather from "@/app/components/hourlyWeather";
 import WindCompass from "@/app/components/windCompass";
+import WindyWidget from "@/app/components/windyWidget";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -31,6 +32,7 @@ export default async function LocationPage({ params }: Props) {
         <h2 className="text-xl font-semibold mb-2">Allowed Wind Directions</h2>
         <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
       </div>
+      <WindyWidget lat={location.lat} long={location.long} />
       <HourlyWeather weatherData={mappedData.weatherDataYr1h} />
     </div>
   );
