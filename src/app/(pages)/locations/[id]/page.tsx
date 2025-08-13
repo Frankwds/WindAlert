@@ -1,14 +1,14 @@
-import { API_URL_CONFIG } from "@/lib/api";
 import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { notFound } from "next/navigation";
 import { mapYrData } from "@/lib/yr/mapping";
 import { WeatherDataYr } from "@/lib/yr/types";
+import { API_URL_CONFIG } from "@/lib/yr/apiClient";
 
 async function getYrData(
   latitude: number,
   longitude: number
 ): Promise<WeatherDataYr> {
-  const { baseURL } = API_URL_CONFIG.yr;
+  const { baseURL } = API_URL_CONFIG;
   const url = new URL(baseURL);
 
   const response = await fetch(`${url}?lat=${latitude}&lon=${longitude}`, {

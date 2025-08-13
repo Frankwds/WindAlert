@@ -4,9 +4,10 @@ import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
 import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { validateWeather } from './_lib/validate/validateRule';
 import { mapYrData } from '../../../lib/yr/mapping';
-import { fetchMeteoData, fetchYrData } from '@/lib/api';
 import { combineDataSources } from './_lib/utils/combineData';
 import { groupByDay } from './_lib/utils/groupData';
+import { fetchMeteoData } from '@/lib/openMeteo/apiClient';
+import { fetchYrData } from '@/lib/yr/apiClient';
 
 export async function GET() {
     try {
