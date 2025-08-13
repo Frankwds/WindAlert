@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    useCache: true,
+    useCache: true
   },
   images: {
     remotePatterns: [
@@ -14,8 +14,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Enable caching in development
-  enableExperimentalFetchCache: true,
 };
 
 export default nextConfig;
