@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { mapYrData } from "@/lib/yr/mapping";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import HourlyWeather from "@/app/components/hourlyWeather";
+import WindCompass from "@/app/components/windCompass";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -25,7 +26,10 @@ export default async function LocationPage({ params }: Props) {
       <div className="mb-4">
         <p>Latitude: {location.lat}°</p>
         <p>Longitude: {location.long}°</p>
-        <p>Allowed wind directions: {location.WIND_DIRECTIONS.join(", ")}</p>
+      </div>
+      <div className="mb-4">
+        <h2 className="text-xl font-semibold mb-2">Allowed Wind Directions</h2>
+        <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
       </div>
       <HourlyWeather weatherData={mappedData.weatherDataYr1h} />
     </div>
