@@ -14,8 +14,9 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
 
   const dataRows = [
     {
-      label: "Time",
-      getValue: (hour: WeatherDataPointYr1h) => new Date(hour.time).getHours().toString().padStart(2, "0"),
+      label: "",
+      getValue: (hour: WeatherDataPointYr1h) =>
+        new Date(hour.time).getHours().toString() + ":00",
     },
     {
       label: "", // For the icon
@@ -33,17 +34,21 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
       },
     },
     {
-      label: "Temp (°C)",
-      getValue: (hour: WeatherDataPointYr1h) => Math.round(hour.air_temperature),
-    },
-    {
-      label: "Wind (m/s)",
+      label: "°C",
       getValue: (hour: WeatherDataPointYr1h) =>
-        `${Math.round(hour.wind_speed)} (${Math.round(hour.wind_speed_of_gust)})`,
+        Math.round(hour.air_temperature),
     },
     {
-      label: "Direction",
-      getValue: (hour: WeatherDataPointYr1h) => getWindDirection(hour.wind_from_direction),
+      label: "m/s",
+      getValue: (hour: WeatherDataPointYr1h) =>
+        `${Math.round(hour.wind_speed)} (${Math.round(
+          hour.wind_speed_of_gust
+        )})`,
+    },
+    {
+      label: "",
+      getValue: (hour: WeatherDataPointYr1h) =>
+        getWindDirection(hour.wind_from_direction),
     },
   ];
 
@@ -54,7 +59,10 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ weatherData }) => {
         <table className="min-w-full text-sm text-center">
           <tbody>
             {dataRows.map((row, rowIndex) => (
-              <tr key={rowIndex} className="border-b border-gray-200 last:border-b-0">
+              <tr
+                key={rowIndex}
+                className="border-b border-gray-200 last:border-b-0"
+              >
                 <td className="font-semibold text-left text-gray-600 pr-4 py-2 sticky left-0 bg-white">
                   {row.label}
                 </td>
