@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Image from "next/image";
 
 interface GoogleMapsProps {
   latitude: number;
@@ -12,16 +13,17 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
     return <p>Google Maps API key is missing.</p>;
   }
 
-  const mapSrc = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${latitude},${longitude}&zoom=18&maptype=satellite`;
+  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=450x210&maptype=hybrid&markers=color:red%7C${latitude},${longitude}&key=${apiKey}`;
 
   return (
-    <iframe
-      width="450"
-      height="210"
+    <Image
+      width={450}
+      height={210}
       style={{ border: 0 }}
       src={mapSrc}
-      allowFullScreen
-    ></iframe>
+      alt="Map showing location"
+      unoptimized // Required for dynamic URLs
+    />
   );
 };
 
