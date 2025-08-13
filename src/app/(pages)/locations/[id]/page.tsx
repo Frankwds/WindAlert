@@ -4,6 +4,7 @@ import { mapYrData } from "@/lib/yr/mapping";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import HourlyWeather from "@/app/components/hourlyWeather";
 import WindCompass from "@/app/components/windCompass";
+import GoogleMaps from "@/app/components/googleMaps";
 import WindyWidget from "@/app/components/windyWidget";
 
 interface Props {
@@ -28,9 +29,15 @@ export default async function LocationPage({ params }: Props) {
         <p>Latitude: {location.lat}°</p>
         <p>Longitude: {location.long}°</p>
       </div>
-      <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Allowed Wind Directions</h2>
-        <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
+      <div className="mb-4 flex flex-row gap-4">
+        <div>
+          <h2 className="text-xl font-semibold mb-2">Location</h2>
+          <GoogleMaps latitude={location.lat} longitude={location.long} />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold mb-2">Allowed Wind Directions</h2>
+          <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
+        </div>
       </div>
       <WindyWidget lat={location.lat} long={location.long} />
       <HourlyWeather weatherData={mappedData.weatherDataYr1h} />
