@@ -31,7 +31,13 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const windyApiRef = useRef<any>(null);
 
   useEffect(() => {
-    const WINDY_API_KEY = "placeholdekey";
+    const WINDY_API_KEY = process.env.NEXT_PUBLIC_WINDY_API_KEY;
+
+    if (!WINDY_API_KEY) {
+      console.log(process.env);
+      console.error("Windy API key is not set in .env.local");
+      return;
+    }
 
     const loadScript = (src: string, onLoad: () => void) => {
       const script = document.createElement("script");
@@ -57,7 +63,9 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
 
     return () => {
       // Cleanup scripts if component unmounts
-      const scripts = document.querySelectorAll('script[src^="https://"]');
+      const scripts = document.querySelectorAll<HTMLScriptElement>(
+        'script[src^="https://"]'
+      );
       scripts.forEach((script) => {
         if (
           script.src.includes("leaflet") ||
