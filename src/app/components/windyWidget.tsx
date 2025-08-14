@@ -1,10 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface WindyWidgetProps {
   lat: number;
   long: number;
+}
+
+declare global {
+  interface Window {
+    windyInit: any;
+    L: any;
+  }
 }
 
 const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
@@ -21,17 +28,62 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const models = ["icon-eu", "ecmwf", "gfs", "icon"];
   const [levelIndex, setLevelIndex] = useState(0);
   const [modelIndex, setModelIndex] = useState(0);
+  const windyApiRef = useRef<any>(null);
+
+  useEffect(() => {
+    const WINDY_API_KEY = "placeholdekey";
+
+    const loadScript = (src: string, onLoad: () => void) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = onLoad;
+      document.body.appendChild(script);
+    };
+
+    loadScript("https://unpkg.com/leaflet@1.4.0/dist/leaflet.js", () => {
+      loadScript("https://api.windy.com/assets/map-forecast/libBoot.js", () => {
+        const options = {
+          key: WINDY_API_KEY,
+          lat: lat,
+          lon: long,
+          zoom: 5,
+        };
+
+        window.windyInit(options, (windyAPI: any) => {
+          windyApiRef.current = windyAPI;
+        });
+      });
+    });
+
+    return () => {
+      // Cleanup scripts if component unmounts
+      const scripts = document.querySelectorAll('script[src^="https://"]');
+      scripts.forEach((script) => {
+        if (
+          script.src.includes("leaflet") ||
+          script.src.includes("windy.com")
+        ) {
+          script.remove();
+        }
+      });
+    };
+  }, [lat, long]);
 
   const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newLevel = levelMapping[parseInt(event.target.value, 10)].api;
     setLevelIndex(parseInt(event.target.value, 10));
+    if (windyApiRef.current) {
+      windyApiRef.current.store.set("level", newLevel);
+    }
   };
 
-  const handleModelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setModelIndex(parseInt(event.target.value, 10));
+  const handleModelChange = (index: number) => {
+    const newModel = models[index];
+    setModelIndex(index);
+    if (windyApiRef.current) {
+      windyApiRef.current.store.set("product", newModel);
+    }
   };
-
-  const level = levelMapping[levelIndex].api;
-  const model = models[modelIndex];
 
   return (
     <div className="p-4 w-full h-screen min-h-[500px]">
@@ -55,16 +107,13 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
             </label>
           </div>
           <div className="flex flex-col gap-2 flex-grow h-full">
-            <iframe
-              className="w-full flex-1"
-              src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}`}
-            ></iframe>
+            <div id="windy" className="w-full flex-1"></div>
             <div className="flex flex-col gap-2 w-full">
               <div className="flex gap-2 w-full bg-gray-100 p-1 rounded-lg">
                 {models.map((m, index) => (
                   <button
                     key={m}
-                    onClick={() => setModelIndex(index)}
+                    onClick={() => handleModelChange(index)}
                     className={`flex-1 py-2 px-3 rounded-md transition-all ${
                       modelIndex === index
                         ? "bg-white shadow-sm font-medium"
