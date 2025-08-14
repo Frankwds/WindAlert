@@ -24,7 +24,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <div className="p-4">
-      <div className="mb-4 flex flex-row gap-4 justify-between">
+      <div className="mb-4 flex flex-col flex-row gap-4 justify-between">
         <div className="flex-grow">
           <h1 className="text-2xl font-bold mb-4">{location.locationName}</h1>
           <div className="mb-4">
@@ -33,7 +33,7 @@ export default async function LocationPage({ params }: Props) {
           </div>
           Description text, lorem ipsum dolor .....
         </div>
-        <div className="">
+        <div className="w-32 h-32 md:w-48 md:h-48 self-center">
           <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
         </div>
       </div>

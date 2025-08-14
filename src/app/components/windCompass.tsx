@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 interface WindCompassProps {
   allowedDirections: string[];
 }
 
 const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
-  const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = 100;
@@ -34,7 +34,7 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
   };
 
   return (
-    <svg width="210" height="210" viewBox="0 0 210 210">
+    <svg viewBox="0 0 210 210">
       {directions.map((dir, i) => {
         const isAllowed = allowedDirections.includes(dir);
         const textPos = getTextPosition(i);
@@ -42,7 +42,7 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
           <g key={dir}>
             <path
               d={getPath(i)}
-              className={`compass-wedge ${isAllowed ? 'allowed' : ''}`}
+              className={`compass-wedge ${isAllowed ? "allowed" : ""}`}
             />
             <text
               x={textPos.x}
