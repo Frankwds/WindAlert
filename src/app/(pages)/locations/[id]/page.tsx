@@ -24,9 +24,9 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{location.locationName}</h1>
       <div className="mb-4 flex flex-row gap-4 justify-between">
         <div className="flex-grow">
+          <h1 className="text-2xl font-bold mb-4">{location.locationName}</h1>
           <div className="mb-4">
             <p>Latitude: {location.lat}°</p>
             <p>Longitude: {location.long}°</p>

@@ -19,7 +19,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
     <Image
       width={640}
       height={640}
-      className="w-full h-auto"
+      className="w-full h-auto max-w-[600px]"
       style={{ border: 0 }}
       src={mapSrc}
       alt="Map showing location"
