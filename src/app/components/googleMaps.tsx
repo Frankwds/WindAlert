@@ -16,15 +16,16 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
   const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&markers=color:red%7C${latitude},${longitude}&key=${apiKey}`;
 
   return (
-    <Image
-      width={640}
-      height={640}
-      className="w-full h-auto max-w-[600px]"
-      style={{ border: 0 }}
-      src={mapSrc}
-      alt="Map showing location"
-      unoptimized // Required for dynamic URLs
-    />
+    <div className="p-4">
+      <Image
+        width={640}
+        height={640}
+        className="w-full h-auto max-w-[600px]  rounded-lg shadow-lg"
+        src={mapSrc}
+        alt="Map showing location"
+        unoptimized // Required for dynamic URLs
+      />
+    </div>
   );
 };
 
