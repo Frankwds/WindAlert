@@ -13,12 +13,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
     return <p>Google Maps API key is missing.</p>;
   }
 
-  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=450x210&maptype=hybrid&markers=color:red%7C${latitude},${longitude}&key=${apiKey}`;
+  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&markers=color:red%7C${latitude},${longitude}&key=${apiKey}`;
 
   return (
     <Image
-      width={450}
-      height={210}
+      width={640}
+      height={640}
+      className="w-full h-auto"
       style={{ border: 0 }}
       src={mapSrc}
       alt="Map showing location"

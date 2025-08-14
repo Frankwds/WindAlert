@@ -34,17 +34,16 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const model = models[modelIndex];
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-full h-screen min-h-[500px]">
       <h2 className="text-xl font-semibold mb-2">Windy Widget</h2>
-      <div className="flex flex-col gap-2">
-        <div className="flex items-start gap-4">
-          <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 flex-1 h-[calc(100vh-6rem)]">
+        <div className="flex items-start gap-4 flex-1">
+          <div className="flex flex-col gap-2 flex-grow h-full">
             <iframe
-              width="650"
-              height="450"
+              className="w-full flex-1"
               src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}`}
             ></iframe>
-            <div className="flex items-center gap-4 w-[650px]">
+            <div className="flex items-center gap-4 w-full">
               <label htmlFor="model-slider" className="min-w-[80px]">
                 Model: {model.toUpperCase()}
               </label>
@@ -59,7 +58,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col items-center h-[450px]">
+          <div className="flex flex-col items-center h-full">
             <input
               id="level-slider"
               type="range"

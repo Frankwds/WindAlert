@@ -25,15 +25,15 @@ export default async function LocationPage({ params }: Props) {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">{location.locationName}</h1>
-      <div className="mb-4">
-        <p>Latitude: {location.lat}°</p>
-        <p>Longitude: {location.long}°</p>
-      </div>
       <div className="mb-4 flex flex-row gap-4 justify-between">
         <div className="flex-grow">
+          <div className="mb-4">
+            <p>Latitude: {location.lat}°</p>
+            <p>Longitude: {location.long}°</p>
+          </div>
           Description text, lorem ipsum dolor .....
         </div>
-        <div className="flex-shrink-0">
+        <div className="">
           <WindCompass allowedDirections={location.WIND_DIRECTIONS} />
         </div>
       </div>
