@@ -39,27 +39,48 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
       return;
     }
 
-    const loadScript = (src: string, onLoad: () => void) => {
+    const loadScript = (
+      src: string,
+      onLoad: () => void,
+      onError: () => void
+    ) => {
       const script = document.createElement("script");
       script.src = src;
       script.onload = onLoad;
+      script.onerror = onError;
       document.body.appendChild(script);
     };
 
-    loadScript("https://unpkg.com/leaflet@1.4.0/dist/leaflet.js", () => {
-      loadScript("https://api.windy.com/assets/map-forecast/libBoot.js", () => {
-        const options = {
-          key: WINDY_API_KEY,
-          lat: lat,
-          lon: long,
-          zoom: 5,
-        };
+    loadScript(
+      "https://unpkg.com/leaflet@1.4.0/dist/leaflet.js",
+      () => {
+        loadScript(
+          "https://api.windy.com/assets/map-forecast/libBoot.js",
+          () => {
+            try {
+              const options = {
+                key: WINDY_API_KEY,
+                lat: lat,
+                lon: long,
+                zoom: 5,
+              };
 
-        window.windyInit(options, (windyAPI: any) => {
-          windyApiRef.current = windyAPI;
-        });
-      });
-    });
+              window.windyInit(options, (windyAPI: any) => {
+                windyApiRef.current = windyAPI;
+              });
+            } catch (error) {
+              console.error("Error initializing Windy API:", error);
+            }
+          },
+          () => {
+            console.error("Failed to load Windy API script.");
+          }
+        );
+      },
+      () => {
+        console.error("Failed to load Leaflet script.");
+      }
+    );
 
     return () => {
       // Cleanup scripts if component unmounts
