@@ -21,6 +21,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const models = ["icon-eu", "ecmwf", "gfs", "icon"];
   const [levelIndex, setLevelIndex] = useState(0);
   const [modelIndex, setModelIndex] = useState(0);
+  const [timeOffset, setTimeOffset] = useState(0);
 
   const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLevelIndex(parseInt(event.target.value, 10));
@@ -32,6 +33,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
 
   const level = levelMapping[levelIndex].api;
   const model = models[modelIndex];
+  const timestamp = new Date().getTime() + timeOffset * 60 * 60 * 1000;
 
   return (
     <div className="p-4 w-full h-screen min-h-[500px]">
@@ -57,8 +59,24 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
           <div className="flex flex-col gap-2 flex-grow h-full">
             <iframe
               className="w-full flex-1"
-              src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}`}
+              src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}&timestamp=${timestamp}`}
             ></iframe>
+            <div className="flex items-center gap-4 w-full">
+              <input
+                id="time-slider"
+                type="range"
+                min="-4"
+                max="96"
+                value={timeOffset}
+                onChange={(e) => setTimeOffset(parseInt(e.target.value))}
+                className="w-full"
+              />
+              <span className="text-sm">
+                {new Date(
+                  new Date().getTime() + timeOffset * 60 * 60 * 1000,
+                ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              </span>
+            </div>
             <div className="flex flex-col gap-2 w-full">
               <div className="flex gap-2 w-full bg-gray-100 p-1 rounded-lg">
                 {models.map((m, index) => (
