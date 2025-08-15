@@ -25,7 +25,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
     { display: "3000m", api: "700h" },
     { display: "4200m", api: "600h" },
   ];
-  const models = ["icon-eu", "ecmwf", "gfs", "icon"];
+  const models = ["iconEu", "gfs", "ecmwf", "icon"];
   const [levelIndex, setLevelIndex] = useState(0);
   const [modelIndex, setModelIndex] = useState(0);
   const windyApiRef = useRef<any>(null);
@@ -34,7 +34,6 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
     const WINDY_API_KEY = process.env.NEXT_PUBLIC_WINDY_API_KEY;
 
     if (!WINDY_API_KEY) {
-      console.log(process.env);
       console.error("Windy API key is not set in .env.local");
       return;
     }
@@ -62,11 +61,14 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                 key: WINDY_API_KEY,
                 lat: lat,
                 lon: long,
-                zoom: 5,
+                zoom: 8,
+                product: models[1],
               };
 
               window.windyInit(options, (windyAPI: any) => {
                 windyApiRef.current = windyAPI;
+                console.log(windyApiRef.current.store.getAllowed("product"));
+                console.log(windyApiRef.current.store.getAllowed("levels"));
               });
             } catch (error) {
               console.error("Error initializing Windy API:", error);
