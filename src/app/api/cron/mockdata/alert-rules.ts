@@ -1,4 +1,4 @@
-import { AlertRule } from '../../../../lib/openMeteo/types';
+import { AlertRule } from '@/lib/common/types/alertRule';
 
 const DEFAULT_VALUES = {
     MIN_WIND_SPEED: 0,
@@ -14,71 +14,49 @@ const DEFAULT_VALUES = {
     MAX_WIND_SPEED_925hPa: 15, // 925hPa is approximately 800m altitude
     MAX_WIND_SPEED_850hPa: 20, // 850hPa is approximately 1500m altitude
     MAX_WIND_SPEED_700hPa: 25, // 700hPa is approximately 3000m altitude
-    WMO_CODE_MAX: 4, // 0 = Clear, 1 = Mainly clear, 2 = Partly cloudy, 3 = Overcast
 };
 
 export const ALERT_RULES: AlertRule[] = [
     {
         id: 1,
+        locationId: 1,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Keiservarden, Bodø",
-        locationName: "Keiservarden, Bodø",
-        lat: 67.315278,
-        long: 14.478333,
-        WIND_DIRECTIONS: ['N', 'NW', 'W'],
     },
     {
         id: 2,
+        locationId: 2,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Hoven, Gimsøya",
-        locationName: "Hoven, Gimsøya",
-        lat: 68.332778,
-        long: 14.110278,
-        WIND_DIRECTIONS: ['NW', 'N', 'NE', 'E', 'SE', 'S', 'SW'],
     },
     {
         id: 3,
+        locationId: 3,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Liaset, Voss",
-        locationName: "Liaset, Voss",
-        lat: 60.703333,
-        long: 6.521389,
-        WIND_DIRECTIONS: ['NW', 'N', 'SW', 'W'],
     },
     {
         id: 4,
+        locationId: 4,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Hangur, sør-start, Voss",
-        locationName: "Hangur, sør-start, Voss",
-        lat: 60.638889,
-        long: 6.403056,
-        WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
         id: 5,
+        locationId: 5,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Salknappen (Riksanlegget), Vågå",
-        locationName: "Salknappen (Riksanlegget), Vågå",
-        lat: 61.900278,
-        long: 9.245278,
-        WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
         id: 6,
+        locationId: 6,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Grøtterud, Hvittingfoss",
-        locationName: "Grøtterud , Hvittingfoss",
-        lat: 59.504722,
-        long: 9.998056,
-        WIND_DIRECTIONS: ['SW', 'S', 'SE'],
     },
     {
         id: 7,
+        locationId: 7,
         ...DEFAULT_VALUES,
         alert_name: "Alert for Sundvollen, Viken",
-        locationName: "Sundvollen, Viken",
-        lat: 60.053889,
-        long: 10.322500,
-        WIND_DIRECTIONS: ['NW', 'W', 'N'],
     },
 ];

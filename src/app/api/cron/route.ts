@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { ALERT_RULES } from './mockdata/alert-rules';
+import { LOCATIONS } from './mockdata/locations';
 import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
 import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { validateWeather } from './_lib/validate/validateRule';
@@ -18,14 +19,28 @@ export async function GET() {
         //     return new Response('Unauthorized', { status: 401 });
         // }
 
-        const latitudes = ALERT_RULES.map(rule => rule.lat);
-        const longitudes = ALERT_RULES.map(rule => rule.long);
+        const latitudes = LOCATIONS.map(location => location.lat);
+        const longitudes = LOCATIONS.map(location => location.long);
         const rawMeteoDataArray = await fetchMeteoData(latitudes, longitudes);
 
         const results = await Promise.all(
-            ALERT_RULES.map(async (alertRule, index) => {
+            LOCATIONS.map(async (location, index) => {
+                const alertRule = ALERT_RULES.find(rule => rule.locationId === location.id);
+                if (!alertRule) {
+                    console.error(`No alert rule found for location ${location.name}`);
+                    return {
+                        alert_name: 'N/A',
+                        locationName: location.name,
+                        result: 'error',
+                        dailyData: [],
+                        lat: location.lat,
+                        long: location.long,
+                        elevation: location.elevation,
+                    };
+                }
+
                 try {
-                    const rawYrData = await fetchYrData(alertRule.lat, alertRule.long);
+                    const rawYrData = await fetchYrData(location.lat, location.long);
                     const yrData = mapYrData(rawYrData);
 
                     const rawMeteoData = rawMeteoDataArray[index];
@@ -34,25 +49,25 @@ export async function GET() {
 
                     const combinedData = combineDataSources(meteoData, yrData.weatherDataYr1h);
                     const groupedData = groupByDay(combinedData);
-                    const { overallResult, dailyData } = validateWeather(groupedData, alertRule);
+                    const { overallResult, dailyData } = validateWeather(groupedData, alertRule, location);
                     return {
                         alert_name: alertRule.alert_name,
-                        locationName: alertRule.locationName,
+                        locationName: location.name,
                         result: overallResult,
                         dailyData: dailyData,
-                        lat: alertRule.lat,
-                        long: alertRule.long,
+                        lat: location.lat,
+                        long: location.long,
                         elevation: rawMeteoData.elevation,
                     };
                 } catch (error) {
-                    console.error(`Failed to process location ${alertRule.locationName}:`, error);
+                    console.error(`Failed to process location ${location.name}:`, error);
                     return {
                         alert_name: alertRule.alert_name,
-                        locationName: alertRule.locationName,
+                        locationName: location.name,
                         result: 'error',
                         dailyData: [],
-                        lat: alertRule.lat,
-                        long: alertRule.long,
+                        lat: location.lat,
+                        long: location.long,
                         elevation: 0,
                     };
                 }

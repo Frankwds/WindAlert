@@ -1,7 +1,9 @@
-import { WeatherDataPoint, HourlyData, DayResult, AlertRule } from '../../../../../lib/openMeteo/types';
+import { WeatherDataPoint, HourlyData, DayResult } from '../../../../../lib/openMeteo/types';
+import { AlertRule } from '@/lib/common/types/alertRule';
+import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
 
-function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule): boolean {
+function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule, location: Location): boolean {
   const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
   const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
   const isGustDifferenceGood = Math.abs(dp.windSpeed10m - dp.windGusts10m) <= alert_rule.MAX_GUST_DIFFERENCE;
@@ -13,13 +15,13 @@ function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule)
   const isWindSpeed700hPaGood = dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa;
   const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
-  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, alert_rule.WIND_DIRECTIONS);
+  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, location.windDirections || []);
   const isWmoCodeGood = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'].includes(dp.weatherCode);
 
   return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood && isGustDifferenceGood;
 }
 
-export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule, location: Location): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
   const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
     const relevantHours = dayData.filter(dp => {
       const hour = new Date(dp.time).getHours();
@@ -27,7 +29,7 @@ export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>,
     });
 
     const hourlyData: HourlyData[] = relevantHours.map(dp => ({
-      isGood: isGoodParaglidingCondition(dp, alert_rule),
+      isGood: isGoodParaglidingCondition(dp, alert_rule, location),
       weatherData: dp,
     }));
 

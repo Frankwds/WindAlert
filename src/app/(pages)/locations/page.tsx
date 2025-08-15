@@ -1,4 +1,4 @@
-import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
+import { LOCATIONS } from "@/app/api/cron/mockdata/locations";
 import Link from "next/link";
 
 export default function LocationsPage() {
@@ -7,13 +7,13 @@ export default function LocationsPage() {
       <div className="z-10 w-full max-w-5xl">
         <h1 className="text-4xl font-bold mb-8 text-center">Locations</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ALERT_RULES.map((location) => (
+          {LOCATIONS.map((location) => (
             <Link
               key={location.id}
               href={`/locations/${location.id}`}
               className="p-4 bg-gray-800 rounded-lg hover:bg-gray-700"
             >
-              <h2 className="text-xl font-semibold">{location.locationName}</h2>
+              <h2 className="text-xl font-semibold">{location.name}</h2>
             </Link>
           ))}
         </div>
