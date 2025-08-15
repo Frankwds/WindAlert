@@ -10,6 +10,7 @@ interface WindyWidgetProps {
 const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const models = ["icon-eu", "ecmwf", "gfs", "icon"];
   const [modelIndex, setModelIndex] = useState(0);
+  const [isMapActive, setIsMapActive] = useState(false);
 
   const level = "surface";
   const model = models[modelIndex];
@@ -19,10 +20,18 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
       <div className="flex flex-col gap-2 flex-1 h-[calc(100vh-6rem)]">
         <div className="flex items-start gap-4 flex-1">
           <div className="flex flex-col gap-2 flex-grow h-full">
-            <iframe
-              className="w-full flex-1"
-              src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}&message=true&marker=true&detailLat=${lat}&detailLon=${long}`}
-            ></iframe>
+            <div className="relative w-full flex-1">
+              <iframe
+                className="w-full h-full"
+                src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}&message=true&marker=true&detailLat=${lat}&detailLon=${long}`}
+              ></iframe>
+              {!isMapActive && (
+                <div
+                  className="absolute top-0 left-0 w-full h-full"
+                  onClick={() => setIsMapActive(true)}
+                />
+              )}
+            </div>
             <div className="flex flex-col gap-2 w-full">
               <div className="flex gap-2 w-full bg-gray-100 p-1 rounded-lg">
                 {models.map((m, index) => (
