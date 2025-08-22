@@ -14,17 +14,8 @@ export default function LoginButton() {
         <button
           aria-label="Sign out"
           onClick={() => signOut()}
-          className="flex items-center gap-3 bg-google-button-dark rounded-full p-0.5 pr-4 transition-colors duration-300 hover:bg-google-button-dark-hover"
+            className="bg-google-button-dark rounded-full px-4 py-2 transition-colors duration-300 hover:bg-google-button-dark-hover"
         >
-          <div className="flex items-center justify-center bg-white w-9 h-9 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
-              <title>Sign out</title>
-              <path
-                d="M17 7l-1.41 1.39L22.17 13H8v2h14.17l-6.58 6.61L17 23l9-9z"
-                className="fill-gray-700"
-              />
-            </svg>
-          </div>
           <span className="text-sm text-white tracking-wider">Sign out</span>
         </button>
       </div>
