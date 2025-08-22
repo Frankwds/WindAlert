@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Google Button Colors */
+  --google-button-dark: #1f1f1f;
+  --google-button-dark-hover: #2d2d2d;
+  --google-logo-blue: #4285f4;
+  --google-logo-green: #34a853;
+  --google-logo-yellow: #fbbc05;
+  --google-logo-red: #ea4335;
 }
 
 @theme inline {
@@ -17,6 +25,31 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+/* Google Button Custom Classes */
+.bg-google-button-dark {
+  background-color: var(--google-button-dark);
+}
+
+.bg-google-button-dark-hover {
+  background-color: var(--google-button-dark-hover);
+}
+
+.fill-google-logo-blue {
+  fill: var(--google-logo-blue);
+}
+
+.fill-google-logo-green {
+  fill: var(--google-logo-green);
+}
+
+.fill-google-logo-yellow {
+  fill: var(--google-logo-yellow);
+}
+
+.fill-google-logo-red {
+  fill: var(--google-logo-red);
 }
 
 body {
