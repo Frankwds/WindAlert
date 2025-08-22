@@ -10,10 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "next": "15.4.6",
+    "next": "15.5.0",
     "next-auth": "^4.24.11",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "zod": "^4.0.15"
   },
   "devDependencies": {
