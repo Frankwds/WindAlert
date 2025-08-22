@@ -1,9 +1,23 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
+import { upsertUser } from "@/lib/supabase/users";
 
 export default function LoginButton() {
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user?.email && session.user.id) {
+      // Sync user data with Supabase
+      upsertUser({
+        email: session.user.email,
+        name: session.user.name,
+        image_url: session.user.image ?? undefined,
+        google_id: session.user.id // This is now the Google ID
+      }).catch(console.error);
+    }
+  }, [session]);
 
   if (session) {
     return (

@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
-
-interface User {
-  id: string
-  user_id: string
-  created_at: string
-}
+import type { User } from '@/lib/supabase/types'
 
 export default function UsersList() {
   const [users, setUsers] = useState<User[]>([])
@@ -18,7 +13,7 @@ export default function UsersList() {
     async function fetchUsers() {
       try {
         const { data, error } = await supabase
-          .from('Users')
+          .from('users')
           .select('*')
         
         if (error) {
@@ -48,7 +43,7 @@ export default function UsersList() {
         ) : (
           users.map((user) => (
             <div key={user.id} className="p-4 border rounded-lg shadow">
-              <p className="font-medium">Email: {user.user_id}</p>
+              <p className="font-medium">Email: {user.email}</p>
               <p className="text-sm text-gray-500">
                 Joined: {new Date(user.created_at).toLocaleDateString()}
               </p>
