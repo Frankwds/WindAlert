@@ -8,14 +8,14 @@ export default function LoginButton() {
   if (session) {
     return (
       <div className="flex items-center gap-4">
-        <div className="text-sm text-gray-600 dark:text-gray-300">
-          Signed in as <span className="font-medium">{session.user?.email}</span>
-        </div>
         <button
           aria-label="Sign out"
           onClick={() => signOut()}
-            className="bg-google-button-dark rounded-full px-4 py-2 transition-colors duration-300 hover:bg-google-button-dark-hover"
+          className="flex items-center gap-3 bg-google-button-dark rounded-full px-4 py-2 transition-colors duration-300 hover:bg-google-button-dark-hover"
         >
+          <div className="flex items-center justify-center bg-orange-500 text-white font-bold rounded-full w-8 h-8 text-base">
+            {session.user?.name?.charAt(0)?.toUpperCase()}
+          </div>
           <span className="text-sm text-white tracking-wider">Sign out</span>
         </button>
       </div>
@@ -24,9 +24,6 @@ export default function LoginButton() {
   
   return (
     <div className="flex items-center gap-4">
-      <div className="text-sm text-gray-600 dark:text-gray-300">
-        Not signed in
-      </div>
       <button
         aria-label="Sign in with Google"
         onClick={() => signIn("google")}
