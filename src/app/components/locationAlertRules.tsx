@@ -8,6 +8,7 @@ import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
 import CollapsibleAlert from "@/app/components/alertCollapsible";
 import AlertHourlyWeather from "@/app/components/alertHourlyWeather";
 import { Location } from "@/lib/common/types/location";
+import AlertFailureDescriptions from "./alertFailureDescriptions";
 
 interface Props {
   location: Location;
@@ -100,7 +101,14 @@ export default function LocationAlertRules({ location }: Props) {
                     className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                     hour={hour}
                   >
-                    <AlertHourlyWeather hour={hour} />
+                    <div className="space-y-4">
+                      {!hour.isGood && hour.failures && (
+                        <AlertFailureDescriptions failures={hour.failures} />
+                      )}
+                      <CollapsibleAlert title="Weather Details" className={hour.isGood ? "bg-green-600" : "bg-red-600"}>
+                        <AlertHourlyWeather hour={hour} />
+                      </CollapsibleAlert>
+                    </div>
                   </CollapsibleAlert>
                 ))}
               </CollapsibleAlert>
