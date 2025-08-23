@@ -49,10 +49,7 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
           />
           <div className="text-sm">
             <div className="font-medium">
-              {Math.round(hour.weatherData.windSpeed10m)} m/s
-            </div>
-            <div className="text-xs text-[var(--muted)]">
-              Gusts: {Math.round(hour.weatherData.windGusts10m)}
+              {Math.round(hour.weatherData.windSpeed10m)} ( {Math.round(hour.weatherData.windGusts10m)}) m/s
             </div>
           </div>
         </div>

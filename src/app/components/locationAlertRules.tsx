@@ -95,7 +95,7 @@ export default function LocationAlertRules({ location }: Props) {
                 className={`${day.result === "positive"
                   ? "bg-[var(--success)]/15 border-l-4 border-[var(--success)]/60"
                   : "bg-[var(--error)]/15 border-l-4 border-[var(--error)]/60"
-                  } rounded-md shadow-sm `}
+                  } rounded-md shadow-sm my-1`}
               >
 
                 {day.hourlyData.map((hour, index) => (
@@ -108,7 +108,7 @@ export default function LocationAlertRules({ location }: Props) {
                       } rounded-md shadow-sm my-1`}
 
                   >
-                    <div className="space-y-4">
+                    <div>
                       {!hour.isGood && hour.failures && (
                         <FailureCard failures={hour.failures} />
                       )}
