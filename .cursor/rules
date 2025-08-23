@@ -43,4 +43,99 @@ WindAlert is a weather monitoring application that checks conditions for paragli
 
 ## Styling
 
-- src\app\globals.css
+### CSS Architecture
+- **Global CSS**: `src/app/globals.css` - Contains CSS variables, base styles, and design tokens
+- **CSS Modules**: Component-specific styles using `.module.css` files
+- **Tailwind CSS**: Utility-first CSS framework with custom configuration
+
+### Design System
+The project uses a comprehensive CSS variable system for consistent theming:
+
+```css
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --nav-bg: #1f2937;
+  --nav-text: #f9fafb;
+  --border: #e5e7eb;
+  --muted: #6b7280;
+  --accent: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+```
+
+### Styling Guidelines
+
+#### 1. **CSS Variables First**
+- Always use CSS variables for colors, spacing, and typography
+- Define new design tokens in `globals.css`
+- Use `var(--variable-name)` syntax in components
+
+#### 2. **Component Styling**
+- **Global styles**: Use `globals.css` for design tokens and base styles
+- **Component-specific**: Use CSS modules (`.module.css`) for component styles
+- **Utility classes**: Use Tailwind CSS for layout, spacing, and common patterns
+
+#### 3. **Color Usage**
+- **Backgrounds**: `bg-[var(--background)]`, `bg-[var(--nav-bg)]`
+- **Text**: `text-[var(--foreground)]`, `text-[var(--nav-text)]`
+- **Borders**: `border-[var(--border)]`
+- **Semantic colors**: `text-[var(--success)]`, `bg-[var(--error)]`
+
+#### 4. **Typography**
+- **Font families**: Use `font-sans` (Geist Sans) and `font-mono` (Geist Mono)
+- **Font variables**: Defined in `globals.css` and extended in Tailwind config
+- **Responsive text**: Use Tailwind's responsive modifiers
+
+#### 5. **Spacing & Layout**
+- **Container**: Use `max-w-6xl` for main content areas
+- **Padding**: Use consistent spacing with Tailwind utilities
+- **Responsive**: Implement mobile-first responsive design
+
+#### 6. **Component Examples**
+
+**Navigation Component:**
+```tsx
+<nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-md">
+  {/* Navigation content */}
+</nav>
+```
+
+**CSS Module Usage:**
+```tsx
+import styles from './ComponentName.module.css';
+
+<div className={styles.componentClass}>
+  {/* Component content */}
+</div>
+```
+
+#### 7. **Dark Mode Support**
+- CSS variables automatically adapt to `prefers-color-scheme: dark`
+- Test both light and dark themes during development
+- Use opacity modifiers for subtle variations
+
+#### 8. **File Organization**
+```
+src/app/
+├── globals.css              # Global design tokens and base styles
+├── components/
+│   ├── ComponentName.tsx    # React component
+│   └── ComponentName.module.css  # Component-specific styles
+└── layout.tsx               # Root layout with global styles
+```
+
+#### 9. **Best Practices**
+- **No hardcoded colors** - Always use CSS variables
+- **Consistent spacing** - Use Tailwind's spacing scale
+- **Component isolation** - Keep styles close to components
+- **Performance** - CSS modules provide scoped styling
+- **Maintainability** - Single source of truth for design tokens
+
+#### 10. **Adding New Styles**
+1. **Design tokens**: Add to `globals.css` `:root` section
+2. **Component styles**: Create `.module.css` file
+3. **Global utilities**: Add to `globals.css` if needed
+4. **Tailwind extensions**: Update `tailwind.config.js` for custom utilities

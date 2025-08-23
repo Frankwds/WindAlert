@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #eaeaea;
   --foreground: #171717;
   
   /* Google Button Colors */
@@ -11,6 +11,16 @@
   --google-logo-green: #34a853;
   --google-logo-yellow: #fbbc05;
   --google-logo-red: #ea4335;
+  
+  /* Additional Design Tokens */
+  --border: #e5e7eb;
+  --muted: #6b7280;
+  --accent: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --nav-bg: #1f2937;
+  --nav-text: #f9fafb;
 }
 
 @theme inline {
@@ -24,6 +34,10 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --border: #374151;
+    --muted: #9ca3af;
+    --nav-bg: #111827;
+    --nav-text: #f9fafb;
   }
 }
 
@@ -34,14 +48,4 @@ body {
   line-height: 1.6;
 }
 
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
 
-@media (max-width: 768px) {
-  main {
-    padding: 1rem;
-  }
-}

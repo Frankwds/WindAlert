@@ -71,7 +71,7 @@ export default function LocationAlertRules({ location }: Props) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-white">Alert Rules</h2>
+      <h2 className="text-2xl font-bold mb-4 text-black">Alert Rules</h2>
       <div>
         {validationResults.map((rule) => (
           <Collapsible
