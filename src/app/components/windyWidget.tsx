@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ExternalLinkIcon from "./ExternalLinkIcon";
 
 interface WindyWidgetProps {
   lat: number;
@@ -15,11 +16,25 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
   const level = "surface";
   const model = models[modelIndex];
 
+  // Windy.com URL with coordinates, current model, and marker
+  const windyUrl = `https://www.windy.com/${lat.toFixed(3)}/${long.toFixed(3)}/${model}?${model},gust,${lat.toFixed(3)},${long.toFixed(3)},9,p:wind`;
+
   return (
     <div className="p-4 w-full h-screen min-h-[500px]">
       <div className="flex flex-col gap-2 flex-1 h-[calc(100vh-6rem)]">
         <div className="flex items-start gap-4 flex-1">
           <div className="flex flex-col gap-2 flex-grow h-full">
+            <div className="mb-4">
+              <a
+                href={windyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
+              >
+                Wind Forecast on Windy.com
+                <ExternalLinkIcon size={24} className="inline-block" />
+              </a>
+            </div>
             <div className="relative w-full flex-1">
               <iframe
                 className="w-full h-full"
