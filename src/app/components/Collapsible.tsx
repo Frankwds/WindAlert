@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./Collapsible.module.css";
 
 interface CollapsibleProps {
   title: React.ReactNode;
@@ -14,28 +15,26 @@ export default function Collapsible({
   children,
   className = "",
   defaultOpen = false,
-
 }: CollapsibleProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="border rounded-lg mb-2">
+    <div className="rounded-lg">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full text-left p-4 hover:bg-gray-700 focus:outline-none ${className} rounded-lg
-          `}
+        className={`w-full text-left p-4 focus:outline-none transition-all duration-200 cursor-pointer hover:shadow-sm ${styles.collapsibleButton} ${className}`}
       >
-        <div className="flex items-center w-full">
+        <div className={`flex items-center w-full ${styles.collapsibleContent}`}>
           <div className="flex items-center flex-1">
             {title}
           </div>
-          <div className="text-gray-400 flex-shrink-0 ml-2">
+          <div className="text-[var(--muted)] flex-shrink-0 ml-2">
             {isOpen ? "▼" : "▶"}
           </div>
         </div>
 
       </button>
-      {isOpen && <div className="rounded-b-lg">{children}</div>}
+      {isOpen && <div className=" pb-4">{children}</div>}
     </div>
   );
 }

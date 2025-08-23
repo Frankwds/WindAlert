@@ -11,6 +11,7 @@ import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
 import { Location } from "@/lib/common/types/location";
 import FailureCard from "@/app/components/FailureCard";
 
+
 interface Props {
   location: Location;
 }
@@ -66,20 +67,21 @@ export default function LocationAlertRules({ location }: Props) {
   }, [location]);
 
   if (isLoading) {
-    return <div className="text-white">Loading alert rules validation...</div>;
+    return <div className="text-[var(--foreground)]">Loading alert rules validation...</div>;
   }
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-black">Alert Rules</h2>
+      <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">Alert Rules</h2>
       <div>
         {validationResults.map((rule) => (
           <Collapsible
             key={rule.alert_name}
             title={`${rule.alert_name}`}
-            className={
-              rule.result === "positive" ? "bg-green-900" : "bg-red-900"
-            }
+            className={`${rule.result === "positive"
+              ? "bg-[var(--success)]/20 border-l-4 border-[var(--success)]"
+              : "bg-[var(--error)]/20 border-l-4 border-[var(--error)]"
+              } rounded-lg shadow-sm mb-2`}
           >
             {rule.dailyData.map((day) => (
               <Collapsible
@@ -90,16 +92,20 @@ export default function LocationAlertRules({ location }: Props) {
                     .join(', ')}`
                   : ''
                   }`}
-                className={
-                  day.result === "positive" ? "bg-green-800" : "bg-red-800"
-                }
+                className={`${day.result === "positive"
+                  ? "bg-[var(--success)]/15 border-l-4 border-[var(--success)]/60"
+                  : "bg-[var(--error)]/15 border-l-4 border-[var(--error)]/60"
+                  } rounded-md shadow-sm `}
               >
 
                 {day.hourlyData.map((hour, index) => (
                   <Collapsible
                     key={index}
                     title={<WeatherCard hour={hour} compact={true} />}
-                    className={hour.isGood ? "bg-green-700" : "bg-red-700"}
+                    className={`${hour.isGood
+                      ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/40"
+                      : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/40"
+                      } rounded-md shadow-sm my-1`}
 
                   >
                     <div className="space-y-4">
@@ -107,7 +113,6 @@ export default function LocationAlertRules({ location }: Props) {
                         <FailureCard failures={hour.failures} />
                       )}
                       <HourlyWeatherDetails hour={hour} />
-
                     </div>
                   </Collapsible>
                 ))}
