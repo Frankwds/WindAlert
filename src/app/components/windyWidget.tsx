@@ -23,7 +23,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
             <div className="relative w-full flex-1">
               <iframe
                 className="w-full h-full"
-                src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=wind&product=${model}&level=${level}&lat=${lat}&lon=${long}&message=true&marker=true&detailLat=${lat}&detailLon=${long}`}
+                src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=8&overlay=gust&product=${model}&level=${level}&lat=${lat}&lon=${long}&message=true&marker=true&detailLat=${lat}&detailLon=${long}`}
               ></iframe>
               {!isMapActive && (
                 <div
