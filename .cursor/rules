@@ -40,3 +40,7 @@ WindAlert is a weather monitoring application that checks conditions for paragli
 - Time interval processing for good conditions
 - Support for multiple weather parameters
 - Customizable alert rules
+
+## Styling
+
+- src\app\globals.css

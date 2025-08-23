@@ -19,11 +19,11 @@ export default function Collapsible({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="border border-gray-700 rounded-lg mb-2">
+    <div className="border rounded-lg mb-2">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full text-left p-4 hover:bg-gray-700 focus:outline-none ${className} ${isOpen ? "rounded-t-lg" : "rounded-lg"
-          }`}
+        className={`w-full text-left p-4 hover:bg-gray-700 focus:outline-none ${className} rounded-lg
+          `}
       >
         <div className="flex items-center w-full">
           <div className="flex items-center flex-1">
@@ -35,7 +35,7 @@ export default function Collapsible({
         </div>
 
       </button>
-      {isOpen && <div className="bg-gray-800 rounded-b-lg">{children}</div>}
+      {isOpen && <div className="rounded-b-lg">{children}</div>}
     </div>
   );
 }
