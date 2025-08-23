@@ -4,7 +4,7 @@ const DEFAULT_VALUES = {
   MIN_WIND_SPEED: 0,
   MAX_WIND_SPEED: 8,
   MAX_GUST: 10.0,
-  MAX_GUST_DIFFERENCE: 5.0,
+  MAX_GUST_DIFFERENCE: 0,
   MAX_PRECIPITATION: 0,
   MAX_CAPE: 10000,
   MIN_LIFTED_INDEX: -6,
@@ -17,11 +17,6 @@ const DEFAULT_VALUES = {
   MIN_CONSECUTIVE_HOURS: 3,
 };
 
-const GUST_AGNOSTIC_VALUES = {
-  ...DEFAULT_VALUES,
-  MAX_GUST: 0,
-  MAX_GUST_DIFFERENCE: 0,
-};
 
 const ALERT_RULES_NORMAL: AlertRule[] = [
   {
@@ -62,42 +57,4 @@ const ALERT_RULES_NORMAL: AlertRule[] = [
   },
 ];
 
-const ALERT_RULES_GUST_AGNOSTIC: AlertRule[] = [
-  {
-    id: 11,
-    locationId: 1,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-  {
-    id: 22,
-    locationId: 2,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-  {
-    id: 33,
-    locationId: 3,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-  {
-    id: 44,
-    locationId: 4,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-  {
-    id: 55,
-    locationId: 5,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-  {
-    id: 66,
-    locationId: 6,
-    ...GUST_AGNOSTIC_VALUES,
-    alert_name: 'Gust Agnostic Rule',
-  },
-];
-export const ALERT_RULES: AlertRule[] = [...ALERT_RULES_NORMAL, ...ALERT_RULES_GUST_AGNOSTIC];
+export const ALERT_RULES: AlertRule[] = [...ALERT_RULES_NORMAL];
