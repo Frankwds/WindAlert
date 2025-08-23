@@ -17,13 +17,12 @@ export async function getCombinedData(
 ): Promise<Record<string, WeatherDataPoint[]>> {
   try {
     // Fetch data from both sources
-    const [rawMeteoData, rawYrData] = await Promise.all([
-      fetchMeteoData([coordinates.lat], [coordinates.long]).then(data => data[0]),
+    const [rawMeteoDataArray, rawYrData] = await Promise.all([
+      fetchMeteoData(coordinates.lat, coordinates.long),
       fetchYrData(coordinates.lat, coordinates.long),
     ]);
-
     // Process OpenMeteo data
-    const validatedMeteoData = openMeteoResponseSchema.parse(rawMeteoData);
+    const validatedMeteoData = openMeteoResponseSchema.parse(rawMeteoDataArray);
     const meteoData = mapOpenMeteoData(validatedMeteoData);
 
     // Process Yr data
@@ -35,7 +34,6 @@ export async function getCombinedData(
 
     return groupedData;
   } catch (error) {
-    console.error('Error fetching or processing weather data:', error);
     throw error;
   }
 }

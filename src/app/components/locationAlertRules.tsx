@@ -83,7 +83,7 @@ export default function LocationAlertRules({ location }: Props) {
             {rule.dailyData.map((day) => (
               <CollapsibleForAlertDebug
                 key={day.date}
-                title={`${day.date}: ${day.result}`}
+                title={new Date(day.date).toLocaleDateString('en-US', { weekday: 'long'})}
                 className={
                   day.result === "positive" ? "bg-green-800" : "bg-red-800"
                 }
