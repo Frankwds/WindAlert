@@ -68,17 +68,17 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4">
-      <h2 className="text-xl font-bold mb-4">Hourly Weather</h2>
+    <div className="bg-[var(--background)] rounded-lg shadow-lg p-4">
+      <h2 className="text-xl font-bold mb-4 text-[var(--foreground)]">Hourly Weather</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm text-center">
           <tbody>
             {dataRows.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="border-b border-gray-200 last:border-b-0"
+                className="border-b border-[var(--border)] last:border-b-0"
               >
-                <td className="font-semibold text-left text-gray-600 pr-4 py-2 sticky left-0 bg-white">
+                <td className="font-semibold text-left text-[var(--muted)] pr-4 py-2 sticky left-0 bg-[var(--background)]">
                   {row.label}
                 </td>
                 {weatherData.map((hour, colIndex) => (

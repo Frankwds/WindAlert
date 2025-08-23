@@ -33,14 +33,14 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
               )}
             </div>
             <div className="flex flex-col gap-2 w-full">
-              <div className="flex gap-2 w-full bg-gray-100 p-1 rounded-lg">
+              <div className="flex gap-2 w-full bg-[var(--border)] p-1 rounded-lg">
                 {models.map((m, index) => (
                   <button
                     key={m}
                     onClick={() => setModelIndex(index)}
-                    className={`flex-1 py-2 px-3 rounded-md transition-all ${modelIndex === index
-                        ? "bg-white shadow-sm font-medium"
-                        : "hover:bg-gray-200"
+                    className={`flex-1 py-2 px-3 rounded-md transition-all cursor-pointer ${modelIndex === index
+                      ? "bg-[var(--background)] shadow-sm font-medium"
+                      : "hover:shadow-sm hover:bg-[var(--background)]/50"
                       }`}
                   >
                     {m.toUpperCase()}
