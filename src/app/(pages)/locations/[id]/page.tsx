@@ -24,7 +24,7 @@ export default async function LocationPage({ params }: Props) {
   const mappedData = mapYrData(weatherData);
 
   return (
-    <div className="p-4">
+    <div className="py-4">
       <div className="mb-4 flex flex-col flex-row gap-4 justify-between">
         <div className="flex-grow">
           <h1 className="text-2xl font-bold mb-4">{location.name}</h1>
