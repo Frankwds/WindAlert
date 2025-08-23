@@ -13,12 +13,12 @@
   --google-logo-red: #ea4335;
   
   /* Additional Design Tokens */
-  --border: #e5e7eb;
-  --muted: #6b7280;
+  --border: #d1d5db;
+  --muted: #4b5563;
   --accent: #3b82f6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
   --nav-bg: #1f2937;
   --nav-text: #f9fafb;
 }
