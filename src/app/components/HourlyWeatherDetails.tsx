@@ -4,8 +4,10 @@ import React from "react";
 import { HourlyData } from "../../lib/openMeteo/types";
 import { getWindDirection } from "../../lib/utils/getWindDirection";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
+import WindDirectionArrow from "./WindDirectionArrow";
 
-const AlertHourlyWeather = ({ hour }: { hour: HourlyData }) => {
+const arrowColor = "#ffffff";
+const HourlyWeatherDetails = ({ hour }: { hour: HourlyData }) => {
   const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
 
   return (
@@ -32,31 +34,46 @@ const AlertHourlyWeather = ({ hour }: { hour: HourlyData }) => {
             {Math.round(hour.weatherData.windSpeed10m)} ({" "}
             {Math.round(hour.weatherData.windGusts10m)} )
           </div>
-          <div>{getWindDirection(hour.weatherData.windDirection10m)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.weatherData.windDirection10m} size={20} color={arrowColor} />
+            <span className="text-xs">{getWindDirection(hour.weatherData.windDirection10m)}</span>
+          </div>
           <div>{Math.round(hour.weatherData.temperature2m)}</div>
           <div className="font-medium">
             {hour.weatherData.geopotentialHeight1000hPa}m
           </div>
           <div>{Math.round(hour.weatherData.windSpeed1000hPa)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection1000hPa)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.weatherData.windDirection1000hPa} size={20} color={arrowColor} />
+            <span className="text-xs">{getWindDirection(hour.weatherData.windDirection1000hPa)}</span>
+          </div>
           <div>{Math.round(hour.weatherData.temperature1000hPa)}</div>
           <div className="font-medium">
             {hour.weatherData.geopotentialHeight925hPa}m
           </div>
           <div>{Math.round(hour.weatherData.windSpeed925hPa)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection925hPa)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.weatherData.windDirection925hPa} size={20} color={arrowColor} />
+            <span className="text-xs">{getWindDirection(hour.weatherData.windDirection925hPa)}</span>
+          </div>
           <div>{Math.round(hour.weatherData.temperature925hPa)}</div>
           <div className="font-medium">
             {hour.weatherData.geopotentialHeight850hPa}m
           </div>
           <div>{Math.round(hour.weatherData.windSpeed850hPa)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection850hPa)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.weatherData.windDirection850hPa} size={20} color={arrowColor} />
+            <span className="text-xs">{getWindDirection(hour.weatherData.windDirection850hPa)}</span>
+          </div>
           <div>{Math.round(hour.weatherData.temperature850hPa)}</div>
           <div className="font-medium">
             {hour.weatherData.geopotentialHeight700hPa}m
           </div>
           <div>{Math.round(hour.weatherData.windSpeed700hPa)}</div>
-          <div>{getWindDirection(hour.weatherData.windDirection700hPa)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.weatherData.windDirection700hPa} size={20} color={arrowColor} />
+            <span className="text-xs">{getWindDirection(hour.weatherData.windDirection700hPa)}</span>
+          </div>
           <div>{Math.round(hour.weatherData.temperature700hPa)}</div>
         </div>
       </div>
@@ -91,4 +108,4 @@ const AlertHourlyWeather = ({ hour }: { hour: HourlyData }) => {
   );
 };
 
-export default AlertHourlyWeather;
+export default HourlyWeatherDetails;

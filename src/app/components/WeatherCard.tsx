@@ -4,6 +4,7 @@ import Image from "next/image";
 import { HourlyData } from "../../lib/openMeteo/types";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 import { getWindDirection } from "../../lib/utils/getWindDirection";
+import WindDirectionArrow from "./WindDirectionArrow";
 
 interface WeatherCardProps {
   hour: HourlyData;
@@ -15,8 +16,8 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
   const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
 
   return (
-    <div className={`flex items-center justify-between ${className}`}>
-      <div className="flex items-center">
+    <div className={`flex items-center w-full ${className}`}>
+      <div className="flex items-center flex-1">
         {weatherIcon && (
           <Image
             src={weatherIcon.image}
@@ -28,18 +29,21 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
         )}
         <div>
           <h3 className="text-lg font-semibold">
-            Hour {hour.weatherData.time.split("T")[1]}
+            {hour.weatherData.time.split("T")[1]}
           </h3>
           {!compact && <p className="text-gray-300">{weatherIcon?.description}</p>}
         </div>
       </div>
-      <div className="text-right text-sm">
-        <div>
-          Wind: {Math.round(hour.weatherData.windSpeed10m)} (
-          {Math.round(hour.weatherData.windGusts10m)}) m/s
-        </div>
-        <div>
-          Direction: {getWindDirection(hour.weatherData.windDirection10m)}
+      <div className="text-sm ml-auto">
+        <div className="flex items-center gap-2">
+          <WindDirectionArrow
+            direction={hour.weatherData.windDirection10m}
+            size={20}
+          />
+          <span>
+            {Math.round(hour.weatherData.windSpeed10m)} (
+            {Math.round(hour.weatherData.windGusts10m)}) m/s
+          </span>
         </div>
       </div>
     </div>

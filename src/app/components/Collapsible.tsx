@@ -25,11 +25,11 @@ export default function Collapsible({
         className={`w-full text-left p-4 hover:bg-gray-700 focus:outline-none ${className} ${isOpen ? "rounded-t-lg" : "rounded-lg"
           }`}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
+        <div className="flex items-center w-full">
+          <div className="flex items-center flex-1">
             {title}
           </div>
-          <div className="text-gray-400">
+          <div className="text-gray-400 flex-shrink-0 ml-2">
             {isOpen ? "▼" : "▶"}
           </div>
         </div>

@@ -7,10 +7,9 @@ import { getCombinedData } from "@/lib/utils/getCombinedData";
 import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
 import Collapsible from "@/app/components/Collapsible";
 import WeatherCard from "@/app/components/WeatherCard";
-import AlertRuleCard from "@/app/components/AlertRuleCard";
-import AlertHourlyWeather from "@/app/components/alertHourlyWeather";
+import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
 import { Location } from "@/lib/common/types/location";
-import AlertFailureDescriptions from "./alertFailureDescriptions";
+import FailureCard from "@/app/components/FailureCard";
 
 interface Props {
   location: Location;
@@ -82,10 +81,6 @@ export default function LocationAlertRules({ location }: Props) {
               rule.result === "positive" ? "bg-green-900" : "bg-red-900"
             }
           >
-            <AlertRuleCard
-              alertName={rule.alert_name}
-              result={rule.result}
-            />
             {rule.dailyData.map((day) => (
               <Collapsible
                 key={day.date}
@@ -109,11 +104,10 @@ export default function LocationAlertRules({ location }: Props) {
                   >
                     <div className="space-y-4">
                       {!hour.isGood && hour.failures && (
-                        <AlertFailureDescriptions failures={hour.failures} />
+                        <FailureCard failures={hour.failures} />
                       )}
-                      <Collapsible title="Weather Details" className={hour.isGood ? "bg-green-600" : "bg-red-600"}>
-                        <AlertHourlyWeather hour={hour} />
-                      </Collapsible>
+                      <HourlyWeatherDetails hour={hour} />
+
                     </div>
                   </Collapsible>
                 ))}

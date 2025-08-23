@@ -74,6 +74,15 @@ body {
   fill: #000000;
 }
 
+/* Wind Direction Arrow Styling */
+.wind-arrow {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.wind-arrow:hover {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
 main {
   max-width: 1200px;
   margin: 0 auto;
