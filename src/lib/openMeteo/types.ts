@@ -44,10 +44,16 @@ export interface HourlyData {
   weatherData: WeatherDataPoint;
 }
 
+export interface TimeInterval {
+  start: string;
+  end: string;
+}
+
 export interface DayResult {
   date: string;
   result: 'positive' | 'negative';
   hourlyData: HourlyData[];
+  positiveIntervals: TimeInterval[];
 }
 
 export interface LocationResult {
@@ -59,6 +65,5 @@ export interface LocationResult {
   long: number;
   elevation: number;
 }
-
 
 export type OpenMeteoResponse = z.infer<typeof openMeteoResponseSchema>;

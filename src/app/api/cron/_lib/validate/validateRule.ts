@@ -1,4 +1,9 @@
-import { WeatherDataPoint, HourlyData, DayResult } from '../../../../../lib/openMeteo/types';
+import {
+  WeatherDataPoint,
+  HourlyData,
+  DayResult,
+  TimeInterval,
+} from '../../../../../lib/openMeteo/types';
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
@@ -66,15 +71,52 @@ export function validateWeather(
 
     let consecutiveGoodHours = 0;
     let hasMetCondition = false;
+    let currentInterval: { start: number | null; end: number | null } = { start: null, end: null };
+    const positiveIntervals: TimeInterval[] = [];
+
     if (relevantHours.length >= 3) {
-      for (const hour of hourlyData) {
+      for (let i = 0; i < hourlyData.length; i++) {
+        const hour = hourlyData[i];
+        const time = new Date(hour.weatherData.time);
+
         if (hour.isGood) {
           consecutiveGoodHours++;
+          // Start a new interval if we don't have one
+          if (currentInterval.start === null) {
+            currentInterval.start = time.getHours();
+          }
+          // If we have 3 consecutive good hours, mark as met and update the end time
           if (consecutiveGoodHours >= 3) {
             hasMetCondition = true;
-            break;
+            currentInterval.end = time.getHours();
+          }
+          // If this is the last hour or next hour is not good, save the interval
+          if (i === hourlyData.length - 1 || !hourlyData[i + 1]?.isGood) {
+            if (
+              currentInterval.start !== null &&
+              currentInterval.end !== null &&
+              consecutiveGoodHours >= 3
+            ) {
+              positiveIntervals.push({
+                start: `${currentInterval.start.toString().padStart(2, '0')}:00`,
+                end: `${(currentInterval.end + 1).toString().padStart(2, '0')}:00`,
+              });
+            }
+            currentInterval = { start: null, end: null };
           }
         } else {
+          // If we had a valid interval, save it
+          if (
+            currentInterval.start !== null &&
+            currentInterval.end !== null &&
+            consecutiveGoodHours >= 3
+          ) {
+            positiveIntervals.push({
+              start: `${currentInterval.start.toString().padStart(2, '0')}:00`,
+              end: `${time.getHours().toString().padStart(2, '0')}:00`,
+            });
+          }
+          currentInterval = { start: null, end: null };
           consecutiveGoodHours = 0;
         }
       }
@@ -84,6 +126,7 @@ export function validateWeather(
       date,
       result: hasMetCondition ? 'positive' : 'negative',
       hourlyData,
+      positiveIntervals,
     };
   });
 

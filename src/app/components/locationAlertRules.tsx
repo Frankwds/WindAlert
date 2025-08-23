@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AlertRule } from "@/lib/common/types/alertRule";
 import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { LocationResult } from "@/lib/openMeteo/types";
 import { getCombinedData } from "@/lib/utils/getCombinedData";
@@ -83,7 +82,13 @@ export default function LocationAlertRules({ location }: Props) {
             {rule.dailyData.map((day) => (
               <CollapsibleForAlertDebug
                 key={day.date}
-                title={new Date(day.date).toLocaleDateString('en-US', { weekday: 'long'})}
+                title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${
+                  day.positiveIntervals.length > 0
+                    ? ` - ${day.positiveIntervals
+                        .map((interval) => `${interval.start}-${interval.end}`)
+                        .join(', ')}`
+                    : ''
+                }`}
                 className={
                   day.result === "positive" ? "bg-green-800" : "bg-red-800"
                 }
