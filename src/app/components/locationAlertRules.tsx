@@ -5,8 +5,8 @@ import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { LocationResult } from "@/lib/openMeteo/types";
 import { getCombinedData } from "@/lib/utils/getCombinedData";
 import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
-import CollapsibleForAlertDebug from "@/app/components/collapsibleForAlertDebug";
-import HourlyWeatherForAlertDebug from "@/app/components/hourlyWeatherForAlertDebug";
+import CollapsibleAlert from "@/app/components/alertCollapsible";
+import AlertHourlyWeather from "@/app/components/alertHourlyWeather";
 import { Location } from "@/lib/common/types/location";
 
 interface Props {
@@ -72,7 +72,7 @@ export default function LocationAlertRules({ location }: Props) {
       <h2 className="text-2xl font-bold mb-4 text-white">Alert Rules</h2>
       <div>
         {validationResults.map((rule) => (
-          <CollapsibleForAlertDebug
+          <CollapsibleAlert
             key={rule.alert_name}
             title={`${rule.alert_name}`}
             className={
@@ -80,7 +80,7 @@ export default function LocationAlertRules({ location }: Props) {
             }
           >
             {rule.dailyData.map((day) => (
-              <CollapsibleForAlertDebug
+              <CollapsibleAlert
                 key={day.date}
                 title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${
                   day.positiveIntervals.length > 0
@@ -94,18 +94,18 @@ export default function LocationAlertRules({ location }: Props) {
                 }
               >
                 {day.hourlyData.map((hour, index) => (
-                  <CollapsibleForAlertDebug
+                  <CollapsibleAlert
                     key={index}
                     title={`Hour ${hour.weatherData.time.split("T")[1]}`}
                     className={hour.isGood ? "bg-green-700" : "bg-red-700"}
                     hour={hour}
                   >
-                    <HourlyWeatherForAlertDebug hour={hour} />
-                  </CollapsibleForAlertDebug>
+                    <AlertHourlyWeather hour={hour} />
+                  </CollapsibleAlert>
                 ))}
-              </CollapsibleForAlertDebug>
+              </CollapsibleAlert>
             ))}
-          </CollapsibleForAlertDebug>
+          </CollapsibleAlert>
         ))}
       </div>
     </div>

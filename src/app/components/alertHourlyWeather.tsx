@@ -5,7 +5,7 @@ import { HourlyData } from "../../lib/openMeteo/types";
 import { getWindDirection } from "../../lib/utils/getWindDirection";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 
-const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
+const AlertHourlyWeather = ({ hour }: { hour: HourlyData }) => {
   const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
 
   return (
@@ -91,4 +91,4 @@ const HourlyWeatherForAlertDebug = ({ hour }: { hour: HourlyData }) => {
   );
 };
 
-export default HourlyWeatherForAlertDebug;
+export default AlertHourlyWeather;

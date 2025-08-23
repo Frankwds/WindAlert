@@ -13,7 +13,7 @@ interface CollapsibleProps {
   hour?: HourlyData;
 }
 
-export default function CollapsibleForAlertDebug({
+export default function CollapsibleAlert({
   title,
   children,
   className,
