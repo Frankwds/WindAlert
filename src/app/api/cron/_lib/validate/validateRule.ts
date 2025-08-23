@@ -9,6 +9,21 @@ import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
 
 /**
+ * Checks if the difference between ground wind direction and altitude wind direction
+ * is within acceptable limits (less than 90 degrees)
+ */
+function isWindShearAcceptable(groundDirection: number, altitudeDirection: number): boolean {
+  // Calculate the absolute difference between wind directions
+  let difference = Math.abs(groundDirection - altitudeDirection);
+  // Normalize the difference to handle the circular nature of degrees (0-360)
+  if (difference > 180) {
+    difference = 360 - difference;
+  }
+  // Check if the difference is less than 90 degrees
+  return difference <= 90;
+}
+
+/**
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
  */
 function isGoodParaglidingCondition(
@@ -37,10 +52,24 @@ function isGoodParaglidingCondition(
 
   // Upper atmosphere wind conditions (at different pressure levels)
   const upperWindConditions = {
-    at925hPa: dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa,
-    at850hPa: dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa,
-    at700hPa: dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa,
+    at925hPa: {
+      speed: dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa,
+      shear: isWindShearAcceptable(dp.windDirection10m, dp.windDirection925hPa),
+    },
+    at850hPa: {
+      speed: dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa,
+      shear: isWindShearAcceptable(dp.windDirection10m, dp.windDirection850hPa),
+    },
+    at700hPa: {
+      speed: dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa,
+      shear: isWindShearAcceptable(dp.windDirection10m, dp.windDirection700hPa),
+    },
   };
+
+  // Check if all upper wind conditions are met (both speed and wind shear for each level)
+  const isUpperWindGood = Object.values(upperWindConditions).every(level =>
+    Object.values(level).every(condition => condition)
+  );
 
   // Thermal and stability conditions
   const isCapeAcceptable = alert_rule.MAX_CAPE === 0 || dp.cape < alert_rule.MAX_CAPE;
@@ -69,7 +98,6 @@ function isGoodParaglidingCondition(
 
   // Check if all conditions in each category are met
   const isSurfaceWindGood = Object.values(surfaceWindConditions).every(condition => condition);
-  const isUpperWindGood = Object.values(upperWindConditions).every(condition => condition);
   const isThermalGood = Object.values(thermalConditions).every(condition => condition);
   const isVisualGood = Object.values(visualConditions).every(condition => condition);
 
