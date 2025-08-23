@@ -8,16 +8,6 @@ import { AlertRule } from '@/lib/common/types/alertRule';
 import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
 
-interface WeatherInterval {
-  start: number | null;
-  end: number | null;
-}
-
-interface IntervalResult {
-  positiveIntervals: TimeInterval[];
-  hasMetCondition: boolean;
-}
-
 /**
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
  */
@@ -86,11 +76,6 @@ function isGoodParaglidingCondition(
   return isSurfaceWindGood && isUpperWindGood && isThermalGood && isVisualGood;
 }
 
-// TODO, make these configurable per rule
-const MIN_CONSECUTIVE_HOURS = 3;
-const DAYTIME_START_HOUR = 8;
-const DAYTIME_END_HOUR = 20;
-
 /**
  * Creates a formatted time interval string
  */
@@ -104,17 +89,18 @@ function createTimeInterval(startHour: number, endHour: number): TimeInterval {
 /**
  * Finds intervals of consecutive good weather conditions
  */
-function findConsecutiveGoodIntervals(hourlyData: HourlyData[]): IntervalResult {
+function findConsecutiveGoodIntervals(
+  hourlyData: HourlyData[],
+  minConsecutiveHours: number
+): TimeInterval[] {
   const positiveIntervals: TimeInterval[] = [];
-  let hasMetCondition = false;
   let consecutiveGoodHours = 0;
   let intervalStart: number | null = null;
 
   // Helper function to add a valid interval to the results
   const addIntervalIfValid = (start: number, end: number, goodHours: number) => {
-    if (goodHours >= MIN_CONSECUTIVE_HOURS) {
+    if (goodHours >= minConsecutiveHours) {
       positiveIntervals.push(createTimeInterval(start, end));
-      hasMetCondition = true;
     }
   };
 
@@ -139,7 +125,7 @@ function findConsecutiveGoodIntervals(hourlyData: HourlyData[]): IntervalResult 
     }
   });
 
-  return { positiveIntervals, hasMetCondition };
+  return positiveIntervals;
 }
 
 /**
@@ -151,11 +137,8 @@ export function validateWeather(
   location: Location
 ): { overallResult: 'positive' | 'negative'; dailyData: DayResult[] } {
   const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
-    // Filter for daytime hours only
-    const relevantHours = dayData.filter(dp => {
-      const hour = new Date(dp.time).getHours();
-      return hour >= DAYTIME_START_HOUR && hour <= DAYTIME_END_HOUR;
-    });
+    // Filter for daylight hours only using the isDay field
+    const relevantHours = dayData.filter(dp => dp.isDay);
 
     // Check conditions for each hour
     const hourlyData: HourlyData[] = relevantHours.map(dp => ({
@@ -164,11 +147,14 @@ export function validateWeather(
     }));
 
     // Find intervals
-    const { positiveIntervals, hasMetCondition } = findConsecutiveGoodIntervals(hourlyData);
+    const positiveIntervals = findConsecutiveGoodIntervals(
+      hourlyData,
+      alert_rule.MIN_CONSECUTIVE_HOURS
+    );
 
     return {
       date,
-      result: hasMetCondition ? 'positive' : 'negative',
+      result: positiveIntervals.length > 0 ? 'positive' : 'negative',
       hourlyData,
       positiveIntervals,
     };

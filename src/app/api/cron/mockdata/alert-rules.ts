@@ -14,6 +14,7 @@ const DEFAULT_VALUES = {
   MAX_WIND_SPEED_925hPa: 15, // 925hPa is approximately 800m altitude
   MAX_WIND_SPEED_850hPa: 20, // 850hPa is approximately 1500m altitude
   MAX_WIND_SPEED_700hPa: 25, // 700hPa is approximately 3000m altitude
+  MIN_CONSECUTIVE_HOURS: 3,
 };
 
 const GUST_AGNOSTIC_VALUES = {

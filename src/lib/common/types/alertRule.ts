@@ -17,4 +17,5 @@ export interface AlertRule {
   MAX_WIND_SPEED_925hPa: number;
   MAX_WIND_SPEED_850hPa: number;
   MAX_WIND_SPEED_700hPa: number;
+  MIN_CONSECUTIVE_HOURS: number;
 }
