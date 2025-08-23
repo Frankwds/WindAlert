@@ -8,7 +8,7 @@ interface WindyWidgetProps {
 }
 
 const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
-  const models = [ "ecmwf","iconEu", "gfs"];
+  const models = [ "iconEu","ecmwf", "gfs"];
   const [modelIndex, setModelIndex] = useState(0);
   const [isMapActive, setIsMapActive] = useState(false);
 

@@ -3,25 +3,56 @@ import { AlertRule } from '@/lib/common/types/alertRule';
 import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
 
-function isGoodParaglidingCondition(dp: WeatherDataPoint, alert_rule: AlertRule, location: Location): boolean {
-  const isWindSpeedGood = dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
-  const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST;
-  const isGustDifferenceGood = Math.abs(dp.windSpeed10m - dp.windGusts10m) <= alert_rule.MAX_GUST_DIFFERENCE;
+function isGoodParaglidingCondition(
+  dp: WeatherDataPoint,
+  alert_rule: AlertRule,
+  location: Location
+): boolean {
+  const isWindSpeedGood =
+    dp.windSpeed10m >= alert_rule.MIN_WIND_SPEED && dp.windSpeed10m <= alert_rule.MAX_WIND_SPEED;
+  const isGustGood = dp.windGusts10m <= alert_rule.MAX_GUST || alert_rule.MAX_GUST === 0;
+  const isGustDifferenceGood =
+    Math.abs(dp.windSpeed10m - dp.windGusts10m) <= alert_rule.MAX_GUST_DIFFERENCE ||
+    alert_rule.MAX_GUST_DIFFERENCE === 0;
   const isPrecipitationGood = dp.precipitation <= alert_rule.MAX_PRECIPITATION;
-  const isCapeGood = dp.cape < alert_rule.MAX_CAPE;
-  const isLiftedIndexGood = dp.liftedIndex >= alert_rule.MIN_LIFTED_INDEX && dp.liftedIndex <= alert_rule.MAX_LIFTED_INDEX;
+  const isCapeGood = dp.cape < alert_rule.MAX_CAPE || alert_rule.MAX_CAPE === 0;
+  const isLiftedIndexGood =
+    dp.liftedIndex >= alert_rule.MIN_LIFTED_INDEX && dp.liftedIndex <= alert_rule.MAX_LIFTED_INDEX;
   const isCinGood = dp.convectiveInhibition > alert_rule.MIN_CONVECTIVE_INHIBITION;
   const isCloudCoverGood = dp.cloudCover < alert_rule.MAX_CLOUD_COVER;
-  const isWindSpeed700hPaGood = dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa;
-  const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
   const isWindSpeed925hPaGood = dp.windSpeed925hPa <= alert_rule.MAX_WIND_SPEED_925hPa;
-  const isWindDirectionGoodCheck = isWindDirectionGood(dp.windDirection10m, location.windDirections || []);
-  const isWmoCodeGood = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'].includes(dp.weatherCode);
+  const isWindSpeed850hPaGood = dp.windSpeed850hPa <= alert_rule.MAX_WIND_SPEED_850hPa;
+  const isWindSpeed700hPaGood = dp.windSpeed700hPa <= alert_rule.MAX_WIND_SPEED_700hPa;
+  const isWindDirectionGoodCheck = isWindDirectionGood(
+    dp.windDirection10m,
+    location.windDirections
+  );
+  const isWmoCodeGood = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'].includes(
+    dp.weatherCode
+  );
 
-  return isWindSpeedGood && isGustGood && isPrecipitationGood && isCapeGood && isLiftedIndexGood && isCinGood && isCloudCoverGood && isWindSpeed700hPaGood && isWindSpeed850hPaGood && isWindSpeed925hPaGood && isWindDirectionGoodCheck && isWmoCodeGood && isGustDifferenceGood;
+  return (
+    isWindSpeedGood &&
+    isGustGood &&
+    isPrecipitationGood &&
+    isCapeGood &&
+    isLiftedIndexGood &&
+    isCinGood &&
+    isCloudCoverGood &&
+    isWindSpeed700hPaGood &&
+    isWindSpeed850hPaGood &&
+    isWindSpeed925hPaGood &&
+    isWindDirectionGoodCheck &&
+    isWmoCodeGood &&
+    isGustDifferenceGood
+  );
 }
 
-export function validateWeather(groupedData: Record<string, WeatherDataPoint[]>, alert_rule: AlertRule, location: Location): { overallResult: 'positive' | 'negative', dailyData: DayResult[] } {
+export function validateWeather(
+  groupedData: Record<string, WeatherDataPoint[]>,
+  alert_rule: AlertRule,
+  location: Location
+): { overallResult: 'positive' | 'negative'; dailyData: DayResult[] } {
   const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
     const relevantHours = dayData.filter(dp => {
       const hour = new Date(dp.time).getHours();

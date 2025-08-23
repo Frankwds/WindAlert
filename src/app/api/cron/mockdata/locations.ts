@@ -9,6 +9,7 @@ export const LOCATIONS: Location[] = [
     elevation: 350,
     timezone: 'Europe/Oslo',
     windDirections: ['SW', 'S', 'SE'],
+    description: '',
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ export const LOCATIONS: Location[] = [
     elevation: 560,
     timezone: 'Europe/Oslo',
     windDirections: ['N', 'NE'],
+    description: '',
   },
   {
     id: 3,
@@ -27,6 +29,7 @@ export const LOCATIONS: Location[] = [
     elevation: 380,
     timezone: 'Europe/Oslo',
     windDirections: ['NW', 'W', 'N'],
+    description: '',
   },
   {
     id: 4,
@@ -36,6 +39,7 @@ export const LOCATIONS: Location[] = [
     elevation: 650,
     timezone: 'Europe/Oslo',
     windDirections: ['NW', 'N', 'SW', 'W'],
+    description: '',
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ export const LOCATIONS: Location[] = [
     elevation: 660,
     timezone: 'Europe/Oslo',
     windDirections: ['SW', 'S', 'SE'],
+    description: '',
   },
   {
     id: 6,
@@ -54,5 +59,6 @@ export const LOCATIONS: Location[] = [
     elevation: 1250,
     timezone: 'Europe/Oslo',
     windDirections: ['SW', 'S', 'SE'],
+    description: '',
   },
 ];
