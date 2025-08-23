@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eaeaea;
+  --background: #ffffff;
   --foreground: #171717;
   
   /* Google Button Colors */
@@ -63,6 +63,40 @@
     --shadow-hover: 0 4px 8px rgba(0, 0, 0, var(--opacity-lg));
     --shadow-focus: 0 0 0 3px rgba(59, 130, 246, var(--opacity-lg));
   }
+  
+  /* Dark mode scrollbar adjustments */
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: var(--border);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--muted);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground);
+  }
+  
+  .scrollbar-thin {
+    scrollbar-color: var(--muted) var(--border);
+  }
+  
+  /* Dark mode scrollbar corner */
+  .scrollbar-thin::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  /* Dark mode mobile scrollbar hiding */
+  @media (max-width: 768px) {
+    .scrollbar-thin::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .scrollbar-thin {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  }
 }
 
 body {
@@ -70,6 +104,61 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   line-height: 1.6;
+}
+
+/* Custom Scrollbar Styling */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Hide scrollbar arrows for modern look */
+.scrollbar-thin::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox scrollbar styling */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--border);
+}
+
+/* Additional modern scrollbar enhancements */
+.scrollbar-thin::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Ensure smooth scrolling behavior */
+.scrollbar-thin {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar on mobile devices */
+@media (max-width: 768px) {
+  .scrollbar-thin::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
 }
 
 
