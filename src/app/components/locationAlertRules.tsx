@@ -74,52 +74,64 @@ export default function LocationAlertRules({ location }: Props) {
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">Alert Rules</h2>
       <div>
-        {validationResults.map((rule) => (
-          <Collapsible
-            key={rule.alert_name}
-            title={`${rule.alert_name}`}
-            className={`${rule.result === "positive"
-              ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
-              : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
-              } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
-          >
-            {rule.dailyData.map((day) => (
-              <Collapsible
-                key={day.date}
-                title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${day.positiveIntervals.length > 0
-                  ? ` - ${day.positiveIntervals
-                    .map((interval) => `${interval.start}-${interval.end}`)
-                    .join(', ')}`
-                  : ''
-                  }`}
-                className={`${day.result === "positive"
-                  ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
-                  : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
-                  } rounded-md shadow-sm my-1`}
-              >
+        {validationResults.map((rule) => {
+          // Extract positive days for this rule
+          const positiveDays = rule.dailyData
+            .filter(day => day.result === 'positive')
+            .map(day => new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' }));
 
-                {day.hourlyData.map((hour, index) => (
-                  <Collapsible
-                    key={index}
-                    title={<WeatherCard hour={hour} compact={true} />}
-                    className={`${hour.isGood
-                      ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
-                      : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
-                      } rounded-md shadow-[var(--shadow-sm)] my-1`}
+          // Create title with positive days if any
+          const title = positiveDays.length > 0
+            ? `${rule.alert_name} - ${positiveDays.join(', ')}`
+            : rule.alert_name;
 
-                  >
-                    <div>
-                      {!hour.isGood && hour.failures && (
-                        <FailureCard failures={hour.failures} />
-                      )}
-                      <HourlyWeatherDetails hour={hour} />
-                    </div>
-                  </Collapsible>
-                ))}
-              </Collapsible>
-            ))}
-          </Collapsible>
-        ))}
+          return (
+            <Collapsible
+              key={rule.alert_name}
+              title={title}
+              className={`${rule.result === "positive"
+                ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
+                : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
+                } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
+            >
+              {rule.dailyData.map((day) => (
+                <Collapsible
+                  key={day.date}
+                  title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${day.positiveIntervals.length > 0
+                    ? ` - ${day.positiveIntervals
+                      .map((interval) => `${interval.start}-${interval.end}`)
+                      .join(', ')}`
+                    : ''
+                    }`}
+                  className={`${day.result === "positive"
+                    ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
+                    : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
+                    } rounded-md shadow-sm my-1`}
+                >
+
+                  {day.hourlyData.map((hour, index) => (
+                    <Collapsible
+                      key={index}
+                      title={<WeatherCard hour={hour} compact={true} />}
+                      className={`${hour.isGood
+                        ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+                        : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+                        } rounded-md shadow-[var(--shadow-sm)] my-1`}
+
+                    >
+                      <div>
+                        {!hour.isGood && hour.failures && (
+                          <FailureCard failures={hour.failures} />
+                        )}
+                        <HourlyWeatherDetails hour={hour} />
+                      </div>
+                    </Collapsible>
+                  ))}
+                </Collapsible>
+              ))}
+            </Collapsible>
+          );
+        })}
       </div>
     </div>
   );
