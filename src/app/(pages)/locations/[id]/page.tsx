@@ -6,6 +6,7 @@ import HourlyWeather from "@/app/components/hourlyWeather";
 import WindCompass from "@/app/components/windCompass";
 import GoogleMaps from "@/app/components/googleMaps";
 import WindyWidget from "@/app/components/windyWidget";
+import LocationAlertRules from "@/app/components/locationAlertRules";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -42,6 +43,7 @@ export default async function LocationPage({ params }: Props) {
         weatherData={mappedData.weatherDataYr1h}
         timezone={location.timezone}
       />
+      <LocationAlertRules location={location} />
       <WindyWidget lat={location.lat} long={location.long} />
     </div>
   );
