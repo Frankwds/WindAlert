@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./windCompass.module.css";
 
 interface WindCompassProps {
   allowedDirections: string[];
@@ -42,12 +43,12 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
           <g key={dir}>
             <path
               d={getPath(i)}
-              className={`compass-wedge ${isAllowed ? "allowed" : ""}`}
+              className={`${styles.compassWedge} ${isAllowed ? styles.compassWedgeAllowed : ""}`}
             />
             <text
               x={textPos.x}
               y={textPos.y}
-              className="compass-text"
+              className={styles.compassText}
               textAnchor="middle"
               alignmentBaseline="middle"
             >

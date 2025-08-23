@@ -27,60 +27,11 @@
   }
 }
 
-/* Google Button Custom Classes */
-.bg-google-button-dark {
-  background-color: var(--google-button-dark);
-}
-
-.bg-google-button-dark-hover {
-  background-color: var(--google-button-dark-hover);
-}
-
-.fill-google-logo-blue {
-  fill: var(--google-logo-blue);
-}
-
-.fill-google-logo-green {
-  fill: var(--google-logo-green);
-}
-
-.fill-google-logo-yellow {
-  fill: var(--google-logo-yellow);
-}
-
-.fill-google-logo-red {
-  fill: var(--google-logo-red);
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.compass-wedge {
-  fill: #e0e0e0; /* Default color for wedges */
-  stroke: #ffffff; /* White border */
-  stroke-width: 1;
-}
-
-.compass-wedge.allowed {
-  fill: #4caf50; /* Green for allowed directions */
-}
-
-.compass-text {
-  font-size: 16px;
-  font-family: sans-serif;
-  fill: #000000;
-}
-
-/* Wind Direction Arrow Styling */
-.wind-arrow {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.wind-arrow:hover {
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  line-height: 1.6;
 }
 
 main {

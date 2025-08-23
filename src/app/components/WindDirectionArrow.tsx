@@ -1,3 +1,5 @@
+import styles from "./WindDirectionArrow.module.css";
+
 interface WindDirectionArrowProps {
   direction: number;
   size?: number;
@@ -18,7 +20,7 @@ export default function WindDirectionArrow({
         width={size}
         height={size}
         viewBox="0 0 24 24"
-        className="wind-arrow transition-transform duration-200 ease-in-out"
+        className={`${styles.windArrow} transition-transform duration-200 ease-in-out`}
         style={{
           transform: `rotate(${direction}deg)`, // No rotation offset needed
           transformOrigin: "center",
