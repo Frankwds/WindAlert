@@ -7,4 +7,8 @@ export interface Location {
   timezone: string;
   description: string;
   windDirections: string[];
+  landing?: {
+    lat: number;
+    long: number;
+  };
 }

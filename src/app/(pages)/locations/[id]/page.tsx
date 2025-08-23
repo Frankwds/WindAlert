@@ -38,7 +38,7 @@ export default async function LocationPage({ params }: Props) {
           <WindCompass allowedDirections={location.windDirections || []} />
         </div>
       </div>
-      <GoogleMaps latitude={location.lat} longitude={location.long} />
+      <GoogleMaps latitude={location.lat} longitude={location.long} landing={location.landing} />
       <HourlyWeather
         weatherData={mappedData.weatherDataYr1h}
         timezone={location.timezone}

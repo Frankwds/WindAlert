@@ -20,6 +20,10 @@ export const LOCATIONS: Location[] = [
     timezone: 'Europe/Oslo',
     windDirections: ['N', 'NE'],
     description: '',
+    landing: {
+      lat: 59.505743,
+      long: 9.843865,
+    },
   },
   {
     id: 3,
@@ -30,6 +34,10 @@ export const LOCATIONS: Location[] = [
     timezone: 'Europe/Oslo',
     windDirections: ['NW', 'W', 'N'],
     description: '',
+    landing: {
+      lat: 60.058578,
+      long: 10.309636,
+    },
   },
   {
     id: 4,

@@ -5,16 +5,26 @@ import ExternalLinkIcon from "./ExternalLinkIcon";
 interface GoogleMapsProps {
   latitude: number;
   longitude: number;
+  landing?: {
+    lat: number;
+    long: number;
+  };
 }
 
-const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing }) => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
     return <p>Google Maps API key is missing.</p>;
   }
 
-  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&markers=color:red%7C${latitude},${longitude}&key=${apiKey}`;
+  // Build markers string - main location (red) + landing (green) if available
+  let markers = `markers=color:red%7Clabel:S%7C${latitude},${longitude}`;
+  if (landing) {
+    markers += `&markers=color:green%7Clabel:L%7C${landing.lat},${landing.long}`;
+  }
+
+  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&${markers}&key=${apiKey}`;
 
   // Google Maps URL with coordinates, zoom level 10, and satellite view
   const googleMapsUrl = `https://www.google.com/maps?ll=${latitude},${longitude}&t=k&z=12`;
@@ -28,7 +38,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude }) => {
           rel="noopener noreferrer"
           className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
         >
-          Location on Google Maps
+          View on Google Maps
           <ExternalLinkIcon size={24} className="inline-block" />
         </a>
       </div>
