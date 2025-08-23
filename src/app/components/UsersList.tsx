@@ -42,7 +42,7 @@ export default function UsersList() {
           <p className="text-[var(--muted)]">No users found</p>
         ) : (
           users.map((user) => (
-            <div key={user.id} className="p-4 border border-[var(--border)] rounded-lg shadow-sm bg-[var(--background)]">
+            <div key={user.id} className="p-4 border border-[var(--border)] rounded-lg shadow-[var(--shadow-sm)] bg-[var(--background)]">
               <p className="font-medium text-[var(--foreground)]">Email: {user.email}</p>
               <p className="text-sm text-[var(--muted)]">
                 Joined: {new Date(user.created_at).toLocaleDateString()}

@@ -68,7 +68,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   ];
 
   return (
-    <div className="bg-[var(--background)] rounded-lg shadow-lg p-4">
+    <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4">
       <h2 className="text-xl font-bold mb-4 text-[var(--foreground)]">Hourly Weather</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm text-center">

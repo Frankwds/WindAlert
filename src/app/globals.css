@@ -21,6 +21,22 @@
   --error: #dc2626;
   --nav-bg: #1f2937;
   --nav-text: #f9fafb;
+  
+  /* Standardized Opacity Values */
+  /* Use these values as reference for Tailwind opacity classes: /10, /30, /50 */
+  --opacity-sm: 0.1;
+  --opacity-md: 0.3;
+  --opacity-lg: 0.5;
+  
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, var(--opacity-sm));
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, var(--opacity-sm)), 0 2px 4px -1px rgba(0, 0, 0, var(--opacity-sm));
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, var(--opacity-md)), 0 4px 6px -2px rgba(0, 0, 0, var(--opacity-sm));
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, var(--opacity-md)), 0 10px 10px -5px rgba(0, 0, 0, var(--opacity-sm));
+  
+  /* Interactive States */
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, var(--opacity-md));
+  --shadow-focus: 0 0 0 3px rgba(59, 130, 246, var(--opacity-lg));
 }
 
 @theme inline {
@@ -38,6 +54,14 @@
     --muted: #9ca3af;
     --nav-bg: #111827;
     --nav-text: #f9fafb;
+    
+    /* Dark mode shadow adjustments */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, var(--opacity-md));
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, var(--opacity-lg)), 0 2px 4px -1px rgba(0, 0, 0, var(--opacity-md));
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, var(--opacity-lg)), 0 4px 6px -2px rgba(0, 0, 0, var(--opacity-md));
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, var(--opacity-lg)), 0 10px 10px -5px rgba(0, 0, 0, var(--opacity-md));
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, var(--opacity-lg));
+    --shadow-focus: 0 0 0 3px rgba(59, 130, 246, var(--opacity-lg));
   }
 }
 

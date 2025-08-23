@@ -79,9 +79,9 @@ export default function LocationAlertRules({ location }: Props) {
             key={rule.alert_name}
             title={`${rule.alert_name}`}
             className={`${rule.result === "positive"
-              ? "bg-[var(--success)]/20 border-l-4 border-[var(--success)]"
-              : "bg-[var(--error)]/20 border-l-4 border-[var(--error)]"
-              } rounded-lg shadow-sm mb-2`}
+              ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
+              : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
+              } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
           >
             {rule.dailyData.map((day) => (
               <Collapsible
@@ -93,8 +93,8 @@ export default function LocationAlertRules({ location }: Props) {
                   : ''
                   }`}
                 className={`${day.result === "positive"
-                  ? "bg-[var(--success)]/15 border-l-4 border-[var(--success)]/60"
-                  : "bg-[var(--error)]/15 border-l-4 border-[var(--error)]/60"
+                  ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
+                  : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
                   } rounded-md shadow-sm my-1`}
               >
 
@@ -103,9 +103,9 @@ export default function LocationAlertRules({ location }: Props) {
                     key={index}
                     title={<WeatherCard hour={hour} compact={true} />}
                     className={`${hour.isGood
-                      ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/40"
-                      : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/40"
-                      } rounded-md shadow-sm my-1`}
+                      ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+                      : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+                      } rounded-md shadow-[var(--shadow-sm)] my-1`}
 
                   >
                     <div>

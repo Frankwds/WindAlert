@@ -63,6 +63,19 @@ The project uses a comprehensive CSS variable system for consistent theming:
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
+  
+  /* Standardized Opacity Values */
+  --opacity-sm: 0.1;
+  --opacity-md: 0.3;
+  --opacity-lg: 0.5;
+  
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
 ```
 
@@ -83,6 +96,7 @@ The project uses a comprehensive CSS variable system for consistent theming:
 - **Text**: `text-[var(--foreground)]`, `text-[var(--nav-text)]`
 - **Borders**: `border-[var(--border)]`
 - **Semantic colors**: `text-[var(--success)]`, `bg-[var(--error)]`
+- **Opacity**: Use standardized values: `bg-[var(--success)]/[var(--opacity-md)]`
 
 #### 4. **Typography**
 - **Font families**: Use `font-sans` (Geist Sans) and `font-mono` (Geist Mono)
@@ -94,7 +108,19 @@ The project uses a comprehensive CSS variable system for consistent theming:
 - **Padding**: Use consistent spacing with Tailwind utilities
 - **Responsive**: Implement mobile-first responsive design
 
-#### 6. **Component Examples**
+#### 6. **Opacity System**
+- **Three standardized values**: `--opacity-sm: 0.1`, `--opacity-md: 0.3`, `--opacity-lg: 0.5`
+- **Usage**: `bg-[var(--success)]/30`, `border-[var(--error)]/10` (use numeric values in Tailwind)
+- **Consistent hierarchy**: sm (10) < md (30) < lg (50) for visual depth
+- **Note**: CSS variables define the system, but use numeric values in Tailwind classes
+
+#### 7. **Shadow System**
+- **Standard shadows**: Use `shadow-[var(--shadow-sm)]`, `shadow-[var(--shadow-md)]`, etc.
+- **Interactive states**: Use `shadow-[var(--shadow-hover)]` for hover effects
+- **Focus states**: Use `shadow-[var(--shadow-focus)]` for accessibility
+- **Consistent hierarchy**: sm < md < lg < xl for visual depth
+
+#### 8. **Component Examples**
 
 **Navigation Component:**
 ```tsx
@@ -110,12 +136,19 @@ The project uses a comprehensive CSS variable system for consistent theming:
 </div>
 ```
 
-#### 7. **Dark Mode Support**
+**Opacity Usage (with numeric values):**
+```tsx
+<div className="bg-[var(--success)]/30 border-[var(--error)]/10">
+  {/* Use numeric values: 10, 30, 50 for opacity */}
+</div>
+```
+
+#### 9. **Dark Mode Support**
 - CSS variables automatically adapt to `prefers-color-scheme: dark`
 - Test both light and dark themes during development
 - Use opacity modifiers for subtle variations
 
-#### 8. **File Organization**
+#### 10. **File Organization**
 ```
 src/app/
 ├── globals.css              # Global design tokens and base styles
@@ -124,14 +157,14 @@ src/app/
 └── layout.tsx               # Root layout with global styles
 ```
 
-#### 9. **Best Practices**
+#### 11. **Best Practices**
 - **No hardcoded colors** - Always use CSS variables
 - **Consistent spacing** - Use Tailwind's spacing scale
 - **Pure Tailwind approach** - All styling in component className props
 - **Performance** - No extra CSS files to load, smaller bundle size
 - **Maintainability** - Single source of truth for design tokens, easier debugging
 
-#### 10. **Adding New Styles**
+#### 12. **Adding New Styles**
 1. **Design tokens**: Add to `globals.css` `:root` section
 2. **Component styles**: Use Tailwind utilities with CSS variables in className
 3. **Global utilities**: Add to `globals.css` if needed

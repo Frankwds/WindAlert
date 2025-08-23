@@ -39,8 +39,8 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                     key={m}
                     onClick={() => setModelIndex(index)}
                     className={`flex-1 py-2 px-3 rounded-md transition-all cursor-pointer ${modelIndex === index
-                      ? "bg-[var(--background)] shadow-sm font-medium"
-                      : "hover:shadow-sm hover:bg-[var(--background)]/50"
+                      ? "bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium"
+                      : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
                       }`}
                   >
                     {m.toUpperCase()}

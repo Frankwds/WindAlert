@@ -15,7 +15,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-md">
+    <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3">
         <div className="flex items-center">
           <div className="mr-6">
@@ -34,8 +34,8 @@ export default function Navigation() {
                 <Link
                   href={href}
                   className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 ${pathname === href
-                    ? "bg-[var(--nav-text)]/20 text-[var(--nav-text)] font-medium"
-                    : "text-[var(--nav-text)]/90 hover:text-[var(--nav-text)]"
+                    ? "bg-[var(--nav-text)]/30 text-[var(--nav-text)] font-medium"
+                    : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
                     }`}
                 >
                   {label}
