@@ -5,7 +5,9 @@ import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { LocationResult } from "@/lib/openMeteo/types";
 import { getCombinedData } from "@/lib/utils/getCombinedData";
 import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
-import CollapsibleAlert from "@/app/components/alertCollapsible";
+import Collapsible from "@/app/components/Collapsible";
+import WeatherCard from "@/app/components/WeatherCard";
+import AlertRuleCard from "@/app/components/AlertRuleCard";
 import AlertHourlyWeather from "@/app/components/alertHourlyWeather";
 import { Location } from "@/lib/common/types/location";
 import AlertFailureDescriptions from "./alertFailureDescriptions";
@@ -73,47 +75,51 @@ export default function LocationAlertRules({ location }: Props) {
       <h2 className="text-2xl font-bold mb-4 text-white">Alert Rules</h2>
       <div>
         {validationResults.map((rule) => (
-          <CollapsibleAlert
+          <Collapsible
             key={rule.alert_name}
             title={`${rule.alert_name}`}
             className={
               rule.result === "positive" ? "bg-green-900" : "bg-red-900"
             }
           >
+            <AlertRuleCard
+              alertName={rule.alert_name}
+              result={rule.result}
+            />
             {rule.dailyData.map((day) => (
-              <CollapsibleAlert
+              <Collapsible
                 key={day.date}
-                title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${
-                  day.positiveIntervals.length > 0
-                    ? ` - ${day.positiveIntervals
-                        .map((interval) => `${interval.start}-${interval.end}`)
-                        .join(', ')}`
-                    : ''
-                }`}
+                title={`${new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })}${day.positiveIntervals.length > 0
+                  ? ` - ${day.positiveIntervals
+                    .map((interval) => `${interval.start}-${interval.end}`)
+                    .join(', ')}`
+                  : ''
+                  }`}
                 className={
                   day.result === "positive" ? "bg-green-800" : "bg-red-800"
                 }
               >
+
                 {day.hourlyData.map((hour, index) => (
-                  <CollapsibleAlert
+                  <Collapsible
                     key={index}
-                    title={`Hour ${hour.weatherData.time.split("T")[1]}`}
+                    title={<WeatherCard hour={hour} compact={true} />}
                     className={hour.isGood ? "bg-green-700" : "bg-red-700"}
-                    hour={hour}
+
                   >
                     <div className="space-y-4">
                       {!hour.isGood && hour.failures && (
                         <AlertFailureDescriptions failures={hour.failures} />
                       )}
-                      <CollapsibleAlert title="Weather Details" className={hour.isGood ? "bg-green-600" : "bg-red-600"}>
+                      <Collapsible title="Weather Details" className={hour.isGood ? "bg-green-600" : "bg-red-600"}>
                         <AlertHourlyWeather hour={hour} />
-                      </CollapsibleAlert>
+                      </Collapsible>
                     </div>
-                  </CollapsibleAlert>
+                  </Collapsible>
                 ))}
-              </CollapsibleAlert>
+              </Collapsible>
             ))}
-          </CollapsibleAlert>
+          </Collapsible>
         ))}
       </div>
     </div>

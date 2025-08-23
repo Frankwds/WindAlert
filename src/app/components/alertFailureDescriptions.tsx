@@ -1,7 +1,8 @@
 "use client";
 
 import { FailureReason } from "@/lib/openMeteo/types";
-import CollapsibleAlert from "./alertCollapsible";
+import Collapsible from "./Collapsible";
+import FailureCard from "./FailureCard";
 
 interface Props {
   failures: FailureReason[];
@@ -11,17 +12,9 @@ const AlertFailureDescriptions = ({ failures }: Props) => {
   if (!failures || failures.length === 0) return null;
 
   return (
-    <CollapsibleAlert title="Failure Reasons" className="bg-red-600">
-      <div className="p-4 text-white">
-        <ul className="list-disc list-inside">
-          {failures.map((failure, index) => (
-            <li key={index} className="mb-2">
-              {failure.description}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </CollapsibleAlert>
+    <Collapsible title="Failure Reasons" className="bg-red-600">
+      <FailureCard failures={failures} />
+    </Collapsible>
   );
 };
 

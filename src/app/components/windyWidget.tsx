@@ -8,7 +8,7 @@ interface WindyWidgetProps {
 }
 
 const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
-  const models = [ "iconEu","ecmwf", "gfs"];
+  const models = ["iconEu", "ecmwf", "gfs"];
   const [modelIndex, setModelIndex] = useState(0);
   const [isMapActive, setIsMapActive] = useState(false);
 
@@ -38,11 +38,10 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                   <button
                     key={m}
                     onClick={() => setModelIndex(index)}
-                    className={`flex-1 py-2 px-3 rounded-md transition-all ${
-                      modelIndex === index
+                    className={`flex-1 py-2 px-3 rounded-md transition-all ${modelIndex === index
                         ? "bg-white shadow-sm font-medium"
                         : "hover:bg-gray-200"
-                    }`}
+                      }`}
                   >
                     {m.toUpperCase()}
                   </button>
