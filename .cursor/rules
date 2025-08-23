@@ -1,0 +1,42 @@
+# WindAlert Project Context
+
+## Project Structure
+
+The project is located at: /home/frank/Code/WindAlert/
+This is a Next.js project with TypeScript.
+
+## Important Paths
+
+Main application code:
+
+- src/app/api/cron/\_lib/validate/validateRule.ts
+- src/lib/openMeteo/types.ts
+- src/lib/common/types/alertRule.ts
+- src/lib/common/types/location.ts
+
+Configuration files:
+
+- package.json
+- tsconfig.json
+- next.config.ts
+
+## Workspace Settings
+
+- Project root: /home/frank/Code/WindAlert
+- Windows WSL path: \\wsl.localhost\Ubuntu\home\frank\Code\WindAlert
+
+## Project Description
+
+WindAlert is a weather monitoring application that checks conditions for paragliding activities. It processes weather data and validates conditions based on user-defined alert rules, considering factors like:
+
+- Surface wind conditions
+- Upper atmosphere conditions
+- Thermal conditions
+- Visual and precipitation conditions
+
+## Key Features
+
+- Weather condition validation
+- Time interval processing for good conditions
+- Support for multiple weather parameters
+- Customizable alert rules
