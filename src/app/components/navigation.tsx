@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 
 const links = [
-  { href: "/alerts", label: "Alerts" },
   { href: "/locations", label: "Locations" },
 ];
 
