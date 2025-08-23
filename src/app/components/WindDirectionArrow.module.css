@@ -1,8 +1,0 @@
-.windArrow {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  transition: filter 0.2s ease;
-}
-
-.windArrow:hover {
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}

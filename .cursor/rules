@@ -45,8 +45,8 @@ WindAlert is a weather monitoring application that checks conditions for paragli
 
 ### CSS Architecture
 - **Global CSS**: `src/app/globals.css` - Contains CSS variables, base styles, and design tokens
-- **CSS Modules**: Component-specific styles using `.module.css` files
 - **Tailwind CSS**: Utility-first CSS framework with custom configuration
+- **Pure Tailwind**: All component styling uses Tailwind utilities with CSS variables
 
 ### Design System
 The project uses a comprehensive CSS variable system for consistent theming:
@@ -75,8 +75,8 @@ The project uses a comprehensive CSS variable system for consistent theming:
 
 #### 2. **Component Styling**
 - **Global styles**: Use `globals.css` for design tokens and base styles
-- **Component-specific**: Use CSS modules (`.module.css`) for component styles
-- **Utility classes**: Use Tailwind CSS for layout, spacing, and common patterns
+- **Pure Tailwind**: All component styling uses Tailwind utilities with CSS variables
+- **No CSS modules**: Keep styling simple and maintainable with Tailwind + CSS variables
 
 #### 3. **Color Usage**
 - **Backgrounds**: `bg-[var(--background)]`, `bg-[var(--nav-bg)]`
@@ -103,11 +103,9 @@ The project uses a comprehensive CSS variable system for consistent theming:
 </nav>
 ```
 
-**CSS Module Usage:**
+**Tailwind with CSS Variables:**
 ```tsx
-import styles from './ComponentName.module.css';
-
-<div className={styles.componentClass}>
+<div className="bg-[var(--background)] text-[var(--foreground)] border-[var(--border)]">
   {/* Component content */}
 </div>
 ```
@@ -122,20 +120,19 @@ import styles from './ComponentName.module.css';
 src/app/
 ├── globals.css              # Global design tokens and base styles
 ├── components/
-│   ├── ComponentName.tsx    # React component
-│   └── ComponentName.module.css  # Component-specific styles
+│   └── ComponentName.tsx    # React component (styling in Tailwind classes)
 └── layout.tsx               # Root layout with global styles
 ```
 
 #### 9. **Best Practices**
 - **No hardcoded colors** - Always use CSS variables
 - **Consistent spacing** - Use Tailwind's spacing scale
-- **Component isolation** - Keep styles close to components
-- **Performance** - CSS modules provide scoped styling
-- **Maintainability** - Single source of truth for design tokens
+- **Pure Tailwind approach** - All styling in component className props
+- **Performance** - No extra CSS files to load, smaller bundle size
+- **Maintainability** - Single source of truth for design tokens, easier debugging
 
 #### 10. **Adding New Styles**
 1. **Design tokens**: Add to `globals.css` `:root` section
-2. **Component styles**: Create `.module.css` file
+2. **Component styles**: Use Tailwind utilities with CSS variables in className
 3. **Global utilities**: Add to `globals.css` if needed
 4. **Tailwind extensions**: Update `tailwind.config.js` for custom utilities
