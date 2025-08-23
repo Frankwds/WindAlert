@@ -3,15 +3,20 @@ import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import { getWindDirection } from "@/lib/utils/getWindDirection";
 import Image from "next/image";
 import WindDirectionArrow from "./WindDirectionArrow";
+import ExternalLinkIcon from "./ExternalLinkIcon";
 
 interface HourlyWeatherProps {
   weatherData: WeatherDataPointYr1h[];
   timezone: string;
+  latitude: number;
+  longitude: number;
 }
 
 const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   weatherData,
   timezone,
+  latitude,
+  longitude,
 }) => {
   if (!weatherData || weatherData.length === 0) {
     return <p>No hourly weather data available.</p>;
@@ -56,7 +61,17 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
 
   return (
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
-      <h2 className="text-xl font-bold mb-4 text-[var(--foreground)]">Forecast from Yr.no</h2>
+      <div className="mb-4">
+        <a
+          href={`https://www.yr.no/en/forecast/daily-table/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
+        >
+          Forecast from Yr.no
+          <ExternalLinkIcon size={24} className="inline-block" />
+        </a>
+      </div>
       <div className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200">
         <table className="min-w-full text-sm text-center">
           <thead>

@@ -42,6 +42,8 @@ export default async function LocationPage({ params }: Props) {
       <HourlyWeather
         weatherData={mappedData.weatherDataYr1h}
         timezone={location.timezone}
+        latitude={location.lat}
+        longitude={location.long}
       />
       <WindyWidget lat={location.lat} long={location.long} />
       <LocationAlertRules location={location} />
