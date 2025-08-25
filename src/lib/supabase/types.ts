@@ -22,6 +22,20 @@ export interface ParaglidingLocation {
   updated_at: string;
 }
 
+export interface WeatherStation {
+  id: string;
+  station_id: string;
+  name: string;
+  longitude: number | null;
+  latitude: number | null;
+  altitude: number;
+  country: string | null;
+  region: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export type Database = {
   public: {
     Tables: {
@@ -34,6 +48,11 @@ export type Database = {
         Row: ParaglidingLocation;
         Insert: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      weather_stations: {
+        Row: WeatherStation;
+        Insert: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>>;
       };
     };
   };
