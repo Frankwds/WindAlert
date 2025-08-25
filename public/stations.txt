@@ -1,0 +1,1488 @@
+106: Woodstock Tower
+107: VossHPK Hangur Øst
+111: Moirs Hill
+112: VossHPK Øystese/Tore
+113: SBK
+115: Freikollen
+119: HLSK Brudeberget
+118: GD DEFEKT
+117: Bergen Skåldalsnipa
+120: Ringerudkollen, Ådal
+121: VossHPK Myrkdalen
+124: HLSK Grøtterud
+125: HHPK Eggjedn
+126: Ravlunda O
+127: Hovs hallar NW
+128: Höganäs NW
+129: Camocha
+130: SUPiNord Gressholman
+131: VossHPK Liaset
+132: Medemblik
+133: OPK Hydnefossen
+134: OPK Grøndalen
+135: OPK Solfjellstua
+136: Ebden, Lake Hume
+137: Nordfjellet, Husnes
+140: STRATUS Roppehornet
+141: s141
+142: THPK Ersfjord
+105: Pilis-tető
+143: Hármashatár-hegy HHH
+144: Balberget
+145: Tri Silka
+146: Treskavec
+148: Gostivar
+149: Sula, Blåfjell
+151: Te Mata Slab
+154: G Lykjelen, Andvik
+155: Kåseberga S
+156: FlyStanwell
+159: RHMFK Flyplass
+160: ÅPGK Kverveaksla
+161: Mt. Leinster
+165: OPK Eggekollen
+166: Tapawera
+167: Inwoods
+168: Maukatia (Māori Bay)
+169: Maukatia (defunct)
+170: Skyline Gondola
+171: Wathba Hill
+172: Hohwacht
+173: Skydive Skåne
+174: Storwartz
+175: MiddleBrother
+178: GOOLMANGAR
+179: Dixon Park
+180: Station 180
+181: Possums
+182: Monties
+183: R R
+184: Crackneck Bateau Bay
+187: Offenbach Hundheim
+189: Hofpgk Stokkelia
+195: Quad, Nevis Range
+198: NLSK Salen
+199: NLSK Haksåsen
+200: OPK Brandbukampen 
+204: Finse Skisenter
+205: Molde, Tusten
+206: THPK Andsfjellet
+207: THPK Finnvikdalen
+208: Jablanica-Tri Shilka
+211: FLK Hafstadfjellet
+212: Flemma
+213: Kario (High Side)
+214: Hammars backar SV
+215: Skäret NO
+216: Ålis SV
+217: Hässleholm PM
+218: SPGK Fennefoss
+219: SPGK Hillestadheia
+220: HHPK Glopsfjellet
+221: Delta-Club Stachelh.
+222: Rana, Røssåauren
+223: Vuelo Libre León 1
+227: BJFF Leinavatn,Troms
+228: Steckweiler
+229: G Nuten Dalsøyra
+230: G Skausnøya
+231: Tjuvkil
+232: Mittagong
+233: Gesunda/Dalmåsarna
+234: Herdla
+235: Laubberg
+236: Grünberg FlyingSwans
+237: Maring Südost
+238: Moselfalken Spare
+239: Springfield Ridge
+240: Springfield
+241: Hororata
+242: Klüsserath
+243: Rimetea
+244: Gschwänd / Galgenen
+245: Kistleralp/Stofel
+247: Alrashed Group
+249: Jeddahfalkon
+250: Aljaforah
+251: Alqssim Flying Club 
+252: SPGK Åraksbø
+253: SPGK Einerfjell
+254: Wenholthausen
+256: Coronet Express T12
+257: Övertorneå Paramotor
+258: Ålleberg V
+260: Weiler - RML
+262: Lasserg - RML
+263: Kobern-Gondorf - RML
+264: Niederzissen - RML
+265: Ise - Bjønnåsen
+266: Qatar Paragliding
+267: Rocky Gully
+268: Brunsberg SP DGFC HX
+269: THPK Aglapsvika
+270: Hammers
+271: Tata
+273: Brunstorp SV
+274: Stord, Fossabrekko
+276: Lorea Startplz
+277: VossHPK Lønahorgi
+278: Glenorchy
+279: PG Oresany
+281: Flugschule Jura Thal
+282: Tick Ridge
+283: Langrune sur Mer
+284: Glesvær
+285: Csóka-hegy
+286: Camp Park Lijak
+287: Medina
+288: Sjølund Tromsø
+289: Brento Exit
+292: Ca del Monte Sud
+293: Edwards
+295: The Lawley
+296: T17, Nevis Range
+297: Sulwald
+298: Pattaya
+299: THPK Fjellheisen
+300: Eschbach - DGLC
+301: Meråker
+302: Åreskutan
+304: Opsahlåsen DROP
+306: Hochstetten(NNO-NNW)
+307: The E
+308: Ålesund Kiteklubb Ro
+309: Malmefjorden, ener'n
+310: Aloña (Oñati) s310
+311: Siófok
+312: Berettyóújfalu
+313: Bergens Seilforening
+314: Hjartdal
+315: Kautenbach
+316: Flatdal
+317: WeserBergLand DGFCHx
+319: Nosi, Lofthus
+322: Taktaharkány
+324: Ob Lucken
+325: Stauf Schlossberg
+326: SSS-Pirchner Ast
+327: Taylors Mistake
+328: Escape West station
+330: Escape East station
+332: YAYLACIK 
+334: Escape land station
+336: Fiastyúk Udvarház
+337: Stokkvola
+338: Clopotiva
+339: Neumagen-Dhron
+340: Serrig
+341: Keiservarden
+342: Fürstenberg Süd
+344: Donnersberg Rampe
+346: Venetflieger LPZ
+347: Grubig West
+348: Grubig Süd
+349: Moos LP
+350: Vejke
+351: Elorrio-Udalaitz
+353: Al Khazna
+354: SILAA
+356: Borgo Priolo
+357: Wulkaprodersdorf
+358: Kapiti Aeromodellers
+359: Tossebergsklätten
+361: Zeltingen-Rachtig O
+362: Ockfen Südwest
+363: Meerfeld Süd-SO
+364: Ljungby/Feringe ESMG
+365: Steinebrunn
+366: Lake Illawarra
+367: ElFerre
+368: Grubig Landeplatz
+369: Grønnhøbua, Folldal
+370: Almkopf
+371: Zeuthener See
+372: Nisseviken, Gotland
+333: BABADAG
+375: Gurli
+376: Gotschnagrat
+378: Gnisvärd
+380: Halde Ensdorf
+381: Losheim Gallo
+382: LaMotte
+384: Fernie Mic Towers
+385: Ganghofer-Hütte
+386: Leotar-Gljiva
+387: Trier Yachthafen
+388: Rofan - Startplatz 
+391: Jektheia
+392: SCA Stoderzinken
+393: Geba - Träbes
+395: OPK Sundvollen
+397: Brahehus
+398: Omarama 
+399: Ekeviken
+400: Oberemmendorf DFCI
+401: Hindenburgblick
+403: Börry
+404: Nygruva Folldal
+405: Footes
+406: Canvastown
+407: Böhming DFCI
+408: DGCSG LIBERO Station
+409: Flightpark 
+411: MIGDAL ISRAEL
+412: 45 South
+413: Landeplatz Tannheim
+414: Eldøy, Stord
+415: Goroka
+416: Hogback
+417: Altenbeuthen
+418: Löhma/Hockroda
+419: Knobelsdorf
+420: Schönhalden
+421: Yesdal tarmac
+422: Skalsko
+423: Kandel Süd DGFC
+424: UnternbergRuhpolding
+425: Örebro - N Ässundet
+426: QatarRCSportsCenter
+427: Caen 
+428: Herøysundpila
+429: Box Canyon - Lower
+430: Mingus - AZHPA
+431: Doloc
+432: Åsan Tynset
+433: Langsetra, Tynset
+434: s434
+435: Binningen
+436: QATAR FLYING CLUB
+439: s439
+440: Pröller
+443: Stüppel / Fort-Fun 
+444: AVLE Caracenilla
+445: MatYCM
+446: Neuberg (ONO-OSO)
+447: Roxheim (SW-SSW)
+449: MT. Elden - AZHPA
+450: Hochzellberg
+451: HAM
+452: Arlberg (Kapall)
+453: Flugebyn
+454: Gabersee
+456: s456
+457: Boppard - nur RML
+458: Home
+459: Brento LZ
+460: Vadna /Tokaj Fly S.E
+462: Selwyn Snow - TS
+463: Selwyn Snow - RC
+464: Dielmissen Ith
+465: Arlberg (Rendl)
+466: Rammelsberg HDGV
+468: Eisenberg/Battenberg
+469: Barra do Dande
+470: HKBK ( Sandtorg)
+471: Bell Hill
+472: Oberrieden
+473: YCM Buoy
+474: Jaman
+475: VossHPK Vossevangen
+476: GSC NOW Schreckhof
+477: Pobbio (basso)
+478: Obermaubach - OWF
+479: Voithenberg
+480: Sommerberg
+481: Spornegg
+482: Micheldorf HW-Stein
+484: Metschstand 
+485: SSS Inntal
+486: Svenstorps Gods
+487: ZFS-Bruggerstube
+488: Hinterweiler
+489: Kandel West DGFC
+490: HPGT Heia
+491: Rojunai, EYRO
+492: Frya
+493: Bayrischzell Landepl
+494: Muller Windsports
+496: Alp Scheidegg Top
+497: COAT Austertana
+498: COAT Bugøyfjord
+499: Asker Modellklubb(N)
+500: Hochfelln Landeplatz
+501: Laubenheim
+502: Rivenich West-NW
+503: Burgen Ost
+504: Vestnes KRIK
+505: Airwalker e.V. OMBG
+506: Csolnok
+507: Schwengimatt DC-Falk
+508: Cirrus RC Flyklubb
+509: Frauenberg SDH
+510: SPGK Vigeland
+511: Buchenberg Buching
+513: NLSK Hovden
+514: NLF Rikssenteret
+515: Mollis Airport, LSZM
+516: Spaichingen 3-er
+517: Schauinsland
+518: Schloss Johannisberg
+519: Castelletto D erro
+520: Ålesund Kiteklubb BL
+522: Pest-Buda Színpad
+523: Erlau Start
+525: Stephan Tellaroli 
+527: Selwyn Snow - NC
+528: Selwyn Snow - TS Btm
+529: Kleinheppacher Kopf
+530: NLF Vole
+531: Tjessheim AMFK
+532: Flugplatz Oederan
+533: Wolfratshauserhütte 
+534: Sassenroth
+535: (HLSK) Bjørgeberget
+536: ZFS-Melchboden
+537: Hausstein 
+538: Culla L´Arcu
+540: Pulpit Launch
+542: Mt. Sentinel
+545: Schaufel/Bad Wildung
+546: Höystö
+548: Granada 
+551: Findelengletscher
+552: Björnstorps Gods
+553: Tungubakkar
+554: AOK-Kitheronas
+555: Son Tra Paragliding
+556: Palomar - SDHGPA
+557: DunaSzeg p.v.sz.
+558: VámosSzabadi p.v.sz.
+559: GyőrSzt.Iván p.v.sz.
+560: TöltésTava p.v.sz.
+561: EYOF Győr HQ
+566: Kvittegga
+567: Femund
+569: Sunrise Beach
+570: Øyer Kråbøl
+571: Prodkamm
+572: s572
+573: Lévanchy
+574: EN TEST AILLEUR!
+575: Wank
+576: Profitis
+577: Fituna
+578: ERNIO s578
+579: Teufen ZH
+581: Horse - SDHGPA  
+584: Rodomont
+586: Loen Skylift
+587: FLK Vindkjegla
+588: Hesselberg
+589: Surfclub Klagshamn
+590: Varazze
+591: Skógarnes
+592: FSV Sindelfingen
+593: Omonville
+594: GSC NOW / Aufwind Br
+595: Lindenfels Üb.Hang
+596: Vik O
+597: Mölle
+599: Kulmberg 
+600: Ramsau am Dachstein
+601: Erstaviken
+602: Blorenge
+603: AVLE NOEMÍ PEDRO B
+604: Hochfelln Süd
+605: Ostrau
+606: Csobánc
+608: Clatter
+609: El Peñón Launch
+610: Opfertshofen
+611: (HLSK) Høsbjør
+612: Solbergåsen, nedre s
+613: Alversund
+614: s614
+615: Seegeier Kulm
+616: Winton
+617: Mary Ann Bay
+618: Wolketsweiler
+619: Zeltenbach
+620: Kappel
+621: Kitesurfinglanka
+622: Kaimai Range Site
+623: Alp Scheidegg Start
+624: NLSK Rye
+625: NLSK Gråkallen
+626: Club RC De l´Ebre
+627: Münsingen PWA
+628: Bjorli Skisenter AS
+630: Böttingen
+632: 2 Qvevri, Gulgula
+634: Eged
+635: Líbar (ACAMET)
+980: s980-Alberta
+993: s993
+994: s994
+997: s997
+636: Heathcote
+637: Offline (ex FB)
+638: Lindenfels Steinbr.
+640: s640
+641: s641
+642: s642
+643: s643
+644: s644
+645: Marienberg
+647: ZT WM Top
+649: Pfeffelbach
+651: Sléttan
+652: SailGP Cowes
+653: Intl Day 2019
+655: Hohaflieger
+656: Base ULM Fréjus
+657: 657
+658: Heilsaksla. Tor H.H
+659: Takaka
+660: 7winds Har Shaul 
+661: 7winds Har Haari
+662: 7winds Mevo Hama
+663: Mayo Sailing Club
+664: LA JASSERIE
+665: Schöneben SP
+667: Neukirchen-Vluyn
+668: Mt Murchison
+669: Ca del Monte Ovest
+670: Devin PG TOP 559m n.
+672: Vogelsang
+676: Breitenberg Pfronten
+677: Paracider
+678: Hohwald holfuy
+679: Vårgårda Airport
+680: Schiltgrat
+681: 681
+682: FLK Holsa
+683: Huendle Landeplatz
+684: WAKU Nord 0-65°
+685: WAKU Nord 0-65°
+686: WAKU Reichenhausen
+687: WAKU Spielbg 30-100°
+688: Fjellhaugen Alpin
+689: Vingtor R/C club
+690: Sonchaux
+691: 691
+692: Cascajera/UGR-ACAMET
+693: St-Quay Port d'Armor
+695: Sender Kleinerberg
+699: 699  Ханово
+704: 704  Бисерци
+705: Olds Park Hurstville
+706: Memorial Square
+708: Schwanden
+709: Anzonico Campagna
+710: GSC Kraichtal/Obera.
+711: Hohenberg
+713: Kleingartach
+714: Skjerja
+715: G Brattelifjellet
+716: CVL - Chamossaire
+717: CVL - Foot Ollon
+718: VLS Deltaland
+719: NTKU
+721: FlugschuleArlberg SP
+722: Arlberg (Rüfikopf)
+723: Arlberg (Galzig)
+725: Reykhólabryggja
+727: Ryghåsen NV. DROP
+730: Blakeney Harbour 
+732: Kovik/Tjurudden
+733: Sandviken
+735: HLSK knatten
+737: EINKORN
+738: Hahnenkamm Grat
+739: Whitesheet
+740: CastricumSportsatSea
+741: Jochdohlen  LP
+742: Jochdohlen SP
+743: Hafrsfjord South 743
+745: Schoden West-NW
+746: Maring Süd
+747: Ölberg Landeplatz
+749: 749
+712: Schnaithalde
+750: 750
+751: Haimburgerberg
+753: Fürstenberg Nord
+720: Granite Field, SA
+748: Col du Pas du Lac
+754: Hintereck
+755: Villaceid (León)
+756: STRATUS Hestelegda
+757: Michelau
+758: Gringlay
+759: Isosuo
+760: Hirsikorpi
+761: LFK Motala
+762: Turakirae Launch
+763: Paekakariki
+764: Pottenperi/ LP
+768: Karavostasi DAEAN
+770: SP Thurnhamberg
+771: Osterfelder
+772: LP Osterfelder
+775: HHPK Hodlestadnuten
+765: Szársomlyó
+736: JLK Rennesøy, Pilå
+776: Muottas Muragl
+777: Gaffs Hill
+778: Woodspring
+779: Heue Bergalingen
+780: Collins Hill
+781: 781
+783: Ålesund Kiteklubb BV
+784: 784
+785: 785
+786: Simbita
+787: WB22 Goaz-trez
+788: Hochfirst
+789: Navacillo/UGR-ACAMET
+790: STRATUS Mulevika
+791: (HLSK) Bangsberg
+792: 792 Watamu
+793: Broad Haven - Pembs
+795: Orensfels
+798: BRAVO SIARGAO
+799: AWB Buchhorn
+800: Siegendorf im Burgen
+801: Skarholmen KajTech
+802: Arzbach Großer Kopf
+803: Ratholz
+804: Finkennest
+805: Caseta CVB
+806: Ålleberg Ö
+807: Örebro Paramotor
+808: Sattahip Navy SC
+809: WB22 Ile-Grande
+812: Playa Manatee
+854: Zwölferhorn StGilgen
+814: VØH-Bondalseidet
+815: VØH-Brekkeheida
+816: AKFM-Costa de Lavos
+817: Pronova 
+820: Harstad Modellflyklu
+821: Zvíčina PG
+824: Ortenberg/Offenburg
+828: VLS M. Belpo Devid
+829: Helmershausen - SW
+797: Paeroa Ranges TO
+818: NLSK Orkanger
+822: 822
+823: HoangLien Aquitaine
+830: Sandared VIASS
+831: Kärdla Marina
+832: Ballon de Paris
+833: Jökulsárlón
+834: Little Black -SDHGPA
+835: SailGP Tech Area
+836: BRIZ2
+837: SPGK Morkheia
+838: Brekkedalen Gullfj.
+839: Eugendorf 1
+840: Seaside Park, NJ
+841: GoKite Kite Beach
+842: ÅPGK Emblemsfjellet
+843: s843
+844: s844
+845: Skydive Latvia
+847: Adeiso-Ndoda
+848: WVZandvoort
+849: Netaman Repair Group
+850: Angkor Balloon
+851: Epernay
+852: Panoramagique
+813: Bodenlos Neubiberg
+856: Laurens (Soustons)
+857: Spieser Hindelang
+865: La Boca 
+866: Valbeleix
+869: Braunwald Gumen
+870: Sun Yachts
+871: Pöllau (#871)
+872: Mannar - Vayu Resort
+873: VossFSK Bømoen
+875: 875
+876: 876
+877: Pöllauberg (#877)
+878: Playa Punta Salinas
+880: 880
+882: loge des gardes 
+883: Plaine Morte, CVLCMA
+855: Piloti Bergeggi 
+867: Rortangen
+874: Devoluy Altisurface
+884: Cavallaria
+885: 885
+879: Big Blue 
+886: 886
+881: Eugendorf 2
+887: ventryweather
+888: 888
+891: Vertigo Lodge 
+893: Kallelan tila
+894: Lake Cootharaba
+895: Wirmighausen
+897: Cockatoo Island
+898: DCC Brezouard
+899: Terra Botanica
+900: Athaiba
+901: AMCCO Messigny
+912: Saumur Air Club
+903: Dolphin Beach
+905: Tegelberg Startplatz
+906: Nebelhorn 1930m
+907: P21 Mt Vallon
+908: 908
+892: UNIS Vindodden
+909: Matinolli
+910: 910-H&amp;S Watersports
+911: AANB PLERIN
+902: Roaldshorn, Stranda
+913: SALVARIS
+914: MONT MINISTRE
+917: G2 Bouquetin
+921: TC VIZELLE P16
+922: G4 Pas du Lac
+923: STRATUS Melshornet
+924: STRATUS Røyrafjellet
+925: MG Huttwil 
+926: Varberg F:e Surfare
+927: Crêt du Midi
+928: Grimer
+929: GMR Avenches
+930: Kite Club MarsalaRRD
+931: VLS Decollo Colonei
+932: môle Port-Vendres
+933: Bergen Ulriken SV
+934: Bergen Ulriken NV
+935: Bergen Vemånen
+937: LA MOUETTE SINAGOTE
+938: AHMFK Auten 
+939: Seville
+940: El Toro
+941: San Diego
+942: Acpm83
+943: Terrace SouthernClub
+944: Kutinki
+945: Bakers Bay (945)
+946: Sinswang
+947: Planplatten
+948: Nassau - RML
+950: Tinto
+951: Wallis
+952: Evolène La Vieille
+953: treblecone
+954: Sandia Peak
+955: Segelclub Inheiden
+956: Rohrbahn/Kaulsdorf
+957: Auf der Wanne
+959: 959
+960: Zugerberg
+961: Ramenegg
+962: Finale Ligure
+964: Granada
+965: Skotdeild Keflavikur
+966: Pointe de la hague
+967: Vauville
+969: Alpe Foppa
+970: Mercury
+971: 971
+972: Rofan Steilhang
+973: Hollersbach 
+974: Heidal, Espesetra
+975: Einstad
+976: www.hopp.pro
+977: AEP Yuracrucito
+978: Hook Lighthouse
+979: Gadji
+1000: Decollo Malcesine
+1001: Plaine Morte 1001
+1002: Silvretta1002
+1003: Plaine Morte 1003
+1004: 1004
+1005: Findel 1005
+1006: Rhone 1006
+1007: Pers1007
+1008: Findel 1008
+1009: Rhone 1009
+1010: Cayucos Hill
+1011: 1011
+1012: Haver modellflyplass
+1013:  Aiolos-Petrussa 
+1014: Ergenzingen
+<option value="1016">1016: </option>1017: 1017
+1018: Melibokus
+1020: CVN - Nid-du-Crô
+1021: Wind4Fun Prasonisi
+1023: Sun Valley-Bald Mt
+1024: Wetterkreuz GTO
+1025: Bastenberg DGFC HX
+1026: Parc du Petit Prince
+1027: La Nava (ACAMET)
+1028: Hörnerbahn Mitte
+1031: Luossavaara
+1032: Galtispuoda
+1033: SAINT BERAIN 43
+1034: Tangen/Hansbakkfjæra
+1035: Granada
+1036: Garda Paragliding
+1037: AAN Port Blanc 
+1038: Radspitze
+1039: Anglet
+1040: Auvika - Mjelle
+1041: Ruru(A)
+1042: Ruru(B)
+1043: Lago Ritom
+1044: Edge - Duckpond OLD
+1045: AKFM-Cova-Gala
+1046: 1046 Gava mar
+1047: Babia, Prado Veneiro
+1048: Lanikai Beach
+1049: Club Vass
+1050: WSCA weerstation
+1051: 1051
+1052: C N TREGASTEL
+1053: Ile de Ré (PSL LOIX)
+1054: NCIA PIP PKG 2
+1055: Budi Luhur Resources
+1056: Bergstein - OWF/LSV
+1057: Sørkite Høllen
+1058: Sørkite Kvavik
+1059: Mülkerblatte
+1060: Delta Club Mosbach
+1061: Predigtstuhl 
+1062: Pilotage BREST
+1063: Spiesshorn 
+1064: Flugplatz Agathazell
+1065: Poppenhausen
+1066: Lozenets Surf Club
+1068: Sanc'air Parapente
+1069: HOME ANFA
+1070: 1070
+1071: Haag
+1072: Vogelberg 
+1073: Levin MAC 
+1074: Torö Örudden
+1075: LemischEigen
+1076: Nendaz, Tracouet 
+1078: Norheim
+1079: Pousada Blauset
+1080: Kingston SPHGC
+1081: Ediths Gap
+1082: Holy Vrch - H. Suca
+1083: Flums Landeplatz
+1085: Huendle West
+1086: Chalais
+1087: Bälmeten
+1090: Pollux
+1091: Aguascalientes
+1092: Curbans
+1093: Hueneja
+1094: La Berra arrivé télé
+1095: 1095
+1096: Timothy Reserve
+1097: Macquarie Place
+1098: 1098
+1099: Rimóc, Szél-hegy
+1100: Terrain du CAMS
+1101: Schlossberg
+1102: Nebelhorn Gipfel 
+1103: Te Mata Peak
+1104: Monteagudo-Portero
+1106:  Milepat/bilfot 1106
+1107: Bonaparte, la stele
+1109: MFG Pfinztal e.V.
+1110: CMS
+1111: The Boat Race
+1112: Meckenheim
+1113: BAT GALIM
+1114: Niedergams
+1115: Wollongong DZ
+1117: SailGP Bleachers
+1118: Staudernheim (S-SW)
+1119: Saint Desirat
+1120: Blankenhain
+1121: Jenzig
+1122: Jägerberg
+1123: Green Island
+1124: CCS
+1125: Schwyberg
+1126: Baiza Santa Marina
+1127: Mount 7
+1128: Swansea
+1130: 1130
+1132: 1132
+1133: Ragaciems
+1134: GMY
+1135: GRUISSAN-VieilleNouv
+1136: Belgrave St
+1137: TEST UNIT- AZHPA
+1138: Oreganal /UGR-ACAMET
+1139: salacgriva
+1140: Daugava centrs
+1141: krasta iela riga
+1142: DAC Rodd Point 
+1143: EIDG
+1144: Magilligan
+1146: Tréfuntec
+1147: Bellalui CVLCMA
+1148: Moliets
+1150: Poolbeg
+1151: SSA La Bajada
+1154: Brentskaret, HS
+1155: Tyagarah
+1156: MFV Alpin - Grins
+1157: 1157
+1158: Prabé
+1159: YDSC
+1160: Hubertushütte
+1161: Skrzyczne PG/HG (E)
+1162: Dome des Rousse
+1163: TMX clos giraud g2
+1164: ZFC: Riffelberg
+1165: SailGP Bcast Area
+1166: SGP Tech Area
+1167: ATLIT
+1168: décollage du puet
+1169: Mijoux (Décollage)
+1170: Hauchenberg
+1171: Cocharcas
+1172: VIGNE DEL REY
+1173: La Huella
+1174: 1174
+1175: Long Mynd
+1176: YCMC
+1177: DCC Altenberg
+1178: Hang Loose Beach
+1179: St-Sandoux (Dpt 63)
+1180: Olloix 
+1183: Luesen Landeplatz
+1184: 1184
+1185: FSG Bölkow e.V.
+1188: Paranordic 
+1189: Storedal
+1190: Marbella KITESCHOOL
+1191: Marines de Cogolin
+1192: COLINA DEL CUERVO
+1196: Creux-de-Genthod
+1197: Røggelia
+1198: ASPC Sports Center
+1199: OKK - Larkollen
+1200: OKK - Verket
+1201: CentreMunicipalVela
+1202: Tal Brauneck LGGF
+1203: 1203
+1204: Selberdingerheim
+1205: Mittag
+1207: Lezhe City Hall
+1208: Shengjin Harbour
+1209: Lac city square
+1210: Velipoje Beach
+1211: Bóly
+1212: Visingsö Hamn
+1213: Gränna Hamn
+1214: JLK Nicostarten
+1215: GAM Yverdon
+1216: 1216
+1219: Pavilosta, Tornis
+1220: WSCÜ
+1221: Stockberg
+1222: Pointy Knob
+1223: Spor
+1224: Hultsfred Airport 
+1225: RAHBC
+1226: Corgémont
+1227: Rocky Point
+1228: Im Langacher
+1229: Øysand camping
+1230: Draklanda - Åre
+1232: FG Daidalos
+1233: Molovika SurfeSjappa
+1234: Bezirhane
+1235: Déco St-Cergue
+1236: Fréterette
+1237: Marshall Peak - CSS
+1239: Flugplatz Singhofen
+1240: Morogoro VCE
+1241: NEI Plantation
+1243: Kurannonsuo
+1244: Tong Fuk
+1245: Aleksino Port Marina
+1246: Szczebel PG
+1247: Waldstetten Skihütte
+1248: Schneiderberg
+1249: Erden Südost
+1250: EASY SURF Jastarnia
+1251: Mittagbahn
+1252: Simplon
+1253: OKK - Verket Molo
+1254: OKK - Framnes
+1255: OKK - Refsnes
+1257: Paß Thurn,Mittersill
+1258: Woolacombe NDHPC
+1259: Qortin-Armier (MEC)
+1261: Park Inn Hotel Duqm 
+1262: Stettelberg
+1263: SPEED  FLY
+1264: 1264
+1265: Tihany Panoráma 
+1266: Wildkogel Bramberg 
+1267: Kronobergsheds MFK
+1268: East-Westflying.de
+1269: STRATUS Vassverket N
+1270: Exmouth Duckpond
+1271: Loser/Hochanger
+1272: JLK Frafjord
+1273: JLK Hegelstad
+1274: SBA  Preila
+1275: Cal Poly Engineering
+1276: Wehingen
+1277: FunSurf.pl Chałupy
+1278: La Roche Devant 
+1279: Tête-de-Ran
+1280: La Robella
+1282: MSSF portabel
+1284: Twins Bredene
+1285: Anzère, Chamossaire
+1286: AJX - CSS
+1287: ZFC: Kl. Matterhorn
+1288: Panoramagique 2
+1290: 1290
+1291: Bürchen Mällig
+1292: Chalet du Chef
+1294: Don Pablo station
+1295: Lookout Mtn - RMPHA
+1296: Mercedes-Benz Museum
+1297: Meilleret
+1298: Moléson,Plan-Francey
+1299: Klobben
+1301: Green Dragons
+1302: Stapelburg Airfield
+1303: Ass Nautique Hautais
+1304: 1304 vit.- 10Km/h
+1305: 1305
+1306: Venet
+1307: Les Ruinettes
+1308: Sommet des 3 VALLEES
+1309: Cime Caron
+1310: Weidach
+1311: Corent (Dpt 63)
+1312: Tambo
+1313: V-Turbin - Hanasand
+1314: Windsurfing Deinze
+1315: Sommet TS Jardin
+1316: Sommet TK Lanchettes
+1317: Le Porge
+1318: 1318 Bjorli storfoss
+1319: 1319 Toppen Bjorli
+1320: Moléson,Gros-Plané
+1321: Boulder - RMHPA
+1322: Ochsenberg
+1323: Zichron Take-off
+1324: SGS Pohlheim
+1325: Tête de Roselette
+1326: Bélué
+1327: WAKU Heubach 0-40°
+1328: Dalstasjon Finse
+1330: 1330 Dirisolar
+1331: Portillo
+1332: MONT GERBIZON
+1333: Bürstadt 1333
+1334: Aseelah Station
+1335: Alpe Giumello
+1336: Saint Cyprien
+1337: Alte Baumschule
+1338: Lemberg
+1339: Shack int Dales
+1340: Tschenten
+1341: Hinchies
+1342: Beechmont
+1343: Berg Brauneck LGGF
+1345: Dieberg
+1347: Kagel Launch
+1350: Lacul Fundata, IL
+1351: Sakaime
+1352: AMS PR
+1353: Picu el Sol
+1354: BEZET
+1355: SEA OF GALILEE 
+1356: SHAVE ZIYYON
+1357: 1357
+1358: Siyanda
+1361: Sharona paragliding 
+1362: Broughton
+1363: Teufelsflieger DGL
+1364: Dunkerbeck-Procenter
+1365: SAIS Aonach Mor
+1366: El Hierro,2 Hermanas
+1367: El Hierro,M Colorada
+1368: Röti - DCW
+1369: Eldrevatn Osen
+1370: Flævatn Øst
+1371: Liagardane 
+1372: PREO
+1373: MONT1
+1374: VossHPK Rokne
+1375: Benston
+1376: Hainberg
+1378: Passadiços do Paiva
+1379: South Mtn - AZHPA 
+1380: Shaw Butte - AZHPA
+1382: Mönchswalder Berg
+1383: Arcachon
+1385: FNDA_Higa de Monreal
+1386: 1386
+1387: Mangalia 
+1388: Wispile
+1389: Schnifis Ried
+1390: Wether Fell
+1391: Wolf Creek Ski Area 
+1392: Blättersberg SP
+1393: Buñol
+1395: LA DOMEQUE
+1396: Hochoetz
+1397: SonTra-DaNang
+1398: Irreal
+1399: Isleten Bachdelta
+1400: Ljubuski - Kula
+1401: Vieux Château 
+1402: Marnex
+1403: Hallival - Rum NNR
+1405: 1405
+1406: 1406
+1407: Burgen NW
+1408: Cocagne Cape Marina
+1409: Motala Tower
+1410: St Hilaire du Rorota
+1411: KITE BEACH MONTEROS 
+1412: OKO-NW
+1413: Aalbäumle
+1414: Steep Mountain
+1415: CASM  - NORDESTE 
+1416: CASM - SALTO CAVALO
+1417: CASM - LAGOA FOGO
+1418: CASM - SETE CIDADES
+1419: Speiereck Peterbauer
+1420: Graach Südwest
+1421: Akaishi
+1422: 1422
+1423: Jöchelspitze Rampe
+1424: Jöchelspitze Sommer
+1425: onair Übungshang
+1426: Weiler bei Monzingen
+1427: Baring Head
+1428: Romsdalsgondolen Fjo
+1429: Romsdalsgondolen Fje
+1430: Birnberg
+1431: OKK - Norefjell
+1432: OKK - Halne
+1433: OKK - Bork Havn
+1435: SKB Dalaro
+1436: VossHPK Gjelle
+1437: VossHPK Aurland
+1438: VossHPK Hangur Sør
+1439: LHEM
+1440: HHPK Hodnafjell
+1441: NCŻ Górki Zachodnie
+1442: Puerto de Tarna
+1446: Talwind Lähn-Bichlba
+1447: Palmitera/UGR-ACAMET
+1448: Fanas - Höreli
+1449: Skafjellet
+1450: VØH-Rotsethornet
+1451: VØH-Reset
+1452: Niederwil
+1453: Sulitjelma - Hanken
+1454: Osfjellet 
+1455: 1455
+1456: Barnicoat 
+1457: 1457
+1464: PDD Nord (Dpt 63)
+1465: Herndleck
+1466: Góra Żar PG/HG (S)
+1467: 1467TEST
+1468: EASY SURF Chałupy
+1469: Werrahof
+1470: Evolène
+1471: Puy de la Tache 63
+1472: La Llambria 1753 m 
+1473: Penken Kombibahn
+1474: Lancieux
+1475: St Lunaire
+1476: St malo
+1477: 1477
+1478: SURF PEOPLE Chałupy3
+1480: (HLSK) Lundeberget
+1481: Urenschwang e.V 
+1482: Kawana Beach 1482
+1483: Cotton Tree 1483
+1484: VL 58
+1485: Spieljoch
+1487: ShumenXC
+1488: Öland Saxnäs
+1489: Bajgore Mitrovice
+1490: Buttenhausen
+1491: La Hume
+1492: NLSK Reppesåsen
+1493: Llangollen
+1494: OLERON CHAR A VOILE
+1495: DCI HIHO 1495
+1496: Flugpl. Morschenich
+1497: Hochblauen HCRB
+1499: Plage Trou d'eau
+1500: Flugplatz Nienburg
+1501: Mała Czantoria PG/HG
+1502: DGCSG Finkenberg
+1503: Königstuhl SP
+1506: Ascheloh
+1507: 25 Market, Stanley 
+1508: Herøya B25
+1509: Herøya
+1510: Grenlandsporten
+1511: Rygg
+1514: Lista
+1515: Windigo - Svencele
+1516: Garl. Brauneck LGGF
+1517: La Ventana @KWW
+1518: Tropical-ride.com 
+1519: Cret du Rachat
+1520:  CHASSENOUD
+1521: Betcris Malecon
+1528: SAIS C Meagaidh area
+1531: SAIS Drumochter
+1532: SHGA LZ
+1533: CNC
+1534: Mont Dore corniche
+1535: HHPK Tverrberg
+1536: HHPK Sletthaug
+1537: Lemon Event Support
+1538: Rhum JM
+1539: Ciecien PG
+1540: Wankdorf
+1541: Obergrainet
+1542: Rolfstangen LBK
+1544: Veslklettmyr Tynset
+1545: Hörnerbahn Gipfel
+1546: Tannschach
+1547: Arosa Weisshorn
+1549: SailGP Race Stadium
+1550: Togga
+1551: Urnäsch
+1552: Solosnica
+1553: 1553
+1555: TTVK Surfing
+1559: Fagerheim Fjellstugu
+1560: Hohe Winde
+1561: Schernfeld DFCI
+1562: JLK Reve
+1563: 1563
+1564: Hammerhof_Kleedorf
+1565: Somanya USED
+1566: Techiman NOG-Farm
+1567: BeachLine Events
+1568: Vercorin
+1570: Crestline - CSS
+1571: Parpaner Rothorn
+1572: Brämabüel
+1573: Flugplatz Engelsdorf
+1574: Duneflyer
+1576: Ålesund Kiteklubb PL
+1581: 1581
+1582: Golden Beach 1582
+1583: Currimundi 1583
+1584: STRATUS Rjåhornet
+1585: Edington Airstrip
+1586: Arrivee
+1587: Deco pro Tougnette
+1588: Eclipse
+1589: Jaunciema Osta
+1590: Nyikom
+1591: ChaletInter
+1592: Depart Geant
+1593: Zuflucht-Rossbühl SW
+1594: Oppenau Ost
+1595: 1595
+1599: Székesfehérvár
+1600: Seignosse
+1603: Calonico
+1604: Cry d'Err CVLCMA
+1606: Myskhako Beach
+1608: CPF 1608 
+1609: CARIÑO CPFerrol
+1610: Hintere Niedere 
+1611: Soltmannhuette
+1612: Żar BSP PG/HG
+1613: Lennestadt
+1614: chariez
+1615: Halde Hoheward
+1616: Schraba
+1617: Weissenstein - DCW
+1618: La Tour d'Eole
+1619: SPIRIT021
+1620: Porta Westfalica
+1621: Monte Lema - CVLT
+1622: BUCHYS 1622
+1623: Fahndorfer Berg
+1624: Kleivtoppen Fauske
+1625: Blaser Swisslube AG
+1627: Jägerwirt Landeplatz
+1628: Huksdalen
+1629: Skydive Fujioka
+1630: Paule-Pausitz
+1631: Hörnle
+1632: Du Toitskloof 
+1633: Tverråtjønna
+1634: GWC
+1637: CVML
+1638: ZFC: Landing Zermatt
+1639: ZFC: Rothorn South
+1641: Station "Océanopolis
+1642: Duc d'Albe - rade de
+1643: Siófok-Gener szélgép
+1644: Siófok-Lady Cot
+1646: CLA Ötvös7
+1647: CLA Tarany
+1648: CLA Víztározó
+1649: CLA Tereb-Bogát
+1650: CLA Iroda
+1651: s1651
+1652: s1652
+1653: s1653
+1654: Shoaiba Kite Lagoon 
+1655:  Croix de Boutières 
+1656: Llethryd Barns
+1657: CPF 1657 RAIN
+1658: COMADO CPFerrol
+1659: MONDOÑEDO CPFerrol
+1660: 1660
+1661: Burma Rd HB
+1662: Accrokite KohPhangan
+1664: Siam Pro Kite (SPK) 
+1665: Hohe Kugel
+1666: Volmerange
+1667: Flugplatz Burgberg
+1668: Madrisa Schaffürggli
+1669: Erfjord
+1670: Laber
+1671: Kammeregg SP
+1672: Biscarrosse plage
+1673: 1673
+1674: Callejo de Ordás
+1675: Berghaupten ODGFe.V.
+1676: 1676
+1677: Zabnah Lagoon (SSF)
+1678: Studnerberg
+1679: Hinhang
+1680: Hundertgulden
+1681: Brunni
+1682: GSV
+1683: JLK Torland PPG
+1684: Frauenalpe Gipfel
+1685: Snieznica PG
+1686: SCA Michaelerberg
+1687: SCA Stoder Rosegger
+1688: SCA Krippenstein
+1689: Startplatz Hochimst
+1690: Pfunds
+1691: Snackpoint Wimpie
+1693: 1693
+1694: ImbergerHorn Hindela
+1695: Estey
+1696: Wissous Modélisme
+1697: RUZ Dowesee BS D
+1698: Grabs Landeplatz
+1699: Kitezone Corbu
+1700: Bargella
+1701: Alpe Quaggione
+1702: Lautersheimer Kante
+1703: Tylderingen
+1704: Allmenalp-PGK
+1705: 1705
+1706: SailGP Singapore
+1707: Falkenflue
+1709: CANTO DAS AGUAS
+1710: Rustedalen
+1711: Vesle Tangenvatn
+1712: Nedre Grøndalsvatnet
+1714: Laucha
+1715: Reichenbach
+1716: Morsbach Hohe Hardt
+1717: Plan Bouchet ORELLE
+1719: Madenburg
+1720: Hohsaas_Felswand
+1721: Hohsaas_Plateau
+1722: Escola Náutica
+1723: Son Bou Menorca
+1724: In memory of Patrice
+1725: Husum Port
+1726: Amargilha parcela H2
+1727: RAMPINZIERI
+1730: TENA
+1731: ERSEKA
+1732: SANTA FECITOLA
+1733: NIJARMAR
+1734: ES MERCADAL
+1735: Vale Figueira
+1736: Amargilha parcela B
+1737: Merinero
+1738: Montelabbate
+1739: ARA DE LOS OLMOS
+1740: ASSENNATO 
+1741: VIGNE DEL REY ANGEL 
+1742: Montenero
+1743: CAMPILLO
+1744: Montalto Prato
+1745: 1745
+1746: CIC Hut Ben Nevis
+1747: Hódmocsár, Perőcsény
+1748: Cala Tirant Menorca
+1749: Punta Prima Menorca
+1750: Rota (UCA)
+1751: Hoherbogen 1751
+1752: SC Kollerskipper e.V
+1753: Andrew Kenyon
+1754: Jenner
+1755: LOOP IN SCHOOL
+1756: 1756
+1757: SAN MICHELLE
+1758: Travallian
+1759: ALDEIA
+1760: El Robledo
+1761: LLIRIA
+1762: CRUZ DE CALDERON
+1763: oficina dañado
+1764: Tabernas III
+1765: BARCIAL
+1766: HORCAJO
+1767: PRADILLO 3-4
+1768: Saint Andre de Lidon
+1769: Lommiswil
+1770: Bridges Hill
+1771: Stierenberg DC-Falk
+1789: DGCSG Krausberg-Ahr
+1790: DGCSG Hönningen-Ahr
+1791: Arthurmasten
+1792: ZFC: Schwarzsee 
+1793: La Jara (UCA)
+1795: Club Nàutic Fornells
+1796: 9erköpfle West
+1797: Herlisberg
+1798: Åsen
+1799: Herdla Utsiden
+1801: Witchieknowe
+1802: Club nautique CNCP
+1803: CHGPC Allandale 
+1804: Höhematte holfuy
+1805: BRWD1
+1807: Oberstdorf Schanze
+1808: Amisbühl holfuy
+1809: Crap Sogn Gion
+1810: Blomberg LGGF
+1812: Rigi Scheidegg Arche
+1814: DGCSG Rodenbach 
+1815: Drøbak Fluid.no
+1816: Ladera Guimar
+1817: Puerto. Aptos.Bahía.
+1818: Puertito Güímar
+1819: La Corona. Despegue
+1820: Kuratake
+1822: Treyford Hill
+1823: Fulseck
+1826: BLSK Kvålsnapen
+1827: ZFC: Blauherd 
+1828: 1828
+1830: Cserkút
+1831: Lemon Hill
+1832: Gaisberg SP Ost
+1833: Gaisberg LP Guggen. 
+1834: Cebolla
+1835: Luxenia
+1836: Almeirin
+1837: Casale Monferrato
+1838: Dogana
+1839: Porth Wen Campo 6
+1840: Porth Wen Campo 1
+1841: Porth Wen Campo 8
+1842: Porth Wen Campo 3
+1843: Porth Wen Campo 10
+1845: Steilene Viis.no 
+1846: ÅPGK Storhornet
+1847: Bremm - RML
+1848: GSC NOW Widdern
+1850: Lehn holfuy
+1861: Llantrithyd Park
+1862: Bischling Startplatz
+1863: Bischling Landeplatz
+1865: Pilotage ROSCOFF
+1866: PONZOS CPFerrol
+1868: Kössen Gipfel
+1869: Kössen Mittelstation
+1870: Nagens
+1871: Piz Scalottas
+1872: Parpan
+1873: Valbella
+1875: Arlberg (Stanton LP)
+1876: UNIS Svea
+1877: RPK Nesaksla 
+1879: Monte Toro Sur
+1880: Paramotorclub RW
+1881: DCC_Fille Morte
+1882: Messelberg Donzdorf
+1883: Adelberg
+1884: Coolum Beach 1884
+1885: Rigi Kulm Bahndepot
+1886: Rigi Rotstock
+1887: BRESTPORT
+1888: Håfjell.Alpinservice
+1890: Maori Bay@Glidepro
+1892: Mustang Mountain
+1893: Apache Maid - AZHPA
+1895: 1895 test CVLD Bosse
+1896: Amargilha parcela I
+1897: Aznalcollar
+1898: Valada
+1899: La Banditella
+1900: Crato
+1901: S/comunicac 07-03-25
+1902: Laranjeira
+1903: Trevoes I
+1904: Baruffino
+1905: Pozzolo
+1906: Taucho_Parapente
+1907: BIG FISH NORTE BF28
+1908: SARDELLA
+1909: BIG FISH Norte BF04
+1910: BIG FISH SUR 07
+1911: BIG FISH SUR 11
+1912: Nesna Middagstuva
+1913: Ljugarn/Lausviken
+1914: 1914
+1916: Port City Beach Park
+1917: Sodkopf, Lauf
+1918: Myrdalsleite
+1919: Høgda
+1920: Upsete haldeplass
+1923: Spillumsfjellet
+1924: LP Madenburg
+1925: Offenbach Winde1925
+1926: Sombernon
+1927: S/comunicac Laura
+1928: calendula
+1929: Amargilha parcela L
+1930: S/comunicac 27-05-25
+1931: Villamañan
+1932: Outarville
+1933: Latera
+1934: Mihailesti
+1935: S/Comunica 11-08-25
+1937: Obereichstätt DFCI
+1938: JLK Bjellandsfjell
+1943: Som la Proz
