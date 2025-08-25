@@ -4,6 +4,7 @@ import {
   DayResult,
   TimeInterval,
   FailureReason,
+  WarningReason,
 } from '@/lib/openMeteo/types';
 
 import { AlertRule } from '@/lib/common/types/alertRule';
@@ -32,8 +33,10 @@ function isGoodParaglidingCondition(
   dp: WeatherDataPoint,
   alert_rule: AlertRule,
   location: Location
-): { isGood: boolean; failures: FailureReason[] } {
+): { isGood: boolean; failures: FailureReason[]; warnings: WarningReason[] } {
   const failures: FailureReason[] = [];
+  const warnings: WarningReason[] = [];
+
   // Surface wind conditions
   if (dp.windSpeed10m < alert_rule.MIN_WIND_SPEED) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_LOW);
@@ -64,14 +67,16 @@ function isGoodParaglidingCondition(
   if (dp.windSpeed700hPa > alert_rule.MAX_WIND_SPEED_700hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_700_HIGH);
   }
+
+  // Wind shear warnings (not failures)
   if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection925hPa)) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SHEAR_925);
+    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_925);
   }
   if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection850hPa)) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SHEAR_850);
+    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_850);
   }
   if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection700hPa)) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SHEAR_700);
+    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_700);
   }
 
   // Thermal and stability conditions
@@ -104,6 +109,7 @@ function isGoodParaglidingCondition(
   return {
     isGood: failures.length === 0,
     failures,
+    warnings,
   };
 }
 
@@ -178,6 +184,7 @@ export function validateWeather(
         isGood: result.isGood,
         weatherData: dp,
         failures: result.failures,
+        warnings: result.warnings,
       };
     });
 
@@ -225,18 +232,6 @@ const FAILURE_DESCRIPTIONS = {
     code: 'WIND_DIRECTION_BAD',
     description: 'Surface wind direction is outside the allowed range',
   },
-  WIND_SHEAR_925: {
-    code: 'WIND_SHEAR_925',
-    description: 'Wind direction at 925hPa differs significantly from ground level',
-  },
-  WIND_SHEAR_850: {
-    code: 'WIND_SHEAR_850',
-    description: 'Wind direction at 850hPa differs significantly from ground level',
-  },
-  WIND_SHEAR_700: {
-    code: 'WIND_SHEAR_700',
-    description: 'Wind direction at 700hPa differs significantly from ground level',
-  },
   WIND_SPEED_925_HIGH: {
     code: 'WIND_SPEED_925_HIGH',
     description: 'Wind speed at 925hPa exceeds the maximum allowed',
@@ -276,5 +271,21 @@ const FAILURE_DESCRIPTIONS = {
   WEATHER_CODE_BAD: {
     code: 'WEATHER_CODE_BAD',
     description: 'Current weather conditions are not suitable',
+  },
+} as const;
+
+// Warning descriptions for conditions that should be noted but don't cause failure
+const WARNING_DESCRIPTIONS = {
+  WIND_SHEAR_925: {
+    code: 'WIND_SHEAR_925',
+    description: 'Wind direction at 925hPa differs significantly from ground level',
+  },
+  WIND_SHEAR_850: {
+    code: 'WIND_SHEAR_850',
+    description: 'Wind direction at 850hPa differs significantly from ground level',
+  },
+  WIND_SHEAR_700: {
+    code: 'WIND_SHEAR_700',
+    description: 'Wind direction at 700hPa differs significantly from ground level',
   },
 } as const;

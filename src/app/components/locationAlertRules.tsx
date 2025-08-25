@@ -10,6 +10,7 @@ import WeatherCard from "@/app/components/WeatherCard";
 import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
 import { Location } from "@/lib/common/types/location";
 import FailureCard from "@/app/components/FailureCard";
+import WarningCard from "@/app/components/WarningCard";
 
 
 interface Props {
@@ -122,6 +123,9 @@ export default function LocationAlertRules({ location }: Props) {
                       <div>
                         {!hour.isGood && hour.failures && (
                           <FailureCard failures={hour.failures} />
+                        )}
+                        {hour.warnings && hour.warnings.length > 0 && (
+                          <WarningCard warnings={hour.warnings} />
                         )}
                         <HourlyWeatherDetails hour={hour} />
                       </div>

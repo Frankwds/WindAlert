@@ -44,10 +44,16 @@ export type FailureReason = {
   description: string;
 };
 
+export type WarningReason = {
+  code: string;
+  description: string;
+};
+
 export interface HourlyData {
   isGood: boolean;
   weatherData: WeatherDataPoint;
   failures?: FailureReason[];
+  warnings?: WarningReason[];
 }
 
 export interface TimeInterval {
