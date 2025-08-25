@@ -10,10 +10,14 @@ export const LOCATIONS: Location[] = [
     timezone: 'Europe/Oslo',
     windDirections: ['SW', 'S', 'SE'],
     description: '',
+    landing: {
+      lat: 59.495281,
+      long: 9.996085,
+    },
   },
   {
     id: 2,
-    name: 'Bruderud',
+    name: 'Brudeberget',
     lat: 59.494864,
     long: 9.823869,
     elevation: 560,
@@ -68,5 +72,19 @@ export const LOCATIONS: Location[] = [
     timezone: 'Europe/Oslo',
     windDirections: ['SW', 'S', 'SE'],
     description: '',
+  },
+  {
+    id: 7,
+    name: 'Stokkelia ',
+    lat: 59.556722,
+    long: 10.040806,
+    elevation: 350,
+    timezone: 'Europe/Oslo',
+    windDirections: ['NE', 'E'],
+    description: '',
+    landing: {
+      lat: 59.554439,
+      long: 10.065143,
+    },
   },
 ];

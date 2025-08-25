@@ -55,6 +55,12 @@ const ALERT_RULES_NORMAL: AlertRule[] = [
     ...DEFAULT_VALUES,
     alert_name: 'Normal Rule',
   },
+  {
+    id: 7,
+    locationId: 7,
+    ...DEFAULT_VALUES,
+    alert_name: 'Normal Rule',
+  },
 ];
 
 export const ALERT_RULES: AlertRule[] = [...ALERT_RULES_NORMAL];
