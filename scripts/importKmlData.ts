@@ -1,5 +1,6 @@
-import { ParaglidingLocationService } from './paraglidingLocations';
-import { ParaglidingLocation } from './types';
+import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
+import { ParaglidingLocation } from "@/lib/supabase/types";
+
 
 interface KmlPlacemark {
   name: string;

@@ -1,11 +1,13 @@
 #!/usr/bin/env tsx
 
 // Load environment variables from .env files
+
 import 'dotenv/config';
 
 import fs from 'fs';
 import path from 'path';
-import { batchImportKmlData } from '../src/lib/supabase/importKmlData';
+import { batchImportKmlData } from './importKmlData';
+
 
 async function main() {
   try {

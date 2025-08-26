@@ -1,7 +1,5 @@
 import { LOCATIONS } from "@/app/api/cron/mockdata/locations";
 import { notFound } from "next/navigation";
-import { mapYrData } from "@/lib/yr/mapping";
-import { fetchYrData } from "@/lib/yr/apiClient";
 import HourlyWeather from "@/app/components/hourlyWeather";
 import WindCompass from "@/app/components/windCompass";
 import GoogleMaps from "@/app/components/googleMaps";
@@ -20,9 +18,6 @@ export default async function LocationPage({ params }: Props) {
     notFound();
   }
 
-  const weatherData = await fetchYrData(location.lat, location.long);
-  const mappedData = mapYrData(weatherData);
-
   return (
     <div className="py-4">
       <div className="mb-4 flex flex-col flex-row gap-4 justify-between">
@@ -40,10 +35,10 @@ export default async function LocationPage({ params }: Props) {
       </div>
       <GoogleMaps latitude={location.lat} longitude={location.long} landing={location.landing} />
       <HourlyWeather
-        weatherData={mappedData.weatherDataYr1h}
+        takeoffLat={location.lat}
+        takeoffLong={location.long}
+        landing={location.landing}
         timezone={location.timezone}
-        latitude={location.lat}
-        longitude={location.long}
       />
       <WindyWidget lat={location.lat} long={location.long} />
       <LocationAlertRules location={location} />
