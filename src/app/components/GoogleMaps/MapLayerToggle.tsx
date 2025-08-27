@@ -44,6 +44,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
             src="/satellite.png"
             alt="Satellite"
             fill
+            sizes="64px"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -62,6 +63,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
             src="/terrain.png"
             alt="Terrain"
             fill
+            sizes="64px"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">

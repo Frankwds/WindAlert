@@ -25,6 +25,7 @@ export default function Navigation() {
               alt="WindLord Logo"
               width={64}
               height={64}
+              priority
               className="transition-transform hover:scale-105 cursor-pointer"
               onClick={() => router.push("/")}
             />
