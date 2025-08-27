@@ -89,23 +89,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`w-full ${className}`}>
-      <div className="mb-4">
-        <h2 className="text-2xl font-bold text-[var(--foreground)] mb-2">
-          Interactive Map
-        </h2>
-        <p className="text-[var(--foreground)]/70 text-sm">
-          Explore paragliding locations and weather stations across Norway
-        </p>
-      </div>
-
-      <div className="relative">
+    <div className={`w-full h-full ${className}`}>
+      <div className="relative w-full h-full">
         {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
 
         <div
           ref={mapRef}
-          className="w-full h-96 rounded-lg shadow-lg border border-gray-200"
-          style={{ minHeight: '400px' }}
+          className="w-full h-full"
         />
       </div>
     </div>

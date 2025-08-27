@@ -23,12 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[var(--background)] text-[var(--foreground)]`}
       >
         <Provider>
           <ThemeProvider>
-            <Navigation />
-            <main className="px-[1%] md:px-[15%] lg:px-[25%]">{children}</main>
+            <div className="flex flex-col h-full">
+              <Navigation />
+              <main className="flex-1">{children}</main>
+            </div>
           </ThemeProvider>
         </Provider>
       </body>

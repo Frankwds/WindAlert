@@ -32,7 +32,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
   if (overlay) {
     return (
-      <div className="absolute inset-0 bg-gray-100 rounded-lg flex items-center justify-center z-10">
+      <div className="absolute inset-0 bg-[var(--background)]/90 backdrop-blur-sm flex items-center justify-center z-10">
         <div className="text-center">
           <div className={`animate-spin rounded-full border-b-2 border-[var(--accent)] ${sizeClasses[size]} mx-auto mb-2`}></div>
           {text && <p className={`text-[var(--foreground)]/70 ${textSizes[size]}`}>{text}</p>}
