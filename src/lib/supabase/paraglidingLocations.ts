@@ -86,7 +86,7 @@ export class ParaglidingLocationService {
         .gte('longitude', west)
         .lte('longitude', east)
         .order('name')
-        .limit(1000); // Prevent excessive data loading
+        .limit(200); // Prevent excessive data loading
 
       if (error) {
         console.error('Error fetching locations within bounds:', error);

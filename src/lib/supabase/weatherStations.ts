@@ -88,7 +88,7 @@ export class WeatherStationService {
         .gte('longitude', west)
         .lte('longitude', east)
         .order('name')
-        .limit(1000); // Prevent excessive data loading
+        .limit(200); // Prevent excessive data loading
 
       if (error) {
         console.error('Error fetching weather stations within bounds:', error);

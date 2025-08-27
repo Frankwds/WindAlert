@@ -10,7 +10,7 @@ export class ParaglidingClusterRenderer implements Renderer {
     markerElement.innerHTML = paraglidingMarkerHTML;
 
     // Make clusters slightly larger to distinguish them from individual markers
-    markerElement.style.transform = 'scale(1.2)';
+    // markerElement.style.transform = 'scale(1.2)';
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,
