@@ -17,6 +17,7 @@ interface GoogleMapsProps {
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -92,10 +93,12 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   }, []);
 
   // Debounced function to avoid too many API calls
-  const debouncedLoadMarkers = useCallback(
-    debounce((map: google.maps.Map) => loadMarkersInBounds(map), 300),
-    [loadMarkersInBounds]
-  );
+  const debouncedLoadMarkers = useCallback((map: google.maps.Map) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => loadMarkersInBounds(map), 300);
+  }, [loadMarkersInBounds]);
 
   // Function to handle map idle (when user stops moving/zooming)
   const handleMapIdle = useCallback((map: google.maps.Map) => {
@@ -159,6 +162,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     };
 
     initMap();
+
+    // Cleanup function to clear timeout when component unmounts
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [loadMarkersInBounds, handleMapIdle, loadTotalCounts]);
 
   if (error) {
@@ -220,17 +230,5 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     </div>
   );
 };
-
-// Utility function for debouncing
-function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
 
 export default GoogleMaps;
