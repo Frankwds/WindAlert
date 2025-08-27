@@ -11,6 +11,7 @@ import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer } from './clusterer';
+import { CustomRenderer } from './clusterer/CustomRenderer';
 
 interface GoogleMapsProps {
   className?: string;
@@ -35,6 +36,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     paragliding: number;
     weatherStations: number;
   }>({ paragliding: 0, weatherStations: 0 });
+  const customRenderer = new CustomRenderer();
 
   // Function to load total counts (run once on mount)
   const loadTotalCounts = useCallback(async () => {
@@ -226,8 +228,18 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
-            <Clusterer map={mapInstance} markers={markers.paragliding} />
-            <Clusterer map={mapInstance} markers={markers.weatherStations} />
+            <Clusterer
+              map={mapInstance}
+              markers={markers.paragliding}
+              renderer={customRenderer}
+              algorithmOptions={{ radius: 60 }}
+            />
+            <Clusterer
+              map={mapInstance}
+              markers={markers.weatherStations}
+              renderer={customRenderer}
+              algorithmOptions={{ radius: 60 }}
+            />
           </>
         )}
       </div>
