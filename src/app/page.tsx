@@ -1,4 +1,4 @@
-import GoogleMaps from './components/GoogeMapsDynamic'
+import GoogleMaps from './components/GoogleMaps/GoogeMaps'
 
 export default function Home() {
   return (
