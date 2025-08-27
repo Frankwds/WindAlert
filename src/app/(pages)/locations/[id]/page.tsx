@@ -2,7 +2,7 @@ import { LOCATIONS } from "@/app/api/cron/mockdata/locations";
 import { notFound } from "next/navigation";
 import HourlyWeather from "@/app/components/hourlyWeather";
 import WindCompass from "@/app/components/windCompass";
-import GoogleMaps from "@/app/components/googleMaps";
+import GoogleMaps from "@/app/components/GoogleMapsStatic";
 import WindyWidget from "@/app/components/windyWidget";
 import LocationAlertRules from "@/app/components/locationAlertRules";
 

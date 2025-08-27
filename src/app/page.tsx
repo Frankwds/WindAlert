@@ -1,4 +1,4 @@
-import UsersList from './components/UsersList'
+import GoogleMaps from './components/GoogeMapsDynamic'
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground)]/50 bg-clip-text text-transparent">
           Wind Alert Dashboard
         </h1>
-        <UsersList />
+        <GoogleMaps />
       </div>
     </main>
   );
