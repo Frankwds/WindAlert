@@ -10,8 +10,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
-import { Clusterer } from './clusterer';
-import { CustomRenderer } from './clusterer/CustomRenderer';
+import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
 
 interface GoogleMapsProps {
   className?: string;
@@ -36,7 +35,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     paragliding: number;
     weatherStations: number;
   }>({ paragliding: 0, weatherStations: 0 });
-  const customRenderer = new CustomRenderer();
+  const weatherStationRenderer = new WeatherStationClusterRenderer();
+  const paraglidingRenderer = new ParaglidingClusterRenderer();
 
   // Function to load total counts (run once on mount)
   const loadTotalCounts = useCallback(async () => {
@@ -231,13 +231,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
             <Clusterer
               map={mapInstance}
               markers={markers.paragliding}
-              renderer={customRenderer}
+              renderer={paraglidingRenderer}
               algorithmOptions={{ radius: 60 }}
             />
             <Clusterer
               map={mapInstance}
               markers={markers.weatherStations}
-              renderer={customRenderer}
+              renderer={weatherStationRenderer}
               algorithmOptions={{ radius: 60 }}
             />
           </>
