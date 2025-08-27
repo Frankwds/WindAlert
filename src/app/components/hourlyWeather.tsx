@@ -2,11 +2,10 @@
 
 import { WeatherDataPointYr1h } from "@/lib/yr/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
-import { getWindDirection } from "@/lib/utils/getWindDirection";
 import Image from "next/image";
 import WindDirectionArrow from "./WindDirectionArrow";
 import ExternalLinkIcon from "./ExternalLinkIcon";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import { mapYrData } from "@/lib/yr/mapping";
 import { LoadingSpinner } from "./shared/LoadingSpinner";

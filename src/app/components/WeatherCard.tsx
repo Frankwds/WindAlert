@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { HourlyData } from "../../lib/openMeteo/types";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
-import { getWindDirection } from "../../lib/utils/getWindDirection";
 import WindDirectionArrow from "./WindDirectionArrow";
 
 interface WeatherCardProps {

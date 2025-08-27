@@ -1,5 +1,4 @@
 import { supabase } from './client';
-import type { Database } from './types';
 
 export async function upsertUser(userData: {
   email: string;
@@ -39,9 +38,8 @@ export async function upsertUser(userData: {
 
       return data?.[0];
     } else {
-      userData.email;
       // User doesn't exist, insert new user
-      const { data, error: insertError } = await supabase
+      const { data } = await supabase
         .from('users')
         .insert({
           email: userData.email,

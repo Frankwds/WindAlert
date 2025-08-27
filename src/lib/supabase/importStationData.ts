@@ -103,7 +103,7 @@ export function convertToStation(stationData: StationData): Omit<WeatherStation,
     const coords = parseCoordinates(stationData.coordinates);
     longitude = coords.longitude;
     latitude = coords.latitude;
-  } catch (error) {
+  } catch {
     console.warn(`Failed to parse coordinates for station ${stationData.stationId}: ${stationData.coordinates}`);
     return null; // Skip stations with invalid coordinates
   }
