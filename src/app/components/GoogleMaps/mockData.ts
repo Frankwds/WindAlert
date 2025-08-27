@@ -1,0 +1,230 @@
+import { WeatherStation, ParaglidingLocation } from '@/lib/supabase/types';
+
+// Import paragliding locations from mock data
+export const paraglidingLocations: ParaglidingLocation[] = [
+  {
+    id: '1',
+    name: 'Grøtterud',
+    description: 'Elevation: 350m, Wind directions: SW, S, SE',
+    longitude: 9.998056,
+    latitude: 59.504722,
+    altitude: 350,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '2',
+    name: 'Brudeberget',
+    description: 'Elevation: 560m, Wind directions: N, NE',
+    longitude: 9.823869,
+    latitude: 59.494864,
+    altitude: 560,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '3',
+    name: 'Sundvollen',
+    description: 'Elevation: 380m, Wind directions: NW, W, N',
+    longitude: 10.3225,
+    latitude: 60.053889,
+    altitude: 380,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '4',
+    name: 'Liaset',
+    description: 'Elevation: 650m, Wind directions: NW, N, SW, W',
+    longitude: 6.521389,
+    latitude: 60.703333,
+    altitude: 650,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '5',
+    name: 'Hangur',
+    description: 'Elevation: 660m, Wind directions: SW, S, SE',
+    longitude: 6.403056,
+    latitude: 60.638889,
+    altitude: 660,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '6',
+    name: 'Salknappen',
+    description: 'Elevation: 1250m, Wind directions: SW, S, SE',
+    longitude: 9.245278,
+    latitude: 61.900278,
+    altitude: 1250,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '7',
+    name: 'Stokkelia',
+    description: 'Elevation: 350m, Wind directions: NE, E',
+    longitude: 10.040806,
+    latitude: 59.556722,
+    altitude: 350,
+    country: 'Norway',
+    flightlog_id: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  }
+];
+
+// Add weather stations from stationsCoordinates.txt
+export const weatherStations: WeatherStation[] = [
+  {
+    id: '107',
+    station_id: '107',
+    name: 'Weather Station 107',
+    longitude: 6.40708,
+    latitude: 60.64548,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '112',
+    station_id: '112',
+    name: 'Weather Station 112',
+    longitude: 6.129212,
+    latitude: 60.409995,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '115',
+    station_id: '115',
+    name: 'Weather Station 115',
+    longitude: 7.75935,
+    latitude: 63.05126,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '119',
+    station_id: '119',
+    name: 'Weather Station 119',
+    longitude: 9.8244,
+    latitude: 59.494,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '118',
+    station_id: '118',
+    name: 'Weather Station 118',
+    longitude: 6.41679,
+    latitude: 60.62697,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '120',
+    station_id: '120',
+    name: 'Weather Station 120',
+    longitude: 10.032084,
+    latitude: 60.389455,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '121',
+    station_id: '121',
+    name: 'Weather Station 121',
+    longitude: 6.4683,
+    latitude: 60.85876,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '124',
+    station_id: '124',
+    name: 'Weather Station 124',
+    longitude: 9.9996,
+    latitude: 59.504,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '131',
+    station_id: '131',
+    name: 'Weather Station 131',
+    longitude: 6.51885,
+    latitude: 60.70111,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '133',
+    station_id: '133',
+    name: 'Weather Station 133',
+    longitude: 8.61783,
+    latitude: 60.7993,
+    altitude: 0,
+    country: 'Norway',
+    region: null,
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  }
+];
