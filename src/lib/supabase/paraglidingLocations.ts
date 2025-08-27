@@ -3,6 +3,28 @@ import { ParaglidingLocation } from './types';
 
 export class ParaglidingLocationService {
   /**
+   * Get total count of active paragliding locations
+   */
+  static async getCount(): Promise<number> {
+    try {
+      const { count, error } = await supabase
+        .from('paragliding_locations')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_active', true);
+
+      if (error) {
+        console.error('Error fetching paragliding locations count:', error);
+        throw error;
+      }
+
+      return count || 0;
+    } catch (error) {
+      console.error('Error in getCount:', error);
+      return 0;
+    }
+  }
+
+  /**
    * Get all active paragliding locations
    */
   static async getAllActive(): Promise<ParaglidingLocation[]> {
@@ -43,6 +65,10 @@ export class ParaglidingLocationService {
 
   /**
    * Get locations within a bounding box (for map views)
+   * 
+   * Database optimization: Ensure you have a composite index on:
+   * CREATE INDEX idx_paragliding_locations_bounds ON paragliding_locations 
+   * (is_active, latitude, longitude) WHERE is_active = true;
    */
   static async getWithinBounds(
     north: number,
@@ -50,22 +76,28 @@ export class ParaglidingLocationService {
     east: number,
     west: number
   ): Promise<ParaglidingLocation[]> {
-    const { data, error } = await supabase
-      .from('paragliding_locations')
-      .select('*')
-      .eq('is_active', true)
-      .gte('latitude', south)
-      .lte('latitude', north)
-      .gte('longitude', west)
-      .lte('longitude', east)
-      .order('name');
+    try {
+      const { data, error } = await supabase
+        .from('paragliding_locations')
+        .select('*')
+        .eq('is_active', true)
+        .gte('latitude', south)
+        .lte('latitude', north)
+        .gte('longitude', west)
+        .lte('longitude', east)
+        .order('name')
+        .limit(1000); // Prevent excessive data loading
 
-    if (error) {
-      console.error('Error fetching locations within bounds:', error);
-      throw error;
+      if (error) {
+        console.error('Error fetching locations within bounds:', error);
+        throw error;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error in getWithinBounds:', error);
+      return [];
     }
-
-    return data || [];
   }
 
   /**

@@ -3,6 +3,30 @@ import { WeatherStation } from './types';
 
 export class WeatherStationService {
   /**
+   * Get total count of active weather stations
+   */
+  static async getCount(): Promise<number> {
+    try {
+      const { count, error } = await supabase
+        .from('weather_stations')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_active', true)
+        .not('latitude', 'is', null)
+        .not('longitude', 'is', null);
+
+      if (error) {
+        console.error('Error fetching weather stations count:', error);
+        throw error;
+      }
+
+      return count || 0;
+    } catch (error) {
+      console.error('Error in getCount:', error);
+      return 0;
+    }
+  }
+
+  /**
    * Get all active weather stations
    */
   static async getAllActive(): Promise<WeatherStation[]> {
@@ -41,6 +65,10 @@ export class WeatherStationService {
 
   /**
    * Get weather stations within a bounding box (for map views)
+   * 
+   * Database optimization: Ensure you have a composite index on:
+   * CREATE INDEX idx_weather_stations_bounds ON weather_stations 
+   * (is_active, latitude, longitude) WHERE is_active = true AND latitude IS NOT NULL AND longitude IS NOT NULL;
    */
   static async getWithinBounds(
     north: number,
@@ -48,24 +76,30 @@ export class WeatherStationService {
     east: number,
     west: number
   ): Promise<WeatherStation[]> {
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .select('*')
-      .eq('is_active', true)
-      .not('latitude', 'is', null)
-      .not('longitude', 'is', null)
-      .gte('latitude', south)
-      .lte('latitude', north)
-      .gte('longitude', west)
-      .lte('longitude', east)
-      .order('name');
+    try {
+      const { data, error } = await supabase
+        .from('weather_stations')
+        .select('*')
+        .eq('is_active', true)
+        .not('latitude', 'is', null)
+        .not('longitude', 'is', null)
+        .gte('latitude', south)
+        .lte('latitude', north)
+        .gte('longitude', west)
+        .lte('longitude', east)
+        .order('name')
+        .limit(1000); // Prevent excessive data loading
 
-    if (error) {
-      console.error('Error fetching weather stations within bounds:', error);
-      throw error;
+      if (error) {
+        console.error('Error fetching weather stations within bounds:', error);
+        throw error;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error in getWithinBounds:', error);
+      return [];
     }
-
-    return data || [];
   }
 
   /**
@@ -95,7 +129,7 @@ export class WeatherStationService {
     // Filter stations within radius using Haversine formula
     return data.filter(station => {
       if (!station.latitude || !station.longitude) return false;
-      
+
       const distance = this.calculateDistance(
         centerLat,
         centerLng,
