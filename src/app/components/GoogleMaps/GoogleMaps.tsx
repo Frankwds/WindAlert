@@ -4,12 +4,13 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { createAllMarkers, clearAllMarkers } from './MarkerManager';
+import { createAllMarkers } from './MarkerManager';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
+import { Clusterer } from './clusterer';
 
 interface GoogleMapsProps {
   className?: string;
@@ -22,7 +23,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
-  const [currentMarkers, setCurrentMarkers] = useState<{
+  const [markers, setMarkers] = useState<{
+    paragliding: google.maps.marker.AdvancedMarkerElement[];
+    weatherStations: google.maps.marker.AdvancedMarkerElement[];
+  }>({ paragliding: [], weatherStations: [] });
+  const [currentLocations, setCurrentLocations] = useState<{
     paragliding: ParaglidingLocation[];
     weatherStations: WeatherStation[];
   }>({ paragliding: [], weatherStations: [] });
@@ -74,17 +79,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
         WeatherStationService.getWithinBounds(north, south, east, west)
       ]);
 
-      // Clear existing markers
-      clearAllMarkers();
-
-      // Create new markers
-      createAllMarkers({
+      const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
         mapInstance: map
       });
 
-      setCurrentMarkers({ paragliding: paraglidingLocations, weatherStations });
+      setMarkers({ paragliding: paraglidingMarkers, weatherStations: weatherStationMarkers });
+      setCurrentLocations({ paragliding: paraglidingLocations, weatherStations });
     } catch (err) {
       console.error('Error loading markers in bounds:', err);
     } finally {
@@ -201,14 +203,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
             <div className="text-sm text-gray-700">
               <div className="font-medium">Current View</div>
               <div className="text-xs text-gray-500">
-                {currentMarkers.paragliding.length} of {totalCounts.paragliding} paragliding spots
+                {currentLocations.paragliding.length} of {totalCounts.paragliding} paragliding spots
               </div>
               <div className="text-xs text-gray-500">
-                {currentMarkers.weatherStations.length} of {totalCounts.weatherStations} weather stations
+                {currentLocations.weatherStations.length} of {totalCounts.weatherStations} weather stations
               </div>
               {totalCounts.paragliding > 0 && (
                 <div className="text-xs text-blue-600 mt-1">
-                  Showing {((currentMarkers.paragliding.length + currentMarkers.weatherStations.length) / (totalCounts.paragliding + totalCounts.weatherStations) * 100).toFixed(1)}% of total
+                  Showing {((currentLocations.paragliding.length + currentLocations.weatherStations.length) / (totalCounts.paragliding + totalCounts.weatherStations) * 100).toFixed(1)}% of total
                 </div>
               )}
             </div>
@@ -224,6 +226,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
+            <Clusterer map={mapInstance} markers={markers.paragliding} />
+            <Clusterer map={mapInstance} markers={markers.weatherStations} />
           </>
         )}
       </div>

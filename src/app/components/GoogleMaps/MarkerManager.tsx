@@ -10,63 +10,39 @@ interface MarkerManagerProps {
   mapInstance: google.maps.Map;
 }
 
-// Global arrays to track all markers for cleanup
-let allMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
-let allInfoWindows: google.maps.InfoWindow[] = [];
-
 export const createAllMarkers = ({
   paraglidingLocations,
   weatherStations,
-  mapInstance
+  mapInstance,
 }: MarkerManagerProps) => {
-  // Clear previous markers first
-  clearAllMarkers();
+  const paraglidingMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
+  const weatherStationMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
 
   // Create paragliding markers with info windows
   paraglidingLocations.forEach(location => {
-    const marker = createParaglidingMarker({ location, mapInstance });
+    const marker = createParaglidingMarker({ location });
     const infoWindow = createParaglidingInfoWindow({ location });
-
-    // Track markers and info windows for cleanup
-    allMarkers.push(marker);
-    allInfoWindows.push(infoWindow);
 
     // Add click event listener to the marker element
     const markerElement = marker.content as HTMLElement;
     markerElement.addEventListener('click', () => {
       infoWindow.open(mapInstance, marker);
     });
+    paraglidingMarkers.push(marker);
   });
 
   // Create weather station markers with info windows
   weatherStations.forEach(location => {
-    const marker = createWeatherStationMarker({ location, mapInstance });
+    const marker = createWeatherStationMarker({ location });
     const infoWindow = createWeatherStationInfoWindow({ location });
-
-    // Track markers and info windows for cleanup
-    allMarkers.push(marker);
-    allInfoWindows.push(infoWindow);
 
     // Add click event listener to the marker element
     const markerElement = marker.content as HTMLElement;
     markerElement.addEventListener('click', () => {
       infoWindow.open(mapInstance, marker);
     });
-  });
-};
-
-export const clearAllMarkers = () => {
-  // Remove all markers from the map
-  allMarkers.forEach(marker => {
-    marker.map = null;
+    weatherStationMarkers.push(marker);
   });
 
-  // Close all info windows
-  allInfoWindows.forEach(infoWindow => {
-    infoWindow.close();
-  });
-
-  // Clear the arrays
-  allMarkers = [];
-  allInfoWindows = [];
+  return { paraglidingMarkers, weatherStationMarkers };
 };
