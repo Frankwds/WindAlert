@@ -2,20 +2,16 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import {
-  MapLegend,
-  LoadingSpinner,
-  ErrorDisplay,
-  createAllMarkers,
-  paraglidingLocations,
-  weatherStations
-} from './index';
+import { LoadingSpinner } from '../shared/LoadingSpinner';
+import { ErrorState } from '../shared/ErrorState';
+import { createAllMarkers } from './MarkerManager';
+import { paraglidingLocations, weatherStations } from './mockData';
 
 interface GoogleMapsProps {
   className?: string;
 }
 
-const GoogeMapsDynamic: React.FC<GoogleMapsProps> = ({ className = '' }) => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [, setMap] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -82,14 +78,29 @@ const GoogeMapsDynamic: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   }, []);
 
   if (error) {
-    return <ErrorDisplay error={error} className={className} />;
+    return (
+      <ErrorState
+        error={error}
+        title="Failed to load map"
+        className={className}
+        showRetry={false}
+      />
+    );
   }
 
   return (
     <div className={`w-full ${className}`}>
+      <div className="mb-4">
+        <h2 className="text-2xl font-bold text-[var(--foreground)] mb-2">
+          Interactive Map
+        </h2>
+        <p className="text-[var(--foreground)]/70 text-sm">
+          Explore paragliding locations and weather stations across Norway
+        </p>
+      </div>
 
       <div className="relative">
-        {isLoading && <LoadingSpinner />}
+        {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
 
         <div
           ref={mapRef}
@@ -101,4 +112,4 @@ const GoogeMapsDynamic: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   );
 };
 
-export default GoogeMapsDynamic;
+export default GoogleMaps;

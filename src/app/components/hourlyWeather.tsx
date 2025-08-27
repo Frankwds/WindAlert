@@ -9,6 +9,7 @@ import ExternalLinkIcon from "./ExternalLinkIcon";
 import { useEffect, useState, useMemo, useRef } from "react";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import { mapYrData } from "@/lib/yr/mapping";
+import { LoadingSpinner } from "./shared/LoadingSpinner";
 
 interface HourlyWeatherProps {
   takeoffLat: number;
@@ -88,10 +89,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     return (
       <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
         <div className="flex items-center justify-center py-8">
-          <div className="flex items-center gap-3">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--accent)]"></div>
-            <div className="text-[var(--foreground)]">Loading weather data...</div>
-          </div>
+          <LoadingSpinner size="md" text="Loading weather data..." />
         </div>
       </div>
     );
