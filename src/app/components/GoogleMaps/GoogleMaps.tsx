@@ -6,6 +6,8 @@ import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
 import { createAllMarkers } from './MarkerManager';
 import { paraglidingLocations, weatherStations } from './mockData';
+import { MapLayerToggle } from './MapLayerToggle';
+import { ZoomControls } from './ZoomControls';
 
 interface GoogleMapsProps {
   className?: string;
@@ -13,7 +15,7 @@ interface GoogleMapsProps {
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [, setMap] = useState<google.maps.Map | null>(null);
+  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,32 +40,24 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
 
         if (!mapRef.current) return;
 
-        const mapInstance = new google.maps.Map(mapRef.current, {
-          center: { lat: 60.5, lng: 8.5 }, // Center on Norway
+        const map = new google.maps.Map(mapRef.current, {
+          center: { lat: 60.5, lng: 8.5 },
           zoom: 7,
           mapTypeId: google.maps.MapTypeId.HYBRID,
-          mapId: 'DEMO_MAP_ID', // Required for advanced markers
-          mapTypeControl: true,
+          mapId: 'WindLordMapID',
           streetViewControl: false,
+          disableDefaultUI: true,
           fullscreenControl: false,
           zoomControl: false,
-          clickableIcons: false, // Make POIs non-clickable
-          scrollwheel: true,
-          styles: [
-            {
-              featureType: 'poi',
-              stylers: [{ visibility: 'off' }]
-            },
-          ]
+          clickableIcons: false,
+          scrollwheel: true
         });
 
-        setMap(mapInstance);
-
-        // Create all markers using our MarkerManager
+        setMapInstance(map);
         createAllMarkers({
           paraglidingLocations,
           weatherStations,
-          mapInstance
+          mapInstance: map
         });
 
         setIsLoading(false);
@@ -97,6 +91,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
           ref={mapRef}
           className="w-full h-full"
         />
+
+        {mapInstance && (
+          <>
+            <MapLayerToggle map={mapInstance} />
+            <ZoomControls map={mapInstance} />
+          </>
+        )}
       </div>
     </div>
   );
