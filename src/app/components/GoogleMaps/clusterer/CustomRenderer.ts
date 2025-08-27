@@ -5,28 +5,29 @@ export class CustomRenderer implements Renderer {
   public render(cluster: Cluster) {
     const count = cluster.count;
     const position = cluster.position;
+    const firstMarker = cluster.markers[0];
 
-    // Change color based on cluster size
-    let color = '#6c757d'; // grey
-    if (count > 10) {
-      color = '#f8f9fa'; // light grey
-    }
-    if (count > 100) {
-      color = '#e9ecef'; // lighter grey
+    // Default style
+    let backgroundColor = '#6c757d'; // grey
+
+    if (firstMarker) {
+      const markerElement = firstMarker.content as HTMLElement;
+      const style = (markerElement.firstChild as HTMLElement).style;
+      backgroundColor = style.background;
     }
 
-    const markerElement = document.createElement('div');
-    markerElement.innerHTML = `
+    const clusterMarkerElement = document.createElement('div');
+    clusterMarkerElement.innerHTML = `
       <div style="
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: ${color};
+        background: ${backgroundColor};
         border: 2px solid white;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #212529;
+        color: white;
         font-weight: bold;
         font-size: 14px;
         cursor: pointer;
@@ -39,7 +40,7 @@ export class CustomRenderer implements Renderer {
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,
-      content: markerElement,
+      content: clusterMarkerElement,
       zIndex: 1000 + count, // higher zIndex for larger clusters
     });
 
