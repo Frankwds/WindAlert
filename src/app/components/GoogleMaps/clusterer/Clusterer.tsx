@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import { MarkerClusterer, SuperClusterAlgorithm } from '@googlemaps/markerclusterer';
 import { Renderer } from '@googlemaps/markerclusterer';
 import { SuperClusterOptions } from '@googlemaps/markerclusterer/dist/algorithms/supercluster';
-import { createAllMarkers } from '../MarkerSetup';
 
 interface ClustererProps {
   map: google.maps.Map;
@@ -42,3 +41,5 @@ const Clusterer: React.FC<ClustererProps> = ({ map, markers, renderer, algorithm
 };
 
 export default Clusterer;
+
+

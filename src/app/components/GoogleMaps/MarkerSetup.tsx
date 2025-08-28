@@ -1,6 +1,5 @@
 import { WeatherStation, ParaglidingLocation } from '@/lib/supabase/types';
-import { paraglidingMarkerHTML } from './clusterer/sharedMarkerStyles';
-import { weatherStationMarkerHTML } from './clusterer/sharedMarkerStyles';
+import { paraglidingMarkerHTML, weatherStationMarkerHTML } from './clusterer/Markers';
 
 type onMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocation | WeatherStation) => void;
 

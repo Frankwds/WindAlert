@@ -9,9 +9,10 @@ import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
-import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
+import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
+import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
