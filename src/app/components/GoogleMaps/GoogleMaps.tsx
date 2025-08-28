@@ -11,8 +11,8 @@ import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
-import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
+import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
@@ -56,14 +56,14 @@ const GoogleMaps: React.FC = () => {
       setIsLoadingMarkers(true);
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
-        ParaglidingLocationService.getAllActive(),
-        WeatherStationService.getAllActive()
+        ParaglidingLocationService.getAllActiveForMarkers(),
+        WeatherStationService.getAllActiveForMarkers()
       ]);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocation | WeatherStation) => {
+        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
           const content = 'station_id' in location
             ? getWeatherStationInfoWindowContent(location)
             : getParaglidingInfoWindowContent(location);

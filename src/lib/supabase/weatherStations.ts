@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { WeatherStation } from './types';
+import { WeatherStation, WeatherStationMarkerData } from './types';
 import { calculateDistance } from './utils';
 
 export class WeatherStationService {
@@ -16,6 +16,26 @@ export class WeatherStationService {
 
     if (error) {
       console.error('Error fetching active weather stations:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
+
+  /**
+   * Get all active weather stations optimized for markers (only essential fields)
+   */
+  static async getAllActiveForMarkers(): Promise<WeatherStationMarkerData[]> {
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .select('id, station_id, name, latitude, longitude, altitude')
+      .eq('is_active', true)
+      .not('latitude', 'is', null)
+      .not('longitude', 'is', null)
+      .order('name');
+
+    if (error) {
+      console.error('Error fetching active weather stations for markers:', error);
       throw error;
     }
 

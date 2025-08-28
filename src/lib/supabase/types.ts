@@ -26,14 +26,31 @@ export interface WeatherStation {
   id: string;
   station_id: string;
   name: string;
-  longitude: number | null;
-  latitude: number | null;
+  longitude: number;
+  latitude: number;
   altitude: number;
   country: string | null;
   region: string | null;
   is_active: boolean;
   created_at: string;
   updated_at: string;
+}
+
+export interface ParaglidingMarkerData {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  altitude: number;
+}
+
+export interface WeatherStationMarkerData {
+  id: string;
+  station_id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  altitude: number;
 }
 
 export type Database = {
