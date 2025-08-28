@@ -10,6 +10,9 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
+import { getParaglidingInfoWindowContent } from './ParaglidingInfoWindow';
+import { getWeatherStationInfoWindowContent } from './WeatherStationInfoWindow';
+import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
@@ -27,6 +30,8 @@ const CLUSTERER_CONFIG = {
 
 const GoogleMaps: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
+  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
+  const activeMarkerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,12 +40,27 @@ const GoogleMaps: React.FC = () => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
 
+  const closeInfoWindow = useCallback(() => {
+    if (infoWindowRef.current) {
+      infoWindowRef.current.close();
+      activeMarkerRef.current = null;
+    }
+  }, []);
+
+  const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string) => {
+    if (infoWindowRef.current && mapInstance) {
+      closeInfoWindow();
+      infoWindowRef.current.setContent(content);
+      infoWindowRef.current.open(mapInstance, marker);
+      activeMarkerRef.current = marker;
+    }
+  }, [mapInstance, closeInfoWindow]);
+
 
   // Function to load all markers once on mount
-  const loadAllMarkers = async (map: google.maps.Map) => {
+  const loadAllMarkers = useCallback(async (map: google.maps.Map) => {
     try {
       setIsLoadingMarkers(true);
-
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
         ParaglidingLocationService.getAllActiveWithCoordinates(),
@@ -52,7 +72,13 @@ const GoogleMaps: React.FC = () => {
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        map
+        map,
+        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocation | WeatherStation) => {
+          const content = 'station_id' in location
+            ? getWeatherStationInfoWindowContent({ location })
+            : getParaglidingInfoWindowContent({ location });
+          openInfoWindow(marker, content);
+        }
       });
 
       setParaglidingMarkers(paraglidingMarkers);
@@ -62,7 +88,7 @@ const GoogleMaps: React.FC = () => {
     } finally {
       setIsLoadingMarkers(false);
     }
-  };
+  }, [openInfoWindow]);
 
   useEffect(() => {
     const initMap = async () => {
@@ -98,11 +124,13 @@ const GoogleMaps: React.FC = () => {
           scrollwheel: true
         });
 
+        infoWindowRef.current = new google.maps.InfoWindow();
+
+        map.addListener('click', closeInfoWindow);
+
         setMapInstance(map);
         setIsLoading(false);
 
-        // Load markers after map is initialized
-        await loadAllMarkers(map);
       } catch (err) {
         console.error('Error initializing Google Maps:', err);
         setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
@@ -111,7 +139,14 @@ const GoogleMaps: React.FC = () => {
     };
 
     initMap();
-  }, []);
+
+  }, [closeInfoWindow]);
+
+  useEffect(() => {
+    if (mapInstance) {
+      loadAllMarkers(mapInstance);
+    }
+  }, [mapInstance, loadAllMarkers]);
 
   if (error) {
     return (
