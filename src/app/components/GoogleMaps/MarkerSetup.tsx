@@ -7,14 +7,12 @@ type onMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, l
 interface MarkerManagerProps {
   paraglidingLocations: ParaglidingLocation[];
   weatherStations: WeatherStation[];
-  map: google.maps.Map;
   onMarkerClick: onMarkerClickHandler;
 }
 
 export const createAllMarkers = ({
   paraglidingLocations,
   weatherStations,
-  map,
   onMarkerClick,
 }: MarkerManagerProps) => {
   // Create paragliding markers with info windows
@@ -42,9 +40,6 @@ export const createParaglidingMarker = (location: ParaglidingLocation, onMarkerC
     content: markerElement
   });
 
-  // Attach location data to marker for efficient click handling
-  (marker as any).paraglidingLocation = location;
-
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';
   });
@@ -53,7 +48,8 @@ export const createParaglidingMarker = (location: ParaglidingLocation, onMarkerC
     markerElement.style.transform = 'scale(1)';
   });
 
-  markerElement.addEventListener('click', () => {
+  markerElement.addEventListener('click', (event: Event) => {
+    event.stopPropagation();
     onMarkerClick(marker, location);
   });
 
@@ -70,9 +66,6 @@ export const createWeatherStationMarker = (location: WeatherStation, onMarkerCli
     content: markerElement
   });
 
-  // Attach location data to marker for efficient click handling
-  (marker as any).weatherStationLocation = location;
-
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';
   });
@@ -81,7 +74,9 @@ export const createWeatherStationMarker = (location: WeatherStation, onMarkerCli
     markerElement.style.transform = 'scale(1)';
   });
 
-  markerElement.addEventListener('click', () => {
+  markerElement.addEventListener('click', (event: Event) => {
+    // Prevent the click event from bubbling up to the map
+    event.stopPropagation();
     onMarkerClick(marker, location);
   });
 

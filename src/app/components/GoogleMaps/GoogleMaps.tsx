@@ -56,9 +56,7 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance, closeInfoWindow]);
 
-
-  // Function to load all markers once on mount
-  const loadAllMarkers = useCallback(async (map: google.maps.Map) => {
+  const loadAllMarkers = async () => {
     try {
       setIsLoadingMarkers(true);
 
@@ -67,12 +65,9 @@ const GoogleMaps: React.FC = () => {
         WeatherStationService.getAllActiveWithCoordinates()
       ]);
 
-      // Create all markers (IMPORTANT: don't set map property yet)
-      // The MarkerClusterer will manage their visibility
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        map,
         onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocation | WeatherStation) => {
           const content = 'station_id' in location
             ? getWeatherStationInfoWindowContent({ location })
@@ -88,7 +83,7 @@ const GoogleMaps: React.FC = () => {
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [openInfoWindow]);
+  };
 
   useEffect(() => {
     const initMap = async () => {
@@ -140,13 +135,13 @@ const GoogleMaps: React.FC = () => {
 
     initMap();
 
-  }, [closeInfoWindow]);
+  }, []);
 
   useEffect(() => {
     if (mapInstance) {
-      loadAllMarkers(mapInstance);
+      loadAllMarkers();
     }
-  }, [mapInstance, loadAllMarkers]);
+  }, [mapInstance]);
 
   if (error) {
     return (
