@@ -14,34 +14,21 @@ interface ClustererProps {
 
 const Clusterer: React.FC<ClustererProps> = ({ map, markers, renderer, algorithmOptions }) => {
   const clustererRef = useRef<MarkerClusterer | null>(null);
-  const previousMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
 
   useEffect(() => {
     if (!map || markers.length === 0) {
       return;
     }
 
-    // Initialize MarkerClusterer if it doesn't exist
     if (!clustererRef.current) {
       clustererRef.current = new MarkerClusterer({
         map,
-        markers: markers, // Pass markers directly here
+        markers: markers,
         renderer,
         algorithm: new SuperClusterAlgorithm({ ...algorithmOptions }),
       });
-    } else {
-      // Only update if markers actually changed
-      const markersChanged = markers.length !== previousMarkersRef.current.length ||
-        markers.some((marker, index) => marker !== previousMarkersRef.current[index]);
-
-      if (markersChanged) {
-        clustererRef.current.clearMarkers();
-        clustererRef.current.addMarkers(markers);
-        previousMarkersRef.current = [...markers];
-      }
     }
 
-    // Cleanup function
     return () => {
       if (clustererRef.current) {
         clustererRef.current.clearMarkers();
@@ -50,7 +37,7 @@ const Clusterer: React.FC<ClustererProps> = ({ map, markers, renderer, algorithm
     };
   }, [map, markers, renderer, algorithmOptions]);
 
-  return null; // This component does not render anything
+  return null;
 };
 
 export default Clusterer;

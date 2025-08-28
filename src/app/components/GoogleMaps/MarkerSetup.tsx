@@ -1,73 +1,30 @@
 import { WeatherStation, ParaglidingLocation } from '@/lib/supabase/types';
-import { createParaglidingMarker } from './ParaglidingMarker';
-import { createWeatherStationMarker } from './WeatherStationMarker';
 import { createParaglidingInfoWindow } from './ParaglidingInfoWindow';
 import { createWeatherStationInfoWindow } from './WeatherStationInfoWindow';
+import { paraglidingMarkerHTML } from './clusterer/sharedMarkerStyles';
+import { weatherStationMarkerHTML } from './clusterer/sharedMarkerStyles';
+
 
 interface MarkerManagerProps {
   paraglidingLocations: ParaglidingLocation[];
   weatherStations: WeatherStation[];
-  mapInstance?: google.maps.Map | null;
 }
-
-// Helper function to create paragliding markers with info windows
-const createParaglidingMarkersWithInfoWindows = (
-  locations: ParaglidingLocation[],
-  mapInstance?: google.maps.Map | null
-): google.maps.marker.AdvancedMarkerElement[] => {
-  return locations.map(location => {
-    const marker = createParaglidingMarker({ location });
-
-    // Only set up click handlers if we have a map instance
-    if (mapInstance) {
-      const infoWindow = createParaglidingInfoWindow({ location });
-      const markerElement = marker.content as HTMLElement;
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    }
-
-    return marker;
-  });
-};
-
-// Helper function to create weather station markers with info windows
-const createWeatherStationMarkersWithInfoWindows = (
-  locations: WeatherStation[],
-  mapInstance?: google.maps.Map | null
-): google.maps.marker.AdvancedMarkerElement[] => {
-  return locations.map(location => {
-    const marker = createWeatherStationMarker({ location });
-
-    // Only set up click handlers if we have a map instance
-    if (mapInstance) {
-      const infoWindow = createWeatherStationInfoWindow({ location });
-      const markerElement = marker.content as HTMLElement;
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    }
-
-    return marker;
-  });
-};
 
 export const createAllMarkers = ({
   paraglidingLocations,
   weatherStations,
-  mapInstance,
 }: MarkerManagerProps) => {
   // Create paragliding markers with info windows
-  const paraglidingMarkers = createParaglidingMarkersWithInfoWindows(
-    paraglidingLocations,
-    mapInstance
-  );
+  const paraglidingMarkers = paraglidingLocations.map(location => {
+    const marker = createParaglidingMarker(location);
+    return marker;
+  });
 
   // Create weather station markers with info windows
-  const weatherStationMarkers = createWeatherStationMarkersWithInfoWindows(
-    weatherStations,
-    mapInstance
-  );
+  const weatherStationMarkers = weatherStations.map(location => {
+    const marker = createWeatherStationMarker(location);
+    return marker;
+  });
 
   return { paraglidingMarkers, weatherStationMarkers };
 };
@@ -101,4 +58,50 @@ export const setupMarkerClickHandlers = (
       });
     }
   });
+};
+
+
+
+export const createParaglidingMarker = (location: ParaglidingLocation) => {
+  const markerElement = document.createElement('div');
+  markerElement.innerHTML = paraglidingMarkerHTML;
+
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: { lat: location.latitude, lng: location.longitude },
+    title: location.name,
+    content: markerElement
+  });
+
+  markerElement.addEventListener('mouseenter', () => {
+    markerElement.style.transform = 'scale(1.1)';
+  });
+
+  markerElement.addEventListener('mouseleave', () => {
+    markerElement.style.transform = 'scale(1)';
+  });
+
+  return marker;
+};
+
+
+
+export const createWeatherStationMarker = (location: WeatherStation) => {
+  const markerElement = document.createElement('div');
+  markerElement.innerHTML = weatherStationMarkerHTML;
+
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: { lat: location.latitude!, lng: location.longitude! },
+    title: location.name,
+    content: markerElement
+  });
+
+  markerElement.addEventListener('mouseenter', () => {
+    markerElement.style.transform = 'scale(1.1)';
+  });
+
+  markerElement.addEventListener('mouseleave', () => {
+    markerElement.style.transform = 'scale(1)';
+  });
+
+  return marker;
 };
