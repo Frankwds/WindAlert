@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { createRoot } from 'react-dom/client';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
@@ -11,7 +10,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer } from './clusterer';
-import { ParaglidingInfoWindow, getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
+import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
@@ -108,7 +107,7 @@ const GoogleMaps: React.FC = () => {
         const map = new google.maps.Map(mapRef.current, {
           center: MAP_CONFIG.DEFAULT_CENTER,
           zoom: MAP_CONFIG.DEFAULT_ZOOM,
-          mapTypeId: google.maps.MapTypeId.HYBRID,
+          mapTypeId: google.maps.MapTypeId.TERRAIN,
           mapId: MAP_CONFIG.MAP_ID,
           streetViewControl: false,
           disableDefaultUI: true,

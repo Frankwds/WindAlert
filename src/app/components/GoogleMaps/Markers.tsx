@@ -1,37 +1,43 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
 
-// Marker components
+// Marker components using PNG images
 export const ParaglidingMarker: React.FC = () => {
   return (
-    <div className="w-8 h-8 rounded-full bg-red-400 border-2 border-white flex items-center justify-center text-white font-bold text-xs cursor-pointer shadow-md transition-transform duration-200 ease-in-out">
-      P
-    </div>
+    <img
+      src="/paraglider.png"
+      alt="Paragliding location"
+      className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out"
+      draggable={false}
+    />
   );
 };
 
 export const WeatherStationMarker: React.FC = () => {
   return (
-    <div className="w-8 h-8 rounded-full bg-cyan-400 border-2 border-white flex items-center justify-center text-white font-bold text-xs cursor-pointer shadow-md transition-transform duration-200 ease-in-out">
-      W
-    </div>
+    <img
+      src="/windsockBlue.png"
+      alt="Weather station"
+      className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out"
+      draggable={false}
+    />
   );
 };
 
-
-// Utility function to render any React component to HTML string
-export const renderComponentToString = <T extends Record<string, any>>(
-  Component: React.ComponentType<T>,
-  props: T
-): string => {
-  return renderToString(React.createElement(Component, props));
+// Utility function to create marker elements with PNG images
+export const createParaglidingMarkerElement = (): HTMLElement => {
+  const img = document.createElement('img');
+  img.src = '/paraglider.png';
+  img.alt = 'Paragliding location';
+  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out';
+  img.draggable = false;
+  return img;
 };
 
-// Helper functions to convert React marker components to HTML strings
-export const getParaglidingMarkerHTML = (): string => {
-  return renderComponentToString(ParaglidingMarker, {});
-};
-
-export const getWeatherStationMarkerHTML = (): string => {
-  return renderComponentToString(WeatherStationMarker, {});
+export const createWeatherStationMarkerElement = (): HTMLElement => {
+  const img = document.createElement('img');
+  img.src = '/windsockBlue.png';
+  img.alt = 'Weather station';
+  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out';
+  img.draggable = false;
+  return img;
 };
