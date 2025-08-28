@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { createRoot } from 'react-dom/client';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
@@ -10,7 +11,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer } from './clusterer';
-import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
+import { ParaglidingInfoWindow, getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
@@ -43,7 +44,7 @@ const GoogleMaps: React.FC = () => {
     }
   }, []);
 
-  const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string) => {
+  const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
     if (infoWindowRef.current && mapInstance) {
       closeInfoWindow();
       infoWindowRef.current.setContent(content);
@@ -64,10 +65,13 @@ const GoogleMaps: React.FC = () => {
         paraglidingLocations,
         weatherStations,
         onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
-          const content = 'station_id' in location
-            ? getWeatherStationInfoWindowContent(location)
-            : getParaglidingInfoWindowContent(location);
-          openInfoWindow(marker, content);
+          if ('station_id' in location) {
+            const content = getWeatherStationInfoWindowContent(location);
+            openInfoWindow(marker, content);
+          } else {
+            const infoWindowContent = getParaglidingInfoWindowContent(location);
+            openInfoWindow(marker, infoWindowContent);
+          }
         }
       });
 

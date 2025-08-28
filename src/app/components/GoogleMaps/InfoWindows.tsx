@@ -58,6 +58,9 @@ export const getWeatherStationInfoWindowContent = (location: WeatherStationMarke
   return renderComponentToString(WeatherStationInfoWindow, { location });
 };
 
-export const getParaglidingInfoWindowContent = (location: ParaglidingMarkerData): string => {
-  return renderComponentToString(ParaglidingInfoWindow, { location });
+export const getParaglidingInfoWindowContent = (location: ParaglidingMarkerData): HTMLDivElement => {
+  const infoWindowContent = document.createElement('div');
+  const root = createRoot(infoWindowContent);
+  root.render(<ParaglidingInfoWindow location={location} />);
+  return infoWindowContent;
 };
