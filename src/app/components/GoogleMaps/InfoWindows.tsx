@@ -29,6 +29,14 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
   return (
     <div className="p-3">
       <h3 className="font-bold text-lg mb-2">{location.name}</h3>
+      <iframe
+        frameBorder="0"
+        marginHeight={1}
+        marginWidth={1}
+        scrolling="no"
+        src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=rose&size=160`}
+        style={{ width: '160px', height: '160px' }}
+      ></iframe>
       <p className="text-sm text-gray-600 mb-2">🌤️ Weather Station</p>
       <div className="mt-3 text-xs text-gray-500">
         <p>Lat: {location.latitude?.toFixed(4)}°</p>
