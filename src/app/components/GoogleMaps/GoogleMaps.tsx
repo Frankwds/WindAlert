@@ -11,6 +11,7 @@ import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { MyLocation } from './MyLocation';
 import { FilterControl } from './FilterControl';
+import WindFilterCompass from './WindFilterCompass';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
@@ -39,12 +40,14 @@ const GoogleMaps: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
 
+  const [allParaglidingLocations, setAllParaglidingLocations] = useState<ParaglidingMarkerData[]>([]);
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
 
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(true);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
+  const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>([]);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -99,6 +102,8 @@ const GoogleMaps: React.FC = () => {
         ParaglidingLocationService.getAllActiveForMarkers(),
         WeatherStationService.getNordicCountriesForMarkers()
       ]);
+
+      setAllParaglidingLocations(paraglidingLocations);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
@@ -181,6 +186,32 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance]);
 
+  useEffect(() => {
+    if (!mapInstance) return;
+
+    const filteredLocations = selectedWindDirections.length > 0
+      ? allParaglidingLocations.filter(location =>
+          selectedWindDirections.some(dir => location[dir as keyof ParaglidingMarkerData])
+        )
+      : allParaglidingLocations;
+
+    const { paraglidingMarkers } = createAllMarkers({
+      paraglidingLocations: filteredLocations,
+      weatherStations: [], // We don't need to re-create weather station markers
+      onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
+        if ('station_id' in location) {
+          const content = getWeatherStationInfoWindowContent(location);
+          openInfoWindow(marker, content);
+        } else {
+          const infoWindowContent = getParaglidingInfoWindowContent(location);
+          openInfoWindow(marker, infoWindowContent);
+        }
+      }
+    });
+    setParaglidingMarkers(paraglidingMarkers);
+
+  }, [selectedWindDirections, allParaglidingLocations, mapInstance]);
+
   if (error) {
     return (
       <ErrorState
@@ -236,6 +267,7 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
+            <WindFilterCompass onWindDirectionChange={setSelectedWindDirections} />
           </>
         )}
       </div>
