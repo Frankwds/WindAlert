@@ -70,9 +70,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
         <table className="min-w-full text-sm text-center">
           <thead>
             <tr className="border-b border-[var(--border)]">
-              <th className="whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
-                {/* Empty header for row labels */}
-              </th>
+
               {weatherData.map((hour, colIndex) => (
                 <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
                   {new Date(hour.time).toLocaleTimeString([], {
@@ -91,15 +89,6 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
                 key={rowIndex}
                 className={`border-b border-[var(--border)] last:border-b-0`}
               >
-                <td className="px-2 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)] text-left font-medium text-xs">
-                  {(() => {
-                    if (rowIndex === 0) return "";
-                    if (rowIndex === 1) return "Temp";
-                    if (rowIndex === 2) return "Wind";
-                    if (rowIndex === 3) return "Dir";
-                    return "";
-                  })()}
-                </td>
                 {weatherData.map((hour, colIndex) => (
                   <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
                     <div className="w-12 flex items-center justify-center">
