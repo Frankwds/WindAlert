@@ -1,8 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import HourlyWeather from '../hourlyWeather';
-import { createRoot, Root } from 'react-dom/client';
+import MinimalHourlyWeather from '../MinimalHourlyWeather';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -16,11 +15,12 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
   return (
     <div>
       <h3 className="font-bold text-lg mb-2">{location.name} ({location.altitude}m)</h3>
-      <HourlyWeather
-        takeoffLat={location.latitude}
-        takeoffLong={location.longitude}
-        timezone={'Europe/Oslo'}
-      />
+      {location.weatherData && (
+        <MinimalHourlyWeather
+          weatherData={location.weatherData}
+          timezone={'Europe/Oslo'}
+        />
+      )}
     </div>
   );
 };
@@ -58,9 +58,6 @@ export const getWeatherStationInfoWindowContent = (location: WeatherStationMarke
   return renderComponentToString(WeatherStationInfoWindow, { location });
 };
 
-export const getParaglidingInfoWindowContent = (location: ParaglidingMarkerData): HTMLDivElement => {
-  const infoWindowContent = document.createElement('div');
-  const root = createRoot(infoWindowContent);
-  root.render(<ParaglidingInfoWindow location={location} />);
-  return infoWindowContent;
+export const getParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
+  return <ParaglidingInfoWindow location={location} />;
 };
