@@ -10,8 +10,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
-import { getParaglidingInfoWindowContent } from './ParaglidingInfoWindow';
-import { getWeatherStationInfoWindowContent } from './WeatherStationInfoWindow';
+import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './ParaglidingInfoWindow';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 
 const MAP_CONFIG = {
@@ -70,8 +69,8 @@ const GoogleMaps: React.FC = () => {
         weatherStations,
         onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocation | WeatherStation) => {
           const content = 'station_id' in location
-            ? getWeatherStationInfoWindowContent({ location })
-            : getParaglidingInfoWindowContent({ location });
+            ? getWeatherStationInfoWindowContent(location)
+            : getParaglidingInfoWindowContent(location);
           openInfoWindow(marker, content);
         }
       });
