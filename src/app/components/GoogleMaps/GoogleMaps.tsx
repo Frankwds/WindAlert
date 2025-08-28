@@ -60,8 +60,8 @@ const GoogleMaps: React.FC = () => {
       setIsLoadingMarkers(true);
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
-        ParaglidingLocationService.getAllActiveWithCoordinates(),
-        WeatherStationService.getAllActiveWithCoordinates()
+        ParaglidingLocationService.getAllActive(),
+        WeatherStationService.getAllActive()
       ]);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
