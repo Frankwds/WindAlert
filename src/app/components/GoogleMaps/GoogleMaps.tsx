@@ -10,6 +10,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { MyLocation } from './MyLocation';
+import { FilterControl } from './FilterControl';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
@@ -41,6 +42,9 @@ const GoogleMaps: React.FC = () => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
+
+  const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(true);
+  const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -200,7 +204,7 @@ const GoogleMaps: React.FC = () => {
         {mapInstance && paraglidingMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={paraglidingMarkers}
+            markers={showParaglidingMarkers ? paraglidingMarkers : []}
             renderer={new ParaglidingClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
@@ -213,7 +217,7 @@ const GoogleMaps: React.FC = () => {
         {mapInstance && weatherStationMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={weatherStationMarkers}
+            markers={showWeatherStationMarkers ? weatherStationMarkers : []}
             renderer={new WeatherStationClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
@@ -228,6 +232,10 @@ const GoogleMaps: React.FC = () => {
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
             <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} />
+            <FilterControl
+              onParaglidingFilterChange={setShowParaglidingMarkers}
+              onWeatherStationFilterChange={setShowWeatherStationMarkers}
+            />
           </>
         )}
       </div>
