@@ -24,7 +24,7 @@ export const ZoomControls: React.FC<ZoomControlsProps> = ({ map, className = '' 
 
   return (
     <div className={`absolute bottom-3 right-3 z-10 ${className}`}>
-      <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-lg)]">
+      <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <div className="flex flex-col gap-1">
           <button
             onClick={handleZoomIn}
