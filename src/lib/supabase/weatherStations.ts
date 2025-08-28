@@ -21,26 +21,27 @@ export class WeatherStationService {
 
     return data || [];
   }
-
   /**
-   * Get all active weather stations optimized for markers (only essential fields)
+   * Get weather stations in Norway, Sweden, and Denmark optimized for markers
    */
-  static async getAllActiveForMarkers(): Promise<WeatherStationMarkerData[]> {
+  static async getNordicCountriesForMarkers(): Promise<WeatherStationMarkerData[]> {
     const { data, error } = await supabase
       .from('weather_stations')
       .select('id, station_id, name, latitude, longitude, altitude')
       .eq('is_active', true)
-      .not('latitude', 'is', null)
-      .not('longitude', 'is', null)
+      .in('country', ['Norway', 'Sweden', 'Denmark'])
       .order('name');
 
     if (error) {
-      console.error('Error fetching active weather stations for markers:', error);
+      console.error('Error fetching Nordic weather stations for markers:', error);
       throw error;
     }
 
     return data || [];
   }
+
+
+
 
   static async getByCountry(country: string): Promise<WeatherStation[]> {
     const { data, error } = await supabase
@@ -95,5 +96,4 @@ export class WeatherStationService {
       return distance <= radiusKm;
     });
   }
-
 }
