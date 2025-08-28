@@ -27,7 +27,7 @@ export class ParaglidingLocationService {
   static async getAllActiveForMarkers(): Promise<ParaglidingMarkerData[]> {
     const { data, error } = await supabase
       .from('paragliding_locations')
-      .select('id, name, latitude, longitude, altitude, N, E, S, W, NE, SE, SW, NW')
+      .select('id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw')
       .eq('is_active', true)
       .order('name');
 

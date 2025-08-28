@@ -11,6 +11,7 @@ import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { MyLocation } from './MyLocation';
 import { FilterControl } from './FilterControl';
+import WindFilterCompass from './WindFilterCompass';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
@@ -42,12 +43,14 @@ const GoogleMaps: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
 
+  const [allParaglidingLocations, setAllParaglidingLocations] = useState<ParaglidingMarkerData[]>([]);
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
 
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(true);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
+  const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>([]);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -102,6 +105,8 @@ const GoogleMaps: React.FC = () => {
         ParaglidingLocationService.getAllActiveForMarkers(),
         WeatherStationService.getNordicCountriesForMarkers()
       ]);
+
+      setAllParaglidingLocations(paraglidingLocations);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
@@ -258,6 +263,7 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
+            <WindFilterCompass onWindDirectionChange={setSelectedWindDirections} />
           </>
         )}
       </div>
