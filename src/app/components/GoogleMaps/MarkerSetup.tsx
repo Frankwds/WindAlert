@@ -1,104 +1,91 @@
 import { WeatherStation, ParaglidingLocation } from '@/lib/supabase/types';
-import { createParaglidingMarker } from './ParaglidingMarker';
-import { createWeatherStationMarker } from './WeatherStationMarker';
+import { paraglidingMarkerHTML } from './clusterer/sharedMarkerStyles';
+import { weatherStationMarkerHTML } from './clusterer/sharedMarkerStyles';
 import { createParaglidingInfoWindow } from './ParaglidingInfoWindow';
 import { createWeatherStationInfoWindow } from './WeatherStationInfoWindow';
+
 
 interface MarkerManagerProps {
   paraglidingLocations: ParaglidingLocation[];
   weatherStations: WeatherStation[];
-  mapInstance?: google.maps.Map | null;
+  map: google.maps.Map;
 }
-
-// Helper function to create paragliding markers with info windows
-const createParaglidingMarkersWithInfoWindows = (
-  locations: ParaglidingLocation[],
-  mapInstance?: google.maps.Map | null
-): google.maps.marker.AdvancedMarkerElement[] => {
-  return locations.map(location => {
-    const marker = createParaglidingMarker({ location });
-
-    // Only set up click handlers if we have a map instance
-    if (mapInstance) {
-      const infoWindow = createParaglidingInfoWindow({ location });
-      const markerElement = marker.content as HTMLElement;
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    }
-
-    return marker;
-  });
-};
-
-// Helper function to create weather station markers with info windows
-const createWeatherStationMarkersWithInfoWindows = (
-  locations: WeatherStation[],
-  mapInstance?: google.maps.Map | null
-): google.maps.marker.AdvancedMarkerElement[] => {
-  return locations.map(location => {
-    const marker = createWeatherStationMarker({ location });
-
-    // Only set up click handlers if we have a map instance
-    if (mapInstance) {
-      const infoWindow = createWeatherStationInfoWindow({ location });
-      const markerElement = marker.content as HTMLElement;
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    }
-
-    return marker;
-  });
-};
 
 export const createAllMarkers = ({
   paraglidingLocations,
   weatherStations,
-  mapInstance,
+  map
 }: MarkerManagerProps) => {
   // Create paragliding markers with info windows
-  const paraglidingMarkers = createParaglidingMarkersWithInfoWindows(
-    paraglidingLocations,
-    mapInstance
-  );
+  const paraglidingMarkers = paraglidingLocations.map(location => {
+    const marker = createParaglidingMarker(location, map);
+    return marker;
+  });
 
   // Create weather station markers with info windows
-  const weatherStationMarkers = createWeatherStationMarkersWithInfoWindows(
-    weatherStations,
-    mapInstance
-  );
+  const weatherStationMarkers = weatherStations.map(location => {
+    const marker = createWeatherStationMarker(location, map);
+    return marker;
+  });
 
   return { paraglidingMarkers, weatherStationMarkers };
 };
 
-/**
- * Set up click handlers for markers after they're created
- * This is useful when markers are created without a map instance initially
- */
-export const setupMarkerClickHandlers = (
-  markers: google.maps.marker.AdvancedMarkerElement[],
-  locations: (ParaglidingLocation | WeatherStation)[],
-  mapInstance: google.maps.Map,
-  isParagliding: boolean
-) => {
-  markers.forEach((marker, index) => {
-    const location = locations[index];
-    const markerElement = marker.content as HTMLElement;
+export const createParaglidingMarker = (location: ParaglidingLocation, map: google.maps.Map) => {
+  const markerElement = document.createElement('div');
+  markerElement.innerHTML = paraglidingMarkerHTML;
 
-    // Remove any existing click listeners
-    markerElement.removeEventListener('click', markerElement.onclick as any);
-
-    if (isParagliding) {
-      const infoWindow = createParaglidingInfoWindow({ location: location as ParaglidingLocation });
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    } else {
-      const infoWindow = createWeatherStationInfoWindow({ location: location as WeatherStation });
-      markerElement.addEventListener('click', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-    }
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: { lat: location.latitude, lng: location.longitude },
+    title: location.name,
+    content: markerElement
   });
+
+  markerElement.addEventListener('mouseenter', () => {
+    markerElement.style.transform = 'scale(1.1)';
+  });
+
+  markerElement.addEventListener('mouseleave', () => {
+    markerElement.style.transform = 'scale(1)';
+  });
+
+  const infoWindow = createParaglidingInfoWindow({ location: location as ParaglidingLocation });
+  markerElement.addEventListener('click', () => {
+    infoWindow.open(map, marker);
+  });
+
+  return marker;
 };
+
+export const createWeatherStationMarker = (location: WeatherStation, map: google.maps.Map) => {
+  const markerElement = document.createElement('div');
+  markerElement.innerHTML = weatherStationMarkerHTML;
+
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: { lat: location.latitude!, lng: location.longitude! },
+    title: location.name,
+    content: markerElement
+  });
+
+  // Attach location data to marker for efficient click handling
+  (marker as any).weatherStationLocation = location;
+
+  markerElement.addEventListener('mouseenter', () => {
+    markerElement.style.transform = 'scale(1.1)';
+  });
+
+  markerElement.addEventListener('mouseleave', () => {
+    markerElement.style.transform = 'scale(1)';
+  });
+
+  const infoWindow = createWeatherStationInfoWindow({ location: location as WeatherStation });
+  markerElement.addEventListener('click', () => {
+    infoWindow.open(map, marker);
+  });
+
+  return marker;
+};
+
+
+
+

@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { createAllMarkers, setupMarkerClickHandlers } from './MarkerSetup';
+import { createAllMarkers } from './MarkerSetup';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
-import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
@@ -24,20 +23,7 @@ const CLUSTERER_CONFIG = {
   MIN_POINTS: 2
 } as const;
 
-interface MapState {
-  markers: {
-    paragliding: google.maps.marker.AdvancedMarkerElement[];
-    weatherStations: google.maps.marker.AdvancedMarkerElement[];
-  };
-  data: {
-    paragliding: ParaglidingLocation[];
-    weatherStations: WeatherStation[];
-  };
-  counts: {
-    paragliding: number;
-    weatherStations: number;
-  };
-}
+
 
 const GoogleMaps: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -46,46 +32,16 @@ const GoogleMaps: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
 
-  const [mapState, setMapState] = useState<MapState>({
-    markers: { paragliding: [], weatherStations: [] },
-    data: { paragliding: [], weatherStations: [] },
-    counts: { paragliding: 0, weatherStations: 0 }
-  });
+  const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
+  const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
 
-  // Computed property to check if everything is ready
-  const isMapReady = useMemo(() =>
-    mapInstance &&
-    mapState.markers.paragliding.length > 0 &&
-    mapState.markers.weatherStations.length > 0 &&
-    mapState.data.paragliding.length > 0 &&
-    mapState.data.weatherStations.length > 0,
-    [mapInstance, mapState]
-  );
-
-  // Function to set up click handlers for markers
-  const setupClickHandlers = useCallback(() => {
-    if (isMapReady) {
-      setupMarkerClickHandlers(
-        mapState.markers.paragliding,
-        mapState.data.paragliding,
-        mapInstance!,
-        true
-      );
-      setupMarkerClickHandlers(
-        mapState.markers.weatherStations,
-        mapState.data.weatherStations,
-        mapInstance!,
-        false
-      );
-    }
-  }, [isMapReady, mapState, mapInstance]);
 
   // Function to load all markers once on mount
-  const loadAllMarkers = useCallback(async () => {
+  const loadAllMarkers = async (map: google.maps.Map) => {
     try {
       setIsLoadingMarkers(true);
 
-      // Fetch all data concurrently
+
       const [paraglidingLocations, weatherStations] = await Promise.all([
         ParaglidingLocationService.getAllActiveWithCoordinates(),
         WeatherStationService.getAllActiveWithCoordinates()
@@ -96,24 +52,17 @@ const GoogleMaps: React.FC = () => {
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        mapInstance: null // Don't assign to map yet
+        map
       });
 
-      // Update consolidated state
-      setMapState({
-        markers: { paragliding: paraglidingMarkers, weatherStations: weatherStationMarkers },
-        data: { paragliding: paraglidingLocations, weatherStations: weatherStations },
-        counts: {
-          paragliding: paraglidingLocations.length,
-          weatherStations: weatherStations.length
-        }
-      });
+      setParaglidingMarkers(paraglidingMarkers);
+      setWeatherStationMarkers(weatherStationMarkers);
     } catch (err) {
       console.error('Error loading all markers:', err);
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, []); // No dependencies needed
+  };
 
   useEffect(() => {
     const initMap = async () => {
@@ -153,7 +102,7 @@ const GoogleMaps: React.FC = () => {
         setIsLoading(false);
 
         // Load markers after map is initialized
-        await loadAllMarkers();
+        await loadAllMarkers(map);
       } catch (err) {
         console.error('Error initializing Google Maps:', err);
         setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
@@ -162,14 +111,7 @@ const GoogleMaps: React.FC = () => {
     };
 
     initMap();
-  }, []); // No dependencies
-
-  // Set up click handlers when everything is ready
-  useEffect(() => {
-    if (isMapReady) {
-      setupClickHandlers();
-    }
-  }, [isMapReady, setupClickHandlers]);
+  }, []);
 
   if (error) {
     return (
@@ -199,10 +141,10 @@ const GoogleMaps: React.FC = () => {
           <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
             <div className="text-sm text-gray-700">
               <div className="text-xs text-gray-500">
-                {mapState.counts.paragliding} paragliding spots
+                {paraglidingMarkers.length} paragliding spots
               </div>
               <div className="text-xs text-gray-500">
-                {mapState.counts.weatherStations} weather stations
+                {weatherStationMarkers.length} weather stations
               </div>
             </div>
           </div>
@@ -214,10 +156,10 @@ const GoogleMaps: React.FC = () => {
         />
 
         {/* Render clusterers only when we have markers and map */}
-        {mapInstance && mapState.markers.paragliding.length > 0 && (
+        {mapInstance && paraglidingMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={mapState.markers.paragliding}
+            markers={paraglidingMarkers}
             renderer={new ParaglidingClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
@@ -227,10 +169,10 @@ const GoogleMaps: React.FC = () => {
           />
         )}
 
-        {mapInstance && mapState.markers.weatherStations.length > 0 && (
+        {mapInstance && weatherStationMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={mapState.markers.weatherStations}
+            markers={weatherStationMarkers}
             renderer={new WeatherStationClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
