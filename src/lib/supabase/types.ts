@@ -20,6 +20,14 @@ export interface ParaglidingLocation {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+  N: boolean;
+  E: boolean;
+  S: boolean;
+  W: boolean;
+  NE: boolean;
+  SE: boolean;
+  SW: boolean;
+  NW: boolean;
 }
 
 export interface WeatherStation {
