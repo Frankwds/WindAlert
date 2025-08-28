@@ -45,6 +45,27 @@ export class WeatherStationService {
   }
 
   /**
+   * Get all active weather stations with coordinates (for mapping)
+   * This is more efficient than getAllActive when you only need stations with coordinates
+   */
+  static async getAllActiveWithCoordinates(): Promise<WeatherStation[]> {
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .select('*')
+      .eq('is_active', true)
+      .not('latitude', 'is', null)
+      .not('longitude', 'is', null)
+      .order('name');
+
+    if (error) {
+      console.error('Error fetching active weather stations with coordinates:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
+
+  /**
    * Get weather stations by country
    */
   static async getByCountry(country: string): Promise<WeatherStation[]> {
@@ -87,8 +108,8 @@ export class WeatherStationService {
         .lte('latitude', north)
         .gte('longitude', west)
         .lte('longitude', east)
-        .order('name')
-        .limit(200); // Prevent excessive data loading
+        .order('name');
+      // Removed limit to allow fetching all locations
 
       if (error) {
         console.error('Error fetching weather stations within bounds:', error);

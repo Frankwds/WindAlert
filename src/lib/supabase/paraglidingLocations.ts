@@ -42,6 +42,26 @@ export class ParaglidingLocationService {
     return data || [];
   }
 
+  /**
+   * Get all active paragliding locations with coordinates (for mapping)
+   * This is more efficient than getAllActive when you only need locations with coordinates
+   */
+  static async getAllActiveWithCoordinates(): Promise<ParaglidingLocation[]> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .select('*')
+      .eq('is_active', true)
+      .not('latitude', 'is', null)
+      .not('longitude', 'is', null)
+      .order('name');
+
+    if (error) {
+      console.error('Error fetching active locations with coordinates:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
 
 
   /**
@@ -85,8 +105,8 @@ export class ParaglidingLocationService {
         .lte('latitude', north)
         .gte('longitude', west)
         .lte('longitude', east)
-        .order('name')
-        .limit(200); // Prevent excessive data loading
+        .order('name');
+      // Removed limit to allow fetching all locations
 
       if (error) {
         console.error('Error fetching locations within bounds:', error);

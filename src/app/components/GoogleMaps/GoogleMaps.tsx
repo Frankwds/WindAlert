@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { createAllMarkers } from './MarkerManager';
+import { createAllMarkers, setupMarkerClickHandlers } from './MarkerManager';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
@@ -18,7 +18,6 @@ interface GoogleMapsProps {
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +26,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     paragliding: google.maps.marker.AdvancedMarkerElement[];
     weatherStations: google.maps.marker.AdvancedMarkerElement[];
   }>({ paragliding: [], weatherStations: [] });
-  const [currentLocations, setCurrentLocations] = useState<{
+  const [locationData, setLocationData] = useState<{
     paragliding: ParaglidingLocation[];
     weatherStations: WeatherStation[];
   }>({ paragliding: [], weatherStations: [] });
@@ -35,79 +34,58 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     paragliding: number;
     weatherStations: number;
   }>({ paragliding: 0, weatherStations: 0 });
-  const weatherStationRenderer = new WeatherStationClusterRenderer();
-  const paraglidingRenderer = new ParaglidingClusterRenderer();
 
-  // Function to load total counts (run once on mount)
-  const loadTotalCounts = useCallback(async () => {
-    try {
-      const [paraglidingCount, weatherStationsCount] = await Promise.all([
-        ParaglidingLocationService.getCount(),
-        WeatherStationService.getCount()
-      ]);
-
-      setTotalCounts({
-        paragliding: paraglidingCount,
-        weatherStations: weatherStationsCount
-      });
-    } catch (err) {
-      console.error('Error loading total counts:', err);
+  // Function to set up click handlers for markers
+  const setupClickHandlers = useCallback(() => {
+    if (mapInstance && markers.paragliding.length > 0 && markers.weatherStations.length > 0) {
+      setupMarkerClickHandlers(
+        markers.paragliding,
+        locationData.paragliding,
+        mapInstance,
+        true
+      );
+      setupMarkerClickHandlers(
+        markers.weatherStations,
+        locationData.weatherStations,
+        mapInstance,
+        false
+      );
     }
-  }, []);
+  }, [mapInstance, markers, locationData]);
 
-  // Function to load markers within current map bounds
-  const loadMarkersInBounds = useCallback(async (map: google.maps.Map) => {
+  // Function to load all markers once on mount
+  const loadAllMarkers = useCallback(async () => {
     try {
       setIsLoadingMarkers(true);
-      const bounds = map.getBounds();
-      if (!bounds) return;
 
-      const ne = bounds.getNorthEast();
-      const sw = bounds.getSouthWest();
-
-      // Add some padding to avoid markers disappearing at edges
-      const padding = 0.1; // 10% padding
-      const latPadding = (ne.lat() - sw.lat()) * padding;
-      const lngPadding = (ne.lng() - sw.lng()) * padding;
-
-      const north = ne.lat() + latPadding;
-      const south = sw.lat() - latPadding;
-      const east = ne.lng() + lngPadding;
-      const west = sw.lng() - lngPadding;
-
-      // Fetch data from both services concurrently
+      // Fetch all data concurrently
       const [paraglidingLocations, weatherStations] = await Promise.all([
-        ParaglidingLocationService.getWithinBounds(north, south, east, west),
-        WeatherStationService.getWithinBounds(north, south, east, west)
+        ParaglidingLocationService.getAllActiveWithCoordinates(),
+        WeatherStationService.getAllActiveWithCoordinates()
       ]);
 
+      // Store location data for later use
+      setLocationData({ paragliding: paraglidingLocations, weatherStations });
+
+      // Create all markers (IMPORTANT: don't set map property yet)
+      // The MarkerClusterer will manage their visibility
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        mapInstance: map
+        mapInstance: null // Don't assign to map yet
       });
 
       setMarkers({ paragliding: paraglidingMarkers, weatherStations: weatherStationMarkers });
-      setCurrentLocations({ paragliding: paraglidingLocations, weatherStations });
+      setTotalCounts({
+        paragliding: paraglidingLocations.length,
+        weatherStations: weatherStations.length
+      });
     } catch (err) {
-      console.error('Error loading markers in bounds:', err);
+      console.error('Error loading all markers:', err);
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, []);
-
-  // Debounced function to avoid too many API calls
-  const debouncedLoadMarkers = useCallback((map: google.maps.Map) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = setTimeout(() => loadMarkersInBounds(map), 300);
-  }, [loadMarkersInBounds]);
-
-  // Function to handle map idle (when user stops moving/zooming)
-  const handleMapIdle = useCallback((map: google.maps.Map) => {
-    debouncedLoadMarkers(map);
-  }, [debouncedLoadMarkers]);
+  }, []); // No dependencies needed
 
   useEffect(() => {
     const initMap = async () => {
@@ -144,20 +122,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
         });
 
         setMapInstance(map);
-
-        // Load initial markers
-        await loadMarkersInBounds(map);
-
-        // Load total counts
-        loadTotalCounts();
-
-        // Use 'idle' event instead of 'bounds_changed' for better performance
-        // This fires when the user stops moving/zooming the map
-        map.addListener('idle', () => {
-          handleMapIdle(map);
-        });
-
         setIsLoading(false);
+
+        // Load markers after map is initialized
+        await loadAllMarkers();
       } catch (err) {
         console.error('Error initializing Google Maps:', err);
         setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
@@ -166,14 +134,15 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
     };
 
     initMap();
+  }, []); // No dependencies
 
-    // Cleanup function to clear timeout when component unmounts
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [loadMarkersInBounds, handleMapIdle, loadTotalCounts]);
+  // Set up click handlers when both map and markers are ready
+  useEffect(() => {
+    if (mapInstance && markers.paragliding.length > 0 && markers.weatherStations.length > 0 &&
+      locationData.paragliding.length > 0 && locationData.weatherStations.length > 0) {
+      setupClickHandlers();
+    }
+  }, [mapInstance, markers, locationData, setupClickHandlers]);
 
   if (error) {
     return (
@@ -203,18 +172,12 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
         {!isLoading && !isLoadingMarkers && (
           <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
             <div className="text-sm text-gray-700">
-              <div className="font-medium">Current View</div>
               <div className="text-xs text-gray-500">
-                {currentLocations.paragliding.length} of {totalCounts.paragliding} paragliding spots
+                {totalCounts.paragliding} paragliding spots
               </div>
               <div className="text-xs text-gray-500">
-                {currentLocations.weatherStations.length} of {totalCounts.weatherStations} weather stations
+                {totalCounts.weatherStations} weather stations
               </div>
-              {totalCounts.paragliding > 0 && (
-                <div className="text-xs text-blue-600 mt-1">
-                  Showing {((currentLocations.paragliding.length + currentLocations.weatherStations.length) / (totalCounts.paragliding + totalCounts.weatherStations) * 100).toFixed(1)}% of total
-                </div>
-              )}
             </div>
           </div>
         )}
@@ -224,22 +187,37 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ className = '' }) => {
           className="w-full h-full"
         />
 
+        {/* Render clusterers only when we have markers and map */}
+        {mapInstance && markers.paragliding.length > 0 && (
+          <Clusterer
+            map={mapInstance}
+            markers={markers.paragliding}
+            renderer={new ParaglidingClusterRenderer()}
+            algorithmOptions={{
+              radius: 60,
+              maxZoom: 15,
+              minPoints: 2
+            }}
+          />
+        )}
+
+        {mapInstance && markers.weatherStations.length > 0 && (
+          <Clusterer
+            map={mapInstance}
+            markers={markers.weatherStations}
+            renderer={new WeatherStationClusterRenderer()}
+            algorithmOptions={{
+              radius: 60,
+              maxZoom: 15,
+              minPoints: 2
+            }}
+          />
+        )}
+
         {mapInstance && (
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
-            <Clusterer
-              map={mapInstance}
-              markers={markers.paragliding}
-              renderer={paraglidingRenderer}
-              algorithmOptions={{ radius: 60 }}
-            />
-            <Clusterer
-              map={mapInstance}
-              markers={markers.weatherStations}
-              renderer={weatherStationRenderer}
-              algorithmOptions={{ radius: 60 }}
-            />
           </>
         )}
       </div>
