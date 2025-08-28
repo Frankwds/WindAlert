@@ -37,7 +37,7 @@ const GoogleMaps: React.FC = () => {
 
 
   // Function to load all markers once on mount
-  const loadAllMarkers = useCallback(async () => {
+  const loadAllMarkers = useCallback(async (map: google.maps.Map) => {
     try {
       setIsLoadingMarkers(true);
 
@@ -52,6 +52,7 @@ const GoogleMaps: React.FC = () => {
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
+        map,
       });
 
       setParaglidingMarkers(paraglidingMarkers);
@@ -101,7 +102,7 @@ const GoogleMaps: React.FC = () => {
         setIsLoading(false);
 
         // Load markers after map is initialized
-        await loadAllMarkers();
+        await loadAllMarkers(map);
       } catch (err) {
         console.error('Error initializing Google Maps:', err);
         setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
@@ -110,7 +111,7 @@ const GoogleMaps: React.FC = () => {
     };
 
     initMap();
-  }, []);
+  }, [loadAllMarkers]);
 
   if (error) {
     return (
