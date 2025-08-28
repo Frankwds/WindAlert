@@ -9,6 +9,7 @@ import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
+import { MyLocation } from './MyLocation';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
@@ -36,6 +37,7 @@ const GoogleMaps: React.FC = () => {
 
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
+  const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -50,6 +52,37 @@ const GoogleMaps: React.FC = () => {
       infoWindowRef.current.open(mapInstance, marker);
     }
   }, [mapInstance, closeInfoWindow]);
+
+  const handleLocationUpdate = (location: { lat: number; lng: number }) => {
+    if (mapInstance) {
+      mapInstance.setCenter(location);
+      mapInstance.setZoom(14); // Zoom in to the user's location
+
+      // Remove the old marker
+      if (userLocationMarker) {
+        userLocationMarker.setMap(null);
+      }
+
+      // Create a new marker for the user's location (the "blue dot")
+      const blueDotIcon = {
+        path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
+        fillColor: '#4285F4',
+        fillOpacity: 1,
+        strokeColor: 'white',
+        strokeWeight: 2,
+        scale: 1,
+      };
+
+      const marker = new google.maps.Marker({
+        position: location,
+        map: mapInstance,
+        icon: blueDotIcon,
+        title: 'My Location',
+      });
+
+      setUserLocationMarker(marker);
+    }
+  };
 
   const loadAllMarkers = async () => {
     try {
@@ -191,6 +224,7 @@ const GoogleMaps: React.FC = () => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
+            <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} />
           </>
         )}
       </div>
