@@ -13,7 +13,6 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
 
   useEffect(() => {
     if (map) {
-      // Set initial state
       setIsSatellite(map.getMapTypeId() === google.maps.MapTypeId.HYBRID);
     }
   }, [map]);
@@ -36,8 +35,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
       <div className="flex gap-2">
         <button
           onClick={handleToggle}
-          className={`relative w-16 h-16 rounded-lg overflow-hidden transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)] ${!isSatellite ? 'ring-2 ring-[var(--accent)] shadow-[var(--shadow-lg)]' : 'opacity-70 hover:opacity-100'
-            }`}
+          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)]`}
           style={{ display: isSatellite ? 'none' : 'block' }}
         >
           <Image
@@ -45,18 +43,15 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
             alt="Satellite"
             fill
             sizes="64px"
-            className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <span className="text-white text-xs font-bold">Satellite</span>
           </div>
         </button>
 
-        {/* Terrain Button - Shows when Satellite is active */}
         <button
           onClick={handleToggle}
-          className={`relative w-16 h-16 rounded-lg overflow-hidden transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)] ${isSatellite ? 'ring-2 ring-[var(--accent)] shadow-[var(--shadow-lg)]' : 'opacity-70 hover:opacity-100'
-            }`}
+          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)]`}
           style={{ display: isSatellite ? 'block' : 'none' }}
         >
           <Image
@@ -64,9 +59,8 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
             alt="Terrain"
             fill
             sizes="64px"
-            className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <span className="text-white text-xs font-bold">Terrain</span>
           </div>
         </button>

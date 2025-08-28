@@ -15,7 +15,6 @@ export const createParaglidingMarker = ({ location }: ParaglidingMarkerProps) =>
     content: markerElement
   });
 
-  // Add hover effects
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';
   });

@@ -10,16 +10,12 @@ interface MarkerManagerProps {
   mapInstance?: google.maps.Map | null;
 }
 
-export const createAllMarkers = ({
-  paraglidingLocations,
-  weatherStations,
-  mapInstance,
-}: MarkerManagerProps) => {
-  const paraglidingMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
-  const weatherStationMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
-
-  // Create paragliding markers with info windows
-  paraglidingLocations.forEach(location => {
+// Helper function to create paragliding markers with info windows
+const createParaglidingMarkersWithInfoWindows = (
+  locations: ParaglidingLocation[],
+  mapInstance?: google.maps.Map | null
+): google.maps.marker.AdvancedMarkerElement[] => {
+  return locations.map(location => {
     const marker = createParaglidingMarker({ location });
 
     // Only set up click handlers if we have a map instance
@@ -31,11 +27,16 @@ export const createAllMarkers = ({
       });
     }
 
-    paraglidingMarkers.push(marker);
+    return marker;
   });
+};
 
-  // Create weather station markers with info windows
-  weatherStations.forEach(location => {
+// Helper function to create weather station markers with info windows
+const createWeatherStationMarkersWithInfoWindows = (
+  locations: WeatherStation[],
+  mapInstance?: google.maps.Map | null
+): google.maps.marker.AdvancedMarkerElement[] => {
+  return locations.map(location => {
     const marker = createWeatherStationMarker({ location });
 
     // Only set up click handlers if we have a map instance
@@ -47,8 +48,26 @@ export const createAllMarkers = ({
       });
     }
 
-    weatherStationMarkers.push(marker);
+    return marker;
   });
+};
+
+export const createAllMarkers = ({
+  paraglidingLocations,
+  weatherStations,
+  mapInstance,
+}: MarkerManagerProps) => {
+  // Create paragliding markers with info windows
+  const paraglidingMarkers = createParaglidingMarkersWithInfoWindows(
+    paraglidingLocations,
+    mapInstance
+  );
+
+  // Create weather station markers with info windows
+  const weatherStationMarkers = createWeatherStationMarkersWithInfoWindows(
+    weatherStations,
+    mapInstance
+  );
 
   return { paraglidingMarkers, weatherStationMarkers };
 };
