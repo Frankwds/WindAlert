@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import HourlyWeather from '../hourlyWeather';
 import { createRoot, Root } from 'react-dom/client';
+import TinyWindCompass from '../TinyWindCompass';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -13,9 +14,17 @@ interface WeatherStationInfoWindowProps {
 }
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
+
+  const allowedDirections = Object.entries(location)
+    .filter(([key, value]) => value === true && ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'].includes(key))
+    .map(([key]) => key);
+
   return (
     <div>
-      <h3 className="font-bold text-lg mb-2">{location.name} ({location.altitude}m)</h3>
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="font-bold text-lg">{location.name} ({location.altitude}m)</h3>
+        <TinyWindCompass allowedDirections={allowedDirections} />
+      </div>
       <HourlyWeather
         takeoffLat={location.latitude}
         takeoffLong={location.longitude}
