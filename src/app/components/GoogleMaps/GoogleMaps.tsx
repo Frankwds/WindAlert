@@ -152,35 +152,12 @@ const GoogleMaps: React.FC = () => {
     <div className={`w-full h-full`}>
       <div className="relative w-full h-full">
         {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
-        {isLoadingMarkers && !isLoading && (
-          <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-sm text-gray-700">Loading markers...</span>
-            </div>
-          </div>
-        )}
-
-        {/* Marker count display */}
-        {!isLoading && !isLoadingMarkers && (
-          <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
-            <div className="text-sm text-gray-700">
-              <div className="text-xs text-gray-500">
-                {paraglidingMarkers.length} paragliding spots
-              </div>
-              <div className="text-xs text-gray-500">
-                {weatherStationMarkers.length} weather stations
-              </div>
-            </div>
-          </div>
-        )}
 
         <div
           ref={mapRef}
           className="w-full h-full"
         />
 
-        {/* Render clusterers only when we have markers and map */}
         {mapInstance && paraglidingMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
