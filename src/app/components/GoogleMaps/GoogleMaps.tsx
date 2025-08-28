@@ -10,7 +10,7 @@ import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle } from './MapLayerToggle';
 import { ZoomControls } from './ZoomControls';
 import { Clusterer, WeatherStationClusterRenderer, ParaglidingClusterRenderer } from './clusterer';
-import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './ParaglidingInfoWindow';
+import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingLocation, WeatherStation } from '@/lib/supabase/types';
 
 const MAP_CONFIG = {
@@ -25,12 +25,9 @@ const CLUSTERER_CONFIG = {
   MIN_POINTS: 2
 } as const;
 
-
-
 const GoogleMaps: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
-  const activeMarkerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +39,6 @@ const GoogleMaps: React.FC = () => {
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
       infoWindowRef.current.close();
-      activeMarkerRef.current = null;
     }
   }, []);
 
@@ -51,7 +47,6 @@ const GoogleMaps: React.FC = () => {
       closeInfoWindow();
       infoWindowRef.current.setContent(content);
       infoWindowRef.current.open(mapInstance, marker);
-      activeMarkerRef.current = marker;
     }
   }, [mapInstance, closeInfoWindow]);
 
