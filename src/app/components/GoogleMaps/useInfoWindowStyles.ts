@@ -33,9 +33,9 @@ export const useInfoWindowStyles = () => {
         /* InfoWindow content area */
         .gm-style-iw-d {
           color: var(--foreground) !important;
-          padding: 16px !important;
           font-family: var(--font-geist-sans), system-ui, sans-serif !important;
           line-height: 1.6 !important;
+          margin-top: -15x !important; /* Pull content up into header area */
         }
         
         /* InfoWindow scrollbar styling */
@@ -64,10 +64,11 @@ export const useInfoWindowStyles = () => {
           border: 1px solid var(--border) !important;
           width: 32px !important;
           height: 32px !important;
-          top: 8px !important;
-          right: 8px !important;
+          top: 8px !important; /* Adjusted for merged layout */
+          right: 8px !important; /* Adjusted for merged layout */
           transition: all 0.2s ease !important;
-          position: relative !important;
+          position: absolute !important;
+          z-index: 1000 !important;
         }
         
         .gm-ui-hover-effect:hover {
@@ -103,10 +104,6 @@ export const useInfoWindowStyles = () => {
           .gm-style-iw {
             max-width: 90vw !important;
             min-width: 280px !important;
-          }
-          
-          .gm-style-iw-d {
-            padding: 12px !important;
           }
         }
       `;
