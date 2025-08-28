@@ -60,3 +60,4 @@ export const getParaglidingInfoWindowContent = (location: ParaglidingLocation): 
 export const getWeatherStationInfoWindowContent = (location: WeatherStation): string => {
   return renderComponentToString(WeatherStationInfoWindow, { location });
 };
+
