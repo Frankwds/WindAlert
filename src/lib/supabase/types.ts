@@ -53,14 +53,14 @@ export interface ParaglidingMarkerData {
   longitude: number;
   altitude: number;
   weatherData?: WeatherDataPointYr1h[];
-  N: boolean;
-  E: boolean;
-  S: boolean;
-  W: boolean;
-  NE: boolean;
-  SE: boolean;
-  SW: boolean;
-  NW: boolean;
+  n: boolean;
+  e: boolean;
+  s: boolean;
+  w: boolean;
+  ne: boolean;
+  se: boolean;
+  sw: boolean;
+  nw: boolean;
 }
 
 export interface WeatherStationMarkerData {

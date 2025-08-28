@@ -43,7 +43,6 @@ const GoogleMaps: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
 
-  const [allParaglidingLocations, setAllParaglidingLocations] = useState<ParaglidingMarkerData[]>([]);
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
@@ -105,8 +104,6 @@ const GoogleMaps: React.FC = () => {
         ParaglidingLocationService.getAllActiveForMarkers(),
         WeatherStationService.getNordicCountriesForMarkers()
       ]);
-
-      setAllParaglidingLocations(paraglidingLocations);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,

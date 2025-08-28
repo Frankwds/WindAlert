@@ -5,7 +5,7 @@ interface WindCompassProps {
 }
 
 const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
-  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = 20;
@@ -44,15 +44,6 @@ const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
               d={getPath(i)}
               className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] transition-colors duration-200 ${isAllowed ? "fill-[var(--success)]" : ""}`}
             />
-            <text
-              x={textPos.x}
-              y={textPos.y}
-              className="text-[8px] font-sans fill-[var(--foreground)]"
-              textAnchor="middle"
-              alignmentBaseline="middle"
-            >
-              {dir}
-            </text>
           </g>
         );
       })}

@@ -16,27 +16,21 @@ interface WeatherStationInfoWindowProps {
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
 
   const allowedDirections = Object.entries(location)
-    .filter(([key, value]) => value === true && ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'].includes(key))
+    .filter(([key, value]) => value === true && ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'].includes(key))
     .map(([key]) => key);
 
   return (
     <div>
-      <h3 className="font-bold text-lg mb-2">{location.name} ({location.altitude}m)</h3>
+      <div className="flex items-center mb-2">
+        <TinyWindCompass allowedDirections={allowedDirections} />
+        <h3 className="font-bold text-lg flex-1 text-center">{location.name} ({location.altitude}m)</h3>
+      </div>
       {location.weatherData && (
         <MinimalHourlyWeather
           weatherData={location.weatherData}
           timezone={'Europe/Oslo'}
         />
       )}
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="font-bold text-lg">{location.name} ({location.altitude}m)</h3>
-        <TinyWindCompass allowedDirections={allowedDirections} />
-      </div>
-      <HourlyWeather
-        takeoffLat={location.latitude}
-        takeoffLong={location.longitude}
-        timezone={'Europe/Oslo'}
-      />
     </div>
   );
 };
