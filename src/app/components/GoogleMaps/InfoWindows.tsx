@@ -2,6 +2,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import MinimalHourlyWeather from '../MinimalHourlyWeather';
+import HourlyWeather from '../hourlyWeather';
+import TinyWindCompass from '../TinyWindCompass';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -12,6 +14,11 @@ interface WeatherStationInfoWindowProps {
 }
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
+
+  const allowedDirections = Object.entries(location)
+    .filter(([key, value]) => value === true && ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'].includes(key))
+    .map(([key]) => key);
+
   return (
     <div>
       <h3 className="font-bold text-lg mb-2">{location.name} ({location.altitude}m)</h3>
@@ -21,6 +28,15 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
           timezone={'Europe/Oslo'}
         />
       )}
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="font-bold text-lg">{location.name} ({location.altitude}m)</h3>
+        <TinyWindCompass allowedDirections={allowedDirections} />
+      </div>
+      <HourlyWeather
+        takeoffLat={location.latitude}
+        takeoffLong={location.longitude}
+        timezone={'Europe/Oslo'}
+      />
     </div>
   );
 };
