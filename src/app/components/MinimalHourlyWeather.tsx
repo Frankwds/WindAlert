@@ -35,8 +35,8 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
           <Image
             src={weatherIcon.image}
             alt={weatherIcon.description}
-            width={24}
-            height={24}
+            width={32}
+            height={32}
             className="mx-auto"
           />
         ) : null;
@@ -56,7 +56,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       getValue: (hour: WeatherDataPointYr1h) => (
         <WindDirectionArrow
           direction={hour.wind_from_direction}
-          size={18}
+          size={24}
           className="mx-auto"
           color="var(--foreground)"
         />
