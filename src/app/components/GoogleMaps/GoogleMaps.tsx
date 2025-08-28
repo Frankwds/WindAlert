@@ -14,6 +14,7 @@ import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
+import { useInfoWindowStyles } from './useInfoWindowStyles';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
@@ -28,6 +29,8 @@ const CLUSTERER_CONFIG = {
 } as const;
 
 const GoogleMaps: React.FC = () => {
+  useInfoWindowStyles();
+
   const mapRef = useRef<HTMLDivElement>(null);
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
