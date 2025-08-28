@@ -27,22 +27,20 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
 
 export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> = ({ location }) => {
   return (
-    <div className="p-3">
-      <h3 className="font-bold text-lg mb-2">{location.name}</h3>
-      <iframe
-        frameBorder="0"
-        marginHeight={1}
-        marginWidth={1}
-        scrolling="no"
-        src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=rose&size=160`}
-        style={{ width: '160px', height: '160px' }}
-      ></iframe>
-      <p className="text-sm text-gray-600 mb-2">🌤️ Weather Station</p>
-      <div className="mt-3 text-xs text-gray-500">
-        <p>Lat: {location.latitude?.toFixed(4)}°</p>
-        <p>Lng: {location.longitude?.toFixed(4)}°</p>
-        <p>Altitude: {location.altitude}m</p>
-        <p>Station ID: {location.station_id}</p>
+    <div>
+      <h3 className="font-bold text-lg mb-2">🌤️{location.name} ({location.altitude}m)</h3>
+      <div className='flex flex-row justify-between relative'>
+        <div className='overflow-y-hidden z-10 bg-white'>
+          <iframe
+            src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=rose&size=160`}
+            style={{ width: '160px', height: '160px' }}
+          ></iframe>
+        </div>
+        <div className='overflow-y-hidden relative z-5' >
+          <iframe
+            src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=average_hourly&avgrows=32`}
+          ></iframe>
+        </div>
       </div>
     </div>
   );
