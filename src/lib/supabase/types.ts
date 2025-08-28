@@ -44,12 +44,15 @@ export interface WeatherStation {
   updated_at: string;
 }
 
+import { WeatherDataPointYr1h } from "../yr/types";
+
 export interface ParaglidingMarkerData {
   id: string;
   name: string;
   latitude: number;
   longitude: number;
   altitude: number;
+  weatherData?: WeatherDataPointYr1h[];
 }
 
 export interface WeatherStationMarkerData {

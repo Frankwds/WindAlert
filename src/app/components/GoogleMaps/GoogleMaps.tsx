@@ -12,9 +12,12 @@ import { ZoomControls } from './ZoomControls';
 import { MyLocation } from './MyLocation';
 import { FilterControl } from './FilterControl';
 import { Clusterer } from './clusterer';
-import { getParaglidingInfoWindowContent, getWeatherStationInfoWindowContent } from './InfoWindows';
+import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
+import { createRoot } from 'react-dom/client';
+import { fetchYrData } from '@/lib/yr/apiClient';
+import { mapYrData } from '@/lib/yr/mapping';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 
 const MAP_CONFIG = {
@@ -103,13 +106,32 @@ const GoogleMaps: React.FC = () => {
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
+        onMarkerClick: async (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
           if ('station_id' in location) {
             const content = getWeatherStationInfoWindowContent(location);
             openInfoWindow(marker, content);
           } else {
-            const infoWindowContent = getParaglidingInfoWindowContent(location);
+            const infoWindowContent = document.createElement('div');
+            const root = createRoot(infoWindowContent);
+
+            // Initial render with loading state
+            root.render(<LoadingSpinner size="md" text="Loading weather..." />);
             openInfoWindow(marker, infoWindowContent);
+
+            try {
+              const yrData = await fetchYrData(location.latitude, location.longitude);
+              const mappedData = mapYrData(yrData);
+
+              const locationWithWeather = {
+                ...location,
+                weatherData: mappedData.weatherDataYr1h,
+              };
+
+              root.render(getParaglidingInfoWindow(locationWithWeather));
+            } catch (error) {
+              console.error('Failed to fetch weather data:', error);
+              root.render(<div>Failed to load weather data.</div>);
+            }
           }
         }
       });
