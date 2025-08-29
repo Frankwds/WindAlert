@@ -19,7 +19,7 @@ import { useInfoWindowStyles } from './useInfoWindowStyles';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
-  DEFAULT_ZOOM: 7,
+  DEFAULT_ZOOM: 5,
   MAP_ID: 'WindLordMapID'
 } as const;
 
@@ -76,7 +76,7 @@ const GoogleMaps: React.FC = () => {
   const handleLocationUpdate = (location: { lat: number; lng: number }) => {
     if (mapInstance) {
       mapInstance.setCenter(location);
-      mapInstance.setZoom(14); // Zoom in to the user's location
+      mapInstance.setZoom(12);
 
       // Remove the old marker
       if (userLocationMarker) {

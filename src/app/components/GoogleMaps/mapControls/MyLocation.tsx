@@ -25,12 +25,10 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate })
         },
         (error) => {
           console.error("Error getting user's location:", error);
-          // Optionally, provide user feedback here
         }
       );
     } else {
-      console.error('Geolocation is not supported by this browser.');
-      // Optionally, provide user feedback here
+      console.error('Geolocation is not supported by this browser.')
     }
   };
 
