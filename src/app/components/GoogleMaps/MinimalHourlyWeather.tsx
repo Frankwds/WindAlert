@@ -3,7 +3,7 @@
 import { WeatherDataPointYr1h } from "@/lib/yr/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
-import WindDirectionArrow from "./WindDirectionArrow";
+import WindDirectionArrow from "../WindDirectionArrow";
 
 interface MinimalHourlyWeatherProps {
   weatherData: WeatherDataPointYr1h[];

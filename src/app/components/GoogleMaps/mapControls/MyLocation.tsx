@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 interface MyLocationProps {
   map: google.maps.Map | null;
