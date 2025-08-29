@@ -22,6 +22,24 @@ export class ParaglidingLocationService {
   }
 
   /**
+   * Get a single paragliding location by its ID
+   */
+  static async getById(id: string): Promise<ParaglidingLocation | null> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      console.error(`Error fetching location with id ${id}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
    * Get all active paragliding locations optimized for markers (only essential fields)
    */
   static async getAllActiveForMarkers(): Promise<ParaglidingMarkerData[]> {
