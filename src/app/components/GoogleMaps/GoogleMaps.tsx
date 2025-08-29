@@ -66,7 +66,7 @@ const GoogleMaps: React.FC = () => {
 
     return markers.filter(marker => {
       const locationData = (marker as any).locationData as ParaglidingMarkerData;
-      return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+      return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
     });
   };
 
