@@ -19,14 +19,14 @@ export default async function LocationPage({ params }: Props) {
   }
 
   const windDirections = [
-    { label: "N", value: location.n },
-    { label: "NE", value: location.ne },
-    { label: "E", value: location.e },
-    { label: "SE", value: location.se },
-    { label: "S", value: location.s },
-    { label: "SW", value: location.sw },
-    { label: "W", value: location.w },
-    { label: "NW", value: location.nw },
+    { label: "n", value: location.n },
+    { label: "ne", value: location.ne },
+    { label: "e", value: location.e },
+    { label: "se", value: location.se },
+    { label: "s", value: location.s },
+    { label: "sw", value: location.sw },
+    { label: "w", value: location.w },
+    { label: "nw", value: location.nw },
   ].filter((direction) => direction.value).map((direction) => direction.label);
 
 
@@ -43,17 +43,13 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <div className="py-4">
-      <div className="mb-4 flex flex-col flex-row gap-4 justify-between">
-        <div className="flex-grow">
-          <h1 className="text-2xl font-bold mb-4">{location.name}</h1>
-          <div className="mb-4">
-            <p>Latitude: {location.latitude}°</p>
-            <p>Longitude: {location.longitude}°</p>
-          </div>
-          {location.description}
-        </div>
-        <div className="w-32 h-32 md:w-48 md:h-48 self-center">
+      <div className="mb-4">
+        <h1 className="text-2xl font-bold mb-4">{location.name}</h1>
+        <div className="w-32 h-32 md:w-48 md:h-48 self-center mb-4  float-right">
           <WindCompass allowedDirections={windDirections} />
+        </div>
+        <div className="break-words break-long">
+          {location.description}
         </div>
       </div>
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
