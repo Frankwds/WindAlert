@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import HourlyWeather from "@/app/components/hourlyWeather";
-import WindCompass from "@/app/components/windCompass";
 import GoogleMaps from "@/app/components/GoogleMapsStatic";
 import WindyWidget from "@/app/components/windyWidget";
 import LocationAlertRules from "@/app/components/locationAlertRules";
+import LocationHeader from "@/app/components/LocationHeader";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 
 interface Props {
@@ -43,15 +43,11 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <div className="py-4">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold mb-4">{location.name}</h1>
-        <div className="w-32 h-32 md:w-48 md:h-48 self-center mb-4  float-right">
-          <WindCompass allowedDirections={windDirections} />
-        </div>
-        <div className="break-words break-long">
-          {location.description}
-        </div>
-      </div>
+      <LocationHeader
+        name={location.name}
+        description={location.description || ""}
+        windDirections={windDirections}
+      />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
         takeoffLat={location.latitude}
