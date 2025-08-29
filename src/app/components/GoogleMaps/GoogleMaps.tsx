@@ -61,6 +61,19 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance, closeInfoWindow]);
 
+  const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
+    if (windDirections.length === 0) return markers; // Show all paragliding if none selected
+
+    return markers.filter(marker => {
+      const locationData = (marker as any).locationData as ParaglidingMarkerData;
+      return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+    });
+  };
+
+  const handleWindDirectionChange = useCallback((directions: string[]) => {
+    setSelectedWindDirections(directions);
+  }, []);
+
   const handleLocationUpdate = (location: { lat: number; lng: number }) => {
     if (mapInstance) {
       mapInstance.setCenter(location);
@@ -224,7 +237,7 @@ const GoogleMaps: React.FC = () => {
         {mapInstance && paraglidingMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={showParaglidingMarkers ? paraglidingMarkers : []}
+            markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(paraglidingMarkers, selectedWindDirections) : []}
             renderer={new ParaglidingClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
@@ -256,7 +269,7 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
-            <WindFilterCompass onWindDirectionChange={setSelectedWindDirections} />
+            <WindFilterCompass onWindDirectionChange={handleWindDirectionChange} />
           </>
         )}
       </div>

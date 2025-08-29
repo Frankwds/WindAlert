@@ -5,7 +5,7 @@ interface WindCompassProps {
 }
 
 const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
-  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = 100;

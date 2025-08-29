@@ -38,6 +38,9 @@ export const createParaglidingMarker = (location: ParaglidingMarkerData, onMarke
     content: markerElement
   });
 
+  // Store the location data with the marker for filtering purposes
+  (marker as any).locationData = location;
+
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';
   });

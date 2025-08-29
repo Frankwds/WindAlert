@@ -10,7 +10,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionCh
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedDirections, setSelectedDirections] = useState<string[]>([]);
 
-  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = isExpanded ? 60 : 20;
@@ -43,7 +43,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionCh
     if (!isExpanded) return;
     const newSelected = selectedDirections.includes(dir)
       ? selectedDirections.filter(d => d !== dir)
-            : [...selectedDirections, dir];
+      : [...selectedDirections, dir];
     setSelectedDirections(newSelected);
     onWindDirectionChange(newSelected);
   };
