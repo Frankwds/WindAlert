@@ -1,11 +1,14 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Marker components using PNG images
 export const ParaglidingMarker: React.FC = () => {
   return (
-    <img
+    <Image
       src="/paraglider.png"
       alt="Paragliding location"
+      width={32}
+      height={32}
       className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out"
       draggable={false}
     />
@@ -14,9 +17,11 @@ export const ParaglidingMarker: React.FC = () => {
 
 export const WeatherStationMarker: React.FC = () => {
   return (
-    <img
+    <Image
       src="/windsockBlue.png"
       alt="Weather station"
+      width={32}
+      height={32}
       className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out"
       draggable={false}
     />

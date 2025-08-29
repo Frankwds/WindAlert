@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface FilterControlProps {
   onParaglidingFilterChange: (isVisible: boolean) => void;
@@ -38,7 +39,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
               onChange={handleParaglidingChange}
               className="mr-2 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
             />
-            <img src="/paraglider.png" alt="Paragliding" className="w-6 h-6" />
+            <Image src="/paraglider.png" alt="Paragliding" width={24} height={24} className="w-6 h-6" />
           </label>
 
           <label htmlFor="weatherStation" className="flex items-center cursor-pointer hover:bg-[var(--accent)]/10 p-2 rounded transition-all duration-200 ease-in-out">
@@ -49,7 +50,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
               onChange={handleWeatherStationChange}
               className="mr-2 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
             />
-            <img src="/windsockBlue.png" alt="Weather Station" className="w-6 h-6" />
+            <Image src="/windsockBlue.png" alt="Weather Station" width={24} height={24} className="w-6 h-6" />
           </label>
         </div>
       </div>
