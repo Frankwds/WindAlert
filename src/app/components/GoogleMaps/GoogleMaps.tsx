@@ -46,6 +46,7 @@ const GoogleMaps: React.FC = () => {
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
   const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>([]);
   const [windFilterExpanded, setWindFilterExpanded] = useState(false);
+  const [windFilterAndOperator, setWindFilterAndOperator] = useState<boolean>(true);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -66,12 +67,20 @@ const GoogleMaps: React.FC = () => {
 
     return markers.filter(marker => {
       const locationData = (marker as any).locationData as ParaglidingMarkerData;
-      return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+      if (windFilterAndOperator) {
+        return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+      } else {
+        return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+      }
     });
   };
 
   const handleWindDirectionChange = useCallback((directions: string[]) => {
     setSelectedWindDirections(directions);
+  }, []);
+
+  const handleWindFilterLogicChange = useCallback(() => {
+    setWindFilterAndOperator(prev => !prev);
   }, []);
 
   const handleLocationUpdate = (location: { lat: number; lng: number }) => {
@@ -280,6 +289,8 @@ const GoogleMaps: React.FC = () => {
               selectedDirections={selectedWindDirections}
               isExpanded={windFilterExpanded}
               setIsExpanded={setWindFilterExpanded}
+              windFilterAndOperator={windFilterAndOperator}
+              onFilterLogicChange={handleWindFilterLogicChange}
             />
           </>
         )}

@@ -7,13 +7,17 @@ interface WindFilterCompassProps {
   selectedDirections: string[];
   isExpanded: boolean;
   setIsExpanded: (expanded: boolean) => void;
+  windFilterAndOperator: boolean;
+  onFilterLogicChange: () => void;
 }
 
 const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   onWindDirectionChange,
   selectedDirections,
   isExpanded,
-  setIsExpanded
+  setIsExpanded,
+  windFilterAndOperator,
+  onFilterLogicChange
 }) => {
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
@@ -66,6 +70,24 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
           );
         })}
       </svg>
+
+      {/* Toggle box for AND/OR logic - only visible when expanded */}
+      {isExpanded && (
+        <div className="absolute top-0 right-0 z-10">
+          <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onFilterLogicChange();
+              }}
+              className="w-6 h-6 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold"
+              title={`Filter logic: ${windFilterAndOperator ? 'AND (&)' : 'OR (||)'}`}
+            >
+              {windFilterAndOperator ? '&' : '||'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
