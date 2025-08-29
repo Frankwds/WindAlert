@@ -45,8 +45,13 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   return (
     <div
       className="absolute top-3 right-3 z-10 cursor-pointer"
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
+      // onMouseEnter={() => setIsExpanded(true)}
+      // onMouseLeave={() => setIsExpanded(false)}
+      onClick={() => {
+        if (!isExpanded) {
+          setIsExpanded(true);
+        }
+      }}
     >
       <svg viewBox={isExpanded ? "0 0 130 130" : "0 0 44 44"} className={`transition-all duration-300 ${isExpanded ? 'w-48 h-48' : 'w-11 h-11'}`}>
         {directions.map((dir, i) => {
