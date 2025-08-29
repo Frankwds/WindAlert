@@ -49,29 +49,19 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionCh
 
   return (
     <div
-      className="absolute top-3 right-20 z-10 cursor-pointer"
+      className="absolute top-3 right-3 z-10 cursor-pointer"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <svg viewBox={isExpanded ? "0 0 130 130" : "0 0 44 44"} className={`transition-all duration-300 ${isExpanded ? 'w-32 h-32' : 'w-11 h-11'}`}>
+      <svg viewBox={isExpanded ? "0 0 130 130" : "0 0 44 44"} className={`transition-all duration-300 ${isExpanded ? 'w-48 h-48' : 'w-11 h-11'}`}>
         {directions.map((dir, i) => {
           const isSelected = selectedDirections.includes(dir);
-          const textPos = getTextPosition(i);
           return (
             <g key={dir} onClick={() => handleDirectionClick(dir)}>
               <path
                 d={getPath(i)}
                 className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] transition-colors duration-200 ${isSelected ? "fill-[var(--success)]" : ""}`}
               />
-              <text
-                x={textPos.x}
-                y={textPos.y}
-                className={`${isExpanded ? 'text-sm' : 'text-[8px]'} font-sans fill-[var(--foreground)]`}
-                textAnchor="middle"
-                alignmentBaseline="middle"
-              >
-                {dir}
-              </text>
             </g>
           );
         })}
