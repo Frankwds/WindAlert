@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 
 interface WindFilterCompassProps {
   onWindDirectionChange: (directions: string[]) => void;
+  selectedDirections: string[];
 }
 
-const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionChange }) => {
+const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionChange, selectedDirections }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedDirections, setSelectedDirections] = useState<string[]>([]);
 
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
@@ -44,7 +44,6 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionCh
     const newSelected = selectedDirections.includes(dir)
       ? selectedDirections.filter(d => d !== dir)
       : [...selectedDirections, dir];
-    setSelectedDirections(newSelected);
     onWindDirectionChange(newSelected);
   };
 

@@ -37,7 +37,6 @@ const GoogleMaps: React.FC = () => {
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
 
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
@@ -61,7 +60,14 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance, closeInfoWindow]);
 
+  useEffect(() => {
+    console.log('component re-rendered');
+  });
+
   const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
+    console.log('filterParaglidingMarkersByWindDirection called');
+    console.log('windDirections', windDirections);
+    console.log('markers length', markers.length);
     if (windDirections.length === 0) return markers; // Show all paragliding if none selected
 
     return markers.filter(marker => {
@@ -107,7 +113,6 @@ const GoogleMaps: React.FC = () => {
 
   const loadAllMarkers = async () => {
     try {
-      setIsLoadingMarkers(true);
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
         ParaglidingLocationService.getAllActiveForMarkers(),
@@ -151,8 +156,6 @@ const GoogleMaps: React.FC = () => {
       setWeatherStationMarkers(weatherStationMarkers);
     } catch (err) {
       console.error('Error loading all markers:', err);
-    } finally {
-      setIsLoadingMarkers(false);
     }
   };
 
@@ -269,7 +272,7 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
-            <WindFilterCompass onWindDirectionChange={handleWindDirectionChange} />
+            <WindFilterCompass onWindDirectionChange={handleWindDirectionChange} selectedDirections={selectedWindDirections} />
           </>
         )}
       </div>
