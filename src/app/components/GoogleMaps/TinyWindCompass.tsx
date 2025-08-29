@@ -25,19 +25,10 @@ const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
     return `M ${center},${center} L ${start.x},${start.y} A ${radius},${radius} 0 0,1 ${end.x},${end.y} Z`;
   };
 
-  const getTextPosition = (index: number) => {
-    const angle = index * angleStep - 90;
-    return {
-      x: center + (radius - 8) * Math.cos((angle * Math.PI) / 180),
-      y: center + (radius - 8) * Math.sin((angle * Math.PI) / 180),
-    };
-  };
-
   return (
     <svg viewBox="0 0 44 44" className="w-11 h-11">
       {directions.map((dir, i) => {
         const isAllowed = allowedDirections.includes(dir);
-        const textPos = getTextPosition(i);
         return (
           <g key={dir}>
             <path

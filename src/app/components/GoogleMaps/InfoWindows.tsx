@@ -2,7 +2,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import MinimalHourlyWeather from './MinimalHourlyWeather';
-import HourlyWeather from '../hourlyWeather';
 import TinyWindCompass from './TinyWindCompass';
 
 interface ParaglidingInfoWindowProps {

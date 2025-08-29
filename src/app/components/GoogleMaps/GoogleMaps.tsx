@@ -104,7 +104,7 @@ const GoogleMaps: React.FC = () => {
     }
   };
 
-  const loadAllMarkers = async () => {
+  const loadAllMarkers = useCallback(async () => {
     try {
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
@@ -150,7 +150,7 @@ const GoogleMaps: React.FC = () => {
     } catch (err) {
       console.error('Error loading all markers:', err);
     }
-  };
+  }, [openInfoWindow]);
 
   useEffect(() => {
     const initMap = async () => {
@@ -202,13 +202,13 @@ const GoogleMaps: React.FC = () => {
 
     initMap();
 
-  }, []);
+  }, [closeInfoWindow]);
 
   useEffect(() => {
     if (mapInstance) {
       loadAllMarkers();
     }
-  }, [mapInstance]);
+  }, [mapInstance, loadAllMarkers]);
 
   if (error) {
     return (
