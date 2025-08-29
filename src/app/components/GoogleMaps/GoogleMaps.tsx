@@ -75,8 +75,14 @@ const GoogleMaps: React.FC = () => {
 
   const handleLocationUpdate = (location: { lat: number; lng: number }) => {
     if (mapInstance) {
-      mapInstance.setCenter(location);
-      mapInstance.setZoom(12);
+      // Only center the map if this is a new location request (not initial cached location)
+      // This prevents the map from jumping when the component first loads with cached location
+      const shouldCenterMap = userLocationMarker !== null;
+
+      if (shouldCenterMap) {
+        mapInstance.setCenter(location);
+        mapInstance.setZoom(12);
+      }
 
       // Remove the old marker
       if (userLocationMarker) {
@@ -260,7 +266,7 @@ const GoogleMaps: React.FC = () => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
-            <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} />
+            <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} onCloseInfoWindow={closeInfoWindow} />
             <FilterControl
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
