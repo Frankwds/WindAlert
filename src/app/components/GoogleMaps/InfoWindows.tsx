@@ -22,7 +22,11 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
     <div>
       <div className="flex items-center mb-2">
         <TinyWindCompass allowedDirections={allowedDirections} />
-        <h3 className="font-bold text-lg flex-1 text-center">{location.name} ({location.altitude}m)</h3>
+        <h3 className="font-bold text-lg flex-1 text-center hover:underline mt-2">
+          <a href={`/locations/${location.id}`} rel="noopener noreferrer">
+            {location.name} ({location.altitude}m)
+          </a>
+        </h3>
       </div>
       {location.weatherData && (
         <MinimalHourlyWeather
@@ -30,9 +34,6 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
           timezone={'Europe/Oslo'}
         />
       )}
-      <a href={`/locations/${location.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline mt-2 inline-block">
-        More details
-      </a>
     </div>
   );
 };
