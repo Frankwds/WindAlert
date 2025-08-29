@@ -30,6 +30,9 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
           timezone={'Europe/Oslo'}
         />
       )}
+      <a href={`/locations/${location.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline mt-2 inline-block">
+        More details
+      </a>
     </div>
   );
 };
