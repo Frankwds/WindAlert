@@ -60,14 +60,7 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance, closeInfoWindow]);
 
-  useEffect(() => {
-    console.log('component re-rendered');
-  });
-
   const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
-    console.log('filterParaglidingMarkersByWindDirection called');
-    console.log('windDirections', windDirections);
-    console.log('markers length', markers.length);
     if (windDirections.length === 0) return markers; // Show all paragliding if none selected
 
     return markers.filter(marker => {
