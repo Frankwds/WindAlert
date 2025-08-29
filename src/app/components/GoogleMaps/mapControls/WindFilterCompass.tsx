@@ -1,15 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 interface WindFilterCompassProps {
   onWindDirectionChange: (directions: string[]) => void;
   selectedDirections: string[];
+  isExpanded: boolean;
+  setIsExpanded: (expanded: boolean) => void;
 }
 
-const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionChange, selectedDirections }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
+  onWindDirectionChange,
+  selectedDirections,
+  isExpanded,
+  setIsExpanded
+}) => {
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
@@ -29,16 +34,6 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({ onWindDirectionCh
     };
     return `M ${center},${center} L ${start.x},${start.y} A ${radius},${radius} 0 0,1 ${end.x},${end.y} Z`;
   };
-
-  const getTextPosition = (index: number) => {
-    const angle = index * angleStep - 90;
-    const textRadius = isExpanded ? radius - 15 : radius - 8;
-    return {
-      x: center + textRadius * Math.cos((angle * Math.PI) / 180),
-      y: center + textRadius * Math.sin((angle * Math.PI) / 180),
-    };
-  };
-
   const handleDirectionClick = (dir: string) => {
     if (!isExpanded) return;
     const newSelected = selectedDirections.includes(dir)

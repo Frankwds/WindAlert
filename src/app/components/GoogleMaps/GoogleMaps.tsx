@@ -45,6 +45,7 @@ const GoogleMaps: React.FC = () => {
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(true);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
   const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>([]);
+  const [windFilterExpanded, setWindFilterExpanded] = useState(false);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -194,7 +195,10 @@ const GoogleMaps: React.FC = () => {
 
         infoWindowRef.current = new google.maps.InfoWindow();
 
-        map.addListener('click', closeInfoWindow);
+        map.addListener('click', () => {
+          closeInfoWindow();
+          setWindFilterExpanded(false);
+        });
 
         setMapInstance(map);
         setIsLoading(false);
@@ -271,7 +275,12 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
-            <WindFilterCompass onWindDirectionChange={handleWindDirectionChange} selectedDirections={selectedWindDirections} />
+            <WindFilterCompass
+              onWindDirectionChange={handleWindDirectionChange}
+              selectedDirections={selectedWindDirections}
+              isExpanded={windFilterExpanded}
+              setIsExpanded={setWindFilterExpanded}
+            />
           </>
         )}
       </div>
