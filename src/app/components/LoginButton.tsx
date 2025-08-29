@@ -54,7 +54,7 @@ export default function LoginButton() {
         <button
           aria-label="Sign out"
           onClick={() => signOut()}
-          className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full px-4 py-2 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95"
+          className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
         >
           <div className="flex items-center justify-center bg-orange-500 text-white font-bold rounded-full w-8 h-8 text-sm transition-transform group-hover:scale-110">
             {session.user?.name?.charAt(0)?.toUpperCase() || 'U'}
@@ -71,7 +71,7 @@ export default function LoginButton() {
       <button
         aria-label="Sign in with Google"
         onClick={() => signIn("google")}
-        className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95"
+        className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
       >
         <div className="flex items-center justify-center bg-white w-9 h-9 rounded-full transition-transform group-hover:scale-110">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
