@@ -28,9 +28,9 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
           </a>
         </h3>
       </div>
-      {location.weatherData && (
+      {location.forecast_cache && (
         <MinimalHourlyWeather
-          weatherData={location.weatherData}
+          weatherData={location.forecast_cache}
           timezone={'Europe/Oslo'}
         />
       )}

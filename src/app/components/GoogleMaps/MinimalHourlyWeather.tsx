@@ -71,7 +71,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
           <thead>
             <tr className="border-b border-[var(--border)]">
 
-              {weatherData.slice(0, 5).map((hour, colIndex) => (
+              {weatherData.map((hour, colIndex) => (
                 <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
                   {new Date(hour.time).toLocaleTimeString([], {
                     hour: "2-digit",
@@ -89,7 +89,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
                 key={rowIndex}
                 className={`border-b border-[var(--border)] last:border-b-0`}
               >
-                {weatherData.slice(0, 5).map((hour, colIndex) => (
+                {weatherData.map((hour, colIndex) => (
                   <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
                     <div className="w-12 flex items-center justify-center">
                       {row.getValue(hour)}

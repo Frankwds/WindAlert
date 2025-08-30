@@ -50,7 +50,7 @@ export class ParaglidingLocationService {
       .from('paragliding_locations')
       .select(`
         id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw,
-        forecast_cache (
+        forecast_cache(
           time,
           weather_code,
           temperature,
@@ -61,8 +61,8 @@ export class ParaglidingLocationService {
       `)
       .eq('is_active', true)
       // @ts-ignore
-      .filter('forecast_cache.time', 'gte', now.toISOString())
-      .filter('forecast_cache.time', 'lte', twelveHoursFromNow.toISOString())
+      .gte('forecast_cache.time', now.toISOString())
+      .lte('forecast_cache.time', twelveHoursFromNow.toISOString())
       .order('name');
 
     if (error) {

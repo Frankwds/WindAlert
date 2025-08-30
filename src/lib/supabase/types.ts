@@ -58,11 +58,11 @@ export interface MinimalForecast {
 
 export interface ParaglidingMarkerData {
   id: string;
-  name:string;
+  name: string;
   latitude: number;
   longitude: number;
   altitude: number;
-  weatherData?: MinimalForecast[];
+  forecast_cache?: MinimalForecast[];
   n: boolean;
   e: boolean;
   s: boolean;
