@@ -1,5 +1,4 @@
 import {
-  WeatherDataPoint,
   FailureReason,
   WarningReason,
 } from '@/lib/openMeteo/types';

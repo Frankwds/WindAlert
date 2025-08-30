@@ -70,7 +70,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     dataRows.push(
       {
         getValue: (hour: ForecastCache1hr) => {
-          if (hour.landing_wind === null || hour.landing_gust === null || hour.landing_wind_direction === null) {
+          if (hour.landing_wind === undefined || hour.landing_gust === undefined || hour.landing_wind_direction === undefined) {
             return <span className="text-[var(--muted)] opacity-50">-</span>;
           }
 

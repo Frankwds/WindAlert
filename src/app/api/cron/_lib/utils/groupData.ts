@@ -1,5 +1,4 @@
 import { ForecastCache1hr } from '@/lib/supabase/types';
-import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 
 export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCache1hr[]> {
   return data.reduce((acc, dp) => {

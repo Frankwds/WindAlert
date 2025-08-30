@@ -60,7 +60,6 @@ export class ParaglidingLocationService {
         )
       `)
       .eq('is_active', true)
-      // @ts-ignore
       .gte('forecast_cache.time', now.toISOString())
       .lte('forecast_cache.time', twelveHoursFromNow.toISOString())
       .order('name');

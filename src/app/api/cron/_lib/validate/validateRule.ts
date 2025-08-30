@@ -1,5 +1,4 @@
 import {
-  WeatherDataPoint,
   HourlyData,
   DayResult,
   TimeInterval,
