@@ -1,12 +1,12 @@
 'use client';
 
-import { WeatherDataPointYr1h } from "@/lib/yr/types";
+import { ForecastCache1hr } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
 
 interface MinimalHourlyWeatherProps {
-  weatherData: WeatherDataPointYr1h[];
+  weatherData: ForecastCache1hr[];
   timezone: string;
 }
 
@@ -19,7 +19,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     return (
       <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
         <div className="text-center py-8">
-          <div className="text-[var(--foreground)] text-red-500 mb-4">
+          <div className="text-[var(--foreground)] mb-4">
             No hourly weather data available.
           </div>
         </div>
@@ -29,8 +29,8 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
 
   const dataRows = [
     {
-      getValue: (hour: WeatherDataPointYr1h) => {
-        const weatherIcon = getWeatherIcon(hour.symbol_code);
+      getValue: (hour: ForecastCache1hr) => {
+        const weatherIcon = getWeatherIcon(hour.weather_code);
         return weatherIcon ? (
           <Image
             src={weatherIcon.image}
@@ -43,19 +43,19 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       },
     },
     {
-      getValue: (hour: WeatherDataPointYr1h) =>
-        `${Math.round(hour.air_temperature)}°`,
+      getValue: (hour: ForecastCache1hr) =>
+        `${Math.round(hour.temperature)}°`,
     },
     {
-      getValue: (hour: WeatherDataPointYr1h) =>
+      getValue: (hour: ForecastCache1hr) =>
         `${Math.round(hour.wind_speed)} (${Math.round(
-          hour.wind_speed_of_gust
+          hour.wind_gusts
         )})`,
     },
     {
-      getValue: (hour: WeatherDataPointYr1h) => (
+      getValue: (hour: ForecastCache1hr) => (
         <WindDirectionArrow
-          direction={hour.wind_from_direction}
+          direction={hour.wind_direction}
           size={24}
           className="mx-auto"
           color="var(--foreground)"
@@ -71,7 +71,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
           <thead>
             <tr className="border-b border-[var(--border)]">
 
-              {weatherData.map((hour, colIndex) => (
+              {weatherData.slice(0, 5).map((hour, colIndex) => (
                 <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
                   {new Date(hour.time).toLocaleTimeString([], {
                     hour: "2-digit",
@@ -89,7 +89,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
                 key={rowIndex}
                 className={`border-b border-[var(--border)] last:border-b-0`}
               >
-                {weatherData.map((hour, colIndex) => (
+                {weatherData.slice(0, 5).map((hour, colIndex) => (
                   <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
                     <div className="w-12 flex items-center justify-center">
                       {row.getValue(hour)}

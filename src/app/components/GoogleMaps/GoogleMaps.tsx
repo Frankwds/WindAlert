@@ -13,9 +13,8 @@ import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import { createRoot } from 'react-dom/client';
-import { fetchYrData } from '@/lib/yr/apiClient';
-import { mapYrData } from '@/lib/yr/mapping';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
+import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
@@ -144,12 +143,11 @@ const GoogleMaps: React.FC = () => {
             openInfoWindow(marker, infoWindowContent);
 
             try {
-              const yrData = await fetchYrData(location.latitude, location.longitude);
-              const mappedData = mapYrData(yrData);
+              const forecastData = await ForecastCacheService.getAllByLocation(location.id);
 
               const locationWithWeather = {
                 ...location,
-                weatherData: mappedData.weatherDataYr1h,
+                weatherData: forecastData,
               };
 
               root.render(getParaglidingInfoWindow(locationWithWeather));

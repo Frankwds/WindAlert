@@ -55,7 +55,7 @@ export interface ParaglidingMarkerData {
   latitude: number;
   longitude: number;
   altitude: number;
-  weatherData?: WeatherDataPointYr1h[];
+  weatherData?: ForecastCache1hr[];
   n: boolean;
   e: boolean;
   s: boolean;
