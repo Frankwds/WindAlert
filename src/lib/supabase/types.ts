@@ -99,15 +99,15 @@ export interface ForecastCache1hr {
 
   // Surface conditions
   temperature: number;
-  windSpeed: number;
-  windDirection: number;
-  windGusts: number;
+  wind_speed: number;
+  wind_direction: number;
+  wind_gusts: number;
   precipitation: number;
-  precipitationProbability: number;
-  pressureMsl: number;
-  weatherCode: string;
-  isDay: 0 | 1;
-  isPromising: boolean;
+  precipitation_probability: number;
+  pressure_msl: number;
+  weather_code: string;
+  is_day: 0 | 1;
+  is_promising: boolean;
 
   // Landing conditions
   landing_wind?: number;
@@ -115,39 +115,39 @@ export interface ForecastCache1hr {
   landing_wind_direction?: number;
 
   // Atmospheric conditions - Wind at different pressure levels
-  windSpeed1000hPa: number;
-  windDirection1000hPa: number;
-  windSpeed925hPa: number;
-  windDirection925hPa: number;
-  windSpeed850hPa: number;
-  windDirection850hPa: number;
-  windSpeed700hPa: number;
-  windDirection700hPa: number;
+  wind_speed_1000hPa: number;
+  wind_direction_1000hPa: number;
+  wind_speed_925hPa: number;
+  wind_direction_925hPa: number;
+  wind_speed_850hPa: number;
+  wind_direction_850hPa: number;
+  wind_speed_700hPa: number;
+  wind_direction_700hPa: number;
 
   // Atmospheric conditions - Temperature at different pressure levels
-  temperature1000hPa: number;
-  temperature925hPa: number;
-  temperature850hPa: number;
-  temperature700hPa: number;
+  temperature_1000hPa: number;
+  temperature_925hPa: number;
+  temperature_850hPa: number;
+  temperature_700hPa: number;
 
   // Atmospheric conditions - Cloud cover
-  cloudCover: number;
-  cloudCoverLow: number;
-  cloudCoverMid: number;
-  cloudCoverHigh: number;
+  cloud_cover: number;
+  cloud_cover_low: number;
+  cloud_cover_mid: number;
+  cloud_cover_high: number;
 
   // Atmospheric conditions - Stability and convection
   cape: number;
-  convectiveInhibition: number;
-  liftedIndex: number;
-  boundaryLayerHeight: number;
-  freezingLevelHeight: number;
+  convective_inhibition: number;
+  lifted_index: number;
+  boundary_layer_height: number;
+  freezing_level_height: number;
 
   // Atmospheric conditions - Geopotential heights
-  geopotentialHeight1000hPa: number;
-  geopotentialHeight925hPa: number;
-  geopotentialHeight850hPa: number;
-  geopotentialHeight700hPa: number;
+  geopotential_height_1000hPa: number;
+  geopotential_height_925hPa: number;
+  geopotential_height_850hPa: number;
+  geopotential_height_700hPa: number;
 }
 
 export type Database = {
