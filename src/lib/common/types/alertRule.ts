@@ -2,7 +2,7 @@ export type WindDirection = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 
 export interface AlertRule {
   id: number;
-  locationId: number;
+  locationId: string;
   alert_name: string;
   MIN_WIND_SPEED: number;
   MAX_WIND_SPEED: number;

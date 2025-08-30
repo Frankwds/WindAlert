@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { ParaglidingLocation, ParaglidingMarkerData } from './types';
+import { ParaglidingLocation, ParaglidingLocationForCache, ParaglidingMarkerData } from './types';
 
 export class ParaglidingLocationService {
 
@@ -46,6 +46,21 @@ export class ParaglidingLocationService {
     const { data, error } = await supabase
       .from('paragliding_locations')
       .select('id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw')
+      .eq('is_active', true)
+      .order('name');
+
+    if (error) {
+      console.error('Error fetching active locations for markers:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
+
+  static async getAllActiveForCache(): Promise<ParaglidingLocationForCache[]> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude')
       .eq('is_active', true)
       .order('name');
 

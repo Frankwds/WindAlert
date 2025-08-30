@@ -1,6 +1,10 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
 
-const DEFAULT_VALUES = {
+
+export const DEFAULT_ALERT_RULE: AlertRule = {
+  id: 1,
+  alert_name: 'Default Rule',
+  locationId: 'nope',
   MIN_WIND_SPEED: 0,
   MAX_WIND_SPEED: 8,
   MAX_GUST: 10.0,
@@ -16,51 +20,3 @@ const DEFAULT_VALUES = {
   MAX_WIND_SPEED_700hPa: 25, // 700hPa is approximately 3000m altitude
   MIN_CONSECUTIVE_HOURS: 3,
 };
-
-
-const ALERT_RULES_NORMAL: AlertRule[] = [
-  {
-    id: 1,
-    locationId: 1,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 2,
-    locationId: 2,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 3,
-    locationId: 3,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 4,
-    locationId: 4,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 5,
-    locationId: 5,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 6,
-    locationId: 6,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-  {
-    id: 7,
-    locationId: 7,
-    ...DEFAULT_VALUES,
-    alert_name: 'Normal Rule',
-  },
-];
-
-export const ALERT_RULES: AlertRule[] = [...ALERT_RULES_NORMAL];

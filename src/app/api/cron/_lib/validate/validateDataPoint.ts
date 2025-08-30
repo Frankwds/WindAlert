@@ -5,11 +5,10 @@ import {
 } from '@/lib/openMeteo/types';
 
 import { AlertRule } from '@/lib/common/types/alertRule';
-import { ParaglidingLocation } from '@/lib/supabase/types';
 
 function isWindDirectionGood(
   windDirection: number,
-  location: ParaglidingLocation
+  location: string[]
 ): boolean {
   const directions = [
     { key: 'n', min: 337.5, max: 22.5 },
@@ -23,7 +22,7 @@ function isWindDirectionGood(
   ];
 
   for (const dir of directions) {
-    if (location[dir.key as keyof ParaglidingLocation]) {
+    if (location.includes(dir.key)) {
       if (dir.key === 'n') {
         if (windDirection >= dir.min || windDirection < dir.max) {
           return true;
@@ -63,7 +62,7 @@ function isWindShearAcceptable(
 export function isGoodParaglidingCondition(
   dp: WeatherDataPoint,
   alert_rule: AlertRule,
-  location: ParaglidingLocation
+  location: string[]
 ): { isGood: boolean; failures: FailureReason[]; warnings: WarningReason[] } {
   const failures: FailureReason[] = [];
   const warnings: WarningReason[] = [];
@@ -81,7 +80,7 @@ export function isGoodParaglidingCondition(
   if (
     alert_rule.MAX_GUST_DIFFERENCE > 0 &&
     Math.abs(dp.windSpeed10m - dp.windGusts10m) >
-      alert_rule.MAX_GUST_DIFFERENCE
+    alert_rule.MAX_GUST_DIFFERENCE
   ) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_DIFFERENCE);
   }

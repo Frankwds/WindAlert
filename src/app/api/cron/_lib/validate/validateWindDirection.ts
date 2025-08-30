@@ -1,25 +1,40 @@
+import { ParaglidingLocationForCache } from "@/lib/supabase/types";
 import { windDirectionMapping } from "@/lib/utils/getWindDirection";
 
 export function isWindDirectionGood(windDirection: number, allowedDirections: string[]): boolean {
-    if (allowedDirections.length === 0) {
-        return true;
-    }
+  if (allowedDirections.length === 0) {
+    return true;
+  }
 
-    for (const direction of allowedDirections) {
-        const range = windDirectionMapping[direction];
-        if (range) {
-            // Handle the case where the range crosses 360 degrees (e.g., North)
-            if (range.min > range.max) {
-                if (windDirection >= range.min || windDirection <= range.max) {
-                    return true;
-                }
-            } else {
-                if (windDirection >= range.min && windDirection <= range.max) {
-                    return true;
-                }
-            }
+  for (const direction of allowedDirections) {
+    const range = windDirectionMapping[direction];
+    if (range) {
+      // Handle the case where the range crosses 360 degrees (e.g., North)
+      if (range.min > range.max) {
+        if (windDirection >= range.min || windDirection <= range.max) {
+          return true;
         }
+      } else {
+        if (windDirection >= range.min && windDirection <= range.max) {
+          return true;
+        }
+      }
     }
+  }
 
-    return false;
+  return false;
+}
+
+
+export function getWindDirections(location: ParaglidingLocationForCache): string[] {
+  return [
+    location.n ? 'n' : '',
+    location.e ? 'e' : '',
+    location.s ? 's' : '',
+    location.w ? 'w' : '',
+    location.ne ? 'ne' : '',
+    location.se ? 'se' : '',
+    location.sw ? 'sw' : '',
+    location.nw ? 'nw' : '',
+  ].filter(Boolean);
 }
