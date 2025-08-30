@@ -2,7 +2,7 @@ import { WeatherDataPointYr1h } from '../../../../../lib/yr/types';
 import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
-function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: WeatherDataPoint): ForecastCache1hr {
+function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
   return {
     // Basic identification
     time: meteoDataPoint.time,
@@ -10,14 +10,14 @@ function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: W
     is_promising: false, // Will be set in the cron job
 
     // Surface conditions
-    temperature: yrDataPoint.air_temperature,
-    wind_speed: yrDataPoint.wind_speed,
-    wind_direction: yrDataPoint.wind_from_direction,
-    wind_gusts: yrDataPoint.wind_speed_of_gust,
-    precipitation: yrDataPoint.precipitation_amount,
-    precipitation_probability: yrDataPoint.probability_of_precipitation,
-    pressure_msl: yrDataPoint.air_pressure_at_sea_level,
-    weather_code: yrDataPoint.symbol_code,
+    temperature: yrDataPoint?.air_temperature || meteoDataPoint.temperature2m,
+    wind_speed: yrDataPoint?.wind_speed || meteoDataPoint.windSpeed10m,
+    wind_direction: Math.trunc(yrDataPoint?.wind_from_direction || meteoDataPoint.windDirection10m),
+    wind_gusts: yrDataPoint?.wind_speed_of_gust || meteoDataPoint.windGusts10m,
+    precipitation: yrDataPoint?.precipitation_amount || meteoDataPoint.precipitation,
+    precipitation_probability: yrDataPoint?.probability_of_precipitation || meteoDataPoint.precipitationProbability,
+    pressure_msl: yrDataPoint?.air_pressure_at_sea_level || meteoDataPoint.pressureMsl,
+    weather_code: yrDataPoint?.symbol_code || meteoDataPoint.weatherCode,
     is_day: meteoDataPoint.isDay,
 
     // Atmospheric conditions - Wind at different pressure levels
@@ -63,18 +63,10 @@ export function combineDataSources(meteoData: WeatherDataPoint[], yrData: Weathe
   return meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
     if (yrDp) {
-      return combineWeatherData(yrDp, meteoDp);
+      return combineWeatherData(meteoDp, yrDp);
     }
     // If no YR data, still return ForecastCache1hr format
-    return combineWeatherData({
-      time: meteoDp.time,
-      wind_speed: 0,
-      wind_from_direction: 0,
-      wind_speed_of_gust: 0,
-      precipitation_amount: 0,
-      cloud_area_fraction: 0,
-      symbol_code: '',
-    } as WeatherDataPointYr1h, meteoDp);
+    return combineWeatherData(meteoDp);
   });
 }
 
