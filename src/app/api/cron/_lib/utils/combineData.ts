@@ -21,20 +21,20 @@ function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: W
     is_day: meteoDataPoint.isDay,
 
     // Atmospheric conditions - Wind at different pressure levels
-    wind_speed_1000hPa: meteoDataPoint.windSpeed1000hPa,
-    wind_direction_1000hPa: meteoDataPoint.windDirection1000hPa,
-    wind_speed_925hPa: meteoDataPoint.windSpeed925hPa,
-    wind_direction_925hPa: meteoDataPoint.windDirection925hPa,
-    wind_speed_850hPa: meteoDataPoint.windSpeed850hPa,
-    wind_direction_850hPa: meteoDataPoint.windDirection850hPa,
-    wind_speed_700hPa: meteoDataPoint.windSpeed700hPa,
-    wind_direction_700hPa: meteoDataPoint.windDirection700hPa,
+    wind_speed_1000hpa: meteoDataPoint.windSpeed1000hPa,
+    wind_direction_1000hpa: meteoDataPoint.windDirection1000hPa,
+    wind_speed_925hpa: meteoDataPoint.windSpeed925hPa,
+    wind_direction_925hpa: meteoDataPoint.windDirection925hPa,
+    wind_speed_850hpa: meteoDataPoint.windSpeed850hPa,
+    wind_direction_850hpa: meteoDataPoint.windDirection850hPa,
+    wind_speed_700hpa: meteoDataPoint.windSpeed700hPa,
+    wind_direction_700hpa: meteoDataPoint.windDirection700hPa,
 
     // Atmospheric conditions - Temperature at different pressure levels
-    temperature_1000hPa: meteoDataPoint.temperature1000hPa,
-    temperature_925hPa: meteoDataPoint.temperature925hPa,
-    temperature_850hPa: meteoDataPoint.temperature850hPa,
-    temperature_700hPa: meteoDataPoint.temperature700hPa,
+    temperature_1000hpa: meteoDataPoint.temperature1000hPa,
+    temperature_925hpa: meteoDataPoint.temperature925hPa,
+    temperature_850hpa: meteoDataPoint.temperature850hPa,
+    temperature_700hpa: meteoDataPoint.temperature700hPa,
 
     // Atmospheric conditions - Cloud cover
     cloud_cover: meteoDataPoint.cloudCover,
@@ -50,10 +50,10 @@ function combineWeatherData(yrDataPoint: WeatherDataPointYr1h, meteoDataPoint: W
     freezing_level_height: meteoDataPoint.freezingLevelHeight,
 
     // Atmospheric conditions - Geopotential heights
-    geopotential_height_1000hPa: meteoDataPoint.geopotentialHeight1000hPa,
-    geopotential_height_925hPa: meteoDataPoint.geopotentialHeight925hPa,
-    geopotential_height_850hPa: meteoDataPoint.geopotentialHeight850hPa,
-    geopotential_height_700hPa: meteoDataPoint.geopotentialHeight700hPa,
+    geopotential_height_1000hpa: meteoDataPoint.geopotentialHeight1000hPa,
+    geopotential_height_925hpa: meteoDataPoint.geopotentialHeight925hPa,
+    geopotential_height_850hpa: meteoDataPoint.geopotentialHeight850hPa,
+    geopotential_height_700hpa: meteoDataPoint.geopotentialHeight700hPa,
   };
 }
 

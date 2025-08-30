@@ -115,20 +115,20 @@ export interface ForecastCache1hr {
   landing_wind_direction?: number;
 
   // Atmospheric conditions - Wind at different pressure levels
-  wind_speed_1000hPa: number;
-  wind_direction_1000hPa: number;
-  wind_speed_925hPa: number;
-  wind_direction_925hPa: number;
-  wind_speed_850hPa: number;
-  wind_direction_850hPa: number;
-  wind_speed_700hPa: number;
-  wind_direction_700hPa: number;
+  wind_speed_1000hpa: number;
+  wind_direction_1000hpa: number;
+  wind_speed_925hpa: number;
+  wind_direction_925hpa: number;
+  wind_speed_850hpa: number;
+  wind_direction_850hpa: number;
+  wind_speed_700hpa: number;
+  wind_direction_700hpa: number;
 
   // Atmospheric conditions - Temperature at different pressure levels
-  temperature_1000hPa: number;
-  temperature_925hPa: number;
-  temperature_850hPa: number;
-  temperature_700hPa: number;
+  temperature_1000hpa: number;
+  temperature_925hpa: number;
+  temperature_850hpa: number;
+  temperature_700hpa: number;
 
   // Atmospheric conditions - Cloud cover
   cloud_cover: number;
@@ -144,10 +144,10 @@ export interface ForecastCache1hr {
   freezing_level_height: number;
 
   // Atmospheric conditions - Geopotential heights
-  geopotential_height_1000hPa: number;
-  geopotential_height_925hPa: number;
-  geopotential_height_850hPa: number;
-  geopotential_height_700hPa: number;
+  geopotential_height_1000hpa: number;
+  geopotential_height_925hpa: number;
+  geopotential_height_850hpa: number;
+  geopotential_height_700hpa: number;
 }
 
 export type Database = {

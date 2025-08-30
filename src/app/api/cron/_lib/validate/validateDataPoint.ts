@@ -90,24 +90,24 @@ export function isGoodParaglidingCondition(
   }
 
   // Upper atmosphere wind conditions
-  if (dp.wind_speed_925hPa > alert_rule.MAX_WIND_SPEED_925hPa) {
+  if (dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_925_HIGH);
   }
-  if (dp.wind_speed_850hPa > alert_rule.MAX_WIND_SPEED_850hPa) {
+  if (dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_850_HIGH);
   }
-  if (dp.wind_speed_700hPa > alert_rule.MAX_WIND_SPEED_700hPa) {
+  if (dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_700_HIGH);
   }
 
   // Wind shear warnings (not failures)
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_925);
   }
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_850);
   }
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_700);
   }
 

@@ -39,41 +39,41 @@ const HourlyWeatherDetails = ({ hour }: { hour: HourlyData }) => {
           </div>
           <div className="text-[var(--foreground)] font-medium">{Math.round(hour.weatherData.temperature)}</div>
           <div className="font-medium">
-            {hour.weatherData.geopotential_height_925hPa}m
+            {hour.weatherData.geopotential_height_925hpa}m
           </div>
-          <div>{Math.round(hour.weatherData.wind_speed_1000hPa)}</div>
+          <div>{Math.round(hour.weatherData.wind_speed_1000hpa)}</div>
           <div className="flex items-center gap-2">
-            <WindDirectionArrow direction={hour.weatherData.wind_direction_1000hPa} size={20} color="var(--foreground)" />
-            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_1000hPa)}</span>
+            <WindDirectionArrow direction={hour.weatherData.wind_direction_1000hpa} size={20} color="var(--foreground)" />
+            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_1000hpa)}</span>
           </div>
-          <div>{Math.round(hour.weatherData.temperature_1000hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature_1000hpa)}</div>
           <div className="font-medium">
-            {hour.weatherData.geopotential_height_925hPa}m
+            {hour.weatherData.geopotential_height_925hpa}m
           </div>
-          <div>{Math.round(hour.weatherData.wind_speed_925hPa)}</div>
+          <div>{Math.round(hour.weatherData.wind_speed_925hpa)}</div>
           <div className="flex items-center gap-2">
-            <WindDirectionArrow direction={hour.weatherData.wind_direction_925hPa} size={20} color="var(--foreground)" />
-            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_925hPa)}</span>
+            <WindDirectionArrow direction={hour.weatherData.wind_direction_925hpa} size={20} color="var(--foreground)" />
+            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_925hpa)}</span>
           </div>
-          <div>{Math.round(hour.weatherData.temperature_925hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature_925hpa)}</div>
           <div className="font-medium">
-            {hour.weatherData.geopotential_height_850hPa}m
+            {hour.weatherData.geopotential_height_850hpa}m
           </div>
-          <div>{Math.round(hour.weatherData.wind_speed_850hPa)}</div>
+          <div>{Math.round(hour.weatherData.wind_speed_850hpa)}</div>
           <div className="flex items-center gap-2">
-            <WindDirectionArrow direction={hour.weatherData.wind_direction_850hPa} size={20} color="var(--foreground)" />
-            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_850hPa)}</span>
+            <WindDirectionArrow direction={hour.weatherData.wind_direction_850hpa} size={20} color="var(--foreground)" />
+            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_850hpa)}</span>
           </div>
-          <div>{Math.round(hour.weatherData.temperature_850hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature_850hpa)}</div>
           <div className="font-medium">
-            {hour.weatherData.geopotential_height_700hPa}m
+            {hour.weatherData.geopotential_height_700hpa}m
           </div>
-          <div>{Math.round(hour.weatherData.wind_speed_700hPa)}</div>
+          <div>{Math.round(hour.weatherData.wind_speed_700hpa)}</div>
           <div className="flex items-center gap-2">
-            <WindDirectionArrow direction={hour.weatherData.wind_direction_700hPa} size={20} color="var(--foreground)" />
-            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_700hPa)}</span>
+            <WindDirectionArrow direction={hour.weatherData.wind_direction_700hpa} size={20} color="var(--foreground)" />
+            <span className="text-xs">{getWindDirection(hour.weatherData.wind_direction_700hpa)}</span>
           </div>
-          <div>{Math.round(hour.weatherData.temperature_700hPa)}</div>
+          <div>{Math.round(hour.weatherData.temperature_700hpa)}</div>
         </div>
       </div>
       <div className="mt-4">

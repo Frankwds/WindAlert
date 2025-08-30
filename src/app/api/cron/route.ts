@@ -74,11 +74,10 @@ export async function GET() {
           return {
             ...dataPoint,
             location_id: location.id,
-            isPromising: isGood,
+            is_promising: isGood,
           };
         });
-
-        await ForecastCacheService.upsert(validatedForecastData);
+        await ForecastCacheService.upsert(validatedForecastData.slice(0, 72));
       } catch (error) {
         console.error(
           `Failed to process location ${location.id}:`,
