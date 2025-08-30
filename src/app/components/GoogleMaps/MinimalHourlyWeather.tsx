@@ -1,12 +1,12 @@
 'use client';
 
-import { ForecastCache1hr } from "@/lib/supabase/types";
+import { MinimalForecast } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
 
 interface MinimalHourlyWeatherProps {
-  weatherData: ForecastCache1hr[];
+  weatherData: MinimalForecast[];
   timezone: string;
 }
 
@@ -29,7 +29,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
 
   const dataRows = [
     {
-      getValue: (hour: ForecastCache1hr) => {
+      getValue: (hour: MinimalForecast) => {
         const weatherIcon = getWeatherIcon(hour.weather_code);
         return weatherIcon ? (
           <Image
@@ -43,17 +43,17 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       },
     },
     {
-      getValue: (hour: ForecastCache1hr) =>
+      getValue: (hour: MinimalForecast) =>
         `${Math.round(hour.temperature)}°`,
     },
     {
-      getValue: (hour: ForecastCache1hr) =>
+      getValue: (hour: MinimalForecast) =>
         `${Math.round(hour.wind_speed)} (${Math.round(
           hour.wind_gusts
         )})`,
     },
     {
-      getValue: (hour: ForecastCache1hr) => (
+      getValue: (hour: MinimalForecast) => (
         <WindDirectionArrow
           direction={hour.wind_direction}
           size={24}

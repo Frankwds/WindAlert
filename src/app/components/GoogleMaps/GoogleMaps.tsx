@@ -14,7 +14,6 @@ import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clu
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import { createRoot } from 'react-dom/client';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
-import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
@@ -123,38 +122,22 @@ const GoogleMaps: React.FC = () => {
     try {
 
       const [paraglidingLocations, weatherStations] = await Promise.all([
-        ParaglidingLocationService.getAllActiveForMarkers(),
+        ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
         WeatherStationService.getNordicCountriesForMarkers()
       ]);
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
         weatherStations,
-        onMarkerClick: async (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
+        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
           if ('station_id' in location) {
             const content = getWeatherStationInfoWindowContent(location);
             openInfoWindow(marker, content);
           } else {
             const infoWindowContent = document.createElement('div');
             const root = createRoot(infoWindowContent);
-
-            // Initial render with loading state
-            root.render(<LoadingSpinner size="md" text="Loading weather..." />);
+            root.render(getParaglidingInfoWindow(location));
             openInfoWindow(marker, infoWindowContent);
-
-            try {
-              const forecastData = await ForecastCacheService.getAllByLocation(location.id);
-
-              const locationWithWeather = {
-                ...location,
-                weatherData: forecastData,
-              };
-
-              root.render(getParaglidingInfoWindow(locationWithWeather));
-            } catch (error) {
-              console.error('Failed to fetch weather data:', error);
-              root.render(<div>Failed to load weather data.</div>);
-            }
           }
         }
       });

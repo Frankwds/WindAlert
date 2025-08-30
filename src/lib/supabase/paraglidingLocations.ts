@@ -40,21 +40,37 @@ export class ParaglidingLocationService {
   }
 
   /**
-   * Get all active paragliding locations optimized for markers (only essential fields)
+   * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
    */
-  static async getAllActiveForMarkers(): Promise<ParaglidingMarkerData[]> {
+  static async getAllActiveForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
+    const now = new Date();
+    const twelveHoursFromNow = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+
     const { data, error } = await supabase
       .from('paragliding_locations')
-      .select('id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw')
+      .select(`
+        id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw,
+        forecast_cache (
+          time,
+          weather_code,
+          temperature,
+          wind_speed,
+          wind_gusts,
+          wind_direction
+        )
+      `)
       .eq('is_active', true)
+      // @ts-ignore
+      .filter('forecast_cache.time', 'gte', now.toISOString())
+      .filter('forecast_cache.time', 'lte', twelveHoursFromNow.toISOString())
       .order('name');
 
     if (error) {
-      console.error('Error fetching active locations for markers:', error);
+      console.error('Error fetching active locations for markers with forecast:', error);
       throw error;
     }
 
-    return data || [];
+    return (data as ParaglidingMarkerData[]) || [];
   }
 
   static async getAllActiveForCache(): Promise<ParaglidingLocationForCache[]> {

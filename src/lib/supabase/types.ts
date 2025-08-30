@@ -1,5 +1,3 @@
-import { WeatherDataPointYr1h } from '../yr/types';
-
 export interface User {
   id: string;
   email: string;
@@ -49,13 +47,22 @@ export interface WeatherStation {
   updated_at: string;
 }
 
+export interface MinimalForecast {
+  time: string;
+  weather_code: string;
+  temperature: number;
+  wind_speed: number;
+  wind_gusts: number;
+  wind_direction: number;
+}
+
 export interface ParaglidingMarkerData {
   id: string;
-  name: string;
+  name:string;
   latitude: number;
   longitude: number;
   altitude: number;
-  weatherData?: ForecastCache1hr[];
+  weatherData?: MinimalForecast[];
   n: boolean;
   e: boolean;
   s: boolean;
