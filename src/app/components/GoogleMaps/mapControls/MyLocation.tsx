@@ -10,7 +10,7 @@ interface MyLocationProps {
   onCloseInfoWindow: () => void;
 }
 
-const LOCATION_STORAGE_KEY = 'windalert_last_known_location';
+const LOCATION_STORAGE_KEY = 'windlord_my_location';
 
 export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, onCloseInfoWindow }) => {
   const { theme } = useTheme();
@@ -28,12 +28,10 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
   const updateMarker = (location: { lat: number; lng: number }) => {
     if (!map) return;
 
-    // Remove old marker
     if (markerRef.current) {
       markerRef.current.setMap(null);
     }
 
-    // Create new marker
     markerRef.current = new google.maps.Marker({
       position: location,
       map,

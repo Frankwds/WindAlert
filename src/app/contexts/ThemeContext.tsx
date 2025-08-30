@@ -16,7 +16,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check localStorage first, then system preference
-    const savedTheme = localStorage.getItem("theme") as Theme;
+    const savedTheme = localStorage.getItem("windlord_theme") as Theme;
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
@@ -28,7 +28,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Update document attribute and localStorage when theme changes
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("windlord_theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
