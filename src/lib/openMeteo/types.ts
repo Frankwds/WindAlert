@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { openMeteoResponseSchema } from './zod';
+import { ForecastCache1hr } from '../supabase/types';
 
 export interface WeatherDataPoint {
   // Basic identification
@@ -64,7 +65,7 @@ export type WarningReason = {
 
 export interface HourlyData {
   isGood: boolean;
-  weatherData: WeatherDataPoint;
+  weatherData: ForecastCache1hr;
   failures?: FailureReason[];
   warnings?: WarningReason[];
 }

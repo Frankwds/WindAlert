@@ -6,6 +6,7 @@ import { mapYrData } from '@/lib/yr/mapping';
 import { combineDataSources } from '@/app/api/cron/_lib/utils/combineData';
 import { groupByDay } from '@/app/api/cron/_lib/utils/groupData';
 import { WeatherDataPoint } from '@/lib/openMeteo/types';
+import { ForecastCache1hr } from '../supabase/types';
 
 interface Coordinates {
   lat: number;
@@ -14,7 +15,7 @@ interface Coordinates {
 
 export async function getCombinedData(
   coordinates: Coordinates
-): Promise<Record<string, WeatherDataPoint[]>> {
+): Promise<Record<string, ForecastCache1hr[]>> {
   try {
     // Fetch data from both sources
     const [rawMeteoDataArray, rawYrData] = await Promise.all([

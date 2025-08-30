@@ -10,6 +10,7 @@ import {
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { Location } from '@/lib/common/types/location';
 import { isWindDirectionGood } from './validateWindDirection';
+import { ForecastCache1hr } from '@/lib/supabase/types';
 
 /**
  * Checks if the difference between ground wind direction and altitude wind direction
@@ -30,7 +31,7 @@ function isWindShearAcceptable(groundDirection: number, altitudeDirection: numbe
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
  */
 function isGoodParaglidingCondition(
-  dp: WeatherDataPoint,
+  dp: ForecastCache1hr,
   alert_rule: AlertRule,
   location: Location
 ): { isGood: boolean; failures: FailureReason[]; warnings: WarningReason[] } {
@@ -38,44 +39,44 @@ function isGoodParaglidingCondition(
   const warnings: WarningReason[] = [];
 
   // Surface wind conditions
-  if (dp.windSpeed10m < alert_rule.MIN_WIND_SPEED) {
+  if (dp.wind_speed < alert_rule.MIN_WIND_SPEED) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_LOW);
   }
-  if (dp.windSpeed10m > alert_rule.MAX_WIND_SPEED) {
+  if (dp.wind_speed > alert_rule.MAX_WIND_SPEED) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_HIGH);
   }
-  if (alert_rule.MAX_GUST > 0 && dp.windGusts10m > alert_rule.MAX_GUST) {
+  if (alert_rule.MAX_GUST > 0 && dp.wind_gusts > alert_rule.MAX_GUST) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_HIGH);
   }
   if (
     alert_rule.MAX_GUST_DIFFERENCE > 0 &&
-    Math.abs(dp.windSpeed10m - dp.windGusts10m) > alert_rule.MAX_GUST_DIFFERENCE
+    Math.abs(dp.wind_speed - dp.wind_gusts) > alert_rule.MAX_GUST_DIFFERENCE
   ) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_DIFFERENCE);
   }
-  if (!isWindDirectionGood(dp.windDirection10m, location.windDirections)) {
+  if (!isWindDirectionGood(dp.wind_direction, location.windDirections)) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_DIRECTION_BAD);
   }
 
   // Upper atmosphere wind conditions
-  if (dp.windSpeed925hPa > alert_rule.MAX_WIND_SPEED_925hPa) {
+  if (dp.wind_speed_925hPa > alert_rule.MAX_WIND_SPEED_925hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_925_HIGH);
   }
-  if (dp.windSpeed850hPa > alert_rule.MAX_WIND_SPEED_850hPa) {
+  if (dp.wind_speed_850hPa > alert_rule.MAX_WIND_SPEED_850hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_850_HIGH);
   }
-  if (dp.windSpeed700hPa > alert_rule.MAX_WIND_SPEED_700hPa) {
+  if (dp.wind_speed_700hPa > alert_rule.MAX_WIND_SPEED_700hPa) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_700_HIGH);
   }
 
   // Wind shear warnings (not failures)
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection925hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_925);
   }
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection850hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_850);
   }
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection700hPa)) {
+  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_700);
   }
 
@@ -83,13 +84,13 @@ function isGoodParaglidingCondition(
   if (alert_rule.MAX_CAPE > 0 && dp.cape >= alert_rule.MAX_CAPE) {
     failures.push(FAILURE_DESCRIPTIONS.CAPE_HIGH);
   }
-  if (dp.liftedIndex < alert_rule.MIN_LIFTED_INDEX) {
+  if (dp.lifted_index < alert_rule.MIN_LIFTED_INDEX) {
     failures.push(FAILURE_DESCRIPTIONS.LIFTED_INDEX_LOW);
   }
-  if (dp.liftedIndex > alert_rule.MAX_LIFTED_INDEX) {
+  if (dp.lifted_index > alert_rule.MAX_LIFTED_INDEX) {
     failures.push(FAILURE_DESCRIPTIONS.LIFTED_INDEX_HIGH);
   }
-  if (dp.convectiveInhibition <= alert_rule.MIN_CONVECTIVE_INHIBITION) {
+  if (dp.convective_inhibition <= alert_rule.MIN_CONVECTIVE_INHIBITION) {
     failures.push(FAILURE_DESCRIPTIONS.CONVECTIVE_INHIBITION_LOW);
   }
 
@@ -99,10 +100,10 @@ function isGoodParaglidingCondition(
   if (dp.precipitation > alert_rule.MAX_PRECIPITATION) {
     failures.push(FAILURE_DESCRIPTIONS.PRECIPITATION_HIGH);
   }
-  if (dp.cloudCover >= alert_rule.MAX_CLOUD_COVER) {
+  if (dp.cloud_cover >= alert_rule.MAX_CLOUD_COVER) {
     failures.push(FAILURE_DESCRIPTIONS.CLOUD_COVER_HIGH);
   }
-  if (!ACCEPTABLE_WEATHER_CODES.includes(dp.weatherCode)) {
+  if (!ACCEPTABLE_WEATHER_CODES.includes(dp.weather_code)) {
     failures.push(FAILURE_DESCRIPTIONS.WEATHER_CODE_BAD);
   }
 
@@ -169,13 +170,13 @@ function findConsecutiveGoodIntervals(
  * Validates weather data against alert rules and returns periods of good conditions
  */
 export function validateWeather(
-  groupedData: Record<string, WeatherDataPoint[]>,
+  groupedData: Record<string, ForecastCache1hr[]>,
   alert_rule: AlertRule,
   location: Location
 ): { overallResult: 'positive' | 'negative'; dailyData: DayResult[] } {
   const dailyData: DayResult[] = Object.entries(groupedData).map(([date, dayData]) => {
     // Filter for daylight hours only using the isDay field
-    const relevantHours = dayData.filter(dp => dp.isDay);
+    const relevantHours = dayData.filter(dp => dp.is_day === 1);
 
     // Check conditions for each hour
     const hourlyData: HourlyData[] = relevantHours.map(dp => {
