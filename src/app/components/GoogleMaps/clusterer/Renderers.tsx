@@ -1,5 +1,5 @@
 import { Cluster, Renderer } from "@googlemaps/markerclusterer";
-import { createParaglidingMarkerElementWithWind, createWeatherStationMarkerElement } from "../Markers";
+import { createParaglidingMarkerElementWithDirection, createWeatherStationMarkerElement } from "../Markers";
 import { ParaglidingMarkerData } from "@/lib/supabase/types";
 
 export class WeatherStationClusterRenderer implements Renderer {
@@ -34,17 +34,17 @@ export class ParaglidingClusterRenderer implements Renderer {
       latitude: position.lat(),
       longitude: position.lng(),
       altitude: 0,
-      n: true,
-      ne: true,
-      e: true,
-      se: true,
-      s: true,
-      sw: true,
-      w: true,
-      nw: true,
+      n: false,
+      ne: false,
+      e: false,
+      se: false,
+      s: false,
+      sw: false,
+      w: false,
+      nw: false,
     };
 
-    const markerElement = createParaglidingMarkerElementWithWind(clusterLocationData);
+    const markerElement = createParaglidingMarkerElementWithDirection(clusterLocationData);
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,

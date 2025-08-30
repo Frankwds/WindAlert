@@ -1,4 +1,4 @@
-import { ParaglidingLocationForCache } from "@/lib/supabase/types";
+import { ParaglidingLocationForCache, ParaglidingMarkerData } from "@/lib/supabase/types";
 import { windDirectionMapping } from "@/lib/utils/getWindDirection";
 
 export function isWindDirectionGood(windDirection: number, allowedDirections: string[]): boolean {
@@ -26,15 +26,3 @@ export function isWindDirectionGood(windDirection: number, allowedDirections: st
 }
 
 
-export function getWindDirections(location: ParaglidingLocationForCache): string[] {
-  return [
-    location.n ? 'n' : '',
-    location.e ? 'e' : '',
-    location.s ? 's' : '',
-    location.w ? 'w' : '',
-    location.ne ? 'ne' : '',
-    location.se ? 'se' : '',
-    location.sw ? 'sw' : '',
-    location.nw ? 'nw' : '',
-  ].filter(Boolean);
-}

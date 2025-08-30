@@ -10,7 +10,7 @@ import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { ForecastCache1hr } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
-import { getWindDirections } from './_lib/validate/validateWindDirection';
+import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 export async function GET() {
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
@@ -69,7 +69,7 @@ export async function GET() {
           const { isGood } = isGoodParaglidingCondition(
             dataPoint,
             DEFAULT_ALERT_RULE,
-            getWindDirections(location)
+            locationToWindDirectionSymbols(location)
           );
           return {
             ...dataPoint,

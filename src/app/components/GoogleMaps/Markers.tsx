@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 // Marker components using PNG images
 export const ParaglidingMarker: React.FC = () => {
@@ -29,7 +30,7 @@ export const WeatherStationMarker: React.FC = () => {
   );
 };
 
-const createWindArrowSvg = (windDirections: ParaglidingMarkerData): SVGElement => {
+const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("width", "40");
@@ -64,7 +65,7 @@ const createWindArrowSvg = (windDirections: ParaglidingMarkerData): SVGElement =
   };
 
   directions.forEach(({ name, angle }) => {
-    const isVisible = windDirections[name as keyof ParaglidingMarkerData];
+    const isVisible = directionSymbols.includes(name);
     if (isVisible) {
       const path = document.createElementNS(svgNS, "path");
       path.setAttribute("d", getArcPath(angle - 20, angle + 20));
@@ -88,7 +89,7 @@ export const createParaglidingMarkerElement = (): HTMLElement => {
   return img;
 };
 
-export const createParaglidingMarkerElementWithWind = (location: ParaglidingMarkerData): HTMLElement => {
+export const createParaglidingMarkerElementWithDirection = (location: ParaglidingMarkerData): HTMLElement => {
   const container = document.createElement('div');
   container.style.position = 'relative';
   container.style.width = '32px';
@@ -104,7 +105,7 @@ export const createParaglidingMarkerElementWithWind = (location: ParaglidingMark
   img.style.zIndex = '1';
   img.draggable = false;
 
-  const svg = createWindArrowSvg(location);
+  const svg = createDirectionCircle(locationToWindDirectionSymbols(location));
   svg.style.position = 'absolute';
   svg.style.top = '-4px'; // Center 40px svg around 32px container
   svg.style.left = '-4px';
