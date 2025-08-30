@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ALERT_RULES } from "@/app/api/cron/mockdata/alert-rules";
 import { LocationResult } from "@/lib/openMeteo/types";
 import { getCombinedData } from "@/lib/utils/getCombinedData";
 import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
@@ -11,6 +10,7 @@ import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
 import { Location } from "@/lib/common/types/location";
 import FailureCard from "@/app/components/FailureCard";
 import WarningCard from "@/app/components/WarningCard";
+import { DEFAULT_ALERT_RULE } from "../api/cron/mockdata/alert-rules";
 
 
 interface Props {
@@ -24,10 +24,8 @@ export default function LocationAlertRules({ location }: Props) {
   useEffect(() => {
     async function validateAlertRules() {
       try {
-        // Get all alert rules for this location
-        const locationAlertRules = ALERT_RULES.filter(
-          (rule) => rule.locationId === location.id
-        );
+        // Get all alert rules for this location. there is only one for now
+        const locationAlertRules = DEFAULT_ALERT_RULE;
 
         // Get weather data for the location
         const weatherData = await getCombinedData({
@@ -37,7 +35,7 @@ export default function LocationAlertRules({ location }: Props) {
 
         // Validate each alert rule
         const results = await Promise.all(
-          locationAlertRules.map(async (alertRule) => {
+          [locationAlertRules].map(async (alertRule) => {
             const { overallResult, dailyData } = validateWeather(
               weatherData,
               alertRule,
