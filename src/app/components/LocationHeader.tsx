@@ -24,7 +24,7 @@ export default function LocationHeader({ name, description, windDirections }: Lo
             }`}
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        {description.length > 100 && (
+        {description.length > 400 && (
           <div className={`relative ${isExpanded ? 'hidden' : 'block'}`}>
             <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent dark:from-gray-900 dark:to-transparent" />
             <button

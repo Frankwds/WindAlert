@@ -114,8 +114,6 @@ const GoogleMaps: React.FC = () => {
 
   const handleLocationUpdate = (location: { lat: number; lng: number }) => {
     if (mapInstance) {
-      // Only center the map if this is a new location request (not initial cached location)
-      // This prevents the map from jumping when the component first loads with cached location
       const shouldCenterMap = userLocationMarker !== null;
 
       if (shouldCenterMap) {
@@ -123,12 +121,10 @@ const GoogleMaps: React.FC = () => {
         mapInstance.setZoom(12);
       }
 
-      // Remove the old marker
       if (userLocationMarker) {
         userLocationMarker.setMap(null);
       }
 
-      // Create a new marker for the user's location (the "blue dot")
       const blueDotIcon = {
         path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
         fillColor: '#4285F4',
