@@ -11,7 +11,7 @@ export class ForecastCacheService {
     endTime: string
   ): Promise<ForecastCache1hr[]> {
     const { data, error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .select('*')
       .eq('location_id', locationId)
       .gte('time', startTime)
@@ -31,7 +31,7 @@ export class ForecastCacheService {
    */
   static async getLatestByLocation(locationId: string): Promise<ForecastCache1hr | null> {
     const { data, error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .select('*')
       .eq('location_id', locationId)
       .order('time', { ascending: false })
@@ -51,7 +51,7 @@ export class ForecastCacheService {
    */
   static async getAllByLocation(locationId: string): Promise<ForecastCache1hr[]> {
     const { data, error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .select('*')
       .eq('location_id', locationId)
       .order('time');
@@ -69,7 +69,7 @@ export class ForecastCacheService {
    */
   static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
     const { error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .upsert(forecastData, { onConflict: 'time,location_id' });
 
     if (error) {
@@ -83,7 +83,7 @@ export class ForecastCacheService {
    */
   static async deleteOldData(beforeTime: string): Promise<void> {
     const { error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .delete()
       .lt('time', beforeTime);
 
@@ -98,7 +98,7 @@ export class ForecastCacheService {
    */
   static async getPromisingForecasts(locationId: string): Promise<ForecastCache1hr[]> {
     const { data, error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .select('*')
       .eq('location_id', locationId)
       .eq('isPromising', true)
@@ -120,7 +120,7 @@ export class ForecastCacheService {
     locationIds: string[]
   ): Promise<ForecastCache1hr[]> {
     const { data, error } = await supabase
-      .from('WEATHER_FORECAST_72h')
+      .from('forecast_cache')
       .select('*')
       .eq('time', time)
       .in('location_id', locationIds);

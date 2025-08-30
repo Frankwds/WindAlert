@@ -154,7 +154,7 @@ export type Database = {
         Update: Partial<Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>>;
       };
 
-      WEATHER_FORECAST_72h: {
+      forecast_cache: {
         Row: ForecastCache1hr;
         Insert: Omit<ForecastCache1hr, 'created_at' | 'updated_at'>;
         Update: Partial<Omit<ForecastCache1hr, 'created_at' | 'updated_at'>>;
