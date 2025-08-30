@@ -4,6 +4,7 @@ import GoogleMaps from "@/app/components/GoogleMapsStatic";
 import WindyWidget from "@/app/components/windyWidget";
 import LocationAlertRules from "@/app/components/locationAlertRules";
 import LocationHeader from "@/app/components/LocationHeader";
+import { ForecastCacheService } from "@/lib/supabase/forecastCache";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 
 interface Props {
@@ -17,6 +18,8 @@ export default async function LocationPage({ params }: Props) {
   if (!location) {
     notFound();
   }
+
+  const forecastData = await ForecastCacheService.getAllByLocation(locationId);
 
   const windDirections = [
     { label: "n", value: location.n },
@@ -50,12 +53,11 @@ export default async function LocationPage({ params }: Props) {
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
-        takeoffLat={location.latitude}
-        takeoffLong={location.longitude}
+        forecast={forecastData}
         timezone={'Europe/Oslo'}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <LocationAlertRules location={locationForAlerts} />
+      <LocationAlertRules location={locationForAlerts} forecast={forecastData} />
     </div>
   );
 }
