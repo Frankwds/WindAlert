@@ -12,7 +12,7 @@ interface WeatherCardProps {
 }
 
 export default function WeatherCard({ hour, className = "", compact = false }: WeatherCardProps) {
-  const weatherIcon = getWeatherIcon(hour.weatherData.weatherCode);
+  const weatherIcon = getWeatherIcon(hour.weatherData.weather_code);
 
   return (
     <div className={`flex items-center w-full gap-4 ${className}`}>
@@ -42,13 +42,13 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
       <div className="flex-shrink-0 text-right">
         <div className="flex items-center gap-2 text-[var(--foreground)]">
           <WindDirectionArrow
-            direction={hour.weatherData.windDirection10m}
+            direction={hour.weatherData.wind_direction}
             size={20}
             color="var(--foreground)"
           />
           <div className="text-sm">
             <div className="font-medium">
-              {Math.round(hour.weatherData.windSpeed10m)} ( {Math.round(hour.weatherData.windGusts10m)}) m/s
+              {Math.round(hour.weatherData.wind_speed)} ( {Math.round(hour.weatherData.wind_gusts)}) m/s
             </div>
           </div>
         </div>
