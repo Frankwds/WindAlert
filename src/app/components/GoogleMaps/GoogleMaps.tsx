@@ -14,6 +14,7 @@ import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clu
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import { createRoot } from 'react-dom/client';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
+import { dataCache } from '@/lib/data-cache';
 
 const MAP_STATE_KEY = 'windlordMapState';
 
@@ -92,7 +93,7 @@ const GoogleMaps: React.FC = () => {
   }, [mapInstance, closeInfoWindow]);
 
   const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
-    if (windDirections.length === 0) return markers; // Show all paragliding if none selected
+    if (windDirections.length === 0) return markers;
 
     return markers.filter(marker => {
       const locationData = (marker as any).locationData as ParaglidingMarkerData;
@@ -147,11 +148,21 @@ const GoogleMaps: React.FC = () => {
 
   const loadAllMarkers = useCallback(async () => {
     try {
+      let paraglidingLocations = dataCache.getParaglidingLocations();
+      let weatherStations = dataCache.getWeatherStations();
 
-      const [paraglidingLocations, weatherStations] = await Promise.all([
-        ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-        WeatherStationService.getNordicCountriesForMarkers()
-      ]);
+      if (!paraglidingLocations || !weatherStations) {
+        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
+          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
+          WeatherStationService.getNordicCountriesForMarkers()
+        ]);
+
+        paraglidingLocations = fetchedParaglidingLocations;
+        weatherStations = fetchedWeatherStations;
+
+        dataCache.setParaglidingLocations(paraglidingLocations);
+        dataCache.setWeatherStations(weatherStations);
+      }
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
