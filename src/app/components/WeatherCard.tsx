@@ -9,9 +9,10 @@ interface WeatherCardProps {
   hour: HourlyData;
   className?: string;
   compact?: boolean; // For use in headers
+  timeZone: string;
 }
 
-export default function WeatherCard({ hour, className = "", compact = false }: WeatherCardProps) {
+export default function WeatherCard({ hour, className = "", compact = false, timeZone }: WeatherCardProps) {
   const weatherIcon = getWeatherIcon(hour.weatherData.weather_code);
 
   return (
@@ -30,7 +31,12 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
         )}
         <div className="min-w-0">
           <h3 className="text-lg font-semibold text-[var(--foreground)]">
-            {hour.weatherData.time.split("T")[1]}
+            {new Date(hour.weatherData.time).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+              timeZone: timeZone,
+            })}
           </h3>
           {!compact && (
             <p className="text-[var(--muted)] text-sm truncate">

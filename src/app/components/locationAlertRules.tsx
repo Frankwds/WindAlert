@@ -64,39 +64,35 @@ export default function LocationAlertRules({ location, forecast }: Props) {
         <Collapsible
           key={validationResult.alert_name}
           title={title}
-          className={`${
-            validationResult.result === "positive"
-              ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
-              : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
-          } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
+          className={`${validationResult.result === "positive"
+            ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
+            : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
+            } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
         >
           {validationResult.dailyData.map((day) => (
             <Collapsible
               key={day.date}
               title={`${new Date(day.date).toLocaleDateString("en-US", {
                 weekday: "long",
-              })}${
-                day.positiveIntervals.length > 0
-                  ? ` - ${day.positiveIntervals
-                      .map((interval) => `${interval.start}-${interval.end}`)
-                      .join(", ")}`
-                  : ""
-              }`}
-              className={`${
-                day.result === "positive"
-                  ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
-                  : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
-              } rounded-md shadow-sm my-1`}
+              })}${day.positiveIntervals.length > 0
+                ? ` - ${day.positiveIntervals
+                  .map((interval) => `${interval.start}-${interval.end}`)
+                  .join(", ")}`
+                : ""
+                }`}
+              className={`${day.result === "positive"
+                ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
+                : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
+                } rounded-md shadow-sm my-1`}
             >
               {day.hourlyData.map((hour, index) => (
                 <Collapsible
                   key={index}
-                  title={<WeatherCard hour={hour} compact={true} />}
-                  className={`${
-                    hour.isGood
-                      ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
-                      : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
-                  } rounded-md shadow-[var(--shadow-sm)] my-1`}
+                  title={<WeatherCard hour={hour} compact={true} timeZone={location.timezone} />}
+                  className={`${hour.isGood
+                    ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+                    : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+                    } rounded-md shadow-[var(--shadow-sm)] my-1`}
                 >
                   <div>
                     {!hour.isGood && hour.failures && (

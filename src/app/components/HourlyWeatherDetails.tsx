@@ -28,7 +28,7 @@ const HourlyWeatherDetails = ({ hour }: { hour: HourlyData }) => {
           <div className="font-semibold">Wind Dir.</div>
           <div className="font-semibold">Temp. (°C)</div>
 
-          <div className="font-medium">10m</div>
+          <div className="font-medium">0m</div>
           <div className="text-[var(--foreground)]">
             <span className="font-medium">{Math.round(hour.weatherData.wind_speed)} ( {Math.round(hour.weatherData.wind_gusts)})</span>
 
