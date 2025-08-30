@@ -1,30 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 interface FilterControlProps {
+  showParagliding: boolean;
+  showWeatherStations: boolean;
   onParaglidingFilterChange: (isVisible: boolean) => void;
   onWeatherStationFilterChange: (isVisible: boolean) => void;
 }
 
 export const FilterControl: React.FC<FilterControlProps> = ({
+  showParagliding,
+  showWeatherStations,
   onParaglidingFilterChange,
   onWeatherStationFilterChange,
 }) => {
-  const [showParagliding, setShowParagliding] = useState(true);
-  const [showWeatherStations, setShowWeatherStations] = useState(true);
-
   const handleParaglidingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isVisible = e.target.checked;
-    setShowParagliding(isVisible);
-    onParaglidingFilterChange(isVisible);
+    onParaglidingFilterChange(e.target.checked);
   };
 
   const handleWeatherStationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isVisible = e.target.checked;
-    setShowWeatherStations(isVisible);
-    onWeatherStationFilterChange(isVisible);
+    onWeatherStationFilterChange(e.target.checked);
   };
 
   return (

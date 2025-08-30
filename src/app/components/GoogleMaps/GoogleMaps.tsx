@@ -15,6 +15,27 @@ import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/
 import { createRoot } from 'react-dom/client';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 
+const MAP_STATE_KEY = 'windlordMapState';
+
+const getInitialState = () => {
+  if (typeof window !== 'undefined') {
+    const savedState = localStorage.getItem(MAP_STATE_KEY);
+    if (savedState) {
+      try {
+        const parsedState = JSON.parse(savedState);
+        // Basic validation
+        if (parsedState.center && typeof parsedState.zoom === 'number') {
+          return parsedState;
+        }
+      } catch (e) {
+        console.error('Could not parse map state from local storage', e);
+        return null;
+      }
+    }
+  }
+  return null;
+};
+
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
   DEFAULT_ZOOM: 5,
@@ -30,6 +51,8 @@ const CLUSTERER_CONFIG = {
 const GoogleMaps: React.FC = () => {
   useInfoWindowStyles();
 
+  const [initialMapState] = useState(getInitialState);
+
   const mapRef = useRef<HTMLDivElement>(null);
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
@@ -40,11 +63,19 @@ const GoogleMaps: React.FC = () => {
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
 
-  const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(true);
-  const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(true);
-  const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>([]);
+  const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(
+    initialMapState?.showParaglidingMarkers ?? true
+  );
+  const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(
+    initialMapState?.showWeatherStationMarkers ?? true
+  );
+  const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>(
+    initialMapState?.selectedWindDirections ?? []
+  );
   const [windFilterExpanded, setWindFilterExpanded] = useState(false);
-  const [windFilterAndOperator, setWindFilterAndOperator] = useState<boolean>(true);
+  const [windFilterAndOperator, setWindFilterAndOperator] = useState<boolean>(
+    initialMapState?.windFilterAndOperator ?? true
+  );
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -171,8 +202,8 @@ const GoogleMaps: React.FC = () => {
         if (!mapRef.current) return;
 
         const map = new google.maps.Map(mapRef.current, {
-          center: MAP_CONFIG.DEFAULT_CENTER,
-          zoom: MAP_CONFIG.DEFAULT_ZOOM,
+          center: initialMapState?.center ?? MAP_CONFIG.DEFAULT_CENTER,
+          zoom: initialMapState?.zoom ?? MAP_CONFIG.DEFAULT_ZOOM,
           mapTypeId: google.maps.MapTypeId.TERRAIN,
           mapId: MAP_CONFIG.MAP_ID,
           streetViewControl: false,
@@ -203,6 +234,39 @@ const GoogleMaps: React.FC = () => {
     initMap();
 
   }, [closeInfoWindow]);
+
+  useEffect(() => {
+    if (!mapInstance) {
+      return;
+    }
+
+    const saveState = () => {
+      const center = mapInstance.getCenter();
+      const zoom = mapInstance.getZoom();
+
+      const mapState = {
+        center: center ? { lat: center.lat(), lng: center.lng() } : MAP_CONFIG.DEFAULT_CENTER,
+        zoom: zoom || MAP_CONFIG.DEFAULT_ZOOM,
+        showParaglidingMarkers,
+        showWeatherStationMarkers,
+        selectedWindDirections,
+        windFilterAndOperator,
+      };
+      localStorage.setItem(MAP_STATE_KEY, JSON.stringify(mapState));
+    };
+
+    // Add listeners for map events
+    const zoomListener = mapInstance.addListener('zoom_changed', saveState);
+    const dragListener = mapInstance.addListener('dragend', saveState);
+
+    // Save state whenever filters change
+    saveState();
+
+    return () => {
+      google.maps.event.removeListener(zoomListener);
+      google.maps.event.removeListener(dragListener);
+    };
+  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator]);
 
   useEffect(() => {
     if (mapInstance) {
@@ -262,6 +326,8 @@ const GoogleMaps: React.FC = () => {
             <ZoomControls map={mapInstance} />
             <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} onCloseInfoWindow={closeInfoWindow} />
             <FilterControl
+              showParagliding={showParaglidingMarkers}
+              showWeatherStations={showWeatherStationMarkers}
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
