@@ -65,20 +65,18 @@ export async function GET() {
           });
         }
 
-        const validatedForecastData: ForecastCache1hr[] = await Promise.all(
-          combinedData.map(async (dataPoint) => {
-            const { isGood } = isGoodParaglidingCondition(
-              dataPoint,
-              DEFAULT_ALERT_RULE,
-              getWindDirections(location)
-            );
-            return {
-              location_id: location.id,
-              ...dataPoint,
-              isPromising: isGood,
-            };
-          })
-        );
+        const validatedForecastData: ForecastCache1hr[] = combinedData.map((dataPoint) => {
+          const { isGood } = isGoodParaglidingCondition(
+            dataPoint,
+            DEFAULT_ALERT_RULE,
+            getWindDirections(location)
+          );
+          return {
+            ...dataPoint,
+            location_id: location.id,
+            isPromising: isGood,
+          };
+        });
 
         await ForecastCacheService.upsert(validatedForecastData);
       } catch (error) {

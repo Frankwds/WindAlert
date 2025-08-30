@@ -2,37 +2,50 @@ import { z } from 'zod';
 import { openMeteoResponseSchema } from './zod';
 
 export interface WeatherDataPoint {
+  // Basic identification
   time: string;
+
+  // Surface conditions
+  temperature2m: number;
+  windSpeed10m: number;
+  windDirection10m: number;
+  windGusts10m: number;
+  precipitation: number;
+  precipitationProbability: number;
+  pressureMsl: number;
+  weatherCode: string;
+  isDay: 0 | 1;
+
+  // Atmospheric conditions - Wind at different pressure levels
   windSpeed1000hPa: number;
   windDirection1000hPa: number;
-  windDirection925hPa: number;
   windSpeed925hPa: number;
+  windDirection925hPa: number;
   windSpeed850hPa: number;
   windDirection850hPa: number;
-  windDirection700hPa: number;
   windSpeed700hPa: number;
+  windDirection700hPa: number;
+
+  // Atmospheric conditions - Temperature at different pressure levels
   temperature1000hPa: number;
   temperature925hPa: number;
   temperature850hPa: number;
   temperature700hPa: number;
-  temperature2m: number;
-  precipitation: number;
-  precipitationProbability: number;
+
+  // Atmospheric conditions - Cloud cover
   cloudCover: number;
-  windSpeed10m: number;
-  windDirection10m: number;
-  windGusts10m: number;
-  weatherCode: string;
-  pressureMsl: number;
-  convectiveInhibition: number;
   cloudCoverLow: number;
   cloudCoverMid: number;
   cloudCoverHigh: number;
-  isDay: 0 | 1;
-  freezingLevelHeight: number;
+
+  // Atmospheric conditions - Stability and convection
   cape: number;
+  convectiveInhibition: number;
   liftedIndex: number;
   boundaryLayerHeight: number;
+  freezingLevelHeight: number;
+
+  // Atmospheric conditions - Geopotential heights
   geopotentialHeight1000hPa: number;
   geopotentialHeight925hPa: number;
   geopotentialHeight850hPa: number;

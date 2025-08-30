@@ -5,6 +5,7 @@ import {
 } from '@/lib/openMeteo/types';
 
 import { AlertRule } from '@/lib/common/types/alertRule';
+import { ForecastCache1hr } from '@/lib/supabase/types';
 
 function isWindDirectionGood(
   windDirection: number,
@@ -60,7 +61,7 @@ function isWindShearAcceptable(
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
  */
 export function isGoodParaglidingCondition(
-  dp: WeatherDataPoint,
+  dp: ForecastCache1hr,
   alert_rule: AlertRule,
   location: string[]
 ): { isGood: boolean; failures: FailureReason[]; warnings: WarningReason[] } {
@@ -68,23 +69,23 @@ export function isGoodParaglidingCondition(
   const warnings: WarningReason[] = [];
 
   // Surface wind conditions
-  if (dp.windSpeed10m < alert_rule.MIN_WIND_SPEED) {
+  if (dp.windSpeed < alert_rule.MIN_WIND_SPEED) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_LOW);
   }
-  if (dp.windSpeed10m > alert_rule.MAX_WIND_SPEED) {
+  if (dp.windSpeed > alert_rule.MAX_WIND_SPEED) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_HIGH);
   }
-  if (alert_rule.MAX_GUST > 0 && dp.windGusts10m > alert_rule.MAX_GUST) {
+  if (alert_rule.MAX_GUST > 0 && dp.windGusts > alert_rule.MAX_GUST) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_HIGH);
   }
   if (
     alert_rule.MAX_GUST_DIFFERENCE > 0 &&
-    Math.abs(dp.windSpeed10m - dp.windGusts10m) >
+    Math.abs(dp.windSpeed - dp.windGusts) >
     alert_rule.MAX_GUST_DIFFERENCE
   ) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_DIFFERENCE);
   }
-  if (!isWindDirectionGood(dp.windDirection10m, location)) {
+  if (!isWindDirectionGood(dp.windDirection, location)) {
     failures.push(FAILURE_DESCRIPTIONS.WIND_DIRECTION_BAD);
   }
 
@@ -100,13 +101,13 @@ export function isGoodParaglidingCondition(
   }
 
   // Wind shear warnings (not failures)
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection925hPa)) {
+  if (!isWindShearAcceptable(dp.windDirection, dp.windDirection925hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_925);
   }
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection850hPa)) {
+  if (!isWindShearAcceptable(dp.windDirection, dp.windDirection850hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_850);
   }
-  if (!isWindShearAcceptable(dp.windDirection10m, dp.windDirection700hPa)) {
+  if (!isWindShearAcceptable(dp.windDirection, dp.windDirection700hPa)) {
     warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_700);
   }
 
