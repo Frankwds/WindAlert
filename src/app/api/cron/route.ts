@@ -16,7 +16,6 @@ export async function GET() {
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
   const BATCH_SIZE = 50;
 
-  // Process locations in batches of 50
   for (let i = 0; i < paraglidingLocations.length; i += BATCH_SIZE) {
     const batch = paraglidingLocations.slice(i, i + BATCH_SIZE);
     console.log(`Processing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(paraglidingLocations.length / BATCH_SIZE)}: ${batch.length} locations`);
@@ -25,7 +24,6 @@ export async function GET() {
     const longitudes = batch.map((location) => location.longitude);
     const rawMeteoDataArray = await fetchMeteoData(latitudes, longitudes);
 
-    // Process each location in the current batch
     for (const [index, location] of batch.entries()) {
       try {
         const rawMeteoData = rawMeteoDataArray[index];
@@ -87,7 +85,6 @@ export async function GET() {
       }
     }
 
-    // Add a small delay between batches to be respectful to the API
     if (i + BATCH_SIZE < paraglidingLocations.length) {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
