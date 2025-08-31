@@ -9,10 +9,9 @@ interface WeatherCardProps {
   hour: ForecastCache1hr;
   className?: string;
   compact?: boolean; // For use in headers
-  timeZone: string;
 }
 
-export default function WeatherCard({ hour, className = "", compact = false, timeZone }: WeatherCardProps) {
+export default function WeatherCard({ hour, className = "", compact = false }: WeatherCardProps) {
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
@@ -33,9 +32,7 @@ export default function WeatherCard({ hour, className = "", compact = false, tim
           <h3 className="text-lg font-semibold text-[var(--foreground)]">
             {new Date(hour.time).toLocaleTimeString([], {
               hour: "2-digit",
-              minute: "2-digit",
               hour12: false,
-              timeZone: timeZone,
             })}
           </h3>
           {!compact && (

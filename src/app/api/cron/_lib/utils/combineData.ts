@@ -2,10 +2,15 @@ import { WeatherDataPointYr1h } from '../../../../../lib/yr/types';
 import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
-function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
+function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
   return {
     // Basic identification
-    time: meteoDataPoint.time,
+    time: new Date(meteoDataPoint.time + 'Z').toLocaleString([], {
+      dateStyle: 'short',
+      timeStyle: 'short',
+      timeZone: timezone,
+    }),
+
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
     validation_failures: '', // Will be set in the cron job
@@ -59,16 +64,16 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: Weat
   };
 }
 
-export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): ForecastCache1hr[] {
+export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[], timezone: string = 'Europe/Oslo'): ForecastCache1hr[] {
   const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp]));
-
-  return meteoData.map(meteoDp => {
+  const result = meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
     if (yrDp) {
-      return combineWeatherData(meteoDp, yrDp);
+      return combineWeatherData(meteoDp, timezone, yrDp);
     }
     // If no YR data, still return ForecastCache1hr format
-    return combineWeatherData(meteoDp);
+    return combineWeatherData(meteoDp, timezone);
   });
+  return result;
 }
 

@@ -8,14 +8,12 @@ import ExternalLinkIcon from "./ExternalLinkIcon";
 
 interface HourlyWeatherProps {
   forecast: ForecastCache1hr[];
-  timezone: string;
   lat: number;
   long: number;
 }
 
 const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   forecast,
-  timezone,
   lat,
   long,
 }) => {
@@ -121,7 +119,6 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                   {new Date(hour.time).toLocaleTimeString([], {
                     hour: "2-digit",
                     hour12: false,
-                    // timeZone: timezone,
                   })}
                 </th>
               ))}

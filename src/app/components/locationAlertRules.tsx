@@ -13,12 +13,13 @@ import { isGoodParaglidingCondition } from "../api/cron/_lib/validate/validateDa
 interface Props {
   location: ParaglidingLocation;
   forecast: ForecastCache1hr[];
-  timezone: string;
 }
 
 export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCache1hr[]> {
   return data.reduce((acc, dp) => {
-    const date = dp.time.split('T')[0];
+    // Parse the formatted date string "8/31/25, 12:00 PM" to extract just the date
+    const date = new Date(dp.time).toLocaleDateString('en-CA'); // Returns YYYY-MM-DD format
+
     if (!acc[date]) {
       acc[date] = [];
     }
@@ -27,7 +28,8 @@ export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCac
   }, {} as Record<string, ForecastCache1hr[]>);
 }
 
-export default function LocationAlertRules({ location, forecast, timezone }: Props) {
+
+export default function LocationAlertRules({ location, forecast }: Props) {
   if (!forecast || forecast.length === 0) {
     return null;
   }
@@ -67,7 +69,7 @@ export default function LocationAlertRules({ location, forecast, timezone }: Pro
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-        Promising Days and hours
+        Promising:
       </h2>
       <div>
         <Collapsible
@@ -92,7 +94,7 @@ export default function LocationAlertRules({ location, forecast, timezone }: Pro
               {day.map((hour, index) => (
                 <Collapsible
                   key={index}
-                  title={<WeatherCard hour={hour} compact={true} timeZone={timezone} />}
+                  title={<WeatherCard hour={hour} compact={true} />}
                   className={`${hour.is_promising
                     ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
                     : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"

@@ -101,6 +101,7 @@ export interface WeatherStationMarkerData {
 
 export interface ForecastCache1hr {
   // Basic identification
+  // time is a datetime object
   time: string;
   location_id: string;
 
