@@ -1,5 +1,6 @@
 import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./components/navigation";
 import Provider from "./components/Provider";
@@ -14,6 +15,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const metadata: Metadata = {
+  title: "WindLord",
+  description: "Your paragliding weather companion.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
+};
 
 export default function RootLayout({
   children,
