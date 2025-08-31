@@ -61,6 +61,7 @@ export interface MinimalForecast {
   wind_speed: number;
   wind_gusts: number;
   wind_direction: number;
+  is_promising: boolean;
 }
 
 export interface ParaglidingMarkerData {

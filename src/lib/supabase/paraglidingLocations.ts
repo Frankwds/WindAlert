@@ -44,7 +44,7 @@ export class ParaglidingLocationService {
    */
   static async getAllActiveForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
     const now = new Date();
-    const twelveHoursFromNow = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    // const twelveHoursFromNow = new Date(now.getTime() + 12 * 60 * 60 * 1000);
 
     const { data, error } = await supabase
       .from('paragliding_locations')
@@ -56,12 +56,13 @@ export class ParaglidingLocationService {
           temperature,
           wind_speed,
           wind_gusts,
-          wind_direction
+          wind_direction,
+          is_promising
         )
       `)
       .eq('is_active', true)
       .gte('forecast_cache.time', now.toISOString())
-      .lte('forecast_cache.time', twelveHoursFromNow.toISOString())
+      // .lte('forecast_cache.time', twelveHoursFromNow.toISOString())
       .order('name');
 
     if (error) {

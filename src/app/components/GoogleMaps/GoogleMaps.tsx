@@ -8,6 +8,7 @@ import { createAllMarkers } from './MarkerSetup';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass } from '@/app/components/GoogleMaps/mapControls';
+import PromisingFilter from './mapControls/PromisingFilter';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
@@ -77,6 +78,11 @@ const GoogleMaps: React.FC = () => {
   const [windFilterAndOperator, setWindFilterAndOperator] = useState<boolean>(
     initialMapState?.windFilterAndOperator ?? true
   );
+  const [promisingFilter, setPromisingFilter] = useState<{
+    day: number;
+    timeRange: [number, number];
+  } | null>(null);
+  const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -91,6 +97,29 @@ const GoogleMaps: React.FC = () => {
       infoWindowRef.current.open(mapInstance, marker);
     }
   }, [mapInstance, closeInfoWindow]);
+
+  const filterParaglidingMarkersByPromising = (markers: google.maps.marker.AdvancedMarkerElement[]) => {
+    if (!promisingFilter) return markers;
+
+    return markers.filter(marker => {
+      const locationData = (marker as any).locationData as ParaglidingMarkerData;
+      const forecast = locationData.forecast_cache;
+
+      if (!forecast) return false;
+
+      const { day, timeRange } = promisingFilter;
+      const startIndex = day * 24 + timeRange[0];
+      const endIndex = day * 24 + timeRange[1];
+
+      for (let i = startIndex; i < endIndex; i++) {
+        if (forecast[i].is_promising) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+  }
 
   const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
     if (windDirections.length === 0) return markers;
@@ -304,7 +333,7 @@ const GoogleMaps: React.FC = () => {
         {mapInstance && paraglidingMarkers.length > 0 && (
           <Clusterer
             map={mapInstance}
-            markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(paraglidingMarkers, selectedWindDirections) : []}
+            markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(filterParaglidingMarkersByPromising(paraglidingMarkers), selectedWindDirections) : []}
             renderer={new ParaglidingClusterRenderer()}
             algorithmOptions={{
               radius: CLUSTERER_CONFIG.RADIUS,
@@ -337,6 +366,11 @@ const GoogleMaps: React.FC = () => {
               showWeatherStations={showWeatherStationMarkers}
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
+            />
+            <PromisingFilter
+              isExpanded={isPromisingFilterExpanded}
+              setIsExpanded={setIsPromisingFilterExpanded}
+              onFilterChange={setPromisingFilter}
             />
             <WindFilterCompass
               onWindDirectionChange={handleWindDirectionChange}
