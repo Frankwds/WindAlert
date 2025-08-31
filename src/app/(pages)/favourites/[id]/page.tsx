@@ -4,9 +4,14 @@ import GoogleMaps from "@/app/components/GoogleMapsStatic";
 import WindyWidget from "@/app/components/windyWidget";
 import LocationAlertRules from "@/app/components/locationAlertRules";
 import LocationHeader from "@/app/components/LocationHeader";
-import { ForecastCacheService } from "@/lib/supabase/forecastCache";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
-
+import { fetchMeteoData } from "@/lib/openMeteo/apiClient";
+import { openMeteoResponseSchema } from "@/lib/openMeteo/zod";
+import { mapOpenMeteoData } from "@/lib/openMeteo/mapping";
+import { combineDataSources } from "@/app/api/cron/_lib/utils/combineData";
+import { fetchYrData } from "@/lib/yr/apiClient";
+import { mapYrData } from "@/lib/yr/mapping";
+import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -18,46 +23,43 @@ export default async function LocationPage({ params }: Props) {
   if (!location) {
     notFound();
   }
+  const forecastData = await fetchMeteoData(location.latitude, location.longitude);
+  const validatedData = openMeteoResponseSchema.parse(forecastData);
+  const meteoData = mapOpenMeteoData(validatedData);
 
-  const forecastData = await ForecastCacheService.getAllByLocation(locationId);
+  const yrTakeoffData = await fetchYrData(location.latitude, location.longitude);
+  const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
-  const windDirections = [
-    { label: "n", value: location.n },
-    { label: "ne", value: location.ne },
-    { label: "e", value: location.e },
-    { label: "se", value: location.se },
-    { label: "s", value: location.s },
-    { label: "sw", value: location.sw },
-    { label: "w", value: location.w },
-    { label: "nw", value: location.nw },
-  ].filter((direction) => direction.value).map((direction) => direction.label);
+  const combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly, 'Europe/Oslo');
 
 
-  const locationForAlerts = {
-    id: parseInt(location.id),
-    name: location.name,
-    lat: location.latitude,
-    long: location.longitude,
-    elevation: location.altitude,
-    timezone: "Europe/Oslo",
-    description: location.description || "",
-    windDirections: windDirections,
-  };
+  // Slice forecast data to only future hours based on the current time
+  const currentTime = new Date();
+  const firstFutureIndex = combinedData.findIndex((forecast) => {
+    const forecastTime = new Date(forecast.time);
+    return forecastTime.getHours() >= currentTime.getHours();
+  });
+
+  const futureForecast = firstFutureIndex !== -1
+    ? combinedData.slice(firstFutureIndex)
+    : [];
 
   return (
     <div className="py-4">
       <LocationHeader
         name={location.name}
         description={location.description || ""}
-        windDirections={windDirections}
+        windDirections={locationToWindDirectionSymbols(location)}
+        locationId={locationId}
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
-        forecast={forecastData}
-        timezone={'Europe/Oslo'}
+        forecast={futureForecast}
+        lat={location.latitude}
+        long={location.longitude}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <LocationAlertRules location={locationForAlerts} forecast={forecastData} />
+      <LocationAlertRules location={location} forecast={futureForecast} />
     </div>
   );
 }

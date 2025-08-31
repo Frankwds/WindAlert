@@ -18,7 +18,7 @@ export class FavouriteLocationService {
       throw error;
     }
 
-    return data.map((fav) => fav.paragliding_locations);
+    return data.map((fav) => fav.paragliding_locations[0]) as ParaglidingLocation[];
   }
 
   /**

@@ -2,19 +2,22 @@
 
 import { useState } from 'react';
 import WindCompass from './windCompass';
+import FavouriteStar from './FavouriteStar';
 
 interface LocationHeaderProps {
   name: string;
   description: string;
   windDirections: string[];
+  locationId: string;
 }
 
-export default function LocationHeader({ name, description, windDirections }: LocationHeaderProps) {
+export default function LocationHeader({ name, description, windDirections, locationId }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="mb-4">
       <h1 className="text-2xl font-bold mb-4">{name}</h1>
+      <FavouriteStar locationId={locationId} />
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />
       </div>
