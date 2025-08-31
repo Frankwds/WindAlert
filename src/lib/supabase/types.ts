@@ -8,6 +8,13 @@ export interface User {
   updated_at: string;
 }
 
+export interface FavouriteLocation {
+  id: string;
+  user_id: string;
+  location_id: string;
+  created_at: string;
+}
+
 export interface ParaglidingLocation {
   id: string;
   name: string;
@@ -181,7 +188,11 @@ export type Database = {
         Insert: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>>;
       };
-
+      favourite_locations: {
+        Row: FavouriteLocation;
+        Insert: Omit<FavouriteLocation, 'id' | 'created_at'>;
+        Update: Partial<Omit<FavouriteLocation, 'id' | 'created_at'>>;
+      };
       forecast_cache: {
         Row: ForecastCache1hr;
         Insert: Omit<ForecastCache1hr, 'created_at' | 'updated_at'>;

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 
 const links = [
-  { href: "/locations", label: "Locations" },
+  { href: "/favourites", label: "Favourites" },
 ];
 
 export default function Navigation() {
