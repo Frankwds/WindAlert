@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { Session } from "next-auth";
 
 interface Props {
   locationId: string;
@@ -15,21 +16,21 @@ export default function FavouriteStar({ locationId }: Props) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (status === "authenticated" && session?.user?.id) {
-      FavouriteLocationService.isFavourite(session.user.id, locationId)
-        .then((fav) => {
-          setIsFavourite(fav);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Failed to check favourite status:", error);
-          setLoading(false);
-        });
-    } else if (status === "unauthenticated") {
+  const checkFavourite = async (session: Session) => {
+    if (!session.user.id || !locationId) {
       setLoading(false);
+      return;
     }
-  }, [session, status, locationId]);
+    const isFavourite = await FavouriteLocationService.isFavourite(session.user.id, locationId);
+    setIsFavourite(isFavourite);
+    setLoading(false);
+  };
+  useEffect(() => {
+    if (session?.user?.id) {
+      checkFavourite(session);
+    }
+  }, [locationId, session, status]);
+
 
   const toggleFavourite = async () => {
     if (status !== "authenticated" || !session?.user?.id) {

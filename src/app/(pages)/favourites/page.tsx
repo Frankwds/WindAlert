@@ -58,7 +58,7 @@ export default function FavouritesPage() {
             {locations.map((location) => (
               <Link
                 key={location.id}
-                href={`/favourites/${location.id}`}
+                href={`/locations/${location.id}`}
                 className="p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/80 transition-colors"
               >
                 <h2 className="text-xl font-semibold">{location.name}</h2>

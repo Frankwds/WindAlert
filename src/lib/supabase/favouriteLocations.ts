@@ -6,32 +6,37 @@ export class FavouriteLocationService {
    * Get all favourite locations for a user
    */
   static async getAllForUser(
-    userId: string
+    googleId: string
   ): Promise<ParaglidingLocation[]> {
     const { data, error } = await supabase
       .from("favourite_locations")
-      .select("paragliding_locations(*)")
-      .eq("user_id", userId);
+      .select(`
+      paragliding_locations!inner(*)
+    `)
+      .eq("google_id", googleId);
 
     if (error) {
       console.error("Error fetching favourite locations:", error);
       throw error;
     }
 
-    return data.map((fav) => fav.paragliding_locations[0]) as ParaglidingLocation[];
+    const flattenedData: ParaglidingLocation[] = data?.map((fav: any) => fav.paragliding_locations) || [];
+    return flattenedData;
   }
 
   /**
    * Check if a location is a favourite for a user
    */
   static async isFavourite(
-    userId: string,
+    googleId: string,
     locationId: string
   ): Promise<boolean> {
+    console.log("googleId", googleId);
+    console.log("locationId", locationId);
     const { data, error } = await supabase
       .from("favourite_locations")
       .select("id")
-      .eq("user_id", userId)
+      .eq("google_id", googleId)
       .eq("location_id", locationId)
       .single();
 
@@ -48,12 +53,14 @@ export class FavouriteLocationService {
    * Add a location to a user's favourites
    */
   static async add(
-    userId: string,
+    googleId: string,
     locationId: string
   ): Promise<FavouriteLocation> {
+    console.log("googleId", googleId);
+    console.log("locationId", locationId);
     const { data, error } = await supabase
       .from("favourite_locations")
-      .insert({ user_id: userId, location_id: locationId })
+      .insert({ google_id: googleId, location_id: locationId })
       .select()
       .single();
 
@@ -68,11 +75,11 @@ export class FavouriteLocationService {
   /**
    * Remove a location from a user's favourites
    */
-  static async remove(userId: string, locationId: string): Promise<void> {
+  static async remove(googleId: string, locationId: string): Promise<void> {
     const { error } = await supabase
       .from("favourite_locations")
       .delete()
-      .eq("user_id", userId)
+      .eq("google_id", googleId)
       .eq("location_id", locationId);
 
     if (error) {
