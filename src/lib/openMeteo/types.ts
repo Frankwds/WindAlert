@@ -53,21 +53,12 @@ export interface WeatherDataPoint {
   geopotentialHeight700hPa: number;
 }
 
-export type FailureReason = {
-  code: string;
-  description: string;
-};
-
-export type WarningReason = {
-  code: string;
-  description: string;
-};
 
 export interface HourlyData {
   isGood: boolean;
   weatherData: ForecastCache1hr;
-  failures?: FailureReason[];
-  warnings?: WarningReason[];
+  failures?: string;
+  warnings?: string;
 }
 
 export interface TimeInterval {

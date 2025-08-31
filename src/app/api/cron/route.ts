@@ -38,7 +38,7 @@ export async function GET() {
 
         let combinedData = combineDataSources(
           meteoData,
-          mappedYrTakeoffData.weatherDataYr1h
+          mappedYrTakeoffData.weatherDataYrHourly
         );
 
         if (location.landing_latitude && location.landing_longitude) {
@@ -50,7 +50,7 @@ export async function GET() {
 
           combinedData = combinedData.map((dataPoint) => {
             const landingDataPoint =
-              mappedYrLandingData.weatherDataYr1h.find(
+              mappedYrLandingData.weatherDataYrHourly.find(
                 (landingPoint) => landingPoint.time === dataPoint.time
               );
 

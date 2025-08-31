@@ -8,6 +8,8 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: Weat
     time: meteoDataPoint.time,
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
+    validation_failures: '', // Will be set in the cron job
+    validation_warnings: '', // Will be set in the cron job
 
     // Surface conditions
     temperature: yrDataPoint?.air_temperature || meteoDataPoint.temperature2m,

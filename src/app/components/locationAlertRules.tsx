@@ -1,22 +1,33 @@
 "use client";
 
-import { validateWeather } from "@/app/api/cron/_lib/validate/validateRule";
 import Collapsible from "@/app/components/Collapsible";
 import WeatherCard from "@/app/components/WeatherCard";
 import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
-import { Location } from "@/lib/common/types/location";
 import FailureCard from "@/app/components/FailureCard";
 import WarningCard from "@/app/components/WarningCard";
 import { DEFAULT_ALERT_RULE } from "../api/cron/mockdata/alert-rules";
-import { ForecastCache1hr } from "@/lib/supabase/types";
-import { groupByDay } from "../api/cron/_lib/utils/groupData";
+import { ForecastCache1hr, ParaglidingLocation } from "@/lib/supabase/types";
+import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
+import { isGoodParaglidingCondition } from "../api/cron/_lib/validate/validateDataPoint";
 
 interface Props {
-  location: Location;
+  location: ParaglidingLocation;
   forecast: ForecastCache1hr[];
+  timezone: string;
 }
 
-export default function LocationAlertRules({ location, forecast }: Props) {
+export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCache1hr[]> {
+  return data.reduce((acc, dp) => {
+    const date = dp.time.split('T')[0];
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(dp);
+    return acc;
+  }, {} as Record<string, ForecastCache1hr[]>);
+}
+
+export default function LocationAlertRules({ location, forecast, timezone }: Props) {
   if (!forecast || forecast.length === 0) {
     return null;
   }
@@ -24,82 +35,75 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   // Get all alert rules for this location. there is only one for now
   const locationAlertRules = DEFAULT_ALERT_RULE;
 
+  const validatedForecastData: ForecastCache1hr[] = forecast.map((hour) => {
+    const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
+      hour,
+      DEFAULT_ALERT_RULE,
+      locationToWindDirectionSymbols(location)
+    );
+    return {
+      ...hour,
+      location_id: location.id,
+      is_promising: isGood,
+      validation_failures,
+      validation_warnings,
+    };
+  });
+
   // Group forecast data by day
-  const groupedData = groupByDay(forecast);
+  const groupedData = groupByDay(validatedForecastData);
 
-  // Validate each alert rule
-  const { overallResult, dailyData } = validateWeather(
-    groupedData,
-    locationAlertRules,
-    location
-  );
-
-  const validationResult = {
-    alert_name: locationAlertRules.alert_name || `Rule ${locationAlertRules.id}`,
-    locationName: location.name,
-    result: overallResult,
-    dailyData: dailyData,
-    lat: location.lat,
-    long: location.long,
-    elevation: location.elevation,
-  };
-
-  const positiveDays = validationResult.dailyData
-    .filter((day) => day.result === "positive")
+  const positiveDays = Object.values(groupedData)
+    .filter((day) => day.some((dp) => dp.is_promising === true))
     .map((day) =>
-      new Date(day.date).toLocaleDateString("en-US", { weekday: "short" })
+      new Date(day[0].time).toLocaleDateString("en-US", { weekday: "short" })
     );
 
   const title =
     positiveDays.length > 0
-      ? `${validationResult.alert_name} - ${positiveDays.join(", ")}`
-      : validationResult.alert_name;
+      ? `${locationAlertRules.alert_name} - ${positiveDays.join(", ")}`
+      : locationAlertRules.alert_name;
 
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-        Alert Rules
+        Promising Days and hours
       </h2>
       <div>
         <Collapsible
-          key={validationResult.alert_name}
+          key={locationAlertRules.alert_name}
           title={title}
-          className={`${validationResult.result === "positive"
+          className={`${Object.values(groupedData).some((day) => day.some((dp) => dp.is_promising === true)) === true
             ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
             : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
             } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
         >
-          {validationResult.dailyData.map((day) => (
+          {Object.values(groupedData).map((day) => (
             <Collapsible
-              key={day.date}
-              title={`${new Date(day.date).toLocaleDateString("en-US", {
+              key={day[0].time}
+              title={`${new Date(day[0].time).toLocaleDateString("en-US", {
                 weekday: "long",
-              })}${day.positiveIntervals.length > 0
-                ? ` - ${day.positiveIntervals
-                  .map((interval) => `${interval.start}-${interval.end}`)
-                  .join(", ")}`
-                : ""
-                }`}
-              className={`${day.result === "positive"
+              })}`}
+              className={`${day.some((dp) => dp.is_promising === true)
                 ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
                 : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
                 } rounded-md shadow-sm my-1`}
             >
-              {day.hourlyData.map((hour, index) => (
+              {day.map((hour, index) => (
                 <Collapsible
                   key={index}
-                  title={<WeatherCard hour={hour} compact={true} timeZone={location.timezone} />}
-                  className={`${hour.isGood
+                  title={<WeatherCard hour={hour} compact={true} timeZone={timezone} />}
+                  className={`${hour.is_promising
                     ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
                     : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
                     } rounded-md shadow-[var(--shadow-sm)] my-1`}
                 >
                   <div>
-                    {!hour.isGood && hour.failures && (
-                      <FailureCard failures={hour.failures} />
+                    {!hour.is_promising && hour.validation_failures && (
+                      <FailureCard failuresCsv={hour.validation_failures} />
                     )}
-                    {hour.warnings && hour.warnings.length > 0 && (
-                      <WarningCard warnings={hour.warnings} />
+                    {hour.validation_warnings && hour.validation_warnings.length > 0 && (
+                      <WarningCard warningsCsv={hour.validation_warnings} />
                     )}
                     <HourlyWeatherDetails hour={hour} />
                   </div>

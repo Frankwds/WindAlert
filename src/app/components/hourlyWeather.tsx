@@ -9,11 +9,15 @@ import ExternalLinkIcon from "./ExternalLinkIcon";
 interface HourlyWeatherProps {
   forecast: ForecastCache1hr[];
   timezone: string;
+  lat: number;
+  long: number;
 }
 
 const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   forecast,
   timezone,
+  lat,
+  long,
 }) => {
   if (!forecast || forecast.length === 0) {
     return (
@@ -96,7 +100,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
       <div className="mb-4">
         <a
-          href={`https://www.yr.no/en`}
+          href={`https://www.yr.no/en/forecast/daily-table/${lat.toFixed(3)},%20${long.toFixed(3)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
@@ -116,9 +120,8 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                 <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
                   {new Date(hour.time).toLocaleTimeString([], {
                     hour: "2-digit",
-                    minute: "2-digit",
                     hour12: false,
-                    timeZone: timezone,
+                    // timeZone: timezone,
                   })}
                 </th>
               ))}

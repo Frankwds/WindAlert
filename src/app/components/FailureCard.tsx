@@ -1,21 +1,17 @@
 "use client";
 
-import { FailureReason } from "@/lib/openMeteo/types";
+export default function FailureCard({ failuresCsv }: { failuresCsv: string }) {
+  if (!failuresCsv || failuresCsv.length === 0) return null;
 
-interface FailureCardProps {
-  failures: FailureReason[];
-}
-
-export default function FailureCard({ failures }: FailureCardProps) {
-  if (!failures || failures.length === 0) return null;
+  const failureList = failuresCsv.split(',');
 
   return (
     <div>
       <h3 className="text-lg font-semibold mb-3 text-[var(--foreground)]">Failure Reasons</h3>
       <ul className="list-disc list-inside space-y-2">
-        {failures.map((failure, index) => (
+        {failureList.map((failure, index) => (
           <li key={index} className="text-[var(--error)]">
-            {failure.description}
+            {failure}
           </li>
         ))}
       </ul>

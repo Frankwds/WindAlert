@@ -1,8 +1,3 @@
-import {
-  FailureReason,
-  WarningReason,
-} from '@/lib/openMeteo/types';
-
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { ForecastCache1hr } from '@/lib/supabase/types';
 
@@ -63,65 +58,65 @@ export function isGoodParaglidingCondition(
   dp: ForecastCache1hr,
   alert_rule: AlertRule,
   location: string[]
-): { isGood: boolean; failures: FailureReason[]; warnings: WarningReason[] } {
-  const failures: FailureReason[] = [];
-  const warnings: WarningReason[] = [];
+): { isGood: boolean; validation_failures: string; validation_warnings: string } {
+  const failures: string[] = [];
+  const warnings: string[] = [];
 
   // Surface wind conditions
   if (dp.wind_speed < alert_rule.MIN_WIND_SPEED) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_LOW);
+    failures.push(FAILURES.WIND_SPEED_LOW);
   }
   if (dp.wind_speed > alert_rule.MAX_WIND_SPEED) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_HIGH);
+    failures.push(FAILURES.WIND_SPEED_HIGH);
   }
   if (alert_rule.MAX_GUST > 0 && dp.wind_gusts > alert_rule.MAX_GUST) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_HIGH);
+    failures.push(FAILURES.WIND_GUST_HIGH);
   }
   if (
     alert_rule.MAX_GUST_DIFFERENCE > 0 &&
     Math.abs(dp.wind_speed - dp.wind_gusts) >
     alert_rule.MAX_GUST_DIFFERENCE
   ) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_GUST_DIFFERENCE);
+    failures.push(FAILURES.WIND_GUST_DIFFERENCE);
   }
   if (!isWindDirectionGood(dp.wind_direction, location)) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_DIRECTION_BAD);
+    failures.push(FAILURES.WIND_DIRECTION_BAD);
   }
 
   // Upper atmosphere wind conditions
   if (dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_925_HIGH);
+    failures.push(FAILURES.WIND_SPEED_925_HIGH);
   }
   if (dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_850_HIGH);
+    failures.push(FAILURES.WIND_SPEED_850_HIGH);
   }
   if (dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa) {
-    failures.push(FAILURE_DESCRIPTIONS.WIND_SPEED_700_HIGH);
+    failures.push(FAILURES.WIND_SPEED_700_HIGH);
   }
 
   // Wind shear warnings (not failures)
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa)) {
-    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_925);
+    warnings.push(WARNINGS.WIND_SHEAR_925);
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa)) {
-    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_850);
+    warnings.push(WARNINGS.WIND_SHEAR_850);
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa)) {
-    warnings.push(WARNING_DESCRIPTIONS.WIND_SHEAR_700);
+    warnings.push(WARNINGS.WIND_SHEAR_700);
   }
 
   // Thermal and stability conditions
   if (alert_rule.MAX_CAPE > 0 && dp.cape >= alert_rule.MAX_CAPE) {
-    failures.push(FAILURE_DESCRIPTIONS.CAPE_HIGH);
+    failures.push(FAILURES.CAPE_HIGH);
   }
   if (dp.lifted_index < alert_rule.MIN_LIFTED_INDEX) {
-    failures.push(FAILURE_DESCRIPTIONS.LIFTED_INDEX_LOW);
+    failures.push(FAILURES.LIFTED_INDEX_LOW);
   }
   if (dp.lifted_index > alert_rule.MAX_LIFTED_INDEX) {
-    failures.push(FAILURE_DESCRIPTIONS.LIFTED_INDEX_HIGH);
+    failures.push(FAILURES.LIFTED_INDEX_HIGH);
   }
   if (dp.convective_inhibition <= alert_rule.MIN_CONVECTIVE_INHIBITION) {
-    failures.push(FAILURE_DESCRIPTIONS.CONVECTIVE_INHIBITION_LOW);
+    failures.push(FAILURES.CONVECTIVE_INHIBITION_LOW);
   }
 
   // Visual and precipitation conditions
@@ -133,101 +128,44 @@ export function isGoodParaglidingCondition(
   ];
 
   if (dp.precipitation > alert_rule.MAX_PRECIPITATION) {
-    failures.push(FAILURE_DESCRIPTIONS.PRECIPITATION_HIGH);
+    failures.push(FAILURES.PRECIPITATION_HIGH);
   }
   if (dp.cloud_cover >= alert_rule.MAX_CLOUD_COVER) {
-    failures.push(FAILURE_DESCRIPTIONS.CLOUD_COVER_HIGH);
+    failures.push(FAILURES.CLOUD_COVER_HIGH);
   }
   if (!ACCEPTABLE_WEATHER_CODES.includes(dp.weather_code)) {
-    failures.push(FAILURE_DESCRIPTIONS.WEATHER_CODE_BAD);
+    failures.push(FAILURES.WEATHER_CODE_BAD);
   }
 
   return {
     isGood: failures.length === 0,
-    failures,
-    warnings,
+    validation_failures: failures.join(','),
+    validation_warnings: warnings.join(','),
   };
 }
 
 // Failure descriptions for each type of condition that can fail
-const FAILURE_DESCRIPTIONS = {
-  WIND_SPEED_LOW: {
-    code: 'WIND_SPEED_LOW',
-    description: 'Surface wind speed is below the minimum required',
-  },
-  WIND_SPEED_HIGH: {
-    code: 'WIND_SPEED_HIGH',
-    description: 'Surface wind speed exceeds the maximum allowed',
-  },
-  WIND_GUST_HIGH: {
-    code: 'WIND_GUST_HIGH',
-    description: 'Wind gusts exceed the maximum allowed',
-  },
-  WIND_GUST_DIFFERENCE: {
-    code: 'WIND_GUST_DIFFERENCE',
-    description: 'Difference between wind speed and gusts is too high',
-  },
-  WIND_DIRECTION_BAD: {
-    code: 'WIND_DIRECTION_BAD',
-    description: 'Surface wind direction is outside the allowed range',
-  },
-  WIND_SPEED_925_HIGH: {
-    code: 'WIND_SPEED_925_HIGH',
-    description: 'Wind speed at 925hPa exceeds the maximum allowed',
-  },
-  WIND_SPEED_850_HIGH: {
-    code: 'WIND_SPEED_850_HIGH',
-    description: 'Wind speed at 850hPa exceeds the maximum allowed',
-  },
-  WIND_SPEED_700_HIGH: {
-    code: 'WIND_SPEED_700_HIGH',
-    description: 'Wind speed at 700hPa exceeds the maximum allowed',
-  },
-  CAPE_HIGH: {
-    code: 'CAPE_HIGH',
-    description: 'CAPE value exceeds the maximum allowed',
-  },
-  LIFTED_INDEX_LOW: {
-    code: 'LIFTED_INDEX_LOW',
-    description: 'Lifted Index is below the minimum allowed',
-  },
-  LIFTED_INDEX_HIGH: {
-    code: 'LIFTED_INDEX_HIGH',
-    description: 'Lifted Index exceeds the maximum allowed',
-  },
-  CONVECTIVE_INHIBITION_LOW: {
-    code: 'CONVECTIVE_INHIBITION_LOW',
-    description: 'Not enough convective inhibition',
-  },
-  PRECIPITATION_HIGH: {
-    code: 'PRECIPITATION_HIGH',
-    description: 'Precipitation exceeds the maximum allowed',
-  },
-  CLOUD_COVER_HIGH: {
-    code: 'CLOUD_COVER_HIGH',
-    description: 'Cloud cover exceeds the maximum allowed',
-  },
-  WEATHER_CODE_BAD: {
-    code: 'WEATHER_CODE_BAD',
-    description: 'Current weather conditions are not suitable',
-  },
+const FAILURES = {
+  WIND_SPEED_LOW: 'Surface wind speed is below the minimum required',
+  WIND_SPEED_HIGH: 'Surface wind speed exceeds the maximum allowed',
+  WIND_GUST_HIGH: 'Wind gusts exceed the maximum allowed',
+  WIND_GUST_DIFFERENCE: 'Difference between wind speed and gusts is too high',
+  WIND_DIRECTION_BAD: 'Surface wind direction is outside the allowed range',
+  WIND_SPEED_925_HIGH: 'Wind speed at 925hPa exceeds the maximum allowed',
+  WIND_SPEED_850_HIGH: 'Wind speed at 850hPa exceeds the maximum allowed',
+  WIND_SPEED_700_HIGH: 'Wind speed at 700hPa exceeds the maximum allowed',
+  CAPE_HIGH: 'CAPE value exceeds the maximum allowed',
+  LIFTED_INDEX_LOW: 'Lifted Index is below the minimum allowed',
+  LIFTED_INDEX_HIGH: 'Lifted Index exceeds the maximum allowed',
+  CONVECTIVE_INHIBITION_LOW: 'Not enough convective inhibition',
+  PRECIPITATION_HIGH: 'Precipitation exceeds the maximum allowed',
+  CLOUD_COVER_HIGH: 'Cloud cover exceeds the maximum allowed',
+  WEATHER_CODE_BAD: 'Current weather conditions are not suitable',
 } as const;
 
 // Warning descriptions for conditions that should be noted but don't cause failure
-const WARNING_DESCRIPTIONS = {
-  WIND_SHEAR_925: {
-    code: 'WIND_SHEAR_925',
-    description:
-      'Wind direction at 925hPa differs significantly from ground level',
-  },
-  WIND_SHEAR_850: {
-    code: 'WIND_SHEAR_850',
-    description:
-      'Wind direction at 850hPa differs significantly from ground level',
-  },
-  WIND_SHEAR_700: {
-    code: 'WIND_SHEAR_700',
-    description:
-      'Wind direction at 700hPa differs significantly from ground level',
-  },
+const WARNINGS = {
+  WIND_SHEAR_925: 'Wind direction at 925hPa differs significantly from ground level',
+  WIND_SHEAR_850: 'Wind direction at 850hPa differs significantly from ground level',
+  WIND_SHEAR_700: 'Wind direction at 700hPa differs significantly from ground level',
 } as const;

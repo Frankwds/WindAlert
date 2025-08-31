@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { HourlyData } from "../../lib/openMeteo/types";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 import WindDirectionArrow from "./WindDirectionArrow";
+import { ForecastCache1hr } from "@/lib/supabase/types";
 
 interface WeatherCardProps {
-  hour: HourlyData;
+  hour: ForecastCache1hr;
   className?: string;
   compact?: boolean; // For use in headers
   timeZone: string;
 }
 
 export default function WeatherCard({ hour, className = "", compact = false, timeZone }: WeatherCardProps) {
-  const weatherIcon = getWeatherIcon(hour.weatherData.weather_code);
+  const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
     <div className={`flex items-center w-full gap-4 ${className}`}>
@@ -31,7 +31,7 @@ export default function WeatherCard({ hour, className = "", compact = false, tim
         )}
         <div className="min-w-0">
           <h3 className="text-lg font-semibold text-[var(--foreground)]">
-            {new Date(hour.weatherData.time).toLocaleTimeString([], {
+            {new Date(hour.time).toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
               hour12: false,
@@ -48,13 +48,13 @@ export default function WeatherCard({ hour, className = "", compact = false, tim
       <div className="flex-shrink-0 text-right">
         <div className="flex items-center gap-2 text-[var(--foreground)]">
           <WindDirectionArrow
-            direction={hour.weatherData.wind_direction}
+            direction={hour.wind_direction}
             size={20}
             color="var(--foreground)"
           />
           <div className="text-sm">
             <div className="font-medium">
-              {Math.round(hour.weatherData.wind_speed)} ( {Math.round(hour.weatherData.wind_gusts)}) m/s
+              {Math.round(hour.wind_speed)} ( {Math.round(hour.wind_gusts)}) m/s
             </div>
           </div>
         </div>

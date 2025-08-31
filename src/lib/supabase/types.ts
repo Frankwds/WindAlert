@@ -114,7 +114,12 @@ export interface ForecastCache1hr {
   pressure_msl: number;
   weather_code: string;
   is_day: 0 | 1;
+
+  // Validation
   is_promising: boolean;
+  validation_failures: string;
+  validation_warnings: string;
+
 
   // Landing conditions
   landing_wind?: number;
