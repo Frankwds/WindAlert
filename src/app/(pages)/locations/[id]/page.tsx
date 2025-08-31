@@ -18,7 +18,6 @@ interface Props {
 
 export default async function LocationPage({ params }: Props) {
   const locationId = (await params).id;
-  console.log("locationId", locationId);
   const location = await ParaglidingLocationService.getById(locationId);
 
   if (!location) {
@@ -59,7 +58,7 @@ export default async function LocationPage({ params }: Props) {
         lat={location.latitude}
         long={location.longitude}
       />
-      {/* <WindyWidget lat={location.latitude} long={location.longitude} /> */}
+      <WindyWidget lat={location.latitude} long={location.longitude} />
       <LocationAlertRules location={location} forecast={futureForecast} />
     </div>
   );

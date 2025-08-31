@@ -31,8 +31,6 @@ export class FavouriteLocationService {
     googleId: string,
     locationId: string
   ): Promise<boolean> {
-    console.log("googleId", googleId);
-    console.log("locationId", locationId);
     const { data, error } = await supabase
       .from("favourite_locations")
       .select("id")
@@ -56,8 +54,6 @@ export class FavouriteLocationService {
     googleId: string,
     locationId: string
   ): Promise<FavouriteLocation> {
-    console.log("googleId", googleId);
-    console.log("locationId", locationId);
     const { data, error } = await supabase
       .from("favourite_locations")
       .insert({ google_id: googleId, location_id: locationId })
