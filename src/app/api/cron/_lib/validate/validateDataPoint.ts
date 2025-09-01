@@ -63,82 +63,82 @@ export function isGoodParaglidingCondition(
   const warnings: string[] = [];
 
   if (dp.is_day === 0) {
-    failures.push(FAILURES.ITS_NIGHT);
+    failures.push(fail_reasons.night);
+  }
+
+  // Visual and precipitation conditions
+  const good_weather = [
+    'clearsky_day',
+    'fair_day',
+    'partlycloudy_day',
+    'cloudy',
+  ];
+  if (!good_weather.includes(dp.weather_code)) {
+    failures.push(fail_reasons.bad_weather);
   }
   // Surface wind conditions
   if (dp.wind_speed < alert_rule.MIN_WIND_SPEED) {
-    failures.push(FAILURES.WIND_SPEED_LOW);
+    failures.push(fail_reasons.wind_low);
   }
   if (dp.wind_speed > alert_rule.MAX_WIND_SPEED) {
-    failures.push(FAILURES.WIND_SPEED_HIGH);
+    failures.push(fail_reasons.wind_high);
   }
   if (alert_rule.MAX_GUST > 0 && dp.wind_gusts > alert_rule.MAX_GUST) {
-    failures.push(FAILURES.WIND_GUST_HIGH);
+    failures.push(fail_reasons.gust_high);
   }
   if (
     alert_rule.MAX_GUST_DIFFERENCE > 0 &&
     Math.abs(dp.wind_speed - dp.wind_gusts) >
     alert_rule.MAX_GUST_DIFFERENCE
   ) {
-    failures.push(FAILURES.WIND_GUST_DIFFERENCE);
+    failures.push(fail_reasons.gust_difference);
   }
   if (!isWindDirectionGood(dp.wind_direction, location)) {
-    failures.push(FAILURES.WIND_DIRECTION_BAD);
+    failures.push(fail_reasons.direction_wrong);
   }
 
   // Upper atmosphere wind conditions
   if (dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa) {
-    failures.push(FAILURES.WIND_SPEED_925_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_925_HIGH);
   }
   if (dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa) {
-    failures.push(FAILURES.WIND_SPEED_850_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_850_HIGH);
   }
   if (dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa) {
-    failures.push(FAILURES.WIND_SPEED_700_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_700_HIGH);
   }
 
   // Wind shear warnings (not failures)
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa)) {
-    warnings.push(WARNINGS.WIND_SHEAR_925);
+    warnings.push(warn_reasons.WIND_SHEAR_925);
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa)) {
-    warnings.push(WARNINGS.WIND_SHEAR_850);
+    warnings.push(warn_reasons.WIND_SHEAR_850);
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa)) {
-    warnings.push(WARNINGS.WIND_SHEAR_700);
+    warnings.push(warn_reasons.WIND_SHEAR_700);
   }
 
   // Thermal and stability conditions
   if (alert_rule.MAX_CAPE > 0 && dp.cape >= alert_rule.MAX_CAPE) {
-    failures.push(FAILURES.CAPE_HIGH);
+    failures.push(fail_reasons.cape_high);
   }
   if (dp.lifted_index < alert_rule.MIN_LIFTED_INDEX) {
-    failures.push(FAILURES.LIFTED_INDEX_LOW);
+    failures.push(fail_reasons.lifted_idex_low);
   }
   if (dp.lifted_index > alert_rule.MAX_LIFTED_INDEX) {
-    failures.push(FAILURES.LIFTED_INDEX_HIGH);
+    failures.push(fail_reasons.lifted_index_high);
   }
   if (dp.convective_inhibition <= alert_rule.MIN_CONVECTIVE_INHIBITION) {
-    failures.push(FAILURES.CONVECTIVE_INHIBITION_LOW);
+    failures.push(fail_reasons.convective_inhibition_low);
   }
 
-  // Visual and precipitation conditions
-  const ACCEPTABLE_WEATHER_CODES = [
-    'clearsky_day',
-    'fair_day',
-    'partlycloudy_day',
-    'cloudy',
-  ];
 
   if (dp.precipitation > alert_rule.MAX_PRECIPITATION) {
-    failures.push(FAILURES.PRECIPITATION_HIGH);
+    failures.push(fail_reasons.rain);
   }
-  // if (dp.cloud_cover >= alert_rule.MAX_CLOUD_COVER) {
-  //   failures.push(FAILURES.CLOUD_COVER_HIGH);
-  // }
-  if (!ACCEPTABLE_WEATHER_CODES.includes(dp.weather_code)) {
-    failures.push(FAILURES.WEATHER_CODE_BAD);
-  }
+
+
 
   return {
     isGood: failures.length === 0,
@@ -148,28 +148,29 @@ export function isGoodParaglidingCondition(
 }
 
 // Failure descriptions for each type of condition that can fail
-const FAILURES = {
-  ITS_NIGHT: 'It is night',
-  WIND_SPEED_LOW: 'Surface wind speed is below the minimum required',
-  WIND_SPEED_HIGH: 'Surface wind speed exceeds the maximum allowed',
-  WIND_GUST_HIGH: 'Wind gusts exceed the maximum allowed',
-  WIND_GUST_DIFFERENCE: 'Difference between wind speed and gusts is too high',
-  WIND_DIRECTION_BAD: 'Surface wind direction is outside the allowed range',
-  WIND_SPEED_925_HIGH: 'Wind speed at 925hPa exceeds the maximum allowed',
-  WIND_SPEED_850_HIGH: 'Wind speed at 850hPa exceeds the maximum allowed',
-  WIND_SPEED_700_HIGH: 'Wind speed at 700hPa exceeds the maximum allowed',
-  CAPE_HIGH: 'CAPE value exceeds the maximum allowed',
-  LIFTED_INDEX_LOW: 'Lifted Index is below the minimum allowed',
-  LIFTED_INDEX_HIGH: 'Lifted Index exceeds the maximum allowed',
-  CONVECTIVE_INHIBITION_LOW: 'Not enough convective inhibition',
-  PRECIPITATION_HIGH: 'Precipitation exceeds the maximum allowed',
-  CLOUD_COVER_HIGH: 'Cloud cover exceeds the maximum allowed',
-  WEATHER_CODE_BAD: 'Current weather conditions are not suitable',
+const fail_reasons = {
+  wind_low: 'Det er for lite vind.',
+  wind_high: 'Det er for mye vind.',
+  gust_high: 'Det er for mye i kastene.',
+  gust_difference: 'For stor forskjell mellom vind og kast.',
+  direction_wrong: 'Vindretningen er feil.',
+
+  night: 'Det er mørkt.',
+  rain: 'Det regner.',
+  bad_weather: 'Det er dårlig vær.',
+
+  cape_high: 'CAPE er for høy.',
+  lifted_idex_low: 'Lifted Index er for lav.',
+  lifted_index_high: 'Lifted Index er for høy.',
+  convective_inhibition_low: 'Konvektiv inhibisjon ligger for lavt.',
 } as const;
 
 // Warning descriptions for conditions that should be noted but don't cause failure
-const WARNINGS = {
-  WIND_SHEAR_925: 'Wind direction at 925hPa differs significantly from ground level',
-  WIND_SHEAR_850: 'Wind direction at 850hPa differs significantly from ground level',
-  WIND_SHEAR_700: 'Wind direction at 700hPa differs significantly from ground level',
+const warn_reasons = {
+  WIND_SHEAR_925: 'Endring i vindretning (925hPa)',
+  WIND_SHEAR_850: 'Endring i vindretning (850hPa)',
+  WIND_SHEAR_700: 'Endring i vindretning (700hPa)',
+  WIND_SPEED_925_HIGH: 'Mye høydevind (925hPa)',
+  WIND_SPEED_850_HIGH: 'Mye høydevind (850hPa)',
+  WIND_SPEED_700_HIGH: 'Mye høydevind (700hPa)',
 } as const;
