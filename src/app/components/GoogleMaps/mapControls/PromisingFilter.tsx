@@ -33,7 +33,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
 
   const handleApply = () => {
-    onFilterChange({ selectedDay: selectedDay, selectedTimeRange: selectedTimeRange, minPromisingHours });
+    onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours });
     setIsExpanded(false);
   };
 
@@ -91,7 +91,27 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                 defaultValue={[selectedDay === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
                 value={selectedTimeRange}
                 onChange={(value) => setSelectedTimeRange(value as [number, number])}
-                marks={{ 0: '00:00', 6: '06:00', 12: '12:00', 18: '18:00', 24: '24:00' }}
+                marks={(() => {
+                  const marks: Record<number, string> = {};
+                  if (selectedDay === 0) {
+                    // For today, only show marks from current hour onwards
+                    for (let i = Math.ceil(currentHour / 6) * 6; i <= 24; i += 6) {
+                      if (i >= currentHour) {
+                        marks[i] = formatHour(i);
+                      }
+                    }
+                    // Always show the current hour mark
+                    marks[currentHour] = formatHour(currentHour);
+                  } else {
+                    // For other days, show standard marks
+                    marks[0] = '00:00';
+                    marks[6] = '06:00';
+                    marks[12] = '12:00';
+                    marks[18] = '18:00';
+                    marks[24] = '24:00';
+                  }
+                  return marks;
+                })()}
                 step={1}
               />
             </div>
