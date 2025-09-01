@@ -48,7 +48,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
 
   return (
     <div
-      className="absolute top-3 right-3 z-10 cursor-pointer"
+      className="absolute top-3 right-16 z-10 cursor-pointer"
       // onMouseEnter={() => setIsExpanded(true)}
       // onMouseLeave={() => setIsExpanded(false)}
       onClick={() => {

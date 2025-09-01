@@ -387,11 +387,6 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
             />
-            <PromisingFilter
-              isExpanded={isPromisingFilterExpanded}
-              setIsExpanded={setIsPromisingFilterExpanded}
-              onFilterChange={setPromisingFilter}
-            />
             <WindFilterCompass
               onWindDirectionChange={handleWindDirectionChange}
               selectedDirections={selectedWindDirections}
@@ -399,6 +394,11 @@ const GoogleMaps: React.FC = () => {
               setIsExpanded={setWindFilterExpanded}
               windFilterAndOperator={windFilterAndOperator}
               onFilterLogicChange={handleWindFilterLogicChange}
+            />
+            <PromisingFilter
+              isExpanded={isPromisingFilterExpanded}
+              setIsExpanded={setIsPromisingFilterExpanded}
+              onFilterChange={setPromisingFilter}
             />
           </>
         )}

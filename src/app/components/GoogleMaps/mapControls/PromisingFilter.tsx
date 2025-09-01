@@ -20,6 +20,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const [selectedDay, setSelectedDay] = useState(0);
   const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>([currentHour + 1, Math.min(24, currentHour + 7)]);
   const [minPromisingHours, setMinPromisingHours] = useState(3);
+  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -34,11 +35,13 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
   const handleApply = () => {
     onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours });
+    setIsFilterActive(true);
     setIsExpanded(false);
   };
 
   const handleReset = () => {
     onFilterChange(null);
+    setIsFilterActive(false);
     setIsExpanded(false);
     setSelectedDay(0);
     setSelectedTimeRange([6, 18]);
@@ -49,12 +52,12 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   }, [selectedDay]);
 
   return (
-    <div className="absolute top-3 right-16 z-10">
+    <div className="absolute top-3 right-3 z-10">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center"
       >
-        <Image src="/weather-icons/clearsky_day.svg" alt="Filter promising sites" width={32} height={32} />
+        <Image src={isFilterActive ? "/weather-icons/checkbox.svg" : "/weather-icons/clearsky_day.svg"} alt="Filter promising sites" width={32} height={32} />
       </button>
 
       {isExpanded && (
