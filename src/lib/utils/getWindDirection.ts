@@ -28,7 +28,7 @@ export function getWindDirection(windDirection: number): string {
     }
   }
 
-  return "Unknown";
+  return "Ukjent";
 }
 
 export function locationToWindDirectionSymbols(location: ParaglidingLocationForCache | ParaglidingMarkerData): string[] {

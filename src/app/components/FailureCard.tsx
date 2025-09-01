@@ -7,7 +7,7 @@ export default function FailureCard({ failuresCsv }: { failuresCsv: string }) {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-3 text-[var(--foreground)]">Failure Reasons</h3>
+      <h3 className="text-lg font-semibold mb-3 text-[var(--foreground)]">Årsaker til feil</h3>
       <ul className="list-disc list-inside space-y-2">
         {failureList.map((failure, index) => (
           <li key={index} className="text-[var(--error)]">

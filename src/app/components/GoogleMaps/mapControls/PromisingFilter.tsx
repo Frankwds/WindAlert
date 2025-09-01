@@ -27,7 +27,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     const inTwoDays = new Date(now);
     inTwoDays.setDate(now.getDate() + 2);
     const weekday = inTwoDays.toLocaleDateString('nb-NO', { weekday: 'long' });
-    return ['Today', 'Tomorrow', weekday.charAt(0).toUpperCase() + weekday.slice(1)];
+    return ['I dag', 'I morgen', weekday.charAt(0).toUpperCase() + weekday.slice(1)];
   }, []);
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
@@ -63,7 +63,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       {isExpanded && (
         <div className="absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80">
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Promising</h3>
+            <h3 className="font-bold mb-2">Lovende</h3>
             <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
               {dayLabels.map((label, index) => (
                 <button
@@ -85,7 +85,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Time of day: {formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
+            <h3 className="font-bold mb-2">Tid på dagen: {formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
             <div className="p-2">
               <Slider
                 range
@@ -120,7 +120,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Minimum Promising Hours: {minPromisingHours}</h3>
+            <h3 className="font-bold mb-2">Minimum antall lovende timer: {minPromisingHours}</h3>
             <div className="p-2 flex items-center">
               <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
               <div className="flex-grow px-4">
@@ -137,8 +137,8 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="flex justify-between gap-2">
-            <button onClick={handleReset} className="px-3 py-2 rounded-md border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer">Reset</button>
-            <button onClick={handleApply} className="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow transition-colors cursor-pointer">Apply</button>
+            <button onClick={handleReset} className="px-3 py-2 rounded-md border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer">Tilbakestill</button>
+            <button onClick={handleApply} className="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow transition-colors cursor-pointer">Bruk</button>
           </div>
         </div>
       )}

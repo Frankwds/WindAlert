@@ -34,7 +34,7 @@ export default function LocationHeader({ name, description, windDirections, loca
               onClick={() => setIsExpanded(true)}
               className="absolute bottom-0 left-0 right-0 h-8 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium flex items-center justify-center"
             >
-              Show more
+              Vis mer
             </button>
           </div>
         )}
@@ -46,7 +46,7 @@ export default function LocationHeader({ name, description, windDirections, loca
             }}
             className="w-full text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium mt-2 py-2 flex items-center justify-center"
           >
-            Show less
+            Vis mindre
           </button>
         )}
       </div>

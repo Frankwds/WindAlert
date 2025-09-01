@@ -47,7 +47,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
               onChange={handleWeatherStationChange}
               className="mr-2 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
             />
-            <Image src="/windsockBlue.png" alt="Weather Station" width={24} height={24} className="w-6 h-6" />
+            <Image src="/windsockBlue.png" alt="Værstasjon" width={24} height={24} className="w-6 h-6" />
           </label>
         </div>
       </div>

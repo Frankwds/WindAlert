@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 
 const links = [
-  { href: "/favourites", label: "Favourites" },
+  { href: "/favourites", label: "Favoritter" },
 ];
 
 export default function Navigation() {
@@ -50,7 +50,7 @@ export default function Navigation() {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)]"
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            aria-label={`Bytt til ${theme === 'light' ? 'dark' : 'light'} modus`}
           >
             {theme === 'light' ? (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -31,8 +31,8 @@ export default function FavouritesPage() {
     return (
       <main className="flex min-h-screen flex-col items-center p-8">
         <div className="z-10 w-full max-w-5xl">
-          <h1 className="text-4xl font-bold mb-8 text-center">Favourites</h1>
-          <p>Loading...</p>
+          <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
+          <p>Laster...</p>
         </div>
       </main>
     );
@@ -42,8 +42,8 @@ export default function FavouritesPage() {
     return (
       <main className="flex min-h-screen flex-col items-center p-8">
         <div className="z-10 w-full max-w-5xl">
-          <h1 className="text-4xl font-bold mb-8 text-center">Favourites</h1>
-          <p>Please log in to see your favourite locations.</p>
+          <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
+          <p>Vennligst logg inn for å se dine favorittsteder.</p>
         </div>
       </main>
     );
@@ -52,7 +52,7 @@ export default function FavouritesPage() {
   return (
     <main className="flex min-h-screen flex-col items-center p-8">
       <div className="z-10 w-full max-w-5xl">
-        <h1 className="text-4xl font-bold mb-8 text-center">Favourites</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
         {locations.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {locations.map((location) => (
@@ -66,7 +66,7 @@ export default function FavouritesPage() {
             ))}
           </div>
         ) : (
-          <p>You have no favourite locations yet.</p>
+          <p>Du har ingen favorittsteder enda.</p>
         )}
       </div>
     </main>

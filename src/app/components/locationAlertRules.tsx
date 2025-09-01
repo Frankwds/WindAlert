@@ -58,7 +58,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   const positiveDays = Object.values(groupedData)
     .filter((day) => day.some((dp) => dp.is_promising === true))
     .map((day) =>
-      new Date(day[0].time).toLocaleDateString("en-US", { weekday: "short" })
+      new Date(day[0].time).toLocaleDateString("nb-NO", { weekday: "short" })
     );
 
   const title =
@@ -69,7 +69,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-        Promising:
+        Lovende:
       </h2>
       <div>
         <Collapsible
@@ -83,7 +83,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
           {Object.values(groupedData).map((day) => (
             <Collapsible
               key={day[0].time}
-              title={`${new Date(day[0].time).toLocaleDateString("en-US", {
+              title={`${new Date(day[0].time).toLocaleDateString("nb-NO", {
                 weekday: "long",
               })}`}
               className={`${day.some((dp) => dp.is_promising === true)

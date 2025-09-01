@@ -52,14 +52,14 @@ export default function LoginButton() {
     return (
       <div className="flex items-center gap-4">
         <button
-          aria-label="Sign out"
+          aria-label="Logg ut"
           onClick={() => signOut()}
           className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
         >
           <div className="flex items-center justify-center bg-orange-500 text-white font-bold rounded-full w-8 h-8 text-sm transition-transform group-hover:scale-110">
             {session.user?.name?.charAt(0)?.toUpperCase() || 'U'}
           </div>
-          <span className="text-sm text-white tracking-wide font-medium">Sign out</span>
+          <span className="text-sm text-white tracking-wide font-medium">Logg ut</span>
         </button>
       </div>
     );
@@ -69,7 +69,7 @@ export default function LoginButton() {
   return (
     <div className="flex items-center gap-4">
       <button
-        aria-label="Sign in with Google"
+        aria-label="Logg inn med Google"
         onClick={() => signIn("google")}
         className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
       >
@@ -93,7 +93,7 @@ export default function LoginButton() {
             />
           </svg>
         </div>
-        <span className="text-sm text-white tracking-wide font-medium">Sign in</span>
+        <span className="text-sm text-white tracking-wide font-medium">Logg inn</span>
       </button>
     </div>
   );

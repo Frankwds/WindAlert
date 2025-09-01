@@ -13,19 +13,19 @@ const HourlyWeatherDetails = ({ hour }: { hour: ForecastCache1hr }) => {
     <div className="text-[var(--foreground)]">
       <div className="mb-4">
         <p className="font-bold text-[var(--foreground)]">
-          {weatherIcon ? weatherIcon.description : "Weather data not available"}
+          {weatherIcon ? weatherIcon.description : "Værdata ikke tilgjengelig"}
         </p>
-        <p className="text-[var(--foreground)]">Temperature (2m): {hour.temperature}°C</p>
-        <p className="text-[var(--foreground)]">Precipitation: {hour.precipitation}mm</p>
-        <p className="text-[var(--foreground)]">Cloud Cover: {hour.cloud_cover}%</p>
+        <p className="text-[var(--foreground)]">Temperatur (2m): {hour.temperature}°C</p>
+        <p className="text-[var(--foreground)]">Nedbør: {hour.precipitation}mm</p>
+        <p className="text-[var(--foreground)]">Skydekke: {hour.cloud_cover}%</p>
       </div>
 
       <div className="mt-4">
-        <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">Atmospheric Conditions</h4>
+        <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">Atmosfæriske forhold</h4>
         <div className="grid grid-cols-4 gap-x-4 gap-y-2 text-sm">
-          <div className="font-semibold">Altitude</div>
-          <div className="font-semibold">Wind (m/s)</div>
-          <div className="font-semibold">Wind Dir.</div>
+          <div className="font-semibold">Høyde</div>
+          <div className="font-semibold">Vind (m/s)</div>
+          <div className="font-semibold">Vindretning</div>
           <div className="font-semibold">Temp. (°C)</div>
 
           <div className="font-medium">0m</div>
@@ -78,23 +78,23 @@ const HourlyWeatherDetails = ({ hour }: { hour: ForecastCache1hr }) => {
       </div>
       <div className="mt-4">
         <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">
-          Atmospheric Details
+          Atmosfæriske detaljer
         </h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span>Precipitation Probability:</span>
+            <span>Sannsynlighet for nedbør:</span>
             <span className="font-medium">{hour.precipitation_probability}%</span>
           </div>
           <div className="flex justify-between">
-            <span>Convective Inhibition:</span>
+            <span>Konvektiv hemming:</span>
             <span className="font-medium">{hour.convective_inhibition} J/kg</span>
           </div>
           <div className="flex justify-between">
-            <span>Boundary Layer Height:</span>
+            <span>Grenselagshøyde:</span>
             <span className="font-medium">{hour.boundary_layer_height} m</span>
           </div>
           <div className="flex justify-between">
-            <span>Lifted Index:</span>
+            <span>Løftet indeks:</span>
             <span className="font-medium">{hour.lifted_index}</span>
           </div>
           <div className="flex justify-between">
@@ -102,23 +102,23 @@ const HourlyWeatherDetails = ({ hour }: { hour: ForecastCache1hr }) => {
             <span className="font-medium">{hour.cape} J/kg</span>
           </div>
           <div className="flex justify-between">
-            <span>Freezing Level:</span>
+            <span>Frysenivå:</span>
             <span className="font-medium">{hour.freezing_level_height} m</span>
           </div>
           <div className="flex justify-between">
-            <span>Low Cloud Cover:</span>
+            <span>Lavt skydekke:</span>
             <span className="font-medium">{hour.cloud_cover_low}%</span>
           </div>
           <div className="flex justify-between">
-            <span>Mid Cloud Cover:</span>
+            <span>Middels skydekke:</span>
             <span className="font-medium">{hour.cloud_cover_mid}%</span>
           </div>
           <div className="flex justify-between">
-            <span>High Cloud Cover:</span>
+            <span>Høyt skydekke:</span>
             <span className="font-medium">{hour.cloud_cover_high}%</span>
           </div>
           <div className="flex justify-between">
-            <span>MSL Pressure:</span>
+            <span>Trykk ved havnivå:</span>
             <span className="font-medium">{hour.pressure_msl} hPa</span>
           </div>
         </div>

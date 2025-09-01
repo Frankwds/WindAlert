@@ -7,7 +7,7 @@ export default function WarningCard({ warningsCsv }: { warningsCsv: string }) {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-3 text-[var(--foreground)]">Warnings</h3>
+      <h3 className="text-lg font-semibold mb-3 text-[var(--foreground)]">Advarsler</h3>
       <ul className="list-disc list-inside space-y-2">
         {warningList.map((warning, index) => (
           <li key={index} className="text-[var(--warning)]">
