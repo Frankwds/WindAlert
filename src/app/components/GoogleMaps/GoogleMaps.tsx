@@ -82,7 +82,7 @@ const GoogleMaps: React.FC = () => {
     selectedDay: number;
     selectedTimeRange: [number, number];
     minPromisingHours: number;
-  } | null>(null);
+  } | null>(initialMapState?.promisingFilter ?? null);
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
 
   const closeInfoWindow = useCallback(() => {
@@ -322,6 +322,7 @@ const GoogleMaps: React.FC = () => {
         showWeatherStationMarkers,
         selectedWindDirections,
         windFilterAndOperator,
+        promisingFilter,
       };
       localStorage.setItem(MAP_STATE_KEY, JSON.stringify(mapState));
     };
@@ -337,7 +338,7 @@ const GoogleMaps: React.FC = () => {
       google.maps.event.removeListener(zoomListener);
       google.maps.event.removeListener(dragListener);
     };
-  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator]);
+  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator, promisingFilter]);
 
   useEffect(() => {
     if (mapInstance) {
@@ -414,6 +415,7 @@ const GoogleMaps: React.FC = () => {
               isExpanded={isPromisingFilterExpanded}
               setIsExpanded={setIsPromisingFilterExpanded}
               onFilterChange={setPromisingFilter}
+              initialFilter={promisingFilter}
             />
           </>
         )}

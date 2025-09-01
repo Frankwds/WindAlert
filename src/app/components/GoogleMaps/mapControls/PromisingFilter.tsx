@@ -9,18 +9,20 @@ interface PromisingFilterProps {
   isExpanded: boolean;
   onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
+  initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null;
 }
 
 const PromisingFilter: FC<PromisingFilterProps> = ({
   isExpanded,
   onFilterChange,
   setIsExpanded,
+  initialFilter,
 }) => {
   const currentHour = useMemo(() => new Date().getHours(), []);
-  const [selectedDay, setSelectedDay] = useState(0);
-  const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>([currentHour + 1, Math.min(24, currentHour + 7)]);
-  const [minPromisingHours, setMinPromisingHours] = useState(3);
-  const [isFilterActive, setIsFilterActive] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
+  const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
+  const [minPromisingHours, setMinPromisingHours] = useState(initialFilter?.minPromisingHours ?? 3);
+  const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -48,8 +50,17 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   };
 
   useEffect(() => {
+    if (initialFilter) return;
     selectedDay === 0 ? setSelectedTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]) : setSelectedTimeRange([12, 18]);
   }, [selectedDay]);
+
+  useEffect(() => {
+    if (!isExpanded) {
+      setSelectedDay(initialFilter?.selectedDay ?? 0);
+      setSelectedTimeRange(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
+      setMinPromisingHours(initialFilter?.minPromisingHours ?? 3);
+    }
+  }, [isExpanded, initialFilter, currentHour]);
 
   return (
     <div className="absolute top-3 right-3 z-10">
