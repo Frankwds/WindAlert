@@ -79,8 +79,8 @@ const GoogleMaps: React.FC = () => {
     initialMapState?.windFilterAndOperator ?? true
   );
   const [promisingFilter, setPromisingFilter] = useState<{
-    day: number;
-    timeRange: [number, number];
+    selectedDay: number;
+    selectedTimeRange: [number, number];
     minPromisingHours: number;
   } | null>(null);
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
@@ -99,7 +99,13 @@ const GoogleMaps: React.FC = () => {
     }
   }, [mapInstance, closeInfoWindow]);
 
+  /**
+   * Filters paragliding markers based on promising weather conditions
+   * @param markers - Array of Google Maps AdvancedMarkerElement objects
+   * @returns Filtered array containing only markers with promising weather
+   */
   const filterParaglidingMarkersByPromising = (markers: google.maps.marker.AdvancedMarkerElement[]) => {
+    // If no promising filter is set, return all markers unchanged
     if (!promisingFilter) return markers;
 
     return markers.filter(marker => {
@@ -108,45 +114,30 @@ const GoogleMaps: React.FC = () => {
 
       if (!forecast) return false;
 
-      const { day, timeRange, minPromisingHours } = promisingFilter;
+      const { selectedDay, selectedTimeRange, minPromisingHours } = promisingFilter;
 
-      if (day === 1) {
-        let promisingHours = 0;
-        const tomorrowStart = new Date();
-        tomorrowStart.setDate(tomorrowStart.getDate() + 1);
-        tomorrowStart.setHours(12, 0, 0, 0);
+      // Calculate the target date based on day offset
+      const dayOffset = selectedDay === 0 ? 0 : selectedDay === 1 ? 1 : 2;
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + dayOffset);
 
-        const tomorrowEnd = new Date();
-        tomorrowEnd.setDate(tomorrowEnd.getDate() + 1);
-        tomorrowEnd.setHours(18, 0, 0, 0);
+      // Set start and end times based on the filter's time range
+      const startOfDay = new Date(targetDate);
+      startOfDay.setHours(selectedTimeRange[0]);
 
-        for (const f of forecast) {
-          const forecastTime = new Date(f.time);
-          if (forecastTime >= tomorrowStart && forecastTime < tomorrowEnd && f.is_promising) {
-            promisingHours++;
-          }
+      const endOfDay = new Date(targetDate);
+      endOfDay.setHours(selectedTimeRange[1]);
+
+      // Count how many hours in the specified time range are promising
+      let promisingHours = 0;
+      for (const f of forecast) {
+        const forecastTime = new Date(f.time);
+        if (forecastTime >= startOfDay && forecastTime < endOfDay && f.is_promising) {
+          promisingHours++;
         }
-        return promisingHours >= minPromisingHours;
-
-      } else {
-        const dayOffset = day === 0 ? 0 : 2;
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + dayOffset);
-
-        const startOfDay = new Date(targetDate);
-        startOfDay.setHours(timeRange[0], 0, 0, 0);
-
-        const endOfDay = new Date(targetDate);
-        endOfDay.setHours(timeRange[1], 0, 0, 0);
-
-        for (const f of forecast) {
-          const forecastTime = new Date(f.time);
-          if (forecastTime >= startOfDay && forecastTime < endOfDay && f.is_promising) {
-            return true;
-          }
-        }
-        return false;
       }
+
+      return promisingHours >= minPromisingHours;
     });
   }
 

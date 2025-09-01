@@ -7,7 +7,7 @@ import 'rc-slider/assets/index.css';
 
 interface PromisingFilterProps {
   isExpanded: boolean;
-  onFilterChange: (filter: { day: number; timeRange: [number, number], minPromisingHours: number } | null) => void;
+  onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
 }
 
@@ -17,8 +17,8 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   setIsExpanded,
 }) => {
   const currentHour = useMemo(() => new Date().getHours(), []);
-  const [day, setDay] = useState(0);
-  const [timeRange, setTimeRange] = useState<[number, number]>([currentHour + 1, Math.min(24, currentHour + 7)]);
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>([currentHour + 1, Math.min(24, currentHour + 7)]);
   const [minPromisingHours, setMinPromisingHours] = useState(3);
 
   const dayLabels = useMemo(() => {
@@ -33,20 +33,20 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
 
   const handleApply = () => {
-    onFilterChange({ day, timeRange, minPromisingHours });
+    onFilterChange({ selectedDay: selectedDay, selectedTimeRange: selectedTimeRange, minPromisingHours });
     setIsExpanded(false);
   };
 
   const handleReset = () => {
     onFilterChange(null);
     setIsExpanded(false);
-    setDay(0);
-    setTimeRange([6, 18]);
+    setSelectedDay(0);
+    setSelectedTimeRange([6, 18]);
   };
 
   useEffect(() => {
-    day === 0 ? setTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]) : setTimeRange([12, 18]);
-  }, [day]);
+    selectedDay === 0 ? setSelectedTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]) : setSelectedTimeRange([12, 18]);
+  }, [selectedDay]);
 
   return (
     <div className="absolute top-3 right-16 z-10">
@@ -66,11 +66,11 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                 <button
                   key={index}
                   type="button"
-                  onClick={() => setDay(index)}
+                  onClick={() => setSelectedDay(index)}
                   className={`flex-1 py-1.5 px-3 text-sm font-medium transition-all cursor-pointer ${index === 0 ? "rounded-l-md" : ""
                     } ${index === dayLabels.length - 1 ? "rounded-r-md" : ""
                     } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
-                    } ${day === index
+                    } ${selectedDay === index
                       ? "bg-[var(--background)] shadow-[var(--shadow-sm)]"
                       : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
                     }`}
@@ -82,15 +82,15 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Time of day: {formatHour(timeRange[0])} - {formatHour(timeRange[1])}</h3>
+            <h3 className="font-bold mb-2">Time of day: {formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
             <div className="p-2">
               <Slider
                 range
-                min={day === 0 ? currentHour : 0}
+                min={selectedDay === 0 ? currentHour : 0}
                 max={24}
-                defaultValue={[day === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
-                value={timeRange}
-                onChange={(value) => setTimeRange(value as [number, number])}
+                defaultValue={[selectedDay === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
+                value={selectedTimeRange}
+                onChange={(value) => setSelectedTimeRange(value as [number, number])}
                 marks={{ 0: '00:00', 6: '06:00', 12: '12:00', 18: '18:00', 24: '24:00' }}
                 step={1}
               />

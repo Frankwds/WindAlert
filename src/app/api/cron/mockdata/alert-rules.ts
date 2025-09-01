@@ -7,7 +7,7 @@ export const DEFAULT_ALERT_RULE: AlertRule = {
   locationId: 'nope',
   MIN_WIND_SPEED: 0,
   MAX_WIND_SPEED: 8,
-  MAX_GUST: 10.0,
+  MAX_GUST: 14.0,
   MAX_GUST_DIFFERENCE: 0,
   MAX_PRECIPITATION: 0,
   MAX_CAPE: 10000,
