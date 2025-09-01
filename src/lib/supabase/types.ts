@@ -171,9 +171,21 @@ export interface ForecastCache1hr {
   geopotential_height_700hpa: number;
 }
 
+export interface YrCache {
+  location_id: string;
+  expires: string;
+  last_modified: string;
+  data: any;
+}
+
 export type Database = {
   public: {
     Tables: {
+      yr_cache: {
+        Row: YrCache;
+        Insert: YrCache;
+        Update: Partial<YrCache>;
+      };
       users: {
         Row: User;
         Insert: Omit<User, 'created_at' | 'updated_at'>;

@@ -8,9 +8,57 @@ import { fetchYrData } from '@/lib/yr/apiClient';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { ForecastCache1hr, YrCache } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
+import { YrCacheService } from '@/lib/supabase/yrCache';
+
+async function getYrDataWithCache(
+  locationId: string,
+  latitude: number,
+  longitude: number
+): Promise<any> {
+  const cache = await YrCacheService.get(locationId);
+
+  if (cache && new Date(cache.expires) > new Date()) {
+    console.log(`Cache valid for location ${locationId}`);
+    return cache.data;
+  }
+
+  const ifModifiedSince = cache?.last_modified;
+  const response = await fetchYrData(latitude, longitude, ifModifiedSince);
+
+  if (response.status === 304) {
+    console.log(`Data not modified for location ${locationId}`);
+    const newExpires = response.headers.get('Expires');
+    if (newExpires && cache) {
+      await YrCacheService.upsert({
+        ...cache,
+        expires: newExpires,
+      });
+    }
+    return cache?.data;
+  }
+
+  if (response.status !== 200) {
+    console.error(`Failed to fetch YR data for ${locationId}, status: ${response.status}`);
+    return null;
+  }
+
+  const newExpires = response.headers.get('Expires');
+  const newLastModified = response.headers.get('Last-Modified');
+
+  if (newExpires && newLastModified) {
+    await YrCacheService.upsert({
+      location_id: locationId,
+      expires: newExpires,
+      last_modified: newLastModified,
+      data: response.data,
+    });
+  }
+
+  return response.data;
+}
 
 export async function GET() {
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
@@ -30,10 +78,17 @@ export async function GET() {
         const validatedData = openMeteoResponseSchema.parse(rawMeteoData);
         const meteoData = mapOpenMeteoData(validatedData);
 
-        const yrTakeoffData = await fetchYrData(
+        const yrTakeoffData = await getYrDataWithCache(
+          location.id,
           location.latitude,
           location.longitude
         );
+
+        if (!yrTakeoffData) {
+          console.error(`Skipping location ${location.id} due to missing YR takeoff data.`);
+          continue;
+        }
+
         const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
         let combinedData = combineDataSources(
@@ -42,25 +97,29 @@ export async function GET() {
         );
 
         if (location.landing_latitude && location.landing_longitude) {
-          const yrLandingData = await fetchYrData(
+          const yrLandingData = await getYrDataWithCache(
+            `${location.id}-landing`,
             location.landing_latitude,
             location.landing_longitude
           );
-          const mappedYrLandingData = mapYrData(yrLandingData);
 
-          combinedData = combinedData.map((dataPoint) => {
-            const landingDataPoint =
-              mappedYrLandingData.weatherDataYrHourly.find(
-                (landingPoint) => landingPoint.time === dataPoint.time
-              );
+          if (yrLandingData) {
+            const mappedYrLandingData = mapYrData(yrLandingData);
 
-            return {
-              ...dataPoint,
-              landing_wind: landingDataPoint?.wind_speed,
-              landing_gust: landingDataPoint?.wind_speed_of_gust,
-              landing_wind_direction: landingDataPoint?.wind_from_direction,
-            };
-          });
+            combinedData = combinedData.map((dataPoint) => {
+              const landingDataPoint =
+                mappedYrLandingData.weatherDataYrHourly.find(
+                  (landingPoint) => landingPoint.time === dataPoint.time
+                );
+
+              return {
+                ...dataPoint,
+                landing_wind: landingDataPoint?.wind_speed,
+                landing_gust: landingDataPoint?.wind_speed_of_gust,
+                landing_wind_direction: landingDataPoint?.wind_from_direction,
+              };
+            });
+          }
         }
 
         const validatedForecastData: ForecastCache1hr[] = combinedData.map((dataPoint) => {
