@@ -4,7 +4,7 @@ import { MinimalForecast } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface MinimalHourlyWeatherProps {
   weatherData: MinimalForecast[];
@@ -15,7 +15,18 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
   weatherData,
   timezone,
 }) => {
-  const [activeDay, setActiveDay] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const [activeDay, setActiveDay] = useState<string | null>(() => {
+    if (weatherData && weatherData.length > 0) {
+      const firstDay = new Date(weatherData[0].time).toLocaleDateString([], {
+        weekday: 'short',
+        timeZone: timezone,
+      });
+      return firstDay;
+    }
+    return null;
+  });
 
   if (!weatherData || weatherData.length === 0) {
     return (
@@ -78,22 +89,33 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     },
   ];
 
-  const handleDayClick = (day: string) => {
-    setActiveDay(activeDay === day ? null : day);
-  };
+  // Scroll to center when active day changes
+  useEffect(() => {
+    if (activeDay && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const table = container.querySelector('table');
+      if (table) {
+        const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
+        container.scrollLeft = scrollLeft;
+      }
+    }
+  }, [activeDay]);
+
 
   return (
     <div className="bg-[var(--background)] rounded-lg">
-      <div className="flex justify-around p-1">
-        {Object.keys(groupedByDay).map((day) => (
+      <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
+        {Object.keys(groupedByDay).map((day, index) => (
           <button
             key={day}
-            onClick={() => handleDayClick(day)}
-            className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${
-              activeDay === day
-                ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
-                : "bg-transparent text-[var(--foreground)]"
-            }`}
+            onClick={() => setActiveDay(day)}
+            className={`flex-1 py-1.5 px-3 transition-all cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
+              } ${index === Object.keys(groupedByDay).length - 1 ? "rounded-r-md" : ""
+              } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
+              } ${activeDay === day
+                ? "bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium"
+                : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
+              }`}
           >
             {day}
           </button>
@@ -101,7 +123,10 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       </div>
 
       {activeDay && (
-        <div className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200">
+        <div
+          ref={scrollContainerRef}
+          className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200"
+        >
           <table className="min-w-full text-sm text-center">
             <thead>
               <tr className="border-b border-[var(--border)]">
@@ -125,7 +150,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
                 >
                   {groupedByDay[activeDay].map((hour, colIndex) => (
                     <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
-                      <div className="w-12 flex items-center justify-center">
+                      <div className="w-12 flex items-center justify-center mx-auto">
                         {row.getValue(hour)}
                       </div>
                     </td>
