@@ -110,7 +110,7 @@ const GoogleMaps: React.FC = () => {
 
       const { day, timeRange, minPromisingHours } = promisingFilter;
 
-      if (day === 1) { // Tomorrow
+      if (day === 1) {
         let promisingHours = 0;
         const tomorrowStart = new Date();
         tomorrowStart.setDate(tomorrowStart.getDate() + 1);
@@ -128,7 +128,7 @@ const GoogleMaps: React.FC = () => {
         }
         return promisingHours >= minPromisingHours;
 
-      } else { // Today or in two days
+      } else {
         const dayOffset = day === 0 ? 0 : 2;
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + dayOffset);

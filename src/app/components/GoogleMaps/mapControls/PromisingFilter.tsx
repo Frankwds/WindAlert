@@ -16,9 +16,10 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   onFilterChange,
   setIsExpanded,
 }) => {
+  const currentHour = useMemo(() => new Date().getHours(), []);
   const [day, setDay] = useState(0);
-  const [timeRange, setTimeRange] = useState<[number, number]>([6, 18]);
-  const [minPromisingHours, setMinPromisingHours] = useState(4);
+  const [timeRange, setTimeRange] = useState<[number, number]>([currentHour + 1, Math.min(24, currentHour + 7)]);
+  const [minPromisingHours, setMinPromisingHours] = useState(3);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -30,26 +31,6 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
 
-  // Get current hour for today's minimum time
-  const currentHour = useMemo(() => new Date().getHours(), []);
-
-  // Update time range when day changes
-  useEffect(() => {
-    if (day === 0) { // Today
-      // Set default time range to current hour + 1 to 24
-      setTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]);
-    }
-  }, [day, currentHour]);
-
-  // Get min/max values for slider based on selected day
-  const getSliderProps = () => {
-    if (day === 0) { // Today
-      return { min: currentHour, max: 24 };
-    }
-    return { min: 0, max: 24 };
-  };
-
-  const sliderProps = getSliderProps();
 
   const handleApply = () => {
     onFilterChange({ day, timeRange, minPromisingHours });
@@ -62,6 +43,10 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     setDay(0);
     setTimeRange([6, 18]);
   };
+
+  useEffect(() => {
+    day === 0 ? setTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]) : setTimeRange([12, 18]);
+  }, [day]);
 
   return (
     <div className="absolute top-3 right-16 z-10">
@@ -101,9 +86,9 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             <div className="p-2">
               <Slider
                 range
-                min={sliderProps.min}
-                max={sliderProps.max}
-                defaultValue={[6, 18]}
+                min={day === 0 ? currentHour : 0}
+                max={24}
+                defaultValue={[day === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
                 value={timeRange}
                 onChange={(value) => setTimeRange(value as [number, number])}
                 marks={{ 0: '00:00', 6: '06:00', 12: '12:00', 18: '18:00', 24: '24:00' }}
