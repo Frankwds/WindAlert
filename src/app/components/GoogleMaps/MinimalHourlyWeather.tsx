@@ -28,17 +28,17 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     return null;
   });
 
-  if (!weatherData || weatherData.length === 0) {
-    return (
-      <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
-        <div className="text-center py-8">
-          <div className="text-[var(--foreground)] mb-4">
-            No hourly weather data available.
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Scroll to center when active day changes
+  useEffect(() => {
+    if (activeDay && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const table = container.querySelector('table');
+      if (table) {
+        const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
+        container.scrollLeft = scrollLeft;
+      }
+    }
+  }, [activeDay]);
 
   const groupedByDay = weatherData.reduce((acc, hour) => {
     const day = new Date(hour.time).toLocaleDateString([], {
@@ -88,19 +88,6 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       ),
     },
   ];
-
-  // Scroll to center when active day changes
-  useEffect(() => {
-    if (activeDay && scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const table = container.querySelector('table');
-      if (table) {
-        const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
-        container.scrollLeft = scrollLeft;
-      }
-    }
-  }, [activeDay]);
-
 
   return (
     <div className="bg-[var(--background)] rounded-lg">

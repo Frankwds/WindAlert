@@ -25,6 +25,8 @@ export default function FavouriteStar({ locationId }: Props) {
     setIsFavourite(isFavourite);
     setLoading(false);
   };
+
+
   useEffect(() => {
     if (session?.user?.id) {
       checkFavourite(session);
