@@ -62,6 +62,9 @@ export function isGoodParaglidingCondition(
   const failures: string[] = [];
   const warnings: string[] = [];
 
+  if (dp.is_day === 0) {
+    failures.push(FAILURES.ITS_NIGHT);
+  }
   // Surface wind conditions
   if (dp.wind_speed < alert_rule.MIN_WIND_SPEED) {
     failures.push(FAILURES.WIND_SPEED_LOW);
@@ -130,9 +133,9 @@ export function isGoodParaglidingCondition(
   if (dp.precipitation > alert_rule.MAX_PRECIPITATION) {
     failures.push(FAILURES.PRECIPITATION_HIGH);
   }
-  if (dp.cloud_cover >= alert_rule.MAX_CLOUD_COVER) {
-    failures.push(FAILURES.CLOUD_COVER_HIGH);
-  }
+  // if (dp.cloud_cover >= alert_rule.MAX_CLOUD_COVER) {
+  //   failures.push(FAILURES.CLOUD_COVER_HIGH);
+  // }
   if (!ACCEPTABLE_WEATHER_CODES.includes(dp.weather_code)) {
     failures.push(FAILURES.WEATHER_CODE_BAD);
   }
@@ -146,6 +149,7 @@ export function isGoodParaglidingCondition(
 
 // Failure descriptions for each type of condition that can fail
 const FAILURES = {
+  ITS_NIGHT: 'It is night',
   WIND_SPEED_LOW: 'Surface wind speed is below the minimum required',
   WIND_SPEED_HIGH: 'Surface wind speed exceeds the maximum allowed',
   WIND_GUST_HIGH: 'Wind gusts exceed the maximum allowed',
