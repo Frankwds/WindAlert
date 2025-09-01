@@ -7,6 +7,8 @@ interface CollapsibleProps {
   children: React.ReactNode;
   className?: string;
   defaultOpen?: boolean;
+  isOpen?: boolean;
+  onToggle?: () => void;
 }
 
 export default function Collapsible({
@@ -14,13 +16,26 @@ export default function Collapsible({
   children,
   className = "",
   defaultOpen = false,
+  isOpen: controlledIsOpen,
+  onToggle,
 }: CollapsibleProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultOpen);
+
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : uncontrolledIsOpen;
+
+  const handleToggle = () => {
+    if (onToggle) {
+      onToggle();
+    } else {
+      setUncontrolledIsOpen(!uncontrolledIsOpen);
+    }
+  };
 
   return (
     <div className="rounded-lg">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className={`w-full text-left p-4 focus:outline-none transition-all duration-200 cursor-pointer hover:shadow-[var(--shadow-sm)] hover:brightness-95 relative group ${className}`}
       >
         <div className="flex items-center w-full relative z-10">

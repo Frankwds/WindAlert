@@ -5,6 +5,8 @@ import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "./WindDirectionArrow";
 import ExternalLinkIcon from "./ExternalLinkIcon";
+import { useState } from "react";
+import Collapsible from "./Collapsible";
 
 interface HourlyWeatherProps {
   forecast: ForecastCache1hr[];
@@ -30,6 +32,26 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   }
 
   const hasLanding = forecast.some((hour) => hour.landing_wind !== null);
+
+  const forecastByDay = forecast.reduce((acc, hour) => {
+    const day = new Date(hour.time).toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    if (!acc[day]) {
+      acc[day] = [];
+    }
+    acc[day].push(hour);
+    return acc;
+  }, {} as Record<string, ForecastCache1hr[]>);
+
+  const [openDay, setOpenDay] = useState<string | null>(Object.keys(forecastByDay)[0] || null);
+
+  const handleToggleDay = (day: string) => {
+    setOpenDay(openDay === day ? null : day);
+  };
 
   const dataRows = [
     {
@@ -107,50 +129,61 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
           <ExternalLinkIcon size={24} className="inline-block" />
         </a>
       </div>
-      <div className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200">
-        <table className="min-w-full text-sm text-center">
-          <thead>
-            <tr className="border-b border-[var(--border)]">
-              <th className="whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
-                {/* Empty header for row labels */}
-              </th>
-              {forecast.map((hour, colIndex) => (
-                <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
-                  {new Date(hour.time).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    hour12: false,
-                  })}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {dataRows.map((row, rowIndex) => (
-              <tr
-                key={rowIndex}
-                className={`border-b border-[var(--border)] last:border-b-0`}
-              >
-                <td className="px-2 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)] text-left font-medium">
-                  {(() => {
-                    if (rowIndex === 0) return "Weather";
-                    if (rowIndex === 1) return "Temp (°C)";
-                    if (rowIndex === 2) return "Wind (m/s)";
-                    if (rowIndex === 3) return "Direction";
-                    if (hasLanding && rowIndex === 4) return "Landing (m/s)";
-                    return "";
-                  })()}
-                </td>
-                {forecast.map((hour, colIndex) => (
-                  <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
-                    <div className="w-12 flex items-center justify-center">
-                      {row.getValue(hour)}
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="space-y-2">
+        {Object.entries(forecastByDay).map(([day, dailyForecast]) => (
+          <Collapsible
+            key={day}
+            title={<div className="text-lg font-semibold">{day}</div>}
+            isOpen={openDay === day}
+            onToggle={() => handleToggleDay(day)}
+          >
+            <div className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200">
+              <table className="min-w-full text-sm text-center">
+                <thead>
+                  <tr className="border-b border-[var(--border)]">
+                    <th className="whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
+                      {/* Empty header for row labels */}
+                    </th>
+                    {dailyForecast.map((hour, colIndex) => (
+                      <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
+                        {new Date(hour.time).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          hour12: false,
+                        })}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataRows.map((row, rowIndex) => (
+                    <tr
+                      key={rowIndex}
+                      className={`border-b border-[var(--border)] last:border-b-0`}
+                    >
+                      <td className="px-2 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)] text-left font-medium">
+                        {(() => {
+                          if (rowIndex === 0) return "Weather";
+                          if (rowIndex === 1) return "Temp (°C)";
+                          if (rowIndex === 2) return "Wind (m/s)";
+                          if (rowIndex === 3) return "Direction";
+                          if (hasLanding && rowIndex === 4) return "Landing (m/s)";
+                          return "";
+                        })()}
+                      </td>
+                      {dailyForecast.map((hour, colIndex) => (
+                        <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
+                          <div className="w-12 flex items-center justify-center">
+                            {row.getValue(hour)}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Collapsible>
+        ))}
       </div>
     </div>
   );
