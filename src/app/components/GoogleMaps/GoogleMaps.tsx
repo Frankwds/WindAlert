@@ -128,16 +128,28 @@ const GoogleMaps: React.FC = () => {
       const endOfDay = new Date(targetDate);
       endOfDay.setHours(selectedTimeRange[1]);
 
-      // Count how many hours in the specified time range are promising
-      let promisingHours = 0;
-      for (const f of forecast) {
-        const forecastTime = new Date(f.time);
-        if (forecastTime >= startOfDay && forecastTime < endOfDay && f.is_promising) {
-          promisingHours++;
+      // Get forecast entries within the specified time range, sorted by time
+      const relevantForecasts = forecast
+        .filter(f => {
+          const forecastTime = new Date(f.time);
+          return forecastTime >= startOfDay && forecastTime < endOfDay;
+        })
+        .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
+      // Check for consecutive promising hours
+      let maxConsecutivePromising = 0;
+      let currentConsecutive = 0;
+
+      for (const f of relevantForecasts) {
+        if (f.is_promising) {
+          currentConsecutive++;
+          maxConsecutivePromising = Math.max(maxConsecutivePromising, currentConsecutive);
+        } else {
+          currentConsecutive = 0;
         }
       }
 
-      return promisingHours >= minPromisingHours;
+      return maxConsecutivePromising >= minPromisingHours;
     });
   }
 
