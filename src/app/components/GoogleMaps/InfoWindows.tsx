@@ -42,16 +42,17 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
   return (
     <div>
       <h3 className="font-bold text-lg mb-2">🌤️{location.name} ({location.altitude}m)</h3>
-      <div className='flex flex-row justify-between relative'>
-        <div className='overflow-y-hidden z-10 bg-white'>
+      <div className='flex flex-row relative'>
+        <div className='overflow-hidden z-100 bg-white'>
           <iframe
             src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=rose&size=160`}
             style={{ width: '160px', height: '160px' }}
           ></iframe>
         </div>
-        <div className='overflow-y-hidden relative z-5' >
+        <div className='z-50 ml-[-85px]' >
           <iframe
-            src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=average_hourly&avgrows=32`}
+            src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=average_hourly`}
+            style={{ width: '320x', height: '160px' }}
           ></iframe>
         </div>
       </div>
