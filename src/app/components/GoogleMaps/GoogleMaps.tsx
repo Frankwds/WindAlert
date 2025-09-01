@@ -272,10 +272,7 @@ const GoogleMaps: React.FC = () => {
 
         infoWindowRef.current = new google.maps.InfoWindow();
 
-        map.addListener('click', () => {
-          closeInfoWindow();
-          setWindFilterExpanded(false);
-        });
+        map.addListener('click', onMapClick);
 
         setMapInstance(map);
         setIsLoading(false);
@@ -290,6 +287,12 @@ const GoogleMaps: React.FC = () => {
     initMap();
 
   }, [closeInfoWindow]);
+
+  const onMapClick = () => {
+    setIsPromisingFilterExpanded(false);
+    closeInfoWindow();
+    setWindFilterExpanded(false);
+  }
 
   useEffect(() => {
     if (!mapInstance) {

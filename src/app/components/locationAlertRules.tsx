@@ -69,7 +69,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-        Lovende:
+        Lovende timer og forklaring:
       </h2>
       <div>
         <Collapsible

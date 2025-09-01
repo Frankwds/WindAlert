@@ -57,13 +57,24 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center"
       >
-        <Image src={isFilterActive ? "/weather-icons/checkbox.svg" : "/weather-icons/clearsky_day.svg"} alt="Filter promising sites" width={32} height={32} />
+        <div className="relative">
+          <Image src="/weather-icons/clearsky_day.svg" alt="Filter promising sites" width={32} height={32} />
+          {isFilterActive && (
+            <Image
+              src="/weather-icons/checkbox.svg"
+              alt="Filter active"
+              width={32}
+              height={32}
+              className="absolute inset-0 opacity-70"
+            />
+          )}
+        </div>
       </button>
 
       {isExpanded && (
         <div className="absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80">
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Lovende</h3>
+            <h3 className="font-bold mb-2">Vis steder som ser lovende ut:</h3>
             <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
               {dayLabels.map((label, index) => (
                 <button
@@ -85,7 +96,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Tid på dagen: {formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
+            <h3 className="font-bold mb-2">{formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
             <div className="p-2">
               <Slider
                 range
@@ -120,7 +131,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Minimum antall lovende timer: {minPromisingHours}</h3>
+            <h3 className="font-bold mb-2">Minst {minPromisingHours} i strekk</h3>
             <div className="p-2 flex items-center">
               <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
               <div className="flex-grow px-4">
