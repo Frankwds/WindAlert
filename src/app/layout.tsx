@@ -20,9 +20,16 @@ export const metadata: Metadata = {
   title: "WindLord",
   description: "Your paragliding weather companion.",
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
+    icon: [
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
   },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
