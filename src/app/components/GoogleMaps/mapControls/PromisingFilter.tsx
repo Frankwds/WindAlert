@@ -7,7 +7,7 @@ import 'rc-slider/assets/index.css';
 
 interface PromisingFilterProps {
   isExpanded: boolean;
-  onFilterChange: (filter: { day: number; timeRange: [number, number] } | null) => void;
+  onFilterChange: (filter: { day: number; timeRange: [number, number], minPromisingHours: number } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
 }
 
@@ -18,6 +18,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 }) => {
   const [day, setDay] = useState(0);
   const [timeRange, setTimeRange] = useState<[number, number]>([6, 18]);
+  const [minPromisingHours, setMinPromisingHours] = useState(4);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -51,7 +52,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const sliderProps = getSliderProps();
 
   const handleApply = () => {
-    onFilterChange({ day, timeRange });
+    onFilterChange({ day, timeRange, minPromisingHours });
     setIsExpanded(false);
   };
 
@@ -108,6 +109,22 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                 marks={{ 0: '00:00', 6: '06:00', 12: '12:00', 18: '18:00', 24: '24:00' }}
                 step={1}
               />
+            </div>
+          </div>
+          <div className="mb-4">
+            <h3 className="font-bold mb-2">Minimum Promising Hours: {minPromisingHours}</h3>
+            <div className="p-2 flex items-center">
+              <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
+              <div className="flex-grow px-4">
+                <Slider
+                  min={1}
+                  max={6}
+                  value={minPromisingHours}
+                  onChange={(value) => setMinPromisingHours(value as number)}
+                  step={1}
+                />
+              </div>
+              <button onClick={() => setMinPromisingHours(prev => Math.min(6, prev + 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">+</button>
             </div>
           </div>
 

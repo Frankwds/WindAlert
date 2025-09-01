@@ -81,6 +81,7 @@ const GoogleMaps: React.FC = () => {
   const [promisingFilter, setPromisingFilter] = useState<{
     day: number;
     timeRange: [number, number];
+    minPromisingHours: number;
   } | null>(null);
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
 
@@ -107,17 +108,45 @@ const GoogleMaps: React.FC = () => {
 
       if (!forecast) return false;
 
-      const { day, timeRange } = promisingFilter;
-      const startIndex = day * 24 + timeRange[0];
-      const endIndex = day * 24 + timeRange[1];
+      const { day, timeRange, minPromisingHours } = promisingFilter;
 
-      for (let i = startIndex; i < endIndex; i++) {
-        if (forecast[i].is_promising) {
-          return true;
+      if (day === 1) { // Tomorrow
+        let promisingHours = 0;
+        const tomorrowStart = new Date();
+        tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+        tomorrowStart.setHours(12, 0, 0, 0);
+
+        const tomorrowEnd = new Date();
+        tomorrowEnd.setDate(tomorrowEnd.getDate() + 1);
+        tomorrowEnd.setHours(18, 0, 0, 0);
+
+        for (const f of forecast) {
+          const forecastTime = new Date(f.time);
+          if (forecastTime >= tomorrowStart && forecastTime < tomorrowEnd && f.is_promising) {
+            promisingHours++;
+          }
         }
-      }
+        return promisingHours >= minPromisingHours;
 
-      return false;
+      } else { // Today or in two days
+        const dayOffset = day === 0 ? 0 : 2;
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + dayOffset);
+
+        const startOfDay = new Date(targetDate);
+        startOfDay.setHours(timeRange[0], 0, 0, 0);
+
+        const endOfDay = new Date(targetDate);
+        endOfDay.setHours(timeRange[1], 0, 0, 0);
+
+        for (const f of forecast) {
+          const forecastTime = new Date(f.time);
+          if (forecastTime >= startOfDay && forecastTime < endOfDay && f.is_promising) {
+            return true;
+          }
+        }
+        return false;
+      }
     });
   }
 
