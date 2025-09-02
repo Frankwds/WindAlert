@@ -93,8 +93,6 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
       }
     });
 
-
-  console.log(sixHourSymbolsByDay);
   return (
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
       <div className="mb-4">

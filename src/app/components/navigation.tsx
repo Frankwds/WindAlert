@@ -1,13 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import LoginButton from "./LoginButton";
 import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";
-import { useState, useEffect } from "react";
 
 const links = [
   { href: "/favourites", label: "Favoritter" },
@@ -18,19 +15,8 @@ const links = [
 ];
 
 export default function Navigation() {
-  const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
   return (
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
@@ -53,35 +39,12 @@ export default function Navigation() {
               WindLord
             </h1>
           </div>
-          {!isMobile && (
-            <ul className="flex space-x-6">
-              {links.map(({ href, label, external }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    target={external ? '_blank' : '_self'}
-                    rel={external ? 'noopener noreferrer' : ''}
-                    className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 flex items-center ${pathname === href
-                      ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
-                      : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
-                      }`}
-                  >
-                    <span>{label}</span>
-                    {external && (
-                      <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+
         </div>
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)]"
+            className="cursor-pointer p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)]"
             aria-label={`Bytt til ${theme === 'light' ? 'dark' : 'light'} modus`}
           >
             {theme === 'light' ? (
@@ -94,7 +57,7 @@ export default function Navigation() {
               </svg>
             )}
           </button>
-          {isMobile ? <HamburgerMenu links={links} /> : <LoginButton />}
+          <HamburgerMenu links={links} />
         </div>
       </div>
     </nav>

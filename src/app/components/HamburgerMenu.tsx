@@ -44,7 +44,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={toggleMenu}
-        className="p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)]"
+        className="p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)] cursor-pointer"
         aria-label="Åpne meny"
         aria-expanded={isOpen}
       >
@@ -54,7 +54,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
       </button>
 
       <div
-        className={`absolute right-0 mt-2 w-64 bg-[var(--nav-bg)] rounded-md shadow-lg z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        className={`absolute right-0 mt-2 w-64 bg-[var(--nav-bg)] rounded-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           }`}
       >
         <ul className="py-1">
