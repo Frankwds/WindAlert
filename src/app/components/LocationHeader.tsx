@@ -55,7 +55,7 @@ export default function LocationHeader({ name, description, windDirections, loca
           title="Find on Map"
         >
           <MapIcon className="w-4 h-4" />
-          <span className="text-sm font-medium">Se på kart</span>
+          <span className="text-sm font-medium">Kart</span>
         </Link>
 
         {flightlog_id && (
@@ -67,7 +67,7 @@ export default function LocationHeader({ name, description, windDirections, loca
             title="View on Flightlog.org"
           >
             <DocumentTextIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Flightlog.org</span>
+            <span className="text-sm font-medium">Flightlog</span>
             <ExternalLinkIcon className="w-4 h-4" />
           </a>
         )}
