@@ -20,7 +20,7 @@ export default function Navigation() {
 
   return (
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
-      <div className="flex items-center justify-between py-3">
+      <div className="flex items-center justify-between py-3 max-w-4xl mx-auto">
         <div className="flex items-center">
           <div className="mr-6 flex items-center cursor-pointer"
             onClick={() => router.push("/")}>

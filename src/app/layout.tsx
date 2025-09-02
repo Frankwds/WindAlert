@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "./components/navigation";
 import Provider from "./components/Provider";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import ConditionalMain from "./components/ConditionalMain";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +47,7 @@ export default function RootLayout({
           <ThemeProvider>
             <div className="flex flex-col h-full">
               <Navigation />
-              <main className="flex-1">{children}</main>
+              <ConditionalMain>{children}</ConditionalMain>
             </div>
           </ThemeProvider>
         </Provider>
