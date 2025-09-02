@@ -22,7 +22,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
       <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
         <div className="text-center py-8">
           <div className="text-[var(--foreground)] mb-4">
-            No hourly weather data available.
+            Ingen time-for-time værdata tilgjengelig.
           </div>
         </div>
       </div>
@@ -98,12 +98,12 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
       <div className="mb-4">
         <a
-          href={`https://www.yr.no/en/forecast/daily-table/${lat.toFixed(3)},%20${long.toFixed(3)}`}
+          href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${lat.toFixed(3)},${long.toFixed(3)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
         >
-          Forecast from Yr.no
+          Varsel fra Yr.no
           <ExternalLinkIcon size={24} className="inline-block" />
         </a>
       </div>
@@ -132,10 +132,10 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
               >
                 <td className="px-2 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)] text-left font-medium">
                   {(() => {
-                    if (rowIndex === 0) return "Weather";
+                    if (rowIndex === 0) return "Vær";
                     if (rowIndex === 1) return "Temp (°C)";
-                    if (rowIndex === 2) return "Wind (m/s)";
-                    if (rowIndex === 3) return "Direction";
+                    if (rowIndex === 2) return "Vind (m/s)";
+                    if (rowIndex === 3) return "Retning";
                     if (hasLanding && rowIndex === 4) return "Landing (m/s)";
                     return "";
                   })()}

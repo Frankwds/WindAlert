@@ -32,7 +32,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                 rel="noopener noreferrer"
                 className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
               >
-                Wind Forecast on Windy.com
+                Vindvarsel på Windy.com
                 <ExternalLinkIcon size={24} className="inline-block" />
               </a>
             </div>
@@ -63,7 +63,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                         : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
                       }`}
                   >
-                    {layer === "ccl" ? "Thermals" : layer}
+                    {layer === "ccl" ? "Termikk" : layer === "wind" ? "vind" : "kast"}
                   </button>
                 ))}
               </div>

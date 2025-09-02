@@ -38,7 +38,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
           rel="noopener noreferrer"
           className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
         >
-          View on Google Maps
+          Vis på Google Maps
           <ExternalLinkIcon size={24} className="inline-block" />
         </a>
       </div>

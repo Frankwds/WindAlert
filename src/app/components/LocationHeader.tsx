@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import WindCompass from './windCompass';
 import FavouriteStar from './FavouriteStar';
 
@@ -9,15 +10,26 @@ interface LocationHeaderProps {
   description: string;
   windDirections: string[];
   locationId: string;
+  latitude: number;
+  longitude: number;
 }
 
-export default function LocationHeader({ name, description, windDirections, locationId }: LocationHeaderProps) {
+export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleMapLinkClick = () => {
+    localStorage.setItem('mapCoordinates', JSON.stringify({ lat: latitude, lng: longitude }));
+  };
 
   return (
     <div className="mb-4">
-      <h1 className="text-2xl font-bold mb-4">{name}</h1>
-      <FavouriteStar locationId={locationId} />
+      <div className="flex items-center mb-4">
+        <FavouriteStar locationId={locationId} />
+        <h1 className="text-2xl font-bold ml-2">{name}</h1>
+      </div>
+      <Link href="/" onClick={handleMapLinkClick} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-4 block">
+        &larr; Back to Map
+      </Link>
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />
       </div>
@@ -34,7 +46,7 @@ export default function LocationHeader({ name, description, windDirections, loca
               onClick={() => setIsExpanded(true)}
               className="absolute bottom-0 left-0 right-0 h-8 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium flex items-center justify-center"
             >
-              Vis mer
+              Show more
             </button>
           </div>
         )}
@@ -46,7 +58,7 @@ export default function LocationHeader({ name, description, windDirections, loca
             }}
             className="w-full text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium mt-2 py-2 flex items-center justify-center"
           >
-            Vis mindre
+            Show less
           </button>
         )}
       </div>

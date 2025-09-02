@@ -51,6 +51,8 @@ export default async function LocationPage({ params }: Props) {
         description={location.description || ""}
         windDirections={locationToWindDirectionSymbols(location)}
         locationId={locationId}
+        latitude={location.latitude}
+        longitude={location.longitude}
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
