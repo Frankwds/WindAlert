@@ -31,7 +31,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
         <div className="grid grid-cols-5 gap-x-4 gap-y-2 text-sm">
           <div className="font-semibold">Høyde</div>
           <div className="font-semibold">Vind (m/s)</div>
-          <div className="font-semibold">Vindretning</div>
+          <div className="font-semibold">Retning</div>
           <div className="font-semibold">Temp. (°C)</div>
           <div className="font-semibold">Δ°C/100m</div>
 
