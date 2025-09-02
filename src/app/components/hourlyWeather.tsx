@@ -67,41 +67,44 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
             }
             className="bg-[var(--background)] border border-[var(--border)] rounded-lg transition-shadow duration-200 hover:shadow-[var(--shadow-hover)]"
           >
-            <div className="overflow-x-auto scrollbar-thin">
-              <div className="flex p-4 space-x-4">
-                {dailyForecast.map((hour) => {
-                  const weatherIcon = getWeatherIcon(hour.weather_code);
-                  return (
-                    <div
-                      key={hour.time}
-                      className="flex-shrink-0 w-32 text-center p-4 rounded-lg bg-opacity-20 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-[var(--shadow-xl)] cursor-pointer border border-transparent hover:border-[var(--accent)]"
-                      style={{
-                        background: 'rgba(var(--muted-rgb), 0.1)',
-                      }}
-                    >
-                      <div className="font-bold text-lg text-[var(--foreground)]">
+            <div className="p-4 space-y-3">
+              {dailyForecast.map((hour) => {
+                const weatherIcon = getWeatherIcon(hour.weather_code);
+                return (
+                  <div
+                    key={hour.time}
+                    className="flex items-center justify-between p-4 rounded-lg bg-opacity-20 transition-all duration-300 ease-in-out transform hover:shadow-[var(--shadow-xl)] cursor-pointer border border-transparent hover:border-[var(--accent)]"
+                    style={{
+                      background: 'rgba(var(--muted-rgb), 0.1)',
+                    }}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="font-bold text-lg text-[var(--foreground)] w-16">
                         {new Date(hour.time).getHours()}:00
                       </div>
                       {weatherIcon && (
-                        <div className="my-3 flex justify-center">
+                        <div className="flex justify-center">
                           <Image
                             src={weatherIcon.image}
                             alt={weatherIcon.description}
-                            width={60}
-                            height={60}
+                            width={40}
+                            height={40}
                           />
                         </div>
                       )}
-                      <div className="text-2xl font-semibold text-[var(--foreground)]">{Math.round(hour.temperature)}°C</div>
-                      <div className="flex items-center justify-center space-x-2 mt-3 text-[var(--foreground)]">
-                        <WindDirectionArrow direction={hour.wind_direction} size={18} color="var(--accent)" />
-                        <span className="font-semibold">{Math.round(hour.wind_speed)}</span>
-                        <span className="text-sm text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
+                      <div className="text-xl font-semibold text-[var(--foreground)]">{Math.round(hour.temperature)}°C</div>
+                      <div className="text-sm text-blue-500">
+                        {hour.precipitation_max ? `${hour.precipitation_min}` : ""} {hour.precipitation_max ? `- ${hour.precipitation_max}` : ""}
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                    <div className="flex items-center space-x-2 text-[var(--foreground)]">
+                      <WindDirectionArrow direction={hour.wind_direction} size={18} />
+                      <span className="font-semibold">{Math.round(hour.wind_speed)}</span>
+                      <span className="text-sm text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </Collapsible>
         ))}

@@ -4,6 +4,7 @@ import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
 function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
   return {
+
     // Basic identification
     time: new Date(meteoDataPoint.time + 'Z').toLocaleString([], {
       dateStyle: 'short',
@@ -22,6 +23,10 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
     wind_direction: Math.trunc(yrDataPoint?.wind_from_direction || meteoDataPoint.windDirection10m),
     wind_gusts: yrDataPoint?.wind_speed_of_gust || meteoDataPoint.windGusts10m,
     precipitation: yrDataPoint?.precipitation_amount || meteoDataPoint.precipitation,
+
+    precipitation_max: yrDataPoint?.precipitation_amount_max || 0,
+    precipitation_min: yrDataPoint?.precipitation_amount_min || 0,
+
     precipitation_probability: yrDataPoint?.probability_of_precipitation || meteoDataPoint.precipitationProbability,
     pressure_msl: yrDataPoint?.air_pressure_at_sea_level || meteoDataPoint.pressureMsl,
     weather_code: yrDataPoint?.symbol_code || meteoDataPoint.weatherCode,
@@ -74,6 +79,7 @@ export function combineDataSources(meteoData: WeatherDataPoint[], yrData: Weathe
     // If no YR data, still return ForecastCache1hr format
     return combineWeatherData(meteoDp, timezone);
   });
+
   return result;
 }
 

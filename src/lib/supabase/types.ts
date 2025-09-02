@@ -119,6 +119,8 @@ export interface ForecastCache1hr {
   wind_direction: number;
   wind_gusts: number;
   precipitation: number;
+  precipitation_max: number | null;
+  precipitation_min: number | null;
   precipitation_probability: number;
   pressure_msl: number;
   weather_code: string;
