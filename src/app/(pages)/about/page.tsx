@@ -9,51 +9,51 @@ const AboutPage = () => {
             WindLord
           </h1>
           <p className="text-lg text-[var(--muted)]">
-            Your paragliding weather companion.
+            Din paragliding værkompanjong.
           </p>
         </header>
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            Project Goal
+            🎯 Prosjektmål
           </h2>
           <p className="text-base sm:text-lg">
-            Windlord helps you find the best places to fly based on the weather forecast for each specific location. You can also easily see all flying sites that are suitable for selected wind directions.
+            Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert enkelt sted. Du kan også enkelt se alle flysteder som er egnet for valgte vindretninger.
           </p>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            Main Features
+            ✨ Hovedfunksjoner
           </h2>
           <ul className="list-disc list-inside space-y-2 text-base sm:text-lg">
-            <li><strong>Google Maps:</strong> Map with weather stations and paragliding take-offs.</li>
-            <li><strong>Promising...:</strong> Show only take-offs with a promising weather forecast for the selected time and day.</li>
-            <li><strong>Wind Direction:</strong> Show only take-offs suitable for the selected wind direction.</li>
-            <li><strong>Overview:</strong> Click on a take-off to get Yr and Windy on the same page.</li>
-            <li><strong>Combined Weather Data:</strong> The service uses Yr.no's data for ground-level weather forecasts, combined with Open Meteo's atmospheric data.</li>
-            <li><strong>Customizable:</strong> (Coming soon) Customize what you define as promising.</li>
+            <li><strong>Google Maps:</strong> Kart med værstasjoner og paragliding starter.</li>
+            <li><strong>Lovende...:</strong> Vis bare starter med lovende værmelding for valgt tid og dag.</li>
+            <li><strong>Vindretning:</strong> Vis bare starter egnet for valgt vindretning.</li>
+            <li><strong>Oversikt:</strong> Trykk på en start og få opp yr og windy på samme side.</li>
+            <li><strong>Kombinert værdata:</strong> Tjenesten bruker Yr.no sin data for værmelding på bakken, kombinert med open meteo sin atmosfæriske data.</li>
+            <li><strong>Tilpassbart:</strong> (Kommer senere) Tilpass hva du definerer som lovende.</li>
           </ul>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            Data Sources
+            📊 Datakilder
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-4 rounded-lg shadow-[var(--shadow-md)] bg-[var(--background)] border border-[var(--border)]">
-              <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Weather APIs</h3>
+              <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Vær-APIer</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li><strong>Open-Meteo API:</strong> Primary weather data source.</li>
-                <li><strong>YR.no (Meteorologisk institutt):</strong> Secondary weather data.</li>
-                <li><strong>Windy.com:</strong> Interactive weather visualization.</li>
+                <li><strong>Open-Meteo API:</strong> Primær værdata-kilde for detaljerte atmosfæriske forhold.</li>
+                <li><strong>YR.no (Meteorologisk institutt):</strong> Sekundær værdata for validering og sammenligning.</li>
+                <li><strong>Windy.com:</strong> Interaktiv værvisualisering med flere værmodeller.</li>
               </ul>
             </div>
             <div className="p-4 rounded-lg shadow-[var(--shadow-md)] bg-[var(--background)] border border-[var(--border)]">
-              <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Location Data</h3>
+              <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Lokasjonsdata</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li><strong>FlightLog.org:</strong> Paragliding take-off sites.</li>
-                <li><strong>Weather Stations (Holfuy.com):</strong> Ground-level weather observations.</li>
+                <li><strong>FlightLog.org:</strong> Paragliding-avgangssteder og stedsinformasjon.</li>
+                <li><strong>Værstasjoner (Holfuy.com):</strong> Bakkenivå værobservasjoner.</li>
               </ul>
             </div>
           </div>
@@ -61,17 +61,17 @@ const AboutPage = () => {
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            Contribution
+            🤝 Bidrag
           </h2>
           <p className="text-base sm:text-lg">
-            Found a bug or have a feature request? Feel free to open an issue or submit a pull request. We welcome all contributions!
+            Funnet en feil eller har en funksjonsforespørsel? Gjerne åpne en issue eller send inn en pull request. Vi ønsker velkommen alle bidrag!
           </p>
         </section>
 
         <footer className="text-center text-[var(--muted)] text-sm">
-          <p>This project is licensed under the MIT License.</p>
+          <p>Dette prosjektet er lisensiert under MIT-lisensen.</p>
           <p className="mt-4">
-            <strong>Disclaimer:</strong> Weather conditions can change rapidly. This tool should be used as a supplement, not a substitute for proper weather assessment and pilot judgment.
+            <strong>Merk:</strong> Værforhold kan endre seg raskt og dette verktøyet bør brukes som et supplement, ikke som erstatning for riktig vurdering av værforhold og pilotvurdering.
           </p>
         </footer>
       </div>
