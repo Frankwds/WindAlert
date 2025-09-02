@@ -103,7 +103,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
           rel="noopener noreferrer"
           className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
         >
-          Varsel fra Yr.no
+          Yr.no
           <ExternalLinkIcon size={24} className="inline-block" />
         </a>
       </div>
