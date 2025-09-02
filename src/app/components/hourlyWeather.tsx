@@ -48,50 +48,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   }, {} as Record<string, ForecastCache1hr[]>);
 
   // Create six-hourly symbols from hourly forecast (every 6th hour's next_6_hours_symbol_code)
-  const sixHourSymbolsByDay: Record<string, string[]> = {};
-
-  // Get current time to filter out past hours
-  const currentTime = new Date();
-
-  // Take every 6th hour from the start, but only future hours
-  yrdata.weatherDataYrHourly
-    .filter((hour, index) => {
-      const hourDate = new Date(hour.time);
-      return index % 6 === 0 && hourDate >= currentTime;
-    })
-    .forEach((hour) => {
-      const dayIndex = new Date(hour.time).getDay();
-      const day = dayNames[dayIndex];
-      if (!sixHourSymbolsByDay[day]) {
-        sixHourSymbolsByDay[day] = [];
-      }
-      if (hour.next_6_hours_symbol_code) {
-        sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
-      }
-    });
-
-  // Also add the very last next_6_hours_symbol_code from hourly data
-  const lastHourlyEntry = yrdata.weatherDataYrHourly[yrdata.weatherDataYrHourly.length - 1];
-  if (lastHourlyEntry && lastHourlyEntry.next_6_hours_symbol_code) {
-    const dayIndex = new Date(lastHourlyEntry.time).getDay();
-    const day = dayNames[dayIndex];
-    if (!sixHourSymbolsByDay[day]) {
-      sixHourSymbolsByDay[day] = [];
-    }
-    sixHourSymbolsByDay[day].push(lastHourlyEntry.next_6_hours_symbol_code);
-  }
-
-  yrdata.weatherDataYrSixHourly.slice(0, 6)
-    .forEach((hour) => {
-      const dayIndex = new Date(hour.time).getDay();
-      const day = dayNames[dayIndex];
-      if (!sixHourSymbolsByDay[day]) {
-        sixHourSymbolsByDay[day] = [];
-      }
-      if (hour.symbol_code) {
-        sixHourSymbolsByDay[day].push(hour.symbol_code);
-      }
-    });
+  const sixHourSymbolsByDay = getSixHourSymbolsByDay(yrdata, dayNames);
 
   return (
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
@@ -194,5 +151,56 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     </div>
   );
 };
+
+function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]) {
+  const sixHourSymbolsByDay: Record<string, string[]> = {};
+
+  const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce((acc, hour) => {
+    const dayIndex = new Date(hour.time).getDay();
+    const day = dayNames[dayIndex];
+    if (!acc[day]) {
+      acc[day] = [];
+    }
+    acc[day].push(hour);
+    return acc;
+  }, {} as Record<string, WeatherDataPointYr1h[]>);
+
+  Object.entries(yrdataGroupedByDay)
+    .forEach(([day, hours]) => {
+      if (!sixHourSymbolsByDay[day]) {
+        sixHourSymbolsByDay[day] = [];
+      }
+      hours
+        .forEach((hour, index) => {
+          if (index === 0) {
+            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
+            return;
+          }
+          if (index === hours.length - 1 && hours.length > 6 && sixHourSymbolsByDay[day].length < 4) {
+            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
+            return;
+          }
+          if (index % 6 === 0) {
+            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
+            return;
+          }
+        })
+    });
+
+  yrdata.weatherDataYrSixHourly.slice(0, 6)
+    .forEach((hour) => {
+      const dayIndex = new Date(hour.time).getDay();
+      const day = dayNames[dayIndex];
+      if (!sixHourSymbolsByDay[day]) {
+        sixHourSymbolsByDay[day] = [];
+      }
+      if (hour.symbol_code) {
+        sixHourSymbolsByDay[day].push(hour.symbol_code);
+      }
+    });
+
+  return sixHourSymbolsByDay;
+}
+
 
 export default HourlyWeather;
