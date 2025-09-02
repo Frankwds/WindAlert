@@ -7,6 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { usePathname } from 'next/navigation';
 
 const links = [
+  { href: '/', label: 'Forside' },
   { href: '/favourites', label: 'Favoritter' },
   { href: '/about', label: 'Om' },
   { href: '/contact', label: 'Kontakt' },
@@ -51,35 +52,35 @@ const HamburgerMenu = () => {
         </svg>
       </button>
 
-      {isOpen && (
-        <div
-          className="absolute right-0 mt-2 w-56 bg-[var(--nav-bg)] rounded-md shadow-lg z-20"
-        >
-          <ul className="py-1">
-            {links.map(({ href, label, external }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  target={external ? '_blank' : '_self'}
-                  rel={external ? 'noopener noreferrer' : ''}
-                  className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                    pathname === href
-                      ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
-                      : "text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
-          <div className="px-4 py-2">
-            <LoginButton />
-          </div>
+      <div
+        className={`absolute right-0 mt-2 w-64 bg-[var(--nav-bg)] rounded-md shadow-lg z-20 transition-all duration-300 ease-in-out transform origin-top-right ${
+          isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        <ul className="py-1">
+          {links.map(({ href, label, external }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                target={external ? '_blank' : '_self'}
+                rel={external ? 'noopener noreferrer' : ''}
+                className={`block px-4 py-2 text-sm transition-all duration-200 ${
+                  pathname === href
+                    ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
+                    : "text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
+        <div className="px-4 py-2">
+          <LoginButton />
         </div>
-      )}
+      </div>
     </div>
   );
 };
