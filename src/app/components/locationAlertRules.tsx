@@ -107,7 +107,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
                     {hour.validation_warnings && hour.validation_warnings.length > 0 && (
                       <WarningCard warningsCsv={hour.validation_warnings} />
                     )}
-                    <HourlyWeatherDetails hour={hour} windDirections={locationToWindDirectionSymbols(location)} />
+                    <HourlyWeatherDetails hour={hour} windDirections={locationToWindDirectionSymbols(location)} altitude={location.altitude} />
                   </div>
                 </Collapsible>
               ))}

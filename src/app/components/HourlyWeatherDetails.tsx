@@ -7,7 +7,7 @@ import WindDirectionArrow from "./WindDirectionArrow";
 import TinyWindCompass from "./GoogleMaps/TinyWindCompass";
 import { ForecastCache1hr } from "@/lib/supabase/types";
 
-const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr, windDirections: string[] }) => {
+const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: ForecastCache1hr, windDirections: string[], altitude: number }) => {
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
@@ -27,7 +27,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
       </div>
 
       <div className="mt-4">
-        <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">Atmosfæriske forhold</h4>
+        <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">Atmosfæriske forhold (ECMWF)</h4>
         <div className="grid grid-cols-5 gap-x-4 gap-y-2 text-sm">
           <div className="font-semibold">Høyde</div>
           <div className="font-semibold">Vind (m/s)</div>
@@ -35,7 +35,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
           <div className="font-semibold">Temp. (°C)</div>
           <div className="font-semibold">Δ°C/100m</div>
 
-          <div className="font-medium">0 moh (yr)</div>
+          <div className="font-medium">{altitude} (yr)</div>
           <div className="text-[var(--foreground)]">
             <span className="font-medium">{Math.round(hour.wind_speed)} ( {Math.round(hour.wind_gusts)})</span>
 
@@ -45,7 +45,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
             <span className="text-xs text-[var(--foreground)]">{getWindDirection(hour.wind_direction)}</span>
           </div>
           <div className="text-[var(--foreground)] font-medium">{Math.round(hour.temperature)}</div>
-          <div className="text-[var(--foreground)] font-medium">-</div>
+          <div className="text-[var(--foreground)] font-medium"></div>
           <div className="font-medium">
             {hour.geopotential_height_1000hpa} moh
           </div>
@@ -55,9 +55,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
             <span className="text-xs">{getWindDirection(hour.wind_direction_1000hpa)}</span>
           </div>
           <div>{Math.round(hour.temperature_1000hpa)}</div>
-          <div className="text-[var(--foreground)] font-medium">
-            {((hour.temperature_1000hpa - hour.temperature) / (hour.geopotential_height_1000hpa / 100)).toFixed(2)}°C
-          </div>
+          <div className="text-[var(--foreground)] font-medium"></div>
           <div className="font-medium">
             {hour.geopotential_height_925hpa} moh
           </div>
@@ -98,7 +96,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
       </div>
       <div className="mt-4">
         <h4 className="font-bold text-lg mb-3 text-[var(--foreground)]">
-          Atmosfæriske detaljer
+          Flere detaljer
         </h4>
 
         {/* Basic Weather Conditions */}
@@ -113,7 +111,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
               <span className="font-medium">{hour.precipitation_probability}%</span>
             </div>
             <div className="flex justify-between">
-              <span>Frysenivå:</span>
+              <span>Frysetemperatur:</span>
               <span className="font-medium">{hour.freezing_level_height} m</span>
             </div>
           </div>

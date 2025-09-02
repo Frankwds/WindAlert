@@ -53,6 +53,7 @@ export default async function LocationPage({ params }: Props) {
         locationId={locationId}
         latitude={location.latitude}
         longitude={location.longitude}
+        altitude={location.altitude}
         flightlog_id={location.flightlog_id}
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
@@ -61,6 +62,8 @@ export default async function LocationPage({ params }: Props) {
         yrdata={mappedYrTakeoffData}
         lat={location.latitude}
         long={location.longitude}
+        windDirections={locationToWindDirectionSymbols(location)}
+        altitude={location.altitude}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
       <LocationAlertRules location={location} forecast={futureForecast} />

@@ -14,10 +14,11 @@ interface LocationHeaderProps {
   locationId: string;
   latitude: number;
   longitude: number;
+  altitude: number;
   flightlog_id?: string | null;
 }
 
-export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, flightlog_id }: LocationHeaderProps) {
+export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, altitude, flightlog_id }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMapLinkClick = () => {
@@ -74,7 +75,7 @@ export default function LocationHeader({ name, description, windDirections, loca
       </div>
 
 
-      <h1 className="text-2xl font-bold ml-2 mb-4">{name}</h1>
+      <h1 className="text-2xl font-bold ml-2 mb-4">{name} ({altitude}m)</h1>
 
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />

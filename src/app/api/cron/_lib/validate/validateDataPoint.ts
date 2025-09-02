@@ -172,5 +172,5 @@ const warn_reasons = {
   WIND_SHEAR_700: 'Endring i vindretning (700hPa)',
   WIND_SPEED_925_HIGH: 'Mye høydevind (925hPa)',
   WIND_SPEED_850_HIGH: 'Mye høydevind (850hPa)',
-  WIND_SPEED_700_HIGH: 'Mye høydevind (700hPa)',
+  WIND_SPEED_700_HIGH: 'Mye høydevind {geopotential_height_700hpa}m',
 } as const;
