@@ -6,16 +6,30 @@ import { usePathname } from "next/navigation";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
+import HamburgerMenu from "./HamburgerMenu";
+import { useState, useEffect } from "react";
 
 const links = [
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
+  { href: '/contact', label: 'Kontakt' },
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3">
@@ -32,21 +46,23 @@ export default function Navigation() {
               onClick={() => router.push("/")}
             />
           </div>
-          <ul className="flex space-x-6">
-            {links.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 ${pathname === href
-                    ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
-                    : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
-                    }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {!isMobile && (
+            <ul className="flex space-x-6">
+              {links.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 ${pathname === href
+                      ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
+                      : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
+                      }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="flex items-center space-x-4">
           <button
@@ -64,7 +80,7 @@ export default function Navigation() {
               </svg>
             )}
           </button>
-          <LoginButton />
+          {isMobile ? <HamburgerMenu /> : <LoginButton />}
         </div>
       </div>
     </nav>
