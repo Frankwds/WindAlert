@@ -57,16 +57,32 @@ export default function FavouriteHeart({ locationId }: Props) {
   };
 
   if (loading) {
-    return <div className="w-6 h-6" />;
+    return (
+      <button
+        disabled={true}
+        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] opacity-50 cursor-not-allowed"
+      >
+        <HeartIconOutline className="w-4 h-4 text-red-500" />
+        <span className="text-sm font-medium">Loading...</span>
+      </button>
+    );
   }
 
   return (
-    <button onClick={toggleFavourite} disabled={loading}>
+    <button
+      onClick={toggleFavourite}
+      disabled={loading}
+      className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+      title={isFavourite ? "Remove from favourites" : "Add to favourites"}
+    >
       {isFavourite ? (
-        <HeartIconSolid className="w-6 h-6 text-red-500" />
+        <HeartIconSolid className="w-4 h-4 text-red-500" />
       ) : (
-        <HeartIconOutline className="w-6 h-6 text-red-500" />
+        <HeartIconOutline className="w-4 h-4 text-red-500" />
       )}
+      <span className="text-sm font-medium">
+        Favoritt
+      </span>
     </button>
   );
 }

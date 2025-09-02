@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import WindCompass from './windCompass';
 import { MapIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
-import { MapPinIcon } from '@heroicons/react/24/solid';
 import FavouriteHeart from './FavouriteHeart';
+import ExternalLinkIcon from './ExternalLinkIcon';
 
 interface LocationHeaderProps {
   name: string;
@@ -45,29 +45,36 @@ export default function LocationHeader({ name, description, windDirections, loca
 
   return (
     <div className="mb-4">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <FavouriteHeart locationId={locationId} />
-          <h1 className="text-2xl font-bold ml-2">{name}</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          {flightlog_id && (
-            <a
-              href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2"
-              title="View on Flightlog.org"
-            >
-              <DocumentTextIcon className="w-6 h-6" />
-            </a>
-          )}
-          <Link href="/" onClick={handleMapLinkClick} className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2 mr-5" title="Find on Map">
-            <MapPinIcon className="w-6 h-6" />
-            <MapIcon className="w-6 h-6 mt-[-12px]" />
-          </Link>
-        </div>
+      {/* Action buttons above header */}
+      <div className="flex gap-3 mb-4">
+        <FavouriteHeart locationId={locationId} />
+        <Link
+          href="/"
+          onClick={handleMapLinkClick}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer"
+          title="Find on Map"
+        >
+          <MapIcon className="w-4 h-4" />
+          <span className="text-sm font-medium">Se på kart</span>
+        </Link>
+
+        {flightlog_id && (
+          <a
+            href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer"
+            title="View on Flightlog.org"
+          >
+            <DocumentTextIcon className="w-4 h-4" />
+            <span className="text-sm font-medium">Flightlog.org</span>
+            <ExternalLinkIcon className="w-4 h-4" />
+          </a>
+        )}
       </div>
+
+
+      <h1 className="text-2xl font-bold ml-2 mb-4">{name}</h1>
 
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />
@@ -81,12 +88,12 @@ export default function LocationHeader({ name, description, windDirections, loca
         {description.length > 400 && (
           <div className={`cursor-pointer relative ${isExpanded ? 'hidden' : 'block'}`} onClick={() => setIsExpanded(true)}>
             <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--background)] to-transparent" />
-            {/* <button
+            <button
               onClick={() => setIsExpanded(true)}
               className="absolute bottom-0 right-15 h-8 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium px-2"
             >
               ...Vis alt &rarr;
-            </button> */}
+            </button>
           </div>
         )}
         {isExpanded && (
