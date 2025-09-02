@@ -58,6 +58,7 @@ export default async function LocationPage({ params }: Props) {
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
         forecast={futureForecast}
+        yrdata={mappedYrTakeoffData}
         lat={location.latitude}
         long={location.longitude}
       />

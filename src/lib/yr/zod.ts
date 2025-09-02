@@ -57,6 +57,12 @@ const Next6HoursSchema = z.object({
   details: Next6HoursDetailsSchema,
 });
 
+const Next6HoursSchemaForHourly = z.object({
+  summary: z.object({
+    symbol_code: z.string(),
+  }),
+});
+
 const TimeSeriesSchema1Hour = z.object({
   time: z.string(),
   data: z.object({
@@ -64,6 +70,7 @@ const TimeSeriesSchema1Hour = z.object({
       details: InstantDetailsSchema1Hour,
     }),
     next_1_hours: Next1HoursSchema,
+    next_6_hours: Next6HoursSchemaForHourly,
   }),
 });
 

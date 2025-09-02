@@ -24,6 +24,7 @@ export interface WeatherDataPointYr1h extends BaseWeatherDataPoint {
   ultraviolet_index_clear_sky: number;
   wind_speed_of_gust: number;
   probability_of_thunder: number;
+  next_6_hours_symbol_code: string;
 }
 
 export interface WeatherDataPointYr6h extends BaseWeatherDataPoint {

@@ -5,7 +5,7 @@ import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from './typ
 
 export function mapYrData(rawData: any): WeatherDataYr {
   const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
-  const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex);
+  const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex - 6);
   const slicedSixHourData = rawData.properties.timeseries.slice(firstMissingIndex, 80);
 
   const validatedMetaData = metNoResponseSchema.parse(rawData);
@@ -23,6 +23,7 @@ export function mapYrData(rawData: any): WeatherDataYr {
       ...item.data.instant.details,
       ...item.data.next_1_hours.details,
       symbol_code: item.data.next_1_hours.summary.symbol_code,
+      next_6_hours_symbol_code: item.data.next_6_hours.summary.symbol_code,
     };
     return dataPoint;
   });
