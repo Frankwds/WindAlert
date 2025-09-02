@@ -96,7 +96,11 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                           />
                         </div>
                       )}
-                      <div className="text-lg font-semibold text-[var(--foreground)]">{Math.round(hour.temperature)}°C</div>
+                      <div
+                        className={`text-lg font-semibold ${Math.round(hour.temperature) <= 0 ? 'text-[var(--accent)]/70' : 'text-[var(--error)]/70'}`}
+                      >
+                        {Math.round(hour.temperature)}°C
+                      </div>
                       <div className="text-xs text-blue-500">
                         {hour.precipitation_min !== 0
                           ? `${hour.precipitation_min}-${hour.precipitation_max} mm`
