@@ -11,8 +11,10 @@ export default function WindDirectionArrow({
   direction,
   size = 24,
   className = "",
-  color = "#000000",
+  color,
 }: WindDirectionArrowProps) {
+  // Use theme-aware color if no color is provided
+  const arrowColor = color || "var(--foreground)";
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <svg
@@ -30,15 +32,15 @@ export default function WindDirectionArrow({
         {/* Gradient for the arrow head */}
         <defs>
           <linearGradient id="windArrow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={color} />
-            <stop offset="100%" stopColor={color} />
+            <stop offset="0%" stopColor={arrowColor} />
+            <stop offset="100%" stopColor={arrowColor} />
           </linearGradient>
         </defs>
 
         {/* Arrow head */}
         <path
           d="M12 22L8 12L12 14L16 12L12 22Z"
-          fill={color}
+          fill={arrowColor}
         />
         {/* Arrow shaft */}
         <line
@@ -46,7 +48,7 @@ export default function WindDirectionArrow({
           y1="14"
           x2="12"
           y2="2"
-          stroke={color}
+          stroke={arrowColor}
           strokeWidth="2"
         />
       </svg>

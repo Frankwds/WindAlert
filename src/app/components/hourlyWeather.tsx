@@ -152,7 +152,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                     }}
                   >
                     <div className="flex items-center space-x-6">
-                      <div className="font-semibold text-sm text-[var(--foreground)] w-12">
+                      <div className="font-semibold text-sm text-[var(--foreground)] ">
                         {new Date(hour.time).getHours().toString().padStart(2, '0')}
                       </div>
                       {weatherIcon && (
@@ -160,8 +160,8 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                           <Image
                             src={weatherIcon.image}
                             alt={weatherIcon.description}
-                            width={28}
-                            height={28}
+                            width={32}
+                            height={32}
                           />
                         </div>
                       )}
@@ -172,15 +172,17 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                       </div>
                       <div className="text-xs text-blue-500">
                         {hour.precipitation_max !== 0
-                          ? `${hour.precipitation_min}-${hour.precipitation_max} mm`
+                          ? `${hour.precipitation_min} - ${hour.precipitation_max}`
                           : ''
                         }
                       </div>
                     </div>
                     <div className="flex items-center space-x-3 text-[var(--foreground)]">
-                      <WindDirectionArrow direction={hour.wind_direction} size={14} />
-                      <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
-                      <span className="text-xs text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
+                      <WindDirectionArrow direction={hour.wind_direction} />
+                      <div className="space-x-1">
+                        <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
+                        <span className="text-xs text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
+                      </div>
                     </div>
                   </div>
                 );
