@@ -27,7 +27,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
   const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&${markers}&key=${apiKey}`;
 
   // Google Maps URL with coordinates, zoom level 10, and satellite view
-  const googleMapsUrl = `https://www.google.com/maps?ll=${latitude},${longitude}&t=k&z=12`;
+  const googleMapsUrl = `https://maps.google.com/?q=${latitude},${longitude}&z=12&t=k`;
 
   return (
     <div className="p-4">
