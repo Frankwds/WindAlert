@@ -18,7 +18,26 @@ export default function LocationHeader({ name, description, windDirections, loca
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMapLinkClick = () => {
-    localStorage.setItem('mapCoordinates', JSON.stringify({ lat: latitude, lng: longitude }));
+    // Get existing map state to preserve filters and other settings
+    const existingState = localStorage.getItem('windlordMapState');
+    let mapState = {};
+
+    if (existingState) {
+      try {
+        mapState = JSON.parse(existingState);
+      } catch (e) {
+        console.error('Could not parse existing map state', e);
+      }
+    }
+
+    // Update only center and zoom, preserve everything else
+    const updatedState = {
+      ...mapState,
+      center: { lat: latitude, lng: longitude },
+      zoom: 12 // Set a reasonable zoom level for location view
+    };
+
+    localStorage.setItem('windlordMapState', JSON.stringify(updatedState));
   };
 
   return (
