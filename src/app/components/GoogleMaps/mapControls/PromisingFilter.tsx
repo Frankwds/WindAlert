@@ -142,7 +142,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Minst {minPromisingHours} i strekk</h3>
+            <h3 className="font-bold mb-2">Minst {minPromisingHours} timer i strekk</h3>
             <div className="p-2 flex items-center">
               <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
               <div className="flex-grow px-4">
