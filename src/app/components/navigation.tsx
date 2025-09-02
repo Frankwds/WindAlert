@@ -21,7 +21,8 @@ export default function Navigation() {
         <div className="flex items-center">
           <div className="mr-6">
             <Image
-              src="/windlord-dark.png"
+              key={theme}
+              src={theme === 'light' ? "/windlord-semi-dark.png" : "/windlord-dark.png"}
               alt="WindLord Logo"
               width={64}
               height={64}
@@ -36,7 +37,7 @@ export default function Navigation() {
                 <Link
                   href={href}
                   className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 ${pathname === href
-                    ? "bg-[var(--nav-text)]/30 text-[var(--nav-text)] font-medium"
+                    ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
                     : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
                     }`}
                 >
