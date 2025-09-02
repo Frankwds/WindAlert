@@ -30,10 +30,10 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
     );
   }
 
+  const dayNames = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
   const groupedByDay = forecast.reduce((acc, hour) => {
-    const day = new Date(hour.time).toLocaleDateString([], {
-      weekday: 'long',
-    });
+    const dayIndex = new Date(hour.time).getDay();
+    const day = dayNames[dayIndex];
     if (!acc[day]) {
       acc[day] = [];
     }
@@ -94,7 +94,10 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                       )}
                       <div className="text-xl font-semibold text-[var(--foreground)]">{Math.round(hour.temperature)}°C</div>
                       <div className="text-sm text-blue-500">
-                        {hour.precipitation_max ? `${hour.precipitation_min}` : ""} {hour.precipitation_max ? `- ${hour.precipitation_max}` : ""}
+                        {hour.precipitation_min !== 0
+                          ? `${hour.precipitation_min}-${hour.precipitation_max} mm`
+                          : ''
+                        }
                       </div>
                     </div>
                     <div className="flex items-center space-x-2 text-[var(--foreground)]">
