@@ -15,6 +15,7 @@
   /* Additional Design Tokens */
   --border: #d1d5db;
   --muted: #4b5563;
+  --muted-rgb: 75, 85, 99;
   --accent: #3b82f6;
   --success: #059669;
   --warning: #d97706;
@@ -52,6 +53,7 @@
   --foreground: #ededed;
   --border: #374151;
   --muted: #9ca3af;
+  --muted-rgb: 156, 163, 175;
   --nav-bg: #111827;
   --nav-text: #f9fafb;
   
