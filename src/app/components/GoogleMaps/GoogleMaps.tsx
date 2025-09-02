@@ -285,6 +285,7 @@ const GoogleMaps: React.FC = () => {
         infoWindowRef.current = new google.maps.InfoWindow();
 
         map.addListener('click', onMapClick);
+        map.setOptions({ scaleControl: true });
 
         setMapInstance(map);
         setIsLoading(false);
