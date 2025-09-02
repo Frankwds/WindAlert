@@ -103,43 +103,52 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                 return (
                   <div
                     key={hour.time}
-                    className="flex items-center justify-between px-3 py-2 rounded-md bg-opacity-20 transition-all duration-200 ease-in-out hover:shadow-[var(--shadow-md)] cursor-pointer border border-transparent hover:border-[var(--accent)]"
+                    className="grid grid-cols-6 gap-4 items-center px-3 py-2 rounded-md bg-opacity-20 transition-all duration-200 ease-in-out hover:shadow-[var(--shadow-md)] cursor-pointer border border-transparent hover:border-[var(--accent)]"
                     style={{
                       background: 'rgba(var(--muted-rgb), 0.1)',
                     }}
                   >
-                    <div className="flex items-center space-x-6">
-                      <div className="font-semibold text-sm text-[var(--foreground)] ">
-                        {new Date(hour.time).getHours().toString().padStart(2, '0')}
-                      </div>
-                      {weatherIcon && (
-                        <div className="flex justify-center">
-                          <Image
-                            src={weatherIcon.image}
-                            alt={weatherIcon.description}
-                            width={32}
-                            height={32}
-                          />
-                        </div>
-                      )}
-                      <div
-                        className={`text-lg font-semibold ${Math.round(hour.temperature) <= 0 ? 'text-[var(--accent)]/70' : 'text-[var(--error)]/70'}`}
-                      >
-                        {Math.round(hour.temperature)}°C
-                      </div>
-                      <div className="text-xs text-blue-500">
-                        {hour.precipitation_max !== 0
-                          ? `${hour.precipitation_min} - ${hour.precipitation_max}`
-                          : ''
-                        }
-                      </div>
+                    {/* Time column */}
+                    <div className="font-semibold text-sm text-[var(--foreground)] text-center">
+                      {new Date(hour.time).getHours().toString().padStart(2, '0')}
                     </div>
-                    <div className="flex items-center space-x-3 text-[var(--foreground)]">
+
+                    {/* Weather icon column */}
+                    <div className="flex justify-center">
+                      {weatherIcon && (
+                        <Image
+                          src={weatherIcon.image}
+                          alt={weatherIcon.description}
+                          width={32}
+                          height={32}
+                        />
+                      )}
+                    </div>
+
+                    {/* Temperature column */}
+                    <div
+                      className={`text-lg font-semibold text-center ${Math.round(hour.temperature) <= 0 ? 'text-[var(--accent)]/70' : 'text-[var(--error)]/70'}`}
+                    >
+                      {Math.round(hour.temperature)}°C
+                    </div>
+
+                    {/* Precipitation column */}
+                    <div className="text-xs text-blue-500 text-center">
+                      {hour.precipitation_max !== 0
+                        ? `${hour.precipitation_min} - ${hour.precipitation_max}`
+                        : ''
+                      }
+                    </div>
+
+                    {/* Wind direction column */}
+                    <div className="flex justify-center">
                       <WindDirectionArrow direction={hour.wind_direction} />
-                      <div className="space-x-1">
-                        <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
-                        <span className="text-xs text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
-                      </div>
+                    </div>
+
+                    {/* Wind speed column */}
+                    <div className="text-center text-[var(--foreground)]">
+                      <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
+                      <span className="text-xs text-[var(--muted)] ml-1">({Math.round(hour.wind_gusts)})</span>
                     </div>
                   </div>
                 );
