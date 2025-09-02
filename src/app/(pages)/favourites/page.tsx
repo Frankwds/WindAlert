@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
-import { ParaglidingLocation } from "@/lib/supabase/types";
+import { FavouriteLocation } from "@/lib/supabase/types";
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();
-  const [locations, setLocations] = useState<ParaglidingLocation[]>([]);
+  const [favourites, setFavourites] = useState<FavouriteLocation[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.id) {
       FavouriteLocationService.getAllForUser(session.user.id)
         .then((favs) => {
-          setLocations(favs);
+          setFavourites(favs);
           setLoading(false);
         })
         .catch((error) => {
@@ -26,6 +26,27 @@ export default function FavouritesPage() {
       setLoading(false);
     }
   }, [session, status]);
+
+  const handleNotificationToggle = async (
+    favourite: FavouriteLocation,
+    field: "notify_today" | "notify_tomorrow" | "notify_in_two_days"
+  ) => {
+    if (!session?.user?.id) return;
+
+    const updatedFavourite = await FavouriteLocationService.update(
+      session.user.id,
+      Number(favourite.location_id),
+      {
+        [field]: !favourite[field],
+      }
+    );
+
+    setFavourites((prev) =>
+      prev.map((fav) =>
+        fav.id === updatedFavourite.id ? updatedFavourite : fav
+      )
+    );
+  };
 
   if (loading) {
     return (
@@ -53,16 +74,65 @@ export default function FavouritesPage() {
     <main className="flex min-h-screen flex-col items-center p-8">
       <div className="z-10 w-full max-w-5xl">
         <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
-        {locations.length > 0 ? (
+        {favourites.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {locations.map((location) => (
-              <Link
-                key={location.id}
-                href={`/locations/${location.id}`}
-                className="p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/80 transition-colors"
+            {favourites.map((favourite) => (
+              <div
+                key={favourite.id}
+                className="p-4 bg-[var(--border)] rounded-lg"
               >
-                <h2 className="text-xl font-semibold">{location.name}</h2>
-              </Link>
+                <Link href={`/locations/${favourite.location_id}`}>
+                  <h2 className="text-xl font-semibold hover:underline">
+                    {favourite.paragliding_locations.name}
+                  </h2>
+                </Link>
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500">
+                    Notify me via email for promising conditions:
+                  </p>
+                  <div className="flex gap-2 mt-2">
+                    <button
+                      onClick={() =>
+                        handleNotificationToggle(favourite, "notify_today")
+                      }
+                      className={`px-3 py-1 text-sm rounded-md ${
+                        favourite.notify_today
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-200 dark:bg-gray-700"
+                      }`}
+                    >
+                      Today
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleNotificationToggle(favourite, "notify_tomorrow")
+                      }
+                      className={`px-3 py-1 text-sm rounded-md ${
+                        favourite.notify_tomorrow
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-200 dark:bg-gray-700"
+                      }`}
+                    >
+                      Tomorrow
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleNotificationToggle(
+                          favourite,
+                          "notify_in_two_days"
+                        )
+                      }
+                      className={`px-3 py-1 text-sm rounded-md ${
+                        favourite.notify_in_two_days
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-200 dark:bg-gray-700"
+                      }`}
+                    >
+                      In two days
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         ) : (

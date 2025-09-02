@@ -13,6 +13,10 @@ export interface FavouriteLocation {
   user_id: string;
   location_id: string;
   created_at: string;
+  notify_today: boolean;
+  notify_tomorrow: boolean;
+  notify_in_two_days: boolean;
+  paragliding_locations: ParaglidingLocation;
 }
 
 export interface ParaglidingLocation {

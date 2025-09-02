@@ -4,6 +4,9 @@ CREATE TABLE public.favourite_locations (
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   location_id BIGINT NOT NULL REFERENCES public.paragliding_locations(id) ON DELETE CASCADE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  notify_today BOOLEAN DEFAULT FALSE NOT NULL,
+  notify_tomorrow BOOLEAN DEFAULT FALSE NOT NULL,
+  notify_in_two_days BOOLEAN DEFAULT FALSE NOT NULL,
   CONSTRAINT unique_user_location UNIQUE (user_id, location_id)
 );
 
@@ -28,3 +31,10 @@ CREATE POLICY "Enable delete for users' own favourites"
 ON public.favourite_locations
 FOR DELETE
 USING (auth.uid() = user_id);
+
+-- Users can update their own favourites
+CREATE POLICY "Enable update for users' own favourites"
+ON public.favourite_locations
+FOR UPDATE
+USING (auth.uid() = user_id)
+WITH CHECK (auth.uid() = user_id);
