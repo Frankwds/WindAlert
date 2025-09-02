@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
+import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { Session } from "next-auth";
 
 interface Props {
   locationId: string;
 }
 
-export default function FavouriteStar({ locationId }: Props) {
+export default function FavouriteHeart({ locationId }: Props) {
   const { data: session, status } = useSession();
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -63,9 +63,9 @@ export default function FavouriteStar({ locationId }: Props) {
   return (
     <button onClick={toggleFavourite} disabled={loading}>
       {isFavourite ? (
-        <StarIconSolid className="w-6 h-6 text-yellow-500" />
+        <HeartIconSolid className="w-6 h-6 text-red-500" />
       ) : (
-        <StarIconOutline className="w-6 h-6 text-yellow-500" />
+        <HeartIconOutline className="w-6 h-6 text-red-500" />
       )}
     </button>
   );

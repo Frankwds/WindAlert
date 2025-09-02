@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import WindCompass from './windCompass';
-import FavouriteStar from './FavouriteStar';
 import { MapIcon, } from '@heroicons/react/24/outline';
 import { MapPinIcon } from '@heroicons/react/24/solid';
+import FavouriteHeart from './FavouriteHeart';
 
 interface LocationHeaderProps {
   name: string;
@@ -54,6 +54,8 @@ export default function LocationHeader({ name, description, windDirections, loca
           <MapIcon className="w-6 h-6 mt-[-12px]" />
         </Link>
       </div>
+      <h1 className="text-2xl font-bold mb-4">{name}</h1>
+      <FavouriteHeart locationId={locationId} />
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />
       </div>
