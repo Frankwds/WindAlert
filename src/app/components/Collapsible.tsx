@@ -7,6 +7,8 @@ interface CollapsibleProps {
   children: React.ReactNode;
   className?: string;
   defaultOpen?: boolean;
+  isOpen?: boolean;
+  onToggle?: () => void;
 }
 
 export default function Collapsible({
@@ -14,8 +16,14 @@ export default function Collapsible({
   children,
   className = "",
   defaultOpen = false,
+  isOpen: controlledIsOpen,
+  onToggle,
 }: CollapsibleProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [internalIsOpen, setInternalIsOpen] = useState(defaultOpen);
+
+  // Use controlled state if provided, otherwise use internal state
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const setIsOpen = onToggle || setInternalIsOpen;
 
   return (
     <div className="rounded-lg">

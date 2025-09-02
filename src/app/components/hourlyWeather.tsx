@@ -6,6 +6,7 @@ import Image from "next/image";
 import WindDirectionArrow from "./WindDirectionArrow";
 import ExternalLinkIcon from "./ExternalLinkIcon";
 import Collapsible from "./Collapsible";
+import { useState } from "react";
 
 interface HourlyWeatherProps {
   forecast: ForecastCache1hr[];
@@ -18,6 +19,8 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   lat,
   long,
 }) => {
+  const [openDay, setOpenDay] = useState<string | null>(null);
+
   if (!forecast || forecast.length === 0) {
     return (
       <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
@@ -59,7 +62,8 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
         {Object.entries(groupedByDay).map(([date, dailyForecast], index) => (
           <Collapsible
             key={date}
-            defaultOpen={index === 0}
+            isOpen={openDay === date}
+            onToggle={() => setOpenDay(openDay === date ? null : date)}
             title={
               <div className="flex items-center justify-between w-full px-4 py-3">
                 <span className="font-bold text-lg text-[var(--foreground)]">{date.charAt(0).toUpperCase() + date.slice(1)}</span>
@@ -80,7 +84,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                   >
                     <div className="flex items-center space-x-3">
                       <div className="font-semibold text-sm text-[var(--foreground)] w-12">
-                        {new Date(hour.time).getHours()}:00
+                        {new Date(hour.time).getHours().toString().padStart(2, '0')}
                       </div>
                       {weatherIcon && (
                         <div className="flex justify-center">
