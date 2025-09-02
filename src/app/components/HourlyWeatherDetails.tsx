@@ -45,17 +45,23 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
             <span className="text-xs text-[var(--foreground)]">{getWindDirection(hour.wind_direction)}</span>
           </div>
           <div className="text-[var(--foreground)] font-medium">{Math.round(hour.temperature)}</div>
-          <div className="text-[var(--foreground)] font-medium"></div>
-          <div className="font-medium">
-            {hour.geopotential_height_1000hpa} moh
-          </div>
-          <div>{Math.round(hour.wind_speed_1000hpa)}</div>
-          <div className="flex items-center gap-2">
-            <WindDirectionArrow direction={hour.wind_direction_1000hpa} size={20} color="var(--foreground)" />
-            <span className="text-xs">{getWindDirection(hour.wind_direction_1000hpa)}</span>
-          </div>
-          <div>{Math.round(hour.temperature_1000hpa)}</div>
-          <div className="text-[var(--foreground)] font-medium"></div>
+          <div />
+
+          {hour.geopotential_height_1000hpa >= altitude && (
+            <>
+              <div className="font-medium">
+                {hour.geopotential_height_1000hpa} moh
+              </div>
+              <div>{Math.round(hour.wind_speed_1000hpa)}</div>
+              <div className="flex items-center gap-2">
+                <WindDirectionArrow direction={hour.wind_direction_1000hpa} size={20} color="var(--foreground)" />
+                <span className="text-xs">{getWindDirection(hour.wind_direction_1000hpa)}</span>
+              </div>
+              <div>{Math.round(hour.temperature_1000hpa)}</div>
+              <div />
+            </>
+          )}
+
           <div className="font-medium">
             {hour.geopotential_height_925hpa} moh
           </div>
@@ -68,6 +74,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           <div className="text-[var(--foreground)] font-medium">
             {((hour.temperature_925hpa - hour.temperature_1000hpa) / ((hour.geopotential_height_925hpa - hour.geopotential_height_1000hpa) / 100)).toFixed(2)}°C
           </div>
+
           <div className="font-medium">
             {hour.geopotential_height_850hpa} moh
           </div>
@@ -79,6 +86,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           <div>{Math.round(hour.temperature_850hpa)}</div>
           <div className="text-[var(--foreground)] font-medium">
             {((hour.temperature_850hpa - hour.temperature_925hpa) / ((hour.geopotential_height_850hpa - hour.geopotential_height_925hpa) / 100)).toFixed(2)}°C
+
           </div>
           <div className="font-medium">
             {hour.geopotential_height_700hpa} moh
@@ -91,6 +99,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           <div>{Math.round(hour.temperature_700hpa)}</div>
           <div className="text-[var(--foreground)] font-medium">
             {((hour.temperature_700hpa - hour.temperature_850hpa) / ((hour.geopotential_height_700hpa - hour.geopotential_height_850hpa) / 100)).toFixed(2)}°C
+
           </div>
         </div>
       </div>
