@@ -19,8 +19,8 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
     .map(([key]) => key);
 
   return (
-    <div className="min-w-96 max-w-full flex flex-col">
-      <div className="flex items-center mb-2 flex-shrink-0">
+    <div>
+      <div className="flex items-center mb-2">
         <TinyWindCompass allowedDirections={allowedDirections} />
         <h3 className="font-bold text-lg flex-1 text-center hover:underline mt-2">
           <a href={`/locations/${location.id}`} rel="noopener noreferrer">
@@ -28,14 +28,12 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
           </a>
         </h3>
       </div>
-      <div className="flex-1 overflow-hidden">
-        {location.forecast_cache && (
-          <MinimalHourlyWeather
-            weatherData={location.forecast_cache}
-            timezone={'Europe/Oslo'}
-          />
-        )}
-      </div>
+      {location.forecast_cache && (
+        <MinimalHourlyWeather
+          weatherData={location.forecast_cache}
+          timezone={'Europe/Oslo'}
+        />
+      )}
     </div>
   );
 };
