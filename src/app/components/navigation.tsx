@@ -13,6 +13,8 @@ const links = [
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },
+  { href: 'https://thermal.kk7.ch/', label: 'Thermal.kk', external: true },
+  { href: 'https://rasp.skyltdirect.se/scandinavia/', label: 'RASP', external: true },
 ];
 
 export default function Navigation() {
@@ -34,7 +36,8 @@ export default function Navigation() {
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3">
         <div className="flex items-center">
-          <div className="mr-6">
+          <div className="mr-6 flex items-center cursor-pointer"
+            onClick={() => router.push("/")}>
             <Image
               key={theme}
               src={theme === 'light' ? "/windlord-semi-dark.png" : "/windlord-dark.png"}
@@ -42,22 +45,33 @@ export default function Navigation() {
               width={64}
               height={64}
               priority
-              className="transition-transform hover:scale-105 cursor-pointer"
-              onClick={() => router.push("/")}
+              className="transition-transform hover:scale-115 "
+
             />
+            <h1
+              className="ml-3 text-2xl font-bold text-[var(--nav-text)] ">
+              WindLord
+            </h1>
           </div>
           {!isMobile && (
             <ul className="flex space-x-6">
-              {links.map(({ href, label }) => (
+              {links.map(({ href, label, external }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 ${pathname === href
+                    target={external ? '_blank' : '_self'}
+                    rel={external ? 'noopener noreferrer' : ''}
+                    className={`px-3 py-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 flex items-center ${pathname === href
                       ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
                       : "text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]"
                       }`}
                   >
-                    {label}
+                    <span>{label}</span>
+                    {external && (
+                      <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    )}
                   </Link>
                 </li>
               ))}
@@ -80,7 +94,7 @@ export default function Navigation() {
               </svg>
             )}
           </button>
-          {isMobile ? <HamburgerMenu /> : <LoginButton />}
+          {isMobile ? <HamburgerMenu links={links} /> : <LoginButton />}
         </div>
       </div>
     </nav>
