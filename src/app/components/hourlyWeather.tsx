@@ -82,7 +82,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                       background: 'rgba(var(--muted-rgb), 0.1)',
                     }}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-6">
                       <div className="font-semibold text-sm text-[var(--foreground)] w-12">
                         {new Date(hour.time).getHours().toString().padStart(2, '0')}
                       </div>
@@ -108,7 +108,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                         }
                       </div>
                     </div>
-                    <div className="flex items-center space-x-1 text-[var(--foreground)]">
+                    <div className="flex items-center space-x-3 text-[var(--foreground)]">
                       <WindDirectionArrow direction={hour.wind_direction} size={14} />
                       <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
                       <span className="text-xs text-[var(--muted)]">({Math.round(hour.wind_gusts)})</span>
