@@ -102,9 +102,18 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
         </h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
+            <span>Trykk ved havnivå:</span>
+            <span className="font-medium">{hour.pressure_msl} hPa</span>
+          </div>
+          <div className="flex justify-between">
             <span>Sannsynlighet for nedbør:</span>
             <span className="font-medium">{hour.precipitation_probability}%</span>
           </div>
+          <div className="flex justify-between">
+            <span>Frysenivå:</span>
+            <span className="font-medium">{hour.freezing_level_height} m</span>
+          </div>
+          <br />
           <div className="flex justify-between">
             <span>Konvektiv hemming:</span>
             <span className="font-medium">{hour.convective_inhibition} J/kg</span>
@@ -121,10 +130,8 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
             <span>CAPE:</span>
             <span className="font-medium">{hour.cape} J/kg</span>
           </div>
-          <div className="flex justify-between">
-            <span>Frysenivå:</span>
-            <span className="font-medium">{hour.freezing_level_height} m</span>
-          </div>
+
+          <br />
           <div className="flex justify-between">
             <span>Lavt skydekke:</span>
             <span className="font-medium">{hour.cloud_cover_low}%</span>
@@ -136,10 +143,6 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
           <div className="flex justify-between">
             <span>Høyt skydekke:</span>
             <span className="font-medium">{hour.cloud_cover_high}%</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Trykk ved havnivå:</span>
-            <span className="font-medium">{hour.pressure_msl} hPa</span>
           </div>
         </div>
       </div>
