@@ -9,6 +9,7 @@ import { useTheme } from "../contexts/ThemeContext";
 
 const links = [
   { href: "/favourites", label: "Favoritter" },
+  { href: "/about", label: "Om" },
 ];
 
 export default function Navigation() {
