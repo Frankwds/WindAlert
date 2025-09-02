@@ -99,24 +99,24 @@ export function isGoodParaglidingCondition(
 
   // Upper atmosphere wind conditions
   if (dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa) {
-    warnings.push(warn_reasons.WIND_SPEED_925_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_925_HIGH(dp.geopotential_height_925hpa));
   }
   if (dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa) {
-    warnings.push(warn_reasons.WIND_SPEED_850_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_850_HIGH(dp.geopotential_height_850hpa));
   }
   if (dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa) {
-    warnings.push(warn_reasons.WIND_SPEED_700_HIGH);
+    warnings.push(warn_reasons.WIND_SPEED_700_HIGH(dp.geopotential_height_700hpa));
   }
 
   // Wind shear warnings (not failures)
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa)) {
-    warnings.push(warn_reasons.WIND_SHEAR_925);
+    warnings.push(warn_reasons.WIND_SHEAR_925(dp.geopotential_height_925hpa));
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa)) {
-    warnings.push(warn_reasons.WIND_SHEAR_850);
+    warnings.push(warn_reasons.WIND_SHEAR_850(dp.geopotential_height_850hpa));
   }
   if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa)) {
-    warnings.push(warn_reasons.WIND_SHEAR_700);
+    warnings.push(warn_reasons.WIND_SHEAR_700(dp.geopotential_height_700hpa));
   }
 
   // Thermal and stability conditions
@@ -167,10 +167,10 @@ const fail_reasons = {
 
 // Warning descriptions for conditions that should be noted but don't cause failure
 const warn_reasons = {
-  WIND_SHEAR_925: 'Endring i vindretning (925hPa)',
-  WIND_SHEAR_850: 'Endring i vindretning (850hPa)',
-  WIND_SHEAR_700: 'Endring i vindretning (700hPa)',
-  WIND_SPEED_925_HIGH: 'Mye høydevind (925hPa)',
-  WIND_SPEED_850_HIGH: 'Mye høydevind (850hPa)',
-  WIND_SPEED_700_HIGH: 'Mye høydevind {geopotential_height_700hpa}m',
+  WIND_SHEAR_925: (height: number) => `Endring i vindretning (${height}m)`,
+  WIND_SHEAR_850: (height: number) => `Endring i vindretning (${height}m)`,
+  WIND_SHEAR_700: (height: number) => `Endring i vindretning (${height}m)`,
+  WIND_SPEED_925_HIGH: (height: number) => `Mye høydevind (${height}m)`,
+  WIND_SPEED_850_HIGH: (height: number) => `Mye høydevind (${height}m)`,
+  WIND_SPEED_700_HIGH: (height: number) => `Mye høydevind (${height}m)`,
 } as const;
