@@ -53,6 +53,7 @@ export default async function LocationPage({ params }: Props) {
         locationId={locationId}
         latitude={location.latitude}
         longitude={location.longitude}
+        flightlog_id={location.flightlog_id}
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather

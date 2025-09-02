@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import WindCompass from './windCompass';
-import { MapIcon, } from '@heroicons/react/24/outline';
+import { MapIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import { MapPinIcon } from '@heroicons/react/24/solid';
 import FavouriteHeart from './FavouriteHeart';
 
@@ -14,9 +14,10 @@ interface LocationHeaderProps {
   locationId: string;
   latitude: number;
   longitude: number;
+  flightlog_id?: string | null;
 }
 
-export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude }: LocationHeaderProps) {
+export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, flightlog_id }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMapLinkClick = () => {
@@ -46,16 +47,28 @@ export default function LocationHeader({ name, description, windDirections, loca
     <div className="mb-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
-          <FavouriteStar locationId={locationId} />
+          <FavouriteHeart locationId={locationId} />
           <h1 className="text-2xl font-bold ml-2">{name}</h1>
         </div>
-        <Link href="/" onClick={handleMapLinkClick} className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2 mr-10" title="Find on Map">
-          <MapPinIcon className="w-6 h-6" />
-          <MapIcon className="w-6 h-6 mt-[-12px]" />
-        </Link>
+        <div className="flex items-center gap-2">
+          {flightlog_id && (
+            <a
+              href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2"
+              title="View on Flightlog.org"
+            >
+              <DocumentTextIcon className="w-6 h-6" />
+            </a>
+          )}
+          <Link href="/" onClick={handleMapLinkClick} className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2" title="Find on Map">
+            <MapPinIcon className="w-6 h-6" />
+            <MapIcon className="w-6 h-6 mt-[-12px]" />
+          </Link>
+        </div>
       </div>
-      <h1 className="text-2xl font-bold mb-4">{name}</h1>
-      <FavouriteHeart locationId={locationId} />
+
       <div className="w-32 h-32 md:w-48 md:h-48 mb-4 float-right">
         <WindCompass allowedDirections={windDirections} />
       </div>
