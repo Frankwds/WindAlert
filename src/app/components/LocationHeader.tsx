@@ -62,7 +62,7 @@ export default function LocationHeader({ name, description, windDirections, loca
               <DocumentTextIcon className="w-6 h-6" />
             </a>
           )}
-          <Link href="/" onClick={handleMapLinkClick} className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2" title="Find on Map">
+          <Link href="/" onClick={handleMapLinkClick} className="cursor-pointer transition-all duration-200 hover:bg-[var(--border)] rounded-lg p-2 mr-5" title="Find on Map">
             <MapPinIcon className="w-6 h-6" />
             <MapIcon className="w-6 h-6 mt-[-12px]" />
           </Link>
@@ -79,14 +79,14 @@ export default function LocationHeader({ name, description, windDirections, loca
           dangerouslySetInnerHTML={{ __html: description }}
         />
         {description.length > 400 && (
-          <div className={`relative ${isExpanded ? 'hidden' : 'block'}`}>
-            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent dark:from-gray-900 dark:to-transparent" />
-            <button
+          <div className={`cursor-pointer relative ${isExpanded ? 'hidden' : 'block'}`} onClick={() => setIsExpanded(true)}>
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--background)] to-transparent" />
+            {/* <button
               onClick={() => setIsExpanded(true)}
-              className="absolute bottom-0 left-0 right-0 h-8 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium flex items-center justify-center"
+              className="absolute bottom-0 right-15 h-8 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium px-2"
             >
-              Show more
-            </button>
+              ...Vis alt &rarr;
+            </button> */}
           </div>
         )}
         {isExpanded && (
@@ -97,7 +97,7 @@ export default function LocationHeader({ name, description, windDirections, loca
             }}
             className="w-full text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium mt-2 py-2 flex items-center justify-center"
           >
-            Show less
+            &larr; Vis mindre
           </button>
         )}
       </div>
