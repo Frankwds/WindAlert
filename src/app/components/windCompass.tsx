@@ -51,7 +51,7 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
               textAnchor="middle"
               alignmentBaseline="middle"
             >
-              {dir}
+              {dir.toUpperCase()}
             </text>
           </g>
         );
