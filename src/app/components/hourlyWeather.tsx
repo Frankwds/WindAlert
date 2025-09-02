@@ -116,7 +116,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
               <div className="flex items-center justify-between w-full px-4 py-3">
                 <span className="font-bold text-lg text-[var(--foreground)]">{weekdayName.charAt(0).toUpperCase() + weekdayName.slice(1)}</span>
                 {sixHourSymbolsByDay[weekdayName] && (
-                  <div className="flex items-center justify-end space-x-4 flex-1">
+                  <div className="flex items-center space-x-2">
                     {sixHourSymbolsByDay[weekdayName].map((symbol, index) => {
                       const weatherIcon = getWeatherIcon(symbol);
                       return weatherIcon ? (
@@ -129,7 +129,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                           className="opacity-80"
                         />
                       ) : (
-                        <div key={index} className="w-8 h-8 bg-red-500 text-white text-xs flex items-center justify-center rounded">
+                        <div key={index} className="w-6 h-6 bg-red-500 text-white text-xs flex items-center justify-center rounded">
                           {symbol}
                         </div>
                       );
@@ -171,7 +171,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
                         {Math.round(hour.temperature)}°C
                       </div>
                       <div className="text-xs text-blue-500">
-                        {hour.precipitation_min !== 0
+                        {hour.precipitation_max !== 0
                           ? `${hour.precipitation_min}-${hour.precipitation_max} mm`
                           : ''
                         }
