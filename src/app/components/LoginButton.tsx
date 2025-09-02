@@ -39,9 +39,9 @@ export default function LoginButton() {
   // Loading state
   if (status === "loading") {
     return (
-      <div className="flex items-center gap-4">
-        <div className="animate-pulse bg-[var(--muted)]/20 rounded-full px-4 py-2">
-          <div className="w-16 h-4 bg-[var(--muted)]/30 rounded"></div>
+      <div className="flex items-center justify-center">
+        <div className="animate-pulse bg-[var(--nav-text)]/10 rounded px-4 py-2 w-full">
+          <div className="w-16 h-4 bg-[var(--nav-text)]/20 rounded mx-auto"></div>
         </div>
       </div>
     );
@@ -50,16 +50,17 @@ export default function LoginButton() {
   // Signed in state
   if (session) {
     return (
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-center">
         <button
           aria-label="Logg ut"
           onClick={() => signOut()}
-          className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
+          className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded"
         >
-          <div className="flex items-center justify-center bg-orange-500 text-white font-bold rounded-full w-8 h-8 text-sm transition-transform group-hover:scale-110">
+          <div className="flex items-center justify-center bg-[var(--accent)] text-white font-bold rounded-full w-6 h-6 text-xs">
             {session.user?.name?.charAt(0)?.toUpperCase() || 'U'}
           </div>
-          <span className="text-sm text-white tracking-wide font-medium">Logg ut</span>
+          <span className="flex-1 text-left">{session.user?.name || session.user?.email || 'User'}</span>
+          <span className="text-xs opacity-60">Logg ut</span>
         </button>
       </div>
     );
@@ -67,14 +68,14 @@ export default function LoginButton() {
 
   // Signed out state
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center justify-center">
       <button
         aria-label="Logg inn med Google"
         onClick={() => signIn("google")}
-        className="group flex items-center gap-3 bg-[var(--google-button-dark)] rounded-full p-0.5 pr-4 transition-all duration-200 hover:bg-[var(--google-button-dark-hover)] hover:shadow-[var(--shadow-md)] active:scale-95 cursor-pointer"
+        className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded"
       >
-        <div className="flex items-center justify-center bg-white w-9 h-9 rounded-full transition-transform group-hover:scale-110">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
+        <div className="flex items-center justify-center bg-white w-6 h-6 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4">
             <path
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
               className="fill-[var(--google-logo-blue)]"
@@ -93,7 +94,7 @@ export default function LoginButton() {
             />
           </svg>
         </div>
-        <span className="text-sm text-white tracking-wide font-medium">Logg inn</span>
+        <span className="flex-1 text-left">Logg inn med Google</span>
       </button>
     </div>
   );

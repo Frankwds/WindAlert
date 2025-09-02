@@ -81,7 +81,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
           ))}
         </ul>
         <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
-        <div className="px-4 py-2">
+        <div className="px-1 py-1">
           <LoginButton />
         </div>
       </div>
