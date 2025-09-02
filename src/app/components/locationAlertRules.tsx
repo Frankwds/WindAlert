@@ -69,7 +69,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-        Lovende timer og forklaring:
+        Hva menes med lovende?
       </h2>
       <div>
         <Collapsible
@@ -107,7 +107,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
                     {hour.validation_warnings && hour.validation_warnings.length > 0 && (
                       <WarningCard warningsCsv={hour.validation_warnings} />
                     )}
-                    <HourlyWeatherDetails hour={hour} />
+                    <HourlyWeatherDetails hour={hour} windDirections={locationToWindDirectionSymbols(location)} />
                   </div>
                 </Collapsible>
               ))}

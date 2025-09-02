@@ -85,7 +85,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       {isExpanded && (
         <div className="absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80">
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Vis steder som ser lovende ut:</h3>
+            <h3 className="font-bold mb-2">Vis lovende startsteder:</h3>
             <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
               {dayLabels.map((label, index) => (
                 <button

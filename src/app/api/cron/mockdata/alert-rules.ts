@@ -3,7 +3,7 @@ import { AlertRule } from '@/lib/common/types/alertRule';
 
 export const DEFAULT_ALERT_RULE: AlertRule = {
   id: 1,
-  alert_name: 'Default Rule',
+  alert_name: 'Regel #1',
   locationId: 'nope',
   MIN_WIND_SPEED: 0,
   MAX_WIND_SPEED: 8,
