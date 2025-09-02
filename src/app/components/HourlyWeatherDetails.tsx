@@ -33,7 +33,7 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
           <div className="font-semibold">Vind (m/s)</div>
           <div className="font-semibold">Vindretning</div>
           <div className="font-semibold">Temp. (°C)</div>
-          <div className="font-semibold">°C/100m</div>
+          <div className="font-semibold">Δ°C/100m</div>
 
           <div className="font-medium">0 moh (yr)</div>
           <div className="text-[var(--foreground)]">
@@ -97,52 +97,67 @@ const HourlyWeatherDetails = ({ hour, windDirections }: { hour: ForecastCache1hr
         </div>
       </div>
       <div className="mt-4">
-        <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">
+        <h4 className="font-bold text-lg mb-3 text-[var(--foreground)]">
           Atmosfæriske detaljer
         </h4>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span>Trykk ved havnivå:</span>
-            <span className="font-medium">{hour.pressure_msl} hPa</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Sannsynlighet for nedbør:</span>
-            <span className="font-medium">{hour.precipitation_probability}%</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Frysenivå:</span>
-            <span className="font-medium">{hour.freezing_level_height} m</span>
-          </div>
-          <br />
-          <div className="flex justify-between">
-            <span>Konvektiv hemming:</span>
-            <span className="font-medium">{hour.convective_inhibition} J/kg</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Grenselagshøyde:</span>
-            <span className="font-medium">{hour.boundary_layer_height} m</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Løftet indeks:</span>
-            <span className="font-medium">{hour.lifted_index}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>CAPE:</span>
-            <span className="font-medium">{hour.cape} J/kg</span>
-          </div>
 
-          <br />
-          <div className="flex justify-between">
-            <span>Lavt skydekke:</span>
-            <span className="font-medium">{hour.cloud_cover_low}%</span>
+        {/* Basic Weather Conditions */}
+        <div className="mb-4">
+          <div className="space-y-1 text-sm">
+            <div className="flex justify-between">
+              <span>Trykk ved havnivå:</span>
+              <span className="font-medium">{hour.pressure_msl} hPa</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Sannsynlighet for nedbør:</span>
+              <span className="font-medium">{hour.precipitation_probability}%</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Frysenivå:</span>
+              <span className="font-medium">{hour.freezing_level_height} m</span>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span>Middels skydekke:</span>
-            <span className="font-medium">{hour.cloud_cover_mid}%</span>
+        </div>
+
+        {/* Atmospheric Stability */}
+        <div className="mb-4">
+          <h5 className="font-semibold text-sm mb-2 text-[var(--foreground)] opacity-80">Atmosfærisk stabilitet</h5>
+          <div className="space-y-1 text-sm">
+            <div className="flex justify-between">
+              <span>Konvektiv hemming:</span>
+              <span className="font-medium">{hour.convective_inhibition} J/kg</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Grenselagshøyde:</span>
+              <span className="font-medium">{hour.boundary_layer_height} m</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Løftet indeks:</span>
+              <span className="font-medium">{hour.lifted_index}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>CAPE:</span>
+              <span className="font-medium">{hour.cape} J/kg</span>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span>Høyt skydekke:</span>
-            <span className="font-medium">{hour.cloud_cover_high}%</span>
+        </div>
+
+        {/* Cloud Coverage */}
+        <div>
+          <h5 className="font-semibold text-sm mb-2 text-[var(--foreground)] opacity-80">Skydekke</h5>
+          <div className="space-y-1 text-sm">
+            <div className="flex justify-between">
+              <span>Lavt skydekke:</span>
+              <span className="font-medium">{hour.cloud_cover_low}%</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Middels skydekke:</span>
+              <span className="font-medium">{hour.cloud_cover_mid}%</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Høyt skydekke:</span>
+              <span className="font-medium">{hour.cloud_cover_high}%</span>
+            </div>
           </div>
         </div>
       </div>
