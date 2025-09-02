@@ -8,8 +8,8 @@ interface Cache<T> {
 const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
 
 class DataCache {
-  private paraglidingLocations: Cache<ParaglidingMarkerData[]> = { data: null, timestamp: null };
-  private weatherStations: Cache<WeatherStationMarkerData[]> = { data: null, timestamp: null };
+  private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
+  private readonly WEATHER_KEY = 'windlord_cache_weather';
 
   private isCacheValid(timestamp: number | null): boolean {
     if (!timestamp) {
@@ -18,32 +18,78 @@ class DataCache {
     return (Date.now() - timestamp) < CACHE_DURATION;
   }
 
+  private getFromStorage(key: string): Cache<any> | null {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    try {
+      const stored = sessionStorage.getItem(key);
+      if (!stored) {
+        return null;
+      }
+      return JSON.parse(stored);
+    } catch (error) {
+      console.warn(`Failed to parse cache data for key ${key}:`, error);
+      sessionStorage.removeItem(key);
+      return null;
+    }
+  }
+
+  private setToStorage(key: string, data: any): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const cacheData: Cache<any> = {
+        data,
+        timestamp: Date.now(),
+      };
+      sessionStorage.setItem(key, JSON.stringify(cacheData));
+    } catch (error) {
+      console.warn(`Failed to store cache data for key ${key}:`, error);
+    }
+  }
+
   getParaglidingLocations(): ParaglidingMarkerData[] | null {
-    if (this.isCacheValid(this.paraglidingLocations.timestamp)) {
-      return this.paraglidingLocations.data;
+    const cached = this.getFromStorage(this.PARAGLIDING_KEY);
+    if (cached && this.isCacheValid(cached.timestamp)) {
+      return cached.data;
     }
     return null;
   }
 
-  setParaglidingLocations(data: ParaglidingMarkerData[]) {
-    this.paraglidingLocations = {
-      data,
-      timestamp: Date.now(),
-    };
+  setParaglidingLocations(data: ParaglidingMarkerData[]): void {
+    this.setToStorage(this.PARAGLIDING_KEY, data);
   }
 
   getWeatherStations(): WeatherStationMarkerData[] | null {
-    if (this.isCacheValid(this.weatherStations.timestamp)) {
-      return this.weatherStations.data;
+    const cached = this.getFromStorage(this.WEATHER_KEY);
+    if (cached && this.isCacheValid(cached.timestamp)) {
+      return cached.data;
     }
     return null;
   }
 
-  setWeatherStations(data: WeatherStationMarkerData[]) {
-    this.weatherStations = {
-      data,
-      timestamp: Date.now(),
-    };
+  setWeatherStations(data: WeatherStationMarkerData[]): void {
+    this.setToStorage(this.WEATHER_KEY, data);
+  }
+
+  clearCache(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    sessionStorage.removeItem(this.PARAGLIDING_KEY);
+    sessionStorage.removeItem(this.WEATHER_KEY);
+  }
+
+  hasCache(): boolean {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    return sessionStorage.getItem(this.PARAGLIDING_KEY) !== null ||
+      sessionStorage.getItem(this.WEATHER_KEY) !== null;
   }
 }
 
