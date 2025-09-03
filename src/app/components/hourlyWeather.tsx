@@ -219,11 +219,10 @@ function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]) {
       if (!sixHourSymbolsByDay[day]) {
         sixHourSymbolsByDay[day] = [];
       }
-      if (hour.symbol_code) {
+      if (hour.symbol_code && sixHourSymbolsByDay[day].length < 4) {
         sixHourSymbolsByDay[day].push(hour.symbol_code);
       }
     });
-
   return sixHourSymbolsByDay;
 }
 
