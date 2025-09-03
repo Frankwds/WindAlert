@@ -13,6 +13,9 @@ import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 export async function GET() {
+  // Clear all existing forecast data at the start
+  await ForecastCacheService.clearAllForecastData();
+
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
   const BATCH_SIZE = 50;
 
@@ -76,7 +79,7 @@ export async function GET() {
           };
         });
 
-        await ForecastCacheService.upsert(validatedForecastData);
+        await ForecastCacheService.insertForecastData(validatedForecastData);
       } catch (error) {
         console.error(
           `Failed to process location ${location.id}:`,

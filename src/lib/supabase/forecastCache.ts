@@ -65,7 +65,41 @@ export class ForecastCacheService {
   }
 
   /**
-   * Upsert forecast data (insert or update)
+   * Clear all forecast data from the cache
+   * Call this at the start of a full refresh cycle
+   */
+  static async clearAllForecastData(): Promise<void> {
+    const { error } = await supabase
+      .from('forecast_cache')
+      .delete()
+      .gte('time', '1900-01-01'); // Delete all rows (condition that's always true for valid timestamps)
+
+    if (error) {
+      console.error('Error clearing all forecast data:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Insert forecast data (assumes table has been cleared)
+   * More efficient when doing a full refresh of all forecast data
+   */
+  static async insertForecastData(forecastData: ForecastCache1hr[]): Promise<void> {
+    if (forecastData.length === 0) return;
+
+    const { error } = await supabase
+      .from('forecast_cache')
+      .insert(forecastData);
+
+    if (error) {
+      console.error('Error inserting forecast data:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Upsert forecast data (insert or update) - kept for backward compatibility
+   * @deprecated Use replaceForecastData for better performance when replacing entire datasets
    */
   static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
     const { error } = await supabase
