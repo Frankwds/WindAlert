@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Collapsible from "@/app/components/Collapsible";
 import WeatherCard from "@/app/components/WeatherCard";
 import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
@@ -33,6 +34,20 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   if (!forecast || forecast.length === 0) {
     return null;
   }
+
+  // State for accordion behavior
+  const [openDay, setOpenDay] = useState<string | null>(null);
+  const [openHour, setOpenHour] = useState<string | null>(null);
+
+  // Toggle functions for accordion behavior
+  const toggleDay = (dayKey: string) => {
+    setOpenDay(openDay === dayKey ? null : dayKey);
+    setOpenHour(null); // Close any open hour when switching days
+  };
+
+  const toggleHour = (hourKey: string) => {
+    setOpenHour(openHour === hourKey ? null : hourKey);
+  };
 
   // Get all alert rules for this location. there is only one for now
   const locationAlertRules = DEFAULT_ALERT_RULE;
@@ -80,39 +95,49 @@ export default function LocationAlertRules({ location, forecast }: Props) {
             : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
             } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
         >
-          {Object.values(groupedData).map((day) => (
-            <Collapsible
-              key={day[0].time}
-              title={`${new Date(day[0].time).toLocaleDateString("nb-NO", {
-                weekday: "long",
-              })}`}
-              className={`${day.some((dp) => dp.is_promising === true)
-                ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
-                : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
-                } rounded-md shadow-sm my-1`}
-            >
-              {day.map((hour, index) => (
-                <Collapsible
-                  key={index}
-                  title={<WeatherCard hour={hour} />}
-                  className={`${hour.is_promising
-                    ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
-                    : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
-                    } rounded-md shadow-[var(--shadow-sm)] my-1`}
-                >
-                  <div>
-                    {!hour.is_promising && hour.validation_failures && (
-                      <FailureCard failuresCsv={hour.validation_failures} />
-                    )}
-                    {hour.validation_warnings && hour.validation_warnings.length > 0 && (
-                      <WarningCard warningsCsv={hour.validation_warnings} />
-                    )}
-                    <HourlyWeatherDetails hour={hour} windDirections={locationToWindDirectionSymbols(location)} altitude={location.altitude} />
-                  </div>
-                </Collapsible>
-              ))}
-            </Collapsible>
-          ))}
+          {Object.values(groupedData).map((day) => {
+            const dayKey = new Date(day[0].time).toLocaleDateString('en-CA');
+            return (
+              <Collapsible
+                key={day[0].time}
+                title={`${new Date(day[0].time).toLocaleDateString("nb-NO", {
+                  weekday: "long",
+                })}`}
+                className={`${day.some((dp) => dp.is_promising === true)
+                  ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
+                  : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
+                  } rounded-md shadow-sm my-1`}
+                isOpen={openDay === dayKey}
+                onToggle={() => toggleDay(dayKey)}
+              >
+                {day.map((hour, index) => {
+                  const hourKey = `${dayKey}-${hour.time}`;
+                  return (
+                    <Collapsible
+                      key={index}
+                      title={<WeatherCard hour={hour} />}
+                      className={`${hour.is_promising
+                        ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+                        : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+                        } rounded-md shadow-[var(--shadow-sm)] my-1`}
+                      isOpen={openHour === hourKey}
+                      onToggle={() => toggleHour(hourKey)}
+                    >
+                      <div>
+                        {!hour.is_promising && hour.validation_failures && (
+                          <FailureCard failuresCsv={hour.validation_failures} />
+                        )}
+                        {hour.validation_warnings && hour.validation_warnings.length > 0 && (
+                          <WarningCard warningsCsv={hour.validation_warnings} />
+                        )}
+                        <HourlyWeatherDetails hour={hour} windDirections={locationToWindDirectionSymbols(location)} altitude={location.altitude} />
+                      </div>
+                    </Collapsible>
+                  );
+                })}
+              </Collapsible>
+            );
+          })}
         </Collapsible>
       </div>
     </div>
