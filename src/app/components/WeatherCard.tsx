@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
 import WindDirectionArrow from "./WindDirectionArrow";
 import { ForecastCache1hr } from "@/lib/supabase/types";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 interface WeatherCardProps {
   hour: ForecastCache1hr;
@@ -39,6 +40,9 @@ export default function WeatherCard({ hour, className = "" }: WeatherCardProps) 
         <div className="text-xs text-blue-500 text-center">
           {hour.is_yr_data ? 'YR' : 'ECMWF'}
         </div>
+        {hour.validation_warnings.length > 0 && hour.validation_failures.length === 0 && (
+          <ExclamationTriangleIcon className="w-5 h-5 text-[var(--warning)]" title="Validation warnings" />
+        )}
       </div>
 
       {/* Precipitation column */}
