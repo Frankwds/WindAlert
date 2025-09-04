@@ -69,7 +69,7 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
     if (isVisible) {
       const path = document.createElementNS(svgNS, "path");
       path.setAttribute("d", getArcPath(angle - 20, angle + 20));
-      path.setAttribute("stroke", "rgba(0, 128, 0, 0.7)");
+      path.setAttribute("stroke", "rgb(0, 128, 0)");
       path.setAttribute("stroke-width", strokeWidth.toString());
       path.setAttribute("fill", "none");
       svg.appendChild(path);
