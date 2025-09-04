@@ -44,7 +44,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={toggleMenu}
-        className="p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)] cursor-pointer"
+        className="p-2 rounded-md transition-all duration-200text-[var(--nav-text)]/80 cursor-pointer"
         aria-label="Åpne meny"
         aria-expanded={isOpen}
       >

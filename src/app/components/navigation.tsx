@@ -44,7 +44,7 @@ export default function Navigation() {
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleTheme}
-            className="cursor-pointer p-2 rounded-md transition-all duration-200 hover:bg-[var(--nav-text)]/10 text-[var(--nav-text)]/80 hover:text-[var(--nav-text)]"
+            className="cursor-pointer p-2 rounded-md transition-all duration-200  text-[var(--nav-text)]/80 "
             aria-label={`Bytt til ${theme === 'light' ? 'dark' : 'light'} modus`}
           >
             {theme === 'light' ? (
