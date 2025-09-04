@@ -44,8 +44,6 @@ export class ParaglidingLocationService {
    */
   static async getAllActiveForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
     const now = new Date();
-    // const twelveHoursFromNow = new Date(now.getTime() + 12 * 60 * 60 * 1000);
-
     const { data, error } = await supabase
       .from('paragliding_locations')
       .select(`
@@ -62,7 +60,6 @@ export class ParaglidingLocationService {
       `)
       .eq('is_active', true)
       .gte('forecast_cache.time', now.toISOString())
-      // .lte('forecast_cache.time', twelveHoursFromNow.toISOString())
       .order('name');
 
     if (error) {

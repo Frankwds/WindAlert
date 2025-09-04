@@ -17,7 +17,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const [activeDay, setActiveDay] = useState<string | null>(() => {
+  const getFirstDay = (weatherData: MinimalForecast[]) => {
     if (weatherData && weatherData.length > 0) {
       const firstDay = new Date(weatherData[0].time).toLocaleDateString([], {
         weekday: 'short',
@@ -26,19 +26,29 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       return firstDay;
     }
     return null;
-  });
+  }
+  const firstDay = getFirstDay(weatherData);
+  const [activeDay, setActiveDay] = useState<string | null>(firstDay);
 
   // Scroll to center when active day changes
   useEffect(() => {
-    if (activeDay && scrollContainerRef.current) {
+    if (activeDay && scrollContainerRef.current && activeDay !== firstDay) {
       const container = scrollContainerRef.current;
       const table = container.querySelector('table');
       if (table) {
         const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
         container.scrollLeft = scrollLeft;
       }
+      return
     }
-  }, [activeDay]);
+    if (activeDay && scrollContainerRef.current && activeDay === firstDay) {
+      const container = scrollContainerRef.current;
+      const table = container.querySelector('table');
+      if (table) {
+        container.scrollLeft = 0;
+      }
+    }
+  }, [activeDay, firstDay]);
 
   const groupedByDay = weatherData.reduce((acc, hour) => {
     const day = new Date(hour.time).toLocaleDateString([], {
