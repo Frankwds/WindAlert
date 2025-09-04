@@ -91,13 +91,25 @@ const GoogleMaps: React.FC = () => {
     }
   }, []);
 
+  const closeOverlays = useCallback(({ keep = "" }: { keep?: string } = {}) => {
+    if (keep !== 'promisingfilter') {
+      setIsPromisingFilterExpanded(false);
+    }
+    if (keep !== 'windfilter') {
+      setWindFilterExpanded(false);
+    }
+    if (keep !== 'infowindow') {
+      closeInfoWindow();
+    }
+  }, [closeInfoWindow]);
+
   const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
     if (infoWindowRef.current && mapInstance) {
       closeOverlays({ keep: 'infowindow' });
       infoWindowRef.current.setContent(content);
       infoWindowRef.current.open(mapInstance, marker);
     }
-  }, [mapInstance]);
+  }, [mapInstance, closeOverlays]);
 
   /**
    * Filters paragliding markers based on promising weather conditions
@@ -299,19 +311,7 @@ const GoogleMaps: React.FC = () => {
 
     initMap();
 
-  }, [closeInfoWindow]);
-
-  const closeOverlays = ({ keep = "" }: { keep?: string } = {}) => {
-    if (keep !== 'promisingfilter') {
-      setIsPromisingFilterExpanded(false);
-    }
-    if (keep !== 'windfilter') {
-      setWindFilterExpanded(false);
-    }
-    if (keep !== 'infowindow') {
-      closeInfoWindow();
-    }
-  }
+  }, [closeOverlays, initialMapState?.center, initialMapState?.zoom]);
 
   useEffect(() => {
     if (!mapInstance) {

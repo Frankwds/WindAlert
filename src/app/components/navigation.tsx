@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";

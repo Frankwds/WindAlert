@@ -1,6 +1,5 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { ForecastCache1hr } from '@/lib/supabase/types';
-import { error } from 'console';
 
 function isWindDirectionGood(
   windDirection: number,

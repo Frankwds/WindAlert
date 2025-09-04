@@ -31,13 +31,13 @@ export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCac
 
 
 export default function LocationAlertRules({ location, forecast }: Props) {
-  if (!forecast || forecast.length === 0) {
-    return null;
-  }
-
   // State for accordion behavior
   const [openDay, setOpenDay] = useState<string | null>(null);
   const [openHour, setOpenHour] = useState<string | null>(null);
+
+  if (!forecast || forecast.length === 0) {
+    return null;
+  }
 
   // Toggle functions for accordion behavior
   const toggleDay = (dayKey: string) => {

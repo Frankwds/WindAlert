@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
@@ -16,7 +16,7 @@ export default function FavouriteHeart({ locationId }: Props) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const checkFavourite = async (session: Session) => {
+  const checkFavourite = useCallback(async (session: Session) => {
     if (!session.user.id || !locationId) {
       setLoading(false);
       return;
@@ -24,14 +24,14 @@ export default function FavouriteHeart({ locationId }: Props) {
     const isFavourite = await FavouriteLocationService.isFavourite(session.user.id, locationId);
     setIsFavourite(isFavourite);
     setLoading(false);
-  };
+  }, [locationId]);
 
 
   useEffect(() => {
     if (session?.user?.id) {
       checkFavourite(session);
     }
-  }, [locationId, session, status]);
+  }, [locationId, session, status, checkFavourite]);
 
 
   const toggleFavourite = async () => {

@@ -70,7 +70,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
         </a>
       </div>
       <div className="space-y-4">
-        {Object.entries(groupedByDay).map(([weekdayName, dailyForecast], index) => (
+        {Object.entries(groupedByDay).map(([weekdayName, dailyForecast]) => (
           <Collapsible
             key={weekdayName}
             isOpen={openDay === weekdayName}

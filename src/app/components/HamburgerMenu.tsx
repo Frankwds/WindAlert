@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import LoginButton from './LoginButton';
-import { useTheme } from '../contexts/ThemeContext';
 import { usePathname } from 'next/navigation';
 
 interface LinkItem {
@@ -18,7 +17,6 @@ interface HamburgerMenuProps {
 
 const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme } = useTheme();
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
 

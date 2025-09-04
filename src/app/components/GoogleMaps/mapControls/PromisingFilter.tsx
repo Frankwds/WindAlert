@@ -53,8 +53,12 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
   useEffect(() => {
     if (initialFilter) return;
-    selectedDay === 0 ? setSelectedTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]) : setSelectedTimeRange([12, 18]);
-  }, [selectedDay]);
+    if (selectedDay === 0) {
+      setSelectedTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]);
+    } else {
+      setSelectedTimeRange([12, 18]);
+    }
+  }, [selectedDay, currentHour, initialFilter]);
 
   useEffect(() => {
     if (!isExpanded) {
