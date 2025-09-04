@@ -22,12 +22,11 @@ export default function LocationCard({
     <div>
       <Link
         href={`/locations/${location.id}`}
-        className="block"
         rel="noopener noreferrer"
       >
         <div className="flex items-center mb-2">
           <TinyWindCompass allowedDirections={allowedDirections} />
-          <h3 className="font-bold text-lg flex-1 text-center hover:underline mt-2">
+          <h3 className="font-bold text-lg flex-1 text-center text-[var(--accent)] hover:underline">
             {location.name} ({location.altitude}m)
           </h3>
         </div>
