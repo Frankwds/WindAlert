@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "WindLord",
-  description: "Your paragliding weather companion.",
+  description: "Hvor kan jeg fly?",
   icons: {
     icon: [
       { url: "/icon.png", sizes: "32x32", type: "image/png" },

@@ -1,7 +1,7 @@
 {
   "name": "WindLord",
   "short_name": "WindLord",
-  "description": "Your paragliding weather companion.",
+  "description": "Hvor kan jeg fly?",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
