@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
-import MinimalHourlyWeather from "@/app/components/GoogleMaps/MinimalHourlyWeather";
-import TinyWindCompass from "@/app/components/GoogleMaps/TinyWindCompass";
-import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
+import LocationCard from "@/app/components/LocationCard";
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();
@@ -64,26 +61,14 @@ export default function FavouritesPage() {
         {locations.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {locations.map((location) => (
-              <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
-                <div className="flex items-center mb-2">
-                  <TinyWindCompass allowedDirections={locationToWindDirectionSymbols(location)} />
-                  <Link
-                    key={location.id}
-                    href={`/locations/${location.id}`}
-                    className="underline hover:text-[var(--accent)] transition-colors duration-200"
-                  >
-                    <h2 className="text-xl font-semibold">{location.name}</h2>
-                  </Link>
-                </div>
-                {location.forecast_cache &&
-                  location.forecast_cache.length > 0 ? (
-                  <MinimalHourlyWeather
-                    weatherData={location.forecast_cache}
-                    timezone={'Europe/Oslo'}
-                  />
-                ) : (
-                  <p className="mt-2">Ingen værmeldinger tilgjengelig.</p>
-                )}
+              <div
+                key={location.id}
+                className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]"
+              >
+                <LocationCard
+                  location={location}
+                  timezone="Europe/Oslo"
+                />
               </div>
             ))}
           </div>
