@@ -1,7 +1,7 @@
 'use client';
 
-import { ForecastCache1hr, MinimalForecast } from "@/lib/supabase/types";
-import { WeatherDataPointYr1h, WeatherDataPointYr6h, WeatherDataYr } from "@/lib/yr/types";
+import { ForecastCache1hr } from "@/lib/supabase/types";
+import { WeatherDataPointYr1h, WeatherDataYr } from "@/lib/yr/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "./WindDirectionArrow";

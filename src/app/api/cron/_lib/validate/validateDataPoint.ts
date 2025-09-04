@@ -1,5 +1,6 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { ForecastCache1hr } from '@/lib/supabase/types';
+import { error } from 'console';
 
 function isWindDirectionGood(
   windDirection: number,
@@ -73,7 +74,7 @@ export function isGoodParaglidingCondition(
     'partlycloudy_day',
     'cloudy',
   ];
-  if (!good_weather.includes(dp.weather_code)) {
+  if (!good_weather.includes(dp.weather_code) && dp.is_day) {
     failures.push(fail_reasons.bad_weather);
   }
   // Surface wind conditions
@@ -134,10 +135,12 @@ export function isGoodParaglidingCondition(
   }
 
 
-  if (dp.precipitation > alert_rule.MAX_PRECIPITATION) {
+  if (dp.precipitation_min === 0 && dp.precipitation_max > alert_rule.MAX_PRECIPITATION) {
+    warnings.push(warn_reasons.rain);
+  }
+  if (dp.precipitation_min > alert_rule.MAX_PRECIPITATION) {
     failures.push(fail_reasons.rain);
   }
-
 
 
   return {
@@ -173,4 +176,5 @@ const warn_reasons = {
   WIND_SPEED_925_HIGH: (height: number) => `Mye høydevind (${height}m)`,
   WIND_SPEED_850_HIGH: (height: number) => `Mye høydevind (${height}m)`,
   WIND_SPEED_700_HIGH: (height: number) => `Mye høydevind (${height}m)`,
+  rain: 'Det kan komme regn',
 } as const;

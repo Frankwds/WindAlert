@@ -8,10 +8,10 @@ import { ForecastCache1hr } from "@/lib/supabase/types";
 interface WeatherCardProps {
   hour: ForecastCache1hr;
   className?: string;
-  compact?: boolean; // For use in headers
+
 }
 
-export default function WeatherCard({ hour, className = "", compact = false }: WeatherCardProps) {
+export default function WeatherCard({ hour, className = "" }: WeatherCardProps) {
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
@@ -35,13 +35,17 @@ export default function WeatherCard({ hour, className = "", compact = false }: W
               hour12: false,
             })}
           </h3>
-          {!compact && (
-            <p className="text-[var(--muted)] text-sm truncate">
-              {weatherIcon?.description}
-            </p>
-          )}
         </div>
       </div>
+
+      {/* Precipitation column */}
+      <div className="text-xs text-blue-500 text-center">
+        {hour.precipitation_max !== 0
+          ? `${hour.precipitation_min} - ${hour.precipitation_max}`
+          : ''
+        }
+      </div>
+
       <div className="flex-shrink-0 text-right">
         <div className="flex items-center gap-2 text-[var(--foreground)]">
           <WindDirectionArrow

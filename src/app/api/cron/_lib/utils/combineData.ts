@@ -14,6 +14,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
 
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
+    is_yr_data: !!yrDataPoint,
     validation_failures: '', // Will be set in the cron job
     validation_warnings: '', // Will be set in the cron job
 
@@ -30,7 +31,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
     precipitation_probability: yrDataPoint?.probability_of_precipitation || meteoDataPoint.precipitationProbability,
     pressure_msl: yrDataPoint?.air_pressure_at_sea_level || meteoDataPoint.pressureMsl,
     weather_code: yrDataPoint?.symbol_code || meteoDataPoint.weatherCode,
-    is_day: meteoDataPoint.isDay,
+    is_day: meteoDataPoint.isDay || yrDataPoint?.symbol_code.includes('night') ? 1 : 0,
 
     // Atmospheric conditions - Wind at different pressure levels
     wind_speed_1000hpa: meteoDataPoint.windSpeed1000hPa,

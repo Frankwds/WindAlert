@@ -94,7 +94,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
               {day.map((hour, index) => (
                 <Collapsible
                   key={index}
-                  title={<WeatherCard hour={hour} compact={true} />}
+                  title={<WeatherCard hour={hour} />}
                   className={`${hour.is_promising
                     ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
                     : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
