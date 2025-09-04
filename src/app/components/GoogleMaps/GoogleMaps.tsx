@@ -93,7 +93,7 @@ const GoogleMaps: React.FC = () => {
 
   const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
     if (infoWindowRef.current && mapInstance) {
-      closeOverlays('infowindow');
+      closeOverlays({ keep: 'infowindow' });
       infoWindowRef.current.setContent(content);
       infoWindowRef.current.open(mapInstance, marker);
     }
@@ -284,7 +284,7 @@ const GoogleMaps: React.FC = () => {
 
         infoWindowRef.current = new google.maps.InfoWindow();
 
-        map.addListener('click', closeOverlays);
+        map.addListener('click', () => closeOverlays());
         map.setOptions({ scaleControl: true });
 
         setMapInstance(map);
@@ -301,7 +301,7 @@ const GoogleMaps: React.FC = () => {
 
   }, [closeInfoWindow]);
 
-  const closeOverlays = (keep: string = "") => {
+  const closeOverlays = ({ keep = "" }: { keep?: string } = {}) => {
     if (keep !== 'promisingfilter') {
       setIsPromisingFilterExpanded(false);
     }

@@ -10,7 +10,7 @@ interface PromisingFilterProps {
   onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
   initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null;
-  onCloseOverlays: (keep?: string) => void;
+  onCloseOverlays: (options?: { keep?: string }) => void;
 }
 
 const PromisingFilter: FC<PromisingFilterProps> = ({
@@ -69,7 +69,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       <button
         onClick={() => {
           if (!isExpanded) {
-            onCloseOverlays('promisingfilter');
+            onCloseOverlays({ keep: 'promisingfilter' });
           }
           setIsExpanded(!isExpanded);
         }}

@@ -9,7 +9,7 @@ interface WindFilterCompassProps {
   setIsExpanded: (expanded: boolean) => void;
   windFilterAndOperator: boolean;
   onFilterLogicChange: () => void;
-  onCloseOverlays: (keep?: string) => void;
+  onCloseOverlays: (options?: { keep?: string }) => void;
 }
 
 const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
@@ -55,7 +55,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
       // onMouseLeave={() => setIsExpanded(false)}
       onClick={() => {
         if (!isExpanded) {
-          onCloseOverlays('windfilter');
+          onCloseOverlays({ keep: 'windfilter' });
           setIsExpanded(true);
         }
       }}
