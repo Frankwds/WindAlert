@@ -125,6 +125,7 @@ export interface ForecastCache1hr {
   pressure_msl: number;
   weather_code: string;
   is_day: 0 | 1;
+  is_yr_data: boolean;
 
   // Validation
   is_promising: boolean;

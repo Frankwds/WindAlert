@@ -36,6 +36,9 @@ export default function WeatherCard({ hour, className = "" }: WeatherCardProps) 
             })}
           </h3>
         </div>
+        <div className="text-xs text-blue-500 text-center">
+          {hour.is_yr_data ? 'YR' : 'ECMWF'}
+        </div>
       </div>
 
       {/* Precipitation column */}

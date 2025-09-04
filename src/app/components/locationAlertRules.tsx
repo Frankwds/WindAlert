@@ -63,8 +63,8 @@ export default function LocationAlertRules({ location, forecast }: Props) {
 
   const title =
     positiveDays.length > 0
-      ? `${locationAlertRules.alert_name} - ${positiveDays.join(", ")}`
-      : locationAlertRules.alert_name;
+      ? `Lovende dager: ${positiveDays.join(" ")}`
+      : "Ingen lovende dager akkurat nå";
 
   return (
     <div className="mt-8">
