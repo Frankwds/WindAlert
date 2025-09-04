@@ -56,6 +56,7 @@ export interface WeatherStation {
 
 export interface MinimalForecast {
   time: string;
+  is_day: 0 | 1;
   weather_code: string;
   temperature: number;
   wind_speed: number;

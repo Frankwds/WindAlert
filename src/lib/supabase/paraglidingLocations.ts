@@ -50,6 +50,7 @@ export class ParaglidingLocationService {
         id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw,
         forecast_cache(
           time,
+          is_day,
           weather_code,
           temperature,
           wind_speed,

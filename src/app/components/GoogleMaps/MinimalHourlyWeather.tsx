@@ -62,6 +62,27 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     return acc;
   }, {} as Record<string, MinimalForecast[]>);
 
+  // Create visual representation of promising hours (10:00-22:00)
+  const getPromisingHoursVisual = (day: string) => {
+    const allHours = groupedByDay[day];
+    const relevantHours = allHours.filter(hour => {
+      return hour.is_day === 1
+    });
+
+    const segments = [];
+    for (const hour of relevantHours) {
+      segments.push(
+        <div
+          key={hour.time}
+          className={`h-1.5 flex-1 ${hour.is_promising ? 'bg-green-500' : 'bg-red-500'} 
+            }`}
+        />
+      );
+    }
+
+    return segments;
+  };
+
   const dataRows = [
     {
       getValue: (hour: MinimalForecast) => {
@@ -112,9 +133,14 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
               } ${activeDay === day
                 ? "bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium"
                 : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
-              }`}
+              } `}
           >
-            {day}
+            <div className="flex flex-col items-center">
+              <div className="mb-1">{day}</div>
+              <div className="flex w-full">
+                {getPromisingHoursVisual(day)}
+              </div>
+            </div>
           </button>
         ))}
       </div>
