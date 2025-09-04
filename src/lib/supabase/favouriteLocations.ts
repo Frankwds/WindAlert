@@ -1,5 +1,9 @@
 import { supabase } from "./client";
-import { FavouriteLocation, ParaglidingLocation } from "./types";
+import {
+  FavouriteLocation,
+  MinimalForecast,
+  ParaglidingLocation,
+} from "./types";
 
 export class FavouriteLocationService {
   /**
@@ -22,6 +26,61 @@ export class FavouriteLocationService {
 
     const flattenedData: ParaglidingLocation[] = data?.map((fav: any) => fav.paragliding_locations) || [];
     return flattenedData;
+  }
+
+  static async getAllForUserWithForecast(
+    googleId: string
+  ): Promise<(ParaglidingLocation & { forecast_cache: MinimalForecast[] })[]> {
+    // Step 1: Get all favourite locations for the user
+    const { data: favData, error: favError } = await supabase
+      .from("favourite_locations")
+      .select("paragliding_locations!inner(*)")
+      .eq("google_id", googleId);
+
+    if (favError) {
+      console.error("Error fetching favourite locations:", favError);
+      throw favError;
+    }
+
+    const locations: ParaglidingLocation[] =
+      favData?.map((fav: any) => fav.paragliding_locations) || [];
+    if (locations.length === 0) {
+      return [];
+    }
+
+    // Step 2: Extract location IDs
+    const locationIds = locations.map((loc) => loc.id);
+
+    // Step 3: Fetch forecast data for these locations
+    const { data: forecastData, error: forecastError } = await supabase
+      .from("forecast_cache")
+      .select(
+        "location_id, time, is_day, weather_code, temperature, wind_speed, wind_gusts, wind_direction, is_promising"
+      )
+      .in("location_id", locationIds)
+      .gte("time", new Date().toISOString());
+
+    if (forecastError) {
+      console.error("Error fetching forecast data:", forecastError);
+      throw forecastError;
+    }
+
+    // Step 4: Group forecasts by location_id
+    const forecastsByLocation = forecastData.reduce((acc, forecast) => {
+      if (!acc[forecast.location_id]) {
+        acc[forecast.location_id] = [];
+      }
+      acc[forecast.location_id].push(forecast);
+      return acc;
+    }, {} as Record<string, MinimalForecast[]>);
+
+    // Step 5: Combine locations with their forecasts
+    const locationsWithForecasts = locations.map((location) => ({
+      ...location,
+      forecast_cache: forecastsByLocation[location.id] || [],
+    }));
+
+    return locationsWithForecasts;
   }
 
   /**

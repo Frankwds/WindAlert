@@ -4,16 +4,24 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
-import { ParaglidingLocation } from "@/lib/supabase/types";
+import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
+import MinimalHourlyWeather from "@/app/components/GoogleMaps/MinimalHourlyWeather";
+import TinyWindCompass from "@/app/components/GoogleMaps/TinyWindCompass";
+import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();
-  const [locations, setLocations] = useState<ParaglidingLocation[]>([]);
+  const [
+    locations,
+    setLocations,
+  ] = useState<(ParaglidingLocation & { forecast_cache: MinimalForecast[] })[]>(
+    []
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.id) {
-      FavouriteLocationService.getAllForUser(session.user.id)
+      FavouriteLocationService.getAllForUserWithForecast(session.user.id)
         .then((favs) => {
           setLocations(favs);
           setLoading(false);
@@ -56,13 +64,27 @@ export default function FavouritesPage() {
         {locations.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {locations.map((location) => (
-              <Link
-                key={location.id}
-                href={`/locations/${location.id}`}
-                className="p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/80 transition-colors"
-              >
-                <h2 className="text-xl font-semibold">{location.name}</h2>
-              </Link>
+              <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
+                <div className="flex items-center mb-2">
+                  <TinyWindCompass allowedDirections={locationToWindDirectionSymbols(location)} />
+                  <Link
+                    key={location.id}
+                    href={`/locations/${location.id}`}
+                    className="underline hover:text-[var(--accent)] transition-colors duration-200"
+                  >
+                    <h2 className="text-xl font-semibold">{location.name}</h2>
+                  </Link>
+                </div>
+                {location.forecast_cache &&
+                  location.forecast_cache.length > 0 ? (
+                  <MinimalHourlyWeather
+                    weatherData={location.forecast_cache}
+                    timezone={'Europe/Oslo'}
+                  />
+                ) : (
+                  <p className="mt-2">Ingen værmeldinger tilgjengelig.</p>
+                )}
+              </div>
             ))}
           </div>
         ) : (
