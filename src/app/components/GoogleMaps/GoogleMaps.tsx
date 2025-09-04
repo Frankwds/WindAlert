@@ -93,11 +93,11 @@ const GoogleMaps: React.FC = () => {
 
   const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
     if (infoWindowRef.current && mapInstance) {
-      closeInfoWindow();
+      closeOverlays('infowindow');
       infoWindowRef.current.setContent(content);
       infoWindowRef.current.open(mapInstance, marker);
     }
-  }, [mapInstance, closeInfoWindow]);
+  }, [mapInstance]);
 
   /**
    * Filters paragliding markers based on promising weather conditions
@@ -284,7 +284,7 @@ const GoogleMaps: React.FC = () => {
 
         infoWindowRef.current = new google.maps.InfoWindow();
 
-        map.addListener('click', onMapClick);
+        map.addListener('click', closeOverlays);
         map.setOptions({ scaleControl: true });
 
         setMapInstance(map);
@@ -301,10 +301,16 @@ const GoogleMaps: React.FC = () => {
 
   }, [closeInfoWindow]);
 
-  const onMapClick = () => {
-    setIsPromisingFilterExpanded(false);
-    closeInfoWindow();
-    setWindFilterExpanded(false);
+  const closeOverlays = (keep: string = "") => {
+    if (keep !== 'promisingfilter') {
+      setIsPromisingFilterExpanded(false);
+    }
+    if (keep !== 'windfilter') {
+      setWindFilterExpanded(false);
+    }
+    if (keep !== 'infowindow') {
+      closeInfoWindow();
+    }
   }
 
   useEffect(() => {
@@ -411,12 +417,14 @@ const GoogleMaps: React.FC = () => {
               setIsExpanded={setWindFilterExpanded}
               windFilterAndOperator={windFilterAndOperator}
               onFilterLogicChange={handleWindFilterLogicChange}
+              onCloseOverlays={closeOverlays}
             />
             <PromisingFilter
               isExpanded={isPromisingFilterExpanded}
               setIsExpanded={setIsPromisingFilterExpanded}
               onFilterChange={setPromisingFilter}
               initialFilter={promisingFilter}
+              onCloseOverlays={closeOverlays}
             />
           </>
         )}

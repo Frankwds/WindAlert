@@ -10,6 +10,7 @@ interface PromisingFilterProps {
   onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
   initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null;
+  onCloseOverlays: (keep?: string) => void;
 }
 
 const PromisingFilter: FC<PromisingFilterProps> = ({
@@ -17,6 +18,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   onFilterChange,
   setIsExpanded,
   initialFilter,
+  onCloseOverlays,
 }) => {
   const currentHour = useMemo(() => new Date().getHours(), []);
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
@@ -65,7 +67,12 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   return (
     <div className="absolute top-3 right-3 z-10">
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={() => {
+          if (!isExpanded) {
+            onCloseOverlays('promisingfilter');
+          }
+          setIsExpanded(!isExpanded);
+        }}
         className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center"
       >
         <div className="relative">
