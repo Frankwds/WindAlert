@@ -7,27 +7,25 @@ const AboutPage = () => {
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            🎯 Formål
+            🦅 Gwaihir
           </h2>
           <p className="text-base sm:text-lg">
-            Målet er et verktøy for å vurdere forhold uten å måtte åpne flere faner med yr, windy og mer.
+            WindLord (Gwaihir) gir en oversikt over alle starter som egner seg for været de neste par dagene.
             <br />
-            I tillegg til å gjøre det enkelt å finne steder med lovende værforhold.
+            Hver start har info fra flightlog, samt detaljert bakke -og atmosfærisk værmelding.
+            <br /><br />
+            Værmeldingen som brukes for å filtrere starter i kartet blir (for nå) hentet 07:00 og 12:00 hver dag,
+            slik at resultatene av filtreringene kan regnes ut på forhånd.
+            <br />
+            Værmeldingen på hver enkelt side blir hentet nytt av deg hver gang.
+            <br /><br />
+            Yr brukes så lenge de har time-for-time værdata tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF, som jeg mener skal være den beste..
+            <br />
+            Deretter brukes kun ECMWF for de resterende timene WindLord viser.
           </p>
         </section>
 
-        <section className="mb-12">
-          <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
-            ✨ Hovedfunksjoner
-          </h2>
-          <ul className="list-disc list-inside space-y-2 text-base sm:text-lg">
-            <li><strong>Google Maps:</strong> Kart med værstasjoner og paragliding starter.</li>
-            <li><strong>Lovende værmelding:</strong> Vis bare starter med lovende værmelding for valgt tid og dag.</li>
-            <li><strong>Vindretning:</strong> Vis bare starter egnet for valgt vindretning.</li>
-            <li><strong>Oversikt:</strong> Trykk på en start og få opp beskrivelse, yr, windy på samme side.</li>
-            <li><strong>Kombinert værdata:</strong> Tjenesten bruker Yr.no sin data for værmelding på bakken, kombinert med open meteo sin atmosfæriske data.</li>
-          </ul>
-        </section>
+
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
@@ -37,16 +35,16 @@ const AboutPage = () => {
             <div className="p-4 rounded-lg shadow-[var(--shadow-md)] bg-[var(--background)] border border-[var(--border)]">
               <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Vær-APIer</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li><strong>Open-Meteo API:</strong> Primær værdata-kilde for detaljerte atmosfæriske forhold.</li>
-                <li><strong>YR.no (Meteorologisk institutt):</strong> Sekundær værdata for validering og sammenligning.</li>
-                <li><strong>Windy.com:</strong> Interaktiv værvisualisering med flere værmodeller.</li>
+                <li><strong>YR.no (Meteorologisk institutt):</strong> Primær værdata for validering og sammenligning.</li>
+                <li><strong>Open-Meteo API:</strong> Sekundær værdata-kilde for detaljerte atmosfæriske forhold.</li>
+                <li><strong>Windy.com:</strong> Interaktiv kart som burde brukes for å se høydevind i større områder.</li>
               </ul>
             </div>
             <div className="p-4 rounded-lg shadow-[var(--shadow-md)] bg-[var(--background)] border border-[var(--border)]">
               <h3 className="text-xl font-bold mb-2 text-[var(--accent)]">Lokasjonsdata</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li><strong>Paragliding starter (FlightLog.org):</strong> Paragliding-avgangssteder og stedsinformasjon.</li>
-                <li><strong>Værstasjoner (Holfuy.com):</strong> Bakkenivå værobservasjoner.</li>
+                <li><strong>FlightLog.org:</strong> Paragliding-starter og stedsinformasjon. </li>
+                <li><strong>Holfuy.com:</strong> Værstasjoner.</li>
               </ul>
             </div>
           </div>
