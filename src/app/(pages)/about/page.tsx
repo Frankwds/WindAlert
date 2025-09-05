@@ -55,7 +55,7 @@ const AboutPage = () => {
             🤝 Bidrag
           </h2>
           <p className="text-base sm:text-lg">
-            Funnet en feil eller har en funksjonsforespørsel? Gjerne åpne en issue på github, kontakt meg via e-post eller send inn en pull request. Alle bidrag er velkommen!
+            Funnet en feil eller har en funksjonsforespørsel? Gjerne åpne en issue på <a href="https://github.com/Frankwds/WindAlert" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">GitHub</a>, kontakt meg via e-post eller send inn en pull request. Alle bidrag er velkommen!
           </p>
         </section>
 
