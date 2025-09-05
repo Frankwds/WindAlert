@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
 import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { mapYrData } from '../../../lib/yr/mapping';
@@ -12,7 +12,21 @@ import { ForecastCache1hr } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Check for authentication
+  const authHeader = request.headers.get('authorization');
+  const cronSecret = process.env.CRON_SECRET;
+
+  if (!cronSecret) {
+    console.error('CRON_SECRET environment variable is not set');
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+  }
+
+  if (!authHeader || authHeader !== `Bearer ${cronSecret}`) {
+    console.log('Unauthorized access attempt to cron endpoint');
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   // Clear all existing forecast data at the start
   await ForecastCacheService.clearAllForecastData();
 

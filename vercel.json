@@ -3,11 +3,17 @@
   "crons": [
     {
       "path": "/api/cron",
-      "schedule": "0 7 * * *"
+      "schedule": "0 7 * * *",
+      "headers": {
+        "Authorization": "Bearer $CRON_SECRET"
+      }
     },
     {
       "path": "/api/cron",
-      "schedule": "0 13 * * *"
+      "schedule": "0 13 * * *",
+      "headers": {
+        "Authorization": "Bearer $CRON_SECRET"
+      }
     }
   ]
 }
