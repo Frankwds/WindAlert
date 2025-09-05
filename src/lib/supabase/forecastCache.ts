@@ -166,4 +166,23 @@ export class ForecastCacheService {
 
     return data || [];
   }
+
+  /**
+   * Get the last updated forecast data (oldest date in the cache)
+   */
+  static async getLastUpdated(): Promise<ForecastCache1hr | null> {
+    const { data, error } = await supabase
+      .from('forecast_cache')
+      .select('*')
+      .order('updated_at', { ascending: true })
+      .limit(1)
+      .single();
+
+    if (error) {
+      console.error('Error fetching last updated forecast data:', error);
+      return null;
+    }
+
+    return data;
+  }
 }

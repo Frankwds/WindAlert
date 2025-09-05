@@ -112,6 +112,7 @@ export interface ForecastCache1hr {
   // Basic identification
   // time is a datetime object
   time: string;
+  updated_at?: string;
   location_id: string;
 
   // Surface conditions

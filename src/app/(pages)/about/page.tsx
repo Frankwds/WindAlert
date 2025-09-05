@@ -1,6 +1,19 @@
 import React from 'react';
+import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 
-const AboutPage = () => {
+const AboutPage = async () => {
+  // Get the last updated forecast data
+  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
+  const lastUpdatedDate = lastUpdatedData?.time
+    ? new Date(lastUpdatedData?.updated_at || 'Ukjent').toLocaleDateString('no-NO', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Europe/Oslo'
+    })
+    : 'Ukjent';
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto">
@@ -14,12 +27,12 @@ const AboutPage = () => {
             <br />
             Hver start har info fra flightlog, samt detaljert bakke -og atmosfærisk værmelding.
             <br /><br />
-            Værmeldingen som brukes for å filtrere starter i kartet blir (for nå) hentet 07:00 og 12:00 hver dag,
-            slik at &quot;lovende vær&quot; kan regnes ut på forhånd, for hvert sted.
+            Værmeldingen som brukes for å filtrere starter i kartet blir (for nå) hentet 07:00 og 13:00 hver dag,
+            slik at &quot;lovende vær&quot; kan regnes ut på forhånd, for hvert sted. (Sist oppdatert {lastUpdatedDate})
             <br />
             Værmeldingen på hver enkelt side hentes på nytt hver gang du besøker siden.
             <br /><br />
-            Yr brukes så lenge de har time-for-time værdata tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF, som jeg mener skal være den beste..
+            Yr brukes så lenge de har time-for-time data tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF, som jeg mener skal være den beste..
             <br />
             Deretter brukes kun ECMWF for de resterende timene WindLord viser.
           </p>

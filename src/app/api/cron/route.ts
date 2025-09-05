@@ -14,7 +14,8 @@ import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 export async function GET(request: NextRequest) {
   // Check for authentication
-  const authHeader = request.headers.get('authorization');
+  const { searchParams } = new URL(request.url);
+  const token = searchParams.get('token');
   const cronSecret = process.env.CRON_SECRET;
 
   if (!cronSecret) {
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
   }
 
-  if (!authHeader || authHeader !== `Bearer ${cronSecret}`) {
+  if (!token || token !== cronSecret) {
     console.log('Unauthorized access attempt to cron endpoint');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }

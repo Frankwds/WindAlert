@@ -11,7 +11,6 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
       timeStyle: 'short',
       timeZone: timezone,
     }),
-
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
     is_yr_data: !!yrDataPoint,
