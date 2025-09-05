@@ -89,7 +89,7 @@ export async function GET() {
     }
 
     if (i + BATCH_SIZE < paraglidingLocations.length) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 10000));
     }
   }
 

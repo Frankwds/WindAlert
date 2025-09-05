@@ -15,9 +15,9 @@ const AboutPage = () => {
             Hver start har info fra flightlog, samt detaljert bakke -og atmosfærisk værmelding.
             <br /><br />
             Værmeldingen som brukes for å filtrere starter i kartet blir (for nå) hentet 07:00 og 12:00 hver dag,
-            slik at resultatene av filtreringene kan regnes ut på forhånd.
+            slik at &quot;lovende vær&quot; kan regnes ut på forhånd, for hvert sted.
             <br />
-            Værmeldingen på hver enkelt side blir hentet nytt av deg hver gang.
+            Værmeldingen på hver enkelt side hentes på nytt hver gang du besøker siden.
             <br /><br />
             Yr brukes så lenge de har time-for-time værdata tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF, som jeg mener skal være den beste..
             <br />
