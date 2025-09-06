@@ -30,6 +30,8 @@ export default function FavouriteHeart({ locationId }: Props) {
   useEffect(() => {
     if (session?.user?.id) {
       checkFavourite(session);
+    } else if (status === "unauthenticated") {
+      setLoading(false);
     }
   }, [locationId, session, status, checkFavourite]);
 
