@@ -35,7 +35,7 @@ export async function GET() {
   await ForecastCacheService.deleteOldData(twoHoursAgoISO);
 
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
-  const BATCH_SIZE = 30;
+  const BATCH_SIZE = 50;
 
   for (let i = 0; i < paraglidingLocations.length; i += BATCH_SIZE) {
     const batch = paraglidingLocations.slice(i, i + BATCH_SIZE);
@@ -106,8 +106,8 @@ export async function GET() {
       }
     }
 
-    console.log(`Waiting 5 seconds before next batch`);
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    console.log(`Waiting 10 seconds before next batch`);
+    await new Promise(resolve => setTimeout(resolve, 10000));
     console.log(`Done waiting`);
 
   }
