@@ -35,7 +35,7 @@ export async function GET() {
   await ForecastCacheService.deleteOldData(twoHoursAgoISO);
 
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
-  const BATCH_SIZE = 50;
+  const BATCH_SIZE = 30;
 
   for (let i = 0; i < paraglidingLocations.length; i += BATCH_SIZE) {
     const batch = paraglidingLocations.slice(i, i + BATCH_SIZE);

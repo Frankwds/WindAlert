@@ -34,8 +34,8 @@ export async function fetchMeteoData(latitude: number | number[], longitude: num
   const { baseURL, params } = API_URL_CONFIG;
   const url = new URL(baseURL);
 
-  const latString = Array.isArray(latitude) ? latitude.join(',') : latitude.toString();
-  const lonString = Array.isArray(longitude) ? longitude.join(',') : longitude.toString();
+  const latString = Array.isArray(latitude) ? latitude.join(',') : latitude.toFixed(4).toString();
+  const lonString = Array.isArray(longitude) ? longitude.join(',') : longitude.toFixed(4).toString();
 
   url.searchParams.append('latitude', latString);
   url.searchParams.append('longitude', lonString);

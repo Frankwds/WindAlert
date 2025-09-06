@@ -3,6 +3,15 @@ import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
 function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
+
+
+  let isDay: 0 | 1 = 0;
+  if (yrDataPoint?.symbol_code.includes('night')) {
+    isDay = 0;
+  } else {
+    isDay = meteoDataPoint.isDay;
+  }
+
   return {
 
     // Basic identification
@@ -30,7 +39,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
     precipitation_probability: yrDataPoint?.probability_of_precipitation || meteoDataPoint.precipitationProbability,
     pressure_msl: yrDataPoint?.air_pressure_at_sea_level || meteoDataPoint.pressureMsl,
     weather_code: yrDataPoint?.symbol_code || meteoDataPoint.weatherCode,
-    is_day: meteoDataPoint.isDay || yrDataPoint?.symbol_code.includes('night') ? 1 : 0,
+    is_day: isDay,
 
     // Atmospheric conditions - Wind at different pressure levels
     wind_speed_1000hpa: meteoDataPoint.windSpeed1000hPa,
