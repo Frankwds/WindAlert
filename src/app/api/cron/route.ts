@@ -12,23 +12,24 @@ import { ForecastCache1hr } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
-export async function GET(request: NextRequest) {
-  // Check for authentication
-  const { searchParams } = new URL(request.url);
-  const token = searchParams.get('token');
-  const cronSecret = process.env.CRON_SECRET;
+export async function GET() {
+  // Check if we need to update data (only if last update was more than 1 hour ago)
+  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
 
-  if (!cronSecret) {
-    console.error('CRON_SECRET environment variable is not set');
-    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+  if (lastUpdatedData && lastUpdatedData.updated_at) {
+    const lastUpdated = new Date(lastUpdatedData.updated_at);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+
+    if (lastUpdated > oneHourAgo) {
+      console.log('Data was updated less than 1 hour ago, skipping update');
+      return NextResponse.json({
+        message: 'Data update skipped - last update was less than 1 hour ago',
+        lastUpdated: lastUpdated.toISOString()
+      });
+    }
   }
 
-  if (!token || token !== cronSecret) {
-    console.log('Unauthorized access attempt to cron endpoint');
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  // Clear all existing forecast data at the start
+  console.log('Starting forecast data update...');
   await ForecastCacheService.clearAllForecastData();
 
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
