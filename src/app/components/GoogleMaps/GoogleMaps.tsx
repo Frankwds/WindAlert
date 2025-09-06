@@ -221,8 +221,8 @@ const GoogleMaps: React.FC = () => {
 
   const loadAllMarkers = useCallback(async () => {
     try {
-      let paraglidingLocations = dataCache.getParaglidingLocations();
-      let weatherStations = dataCache.getWeatherStations();
+      let paraglidingLocations = await dataCache.getParaglidingLocations();
+      let weatherStations = await dataCache.getWeatherStations();
 
       if (!paraglidingLocations || !weatherStations) {
         const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
@@ -233,8 +233,10 @@ const GoogleMaps: React.FC = () => {
         paraglidingLocations = fetchedParaglidingLocations;
         weatherStations = fetchedWeatherStations;
 
-        dataCache.setParaglidingLocations(paraglidingLocations);
-        dataCache.setWeatherStations(weatherStations);
+        await Promise.all([
+          dataCache.setParaglidingLocations(paraglidingLocations),
+          dataCache.setWeatherStations(weatherStations)
+        ]);
       }
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
