@@ -38,7 +38,7 @@ export default function FavouriteHeart({ locationId }: Props) {
 
   const toggleFavourite = async () => {
     if (status !== "authenticated" || !session?.user?.id) {
-      alert("Please log in to favourite locations.");
+      alert("Du må være innlogget for å kunne legge til favoritter.");
       return;
     }
 
