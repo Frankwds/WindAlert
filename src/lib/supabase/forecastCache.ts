@@ -97,9 +97,10 @@ export class ForecastCacheService {
     }
   }
 
+
   /**
-   * Upsert forecast data (insert or update) - kept for backward compatibility
-   * @deprecated Use replaceForecastData for better performance when replacing entire datasets
+   * Upsert forecast data (insert or update)
+   * @param forecastData 
    */
   static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
     const { error } = await supabase

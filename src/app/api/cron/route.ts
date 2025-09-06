@@ -13,7 +13,6 @@ import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 export async function GET() {
-  // Check if we need to update data (only if last update was more than 1 hour ago)
   const lastUpdatedData = await ForecastCacheService.getLastUpdated();
 
   if (lastUpdatedData && lastUpdatedData.updated_at) {
@@ -30,7 +29,10 @@ export async function GET() {
   }
 
   console.log('Starting forecast data update...');
-  await ForecastCacheService.clearAllForecastData();
+  const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+  const twoHoursAgoISO = twoHoursAgo.toISOString();
+
+  await ForecastCacheService.deleteOldData(twoHoursAgoISO);
 
   const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
   const BATCH_SIZE = 50;
@@ -95,7 +97,7 @@ export async function GET() {
           };
         });
 
-        await ForecastCacheService.insertForecastData(validatedForecastData);
+        await ForecastCacheService.upsert(validatedForecastData);
       } catch (error) {
         console.error(
           `Failed to process location ${location.id}:`,
@@ -104,9 +106,10 @@ export async function GET() {
       }
     }
 
-    if (i + BATCH_SIZE < paraglidingLocations.length) {
-      await new Promise(resolve => setTimeout(resolve, 10000));
-    }
+    console.log(`Waiting 5 seconds before next batch`);
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    console.log(`Done waiting`);
+
   }
 
   return NextResponse.json({ message: 'Cron job completed successfully' });
