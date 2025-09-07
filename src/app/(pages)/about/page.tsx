@@ -3,17 +3,20 @@ import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 
 const AboutPage = async () => {
   // Get the last updated forecast data
-  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
-  const lastUpdatedDate = lastUpdatedData?.time
-    ? new Date(lastUpdatedData?.updated_at || 'Ukjent').toLocaleDateString('no-NO', {
+  const lastUpdatedHour = await ForecastCacheService.getLastUpdated();
+  let lastUpdatedDate = 'ukjent';
+  if (lastUpdatedHour && lastUpdatedHour.updated_at) {
+    console.log(lastUpdatedHour.updated_at);
+    lastUpdatedDate = new Date(lastUpdatedHour.updated_at).toLocaleDateString('no-NO', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
       timeZone: 'Europe/Oslo'
-    })
-    : 'Ukjent';
+    });
+  }
+
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto">
