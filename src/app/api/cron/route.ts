@@ -101,8 +101,19 @@ async function processForecastData() {
   console.log('Cron job completed successfully');
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   console.log('Cron job called');
+
+  // Check for authorization token
+  const { searchParams } = new URL(request.url);
+  const token = searchParams.get('token');
+  const expectedToken = process.env.CRON_SECRET;
+
+  if (!token || !expectedToken || token !== expectedToken) {
+    console.log('Unauthorized cron job attempt');
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const lastUpdatedData = await ForecastCacheService.getLastUpdated();
   let message = '';
   const lastUpdated = new Date(lastUpdatedData?.updated_at || '1970-01-01T00:00:00Z');
