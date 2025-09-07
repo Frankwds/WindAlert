@@ -12,23 +12,9 @@ import { ForecastCache1hr } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
-export async function GET() {
-  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
-
-  if (lastUpdatedData && lastUpdatedData.updated_at) {
-    const lastUpdated = new Date(lastUpdatedData.updated_at);
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-
-    if (lastUpdated > oneHourAgo) {
-      console.log('Data was updated less than 1 hour ago, skipping update');
-      return NextResponse.json({
-        message: 'Data update skipped - last update was less than 1 hour ago',
-        lastUpdated: lastUpdated.toISOString()
-      });
-    }
-  }
-
+async function processForecastData() {
   console.log('Starting forecast data update...');
+
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
   const twoHoursAgoISO = twoHoursAgo.toISOString();
 
@@ -106,12 +92,35 @@ export async function GET() {
       }
     }
 
-    console.log(`Waiting 10 seconds before next batch`);
-    await new Promise(resolve => setTimeout(resolve, 10000));
+    console.log(`Waiting 15 seconds before next batch`);
+    await new Promise(resolve => setTimeout(resolve, 15000));
     console.log(`Done waiting`);
 
   }
 
-  return NextResponse.json({ message: 'Cron job completed successfully' });
+  console.log('Cron job completed successfully');
+}
+
+export async function GET() {
+  console.log('Cron job called');
+  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
+  let message = '';
+  const lastUpdated = new Date(lastUpdatedData?.updated_at || '1970-01-01T00:00:00Z');
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+  console.log(lastUpdated, oneHourAgo);
+  if (lastUpdated > oneHourAgo) {
+    console.log('Data was updated less than 1 hour ago, skipping update');
+    message = 'Data update skipped - last update was less than 1 hour ago: ' + lastUpdated.toISOString();
+
+  } else {
+    console.log('Starting cron job in background');
+    message = 'Starting cron job in background';
+    // Start background processing(don't await)
+    processForecastData().catch(error => {
+      console.error('Background cron job failed:', error);
+    });
+
+  }
+  return NextResponse.json({ message });
 }
 

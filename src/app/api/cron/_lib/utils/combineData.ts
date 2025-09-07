@@ -25,6 +25,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
     is_yr_data: !!yrDataPoint,
     validation_failures: '', // Will be set in the cron job
     validation_warnings: '', // Will be set in the cron job
+    updated_at: new Date().toISOString(),
 
     // Surface conditions
     temperature: yrDataPoint?.air_temperature || meteoDataPoint.temperature2m,
