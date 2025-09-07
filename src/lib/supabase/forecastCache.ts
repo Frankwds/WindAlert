@@ -117,10 +117,12 @@ export class ForecastCacheService {
    * Delete old forecast data before a specific time
    */
   static async deleteOldData(beforeTime: string): Promise<void> {
+    console.log('Deleting old forecast data before:', beforeTime);
     const { error } = await supabase
       .from('forecast_cache')
       .delete()
       .lt('time', beforeTime);
+    console.log('Deleted old forecast data before:', beforeTime);
 
     if (error) {
       console.error('Error deleting old forecast data:', error);
