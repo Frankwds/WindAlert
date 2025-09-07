@@ -6,6 +6,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";
 
 const links = [
+  { href: "/", label: "Kart" },
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },
