@@ -127,8 +127,7 @@ export async function GET(request: NextRequest) {
   console.log('Cron job called');
 
   // Check for authorization token
-  const { searchParams } = new URL(request.url);
-  const token = searchParams.get('token');
+  const token = request.headers.get('token');
   const expectedToken = process.env.CRON_SECRET;
 
   if (!token || !expectedToken || token !== expectedToken) {
