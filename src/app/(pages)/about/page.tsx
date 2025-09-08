@@ -1,20 +1,46 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 
-const AboutPage = async () => {
-  // Get the last updated forecast data
-  const lastUpdatedHour = await ForecastCacheService.getLastUpdated();
-  let lastUpdatedDate = 'ukjent';
-  if (lastUpdatedHour && lastUpdatedHour.updated_at) {
-    console.log(lastUpdatedHour.updated_at);
-    lastUpdatedDate = new Date(lastUpdatedHour.updated_at).toLocaleDateString('no-NO', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'Europe/Oslo'
-    });
+export default function AboutPage() {
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('ukjent');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLastUpdated = async () => {
+      try {
+        const lastUpdatedHour = await ForecastCacheService.getOldestForecastData();
+        if (lastUpdatedHour && lastUpdatedHour.updated_at) {
+          console.log(lastUpdatedHour.updated_at);
+          const formattedDate = new Date(lastUpdatedHour.updated_at).toLocaleDateString('no-NO', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+          setLastUpdatedDate(formattedDate);
+        }
+      } catch (error) {
+        console.error('Failed to fetch last updated date:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLastUpdated();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold mb-8 text-center">Om WindLord</h1>
+          <p>Laster...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -30,8 +56,7 @@ const AboutPage = async () => {
             <br />
             Hver start har info fra flightlog, samt detaljert bakke -og atmosfærisk værmelding.
             <br /><br />
-            Værmeldingen som brukes for å filtrere starter i kartet blir (for nå) hentet 07:00 og 13:00 hver dag,
-            slik at &quot;lovende vær&quot; kan regnes ut på forhånd, for hvert sted. (Sist oppdatert {lastUpdatedDate})
+            Værmeldinger hentes løpende, den eldste værmeldingen i bruk nå, ble oppdatert {lastUpdatedDate}.
             <br />
             Værmeldingen på hver enkelt side hentes på nytt hver gang du besøker siden.
             <br /><br />
@@ -84,6 +109,4 @@ const AboutPage = async () => {
       </div>
     </div>
   );
-};
-
-export default AboutPage;
+}
