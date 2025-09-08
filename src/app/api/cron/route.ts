@@ -9,34 +9,41 @@ import { fetchYrData } from '@/lib/yr/apiClient';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { ForecastCache1hr, ParaglidingLocationForCache } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
-async function processBatch(batch: any[], batchNumber: number, totalBatches: number) {
-  console.log(`Processing batch ${batchNumber}/${totalBatches}: ${batch.length} locations`);
+const BATCH_SIZE = 50;
 
-  const latitudes = batch.map((location) => location.latitude);
-  const longitudes = batch.map((location) => location.longitude);
+async function processBatch(locations: ParaglidingLocationForCache[]) {
+
+  // Fetch OpenMeteo data for all locations in bulk
+  const latitudes = locations.map((location) => location.latitude);
+  const longitudes = locations.map((location) => location.longitude);
   const rawMeteoDataArray = await fetchMeteoData(latitudes, longitudes);
 
-  for (const [index, location] of batch.entries()) {
+  // Process each location individually
+  for (const [index, location] of locations.entries()) {
     try {
       const rawMeteoData = rawMeteoDataArray[index];
       const validatedData = openMeteoResponseSchema.parse(rawMeteoData);
       const meteoData = mapOpenMeteoData(validatedData);
 
+      // Fetch YR data for takeoff location
       const yrTakeoffData = await fetchYrData(
         location.latitude,
         location.longitude
       );
       const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
+
+      // Combine data sources
       let combinedData = combineDataSources(
         meteoData,
         mappedYrTakeoffData.weatherDataYrHourly
       );
 
+      // Fetch YR data for landing location if it exists
       if (location.landing_latitude && location.landing_longitude) {
         const yrLandingData = await fetchYrData(
           location.landing_latitude,
@@ -59,6 +66,7 @@ async function processBatch(batch: any[], batchNumber: number, totalBatches: num
         });
       }
 
+      // Validate forecast data
       const validatedForecastData: ForecastCache1hr[] = combinedData.map((dataPoint) => {
         const { isGood } = isGoodParaglidingCondition(
           dataPoint,
@@ -72,92 +80,72 @@ async function processBatch(batch: any[], batchNumber: number, totalBatches: num
         };
       });
 
+      // Upsert forecast data
       await ForecastCacheService.upsert(validatedForecastData);
     } catch (error) {
-      console.error(
-        `Failed to process location ${location.id}:`,
-        error
-      );
+      console.error(`Failed to process location ${location.id}:`, error);
     }
   }
-
-  console.log(`Batch ${batchNumber} completed successfully`);
 }
 
-async function processForecastData() {
-  console.log('Starting forecast data update...');
 
+
+async function processOldestLocations() {
+  try {
+    const locationIds = await ForecastCacheService.getLocationsWithOldestForecastData(BATCH_SIZE);
+    const locations = await ParaglidingLocationService.getByIds(locationIds);
+
+    console.log(`Processing ${locations.length} locations total`);
+
+    try {
+      await processBatch(locations);
+    } catch (error) {
+      console.error(`Batch processing failed, retrying... Error: ${error}`);
+      try {
+        await processBatch(locations);
+      } catch (retryError) {
+        console.error(`Batch processing retry failed, not retrying. Error: ${retryError}`);
+        throw retryError;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to process oldest locations:', error);
+  }
+
+  console.log('Forecast update completed successfully');
+}
+
+async function cleanupOldForecastData() {
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
   const twoHoursAgoISO = twoHoursAgo.toISOString();
 
+  console.log(`Deleting forecast data older than: ${twoHoursAgoISO}`);
+
   await ForecastCacheService.deleteOldData(twoHoursAgoISO);
 
-  const paraglidingLocations = await ParaglidingLocationService.getAllActiveForCache();
-  const BATCH_SIZE = 50;
-
-  for (let i = 0; i < paraglidingLocations.length; i += BATCH_SIZE) {
-    const batch = paraglidingLocations.slice(i, i + BATCH_SIZE);
-    const batchNumber = Math.floor(i / BATCH_SIZE) + 1;
-    const totalBatches = Math.ceil(paraglidingLocations.length / BATCH_SIZE);
-
-    try {
-      await processBatch(batch, batchNumber, totalBatches);
-    } catch (error) {
-      console.error(`Batch ${batchNumber} failed:`, error);
-      console.log(`Waiting 20 seconds before retrying batch ${batchNumber}...`);
-      await new Promise(resolve => setTimeout(resolve, 20000));
-
-      try {
-        await processBatch(batch, batchNumber, totalBatches);
-      } catch (retryError) {
-        console.error(`Batch ${batchNumber} failed after retry, continuing to next batch:`, retryError);
-      }
-    }
-
-    if (i + BATCH_SIZE < paraglidingLocations.length) {
-      console.log(`Waiting 15 seconds before next batch`);
-      await new Promise(resolve => setTimeout(resolve, 15000));
-      console.log(`Done waiting`);
-    }
-  }
-
-  console.log('Cron job completed successfully');
+  console.log('Forecast data cleanup completed successfully');
 }
 
 export async function GET(request: NextRequest) {
   console.log('Cron job called');
 
-  // Check for authorization token
   const token = request.headers.get('token');
   const expectedToken = process.env.CRON_SECRET;
-
   if (!token || !expectedToken || token !== expectedToken) {
     console.log('Unauthorized cron job attempt');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const lastUpdatedData = await ForecastCacheService.getLastUpdated();
-  let message = '';
-  const lastUpdated = new Date(lastUpdatedData?.updated_at || '1970-01-01T00:00:00Z');
-  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-  console.log(lastUpdated, oneHourAgo);
-  if (lastUpdated > oneHourAgo) {
-    console.log('Data was updated less than 1 hour ago, skipping update');
-    message = 'Data update skipped - last update was less than 1 hour ago: ' + lastUpdated.toISOString();
+  after(async () => {
+    try {
+      console.log('Starting forecast update in background');
+      await cleanupOldForecastData();
+      await processOldestLocations();
+    } catch (error) {
+      console.error('Background forecast update failed:', error);
+    }
+  });
 
-  } else {
-    console.log('Starting cron job in background');
-    message = 'Starting cron job in background';
-
-    // Schedule background processing after response is sent
-    after(async () => {
-      try {
-        await processForecastData();
-      } catch (error) {
-        console.error('Background cron job failed:', error);
-      }
-    });
-  }
-  return NextResponse.json({ message });
+  return NextResponse.json({ message: 'Forecast updates in background' });
 }
 

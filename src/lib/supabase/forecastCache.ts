@@ -117,12 +117,10 @@ export class ForecastCacheService {
    * Delete old forecast data before a specific time
    */
   static async deleteOldData(beforeTime: string): Promise<void> {
-    console.log('Deleting old forecast data before:', beforeTime);
     const { error } = await supabase
       .from('forecast_cache')
       .delete()
       .lt('time', beforeTime);
-    console.log('Deleted old forecast data before:', beforeTime);
 
     if (error) {
       console.error('Error deleting old forecast data:', error);
@@ -173,7 +171,7 @@ export class ForecastCacheService {
   /**
    * Get the last updated forecast data (oldest date in the cache)
    */
-  static async getLastUpdated(): Promise<ForecastCache1hr | null> {
+  static async getOldestForecastData(): Promise<ForecastCache1hr | null> {
     const { data, error } = await supabase
       .from('forecast_cache')
       .select('*')
@@ -187,5 +185,24 @@ export class ForecastCacheService {
     }
 
     return data;
+  }
+
+  /**
+   * Get locations with oldest forecast data (for staggered updates)
+   */
+  static async getLocationsWithOldestForecastData(limit: number): Promise<string[]> {
+    const { data, error } = await supabase
+      .from('locations_with_oldest_forecast')
+      .select('location_id')
+      .limit(limit);
+
+    if (error) {
+      console.error('Error fetching locations with oldest forecast data:', error);
+      throw error;
+    }
+    if (data?.length != limit) {
+      throw new Error(`Expected ${limit} locations, got ${data?.length}`);
+    }
+    return data?.map(row => row.location_id) || [];
   }
 }

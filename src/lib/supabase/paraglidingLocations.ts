@@ -40,6 +40,24 @@ export class ParaglidingLocationService {
   }
 
   /**
+   * Get multiple paragliding locations by their IDs
+   */
+  static async getByIds(ids: string[]): Promise<ParaglidingLocationForCache[]> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude')
+      .in('id', ids)
+      .eq('is_active', true);
+
+    if (error) {
+      console.error(`Error fetching locations with ids ${ids.join(', ')}:`, error);
+      throw error;
+    }
+
+    return data || [];
+  }
+
+  /**
    * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
    */
   static async getAllActiveForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
