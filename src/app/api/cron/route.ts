@@ -90,7 +90,7 @@ async function processBatch(locations: ParaglidingLocationForCache[]) {
 
 
 
-async function processOldestLocations() {
+async function processLocationsWithOldestForecastData() {
   try {
     const locationIds = await ForecastCacheService.getLocationsWithOldestForecastData(BATCH_SIZE);
     const locations = await ParaglidingLocationService.getByIds(locationIds);
@@ -136,15 +136,15 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  after(async () => {
-    try {
-      console.log('Starting forecast update in background');
-      await cleanupOldForecastData();
-      await processOldestLocations();
-    } catch (error) {
-      console.error('Background forecast update failed:', error);
-    }
-  });
+
+  try {
+    console.log('Starting forecast update in background');
+    await cleanupOldForecastData();
+    await processLocationsWithOldestForecastData();
+  } catch (error) {
+    console.error('Background forecast update failed:', error);
+  }
+
 
   return NextResponse.json({ message: 'Forecast updates in background' });
 }
