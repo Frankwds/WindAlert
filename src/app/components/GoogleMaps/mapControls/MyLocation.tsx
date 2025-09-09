@@ -58,7 +58,11 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     const cached = getCachedLocation();
     if (cached) {
       map.setCenter(cached);
-      map.setZoom(12);
+      // Only zoom in if current zoom level is undefined or less than 10
+      const currentZoom = map.getZoom();
+      if (currentZoom === undefined || currentZoom < 8) {
+        map.setZoom(8);
+      }
       updateMarker(cached);
       // Only call onLocationUpdate on initial location fetch
       onLocationUpdate(cached);
@@ -81,7 +85,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
         // Stop tracking on error
         stopTracking();
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+      { enableHighAccuracy: true, timeout: 30000, maximumAge: 60000 }
     );
 
     watchIdRef.current = watchId;
