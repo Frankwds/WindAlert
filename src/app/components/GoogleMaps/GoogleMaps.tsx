@@ -212,30 +212,17 @@ const GoogleMaps: React.FC = () => {
 
       if (shouldCenterMap) {
         mapInstance.setCenter(location);
-        mapInstance.setZoom(12);
       }
 
+      // Remove any existing user location marker
       if (userLocationMarker) {
         userLocationMarker.setMap(null);
+        setUserLocationMarker(null);
       }
 
-      const blueDotIcon = {
-        path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
-        fillColor: '#4285F4',
-        fillOpacity: 1,
-        strokeColor: 'white',
-        strokeWeight: 2,
-        scale: 1,
-      };
-
-      const marker = new google.maps.Marker({
-        position: location,
-        map: mapInstance,
-        icon: blueDotIcon,
-        title: 'My Location',
-      });
-
-      setUserLocationMarker(marker);
+      // Don't create a new marker here - MyLocation component handles its own marker
+      // Just update the state to indicate we have a user location
+      setUserLocationMarker(null);
     }
   };
 
