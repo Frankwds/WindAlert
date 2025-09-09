@@ -14,7 +14,7 @@ const LOCATION_STORAGE_KEY = 'windlord_my_location';
 
 export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, onCloseInfoWindow }) => {
   const { theme } = useTheme();
-  const markerRef = useRef<google.maps.Marker | null>(null);
+  const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const watchIdRef = useRef<number | null>(null);
   const [isTracking, setIsTracking] = useState(false);
 
@@ -32,21 +32,26 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
 
     if (markerRef.current) {
       // Just update the position of the existing marker
-      markerRef.current.setPosition(location);
+      markerRef.current.position = location;
     } else {
       // Create the marker only if it doesn't exist
-      markerRef.current = new google.maps.Marker({
+      const markerElement = document.createElement('div');
+      markerElement.innerHTML = `
+        <div style="
+          width: 20px;
+          height: 20px;
+          background-color: #4285F4;
+          border: 2px solid white;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        "></div>
+      `;
+
+      markerRef.current = new google.maps.marker.AdvancedMarkerElement({
         position: location,
         map,
-        icon: {
-          path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
-          fillColor: '#4285F4',
-          fillOpacity: 1,
-          strokeColor: 'white',
-          strokeWeight: 2,
-          scale: 1,
-        },
         title: 'My Location',
+        content: markerElement,
       });
     }
   };
@@ -114,7 +119,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     e.preventDefault();
     localStorage.removeItem(LOCATION_STORAGE_KEY);
     if (markerRef.current) {
-      markerRef.current.setMap(null);
+      markerRef.current.map = null;
       markerRef.current = null;
     }
     stopTracking();
