@@ -17,15 +17,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
   const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const watchIdRef = useRef<number | null>(null);
   const [isTracking, setIsTracking] = useState(false);
-
-  const getCachedLocation = () => {
-    try {
-      const cached = localStorage.getItem(LOCATION_STORAGE_KEY);
-      return cached ? JSON.parse(cached) : null;
-    } catch {
-      return null;
-    }
-  };
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const updateMarker = (location: { lat: number; lng: number }) => {
     if (!map) return;
@@ -60,21 +52,6 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     if (!map || !navigator.geolocation) return;
 
     onCloseInfoWindow();
-
-    // Use cached location immediately for instant feedback
-    const cached = getCachedLocation();
-    if (cached) {
-      map.setCenter(cached);
-      // Only zoom in if current zoom level is undefined or less than 10
-      const currentZoom = map.getZoom();
-      if (currentZoom === undefined || currentZoom < 8) {
-        map.setZoom(8);
-      }
-      updateMarker(cached);
-      // Only call onLocationUpdate on initial location fetch
-      onLocationUpdate(cached);
-    }
-
     // Start watching position for continuous updates
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
@@ -83,16 +60,19 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
           lng: position.coords.longitude,
         };
 
-        localStorage.setItem(LOCATION_STORAGE_KEY, JSON.stringify(location));
-        // Only update marker position, don't trigger parent re-render
         updateMarker(location);
+
+        // Center map if in follow mode
+        if (isFollowing && map) {
+          map.setCenter(location);
+        }
       },
       (error) => {
         console.error('Geolocation error:', error);
         // Stop tracking on error
         stopTracking();
       },
-      { enableHighAccuracy: true, timeout: 30000, maximumAge: 60000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
     );
 
     watchIdRef.current = watchId;
@@ -109,22 +89,37 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
 
   const handleMyLocationClick = () => {
     if (isTracking) {
-      stopTracking();
+      if (isFollowing) {
+        // Stop following but keep tracking
+        setIsFollowing(false);
+      } else {
+        // Start following again
+        setIsFollowing(true);
+      }
     } else {
+      // Start tracking and following
       startTracking();
+      setIsFollowing(true);
     }
   };
 
-  const clearCache = (e: React.MouseEvent) => {
-    e.preventDefault();
-    localStorage.removeItem(LOCATION_STORAGE_KEY);
-    if (markerRef.current) {
-      markerRef.current.map = null;
-      markerRef.current = null;
-    }
-    stopTracking();
-    alert('Location cache cleared');
-  };
+  // TODO - remove local storage? - Change the center on follow toggle:true
+
+  // Add map interaction listeners to stop follow mode
+  useEffect(() => {
+    if (!map) return;
+
+    const stopFollowing = () => {
+      if (isFollowing) {
+        setIsFollowing(false);
+      }
+    };
+
+    const dragListener = map.addListener('dragstart', stopFollowing);
+    return () => {
+      google.maps.event.removeListener(dragListener);
+    };
+  }, [map, isFollowing]);
 
   // Cleanup on component unmount
   useEffect(() => {
@@ -142,12 +137,15 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <button
           onClick={handleMyLocationClick}
-          onContextMenu={clearCache}
           className="w-8 h-8 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg"
-          title={isTracking ? "Stop tracking location (Right-click to clear cache)" : "My Location (Right-click to clear cache)"}
+          title={
+            isTracking
+              ? (isFollowing ? "Stop following location (Right-click to clear cache)" : "Follow location (Right-click to clear cache)")
+              : "My Location (Right-click to clear cache)"
+          }
         >
           <Image
-            src={isTracking ? '/myLocationBlue.png' : (theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png')}
+            src={isFollowing ? '/myLocationBlue.png' : (theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png')}
             alt="My Location"
             width={24}
             height={24}
