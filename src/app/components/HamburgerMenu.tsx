@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import LoginButton from './LoginButton';
 import { usePathname } from 'next/navigation';
+import { useFullscreen } from '../contexts/FullscreenContext';
 
 interface LinkItem {
   href: string;
@@ -19,6 +20,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
+  const { isFullscreen, toggleFullscreen } = useFullscreen();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -78,6 +80,25 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
             </li>
           ))}
         </ul>
+        <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
+        <div className="px-4 py-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-[var(--nav-text)]/70">Vis kart i fullskjerm</span>
+            <button
+              onClick={toggleFullscreen}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--nav-text)]/20 focus:ring-offset-2 ${isFullscreen ? 'bg-[var(--nav-text)]/20' : 'bg-[var(--nav-text)]/10'
+                }`}
+              role="switch"
+              aria-checked={isFullscreen}
+              aria-label="Vis kart i fullskjerm"
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-[var(--nav-text)] transition-transform ${isFullscreen ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+              />
+            </button>
+          </div>
+        </div>
         <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
         <div className="px-1 py-1">
           <LoginButton />
