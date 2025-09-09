@@ -84,6 +84,9 @@ const GoogleMaps: React.FC = () => {
     minPromisingHours: number;
   } | null>(initialMapState?.promisingFilter ?? null);
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
+  const [showSkywaysLayer, setShowSkywaysLayer] = useState(
+    initialMapState?.showSkywaysLayer ?? false
+  );
 
   const closeInfoWindow = useCallback(() => {
     if (infoWindowRef.current) {
@@ -102,6 +105,23 @@ const GoogleMaps: React.FC = () => {
       closeInfoWindow();
     }
   }, [closeInfoWindow]);
+
+  const createSkywaysLayer = useCallback(() => {
+    return new google.maps.ImageMapType({
+      getTileUrl: (coord, zoom) => {
+        const x = coord.x;
+        const y = coord.y;
+        // Invert y for TMS (Tile Map Service) format
+        const invertedY = Math.pow(2, zoom) - 1 - y;
+        return `https://thermal.kk7.ch/tiles/skyways_all_all/${zoom}/${x}/${invertedY}.png?src=${window.location.hostname}`;
+      },
+      tileSize: new google.maps.Size(256, 256),
+      maxZoom: 18,
+      minZoom: 1,
+      name: 'Skyways',
+      alt: 'Skyways thermal data layer'
+    });
+  }, []);
 
   const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
     if (infoWindowRef.current && mapInstance) {
@@ -313,7 +333,7 @@ const GoogleMaps: React.FC = () => {
 
     initMap();
 
-  }, [closeOverlays, initialMapState?.center, initialMapState?.zoom]);
+  }, [closeOverlays, initialMapState?.center, initialMapState?.zoom, createSkywaysLayer]);
 
   useEffect(() => {
     if (!mapInstance) {
@@ -332,6 +352,7 @@ const GoogleMaps: React.FC = () => {
         selectedWindDirections,
         windFilterAndOperator,
         promisingFilter,
+        showSkywaysLayer,
       };
       localStorage.setItem(MAP_STATE_KEY, JSON.stringify(mapState));
     };
@@ -347,13 +368,41 @@ const GoogleMaps: React.FC = () => {
       google.maps.event.removeListener(zoomListener);
       google.maps.event.removeListener(dragListener);
     };
-  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator, promisingFilter]);
+  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator, promisingFilter, showSkywaysLayer]);
 
   useEffect(() => {
     if (mapInstance) {
       loadAllMarkers();
     }
   }, [mapInstance, loadAllMarkers]);
+
+  // Control skyways layer visibility
+  useEffect(() => {
+    if (!mapInstance) return;
+
+    // Find the skyways layer in overlay map types
+    let skywaysLayerIndex = -1;
+    for (let i = 0; i < mapInstance.overlayMapTypes.getLength(); i++) {
+      const layer = mapInstance.overlayMapTypes.getAt(i);
+      if (layer && layer.name === 'Skyways') {
+        skywaysLayerIndex = i;
+        break;
+      }
+    }
+
+    if (showSkywaysLayer) {
+      // Add skyways layer if not already present
+      if (skywaysLayerIndex === -1) {
+        const skywaysLayer = createSkywaysLayer();
+        mapInstance.overlayMapTypes.push(skywaysLayer);
+      }
+    } else {
+      // Remove skyways layer if present
+      if (skywaysLayerIndex !== -1) {
+        mapInstance.overlayMapTypes.removeAt(skywaysLayerIndex);
+      }
+    }
+  }, [mapInstance, showSkywaysLayer, createSkywaysLayer]);
 
   if (error) {
     return (
@@ -409,8 +458,10 @@ const GoogleMaps: React.FC = () => {
             <FilterControl
               showParagliding={showParaglidingMarkers}
               showWeatherStations={showWeatherStationMarkers}
+              showSkyways={showSkywaysLayer}
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
+              onSkywaysFilterChange={setShowSkywaysLayer}
             />
             <WindFilterCompass
               onWindDirectionChange={handleWindDirectionChange}
