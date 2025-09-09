@@ -10,8 +10,6 @@ interface MyLocationProps {
   onCloseInfoWindow: () => void;
 }
 
-const LOCATION_STORAGE_KEY = 'windlord_my_location';
-
 export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, onCloseInfoWindow }) => {
   const { theme } = useTheme();
   const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
@@ -23,10 +21,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     if (!map) return;
 
     if (markerRef.current) {
-      // Just update the position of the existing marker
       markerRef.current.position = location;
     } else {
-      // Create the marker only if it doesn't exist
       const markerElement = document.createElement('div');
       markerElement.innerHTML = `
         <div style="
@@ -52,30 +48,6 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     if (!map || !navigator.geolocation) return;
 
     onCloseInfoWindow();
-    // Start watching position for continuous updates
-    const watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        const location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-
-        updateMarker(location);
-
-        // Center map if in follow mode
-        if (isFollowing && map) {
-          map.setCenter(location);
-        }
-      },
-      (error) => {
-        console.error('Geolocation error:', error);
-        // Stop tracking on error
-        stopTracking();
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
-    );
-
-    watchIdRef.current = watchId;
     setIsTracking(true);
   };
 
@@ -90,20 +62,49 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
   const handleMyLocationClick = () => {
     if (isTracking) {
       if (isFollowing) {
-        // Stop following but keep tracking
         setIsFollowing(false);
       } else {
-        // Start following again
         setIsFollowing(true);
       }
     } else {
-      // Start tracking and following
       startTracking();
       setIsFollowing(true);
     }
   };
 
-  // TODO - remove local storage? - Change the center on follow toggle:true
+  // Handle watchPosition when tracking starts
+  useEffect(() => {
+    if (!isTracking || !map || !navigator.geolocation) return;
+
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        const location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+
+        updateMarker(location);
+
+        if (isFollowing && map) {
+          map.setCenter(location);
+        }
+      },
+      (error) => {
+        console.error('Tracking error:', error);
+        stopTracking();
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+    );
+
+    watchIdRef.current = watchId;
+
+    return () => {
+      if (watchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        watchIdRef.current = null;
+      }
+    };
+  }, [isTracking, isFollowing, map]);
 
   // Add map interaction listeners to stop follow mode
   useEffect(() => {
@@ -121,14 +122,6 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     };
   }, [map, isFollowing]);
 
-  // Cleanup on component unmount
-  useEffect(() => {
-    return () => {
-      if (watchIdRef.current !== null) {
-        navigator.geolocation.clearWatch(watchIdRef.current);
-      }
-    };
-  }, []);
 
   if (!map) return null;
 
