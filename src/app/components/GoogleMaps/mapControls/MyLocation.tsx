@@ -60,6 +60,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       map.setCenter(cached);
       map.setZoom(12);
       updateMarker(cached);
+      // Only call onLocationUpdate on initial location fetch
+      onLocationUpdate(cached);
     }
 
     // Start watching position for continuous updates
@@ -71,7 +73,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
         };
 
         localStorage.setItem(LOCATION_STORAGE_KEY, JSON.stringify(location));
-        onLocationUpdate(location);
+        // Only update marker position, don't trigger parent re-render
         updateMarker(location);
       },
       (error) => {
