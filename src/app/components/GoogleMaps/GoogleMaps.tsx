@@ -421,7 +421,7 @@ const GoogleMaps: React.FC = () => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
-            <MyLocation map={mapInstance} onCloseInfoWindow={closeInfoWindow} />
+            <MyLocation map={mapInstance} closeOverlays={closeOverlays} />
             <FilterControl
               showParagliding={showParaglidingMarkers}
               showWeatherStations={showWeatherStationMarkers}

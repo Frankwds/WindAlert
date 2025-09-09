@@ -6,11 +6,10 @@ import { useTheme } from '../../../contexts/ThemeContext';
 
 interface MyLocationProps {
   map: google.maps.Map | null;
-  onLocationUpdate: (location: { lat: number; lng: number }) => void;
-  onCloseInfoWindow: () => void;
+  closeOverlays: () => void;
 }
 
-export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, onCloseInfoWindow }) => {
+export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) => {
   const { theme } = useTheme();
   const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const watchIdRef = useRef<number | null>(null);
@@ -47,7 +46,6 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
   const startTracking = () => {
     if (!map || !navigator.geolocation) return;
 
-    onCloseInfoWindow();
     setIsTracking(true);
   };
 
@@ -64,9 +62,11 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       if (isFollowing) {
         setIsFollowing(false);
       } else {
+        closeOverlays();
         setIsFollowing(true);
       }
     } else {
+      closeOverlays();
       startTracking();
       setIsFollowing(true);
     }
