@@ -31,22 +31,24 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     if (!map) return;
 
     if (markerRef.current) {
-      markerRef.current.setMap(null);
+      // Just update the position of the existing marker
+      markerRef.current.setPosition(location);
+    } else {
+      // Create the marker only if it doesn't exist
+      markerRef.current = new google.maps.Marker({
+        position: location,
+        map,
+        icon: {
+          path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
+          fillColor: '#4285F4',
+          fillOpacity: 1,
+          strokeColor: 'white',
+          strokeWeight: 2,
+          scale: 1,
+        },
+        title: 'My Location',
+      });
     }
-
-    markerRef.current = new google.maps.Marker({
-      position: location,
-      map,
-      icon: {
-        path: 'M -10,0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0',
-        fillColor: '#4285F4',
-        fillOpacity: 1,
-        strokeColor: 'white',
-        strokeWeight: 2,
-        scale: 1,
-      },
-      title: 'My Location',
-    });
   };
 
   const startTracking = () => {
