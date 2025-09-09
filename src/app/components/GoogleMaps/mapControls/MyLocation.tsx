@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTheme } from '../../../contexts/ThemeContext';
 
@@ -15,6 +15,8 @@ const LOCATION_STORAGE_KEY = 'windlord_my_location';
 export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, onCloseInfoWindow }) => {
   const { theme } = useTheme();
   const markerRef = useRef<google.maps.Marker | null>(null);
+  const watchIdRef = useRef<number | null>(null);
+  const [isTracking, setIsTracking] = useState(false);
 
   const getCachedLocation = () => {
     try {
@@ -47,8 +49,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
     });
   };
 
-  const handleMyLocationClick = () => {
-    if (!map) return;
+  const startTracking = () => {
+    if (!map || !navigator.geolocation) return;
 
     onCloseInfoWindow();
 
@@ -60,8 +62,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       updateMarker(cached);
     }
 
-    // Get fresh location
-    navigator.geolocation?.getCurrentPosition(
+    // Start watching position for continuous updates
+    const watchId = navigator.geolocation.watchPosition(
       (position) => {
         const location = {
           lat: position.coords.latitude,
@@ -74,9 +76,30 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       },
       (error) => {
         console.error('Geolocation error:', error);
+        // Stop tracking on error
+        stopTracking();
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
     );
+
+    watchIdRef.current = watchId;
+    setIsTracking(true);
+  };
+
+  const stopTracking = () => {
+    if (watchIdRef.current !== null) {
+      navigator.geolocation.clearWatch(watchIdRef.current);
+      watchIdRef.current = null;
+    }
+    setIsTracking(false);
+  };
+
+  const handleMyLocationClick = () => {
+    if (isTracking) {
+      stopTracking();
+    } else {
+      startTracking();
+    }
   };
 
   const clearCache = (e: React.MouseEvent) => {
@@ -86,8 +109,18 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
       markerRef.current.setMap(null);
       markerRef.current = null;
     }
+    stopTracking();
     alert('Location cache cleared');
   };
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      if (watchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+      }
+    };
+  }, []);
 
   if (!map) return null;
 
@@ -97,12 +130,11 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, onLocationUpdate, o
         <button
           onClick={handleMyLocationClick}
           onContextMenu={clearCache}
-          className="w-8 h-8 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg "
-
-          title="My Location (Right-click to clear cache)"
+          className="w-8 h-8 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg"
+          title={isTracking ? "Stop tracking location (Right-click to clear cache)" : "My Location (Right-click to clear cache)"}
         >
           <Image
-            src={theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png'}
+            src={isTracking ? '/myLocationBlue.png' : (theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png')}
             alt="My Location"
             width={24}
             height={24}
