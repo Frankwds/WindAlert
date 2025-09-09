@@ -206,26 +206,6 @@ const GoogleMaps: React.FC = () => {
     setWindFilterAndOperator(prev => !prev);
   }, []);
 
-  const handleLocationUpdate = (location: { lat: number; lng: number }) => {
-    if (mapInstance) {
-      const shouldCenterMap = userLocationMarker !== null;
-
-      if (shouldCenterMap) {
-        mapInstance.setCenter(location);
-      }
-
-      // Remove any existing user location marker
-      if (userLocationMarker) {
-        userLocationMarker.setMap(null);
-        setUserLocationMarker(null);
-      }
-
-      // Don't create a new marker here - MyLocation component handles its own marker
-      // Just update the state to indicate we have a user location
-      setUserLocationMarker(null);
-    }
-  };
-
   const loadAllMarkers = useCallback(async () => {
     try {
       let paraglidingLocations = await dataCache.getParaglidingLocations();
@@ -441,7 +421,7 @@ const GoogleMaps: React.FC = () => {
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
-            <MyLocation map={mapInstance} onLocationUpdate={handleLocationUpdate} onCloseInfoWindow={closeInfoWindow} />
+            <MyLocation map={mapInstance} onCloseInfoWindow={closeInfoWindow} />
             <FilterControl
               showParagliding={showParaglidingMarkers}
               showWeatherStations={showWeatherStationMarkers}
