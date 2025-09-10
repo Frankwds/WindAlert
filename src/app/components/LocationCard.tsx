@@ -34,7 +34,7 @@ export default function LocationCard({
 
       {location.forecast_cache && location.forecast_cache.length > 0 ? (
         <MinimalHourlyWeather
-          weatherData={location.forecast_cache}
+          forecast={location.forecast_cache}
           timezone={timezone}
         />
       ) : (

@@ -7,16 +7,16 @@ import WindDirectionArrow from "../WindDirectionArrow";
 import { useState, useRef, useEffect } from "react";
 
 interface MinimalHourlyWeatherProps {
-  weatherData: MinimalForecast[];
+  forecast: MinimalForecast[];
   timezone: string;
 }
 
+
+
 const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
-  weatherData,
+  forecast,
   timezone,
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   const getFirstDay = (weatherData: MinimalForecast[]) => {
     if (weatherData && weatherData.length > 0) {
       const firstDay = new Date(weatherData[0].time).toLocaleDateString([], {
@@ -27,12 +27,22 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     }
     return null;
   }
-  const firstDay = getFirstDay(weatherData);
-  const [activeDay, setActiveDay] = useState<string | null>(firstDay);
+  const [activeDay, setActiveDay] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [sortedForecast, setSortedForecast] = useState<MinimalForecast[]>(forecast);
+
+  // Filter to future hours on the client to avoid SSR hydration mismatches
+  useEffect(() => {
+    const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
+    const filtered = forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
+    const sorted = filtered.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+    setSortedForecast(sorted);
+    setActiveDay(getFirstDay(sorted));
+  }, [forecast]);
 
   // Scroll to center when active day changes
   useEffect(() => {
-    if (activeDay && scrollContainerRef.current && activeDay !== firstDay) {
+    if (activeDay && scrollContainerRef.current && activeDay !== getFirstDay(sortedForecast)) {
       const container = scrollContainerRef.current;
       const table = container.querySelector('table');
       if (table) {
@@ -41,16 +51,16 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
       }
       return
     }
-    if (activeDay && scrollContainerRef.current && activeDay === firstDay) {
+    if (activeDay && scrollContainerRef.current && activeDay === getFirstDay(sortedForecast)) {
       const container = scrollContainerRef.current;
       const table = container.querySelector('table');
       if (table) {
         container.scrollLeft = 0;
       }
     }
-  }, [activeDay, firstDay]);
+  }, [activeDay, getFirstDay]);
 
-  const groupedByDay = weatherData.reduce((acc, hour) => {
+  const groupedByDay = sortedForecast.reduce((acc, hour) => {
     const day = new Date(hour.time).toLocaleDateString([], {
       weekday: 'short',
       timeZone: timezone,
@@ -68,6 +78,9 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     const relevantHours = allHours.filter(hour => {
       return hour.is_day === 1
     });
+    if (relevantHours.length <= 2) {
+      return [];
+    }
 
     const segments = [];
     for (const hour of relevantHours) {
