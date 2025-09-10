@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Collapsible from "@/app/components/Collapsible";
 import WeatherCard from "@/app/components/WeatherCard";
 import HourlyWeatherDetails from "@/app/components/HourlyWeatherDetails";
@@ -34,14 +34,6 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   // State for accordion behavior
   const [openDay, setOpenDay] = useState<string | null>(null);
   const [openHour, setOpenHour] = useState<string | null>(null);
-  const [visibleForecast, setVisibleForecast] = useState<ForecastCache1hr[]>(forecast);
-
-  // Filter to future hours on the client to avoid SSR hydration mismatches
-  useEffect(() => {
-    const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
-    const filtered = forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
-    setVisibleForecast(filtered.length > 0 ? filtered : forecast);
-  }, [forecast]);
 
   if (!forecast || forecast.length === 0) {
     return null;
@@ -60,7 +52,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   // Get all alert rules for this location. there is only one for now
   const locationAlertRules = DEFAULT_ALERT_RULE;
 
-  const validatedForecastData: ForecastCache1hr[] = visibleForecast.map((hour) => {
+  const validatedForecastData: ForecastCache1hr[] = forecast.map((hour) => {
     const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
       hour,
       DEFAULT_ALERT_RULE,
@@ -89,7 +81,6 @@ export default function LocationAlertRules({ location, forecast }: Props) {
       ? `Lovende dager: ${positiveDays.join(" ")}`
       : "Ingen lovende dager akkurat nå";
 
-  console.log(groupedData);
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">

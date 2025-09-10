@@ -8,7 +8,7 @@ import WindDirectionArrow from "./WindDirectionArrow";
 import ExternalLinkIcon from "./ExternalLinkIcon";
 import Collapsible from "./Collapsible";
 import HourlyWeatherDetails from "./HourlyWeatherDetails";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface HourlyWeatherProps {
   forecast: ForecastCache1hr[];
@@ -29,14 +29,6 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
 }) => {
   const [openDay, setOpenDay] = useState<string | null>(null);
   const [expandedHour, setExpandedHour] = useState<string | null>(null);
-  const [visibleForecast, setVisibleForecast] = useState<ForecastCache1hr[]>(forecast);
-
-  // Filter to future hours on the client to avoid SSR hydration mismatches
-  useEffect(() => {
-    const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
-    const filtered = forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
-    setVisibleForecast(filtered.length > 0 ? filtered : forecast);
-  }, [forecast]);
 
   if (!forecast || forecast.length === 0) {
     return (
@@ -51,7 +43,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({
   }
 
   const dayNames = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-  const groupedByDay = visibleForecast.reduce((acc, hour) => {
+  const groupedByDay = forecast.reduce((acc, hour) => {
     const dayIndex = new Date(hour.time).getDay();
     const day = dayNames[dayIndex];
     if (!acc[day]) {

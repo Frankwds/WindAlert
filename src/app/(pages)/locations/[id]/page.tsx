@@ -32,6 +32,11 @@ export default async function LocationPage({ params }: Props) {
 
   const combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly, 'Europe/Oslo');
 
+  // Filter to future hours on the server to avoid hydration mismatches
+  const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
+  const filteredForecast = combinedData.filter((f) => new Date(f.time).getTime() >= cutoff);
+  const visibleForecast = filteredForecast.length > 0 ? filteredForecast : combinedData;
+
   return (
     <div className="py-4">
       <LocationHeader
@@ -46,7 +51,7 @@ export default async function LocationPage({ params }: Props) {
       />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
       <HourlyWeather
-        forecast={combinedData}
+        forecast={visibleForecast}
         yrdata={mappedYrTakeoffData}
         lat={location.latitude}
         long={location.longitude}
@@ -54,7 +59,7 @@ export default async function LocationPage({ params }: Props) {
         altitude={location.altitude}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <LocationAlertRules location={location} forecast={combinedData} />
+      <LocationAlertRules location={location} forecast={visibleForecast} />
     </div>
   );
 }
