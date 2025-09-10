@@ -89,6 +89,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
       ? `Lovende dager: ${positiveDays.join(" ")}`
       : "Ingen lovende dager akkurat nå";
 
+  console.log(groupedData);
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
@@ -96,7 +97,7 @@ export default function LocationAlertRules({ location, forecast }: Props) {
       </h2>
       <div>
         <Collapsible
-          key={locationAlertRules.alert_name}
+          key={locationAlertRules.id}
           title={title}
           className={`${Object.values(groupedData).some((day) => day.some((dp) => dp.is_promising === true)) === true
             ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"

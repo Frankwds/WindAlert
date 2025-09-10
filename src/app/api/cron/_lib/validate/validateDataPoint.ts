@@ -73,74 +73,80 @@ export function isGoodParaglidingCondition(
     'partlycloudy_day',
     'cloudy',
   ];
-  if (!good_weather.includes(dp.weather_code) && dp.is_day) {
+  const isNight = !dp.is_day;
+  const isBadWeather = !good_weather.includes(dp.weather_code);
+
+  const isLowWind = dp.wind_speed < alert_rule.MIN_WIND_SPEED;
+  const isMaxWind = dp.wind_speed > alert_rule.MAX_WIND_SPEED;
+  const isMaxGust = dp.wind_gusts > alert_rule.MAX_GUST;
+  const isWrongWindDirection = !isWindDirectionGood(dp.wind_direction, location);
+
+  const isMuchWind = dp.wind_speed >= alert_rule.MUCH_WIND;
+  const isMuchGust = dp.wind_gusts >= alert_rule.MUCH_GUST;
+
+  const isTooWindy800m = dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa;
+  const isTooWindy1500m = dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa;
+  const isTooWindy3000m = dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa;
+
+  const isWindShear800m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa);
+  const isWindShear1500m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa);
+  const isWindShear3000m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa);
+
+  const isMaybeRain = dp.precipitation_max > alert_rule.MAX_PRECIPITATION && dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
+  const isRain = dp.precipitation_max > alert_rule.MAX_PRECIPITATION;
+
+  // Weather symbol
+  if (isBadWeather && dp.is_day) {
     failures.push(fail_reasons.bad_weather);
   }
   // Surface wind conditions
-  if (dp.wind_speed < alert_rule.MIN_WIND_SPEED) {
+  if (isLowWind) {
     failures.push(fail_reasons.wind_low);
   }
-  if (dp.wind_speed > alert_rule.MAX_WIND_SPEED) {
+  if (isMaxWind) {
     failures.push(fail_reasons.wind_high);
   }
-  if (alert_rule.MAX_GUST > 0 && dp.wind_gusts > alert_rule.MAX_GUST) {
+  if (isMaxGust && !isMaxWind) {
     failures.push(fail_reasons.gust_high);
   }
-  if (
-    alert_rule.MAX_GUST_DIFFERENCE > 0 &&
-    Math.abs(dp.wind_speed - dp.wind_gusts) >
-    alert_rule.MAX_GUST_DIFFERENCE
-  ) {
-    failures.push(fail_reasons.gust_difference);
+
+  if (isMuchWind && isMuchGust && !isMaxGust && !isMaxWind) {
+    failures.push(fail_reasons.much_wind);
   }
-  if (!isWindDirectionGood(dp.wind_direction, location)) {
+
+  if (isWrongWindDirection) {
     failures.push(fail_reasons.direction_wrong);
   }
 
+  // Precipitation
+  if (isRain) {
+    failures.push(fail_reasons.rain);
+  }
+  if (isMaybeRain) {
+    warnings.push(warn_reasons.rain);
+  }
+
   // Upper atmosphere wind conditions
-  if (dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa) {
+  if (isTooWindy800m) {
     warnings.push(warn_reasons.WIND_SPEED_925_HIGH(dp.geopotential_height_925hpa));
   }
-  if (dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa) {
+  if (isTooWindy1500m) {
     warnings.push(warn_reasons.WIND_SPEED_850_HIGH(dp.geopotential_height_850hpa));
   }
-  if (dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa) {
+  if (isTooWindy3000m) {
     warnings.push(warn_reasons.WIND_SPEED_700_HIGH(dp.geopotential_height_700hpa));
   }
 
   // Wind shear warnings (not failures)
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_925hpa)) {
+  if (isWindShear800m) {
     warnings.push(warn_reasons.WIND_SHEAR_925(dp.geopotential_height_925hpa));
   }
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa)) {
+  if (isWindShear1500m) {
     warnings.push(warn_reasons.WIND_SHEAR_850(dp.geopotential_height_850hpa));
   }
-  if (!isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa)) {
+  if (isWindShear3000m) {
     warnings.push(warn_reasons.WIND_SHEAR_700(dp.geopotential_height_700hpa));
   }
-
-  // Thermal and stability conditions
-  if (alert_rule.MAX_CAPE > 0 && dp.cape >= alert_rule.MAX_CAPE) {
-    failures.push(fail_reasons.cape_high);
-  }
-  if (dp.lifted_index < alert_rule.MIN_LIFTED_INDEX) {
-    failures.push(fail_reasons.lifted_idex_low);
-  }
-  if (dp.lifted_index > alert_rule.MAX_LIFTED_INDEX) {
-    failures.push(fail_reasons.lifted_index_high);
-  }
-  if (dp.convective_inhibition <= alert_rule.MIN_CONVECTIVE_INHIBITION) {
-    failures.push(fail_reasons.convective_inhibition_low);
-  }
-
-
-  if (dp.precipitation_min === 0 && dp.precipitation_max > alert_rule.MAX_PRECIPITATION) {
-    warnings.push(warn_reasons.rain);
-  }
-  if (dp.precipitation_min > alert_rule.MAX_PRECIPITATION) {
-    failures.push(fail_reasons.rain);
-  }
-
 
   return {
     isGood: failures.length === 0,
@@ -154,8 +160,12 @@ const fail_reasons = {
   wind_low: 'Det er for lite vind.',
   wind_high: 'Det er for mye vind.',
   gust_high: 'Det er for mye i kastene.',
-  gust_difference: 'For stor forskjell mellom vind og kast.',
+
+  much_wind: 'Det blåser for mye.',
+
   direction_wrong: 'Vindretningen er feil.',
+
+  altitude_wind: 'Det er for mye høydevind.',
 
   night: 'Det er mørkt.',
   rain: 'Det regner.',
