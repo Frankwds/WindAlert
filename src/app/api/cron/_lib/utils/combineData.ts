@@ -2,7 +2,7 @@ import { WeatherDataPointYr1h } from '../../../../../lib/yr/types';
 import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
-function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
+function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
 
 
   let isDay: 0 | 1 = 0;
@@ -74,15 +74,15 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
   };
 }
 
-export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[], timezone: string = 'Europe/Oslo'): ForecastCache1hr[] {
+export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): ForecastCache1hr[] {
   const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp]));
   const result = meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
     if (yrDp) {
-      return combineWeatherData(meteoDp, timezone, yrDp);
+      return combineWeatherData(meteoDp, yrDp);
     }
     // If no YR data, still return ForecastCache1hr format
-    return combineWeatherData(meteoDp, timezone);
+    return combineWeatherData(meteoDp);
   });
 
   return result;

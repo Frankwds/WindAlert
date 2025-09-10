@@ -13,29 +13,17 @@ import { isGoodParaglidingCondition } from "../api/cron/_lib/validate/validateDa
 
 interface Props {
   location: ParaglidingLocation;
-  forecast: ForecastCache1hr[];
-}
-
-export function groupByDay(data: ForecastCache1hr[]): Record<string, ForecastCache1hr[]> {
-  return data.reduce((acc, dp) => {
-    // Parse the formatted date string "8/31/25, 12:00 PM" to extract just the date
-    const date = new Date(dp.time).toLocaleDateString('en-CA'); // Returns YYYY-MM-DD format
-
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(dp);
-    return acc;
-  }, {} as Record<string, ForecastCache1hr[]>);
+  groupedByDay: Record<string, ForecastCache1hr[]>;
 }
 
 
-export default function LocationAlertRules({ location, forecast }: Props) {
+
+export default function LocationAlertRules({ location, groupedByDay }: Props) {
   // State for accordion behavior
   const [openDay, setOpenDay] = useState<string | null>(null);
   const [openHour, setOpenHour] = useState<string | null>(null);
 
-  if (!forecast || forecast.length === 0) {
+  if (!groupedByDay || Object.keys(groupedByDay).length === 0) {
     return null;
   }
 
@@ -52,25 +40,26 @@ export default function LocationAlertRules({ location, forecast }: Props) {
   // Get all alert rules for this location. there is only one for now
   const locationAlertRules = DEFAULT_ALERT_RULE;
 
-  const validatedForecastData: ForecastCache1hr[] = forecast.map((hour) => {
-    const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
-      hour,
-      DEFAULT_ALERT_RULE,
-      locationToWindDirectionSymbols(location)
-    );
-    return {
-      ...hour,
-      location_id: location.id,
-      is_promising: isGood,
-      validation_failures,
-      validation_warnings,
-    };
-  });
+  // Process the grouped data to add validation information
+  const validatedGroupedData = Object.entries(groupedByDay).reduce((acc, [dayName, dayData]) => {
+    const validatedDayData = dayData.map((hour) => {
+      const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
+        hour,
+        DEFAULT_ALERT_RULE,
+        locationToWindDirectionSymbols(location)
+      );
+      return {
+        ...hour,
+        is_promising: isGood,
+        validation_failures,
+        validation_warnings,
+      };
+    });
+    acc[dayName] = validatedDayData;
+    return acc;
+  }, {} as Record<string, ForecastCache1hr[]>);
 
-  // Group forecast data by day
-  const groupedData = groupByDay(validatedForecastData);
-
-  const positiveDays = Object.values(groupedData)
+  const positiveDays = Object.values(validatedGroupedData)
     .filter((day) => day.some((dp) => dp.is_promising === true))
     .map((day) =>
       new Date(day[0].time).toLocaleDateString("nb-NO", { weekday: "short" })
@@ -90,19 +79,17 @@ export default function LocationAlertRules({ location, forecast }: Props) {
         <Collapsible
           key={locationAlertRules.id}
           title={title}
-          className={`${Object.values(groupedData).some((day) => day.some((dp) => dp.is_promising === true)) === true
+          className={`${Object.values(validatedGroupedData).some((day) => day.some((dp) => dp.is_promising === true)) === true
             ? "bg-[var(--success)]/30 border-l-4 border-[var(--success)]"
             : "bg-[var(--error)]/30 border-l-4 border-[var(--error)]"
             } rounded-lg shadow-[var(--shadow-sm)] mb-2`}
         >
-          {Object.values(groupedData).map((day) => {
-            const dayKey = new Date(day[0].time).toLocaleDateString('en-CA');
+          {Object.entries(validatedGroupedData).map(([dayName, day]) => {
+            const dayKey = new Date(day[0].time).toLocaleDateString('en-US');
             return (
               <Collapsible
                 key={day[0].time}
-                title={`${new Date(day[0].time).toLocaleDateString("nb-NO", {
-                  weekday: "long",
-                })}`}
+                title={dayName.charAt(0).toUpperCase() + dayName.slice(1)}
                 className={`${day.some((dp) => dp.is_promising === true)
                   ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
                   : "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"

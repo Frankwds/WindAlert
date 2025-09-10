@@ -217,8 +217,8 @@ const GoogleMaps: React.FC = () => {
           WeatherStationService.getNordicCountriesForMarkers()
         ]);
 
-        paraglidingLocations = fetchedParaglidingLocations;
-        weatherStations = fetchedWeatherStations;
+        paraglidingLocations = fetchedParaglidingLocations || [];
+        weatherStations = fetchedWeatherStations || [];
 
         await Promise.all([
           dataCache.setParaglidingLocations(paraglidingLocations),
