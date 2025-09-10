@@ -39,7 +39,7 @@ export interface ParaglidingLocation {
 
 export interface WeatherStation {
   id: string;
-  station_id: string;
+  station_id: number;
   name: string;
   longitude: number;
   latitude: number;
@@ -101,6 +101,18 @@ export interface WeatherStationMarkerData {
   latitude: number;
   longitude: number;
   altitude: number;
+  data?: StationData[];
+}
+
+export interface StationData {
+  id: string;
+  station_id: number;
+  wind_speed: number;
+  wind_gust: number;
+  wind_min_speed: number;
+  direction: number;
+  temperature?: number;
+  updated_at: string;
 }
 
 export interface ForecastCache1hr {
@@ -198,6 +210,11 @@ export type Database = {
         Row: ForecastCache1hr;
         Insert: Omit<ForecastCache1hr, 'created_at' | 'updated_at'>;
         Update: Partial<Omit<ForecastCache1hr, 'created_at' | 'updated_at'>>;
+      };
+      station_data: {
+        Row: StationData;
+        Insert: Omit<StationData, 'id'>;
+        Update: Partial<Omit<StationData, 'id'>>;
       };
     };
   };

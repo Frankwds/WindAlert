@@ -96,4 +96,51 @@ export class WeatherStationService {
       return distance <= radiusKm;
     });
   }
+
+  static async getByStationId(stationId: number): Promise<WeatherStation | null> {
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .select('*')
+      .eq('station_id', stationId)
+      .maybeSingle();
+    if (error) {
+      console.error('Error fetching weather station by station ID:', error);
+      throw error;
+    }
+
+    return data || null;
+  }
+
+  static async insert(station: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>): Promise<WeatherStation | null> {
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .insert(station)
+      .select()
+      .single();
+    if (error) {
+      console.error('Error inserting weather station:', error);
+      throw error;
+    }
+
+    return data || null;
+  }
+
+  /**
+   * Get all unique station IDs from weather_stations table
+   */
+  static async getAllStationIdsNorway(): Promise<number[]> {
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .select('station_id')
+      .eq('country', 'Norway')
+      .eq('is_active', true);
+
+    if (error) {
+      console.error('Error fetching station IDs:', error);
+      throw error;
+    }
+
+    return data?.map(station => station.station_id) || [];
+  }
 }
+
