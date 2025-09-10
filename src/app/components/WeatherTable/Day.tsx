@@ -26,6 +26,10 @@ const Day: React.FC<DayProps> = ({
   // Determine if any hour in the day is promising
   const hasPromisingHours = showValidation && dailyForecast.some((hour) => hour.is_promising === true);
 
+  const daytimeHours = dailyForecast.filter((hour) => hour.is_day === 1);
+
+  const hoursToShow = showValidation ? daytimeHours : dailyForecast;
+
   return (
     <Collapsible
       title={
@@ -64,7 +68,7 @@ const Day: React.FC<DayProps> = ({
         } rounded-lg transition-shadow duration-200 hover:shadow-[var(--shadow-hover)]`}
     >
       <div className="p-2 space-y-1">
-        {dailyForecast.map((hour) => (
+        {hoursToShow.map((hour) => (
           <Hour
             key={hour.time}
             hour={hour}
