@@ -92,7 +92,16 @@ async function processBatch(locations: ParaglidingLocationForCache[]) {
 
 async function processLocationsWithOldestForecastData() {
   try {
-    const locationIds = await ForecastCacheService.getLocationsWithOldestForecastData(BATCH_SIZE);
+    const locationIdsNoData = await ForecastCacheService.getLocationsWithNoForecastData(BATCH_SIZE);
+    const remainingSlots = BATCH_SIZE - locationIdsNoData.length;
+
+    let locationIds = [...locationIdsNoData];
+
+    if (remainingSlots > 0) {
+      const locationIdsOldestData = await ForecastCacheService.getLocationsWithOldestForecastData(remainingSlots);
+      locationIds = [...locationIds, ...locationIdsOldestData];
+    }
+
     const locations = await ParaglidingLocationService.getByIds(locationIds);
 
     console.log(`Processing ${locations.length} locations total`);

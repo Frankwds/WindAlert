@@ -13,13 +13,8 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, timezone: string, 
   }
 
   return {
-
     // Basic identification
-    time: new Date(meteoDataPoint.time + 'Z').toLocaleString([], {
-      dateStyle: 'short',
-      timeStyle: 'short',
-      timeZone: timezone,
-    }),
+    time: meteoDataPoint.time + 'Z',
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
     is_yr_data: !!yrDataPoint,

@@ -205,4 +205,21 @@ export class ForecastCacheService {
     }
     return data?.map(row => row.location_id) || [];
   }
+
+  /**
+   * Get locations with no forecast data
+   */
+  static async getLocationsWithNoForecastData(limit: number): Promise<string[]> {
+    const { data, error } = await supabase
+      .from('locations_without_forecast')
+      .select('location_id')
+      .limit(limit);
+
+    if (error) {
+      console.error('Error fetching locations with no forecast data:', error);
+      throw error;
+    }
+
+    return data?.map(row => row.location_id) || [];
+  }
 }

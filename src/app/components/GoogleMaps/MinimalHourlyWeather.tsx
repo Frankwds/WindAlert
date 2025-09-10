@@ -168,7 +168,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
               <tr className="border-b border-[var(--border)]">
                 {groupedByDay[activeDay].map((hour, colIndex) => (
                   <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
-                    {new Date(hour.time).toLocaleTimeString([], {
+                    {new Date(hour.time).toLocaleTimeString(["nb-NO"], {
                       hour: "2-digit",
                       minute: "2-digit",
                       hour12: false,
