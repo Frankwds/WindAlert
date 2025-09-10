@@ -12,6 +12,7 @@ interface DayProps {
   sixHourSymbols: string[];
   windDirections: string[];
   altitude: number;
+  showValidation?: boolean;
 }
 
 const Day: React.FC<DayProps> = ({
@@ -20,7 +21,11 @@ const Day: React.FC<DayProps> = ({
   sixHourSymbols,
   windDirections,
   altitude,
+  showValidation = false,
 }) => {
+  // Determine if any hour in the day is promising
+  const hasPromisingHours = showValidation && dailyForecast.some((hour) => hour.is_promising === true);
+
   return (
     <Collapsible
       title={
@@ -51,7 +56,12 @@ const Day: React.FC<DayProps> = ({
           )}
         </div>
       }
-      className="bg-[var(--background)] border border-[var(--border)] rounded-lg transition-shadow duration-200 hover:shadow-[var(--shadow-hover)]"
+      className={`${showValidation && hasPromisingHours
+        ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
+        : showValidation && !hasPromisingHours
+          ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
+          : "bg-[var(--background)] border border-[var(--border)]"
+        } rounded-lg transition-shadow duration-200 hover:shadow-[var(--shadow-hover)]`}
     >
       <div className="p-2 space-y-1">
         {dailyForecast.map((hour) => (
@@ -60,6 +70,7 @@ const Day: React.FC<DayProps> = ({
             hour={hour}
             windDirections={windDirections}
             altitude={altitude}
+            showValidation={showValidation}
           />
         ))}
       </div>

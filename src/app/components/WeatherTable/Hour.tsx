@@ -5,18 +5,22 @@ import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
 import HourlyWeatherDetails from "../HourlyWeatherDetails";
+import FailureCard from "../FailureCard";
+import WarningCard from "../WarningCard";
 import { useState } from "react";
 
 interface HourProps {
   hour: ForecastCache1hr;
   windDirections: string[];
   altitude: number;
+  showValidation?: boolean;
 }
 
 const Hour: React.FC<HourProps> = ({
   hour,
   windDirections,
   altitude,
+  showValidation = false,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -29,10 +33,17 @@ const Hour: React.FC<HourProps> = ({
     <div className="space-y-1">
       <div
         onClick={handleToggle}
-        className="grid grid-cols-6 gap-4 items-center px-3 py-2 rounded-md bg-opacity-20 transition-all duration-200 ease-in-out hover:shadow-[var(--shadow-md)] cursor-pointer border border-transparent hover:border-[var(--accent)]"
-        style={{
-          background: 'rgba(var(--muted-rgb), 0.1)',
-        }}
+        className={`grid grid-cols-6 gap-4 items-center px-3 py-2 rounded-md transition-all duration-200 ease-in-out hover:shadow-[var(--shadow-md)] cursor-pointer border border-transparent hover:border-[var(--accent)] ${showValidation && hour.is_promising
+          ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+          : showValidation && !hour.is_promising
+            ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+            : "bg-opacity-20"
+          }`}
+      // style={{
+      //   background: showValidation
+      //     ? 'transparent'
+      //     : 'rgba(var(--muted-rgb), 0.1)',
+      // }}
       >
         {/* Time column */}
         <div className="font-semibold text-sm text-[var(--foreground)] text-center">
@@ -81,6 +92,16 @@ const Hour: React.FC<HourProps> = ({
       {/* Expanded details */}
       {isExpanded && (
         <div className="px-3 py-4 bg-[var(--background)] border border-[var(--border)] rounded-md shadow-[var(--shadow-sm)]">
+          {showValidation && (
+            <div className="mb-4">
+              {!hour.is_promising && hour.validation_failures && (
+                <FailureCard failuresCsv={hour.validation_failures} />
+              )}
+              {hour.validation_warnings && hour.validation_warnings.length > 0 && (
+                <WarningCard warningsCsv={hour.validation_warnings} />
+              )}
+            </div>
+          )}
           <HourlyWeatherDetails hour={hour} windDirections={windDirections} altitude={altitude} />
         </div>
       )}

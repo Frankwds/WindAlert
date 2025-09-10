@@ -11,6 +11,7 @@ interface WeatherTableProps {
   long: number;
   windDirections?: string[];
   altitude: number;
+  showValidation?: boolean;
 }
 
 const WeatherTable: React.FC<WeatherTableProps> = ({
@@ -20,6 +21,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
   long,
   windDirections = [],
   altitude,
+  showValidation = false,
 }) => {
 
   if (!groupedByDay || groupedByDay[Object.keys(groupedByDay)[0]].length === 0) {
@@ -34,19 +36,28 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
     );
   }
 
+
   return (
     <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
-      <div className="mb-4">
-        <a
-          href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${lat.toFixed(3)},${long.toFixed(3)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
-        >
-          Yr.no
-          <ExternalLinkIcon size={24} className="inline-block" />
-        </a>
-      </div>
+      {showValidation ? (
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
+            Hva menes med lovende?
+          </h2>
+        </div>
+      ) : (
+        <div className="mb-4">
+          <a
+            href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${lat.toFixed(3)},${long.toFixed(3)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
+          >
+            Yr.no
+            <ExternalLinkIcon size={24} className="inline-block" />
+          </a>
+        </div>
+      )}
       <div className="space-y-4">
         {Object.entries(groupedByDay).map(([weekdayName, dailyForecast]) => (
           <Day
@@ -56,6 +67,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
             sixHourSymbols={sixHourSymbolsByDay[weekdayName] || []}
             windDirections={windDirections}
             altitude={altitude}
+            showValidation={showValidation}
           />
         ))}
       </div>

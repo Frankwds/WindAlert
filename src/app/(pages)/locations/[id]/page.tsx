@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import WeatherTable from "@/app/components/WeatherTable";
 import GoogleMaps from "@/app/components/GoogleMapsStatic";
 import WindyWidget from "@/app/components/windyWidget";
-import LocationAlertRules from "@/app/components/locationAlertRules";
 import LocationHeader from "@/app/components/LocationHeader";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 import { fetchMeteoData } from "@/lib/openMeteo/apiClient";
@@ -14,6 +13,8 @@ import { mapYrData } from "@/lib/yr/mapping";
 import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
 import { WeatherDataPointYr1h, WeatherDataYr } from "@/lib/yr/types";
 import { ForecastCache1hr } from "@/lib/supabase/types";
+import { DEFAULT_ALERT_RULE } from "@/app/api/cron/mockdata/alert-rules";
+import { isGoodParaglidingCondition } from "@/app/api/cron/_lib/validate/validateDataPoint";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -38,9 +39,25 @@ export default async function LocationPage({ params }: Props) {
   const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
   const filteredForecast = combinedData.filter((f) => new Date(f.time).getTime() >= cutoff);
 
+  // Add validation data to forecast
+  const validatedForecast = filteredForecast.map((hour) => {
+    const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
+      hour,
+      DEFAULT_ALERT_RULE,
+      locationToWindDirectionSymbols(location)
+    );
+    return {
+      ...hour,
+      location_id: location.id,
+      is_promising: isGood,
+      validation_failures,
+      validation_warnings,
+    };
+  });
+
   const dayNames = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
   const sixHourSymbolsByDay = getSixHourSymbolsByDay(mappedYrTakeoffData, dayNames);
-  const groupedByDay = groupForecastByDay(filteredForecast, dayNames);
+  const groupedByDay = groupForecastByDay(validatedForecast, dayNames);
 
   return (
     <div className="py-4">
@@ -62,9 +79,18 @@ export default async function LocationPage({ params }: Props) {
         long={location.longitude}
         windDirections={locationToWindDirectionSymbols(location)}
         altitude={location.altitude}
+        showValidation={false}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <LocationAlertRules location={location} groupedByDay={groupedByDay} />
+      <WeatherTable
+        groupedByDay={groupedByDay}
+        sixHourSymbolsByDay={sixHourSymbolsByDay}
+        lat={location.latitude}
+        long={location.longitude}
+        windDirections={locationToWindDirectionSymbols(location)}
+        altitude={location.altitude}
+        showValidation={true}
+      />
     </div>
   );
 }
