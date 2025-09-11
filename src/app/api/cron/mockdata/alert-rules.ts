@@ -8,8 +8,8 @@ export const DEFAULT_ALERT_RULE: AlertRule = {
   MAX_WIND_SPEED: 7.5,
   MAX_GUST: 11.5,
 
-  MUCH_GUST: 8.5,
-  MUCH_WIND: 4.5,
+  MUCH_GUST: 9.5,
+  MUCH_WIND: 5.5,
 
   MAX_WIND_SPEED_925hPa: 11.5, // 925hPa is approximately 800m altitude
   MAX_WIND_SPEED_850hPa: 12.5, // 850hPa is approximately 1500m altitude

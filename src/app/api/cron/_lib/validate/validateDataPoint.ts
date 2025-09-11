@@ -93,7 +93,7 @@ export function isGoodParaglidingCondition(
   const isWindShear3000m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa);
 
   const isMaybeRain = dp.precipitation_max > alert_rule.MAX_PRECIPITATION && dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
-  const isRain = dp.precipitation_max > alert_rule.MAX_PRECIPITATION;
+  const isRain = dp.precipitation_min > alert_rule.MAX_PRECIPITATION;
 
   // Weather symbol
   if (isBadWeather && dp.is_day) {
@@ -122,7 +122,7 @@ export function isGoodParaglidingCondition(
   if (isRain) {
     failures.push(fail_reasons.rain);
   }
-  if (isMaybeRain) {
+  if (!isRain && isMaybeRain) {
     warnings.push(warn_reasons.rain);
   }
 
@@ -130,10 +130,10 @@ export function isGoodParaglidingCondition(
   if (isTooWindy800m) {
     warnings.push(warn_reasons.WIND_SPEED_925_HIGH(dp.geopotential_height_925hpa));
   }
-  if (isTooWindy1500m) {
+  if (!isTooWindy800m && isTooWindy1500m) {
     warnings.push(warn_reasons.WIND_SPEED_850_HIGH(dp.geopotential_height_850hpa));
   }
-  if (isTooWindy3000m) {
+  if (!isTooWindy800m && !isTooWindy1500m && isTooWindy3000m) {
     warnings.push(warn_reasons.WIND_SPEED_700_HIGH(dp.geopotential_height_700hpa));
   }
 
@@ -141,10 +141,10 @@ export function isGoodParaglidingCondition(
   if (isWindShear800m) {
     warnings.push(warn_reasons.WIND_SHEAR_925(dp.geopotential_height_925hpa));
   }
-  if (isWindShear1500m) {
+  if (!isWindShear800m && isWindShear1500m) {
     warnings.push(warn_reasons.WIND_SHEAR_850(dp.geopotential_height_850hpa));
   }
-  if (isWindShear3000m) {
+  if (!isWindShear800m && !isWindShear1500m && isWindShear3000m) {
     warnings.push(warn_reasons.WIND_SHEAR_700(dp.geopotential_height_700hpa));
   }
 
