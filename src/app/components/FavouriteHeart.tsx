@@ -6,6 +6,7 @@ import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { Session } from "next-auth";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface Props {
   locationId: string;
@@ -15,6 +16,7 @@ export default function FavouriteHeart({ locationId }: Props) {
   const { data: session, status } = useSession();
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(true);
+  const isMobile = useIsMobile();
 
   const checkFavourite = useCallback(async (session: Session) => {
     if (!session.user.id || !locationId) {
@@ -62,7 +64,7 @@ export default function FavouriteHeart({ locationId }: Props) {
     return (
       <button
         disabled={true}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] opacity-50 cursor-not-allowed"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)]"
       >
         <HeartIconOutline className="w-4 h-4 text-red-500" />
         <span className="text-sm font-medium">Laster...</span>
@@ -74,7 +76,7 @@ export default function FavouriteHeart({ locationId }: Props) {
     <button
       onClick={toggleFavourite}
       disabled={loading}
-      className="flex items-center gap-2 ml-2 pl-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+      className={`flex items-center gap-2 ml-2 pl-2 rounded-lg border border-[var(--border)] cursor-pointer ${!isMobile ? 'hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]' : ''}`}
       title={isFavourite ? "Fjern fra favoritter" : "Legg til favoritter"}
     >
       {isFavourite ? (

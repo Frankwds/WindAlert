@@ -35,7 +35,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
 
 
   return (
-    <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]">
+    <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-1 sm:p-6 border border-[var(--border)]">
       {showValidation ? (
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">

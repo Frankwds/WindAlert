@@ -5,6 +5,7 @@ import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import Collapsible from "../Collapsible";
 import Hour from "./Hour";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface DayProps {
   weekdayName: string;
@@ -23,6 +24,7 @@ const Day: React.FC<DayProps> = ({
   altitude,
   showValidation = false,
 }) => {
+  const isMobile = useIsMobile();
   // Determine if any hour in the day is promising
   const hasPromisingHours = showValidation && dailyForecast.some((hour) => hour.is_promising === true);
 
@@ -34,7 +36,7 @@ const Day: React.FC<DayProps> = ({
     hoursToShow.length > 0 && (
       <Collapsible
         title={
-          <div className="flex items-center justify-between w-full px-4 py-3">
+          <div className="flex items-center justify-between w-full px-2 py-3">
             <span className="font-bold text-lg text-[var(--foreground)]">
               {weekdayName.charAt(0).toUpperCase() + weekdayName.slice(1)}
             </span>
@@ -66,7 +68,7 @@ const Day: React.FC<DayProps> = ({
           : showValidation && !hasPromisingHours
             ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
             : "bg-[var(--background)] border border-[var(--border)]"
-          } rounded-lg transition-shadow duration-200 hover:shadow-[var(--shadow-hover)]`}
+          } rounded-lg transition-shadow duration-200 ${!isMobile ? 'hover:shadow-[var(--shadow-hover)]' : ''}`}
       >
         <div className="p-2 space-y-1">
           {hoursToShow.map((hour) => (

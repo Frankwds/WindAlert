@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import LoginButton from './LoginButton';
 import { usePathname } from 'next/navigation';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface LinkItem {
   href: string;
@@ -19,6 +20,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -42,7 +44,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={toggleMenu}
-        className="p-2 rounded-md transition-all duration-200text-[var(--nav-text)]/80 cursor-pointer"
+        className={`p-2 rounded-md transition-all duration-200text-[var(--nav-text)]/80 cursor-pointer ${!isMobile ? 'hover:bg-[var(--nav-text)]/10' : ''}`}
         aria-label="Åpne meny"
         aria-expanded={isOpen}
       >

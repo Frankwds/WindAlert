@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const links = [
   { href: "/", label: "Kart" },
@@ -17,12 +18,13 @@ const links = [
 export default function Navigation() {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const isMobile = useIsMobile();
 
   return (
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3 max-w-4xl mx-auto">
         <div className="flex items-center">
-          <div className="mr-6 flex items-center cursor-pointer"
+          <div className={`mr-6 flex items-center cursor-pointer `}
             onClick={() => router.push("/")}>
             <Image
               key={theme}
@@ -31,7 +33,7 @@ export default function Navigation() {
               width={64}
               height={64}
               priority
-              className="transition-transform hover:scale-115 "
+              className="transition-transform hover:scale-115"
 
             />
             <h1
@@ -44,7 +46,7 @@ export default function Navigation() {
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleTheme}
-            className="cursor-pointer p-2 rounded-md transition-all duration-200  text-[var(--nav-text)]/80 "
+            className={`cursor-pointer p-2 rounded-md transition-all duration-200 text-[var(--nav-text)]/80 ${!isMobile ? 'hover:bg-[var(--nav-text)]/10' : ''}`}
             aria-label={`Bytt til ${theme === 'light' ? 'dark' : 'light'} modus`}
           >
             {theme === 'light' ? (

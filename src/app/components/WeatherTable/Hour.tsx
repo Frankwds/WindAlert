@@ -8,6 +8,7 @@ import HourlyWeatherDetails from "../HourlyWeatherDetails";
 import FailureCard from "../FailureCard";
 import WarningCard from "../WarningCard";
 import { useState } from "react";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface HourProps {
   hour: ForecastCache1hr;
@@ -23,6 +24,7 @@ const Hour: React.FC<HourProps> = ({
   showValidation = false,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -33,7 +35,7 @@ const Hour: React.FC<HourProps> = ({
     <div className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
       <div
         onClick={handleToggle}
-        className={`grid grid-cols-6 gap-4 items-center px-3  rounded-md transition-all duration-200 ease-in-out hover:bg-[var(--accent)]/5 cursor-pointer border border-transparent
+        className={`grid grid-cols-6 gap-4 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
            ${showValidation && hour.is_promising
             ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
             : showValidation && !hour.is_promising
