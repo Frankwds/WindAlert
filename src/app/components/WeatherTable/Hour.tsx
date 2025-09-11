@@ -7,7 +7,6 @@ import WindDirectionArrow from "../WindDirectionArrow";
 import HourlyWeatherDetails from "../HourlyWeatherDetails";
 import FailureCard from "../FailureCard";
 import WarningCard from "../WarningCard";
-import { useState } from "react";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface HourProps {
@@ -15,6 +14,8 @@ interface HourProps {
   windDirections: string[];
   altitude: number;
   showValidation?: boolean;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 const Hour: React.FC<HourProps> = ({
@@ -22,20 +23,17 @@ const Hour: React.FC<HourProps> = ({
   windDirections,
   altitude,
   showValidation = false,
+  isExpanded,
+  onToggle,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const isMobile = useIsMobile();
-
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
     <div className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
       <div
-        onClick={handleToggle}
-        className={`grid grid-cols-6 gap-4 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
+        onClick={onToggle}
+        className={`grid grid-cols-6 gap-4 py-1 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
            ${showValidation && hour.is_promising
             ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
             : showValidation && !hour.is_promising

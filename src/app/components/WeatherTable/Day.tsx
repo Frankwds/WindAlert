@@ -6,6 +6,7 @@ import Image from "next/image";
 import Collapsible from "../Collapsible";
 import Hour from "./Hour";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { useState } from "react";
 
 interface DayProps {
   weekdayName: string;
@@ -14,6 +15,8 @@ interface DayProps {
   windDirections: string[];
   altitude: number;
   showValidation?: boolean;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 const Day: React.FC<DayProps> = ({
@@ -23,8 +26,19 @@ const Day: React.FC<DayProps> = ({
   windDirections,
   altitude,
   showValidation = false,
+  isExpanded,
+  onToggle,
 }) => {
   const isMobile = useIsMobile();
+  const [expandedHour, setExpandedHour] = useState<string | null>(null);
+
+  const handleHourToggle = (hourTime: string) => {
+    if (expandedHour === hourTime) {
+      setExpandedHour(null);
+    } else {
+      setExpandedHour(hourTime);
+    }
+  };
   // Determine if any hour in the day is promising
   const hasPromisingHours = showValidation && dailyForecast.some((hour) => hour.is_promising === true);
 
@@ -63,6 +77,8 @@ const Day: React.FC<DayProps> = ({
             )}
           </div>
         }
+        isOpen={isExpanded}
+        onToggle={onToggle}
         className={`${showValidation && hasPromisingHours
           ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/50"
           : showValidation && !hasPromisingHours
@@ -78,6 +94,8 @@ const Day: React.FC<DayProps> = ({
               windDirections={windDirections}
               altitude={altitude}
               showValidation={showValidation}
+              isExpanded={expandedHour === hour.time}
+              onToggle={() => handleHourToggle(hour.time)}
             />
           ))}
         </div>

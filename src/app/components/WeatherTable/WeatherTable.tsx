@@ -5,6 +5,7 @@ import ExternalLinkIcon from "../ExternalLinkIcon";
 import Day from "./Day";
 import { ParaglidingLocation } from "@/lib/supabase/types";
 import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
+import { useState } from "react";
 
 interface WeatherTableProps {
   groupedByDay: Record<string, ForecastCache1hr[]>;
@@ -20,6 +21,15 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
   showValidation = false,
 }) => {
   const { latitude, longitude, altitude } = location;
+  const [expandedDay, setExpandedDay] = useState<string | null>(null);
+
+  const handleDayToggle = (dayName: string) => {
+    if (expandedDay === dayName) {
+      setExpandedDay(null);
+    } else {
+      setExpandedDay(dayName);
+    }
+  };
 
   if (!groupedByDay || groupedByDay[Object.keys(groupedByDay)[0]].length === 0) {
     return (
@@ -35,7 +45,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
 
 
   return (
-    <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-1 sm:p-6 border border-[var(--border)]">
+    <div className="bg-[var(--background)] pb-4 rounded-lg shadow-[var(--shadow-lg)] p-1 sm:p-6 border border-[var(--border)]">
       {showValidation ? (
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
@@ -65,6 +75,8 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
             windDirections={locationToWindDirectionSymbols(location)}
             altitude={altitude}
             showValidation={showValidation}
+            isExpanded={expandedDay === weekdayName}
+            onToggle={() => handleDayToggle(weekdayName)}
           />
         ))}
       </div>
