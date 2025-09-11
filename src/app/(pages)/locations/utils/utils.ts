@@ -2,12 +2,17 @@ import { WeatherDataPointYr1h, WeatherDataYr } from "@/lib/yr/types";
 import { ForecastCache1hr } from "@/lib/supabase/types";
 
 
-export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]) {
+export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
   const sixHourSymbolsByDay: Record<string, string[]> = {};
 
   const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce((acc, hour) => {
-    const dayIndex = new Date(hour.time).getDay();
-    const day = dayNames[dayIndex];
+    const utcDate = new Date(hour.time);
+    const formatter = new Intl.DateTimeFormat('nb-NO', {
+      timeZone: 'Europe/Oslo',
+      weekday: 'long'
+    });
+    const day = formatter.format(utcDate).toLowerCase();
+
     if (!acc[day]) {
       acc[day] = [];
     }
@@ -24,7 +29,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]
         return;
       }
       if (!hours[0].time.includes("T22:00:00Z")) { // day has begun
-        sixHourSymbolsByDay[day].unshift(hours[1].symbol_code);
+        sixHourSymbolsByDay[day].push(hours[1].next_6_hours_symbol_code);
       }
       hours
         .forEach((hour) => {
@@ -40,7 +45,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]
             sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
             return;
           }
-          if (hour.time.includes("T16:00:00Z")) { // first hour of the afternoon
+          if (hour.time.includes("T16:00:00Z") && hours.length > 7) { // first hour of the afternoon && has more than 7 hours left
             sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
             return;
           }
@@ -50,8 +55,13 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]
 
   yrdata.weatherDataYrSixHourly.slice(0, 6)
     .forEach((hour) => {
-      const dayIndex = new Date(hour.time).getDay(); // 0-6
-      const day = dayNames[dayIndex];
+      const utcDate = new Date(hour.time);
+      const formatter = new Intl.DateTimeFormat('nb-NO', {
+        timeZone: 'Europe/Oslo',
+        weekday: 'long'
+      });
+      const day = formatter.format(utcDate).toLowerCase();
+
       if (!sixHourSymbolsByDay[day]) {
         sixHourSymbolsByDay[day] = [];
       }
@@ -62,13 +72,14 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]
   return sixHourSymbolsByDay;
 }
 
-export function groupForecastByDay(forecast: ForecastCache1hr[], dayNames: string[]) {
+export function groupForecastByDay(forecast: ForecastCache1hr[]) {
   const groupedByDay = forecast.reduce((acc, hour) => {
-
     const utcDate = new Date(hour.time);
-    const localDate = new Date(utcDate.toLocaleString("en-US", { timeZone: "Europe/Oslo" }));
-    const dayIndex = localDate.getDay();
-    const day = dayNames[dayIndex];
+    const formatter = new Intl.DateTimeFormat('nb-NO', {
+      timeZone: 'Europe/Oslo',
+      weekday: 'long'
+    });
+    const day = formatter.format(utcDate).toLowerCase();
     if (!acc[day]) {
       acc[day] = [];
     }

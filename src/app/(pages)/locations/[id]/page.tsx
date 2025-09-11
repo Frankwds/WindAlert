@@ -55,9 +55,8 @@ export default async function LocationPage({ params }: Props) {
     };
   });
 
-  const dayNames = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-  const sixHourSymbolsByDay = getSixHourSymbolsByDay(mappedYrTakeoffData, dayNames);
-  const groupedByDay = groupForecastByDay(validatedForecast, dayNames);
+  const sixHourSymbolsByDay = getSixHourSymbolsByDay(mappedYrTakeoffData);
+  const groupedByDay = groupForecastByDay(validatedForecast);
 
   return (
     <div className="py-4">
