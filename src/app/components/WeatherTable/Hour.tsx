@@ -30,23 +30,30 @@ const Hour: React.FC<HourProps> = ({
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
-    <div className="space-y-1">
+    <div className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
       <div
         onClick={handleToggle}
-        className={`grid grid-cols-6 gap-4 items-center px-3 py-2 rounded-md transition-all duration-200 ease-in-out hover:shadow-[var(--shadow-md)] cursor-pointer border border-transparent hover:border-[var(--accent)] ${showValidation && hour.is_promising
-          ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
-          : showValidation && !hour.is_promising
-            ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
-            : "bg-opacity-20"
+        className={`grid grid-cols-6 gap-4 items-center px-3  rounded-md transition-all duration-200 ease-in-out hover:bg-[var(--accent)]/5 cursor-pointer border border-transparent
+           ${showValidation && hour.is_promising
+            ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
+            : showValidation && !hour.is_promising
+              ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/30"
+              : ""
           }`}
-      // style={{
-      //   background: showValidation
-      //     ? 'transparent'
-      //     : 'rgba(var(--muted-rgb), 0.1)',
-      // }}
       >
         {/* Time column */}
-        <div className="font-semibold text-sm text-[var(--foreground)] text-center">
+        <div className="font-semibold text-sm text-[var(--foreground)] text-center flex items-center justify-center gap-1">
+          <div className="w-4 h-4 flex items-center justify-center">
+            {showValidation && hour.validation_warnings && hour.validation_warnings.length > 0 ? (
+              <div className="w-4 h-4 text-yellow-500 flex items-center justify-center">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+            ) : (
+              <div className="w-4 h-4"></div>
+            )}
+          </div>
           {new Date(hour.time).getHours().toString().padStart(2, '0')}
         </div>
 

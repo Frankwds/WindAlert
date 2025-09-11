@@ -33,7 +33,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           <div className="font-semibold">Vind (m/s)</div>
           <div className="font-semibold">Retning</div>
           <div className="font-semibold">Temp. (°C)</div>
-          <div className="font-semibold">Δ°C/100m</div>
+          <div className="font-semibold">Δ°C/ 100m</div>
 
           <div className="font-medium">{altitude} (yr)</div>
           <div className="text-[var(--foreground)]">
