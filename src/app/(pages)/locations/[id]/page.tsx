@@ -11,10 +11,10 @@ import { combineDataSources } from "@/app/api/cron/_lib/utils/combineData";
 import { fetchYrData } from "@/lib/yr/apiClient";
 import { mapYrData } from "@/lib/yr/mapping";
 import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
-import { WeatherDataPointYr1h, WeatherDataYr } from "@/lib/yr/types";
-import { ForecastCache1hr } from "@/lib/supabase/types";
 import { DEFAULT_ALERT_RULE } from "@/app/api/cron/mockdata/alert-rules";
 import { isGoodParaglidingCondition } from "@/app/api/cron/_lib/validate/validateDataPoint";
+import { getSixHourSymbolsByDay } from "../utils/utils";
+import { groupForecastByDay } from "../utils/utils";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -93,79 +93,4 @@ export default async function LocationPage({ params }: Props) {
       />
     </div>
   );
-}
-
-function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]) {
-  const sixHourSymbolsByDay: Record<string, string[]> = {};
-
-  const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce((acc, hour) => {
-    const dayIndex = new Date(hour.time).getDay();
-    const day = dayNames[dayIndex];
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(hour);
-    return acc;
-  }, {} as Record<string, WeatherDataPointYr1h[]>);
-
-  Object.entries(yrdataGroupedByDay)
-    .forEach(([day, hours]) => {
-      if (!sixHourSymbolsByDay[day]) {
-        sixHourSymbolsByDay[day] = [];
-      }
-      hours
-        .forEach((hour, index) => {
-          if (index === 0) {
-            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
-            return;
-          }
-          if (index === hours.length - 1 && hours.length > 6 && sixHourSymbolsByDay[day].length < 4) {
-            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
-            return;
-          }
-          if (index % 6 === 0) {
-            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
-            return;
-          }
-        })
-    });
-
-  yrdata.weatherDataYrSixHourly.slice(0, 6)
-    .forEach((hour) => {
-      const dayIndex = new Date(hour.time).getDay();
-      const day = dayNames[dayIndex];
-      if (!sixHourSymbolsByDay[day]) {
-        sixHourSymbolsByDay[day] = [];
-      }
-      if (hour.symbol_code && sixHourSymbolsByDay[day].length < 4) {
-        sixHourSymbolsByDay[day].push(hour.symbol_code);
-      }
-    });
-  return sixHourSymbolsByDay;
-}
-
-function groupForecastByDay(forecast: ForecastCache1hr[], dayNames: string[]) {
-  const groupedByDay = forecast.reduce((acc, hour) => {
-
-    const utcDate = new Date(hour.time);
-    const localDate = new Date(utcDate.toLocaleString("en-US", { timeZone: "Europe/Oslo" }));
-    const dayIndex = localDate.getDay();
-    const day = dayNames[dayIndex];
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(hour);
-    return acc;
-  }, {} as Record<string, ForecastCache1hr[]>);
-
-
-  if (Object.keys(groupedByDay).length > 0) {
-    const lastDayIndex = Object.keys(groupedByDay).length - 1;
-    const lastDay = Object.keys(groupedByDay)[lastDayIndex];
-    if (groupedByDay[lastDay].length < 3) {
-      delete groupedByDay[lastDay];
-    }
-  }
-
-  return groupedByDay;
 }
