@@ -98,7 +98,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       {isExpanded && (
         <div className="absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80">
           <div className="mb-4">
-            <h3 className="font-bold mb-2">Vis lovende startsteder:</h3>
+            <h3 className="font-bold mb-2">Vis starter med lovende vær:</h3>
             <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
               {dayLabels.map((label, index) => (
                 <button
@@ -171,9 +171,9 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
 
-          <div className="flex justify-between gap-2">
-            <button onClick={handleReset} className={`px-3 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} transition-colors cursor-pointer`}>Tilbakestill</button>
-            <button onClick={handleApply} className={`px-3 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow transition-colors cursor-pointer`}>Bruk</button>
+          <div className="flex gap-2">
+            <button onClick={handleReset} className={`flex-1 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} transition-colors cursor-pointer`}>Tilbakestill</button>
+            <button onClick={handleApply} className={`flex-1 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow transition-colors cursor-pointer`}>Bruk</button>
           </div>
         </div>
       )}
