@@ -4,10 +4,9 @@ import React from 'react';
 
 interface ZoomControlsProps {
   map: google.maps.Map | null;
-  className?: string;
 }
 
-export const ZoomControls: React.FC<ZoomControlsProps> = ({ map, className = '' }) => {
+export const ZoomControls: React.FC<ZoomControlsProps> = ({ map }) => {
   const handleZoomIn = () => {
     if (!map) return;
     const currentZoom = map.getZoom() || 7;
@@ -23,7 +22,7 @@ export const ZoomControls: React.FC<ZoomControlsProps> = ({ map, className = '' 
   if (!map) return null;
 
   return (
-    <div className={`absolute bottom-3 right-3 z-10 ${className}`}>
+    <div className={`absolute bottom-0 right-0`}>
       <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <div className="flex flex-col gap-1">
           <button

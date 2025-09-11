@@ -5,12 +5,11 @@ import React from 'react';
 interface FullscreenControlProps {
   isFullscreen: boolean;
   toggleFullscreen: () => void;
-  className?: string;
 }
 
-export const FullscreenControl: React.FC<FullscreenControlProps> = ({ isFullscreen, toggleFullscreen, className = '' }) => {
+export const FullscreenControl: React.FC<FullscreenControlProps> = ({ isFullscreen, toggleFullscreen }) => {
   return (
-    <div className={`${className}`}>
+    <div className={`absolute bottom-0 right-12`}>
       <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <div className="flex flex-col gap-1">
           <button

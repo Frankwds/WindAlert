@@ -476,8 +476,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
           <>
             <MapLayerToggle map={mapInstance} />
             <div className="absolute bottom-3 right-3 z-10 flex flex-row gap-2">
-              <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} className="!relative !bottom-0 !right-0" />
-              <ZoomControls map={mapInstance} className="!relative !bottom-0 !right-0" />
+              <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
+              <ZoomControls map={mapInstance} />
             </div>
             <MyLocation map={mapInstance} closeOverlays={closeOverlays} />
             {memoizedFilterControl}
