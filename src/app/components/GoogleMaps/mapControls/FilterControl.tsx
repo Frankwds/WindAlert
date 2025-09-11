@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 interface FilterControlProps {
@@ -10,6 +10,8 @@ interface FilterControlProps {
   onParaglidingFilterChange: (isVisible: boolean) => void;
   onWeatherStationFilterChange: (isVisible: boolean) => void;
   onSkywaysFilterChange?: (isVisible: boolean) => void;
+  isOpen: boolean;
+  onToggle: (isOpen: boolean) => void;
 }
 
 export const FilterControl: React.FC<FilterControlProps> = ({
@@ -19,8 +21,9 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   onParaglidingFilterChange,
   onWeatherStationFilterChange,
   onSkywaysFilterChange,
+  isOpen,
+  onToggle,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleParaglidingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onParaglidingFilterChange(e.target.checked);
@@ -37,7 +40,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   };
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    onToggle(!isOpen);
   };
 
   return (

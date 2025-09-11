@@ -84,6 +84,7 @@ const GoogleMaps: React.FC = () => {
     minPromisingHours: number;
   } | null>(initialMapState?.promisingFilter ?? null);
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
+  const [isFilterControlOpen, setIsFilterControlOpen] = useState(false);
   const [showSkywaysLayer, setShowSkywaysLayer] = useState(
     initialMapState?.showSkywaysLayer ?? false
   );
@@ -100,6 +101,9 @@ const GoogleMaps: React.FC = () => {
     }
     if (keep !== 'windfilter') {
       setWindFilterExpanded(false);
+    }
+    if (keep !== 'filtercontrol') {
+      setIsFilterControlOpen(false);
     }
     if (keep !== 'infowindow') {
       closeInfoWindow();
@@ -429,6 +433,8 @@ const GoogleMaps: React.FC = () => {
               onParaglidingFilterChange={setShowParaglidingMarkers}
               onWeatherStationFilterChange={setShowWeatherStationMarkers}
               onSkywaysFilterChange={setShowSkywaysLayer}
+              isOpen={isFilterControlOpen}
+              onToggle={setIsFilterControlOpen}
             />
             <WindFilterCompass
               onWindDirectionChange={handleWindDirectionChange}
