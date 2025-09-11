@@ -1,5 +1,3 @@
-'use cache';
-
 export const API_URL_CONFIG = {
   baseURL: "https://api.open-meteo.com/v1/forecast",
   params: {

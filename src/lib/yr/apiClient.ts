@@ -1,5 +1,3 @@
-'use cache';
-
 export const API_URL_CONFIG = {
   baseURL: "https://api.met.no/weatherapi/locationforecast/2.0/complete"
 };
