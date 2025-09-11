@@ -20,26 +20,37 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, dayNames: string[]
       if (!sixHourSymbolsByDay[day]) {
         sixHourSymbolsByDay[day] = [];
       }
+      if (hours.length === 0) {
+        return;
+      }
+      if (!hours[0].time.includes("T22:00:00Z")) { // day has begun
+        sixHourSymbolsByDay[day].unshift(hours[1].symbol_code);
+      }
       hours
-        .forEach((hour, index) => {
-          if (index === 0) {
+        .forEach((hour) => {
+          if (hour.time.includes("T22:00:00Z")) { // first hour of the night
             sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
             return;
           }
-          if (index === hours.length - 1 && hours.length > 6 && sixHourSymbolsByDay[day].length < 4) {
+          if (hour.time.includes("T04:00:00Z")) { // first hour of the morning
             sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
             return;
           }
-          if (index % 6 === 0) {
+          if (hour.time.includes("T10:00:00Z")) { // first hour of the day
+            sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
+            return;
+          }
+          if (hour.time.includes("T16:00:00Z")) { // first hour of the afternoon
             sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
             return;
           }
         })
+
     });
 
   yrdata.weatherDataYrSixHourly.slice(0, 6)
     .forEach((hour) => {
-      const dayIndex = new Date(hour.time).getDay();
+      const dayIndex = new Date(hour.time).getDay(); // 0-6
       const day = dayNames[dayIndex];
       if (!sixHourSymbolsByDay[day]) {
         sixHourSymbolsByDay[day] = [];
