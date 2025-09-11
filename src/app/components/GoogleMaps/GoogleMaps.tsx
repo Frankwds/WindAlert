@@ -221,8 +221,9 @@ const GoogleMaps: React.FC = () => {
       onSkywaysFilterChange={setShowSkywaysLayer}
       isOpen={isFilterControlOpen}
       onToggle={setIsFilterControlOpen}
+      closeOverlays={closeOverlays}
     />
-  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, isFilterControlOpen]);
+  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, isFilterControlOpen, closeOverlays]);
 
   const memoizedWindFilterCompass = useMemo(() => (
     <WindFilterCompass
@@ -232,7 +233,7 @@ const GoogleMaps: React.FC = () => {
       setIsExpanded={setWindFilterExpanded}
       windFilterAndOperator={windFilterAndOperator}
       onFilterLogicChange={handleWindFilterLogicChange}
-      onCloseOverlays={closeOverlays}
+      closeOverlays={closeOverlays}
     />
   ), [selectedWindDirections, windFilterExpanded, windFilterAndOperator, handleWindDirectionChange, handleWindFilterLogicChange, closeOverlays]);
 
@@ -242,7 +243,7 @@ const GoogleMaps: React.FC = () => {
       setIsExpanded={setIsPromisingFilterExpanded}
       onFilterChange={setPromisingFilter}
       initialFilter={promisingFilter}
-      onCloseOverlays={closeOverlays}
+      closeOverlays={closeOverlays}
     />
   ), [isPromisingFilterExpanded, promisingFilter, closeOverlays]);
 

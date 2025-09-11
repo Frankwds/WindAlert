@@ -12,6 +12,7 @@ interface FilterControlProps {
   onSkywaysFilterChange?: (isVisible: boolean) => void;
   isOpen: boolean;
   onToggle: (isOpen: boolean) => void;
+  closeOverlays: (options?: { keep?: string }) => void;
 }
 
 export const FilterControl: React.FC<FilterControlProps> = ({
@@ -23,6 +24,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   onSkywaysFilterChange,
   isOpen,
   onToggle,
+  closeOverlays: onCloseOverlays,
 }) => {
 
   const handleParaglidingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +42,9 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   };
 
   const toggleDropdown = () => {
+    if (!isOpen) {
+      onCloseOverlays({ keep: 'filtercontrol' });
+    }
     onToggle(!isOpen);
   };
 

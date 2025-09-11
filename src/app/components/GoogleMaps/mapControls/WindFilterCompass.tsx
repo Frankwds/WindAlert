@@ -9,7 +9,7 @@ interface WindFilterCompassProps {
   setIsExpanded: (expanded: boolean) => void;
   windFilterAndOperator: boolean;
   onFilterLogicChange: () => void;
-  onCloseOverlays: (options?: { keep?: string }) => void;
+  closeOverlays: (options?: { keep?: string }) => void;
 }
 
 const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
@@ -19,7 +19,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   setIsExpanded,
   windFilterAndOperator,
   onFilterLogicChange,
-  onCloseOverlays
+  closeOverlays: onCloseOverlays
 }) => {
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
