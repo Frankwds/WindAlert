@@ -7,7 +7,7 @@ import { ErrorState } from '../shared/ErrorState';
 import { createAllMarkers } from './MarkerSetup';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
-import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass } from '@/app/components/GoogleMaps/mapControls';
+import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass, FullscreenControl } from '@/app/components/GoogleMaps/mapControls';
 import PromisingFilter from './mapControls/PromisingFilter';
 import { Clusterer } from './clusterer';
 import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './InfoWindows';
@@ -16,6 +16,11 @@ import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/
 import { createRoot } from 'react-dom/client';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { dataCache } from '@/lib/data-cache';
+
+interface GoogleMapsProps {
+  isFullscreen: boolean;
+  toggleFullscreen: () => void;
+}
 
 const MAP_STATE_KEY = 'windlordMapState';
 
@@ -50,7 +55,7 @@ const CLUSTERER_CONFIG = {
   MIN_POINTS: 2
 } as const;
 
-const GoogleMaps: React.FC = () => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen }) => {
   useInfoWindowStyles();
 
   const [initialMapState] = useState(getInitialState);
@@ -455,7 +460,7 @@ const GoogleMaps: React.FC = () => {
   }
 
   return (
-    <div className={`w-full h-full`}>
+    <div className={`w-full h-full ${isFullscreen ? 'fixed top-0 left-0 right-0 bottom-0 z-[1000]' : ''}`}>
       <div className="relative w-full h-full">
         {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
 
@@ -470,7 +475,10 @@ const GoogleMaps: React.FC = () => {
         {mapInstance && (
           <>
             <MapLayerToggle map={mapInstance} />
-            <ZoomControls map={mapInstance} />
+            <div className="absolute bottom-3 right-3 z-10 flex flex-row gap-2">
+              <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} className="!relative !bottom-0 !right-0" />
+              <ZoomControls map={mapInstance} className="!relative !bottom-0 !right-0" />
+            </div>
             <MyLocation map={mapInstance} closeOverlays={closeOverlays} />
             {memoizedFilterControl}
             {memoizedWindFilterCompass}

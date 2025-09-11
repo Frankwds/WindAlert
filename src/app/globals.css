@@ -100,6 +100,10 @@
   }
 }
 
+body.fullscreen-map-active nav {
+  display: none;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

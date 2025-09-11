@@ -5,7 +5,6 @@ import "./globals.css";
 import Navigation from "./components/navigation";
 import Provider from "./components/Provider";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { FullscreenProvider } from "./contexts/FullscreenContext";
 import ConditionalMain from "./components/ConditionalMain";
 
 const geistSans = Geist({
@@ -46,9 +45,7 @@ export default function RootLayout({
       >
         <Provider>
           <ThemeProvider>
-            <FullscreenProvider>
-              <ConditionalMain>{children}</ConditionalMain>
-            </FullscreenProvider>
+            <ConditionalMain>{children}</ConditionalMain>
           </ThemeProvider>
         </Provider>
       </body>
