@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface WindFilterCompassProps {
   onWindDirectionChange: (directions: string[]) => void;
@@ -21,6 +22,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   onFilterLogicChange,
   closeOverlays: onCloseOverlays
 }) => {
+  const isMobile = useIsMobile();
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
@@ -83,7 +85,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
                 e.stopPropagation();
                 onFilterLogicChange();
               }}
-              className="w-6 h-6 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold"
+              className={`w-6 h-6 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold`}
               title={`Filter logic: ${windFilterAndOperator ? 'AND (&)' : 'OR (||)'}`}
             >
               {windFilterAndOperator ? '&' : '||'}

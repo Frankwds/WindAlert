@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface MyLocationProps {
   map: google.maps.Map | null;
@@ -11,6 +12,7 @@ interface MyLocationProps {
 
 export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) => {
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
   const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const watchIdRef = useRef<number | null>(null);
   const [isTracking, setIsTracking] = useState(false);
@@ -130,7 +132,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <button
           onClick={handleMyLocationClick}
-          className="w-8 h-8 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg"
+          className={`w-8 h-8 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg`}
           title={
             isTracking
               ? (isFollowing ? "Stop following location (Right-click to clear cache)" : "Follow location (Right-click to clear cache)")

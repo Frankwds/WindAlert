@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface FilterControlProps {
   showParagliding: boolean;
@@ -26,6 +27,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   onToggle,
   closeOverlays: onCloseOverlays,
 }) => {
+  const isMobile = useIsMobile();
 
   const handleParaglidingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onParaglidingFilterChange(e.target.checked);
@@ -54,7 +56,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
         {/* Toggle Button */}
         <button
           onClick={toggleDropdown}
-          className="flex items-center gap-4 p-2 hover:bg-[var(--accent)]/10 transition-all duration-200 ease-in-out rounded-lg cursor-pointer min-w-[72px]"
+          className={`flex items-center gap-4 p-2 ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} transition-all duration-200 ease-in-out rounded-lg cursor-pointer min-w-[72px]`}
           aria-label="Toggle filters"
         >
           {/* Filters Icon */}
@@ -93,7 +95,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
         {isOpen && (
           <div className="border-t border-[var(--border)] p-1">
             <div className="flex flex-col gap-1">
-              <label htmlFor="paragliding" className="flex items-center cursor-pointer hover:bg-[var(--accent)]/10 p-2 rounded">
+              <label htmlFor="paragliding" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded`}>
                 <input
                   type="checkbox"
                   id="paragliding"
@@ -104,7 +106,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
                 <Image src="/paraglider.png" alt="Paragliding" width={24} height={24} className="w-6 h-6" />
               </label>
 
-              <label htmlFor="weatherStation" className="flex items-center cursor-pointer hover:bg-[var(--accent)]/10 p-2 rounded">
+              <label htmlFor="weatherStation" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded`}>
                 <input
                   type="checkbox"
                   id="weatherStation"
@@ -115,7 +117,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
                 <Image src="/windsockBlue.png" alt="Værstasjon" width={24} height={24} className="w-6 h-6" />
               </label>
 
-              <label htmlFor="skyways" className="flex items-center cursor-pointer hover:bg-[var(--accent)]/10 p-2 rounded">
+              <label htmlFor="skyways" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded`}>
                 <input
                   type="checkbox"
                   id="skyways"

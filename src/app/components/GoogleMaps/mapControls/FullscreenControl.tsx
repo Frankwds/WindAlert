@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface FullscreenControlProps {
   isFullscreen: boolean;
@@ -8,13 +9,14 @@ interface FullscreenControlProps {
 }
 
 export const FullscreenControl: React.FC<FullscreenControlProps> = ({ isFullscreen, toggleFullscreen }) => {
+  const isMobile = useIsMobile();
   return (
     <div className={`absolute bottom-0 right-12`}>
       <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
         <div className="flex flex-col gap-1">
           <button
             onClick={toggleFullscreen}
-            className="w-8 h-8 bg-transparent hover:bg-[var(--accent)]/10 border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg"
+            className={`w-8 h-8 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-bold text-lg`}
           >
             {isFullscreen ? (
               <svg

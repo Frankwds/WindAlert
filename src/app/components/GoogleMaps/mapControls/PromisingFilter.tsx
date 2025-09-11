@@ -4,6 +4,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface PromisingFilterProps {
   isExpanded: boolean;
@@ -20,6 +21,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   initialFilter,
   closeOverlays: onCloseOverlays,
 }) => {
+  const isMobile = useIsMobile();
   const currentHour = useMemo(() => new Date().getHours(), []);
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
   const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
@@ -108,7 +110,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                     } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
                     } ${selectedDay === index
                       ? "bg-[var(--background)] shadow-[var(--shadow-sm)]"
-                      : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
+                      : !isMobile ? "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50" : ""
                     }`}
                 >
                   {label}
@@ -170,8 +172,8 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="flex justify-between gap-2">
-            <button onClick={handleReset} className="px-3 py-2 rounded-md border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer">Tilbakestill</button>
-            <button onClick={handleApply} className="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow transition-colors cursor-pointer">Bruk</button>
+            <button onClick={handleReset} className={`px-3 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} transition-colors cursor-pointer`}>Tilbakestill</button>
+            <button onClick={handleApply} className={`px-3 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow transition-colors cursor-pointer`}>Bruk</button>
           </div>
         </div>
       )}
