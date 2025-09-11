@@ -3,26 +3,23 @@
 import { ForecastCache1hr } from "@/lib/supabase/types";
 import ExternalLinkIcon from "../ExternalLinkIcon";
 import Day from "./Day";
+import { ParaglidingLocation } from "@/lib/supabase/types";
+import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
 
 interface WeatherTableProps {
   groupedByDay: Record<string, ForecastCache1hr[]>;
   sixHourSymbolsByDay: Record<string, string[]>;
-  lat: number;
-  long: number;
-  windDirections?: string[];
-  altitude: number;
+  location: ParaglidingLocation;
   showValidation?: boolean;
 }
 
 const WeatherTable: React.FC<WeatherTableProps> = ({
   groupedByDay,
   sixHourSymbolsByDay,
-  lat,
-  long,
-  windDirections = [],
-  altitude,
+  location,
   showValidation = false,
 }) => {
+  const { latitude, longitude, altitude } = location;
 
   if (!groupedByDay || groupedByDay[Object.keys(groupedByDay)[0]].length === 0) {
     return (
@@ -48,7 +45,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
       ) : (
         <div className="mb-4">
           <a
-            href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${lat.toFixed(3)},${long.toFixed(3)}`}
+            href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
@@ -65,7 +62,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
             weekdayName={weekdayName}
             dailyForecast={dailyForecast}
             sixHourSymbols={sixHourSymbolsByDay[weekdayName] || []}
-            windDirections={windDirections}
+            windDirections={locationToWindDirectionSymbols(location)}
             altitude={altitude}
             showValidation={showValidation}
           />

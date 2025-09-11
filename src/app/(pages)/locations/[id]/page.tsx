@@ -75,20 +75,14 @@ export default async function LocationPage({ params }: Props) {
       <WeatherTable
         groupedByDay={groupedByDay}
         sixHourSymbolsByDay={sixHourSymbolsByDay}
-        lat={location.latitude}
-        long={location.longitude}
-        windDirections={locationToWindDirectionSymbols(location)}
-        altitude={location.altitude}
+        location={location}
         showValidation={false}
       />
       <WindyWidget lat={location.latitude} long={location.longitude} />
       <WeatherTable
         groupedByDay={groupedByDay}
         sixHourSymbolsByDay={sixHourSymbolsByDay}
-        lat={location.latitude}
-        long={location.longitude}
-        windDirections={locationToWindDirectionSymbols(location)}
-        altitude={location.altitude}
+        location={location}
         showValidation={true}
       />
     </div>
