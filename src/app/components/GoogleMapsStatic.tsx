@@ -48,6 +48,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
         src={mapSrc}
         alt="Map showing location"
         unoptimized // Required for dynamic URLs
+        priority
       />
     </div>
   );
