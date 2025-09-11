@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
@@ -210,6 +210,74 @@ const GoogleMaps: React.FC = () => {
     setWindFilterAndOperator(prev => !prev);
   }, []);
 
+  // Memoized components to prevent unnecessary re-renders
+  const memoizedFilterControl = useMemo(() => (
+    <FilterControl
+      showParagliding={showParaglidingMarkers}
+      showWeatherStations={showWeatherStationMarkers}
+      showSkyways={showSkywaysLayer}
+      onParaglidingFilterChange={setShowParaglidingMarkers}
+      onWeatherStationFilterChange={setShowWeatherStationMarkers}
+      onSkywaysFilterChange={setShowSkywaysLayer}
+      isOpen={isFilterControlOpen}
+      onToggle={setIsFilterControlOpen}
+    />
+  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, isFilterControlOpen]);
+
+  const memoizedWindFilterCompass = useMemo(() => (
+    <WindFilterCompass
+      onWindDirectionChange={handleWindDirectionChange}
+      selectedDirections={selectedWindDirections}
+      isExpanded={windFilterExpanded}
+      setIsExpanded={setWindFilterExpanded}
+      windFilterAndOperator={windFilterAndOperator}
+      onFilterLogicChange={handleWindFilterLogicChange}
+      onCloseOverlays={closeOverlays}
+    />
+  ), [selectedWindDirections, windFilterExpanded, windFilterAndOperator, handleWindDirectionChange, handleWindFilterLogicChange, closeOverlays]);
+
+  const memoizedPromisingFilter = useMemo(() => (
+    <PromisingFilter
+      isExpanded={isPromisingFilterExpanded}
+      setIsExpanded={setIsPromisingFilterExpanded}
+      onFilterChange={setPromisingFilter}
+      initialFilter={promisingFilter}
+      onCloseOverlays={closeOverlays}
+    />
+  ), [isPromisingFilterExpanded, promisingFilter, closeOverlays]);
+
+  const memoizedParaglidingClusterer = useMemo(() => {
+    if (!mapInstance || paraglidingMarkers.length === 0) return null;
+    return (
+      <Clusterer
+        map={mapInstance}
+        markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(filterParaglidingMarkersByPromising(paraglidingMarkers), selectedWindDirections) : []}
+        renderer={new ParaglidingClusterRenderer()}
+        algorithmOptions={{
+          radius: CLUSTERER_CONFIG.RADIUS,
+          maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
+          minPoints: CLUSTERER_CONFIG.MIN_POINTS
+        }}
+      />
+    );
+  }, [mapInstance, paraglidingMarkers, showParaglidingMarkers, selectedWindDirections, promisingFilter, windFilterAndOperator]);
+
+  const memoizedWeatherStationClusterer = useMemo(() => {
+    if (!mapInstance || weatherStationMarkers.length === 0) return null;
+    return (
+      <Clusterer
+        map={mapInstance}
+        markers={showWeatherStationMarkers ? weatherStationMarkers : []}
+        renderer={new WeatherStationClusterRenderer()}
+        algorithmOptions={{
+          radius: CLUSTERER_CONFIG.RADIUS,
+          maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
+          minPoints: CLUSTERER_CONFIG.MIN_POINTS
+        }}
+      />
+    );
+  }, [mapInstance, weatherStationMarkers, showWeatherStationMarkers]);
+
   const loadAllMarkers = useCallback(async () => {
     try {
       let paraglidingLocations = await dataCache.getParaglidingLocations();
@@ -395,63 +463,17 @@ const GoogleMaps: React.FC = () => {
           className="w-full h-full"
         />
 
-        {mapInstance && paraglidingMarkers.length > 0 && (
-          <Clusterer
-            map={mapInstance}
-            markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(filterParaglidingMarkersByPromising(paraglidingMarkers), selectedWindDirections) : []}
-            renderer={new ParaglidingClusterRenderer()}
-            algorithmOptions={{
-              radius: CLUSTERER_CONFIG.RADIUS,
-              maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
-              minPoints: CLUSTERER_CONFIG.MIN_POINTS
-            }}
-          />
-        )}
-
-        {mapInstance && weatherStationMarkers.length > 0 && (
-          <Clusterer
-            map={mapInstance}
-            markers={showWeatherStationMarkers ? weatherStationMarkers : []}
-            renderer={new WeatherStationClusterRenderer()}
-            algorithmOptions={{
-              radius: CLUSTERER_CONFIG.RADIUS,
-              maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
-              minPoints: CLUSTERER_CONFIG.MIN_POINTS
-            }}
-          />
-        )}
+        {memoizedParaglidingClusterer}
+        {memoizedWeatherStationClusterer}
 
         {mapInstance && (
           <>
             <MapLayerToggle map={mapInstance} />
             <ZoomControls map={mapInstance} />
             <MyLocation map={mapInstance} closeOverlays={closeOverlays} />
-            <FilterControl
-              showParagliding={showParaglidingMarkers}
-              showWeatherStations={showWeatherStationMarkers}
-              showSkyways={showSkywaysLayer}
-              onParaglidingFilterChange={setShowParaglidingMarkers}
-              onWeatherStationFilterChange={setShowWeatherStationMarkers}
-              onSkywaysFilterChange={setShowSkywaysLayer}
-              isOpen={isFilterControlOpen}
-              onToggle={setIsFilterControlOpen}
-            />
-            <WindFilterCompass
-              onWindDirectionChange={handleWindDirectionChange}
-              selectedDirections={selectedWindDirections}
-              isExpanded={windFilterExpanded}
-              setIsExpanded={setWindFilterExpanded}
-              windFilterAndOperator={windFilterAndOperator}
-              onFilterLogicChange={handleWindFilterLogicChange}
-              onCloseOverlays={closeOverlays}
-            />
-            <PromisingFilter
-              isExpanded={isPromisingFilterExpanded}
-              setIsExpanded={setIsPromisingFilterExpanded}
-              onFilterChange={setPromisingFilter}
-              initialFilter={promisingFilter}
-              onCloseOverlays={closeOverlays}
-            />
+            {memoizedFilterControl}
+            {memoizedWindFilterCompass}
+            {memoizedPromisingFilter}
           </>
         )}
       </div>
