@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import LocationCard from '../LocationCards';
+import LocationCard, { LocationCardAll } from '../LocationCards';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -9,6 +9,10 @@ interface ParaglidingInfoWindowProps {
 
 interface WeatherStationInfoWindowProps {
   location: WeatherStationMarkerData;
+}
+
+interface AllStartsInfoWindowProps {
+  location: ParaglidingMarkerData;
 }
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
@@ -37,6 +41,13 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
   );
 };
 
+export const AllStartsInfoWindow: React.FC<AllStartsInfoWindowProps> = ({ location }) => {
+  return (
+    <LocationCardAll
+      location={location}
+    />
+  );
+};
 // Utility function to render any React component to HTML string
 export const renderComponentToString = <T extends Record<string, any>>(
   Component: React.ComponentType<T>,
@@ -51,4 +62,8 @@ export const getWeatherStationInfoWindowContent = (location: WeatherStationMarke
 
 export const getParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
   return <ParaglidingInfoWindow location={location} />;
+};
+
+export const getAllStartsInfoWindow = (location: ParaglidingMarkerData) => {
+  return <AllStartsInfoWindow location={location} />;
 };

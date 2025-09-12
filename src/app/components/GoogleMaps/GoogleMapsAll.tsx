@@ -10,7 +10,7 @@ import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMapsAll } from './hooks/useGoogleMapsAll';
 
 const CLUSTERER_OPTIONS = {
-  radius: 60,
+  radius: 100,
   maxZoom: 15,
   minPoints: 2
 } as const;

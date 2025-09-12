@@ -37,7 +37,7 @@ export class AllParaglidingLocationService {
       const { data, error } = await supabase
         .from('all_paragliding_locations')
         .select(`
-        id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw
+        id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw
       `)
         .eq('is_active', true)
         .range(from, to); // 👈 Use range for pagination

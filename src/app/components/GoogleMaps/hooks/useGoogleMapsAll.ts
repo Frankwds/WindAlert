@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useAllMarkers } from './markers/useAllMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
 import { useMapControls, useOverlayManagement } from './controls';
-import { getParaglidingInfoWindow } from '../InfoWindows';
+import { LocationCardAll } from '../../LocationCards';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
 
 export const useGoogleMapsAll = () => {
@@ -88,7 +88,7 @@ export const useGoogleMapsAll = () => {
 
     const infoWindowContent = document.createElement('div');
     const root = createRoot(infoWindowContent);
-    root.render(getParaglidingInfoWindow(location));
+    root.render(React.createElement(LocationCardAll, { location }));
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow, closeOverlays]);
 
