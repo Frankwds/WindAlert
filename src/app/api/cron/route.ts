@@ -38,33 +38,33 @@ async function processBatch(locations: ParaglidingLocationForCache[]) {
 
 
       // Combine data sources
-      let combinedData = combineDataSources(
+      const combinedData = combineDataSources(
         meteoData,
         mappedYrTakeoffData.weatherDataYrHourly
       );
 
-      // Fetch YR data for landing location if it exists
-      if (location.landing_latitude && location.landing_longitude) {
-        const yrLandingData = await fetchYrData(
-          location.landing_latitude,
-          location.landing_longitude
-        );
-        const mappedYrLandingData = mapYrData(yrLandingData);
+      // // Fetch YR data for landing location if it exists
+      // if (location.landing_latitude && location.landing_longitude) {
+      //   const yrLandingData = await fetchYrData(
+      //     location.landing_latitude,
+      //     location.landing_longitude
+      //   );
+      //   const mappedYrLandingData = mapYrData(yrLandingData);
 
-        combinedData = combinedData.map((dataPoint) => {
-          const landingDataPoint =
-            mappedYrLandingData.weatherDataYrHourly.find(
-              (landingPoint) => landingPoint.time === dataPoint.time
-            );
+      //   combinedData = combinedData.map((dataPoint) => {
+      //     const landingDataPoint =
+      //       mappedYrLandingData.weatherDataYrHourly.find(
+      //         (landingPoint) => landingPoint.time === dataPoint.time
+      //       );
 
-          return {
-            ...dataPoint,
-            landing_wind: landingDataPoint?.wind_speed,
-            landing_gust: landingDataPoint?.wind_speed_of_gust,
-            landing_wind_direction: landingDataPoint?.wind_from_direction,
-          };
-        });
-      }
+      //     return {
+      //       ...dataPoint,
+      //       landing_wind: landingDataPoint?.wind_speed,
+      //       landing_gust: landingDataPoint?.wind_speed_of_gust,
+      //       landing_wind_direction: landingDataPoint?.wind_from_direction,
+      //     };
+      //   });
+      // }
 
       // Validate forecast data
       const validatedForecastData: ForecastCache1hr[] = combinedData.map((dataPoint) => {

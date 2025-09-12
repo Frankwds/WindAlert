@@ -45,7 +45,7 @@ export class ParaglidingLocationService {
   static async getByIds(ids: string[]): Promise<ParaglidingLocationForCache[]> {
     const { data, error } = await supabase
       .from('paragliding_locations')
-      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude')
+      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw')
       .in('id', ids)
       .eq('is_active', true);
 
@@ -92,7 +92,7 @@ export class ParaglidingLocationService {
   static async getAllActiveForCache(): Promise<ParaglidingLocationForCache[]> {
     const { data, error } = await supabase
       .from('paragliding_locations')
-      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude')
+      .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw')
       .eq('is_active', true)
       .order('name');
 

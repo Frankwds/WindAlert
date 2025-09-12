@@ -22,9 +22,6 @@ export interface ParaglidingLocation {
   longitude: number;
   latitude: number;
   altitude: number;
-  landing_latitude?: number;
-  landing_longitude?: number;
-  landing_altitude?: number;
   country: string;
   flightlog_id: string | null;
   is_active: boolean;
@@ -94,9 +91,6 @@ export interface ParaglidingLocationForCache {
   se: boolean;
   sw: boolean;
   nw: boolean;
-  landing_latitude: number;
-  landing_longitude: number;
-  landing_altitude: number;
 }
 
 export interface WeatherStationMarkerData {
