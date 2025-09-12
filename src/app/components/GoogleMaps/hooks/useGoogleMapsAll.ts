@@ -5,8 +5,9 @@ import { useAllMarkers } from './markers/useAllMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
 import { useMapControls, useOverlayManagement } from './controls';
-import { LocationCardAll } from '../InfoWindowLocationCards';
+import { LocationCardAll } from '../../LocationCards';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { getAllStartsInfoWindow } from '../InfoWindows';
 
 export const useGoogleMapsAll = () => {
   // Initialize map state
@@ -88,7 +89,7 @@ export const useGoogleMapsAll = () => {
 
     const infoWindowContent = document.createElement('div');
     const root = createRoot(infoWindowContent);
-    root.render(React.createElement(LocationCardAll, { location }));
+    root.render(getAllStartsInfoWindow(location));
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow, closeOverlays]);
 
