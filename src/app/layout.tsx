@@ -2,7 +2,6 @@ import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from "./components/navigation";
 import Provider from "./components/Provider";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import ConditionalMain from "./components/ConditionalMain";

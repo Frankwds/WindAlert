@@ -2,20 +2,39 @@ import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useAllMarkers } from './markers/useAllMarkers';
+import { useMarkerFiltering } from './markers/useMarkerFiltering';
+import { useMapFilters } from './filters/useMapFilters';
 import { useMapControls, useOverlayManagement } from './controls';
 import { getParaglidingInfoWindow } from '../InfoWindows';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
 
 export const useGoogleMapsAll = () => {
-  // Initialize map state (simplified - no filters needed)
+  // Initialize map state
   const { mapState, updateMapPosition } = useMapState();
+
+  // Initialize map filters (only wind direction filtering for all locations)
+  const {
+    selectedWindDirections,
+    windFilterExpanded,
+    windFilterAndOperator,
+    setWindFilterExpanded,
+    handleWindDirectionChange,
+    handleWindFilterLogicChange
+  } = useMapFilters({
+    initialShowParaglidingMarkers: true,
+    initialShowWeatherStationMarkers: false, // No weather stations in all locations view
+    initialSelectedWindDirections: [],
+    initialWindFilterAndOperator: true,
+    initialPromisingFilter: null, // No promising filter for all locations
+    initialShowSkywaysLayer: false
+  });
 
   // Initialize map controls
   const { infoWindowRef, closeInfoWindow, openInfoWindow } = useMapControls();
 
-  // Initialize overlay management (simplified - only for closing overlays)
+  // Initialize overlay management
   const { closeOverlays } = useOverlayManagement({
-    setWindFilterExpanded: () => { }, // No wind filter
+    setWindFilterExpanded,
     setIsPromisingFilterExpanded: () => { }, // No promising filter
     setIsFilterControlOpen: () => { }, // No filter control
     closeInfoWindow
@@ -73,10 +92,21 @@ export const useGoogleMapsAll = () => {
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow, closeOverlays]);
 
-  // Initialize all markers (no filtering)
+  // Initialize all markers
   const markers = useAllMarkers({
     mapInstance,
     onMarkerClick: handleMarkerClick
+  });
+
+  // Apply wind direction filtering to paragliding markers
+  const { filteredParaglidingMarkers } = useMarkerFiltering({
+    paraglidingMarkers: markers.paraglidingMarkers,
+    weatherStationMarkers: [], // No weather stations in all locations view
+    showParaglidingMarkers: true, // Always show paragliding markers
+    showWeatherStationMarkers: false, // No weather stations
+    selectedWindDirections,
+    windFilterAndOperator,
+    promisingFilter: null // No promising filter for all locations
   });
 
   return {
@@ -86,8 +116,16 @@ export const useGoogleMapsAll = () => {
     isLoading: isLoading || markers.isLoading,
     error: error || markers.error,
 
-    // Markers (all paragliding locations, no filtering)
-    paraglidingMarkers: markers.paraglidingMarkers,
+    // Markers (filtered paragliding locations)
+    paraglidingMarkers: filteredParaglidingMarkers,
+
+    // Wind direction filter state
+    selectedWindDirections,
+    windFilterExpanded,
+    windFilterAndOperator,
+    setWindFilterExpanded,
+    handleWindDirectionChange,
+    handleWindFilterLogicChange,
 
     // Controls
     infoWindowRef,
