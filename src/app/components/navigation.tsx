@@ -9,6 +9,7 @@ import { useIsMobile } from "@/lib/hooks/useIsMobile";
 const links = [
   { href: "/", label: "Kart" },
   { href: "/favourites", label: "Favoritter" },
+  { href: "/locations/all", label: "Alle starter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },
   { href: 'https://thermal.kk7.ch/', label: 'Thermal.kk', external: true },
