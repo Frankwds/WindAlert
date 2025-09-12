@@ -62,7 +62,7 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
     if (mapInstance && !isLoadingMarkers && paraglidingMarkers.length === 0 && weatherStationMarkers.length === 0) {
       loadAllMarkers();
     }
-  }, [mapInstance, loadAllMarkers, isLoadingMarkers, paraglidingMarkers.length, weatherStationMarkers.length]);
+  }, [mapInstance, isLoadingMarkers, paraglidingMarkers.length, weatherStationMarkers.length]);
 
   return {
     paraglidingMarkers,

@@ -53,7 +53,7 @@ export const useAllMarkers = ({ mapInstance, onMarkerClick }: UseAllMarkersProps
     if (mapInstance && paraglidingMarkers.length === 0) {
       loadAllMarkers();
     }
-  }, [mapInstance, loadAllMarkers, paraglidingMarkers.length]);
+  }, [mapInstance, paraglidingMarkers.length]);
 
   return {
     paraglidingMarkers,
