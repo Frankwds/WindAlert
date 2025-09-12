@@ -14,25 +14,43 @@ interface ClustererProps {
 
 const Clusterer: React.FC<ClustererProps> = ({ map, markers, renderer, algorithmOptions }) => {
   const clustererRef = useRef<MarkerClusterer | null>(null);
+  const algorithmRef = useRef<SuperClusterAlgorithm | null>(null);
 
   useEffect(() => {
-    if (!map || markers.length === 0) {
+    if (!map) {
       return;
     }
 
+    // Create algorithm instance only once
+    if (!algorithmRef.current) {
+      algorithmRef.current = new SuperClusterAlgorithm(algorithmOptions || {});
+    }
+
+    // Create clusterer instance only once
     if (!clustererRef.current) {
       clustererRef.current = new MarkerClusterer({
         map,
-        markers: markers,
+        markers: [],
         renderer,
-        algorithm: new SuperClusterAlgorithm({ ...algorithmOptions }),
+        algorithm: algorithmRef.current,
       });
+    }
+
+    // Update markers without recreating the clusterer
+    if (markers.length === 0) {
+      clustererRef.current.clearMarkers();
+    } else {
+      clustererRef.current.clearMarkers();
+      clustererRef.current.addMarkers(markers);
     }
 
     return () => {
       if (clustererRef.current) {
         clustererRef.current.clearMarkers();
         clustererRef.current = null;
+      }
+      if (algorithmRef.current) {
+        algorithmRef.current = null;
       }
     };
   }, [map, markers, renderer, algorithmOptions]);

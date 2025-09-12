@@ -15,10 +15,10 @@ interface GoogleMapsProps {
   toggleFullscreen: () => void;
 }
 
-const CLUSTERER_CONFIG = {
-  RADIUS: 60,
-  MAX_ZOOM: 15,
-  MIN_POINTS: 2
+const CLUSTERER_OPTIONS = {
+  radius: 60,
+  maxZoom: 15,
+  minPoints: 2
 } as const;
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen }) => {
@@ -52,6 +52,9 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
     closeOverlays
   } = useGoogleMaps({ isFullscreen, toggleFullscreen });
 
+  // Create stable renderer instances to prevent recreation on every render
+  const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
+  const weatherStationRenderer = useMemo(() => new WeatherStationClusterRenderer(), []);
 
   // Memoized components to prevent unnecessary re-renders
   const memoizedFilterControl = useMemo(() => (
@@ -96,15 +99,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
       <Clusterer
         map={mapInstance}
         markers={filteredParaglidingMarkers}
-        renderer={new ParaglidingClusterRenderer()}
-        algorithmOptions={{
-          radius: CLUSTERER_CONFIG.RADIUS,
-          maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
-          minPoints: CLUSTERER_CONFIG.MIN_POINTS
-        }}
+        renderer={paraglidingRenderer}
+        algorithmOptions={CLUSTERER_OPTIONS}
       />
     );
-  }, [mapInstance, filteredParaglidingMarkers]);
+  }, [mapInstance, filteredParaglidingMarkers, paraglidingRenderer]);
 
   const memoizedWeatherStationClusterer = useMemo(() => {
     if (!mapInstance || filteredWeatherStationMarkers.length === 0) return null;
@@ -112,15 +111,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
       <Clusterer
         map={mapInstance}
         markers={filteredWeatherStationMarkers}
-        renderer={new WeatherStationClusterRenderer()}
-        algorithmOptions={{
-          radius: CLUSTERER_CONFIG.RADIUS,
-          maxZoom: CLUSTERER_CONFIG.MAX_ZOOM,
-          minPoints: CLUSTERER_CONFIG.MIN_POINTS
-        }}
+        renderer={weatherStationRenderer}
+        algorithmOptions={CLUSTERER_OPTIONS}
       />
     );
-  }, [mapInstance, filteredWeatherStationMarkers]);
+  }, [mapInstance, filteredWeatherStationMarkers, weatherStationRenderer]);
 
 
   if (error) {
