@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { createAllMarkers } from '../../MarkerSetup';
-import { AllParaglidingLocationService } from '@/lib/supabase/allParaglidingLocations';
+import { useDataLoadingAll } from '../data/useDataLoadingAll';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
 interface UseAllMarkersProps {
@@ -12,6 +12,7 @@ export const useAllMarkers = ({ mapInstance, onMarkerClick }: UseAllMarkersProps
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { loadAllParaglidingData } = useDataLoadingAll();
 
   const loadAllMarkers = useCallback(async () => {
     if (!mapInstance) return;
@@ -20,8 +21,8 @@ export const useAllMarkers = ({ mapInstance, onMarkerClick }: UseAllMarkersProps
       setIsLoading(true);
       setError(null);
 
-      // Load all paragliding locations (without forecast cache)
-      const locations = await AllParaglidingLocationService.getAllActiveForMarkers();
+      // Load all paragliding locations (with caching, no TTL)
+      const { paraglidingLocations: locations } = await loadAllParaglidingData();
 
       // Create a wrapper function that handles the type conversion
       const onMarkerClickWrapper = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
@@ -45,7 +46,7 @@ export const useAllMarkers = ({ mapInstance, onMarkerClick }: UseAllMarkersProps
     } finally {
       setIsLoading(false);
     }
-  }, [mapInstance, onMarkerClick]);
+  }, [mapInstance, onMarkerClick, loadAllParaglidingData]);
 
   // Load markers when map instance is available
   useEffect(() => {

@@ -60,6 +60,7 @@ export class AllParaglidingLocationService {
         hasMoreData = false;
       }
     }
+    console.log(`Fetched ${allLocations?.length} active locations for markers`);
 
     return allLocations;
   }

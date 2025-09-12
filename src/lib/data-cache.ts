@@ -13,6 +13,7 @@ const STORE_NAME = 'cache';
 class DataCache {
   private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
   private readonly WEATHER_KEY = 'windlord_cache_weatherstation';
+  private readonly ALL_PARAGLIDING_KEY = 'windlord_cache_all_paragliding';
   private db: IDBDatabase | null = null;
 
   private async initDB(): Promise<IDBDatabase> {
@@ -145,6 +146,19 @@ class DataCache {
     await this.setToStorage(this.WEATHER_KEY, data);
   }
 
+  async getAllParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {
+    const cached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
+    // No TTL check - all paragliding locations are static data
+    if (cached && cached.data) {
+      return cached.data;
+    }
+    return null;
+  }
+
+  async setAllParaglidingLocations(data: ParaglidingMarkerData[]): Promise<void> {
+    await this.setToStorage(this.ALL_PARAGLIDING_KEY, data);
+  }
+
   async clearCache(): Promise<void> {
     if (typeof window === 'undefined') {
       return;
@@ -158,11 +172,12 @@ class DataCache {
       await new Promise<void>((resolve, reject) => {
         const deleteParagliding = store.delete(this.PARAGLIDING_KEY);
         const deleteWeather = store.delete(this.WEATHER_KEY);
+        const deleteAllParagliding = store.delete(this.ALL_PARAGLIDING_KEY);
 
         let completed = 0;
         const onComplete = () => {
           completed++;
-          if (completed === 2) {
+          if (completed === 3) {
             resolve();
           }
         };
@@ -171,6 +186,8 @@ class DataCache {
         deleteParagliding.onerror = () => reject(deleteParagliding.error);
         deleteWeather.onsuccess = onComplete;
         deleteWeather.onerror = () => reject(deleteWeather.error);
+        deleteAllParagliding.onsuccess = onComplete;
+        deleteAllParagliding.onerror = () => reject(deleteAllParagliding.error);
       });
     } catch (error) {
       console.warn('Failed to clear cache:', error);
@@ -185,7 +202,8 @@ class DataCache {
     try {
       const paraglidingCached = await this.getFromStorage(this.PARAGLIDING_KEY);
       const weatherCached = await this.getFromStorage(this.WEATHER_KEY);
-      return paraglidingCached !== null || weatherCached !== null;
+      const allParaglidingCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
+      return paraglidingCached !== null || weatherCached !== null || allParaglidingCached !== null;
     } catch (error) {
       console.warn('Failed to check cache status:', error);
       return false;
