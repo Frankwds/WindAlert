@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { ParaglidingLocation } from './types';
+import { ParaglidingLocation, ParaglidingMarkerData } from './types';
 
 export class AllParaglidingLocationService {
 
@@ -11,7 +11,7 @@ export class AllParaglidingLocationService {
       .from('all_paragliding_locations')
       .select('*')
       .eq('is_active', true)
-      .order('name');
+      .limit(5000);
 
     if (error) {
       console.error('Error fetching active locations:', error);
@@ -19,6 +19,49 @@ export class AllParaglidingLocationService {
     }
 
     return data || [];
+  }
+
+  /**
+  * Get ALL active paragliding locations using pagination.
+  */
+  static async getAllActiveForMarkers(): Promise<ParaglidingMarkerData[]> {
+    const PAGE_SIZE = 1000;
+    let allLocations: ParaglidingMarkerData[] = [];
+    let page = 0;
+    let hasMoreData = true;
+
+    while (hasMoreData) {
+      const from = page * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+
+      const { data, error } = await supabase
+        .from('all_paragliding_locations')
+        .select(`
+        id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw
+      `)
+        .eq('is_active', true)
+        .range(from, to); // 👈 Use range for pagination
+
+      if (error) {
+        console.error(`Error fetching locations on page ${page}:`, error);
+        throw error;
+      }
+
+      if (data && data.length > 0) {
+        // Add the fetched chunk to our main array
+        allLocations = [...allLocations, ...data];
+        page++;
+        // If we received fewer rows than we asked for, it's the last page
+        if (data.length < PAGE_SIZE) {
+          hasMoreData = false;
+        }
+      } else {
+        // No more data to fetch
+        hasMoreData = false;
+      }
+    }
+
+    return allLocations;
   }
 
   /**
