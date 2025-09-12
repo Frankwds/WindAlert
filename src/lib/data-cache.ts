@@ -11,7 +11,7 @@ const DB_VERSION = 1;
 const STORE_NAME = 'cache';
 
 // Hardcoded timestamp for all paragliding locations cache invalidation
-const ALL_PARAGLIDING_MIN_TIMESTAMP = 1757699153448;
+const ALL_PARAGLIDING_MIN_TIMESTAMP = 1757714660000;
 
 class DataCache {
   private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
