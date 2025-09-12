@@ -1,53 +1,19 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import React, { useMemo } from 'react';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { createAllMarkers } from './MarkerSetup';
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass, FullscreenControl } from '@/app/components/GoogleMaps/mapControls';
 import PromisingFilter from './mapControls/PromisingFilter';
 import { Clusterer } from './clusterer';
-import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from './InfoWindows';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
-import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import { createRoot } from 'react-dom/client';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
-import { dataCache } from '@/lib/data-cache';
+import { useGoogleMaps } from './hooks/useGoogleMaps';
 
 interface GoogleMapsProps {
   isFullscreen: boolean;
   toggleFullscreen: () => void;
 }
-
-const MAP_STATE_KEY = 'windlordMapState';
-
-const getInitialState = () => {
-  if (typeof window !== 'undefined') {
-    const savedState = localStorage.getItem(MAP_STATE_KEY);
-    if (savedState) {
-      try {
-        const parsedState = JSON.parse(savedState);
-        // Basic validation
-        if (parsedState.center && typeof parsedState.zoom === 'number') {
-          return parsedState;
-        }
-      } catch (e) {
-        console.error('Could not parse map state from local storage', e);
-        return null;
-      }
-    }
-  }
-  return null;
-};
-
-const MAP_CONFIG = {
-  DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
-  DEFAULT_ZOOM: 5,
-  MAP_ID: 'WindLordMapID'
-} as const;
 
 const CLUSTERER_CONFIG = {
   RADIUS: 60,
@@ -58,162 +24,34 @@ const CLUSTERER_CONFIG = {
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen }) => {
   useInfoWindowStyles();
 
-  const [initialMapState] = useState(getInitialState);
+  const {
+    mapRef,
+    mapInstance,
+    isLoading,
+    error,
+    filteredParaglidingMarkers,
+    filteredWeatherStationMarkers,
+    showParaglidingMarkers,
+    showWeatherStationMarkers,
+    selectedWindDirections,
+    windFilterExpanded,
+    windFilterAndOperator,
+    promisingFilter,
+    isPromisingFilterExpanded,
+    isFilterControlOpen,
+    showSkywaysLayer,
+    setShowParaglidingMarkers,
+    setShowWeatherStationMarkers,
+    setWindFilterExpanded,
+    setPromisingFilter,
+    setIsPromisingFilterExpanded,
+    setIsFilterControlOpen,
+    setShowSkywaysLayer,
+    handleWindDirectionChange,
+    handleWindFilterLogicChange,
+    closeOverlays
+  } = useGoogleMaps({ isFullscreen, toggleFullscreen });
 
-  const mapRef = useRef<HTMLDivElement>(null);
-  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
-  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
-
-  const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(
-    initialMapState?.showParaglidingMarkers ?? true
-  );
-  const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(
-    initialMapState?.showWeatherStationMarkers ?? true
-  );
-  const [selectedWindDirections, setSelectedWindDirections] = useState<string[]>(
-    initialMapState?.selectedWindDirections ?? []
-  );
-  const [windFilterExpanded, setWindFilterExpanded] = useState(false);
-  const [windFilterAndOperator, setWindFilterAndOperator] = useState<boolean>(
-    initialMapState?.windFilterAndOperator ?? true
-  );
-  const [promisingFilter, setPromisingFilter] = useState<{
-    selectedDay: number;
-    selectedTimeRange: [number, number];
-    minPromisingHours: number;
-  } | null>(initialMapState?.promisingFilter ?? null);
-  const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
-  const [isFilterControlOpen, setIsFilterControlOpen] = useState(false);
-  const [showSkywaysLayer, setShowSkywaysLayer] = useState(
-    initialMapState?.showSkywaysLayer ?? false
-  );
-
-  const closeInfoWindow = useCallback(() => {
-    if (infoWindowRef.current) {
-      infoWindowRef.current.close();
-    }
-  }, []);
-
-  const closeOverlays = useCallback(({ keep = "" }: { keep?: string } = {}) => {
-    if (keep !== 'promisingfilter') {
-      setIsPromisingFilterExpanded(false);
-    }
-    if (keep !== 'windfilter') {
-      setWindFilterExpanded(false);
-    }
-    if (keep !== 'filtercontrol') {
-      setIsFilterControlOpen(false);
-    }
-    if (keep !== 'infowindow') {
-      closeInfoWindow();
-    }
-  }, [closeInfoWindow]);
-
-  const createSkywaysLayer = useCallback(() => {
-    return new google.maps.ImageMapType({
-      getTileUrl: (coord, zoom) => {
-        const x = coord.x;
-        const y = coord.y;
-        // Invert y for TMS (Tile Map Service) format
-        const invertedY = Math.pow(2, zoom) - 1 - y;
-        return `https://thermal.kk7.ch/tiles/skyways_all_all/${zoom}/${x}/${invertedY}.png?src=${window.location.hostname}`;
-      },
-      tileSize: new google.maps.Size(256, 256),
-      maxZoom: 18,
-      minZoom: 1,
-      name: 'Skyways',
-      alt: 'Skyways thermal data layer'
-    });
-  }, []);
-
-  const openInfoWindow = useCallback((marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
-    if (infoWindowRef.current && mapInstance) {
-      closeOverlays({ keep: 'infowindow' });
-      infoWindowRef.current.setContent(content);
-      infoWindowRef.current.open(mapInstance, marker);
-    }
-  }, [mapInstance, closeOverlays]);
-
-  /**
-   * Filters paragliding markers based on promising weather conditions
-   * @param markers - Array of Google Maps AdvancedMarkerElement objects
-   * @returns Filtered array containing only markers with promising weather
-   */
-  const filterParaglidingMarkersByPromising = (markers: google.maps.marker.AdvancedMarkerElement[]) => {
-    // If no promising filter is set, return all markers unchanged
-    if (!promisingFilter) return markers;
-
-    return markers.filter(marker => {
-      const locationData = (marker as any).locationData as ParaglidingMarkerData;
-      const forecast = locationData.forecast_cache;
-
-      if (!forecast) return false;
-
-      const { selectedDay, selectedTimeRange, minPromisingHours } = promisingFilter;
-
-      // Calculate the target date based on day offset
-      const dayOffset = selectedDay === 0 ? 0 : selectedDay === 1 ? 1 : 2;
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + dayOffset);
-
-      // Set start and end times based on the filter's time range
-      const startOfDay = new Date(targetDate);
-      startOfDay.setHours(selectedTimeRange[0]);
-
-      const endOfDay = new Date(targetDate);
-      endOfDay.setHours(selectedTimeRange[1]);
-
-      // Get forecast entries within the specified time range, sorted by time
-      const relevantForecasts = forecast
-        .filter(f => {
-          const forecastTime = new Date(f.time);
-          return forecastTime >= startOfDay && forecastTime < endOfDay;
-        })
-        .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
-
-      // Check for consecutive promising hours
-      let maxConsecutivePromising = 0;
-      let currentConsecutive = 0;
-
-      for (const f of relevantForecasts) {
-        if (f.is_promising) {
-          currentConsecutive++;
-          maxConsecutivePromising = Math.max(maxConsecutivePromising, currentConsecutive);
-        } else {
-          currentConsecutive = 0;
-        }
-      }
-
-      return maxConsecutivePromising >= minPromisingHours;
-    });
-  }
-
-  const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
-    if (windDirections.length === 0) return markers;
-
-    return markers.filter(marker => {
-      const locationData = (marker as any).locationData as ParaglidingMarkerData;
-      if (windFilterAndOperator) {
-        return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
-      } else {
-        return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
-      }
-    });
-  };
-
-  const handleWindDirectionChange = useCallback((directions: string[]) => {
-    setSelectedWindDirections(directions);
-  }, []);
-
-  const handleWindFilterLogicChange = useCallback(() => {
-    setWindFilterAndOperator(prev => !prev);
-  }, []);
 
   // Memoized components to prevent unnecessary re-renders
   const memoizedFilterControl = useMemo(() => (
@@ -253,11 +91,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
   ), [isPromisingFilterExpanded, promisingFilter, closeOverlays]);
 
   const memoizedParaglidingClusterer = useMemo(() => {
-    if (!mapInstance || paraglidingMarkers.length === 0) return null;
+    if (!mapInstance || filteredParaglidingMarkers.length === 0) return null;
     return (
       <Clusterer
         map={mapInstance}
-        markers={showParaglidingMarkers ? filterParaglidingMarkersByWindDirection(filterParaglidingMarkersByPromising(paraglidingMarkers), selectedWindDirections) : []}
+        markers={filteredParaglidingMarkers}
         renderer={new ParaglidingClusterRenderer()}
         algorithmOptions={{
           radius: CLUSTERER_CONFIG.RADIUS,
@@ -266,14 +104,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
         }}
       />
     );
-  }, [mapInstance, paraglidingMarkers, showParaglidingMarkers, selectedWindDirections, promisingFilter, windFilterAndOperator]);
+  }, [mapInstance, filteredParaglidingMarkers]);
 
   const memoizedWeatherStationClusterer = useMemo(() => {
-    if (!mapInstance || weatherStationMarkers.length === 0) return null;
+    if (!mapInstance || filteredWeatherStationMarkers.length === 0) return null;
     return (
       <Clusterer
         map={mapInstance}
-        markers={showWeatherStationMarkers ? weatherStationMarkers : []}
+        markers={filteredWeatherStationMarkers}
         renderer={new WeatherStationClusterRenderer()}
         algorithmOptions={{
           radius: CLUSTERER_CONFIG.RADIUS,
@@ -282,172 +120,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
         }}
       />
     );
-  }, [mapInstance, weatherStationMarkers, showWeatherStationMarkers]);
+  }, [mapInstance, filteredWeatherStationMarkers]);
 
-  const loadAllMarkers = useCallback(async () => {
-    try {
-      let paraglidingLocations = await dataCache.getParaglidingLocations();
-      let weatherStations = await dataCache.getWeatherStations();
-
-      if (!paraglidingLocations || !weatherStations) {
-        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
-          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-          WeatherStationService.getNordicCountriesForMarkers()
-        ]);
-
-        paraglidingLocations = fetchedParaglidingLocations || [];
-        weatherStations = fetchedWeatherStations || [];
-
-        await Promise.all([
-          dataCache.setParaglidingLocations(paraglidingLocations),
-          dataCache.setWeatherStations(weatherStations)
-        ]);
-      }
-
-      const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
-        paraglidingLocations,
-        weatherStations,
-        onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => {
-          if ('station_id' in location) {
-            const content = getWeatherStationInfoWindowContent(location);
-            openInfoWindow(marker, content);
-          } else {
-            const infoWindowContent = document.createElement('div');
-            const root = createRoot(infoWindowContent);
-            root.render(getParaglidingInfoWindow(location));
-            openInfoWindow(marker, infoWindowContent);
-          }
-        }
-      });
-
-      setParaglidingMarkers(paraglidingMarkers);
-      setWeatherStationMarkers(weatherStationMarkers);
-    } catch (err) {
-      console.error('Error loading all markers:', err);
-    }
-  }, [openInfoWindow]);
-
-  useEffect(() => {
-    const initMap = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-        if (!apiKey || apiKey === 'GOOGLE_MAPS_API_KEY') {
-          throw new Error('Google Maps API key is not configured. Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your environment variables.');
-        }
-
-        const loader = new Loader({
-          apiKey,
-          version: 'weekly',
-          libraries: ['places', 'marker']
-        });
-
-        const google = await loader.load();
-
-        if (!mapRef.current) return;
-
-        const map = new google.maps.Map(mapRef.current, {
-          center: initialMapState?.center ?? MAP_CONFIG.DEFAULT_CENTER,
-          zoom: initialMapState?.zoom ?? MAP_CONFIG.DEFAULT_ZOOM,
-          mapTypeId: google.maps.MapTypeId.TERRAIN,
-          mapId: MAP_CONFIG.MAP_ID,
-          streetViewControl: false,
-          disableDefaultUI: true,
-          fullscreenControl: false,
-          zoomControl: false,
-          clickableIcons: false,
-          scrollwheel: true
-        });
-
-        infoWindowRef.current = new google.maps.InfoWindow();
-
-        map.addListener('click', () => closeOverlays());
-        map.setOptions({ scaleControl: true });
-
-        setMapInstance(map);
-        setIsLoading(false);
-
-      } catch (err) {
-        console.error('Error initializing Google Maps:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
-        setIsLoading(false);
-      }
-    };
-
-    initMap();
-
-  }, [closeOverlays, initialMapState?.center, initialMapState?.zoom, createSkywaysLayer]);
-
-  useEffect(() => {
-    if (!mapInstance) {
-      return;
-    }
-
-    const saveState = () => {
-      const center = mapInstance.getCenter();
-      const zoom = mapInstance.getZoom();
-
-      const mapState = {
-        center: center ? { lat: center.lat(), lng: center.lng() } : MAP_CONFIG.DEFAULT_CENTER,
-        zoom: zoom || MAP_CONFIG.DEFAULT_ZOOM,
-        showParaglidingMarkers,
-        showWeatherStationMarkers,
-        selectedWindDirections,
-        windFilterAndOperator,
-        promisingFilter,
-        showSkywaysLayer,
-      };
-      localStorage.setItem(MAP_STATE_KEY, JSON.stringify(mapState));
-    };
-
-    // Add listeners for map events
-    const zoomListener = mapInstance.addListener('zoom_changed', saveState);
-    const dragListener = mapInstance.addListener('dragend', saveState);
-
-    // Save state whenever filters change
-    saveState();
-
-    return () => {
-      google.maps.event.removeListener(zoomListener);
-      google.maps.event.removeListener(dragListener);
-    };
-  }, [mapInstance, showParaglidingMarkers, showWeatherStationMarkers, selectedWindDirections, windFilterAndOperator, promisingFilter, showSkywaysLayer]);
-
-  useEffect(() => {
-    if (mapInstance) {
-      loadAllMarkers();
-    }
-  }, [mapInstance, loadAllMarkers]);
-
-  // Control skyways layer visibility
-  useEffect(() => {
-    if (!mapInstance) return;
-
-    // Find the skyways layer in overlay map types
-    let skywaysLayerIndex = -1;
-    for (let i = 0; i < mapInstance.overlayMapTypes.getLength(); i++) {
-      const layer = mapInstance.overlayMapTypes.getAt(i);
-      if (layer && layer.name === 'Skyways') {
-        skywaysLayerIndex = i;
-        break;
-      }
-    }
-
-    if (showSkywaysLayer) {
-      // Add skyways layer if not already present
-      if (skywaysLayerIndex === -1) {
-        const skywaysLayer = createSkywaysLayer();
-        mapInstance.overlayMapTypes.push(skywaysLayer);
-      }
-    } else {
-      // Remove skyways layer if present
-      if (skywaysLayerIndex !== -1) {
-        mapInstance.overlayMapTypes.removeAt(skywaysLayerIndex);
-      }
-    }
-  }, [mapInstance, showSkywaysLayer, createSkywaysLayer]);
 
   if (error) {
     return (
