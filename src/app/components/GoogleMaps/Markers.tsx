@@ -1,34 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-
-// Marker components using PNG images
-export const ParaglidingMarker: React.FC = () => {
-  return (
-    <Image
-      src="/paraglider.png"
-      alt="Paragliding location"
-      width={24}
-      height={24}
-      className="w-6 h-6 cursor-pointer transition-transform duration-200 ease-in-out"
-      draggable={false}
-    />
-  );
-};
-
-export const WeatherStationMarker: React.FC = () => {
-  return (
-    <Image
-      src="/windsockBlue.png"
-      alt="Weather station"
-      width={32}
-      height={32}
-      className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out"
-      draggable={false}
-    />
-  );
-};
 
 const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   const svgNS = "http://www.w3.org/2000/svg";
@@ -79,15 +50,6 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   return svg;
 };
 
-// Utility function to create marker elements with PNG images
-export const createParaglidingMarkerElement = (): HTMLElement => {
-  const img = document.createElement('img');
-  img.src = '/paraglider.png';
-  img.alt = 'Paragliding location';
-  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out';
-  img.draggable = false;
-  return img;
-};
 
 export const createParaglidingMarkerElementWithDirection = (location: ParaglidingMarkerData): HTMLElement => {
   const container = document.createElement('div');
@@ -104,6 +66,7 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
   img.style.left = '4px';
   img.style.zIndex = '1';
   img.draggable = false;
+  img.style.cursor = 'pointer';
 
   const svg = createDirectionCircle(locationToWindDirectionSymbols(location));
   svg.style.position = 'absolute';
@@ -123,5 +86,6 @@ export const createWeatherStationMarkerElement = (): HTMLElement => {
   img.alt = 'Weather station';
   img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out';
   img.draggable = false;
+  img.style.cursor = 'pointer';
   return img;
 };
