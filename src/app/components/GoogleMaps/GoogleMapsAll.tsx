@@ -7,12 +7,7 @@ import { ZoomControls, MyLocation } from '@/app/components/GoogleMaps/mapControl
 import { Clusterer } from './clusterer';
 import { ParaglidingClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
-import { useGoogleMaps } from './hooks/useGoogleMaps';
-
-interface GoogleMapsAllProps {
-  isFullscreen: boolean;
-  toggleFullscreen: () => void;
-}
+import { useGoogleMapsAll } from './hooks/useGoogleMapsAll';
 
 // Simplified clusterer options for all locations
 const CLUSTERER_OPTIONS = {
@@ -21,7 +16,7 @@ const CLUSTERER_OPTIONS = {
   minPoints: 2
 } as const;
 
-const GoogleMapsAll: React.FC<GoogleMapsAllProps> = ({ isFullscreen, toggleFullscreen }) => {
+const GoogleMapsAll: React.FC = () => {
   useInfoWindowStyles();
 
   const {
@@ -29,9 +24,9 @@ const GoogleMapsAll: React.FC<GoogleMapsAllProps> = ({ isFullscreen, toggleFulls
     mapInstance,
     isLoading,
     error,
-    paraglidingMarkers, // Use all paragliding markers, not filtered ones
+    paraglidingMarkers, // All paragliding locations from all_paragliding_locations table
     closeOverlays
-  } = useGoogleMaps({ isFullscreen, toggleFullscreen });
+  } = useGoogleMapsAll();
 
   // Create stable renderer instance
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
@@ -60,7 +55,7 @@ const GoogleMapsAll: React.FC<GoogleMapsAllProps> = ({ isFullscreen, toggleFulls
   }
 
   return (
-    <div className={`w-full h-full ${isFullscreen ? 'fixed top-0 left-0 right-0 bottom-0 z-[1000]' : ''}`}>
+    <div className="w-full h-full">
       <div className="relative w-full h-full">
         {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
 
