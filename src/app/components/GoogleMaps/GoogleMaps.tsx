@@ -131,7 +131,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
   return (
     <div className={`w-full h-full ${isFullscreen ? 'fixed top-0 left-0 right-0 bottom-0 z-[1000]' : ''}`}>
       <div className="relative w-full h-full">
-        {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
+        {isLoading && <LoadingSpinner size="lg" text="Laster kart..." overlay />}
 
         <div
           ref={mapRef}

@@ -9,7 +9,6 @@ import { ParaglidingClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMapsAll } from './hooks/useGoogleMapsAll';
 
-// Simplified clusterer options for all locations
 const CLUSTERER_OPTIONS = {
   radius: 60,
   maxZoom: 15,
@@ -24,7 +23,7 @@ const GoogleMapsAll: React.FC = () => {
     mapInstance,
     isLoading,
     error,
-    paraglidingMarkers, // All paragliding locations from all_paragliding_locations table
+    paraglidingMarkers,
     closeOverlays
   } = useGoogleMapsAll();
 
@@ -57,7 +56,7 @@ const GoogleMapsAll: React.FC = () => {
   return (
     <div className="w-full h-full">
       <div className="relative w-full h-full">
-        {isLoading && <LoadingSpinner size="lg" text="Loading map..." overlay />}
+        {isLoading && <LoadingSpinner size="lg" text="Laster kart..." overlay />}
 
         <div
           ref={mapRef}
