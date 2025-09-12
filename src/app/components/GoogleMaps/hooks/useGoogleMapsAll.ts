@@ -5,7 +5,7 @@ import { useAllMarkers } from './markers/useAllMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
 import { useMapControls, useOverlayManagement } from './controls';
-import { LocationCardAll } from '../../LocationCards';
+import { LocationCardAll } from '../InfoWindowLocationCards';
 import { ParaglidingMarkerData } from '@/lib/supabase/types';
 
 export const useGoogleMapsAll = () => {

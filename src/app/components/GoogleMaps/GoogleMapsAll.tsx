@@ -85,6 +85,7 @@ const GoogleMapsAll: React.FC = () => {
               windFilterAndOperator={windFilterAndOperator}
               onFilterLogicChange={handleWindFilterLogicChange}
               closeOverlays={closeOverlays}
+              isAllStarts={true}
             />
 
             {/* Map Controls */}
