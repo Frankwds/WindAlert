@@ -10,6 +10,9 @@ const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
 const STORE_NAME = 'cache';
 
+// Hardcoded timestamp for all paragliding locations cache invalidation
+const ALL_PARAGLIDING_MIN_TIMESTAMP = 1757699153448;
+
 class DataCache {
   private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
   private readonly WEATHER_KEY = 'windlord_cache_weatherstation';
@@ -148,10 +151,13 @@ class DataCache {
 
   async getAllParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {
     const cached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
-    // No TTL check - all paragliding locations are static data
-    if (cached && cached.data) {
+
+    // Check if cache exists and is newer than the hardcoded minimum timestamp
+    if (cached && cached.data && cached.timestamp && cached.timestamp >= ALL_PARAGLIDING_MIN_TIMESTAMP) {
       return cached.data;
     }
+
+    // Cache is either missing, invalid, or older than the minimum timestamp
     return null;
   }
 
