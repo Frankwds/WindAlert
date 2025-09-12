@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Atacco ved Tapala</name>
+			  <description>Starten ligger på privat eiendom og kan bare flys på ukedager når eieren ikke er hjemme og stedet bestyres av gartneren.Han kan bestikkes for ca 100 pesos per person. Må ha bil med god bakkeklaring. Røff kjøring. Siste 200 meterene må man gå opp. Sti bakenfor steinvegg. Ryddig, liten og fin start. Masse alternative jorder å lande på. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=138start_id=6840">https://flightlog.org/fl.html?l=1a=22country_id=138start_id=6840</a></description>
+			  <LookAt>
+				<longitude>-103.72916667</longitude>
+				<latitude>19.94138889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-103.72916667,19.94138889,2310</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Yelapa, Puerto Vallarta</name>
+			  <description>http://www.adventureparagliding.com/events/yelapa.htm<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=138start_id=841">https://flightlog.org/fl.html?l=1a=22country_id=138start_id=841</a></description>
+			  <LookAt>
+				<longitude>-105.45194444</longitude>
+				<latitude>20.48694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-105.45194444,20.48694444,150</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

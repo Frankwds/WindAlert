@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Kobarid - Stol</name>
+			  <description>Main takeoff from Stol Mountain near Kobarid in Slovenia. Good starting-point for xc flights in the region. Typical achievement for intermediate pilots is to fly along the ridge eastwards to the landing in Kobarid. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=190start_id=3063">https://flightlog.org/fl.html?l=1a=22country_id=190start_id=3063</a></description>
+			  <LookAt>
+				<longitude>13.47333333</longitude>
+				<latitude>46.27250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.47333333,46.27250000,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kobarid, Dreznica</name>
+			  <description>Starten ovanför byn Dreznica, innan WWI området.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=190start_id=1119">https://flightlog.org/fl.html?l=1a=22country_id=190start_id=1119</a></description>
+			  <LookAt>
+				<longitude>13.62861111</longitude>
+				<latitude>46.28166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.62861111,46.28166667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kobarid, Stol(Feil, bruk andre Stol)</name>
+			  <description>Ikkje korrekt namn på start. Er ikkje Kobarid, Stol. Koordinater stemmer ikkje.
+<br/>Dålig väg till starten.
+<br/>Lämpligt åk med parataxi. Går från "Camp Koren" i Kobarid klockan 10.
+<br/>
+<br/>Lätt start. Landning i Kobarid eller i Podbela. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=190start_id=868">https://flightlog.org/fl.html?l=1a=22country_id=190start_id=868</a></description>
+			  <LookAt>
+				<longitude>13.66444444</longitude>
+				<latitude>46.21055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.66444444,46.21055556,1678</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tolmin-Kobala</name>
+			  <description>Start ovenfor Tolmin<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=190start_id=806">https://flightlog.org/fl.html?l=1a=22country_id=190start_id=806</a></description>
+			  <LookAt>
+				<longitude>13.77944444</longitude>
+				<latitude>46.18111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.77944444,46.18111111,1080</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

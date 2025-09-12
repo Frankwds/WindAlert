@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Kobarid - Stol</name>
+			  <description>Main takeoff from Stol Mountain near Kobarid in Slovenia. Good starting-point for xc flights in the region. Typical achievement for intermediate pilots is to fly along the ridge eastwards to the landing in Kobarid. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=3063&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=3063&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.47333333</longitude>
+				<latitude>46.27250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.47333333,46.27250000,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kobarid, Dreznica</name>
+			  <description>Starten ovanfÃ¶r byn Dreznica, innan WWI omrÃ¥det.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=1119&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=1119&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.62861111</longitude>
+				<latitude>46.28166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.62861111,46.28166667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kobarid, Stol(Feil, bruk andre Stol)</name>
+			  <description>Ikkje korrekt namn pÃ¥ start. Er ikkje Kobarid, Stol. Koordinater stemmer ikkje.&lt;br/&gt;DÃ¥lig vÃ¤g till starten.&lt;br/&gt;LÃ¤mpligt Ã¥k med parataxi. GÃ¥r frÃ¥n &quot;Camp Koren&quot; i Kobarid klockan 10.&lt;br/&gt;&lt;br/&gt;LÃ¤tt start. Landning i Kobarid eller i Podbela. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=868&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=868&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.66444444</longitude>
+				<latitude>46.21055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.66444444,46.21055556,1678</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tolmin-Kobala</name>
+			  <description>Start ovenfor Tolmin&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=806&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=190&amp;amp;start_id=806&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.77944444</longitude>
+				<latitude>46.18111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.77944444,46.18111111,1080</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

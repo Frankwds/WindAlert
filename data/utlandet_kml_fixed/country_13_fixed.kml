@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Canberra, Lake George, Geary's Gap</name>
+			  <description>Mostly soaring, get's thermic around 11. XC possible further north. Airspace begins at 1067m MSL.
+<br/>
+<br/>Former launch site north of the road is no longer used.  There is no permission to launch from this site.  Please launch to the south of the road, near the Weereewa lookout.
+<br/>
+<br/>Contact local club for info about flying at this site.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2215">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2215</a></description>
+			  <LookAt>
+				<longitude>149.37500000</longitude>
+				<latitude>-35.10333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>149.37500000,-35.10333333,760</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Canberra, Lanyon</name>
+			  <description>Kör upp förbi vattentornet, direkt in på grusväg till vänster. Grinden har samma lås som till Spring Hill.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3617">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3617</a></description>
+			  <LookAt>
+				<longitude>149.10750000</longitude>
+				<latitude>-35.48361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>149.10750000,-35.48361111,886</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Canberra, Spring Range</name>
+			  <description>Soaring site during a steady NW or W. Gets very thermic during mid day. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2220">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2220</a></description>
+			  <LookAt>
+				<longitude>149.08361111</longitude>
+				<latitude>-35.09416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>149.08361111,-35.09416667,886</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cabramurra, Black Jack</name>
+			  <description>A high site, with very good xc potential. Large landings, watch out for cattle.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2349">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2349</a></description>
+			  <LookAt>
+				<longitude>148.31666667</longitude>
+				<latitude>-35.96888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>148.31666667,-35.96888889,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Canberra, Lake George, Collector</name>
+			  <description>Coming from Canberra, take first turnoff towards Collector. Then immediately the first right towards Gunning. Follow this road up onto the ridge and along the ridge. [more to come]<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3572">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3572</a></description>
+			  <LookAt>
+				<longitude>149.37777778</longitude>
+				<latitude>-34.96333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>149.37777778,-34.96333333,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Canberra, Pig Hill</name>
+			  <description>new start - more info coming shortly /Niklas<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2599">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2599</a></description>
+			  <LookAt>
+				<longitude>148.89666667</longitude>
+				<latitude>-35.22333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>148.89666667,-35.22333333,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cooks Terrace, Northern Sydney</name>
+			  <description>Info from the Sydney club:
+<br/>
+<br/>LOCATION:
+<br/>Near the intersection of Narrabeen Park Parade and Cook Terrace, fifty minutes drive from the city centre.Traveling north on Pittwater Rd, turn right at the hospital into Coronation St, then follow the road out to the beach and turn right again up the hill. Parking in the car park along Narrabeen Park Parade.
+<br/>
+<br/>
+<br/>TAKEOFF:
+<br/>When launching, do not step on the low wooden
+<br/>fence and unÂ­load your canopy right on the
+<br/>edge. When conditions are light and North of
+<br/>East, in order to stay up, pilots adopt a pattern whereby the upwind leg of a "circuit" is flown close to the ridge and the downwind pass is executed out to sea. Be aware of this possibility and donât force your right of way.
+<br/>
+<br/>LANDING:
+<br/>The beaches to either the north or south of the
+<br/>headland. The park at the northern end in front
+<br/>of the hospital helipad is an excellent landing
+<br/>area when the wind is E, ENE or NE. Due to
+<br/>the slope exercise caution when the wind is
+<br/>ESE and do not land in the park when the wind
+<br/>is SE. Top landing is very easy, simply approach from the appropriate direction for the wind and make your landing in the front half of the launch area.Take care to look out for spectators as this is a very popular park. Once youâve landed, please drop your wing to make it easy for others to also launch or land.
+<br/>
+<br/>HAZARDS:
+<br/>There are often many spectators that must be avoided. There is rotor behind the bush on top of the cliff near the northern end. When conditions are crowded and there are hang gliders in the mix, things can be very busy. Please maintain 25m separation from other pilots, spectators and houses.Keep an eye on the wind direction. When the wind is to the South donât fly the North East facing part of the ridge. However it is possible to fly into the bowl behind Warriewood beach, (though best not to go into the lee of Warriewood headland). If the wind moves more to the North the reverse becomes true. Radio Control aircraft often operate on the northern end of the ridge. There are power lines running from the toilet block on Warriewood beach. Itâs an unleashed dog park. When the wind turns NE flying should be restricted to the north half of the ridge for most pilots. A common incident is a pilot getting too south, too low and not being able to penetrate the venturi in front of the ridge
+<br/>for a safe northern landing. Rocks and water below the ridge make an unsafe landing. If too low and too south donât turn back to the north, instead continue downwind to Warriewood beach.
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6730">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6730</a></description>
+			  <LookAt>
+				<longitude>151.31036111</longitude>
+				<latitude>-33.69313889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>151.31036111,-33.69313889,40</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Forbes, NSW</name>
+			  <description>Aero Towing<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3193">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3193</a></description>
+			  <LookAt>
+				<longitude>147.93222222</longitude>
+				<latitude>-33.36111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.93222222,-33.36111111,237</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>GULGONG</name>
+			  <description>The Gulgong comp. Aerotowing only<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3573">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3573</a></description>
+			  <LookAt>
+				<longitude>149.53194444</longitude>
+				<latitude>-32.36222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>149.53194444,-32.36222222,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lake Keepit (Close to Manilla)</name>
+			  <description>Seilflystripe, kurs og utleie, helårsdrift. Kanonbra plass å fly.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=4457">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=4457</a></description>
+			  <LookAt>
+				<longitude>150.52500000</longitude>
+				<latitude>-30.89083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>150.52500000,-30.89083333,330</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Long Reef north-east launch, Northern Sydney</name>
+			  <description>From the Sydney club:
+<br/>
+<br/>DESCRIPTION:
+<br/>A relatively straight ridge facing NE with a moderate slope. The ridge runs from the rock platform at the eastern end, up to the crown of the headland and then turns slightly more north and continues in a North Westerly direction for approximately half a kilometre. It then turns sharply to the west becoming more cliff like. It is covered in a mixture of tussock grass and low bush, with some small trees.
+<br/>
+<br/>TAKEOFF:
+<br/>A grassy area near the crown of the headland that is approximately level. There is space for a couple of gliders. This launch gets quite a lot of compression in stronger conditions.
+<br/>
+<br/>LANDING:
+<br/>The sand spit on the point when the tide is not high. Anywhere on Fishermans Beach (the long
+<br/>crescent beach to the NW) which is easily reached when winds are moderate and the easiest
+<br/>place to land when winds are strong. No landing on the grass in front of the golf club-house. You only need to be above the ridge at the north western end to make the glide to the beach. Watch the pine trees though, their lower branches reach out over the sand. The boat launch is a raised concrete ramp and quite hard! If you should get low then it is possible to bomb out on the various bits of sand in front of the takeoff. However at high tide the area of sand is rather narrow. The top landing zone is small, surrounded by trees and frequented by walkers and tourists. Only
+<br/>land on top if experienced and well briefed. Beware that due to compression it is easy to be
+<br/>blown behind the trees or ridge
+<br/>
+<br/>HAZZARDS:
+<br/>NE winds can rapidly increase during the day giving more lift, however, beware of the
+<br/>increased compression and wind velocity on top of the ridge. Stay well in front of the ridge
+<br/>and land early. Strong compression results in lack of penetration on top of the ridge and an
+<br/>inability to fly forward towards a safe landing. Do not top-land when strong, better on the spit or Fishermans Beach. Be prepared to share the air with radio-controlled aircraft and sometimes hang gliders.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6731">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6731</a></description>
+			  <LookAt>
+				<longitude>151.31694444</longitude>
+				<latitude>-33.74194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>151.31694444,-33.74194444,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Newport</name>
+			  <description>Lavt hang der de spiller inn Home and away.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8364">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8364</a></description>
+			  <LookAt>
+				<longitude>151.32622222</longitude>
+				<latitude>33.64955556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>151.32622222,33.64955556,12</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Pete's Place</name>
+			  <description>Pete's place. Pete is a trike pilot who likes to have a little action around his airfeild. Airborne Hang gliders and trike have their annual fly-in at this location<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3577">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3577</a></description>
+			  <LookAt>
+				<longitude>150.58333333</longitude>
+				<latitude>-32.39472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>150.58333333,-32.39472222,650</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Rylstone</name>
+			  <description>Bill Moyes sitt Airfield 4 timer NV for Sydney<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2679">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2679</a></description>
+			  <LookAt>
+				<longitude>150.01000000</longitude>
+				<latitude>-32.76583333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>150.01000000,-32.76583333,600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>SportaviaTocumwal</name>
+			  <description>Flyplass fra ww2, brukes til seilfly og mindre motorfly. Tove er daglig leder på seilflysenteret.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2156">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2156</a></description>
+			  <LookAt>
+				<longitude>145.59444444</longitude>
+				<latitude>-35.80805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>145.59444444,-35.80805556,130</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Stanwell Park - Sydney</name>
+			  <description>Knallfint hang ca. 1 times kjøring sørover fra Sydney. Husk å betale medlemsavgift til den lokale pg klubben før du flyr.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2678">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2678</a></description>
+			  <LookAt>
+				<longitude>150.99722222</longitude>
+				<latitude>-34.22388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>150.99722222,-34.22388889,188</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>THE BONEYARD</name>
+			  <description>THE BONEYARD is a small dune sit. 6ft high and either end of the beach 300ft apart are 15ft sanddunes. this site is about 10mins from the MOYES FACTORY<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3580">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3580</a></description>
+			  <LookAt>
+				<longitude>151.22611111</longitude>
+				<latitude>-33.97611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>151.22611111,-33.97611111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Beachmont, Canungra</name>
+			  <description>Canungra  CTA over 6500ft<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3926">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3926</a></description>
+			  <LookAt>
+				<longitude>153.20100000</longitude>
+				<latitude>-28.11922222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>153.20100000,-28.11922222,530</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Dalby (QLD)</name>
+			  <description>Flyplass- Aerotowing<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=4458">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=4458</a></description>
+			  <LookAt>
+				<longitude>151.26111111</longitude>
+				<latitude>-27.16111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>151.26111111,-27.16111111,282</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ma Ma Creek</name>
+			  <description>10 minutes from Gatton lies Ma Ma Creek. Itâs a nice little hill, with a dirt track going up. 4wd only. The site is operated by the club Wicked Wings.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=10204">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=10204</a></description>
+			  <LookAt>
+				<longitude>152.00001472</longitude>
+				<latitude>27.00001306</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>152.00001472,27.00001306,372</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Rex Lookout</name>
+			  <description>Along Captain Cook Hwy between Cairns and Port Douglas. Rex Lookout is a famous stopping point just above Wangetti Beach some 30 minutes south of Port Douglas.
+<br/>
+<br/>Used very frequently by local hangglider operators and free flyers, PG and HG.
+<br/>Launch is very easy, can be quite crowded with spectators.
+<br/>
+<br/>Flying is basic coastal soaring and the better day the thermals will kick in.
+<br/>
+<br/>The site works during Australian winter when the SE is consistant.
+<br/>
+<br/>Contact the HGFA and Cairns Hanggliding club before flying. The local club fee can be sorted out on site. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6176">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=6176</a></description>
+			  <LookAt>
+				<longitude>145.56555556</longitude>
+				<latitude>-16.64638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>145.56555556,-16.64638889,80</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>The Bluff</name>
+			  <description>This is the main lookout of Victor Harbor with a view over Shark Alley. Further south are the Black Cliffs.
+<br/>
+<br/>Launch/landing is by the top or bottom carpark. On stronger conditions the lower part work quite well.
+<br/>
+<br/>Contact SAHPGA for a briefng before flying.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5124">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5124</a></description>
+			  <LookAt>
+				<longitude>138.59750000</longitude>
+				<latitude>-35.59305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>138.59750000,-35.59305556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tunkalilla</name>
+			  <description>Head out of Victor harbour along Range road towards cape Jarvis. Turn off at Tunkalilla road towards coast. Last part is 4wd so park 2wd at top of last steep. Care for cattle and gates.
+<br/>
+<br/>Launch is big and easy heading south. Landing at the bottom. There is a trail leading back to parking. If a local is present there may b a lift back up.
+<br/>
+<br/>Contact SAHPGA, http://sites.google.com/site/sahpgahome/ before flying<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5120">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5120</a></description>
+			  <LookAt>
+				<longitude>138.31638889</longitude>
+				<latitude>-35.63416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>138.31638889,-35.63416667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Eaglehawk Neck</name>
+			  <description>Small launch from forestry a lookout<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8694">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8694</a></description>
+			  <LookAt>
+				<longitude>147.91861111</longitude>
+				<latitude>-43.03138889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.91861111,-43.03138889,380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mary Ann Bay</name>
+			  <description>Low coastal site, cliff start, beach landing<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8695">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=8695</a></description>
+			  <LookAt>
+				<longitude>147.40000000</longitude>
+				<latitude>-42.97444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.40000000,-42.97444444,10</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bells Beach, Southside</name>
+			  <description>Drive through Torqey, start of the Great Ocean Road south of Melbourne, turn off towards Bells Beach and park at the last carpark. Walk out to TO.
+<br/>
+<br/>Local site description
+<br/>http://www.vhpa.org.au/Sites/Bells%20Beach.html
+<br/>
+<br/>Contact the Dynasoarers before flying.
+<br/>http://dynasoarers.vhpa.org.au/
+<br/>
+<br/>Australian site guide
+<br/>http://www.vhpa.org.au/siteguidemap.html<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5098">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=5098</a></description>
+			  <LookAt>
+				<longitude>144.27811111</longitude>
+				<latitude>-38.37211111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>144.27811111,-38.37211111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Birchip Towing Paddock</name>
+			  <description>Large paddock for car-towing ca 30 km north of Birchip town. Flatland flying.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3208">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3208</a></description>
+			  <LookAt>
+				<longitude>143.01027778</longitude>
+				<latitude>-35.81777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>143.01027778,-35.81777778,80</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Corryong, Mt Elliot</name>
+			  <description>Near Corryong, 320km NE of Melbourne. Takeoff is visible from the town. Take the road out to Kancoban and drive to the far side of the mountain. Enter the gate at Fishers Track and follow it up to the tower. Vicroads Map 37 H4.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2250">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2250</a></description>
+			  <LookAt>
+				<longitude>147.97555556</longitude>
+				<latitude>-36.18583333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.97555556,-36.18583333,933</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Dynamic Flight Park</name>
+			  <description>Fligh park / hanggliding school run by Rohan Holtkamp. Large paddock. Can car-tow in every direction. Mostly flatland-flying, but some hills/mountains nearby. Potential for long flights.
+<br/>
+<br/>Directions: On the western highway (A8), 35 km west of Ballarat.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3207">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3207</a></description>
+			  <LookAt>
+				<longitude>143.45750000</longitude>
+				<latitude>-37.43805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>143.45750000,-37.43805556,370</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gundowring (SavHill)</name>
+			  <description>The hill is privately owned by Bob Saville, who in 2009 opened it as a free flying site for all. Bob welcomes anyone to fly from the hill as long as the flier is a member of the HGFA, this insures both yourself and him. The hill is not associated with any club therefore no other membership is required. Bob only asks that you follow the normal rules of courtesy as listed below. 
+<br/>>> all info to be found here: 
+<br/>vhpa.org.au/Sites/Gundowring%20%28Savhill%29.html <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=7287">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=7287</a></description>
+			  <LookAt>
+				<longitude>147.09388889</longitude>
+				<latitude>-36.37861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.09388889,-36.37861111,614</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mount Buffalo</name>
+			  <description>Rampe (stup) dårlig med riggeplass, men utrolig nok går det ann å rigge rundt 70 hangglidere. Toalett fasiliteter + hotell red ved.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2182">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2182</a></description>
+			  <LookAt>
+				<longitude>146.81861111</longitude>
+				<latitude>-36.72222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>146.81861111,-36.72222222,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>mount Emu</name>
+			  <description>Mount Emu, ligger ved Mount Beauty, Østsiden av Kiewa Valley. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2654">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2654</a></description>
+			  <LookAt>
+				<longitude>147.21916667</longitude>
+				<latitude>-36.67194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>147.21916667,-36.67194444,1340</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Spion Kop</name>
+			  <description>Mye brukt kysthang. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3223">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=3223</a></description>
+			  <LookAt>
+				<longitude>144.06944444</longitude>
+				<latitude>-38.46777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>144.06944444,-38.46777778,55</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cottesloe, Perth</name>
+			  <description>Just north of leighton beach. A bit more tilted to the NW as well. Better room for packing and landing on the topp. 
+<br/>Have not tryed it yet. But looks nice;)
+<br/>More info on the way!<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2360">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2360</a></description>
+			  <LookAt>
+				<longitude>115.75250000</longitude>
+				<latitude>-32.01333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>115.75250000,-32.01333333,10</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Greenhills - Penny's Tow Paddock, near York</name>
+			  <description>Tow Paddock near Greenhills, About 20km down the Quaraiding Road from York. 150km East of Perth Western Australia. Used mostly by Cloudbase Paraglding Club.
+<br/>Paddock is privately owned and is not always available. You must check with Cloudbase Paragliding Club before entering the property.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1697">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1697</a></description>
+			  <LookAt>
+				<longitude>116.99666667</longitude>
+				<latitude>-31.96555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>116.99666667,-31.96555556,300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kokerbin</name>
+			  <description>A Big Rock in the Outback. Good XC-potential. Roumers> the rock likes to eat lines.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2921">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2921</a></description>
+			  <LookAt>
+				<longitude>117.70583333</longitude>
+				<latitude>-31.88777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>117.70583333,-31.88777778,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mosman Park, Perth</name>
+			  <description>This place has a very nice view. The launch is from a park. Nice green grass but pretty small. The only landing is on the top. The river is the next option;) If you are not 100% on your top-landing skills you should not fly this spot. The rating is Advanced. To fly this spot you need an introduction. Contact us on the Cloudbase web page: http://cloudbase.asn.au/e107/news.php
+<br/>
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2227">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2227</a></description>
+			  <LookAt>
+				<longitude>115.77250000</longitude>
+				<latitude>-32.01083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>115.77250000,-32.01083333,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mount Bakewell (York, WA)</name>
+			  <description>Small "Mountain" Overlooking York, Western Australia.
+<br/>Best accessible XC site in WA.
+<br/>Access and take off are on private property, please don't visit without contacting a local club. http://www.hgfa.asn.au/~hgawa<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1689">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1689</a></description>
+			  <LookAt>
+				<longitude>116.76138889</longitude>
+				<latitude>-31.85194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>116.76138889,-31.85194444,500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt Trio, Stirling Range</name>
+			  <description>Undeveloped takeoff in Stirling Range, not officially approved for paragliding.  Takeoff is covered in prickly bushes and rocks and quite difficult.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1879">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1879</a></description>
+			  <LookAt>
+				<longitude>118.10527778</longitude>
+				<latitude>-34.34750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>118.10527778,-34.34750000,755</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Serpentine</name>
+			  <description>Site on the Darling Range, 30 min south of Perth
+<br/>
+<br/>Takeoff is on private property, do not enter property without the owners permission.  Contact cloudbase paragliding club for more details.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2091">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2091</a></description>
+			  <LookAt>
+				<longitude>115.99615833</longitude>
+				<latitude>-32.41668889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>115.99615833,-32.41668889,300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Two Rocks, North of Perth</name>
+			  <description>Very nice spot on the beach! 
+<br/>I do not have much info about this place because I have just been there once.....<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2195">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2195</a></description>
+			  <LookAt>
+				<longitude>115.58861111</longitude>
+				<latitude>-31.49500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>115.58861111,-31.49500000,10</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Wozza's Knob - Geraldton</name>
+			  <description>Small inland ridge near Geraldton WA.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2544">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=2544</a></description>
+			  <LookAt>
+				<longitude>114.69374167</longitude>
+				<latitude>-28.69404444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>114.69374167,-28.69404444,200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Wyalkatchem, WA</name>
+			  <description>Towing site 200km ENE of Perth, home base of Western Soarers Hanggliding Club.
+<br/>
+<br/>Start point for the WA open distance records for Hanggliding (313km) and Paragliding (235km)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1716">https://flightlog.org/fl.html?l=1a=22country_id=13start_id=1716</a></description>
+			  <LookAt>
+				<longitude>117.50027778</longitude>
+				<latitude>-31.17388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>117.50027778,-31.17388889,300</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

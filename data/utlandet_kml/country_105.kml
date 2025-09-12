@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Andrate</name>
+			  <description>Bra start lÃ¤ngs vÃ¤gen i nÃ¤rheten av en rÃ¶d vit mast syns frÃ¥n Ivrea. Parkering finns lÃ¤ngs vÃ¤gen innan man kommer till starten.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=3696&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=3696&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.87027778</longitude>
+				<latitude>45.52500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.87027778,45.52500000,670</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, field facing west towards Villa Solagna a few km past Costalunga</name>
+			  <description>This is a takeoff Oslo Paraglider Club used during easter 2002 when the wind was SW creating turbulence at Costalunga.&lt;br/&gt;It is located on the top of the ridge facing towards Villa Solagna.&lt;br/&gt;Drive maybe 5-7km onwards from Costalunga and there is a small house on the right. Above this there is a big steep grassy field facing west into the valley.&lt;br/&gt;Not an official takeoff as far as I know (Stein-Tore Erdal).&lt;br/&gt;No good landings below. Pilots should fly around Costalunga and land at Tilly's.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=575&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=575&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.73722222</longitude>
+				<latitude>45.82888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.73722222,45.82888889,1050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Big Sur Flight Park (Garda Lake)</name>
+			  <description>&lt;br/&gt;&lt;br/&gt;Suitable for all levels, hang gliders and paragliders.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;BigSur SkyPark is part of the Parco Alto Garda (north Garda park), which covers over 38,000 hectares and includes the largest publicly-owned forest in Lombardy. As a result, the area is one of the most valuable nature resources in Italy. The landscape is remarkable in its variety, changing from the shoreline areas of Lake Garda with its cypresses, olive and citrus groves, to the mountain peaks a little further back, with fauna that includes Alpine ibex and chamois deer. In the air, you may even find yourself flying in company of a golden eagle. &lt;br/&gt;&lt;br/&gt;Launch and landing sites&lt;br/&gt;&lt;br/&gt;The launch sites are on the southern slopes of Mount Pizzocolo, at a location named Pirello.&lt;br/&gt;&lt;br/&gt;Pirello south launch site:&lt;br/&gt;1,160 m&lt;br/&gt;Google-Earth coordinates 45Â°39? 56? N  10Â° 33? 40? E&lt;br/&gt;suitable for all levels, hang gliders and paragliders&lt;br/&gt;&lt;br/&gt;Pirello west launch site:&lt;br/&gt;height 1,210 m&lt;br/&gt;Google Earth coordinates 45Â°40â03âN 10Â°40â49âE&lt;br/&gt;suitable for all levels, hang gliders and paragliders&lt;br/&gt;&lt;br/&gt;Colomber landing field:&lt;br/&gt;height 400 m&lt;br/&gt;Google Earth coordinates 45Â°38? 30? N  10Â° 33â 02? E&lt;br/&gt;efficiency required: 3.5&lt;br/&gt;circuit: left-hand C.&lt;br/&gt;easy for paragliders; for hang glider pilots with some experience (minimum 30 flights)&lt;br/&gt;&lt;br/&gt;Montesei landing field:&lt;br/&gt;height 370 m&lt;br/&gt;Google Earth coordinates 45Â°37â58âN 10Â°35â55âE&lt;br/&gt;efficiency required: 4.8&lt;br/&gt;circuit: left-hand C&lt;br/&gt;suitable for pilots of all levels, the landing field is very large&lt;br/&gt;&lt;br/&gt;Toscolano beach landing:&lt;br/&gt;height 63 m&lt;br/&gt;Google Earth coordinates 45Â° 38? 23? N  10Â° 37â 13? E&lt;br/&gt;efficiency required: 5&lt;br/&gt;circuit: left-hand C with south wind, right-hand C with north wind&lt;br/&gt;requires a good level of experience (minimum 100 flights)&lt;br/&gt;&lt;br/&gt;WINDS&lt;br/&gt;&lt;br/&gt;Launch is possible with wind from south, east and west.&lt;br/&gt;Launch is not possible with strong winds from the north.&lt;br/&gt;&lt;br/&gt;N.B. the fact that the launch site faces south-east means that thermal soaring is possible from relatively early in the morning.&lt;br/&gt;&lt;br/&gt;Flying difficulty:&lt;br/&gt;This flying site is ideal for all levels, both hang gliders and paragliders.&lt;br/&gt;Cross-country flights are possible:&lt;br/&gt;&lt;br/&gt;Southwards: easy&lt;br/&gt;Westwards: moderately difficult&lt;br/&gt;Northwards and eastwards: difficult&lt;br/&gt;&lt;br/&gt;N.B. from BigSur SkyPark, flights of over 150 km have been made in all directions.&lt;br/&gt;Here, the most representative tops of the mountains of the area, photographed from the summit of Mount Pizzocolo.&lt;br/&gt;&lt;br/&gt;Our efficient shuttle service with two nine-seat Land Rover Defenders means that all you have to think about is your flight!&lt;br/&gt;&lt;br/&gt;KanonstÃ¤lle som drivs av hjÃ¤lmdesignern och hÃ¤ngflygpiloten, Ignazio Bernardi. &lt;br/&gt;&lt;br/&gt;Bo gÃ¶r du lÃ¤tt pÃ¥ Hotel Columber som Ã¤r precis vid landningen. Sedan hyr du plats i jeepen upp till starten fÃ¶r 15 euro. Riktigt fin start - super nice flygstÃ¤lle. KÃ¤nns vÃ¤ldigt vÃ¤dersÃ¤kert. &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=5066&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=5066&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.56111111</longitude>
+				<latitude>45.66555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.56111111,45.66555556,1160</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chiesetta Stivo</name>
+			  <description>Take off pÃ¥ gresset neddefra Kyrken.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7677&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7677&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.92923000</longitude>
+				<latitude>45.91785000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.92923000,45.91785000,745</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Cornizzolo (Suello - Como)</name>
+			  <description>Takeoff used for PWC. Landing in Suello.&lt;br/&gt;No private driving to takeoff. There are normally mini-busses leaving from landing in Suello.&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;Risparmio Basso (SE-SW) 1045m, easy, the main takeoff on the central S slope below the road and 100m below the summit.&lt;br/&gt;GPS: 45Â°49â58.40âN, 9Â°18â7.67âE. &lt;br/&gt;The only direct access is by shuttle bus.&lt;br/&gt;&lt;br/&gt;2. Centrale (SE-W) 1130m, easy. The big grassy western shoulder&lt;br/&gt;has a wide choice of launches, usually occupied by competitions.&lt;br/&gt;GPS: 45Â°50â0.93âN, 9Â°17â34.70âE. From the service road walk up (20 min)&lt;br/&gt;3. Risparmio Alto (SE-SW) 1210m, easy. Not often used, but some&lt;br/&gt;people like it. 25 min hike to the summit from the lower takeoff.&lt;br/&gt;GPS: 45Â°50â13.65âN, 9Â°18â7.82âE&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=925&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=925&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.30222222</longitude>
+				<latitude>45.83277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.30222222,45.83277778,1050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Mezzo, Lago di Como</name>
+			  <description>Fint stÃ¤lle att flyga pÃ¥. Det gÃ¥r riktig asfaltsvÃ¤g Ã¤nda upp till starten. Man bÃ¶r landa eller flyga hÃ¤rifrÃ¥n senast vid ett-tiden, sedan sÃ¤tter dalvinden igÃ¥ng och den kan ofta bli rÃ¤tt stark.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4995&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4995&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.36333333</longitude>
+				<latitude>46.18972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.36333333,46.18972222,1250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Roncola</name>
+			  <description>Spacious south oriented meadow on the mountain near Roncolo. About 20 minutes walk from where the shuttle drops you off (â¬ 5,00 for the shuttle to the start).&lt;br/&gt;Hang gliders start from the &quot;antenna&quot; start at 920 meters&lt;br/&gt;See http://vololiberobergamo.it/pagine/menu/mappa.html for a map of the landing zone (a big field next to the golf club) and other useful information&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7350&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7350&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.54944444</longitude>
+				<latitude>45.76805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.54944444,45.76805556,1050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Varese - ACAO - Volo a vela</name>
+			  <description>The Aeroclub Adele Orsi is an non professional and no profit sport association, located in Calcinate del Pesce, on the shore of the Varese lake.&lt;br/&gt;To reach the airport by car you have to leave the A8 highway Milano-Varese at the exit Buguggiate-Lago di Varese and drive straight ahead for about 6 km, following aeroporto âVolo a Velaâ roadsigns.&lt;br/&gt; &lt;br/&gt;Airport coordinates: N 45Â°48â33â / E 008Â°46â06â&lt;br/&gt;Radio frequency: 128.450 MHz&lt;br/&gt;Altitude: 243m â 797ft&lt;br/&gt;Runway 600x50m â QFU: 10 â 28&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=8923&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=8923&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.76833333</longitude>
+				<latitude>45.80916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.76833333,45.80916667,243</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Cima Grappa (panettone) TV</name>
+			  <description>Panetone / Monte Meda. This takeoff is below the Monte Grappa monument, and is mostly closed from late November until mid April because of snow.&lt;br/&gt;&lt;br/&gt;Toplandable, with brilliant views.&lt;br/&gt;Beware of strong thermals from the gully below â they are powerful when there is NE wind at altitude!&lt;br/&gt;&lt;br/&gt;Landing area:&lt;br/&gt;1.Semonzo del Grappa - &lt;br/&gt;2.Semonzetto (Garden Relais)&lt;br/&gt;&lt;br/&gt;Get your Flycard for Monte Grappa before flying at Airpark Montegrappa or Consorzio Montegrappa(the tourist office)&lt;br/&gt;â¢ www.vivereilgrappa.it&lt;br/&gt;â¢ www.aeroclubmontegrappa.it&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;http://www.aeroclubmontegrappa.it/&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=563&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=563&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.80527778</longitude>
+				<latitude>45.86000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.80527778,45.86000000,1550</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Col del Pupolo &quot;Da Bepi&quot; (teppestarten)</name>
+			  <description>This PG start is just below the HG start (Col Del Pupolo) and listed as #8 on the map available from the Consorzio Turistico (Turist office) at the landing. &lt;br/&gt;&lt;br/&gt;It is also referred to as &quot;South Start&quot; (Decollo Sud)&lt;br/&gt;&lt;br/&gt;The take off is very steep and partially covered with green carpet. Take care not to slip on the carpet when wet.&lt;br/&gt;&lt;br/&gt;On the eastside is an old HG launch area, where PG pilots can prepare their wings before bringing them over to launch. &lt;br/&gt;Park your car 50m higher at the HG ramp (restaurant).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=845&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=845&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.76861111</longitude>
+				<latitude>45.82361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.76861111,45.82361111,800</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Col di Serai (dietro casette) TV - West Start</name>
+			  <description>Also referred to as the &quot;West Start&quot; (decollo ovest). Plenty of space for preparing your flight, and a very large start slope to the West.&lt;br/&gt;&lt;br/&gt;The little plateau itself is good for preparation and top landing to the west.&lt;br/&gt;&lt;br/&gt;Starting towards the south, is prohibited on this site. (flying out over the access road) due to occasional severe turbulence immediately after start. With south winds, use Da Bepi or Stella Alpina further down the road.&lt;br/&gt;&lt;br/&gt;Landing area: &lt;br/&gt;1.Semonzo main landing 170m. GPS: 45Â°48â28.06âN, 11Â°46â12.00âE.&lt;br/&gt;2.Semonzetto (168m), HG+PG, south of the main road crossing Semonzo. Signed, with parking, beside the apartment complex of Garden Relais.&lt;br/&gt; GPS: 45Â°48â21.80âN, 11Â°46â40.12âE.&lt;br/&gt;&lt;br/&gt; Detailed description: See &quot;Costalunga&quot;.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=573&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=573&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.76805556</longitude>
+				<latitude>45.82722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.76805556,45.82722222,980</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Costalunga</name>
+			  <description>Takeoff can be turbulent when the wind goes from S towards SW in the afternoon.&lt;br/&gt;&lt;br/&gt;The main landing is behind Piazza Paradiso, a 200m stroll down from Tilly's Locanda in Semonzo.&lt;br/&gt;&lt;br/&gt;This landing field is located behind the office of the Club Volo Libero Montegrappa, west of the residential area of piazza Paradiso di Semonzo. This field is used exclusively for paragliding pilots, due to its location close to the base of the mountain, offering a very valid landing point. To find it, along the main road from Romando d'Ezzelino to Borso del Grappa, turn left in via Chiesa (road used to access the top of Monte Grappa on the road Strada Generale Giardino), after about 300m on your left you'll see a piazza and the residential complex, turn left and drive around the back of the complex.&lt;br/&gt;&lt;br/&gt;Pay attention to the turbulence caused by the east wind during landing, and to the houses on the east side of the field. Other than these points, it offers a relatively safe landing area with a good car park and possibility of returning swiftly to the take-off areas&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=525&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=525&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.74472222</longitude>
+				<latitude>45.81305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.74472222,45.81305556,780</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Rubbio</name>
+			  <description>Used for competitions - maybe no good landing fields below.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=2817&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=2817&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.66361111</longitude>
+				<latitude>45.79305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.66361111,45.79305556,870</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bassano, Stella Alpina - Camillo (Gresstarten)</name>
+			  <description>Sydvendt start, ingen parkering ved starten, bruk parkeringen ved Stella Alpina&lt;br/&gt;&lt;br/&gt;Webcam: http://www.aeroclubmontegrappa.it/meteo/webcam.php&lt;br/&gt;http://www.aeroclubmontegrappa.it/meteo/webcamdecollo.php&lt;br/&gt;&lt;br/&gt;VÃ¦rst.: http://www.aeroclubmontegrappa.it/meteo/graph6.jpg&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4820&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4820&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.76333333</longitude>
+				<latitude>45.81944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.76333333,45.81944444,725</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bernadia - Nimis</name>
+			  <description>Bernardia is an option for Gemona area. The main takeoff of the whole area is Monte Cuarnan, with shuttles running from Bordano landing. We have used this takeoff because there was snow!!! (I know snow at 1000m in Italy, almost May!!!) and it worked good even for a small task for Freedom Open 2024.&lt;br/&gt;It could be an option if accommodation is closer to the area or if there is a predominant easterly wind. &lt;br/&gt;Itâs easy access by road, the last 200m of road is gravel but accessible by any car. The last few tens of meters are to be walked, flat terrain path and then a bit downhill. &lt;br/&gt;Nice takeoff, good for 2-3 glider simultaneous, good slope, good for any level. Official landing is with windsock, on nice, flat, large terrain. Other options available too. Apparently the whole area is renowned for a good, sweet, strong white wine. Cannot be wrong to land on any suitable field.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=10230&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=10230&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.26369444</longitude>
+				<latitude>46.22527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.26369444,46.22527778,740</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>DUPLICATE - Bassano - Stella Alpina / Camillo</name>
+			  <description>Allready registered; Bassano, Stella Alpina - Camillo (Gresstarten)&lt;br/&gt;USE: https://flightlog.org/fl.html?l=1&amp;a=22&amp;country_id=105&amp;start_id=4820&lt;br/&gt;&lt;br/&gt;Description 2 km before Bassano south - da bepi&lt;br/&gt;Suitable for Paragliding&lt;br/&gt;No parking - use chalet carpark.&lt;br/&gt;Altitude 717m&lt;br/&gt;&lt;br/&gt;45Â°49'10.0&quot;N 11Â°45'47.7&quot;E&lt;br/&gt;&lt;br/&gt;45.819449, 11.763256&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=6854&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=6854&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.73333333</longitude>
+				<latitude>45.80000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.73333333,45.80000000,717</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Feltre, Monte Avena</name>
+			  <description>Just west of Feltre.&lt;br/&gt;The grassy dome and viewpoint of Monte Avena, above the Piave valley, is an excellent start for adventures along the southern Dolomites. It is also&lt;br/&gt;a good alternative site to the Monte Grappa / Bassano area but with less infrastructure. The landings and launches are wide and easy, but you&lt;br/&gt;have to take your own vehicle. A good place for a spring cross country flight and for your first toplanding!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=1090&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=1090&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.81777778</longitude>
+				<latitude>46.02944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.81777778,46.02944444,1430</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Baldo / GardasjÃ¸en</name>
+			  <description>Taubane opp til en fantastisk startplass. VÃ¦r obs pÃ¥ sterk vind i GardasjÃ¸en (kjent surfested). FÃ¥ landinger. Sjekk med kjentfolk. Topplanding anbefales&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1. (W/SW) 1760m, easy, 15 min walk north of the cablecar station on the wide ridge. Toplandable.&lt;br/&gt;GPS: 45Â°46â34.79âN, 10Â°51â47.47âE&lt;br/&gt;2. (NE) 1760m, easy, about 10 min N of launch 1, on the ridge. Rarely in use.&lt;br/&gt;3. (E/SE) 1760m, easy, just opposite the W launch.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;Malcesine (60m) huge green, artificial runway, the âaircraft carrierâ on the eastern lakeshore about 1.5 km N of the edge of Malcesine. There is no other landing spot â check the landing before you go flying!&lt;br/&gt; Also, the parking spaces are limited (especially&lt;br/&gt;in summer). So rather leave your car parked&lt;br/&gt;at the cablecar station or bring a bike and leave it locked at the landing area. The landing will offer a restaurant and regular services during season, from 2011 onward. &lt;br/&gt;GPS: 45Â°46â54.86âN, 10Â°49â3.39âE.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=1815&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=1815&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.85027778</longitude>
+				<latitude>45.78083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.85027778,45.78083333,1760</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Piana</name>
+			  <description>Shuttle bus to the top from the big landing area were you park your car. You are not allowed to drive up with your own car. A five minute hike when you reach the end of the road at the top. Pretty nice takeoff with grass.&lt;br/&gt;46.61690Â°N / 12.24564Â°E&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4676&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4676&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.24555556</longitude>
+				<latitude>46.61666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.24555556,46.61666667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Pizzoc, Vittorio Veneto</name>
+			  <description>Vittorio Veneto is the nearest Town. The road to the takeoff goes up on the North side of the montain. Unursual nice takeoff for bouth Hanggliders and Paragliders&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7405&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=7405&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.34555556</longitude>
+				<latitude>46.04000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.34555556,46.04000000,1568</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Pissestopp-starten forbi ihelsulta jesus.</name>
+			  <description>Pissestopp starten litt forbi ihelsulta jesus.&lt;br/&gt;Fin plass for topplanding og gjÃ¸re sitt fornÃ¸yede samt fylle pÃ¥ med energi&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=9533&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=9533&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.30694444</longitude>
+				<latitude>45.76166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.30694444,45.76166667,1517</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Veneto-Bassano, Col del Pupolo</name>
+			  <description>Ramp start, with nice landing in the walley! Restaurant, water, toilet, just beside the ramp! &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4825&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=105&amp;amp;start_id=4825&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.77055556</longitude>
+				<latitude>45.82444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.77055556,45.82444444,860</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

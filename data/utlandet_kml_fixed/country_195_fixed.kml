@@ -1,0 +1,3192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>,.-</name>
+			  <description>Flystedet heter ikke PALMORETTE! Bruk flystedet Palomaret istedenfor !<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1077">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1077</a></description>
+			  <LookAt>
+				<longitude>-0.69194444</longitude>
+				<latitude>38.50277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.69194444,38.50277778,300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alcoy</name>
+			  <description>Hyggelig og lett hang i ukanten av byen Alcoy (Alcoi), 30 min kjøring fra Alicante. Fra starten ser man mot byen og, lenger borte, flystedet Monte Cabrer.
+<br/>Mellom Monte Cabrer og Alcoy ligger et ensomt firkanta lite butt tårn. 
+<br/>Landing er rett under hanget på banen ved Centro Polideportivo (flerbruks-sportanlegg eller hva det nå heter på norsk) Pass på ikke å havne nede i søkket ved banen. Merk også en del høyspentlinjer og ikke minst lysmastene på banen som man kan fly inn slalom mellom.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3113">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3113</a></description>
+			  <LookAt>
+				<longitude>-0.46888889</longitude>
+				<latitude>38.67250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.46888889,38.67250000,300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alhama de Murcia</name>
+			  <description>The site is located near Alhama near Murcia. It is often closed due to it being situated in a national park with some sensitive wildlife nearby. It is a huge thermal hang site that will work with westerly winds when the sea breeze kicks in. The landing is not obvious and local farmers do not like pilots landing in their fields. 
+<br/>
+<br/>Strongly suggest contacting local pilots or Nick at wwww.doyouwanna.net before flying here.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2536">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2536</a></description>
+			  <LookAt>
+				<longitude>-1.42638889</longitude>
+				<latitude>37.86305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-1.42638889,37.86305556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alicante, Caudete</name>
+			  <description>Nice place to fly in front of some Huge windmills. Termals and hang.  <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4047">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4047</a></description>
+			  <LookAt>
+				<longitude>-1.02000000</longitude>
+				<latitude>38.74305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-1.02000000,38.74305556,685</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alicante, Palomaret</name>
+			  <description>OBS - In summer time, be careful to start before 17,00 very strong thermal (read billborad at start)
+<br/>Nord for Alicante.
+<br/>Utsikt fra starten mot syd, Alicante ligger omtrent bak pølsa, og det kjente tettstedet Agost ligger ned til høyre for pølsa.
+<br/>
+<br/>Palomaret is a nice take off, close to Alicante. It is about 30 km from Alicante and quite nicely connected. The closest village/small town is Agost. There you can find a good shop and a couple of bars/coffee shops where you could get a nice espresso to build up some energy.
+<br/>
+<br/>The drive towards the mountain is on asphalt road. The road goes all the way to take off, however from 2024 this road is closed for everyone else than a few local guides, like Nick. You risk having your car locked in with chains if you drive up. You get down from the car right of the edge of the preparation area: quite convenient. The start is easy to find on Waze, it's mentioned as "Palomaret start". There is an artificial surface on take off: kind to the gliders. Also there is a wind sock and streamers in several places. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=565">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=565</a></description>
+			  <LookAt>
+				<longitude>-0.67527778</longitude>
+				<latitude>38.48638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.67527778,38.48638889,850</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alicante, Santa pola</name>
+			  <description>FILM: http://www.vimeo.com/5954581
+<br/>
+<br/>26-07-08 OBS - in summer strong thermal and southwest vinds extremly dangerus after take off, BIG ROTOR. Many badly accidents there :( 
+<br/>
+<br/>Before takeoff, talk to locals (Max, (Nick www.doyowanna.net)) aboute locals rules. New, in 2009 you can read sign before takeoff for safe soaring. 
+<br/>
+<br/>Kysthang, ca 3 km langt.
+<br/>
+<br/>Parker oppe langs veien og ikke inne ved bebyggelsen. De lokale pilotene
+<br/>jobber for å beholde starten, mens noen av beboerne vil stoppe flyving fra dette stedet.
+<br/>
+<br/>Det har vært situasjoner hvor tilreisende har provosert frem situasjoner med beboerne. Dette er noe verken vi, eller de lokale pilotene trenger mer av.
+<br/>
+<br/>For mer info se: http://personal.telefonica.terra.es/web/doyouwanna/newsletter.htm
+<br/>
+<br/>ps. MaxÂ´s height record is ca. 500 m over sealevel!<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1224">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1224</a></description>
+			  <LookAt>
+				<longitude>-0.51527778</longitude>
+				<latitude>38.21972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.51527778,38.21972222,126</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alicante, Serra del Sit</name>
+			  <description>Stor bergkedja ca. 4 mil norr om Alicante med bra termik och fantastiska vyer. Det finns mat/drick servering vid starten. Möjlighet att flyga kross men upphämtningsplatserna måste bestämmas i förväg då det kan vara lite svårt att hitta tillbaks bland bergen.
+<br/>Ett suveränt ställe att flyga på. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6554">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6554</a></description>
+			  <LookAt>
+				<longitude>0.67527778</longitude>
+				<latitude>38.48638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>0.67527778,38.48638889,350</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bocairent, Lacreu</name>
+			  <description>Bilvei nesten frem til start, enkel start. Usikker på om det finnes noen hovedlanding, mange jorder men mye kabler så sjekk nøye før landing.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8691">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8691</a></description>
+			  <LookAt>
+				<longitude>-0.60194444</longitude>
+				<latitude>38.75083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.60194444,38.75083333,950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Carrasqueta, Jijona/Xixona (by)</name>
+			  <description>Ligger inn i landet nordvest av Alicante og ca. 20 km innover i landet. Utsikt ut mot Alicante og middelhavet. Starten ligger på toppen av "sik-sak veien" som snor seg opp fjellet - du tar av en stikkvei til venstre på toppen og følger fjellsiden nesten hele veien tilbake igjen på en svært humpete grus vei. Husker ikke om det var merket der du stopper og går opp til start. 
+<br/>Starten blir til venstre på toppen i fjellsiden når du står nede på bensinstasjonen før du kjører opp sik-sak-motorveien i fjellsiden. Landingen ligger rett på andre siden av veien for denne bensinstasjonen. Og landingen bør man treffe... Ikke bedste sted vi har floeyet i Alicante, hverken med hensyn til startstedet (steinete og trangt), hanget (over motorveien i fjellsiden hvor MCéne ligger aa raakjoeer) eller landing (trang og uten retrettmulighet..). 
+<br/>(corrected Longitude to W, Staffan 2023-03-07)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3242">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3242</a></description>
+			  <LookAt>
+				<longitude>-0.51472222</longitude>
+				<latitude>38.57611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.51472222,38.57611111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>El Piños, El Carche</name>
+			  <description>To starter: en ved slutningen av veien og en ved toppen lenger mot vest om man følger stien dit. OBS for sprekker i fjellet når man nærmer seg starten mot vest.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1078">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1078</a></description>
+			  <LookAt>
+				<longitude>-1.16583333</longitude>
+				<latitude>38.43416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-1.16583333,38.43416667,1375</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>El Reconco</name>
+			  <description>A nice place not far from Alicante. Coordinates is not accurate.
+<br/>Local club of Ibi is responsible for good use of the take off.  Just op the road there is a guardhouse, with 24 hour surveillance.  Every other season the farmer permits us to land in another one of his fields.
+<br/>
+<br/>If you are not a local pilot, I recommend using a guide. See http://www.doyouwanna.net
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2908">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2908</a></description>
+			  <LookAt>
+				<longitude>-0.71722222</longitude>
+				<latitude>38.63000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.71722222,38.63000000,1167</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Finestrat, Benidorm</name>
+			  <description>Nice mountain a few kilometers north of Finestrat (which is ca 6 km north of Benidorm). Steep "climb" at the south side ( ca 2,5 h) or a little bit more moderate trail around the west side with a steep finish at the north side of the top (ca 3 h). Do not know if there is an official landing here. Landing places are rare in this area due to dense vegetation. I found the local fotball field to be an acceptable landing...
+<br/>(corrected longitude to W, Staffan 2023-03-07)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4556">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4556</a></description>
+			  <LookAt>
+				<longitude>-0.19250000</longitude>
+				<latitude>38.59722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.19250000,38.59722222,1410</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Fortuna, litt foer Caprês, "El Bordillo"</name>
+			  <description>Rett vest av Fortuna. Du har kjoert gjennom eller forbi Fortuna. Kommer til en stor rundkjoering paa en slette med fjellrygger rett bak. Du kjoerer mot Capres i rundkjoeringen, men tar saa mot hoyre i stedet rett etterpaa (skiltet mot Cantera). Masse lastebiler kjoerer denne veien da det ser ut til aa vaere et stenbrudd lengre oppe. Ca. 3-4 km fra rundkjoeringen er du der. Starten er rett paa hoeyre  side av veien. Starten er rimelig lav og du er i enden/starten av en u-formet lav dal/skaal. Fly deg opp paa fjellet paa venstre side av starten og er du hoeyere enn ruinen i fjellsiden litt lengre framme da rekker du neste fjellrygg som er mye hoeyere. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5152">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5152</a></description>
+			  <LookAt>
+				<longitude>-1.12111111</longitude>
+				<latitude>38.23083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-1.12111111,38.23083333,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hondon de las nieves</name>
+			  <description>Near alikante airport (planes are flying in above you). 
+<br/>This site was first entered with a northerly facing takeoff at 1000m, I changed the data to match those that I found in the Spanish info at:
+<br/>http://luisso.net/hondon.htm
+<br/>http://luisso.net/sur_parapente.htm
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1114">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1114</a></description>
+			  <LookAt>
+				<longitude>-0.88888889</longitude>
+				<latitude>38.33027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.88888889,38.33027778,545</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La Solana, Villena</name>
+			  <description>Fint hang sted. For mere informasjon, ta kontakt med PG guide Nick, http://www.doyouwanna.net/<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3235">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3235</a></description>
+			  <LookAt>
+				<longitude>-0.84861111</longitude>
+				<latitude>38.63972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.84861111,38.63972222,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monte Cabrer, Cocentaina</name>
+			  <description>Monte Cabrer,  the take off lies in a natural reserve.  Sometimes due to high bushfire risk for instance, it is asked not to fly the hill. 
+<br/>The other side of the mountain with its take off near Agres (north) is already closed for vehicles, it is now a three hour walk up.
+<br/>
+<br/>Due to issues regarding use of the road and landings you should use an guide if you are not a local pilot.
+<br/>
+<br/>I recommend http://www.doyouwanna.net<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2930">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2930</a></description>
+			  <LookAt>
+				<longitude>-0.48111111</longitude>
+				<latitude>38.75611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.48111111,38.75611111,1180</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Parcent, Coll de Rates</name>
+			  <description>Kjør fra Alicante mot Calpe og videre inn mot Jalon Vally. Du ser da svingene som går opp langs fjellsida. Se etter skilt mot Coll de Rates og følg veien dit oppover. Kjør inn til venstre mot restauranten Coll de Rates på veiens høyeste punkt. Hold mot høyre ved restauranten, kjør forbi helikopterlandingsplassen merket med "H", og fortsett på smal vei. Første biten er grusvei, men det blir asfalt videre, og helt til toppen ved enden av veien.
+<br/>Landingskoordinater:
+<br/>N 38 44 36
+<br/>W 00 04 25
+<br/>
+<br/>Landingen brukes både ved start mot sør og start mot nord. Ved start mot sør følges fjellet mot øst, og du kan greit krysse over ved restauranten.
+<br/>
+<br/>Kontaktadresse : Suby, Alicante +34 609066610 email subylutolf@hotmail.com<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1110">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1110</a></description>
+			  <LookAt>
+				<longitude>-0.07916667</longitude>
+				<latitude>38.72361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.07916667,38.72361111,913</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Peña Rubia</name>
+			  <description>2 starter ved antenne
+<br/>Sjekk også http://luisso.net/prubia.htm<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1086">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1086</a></description>
+			  <LookAt>
+				<longitude>-0.80944444</longitude>
+				<latitude>38.60666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.80944444,38.60666667,915</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Puig Campana, Finestrat, Benidorm</name>
+			  <description>Nice mountain a few kilometers north of Finestrat (which is ca 6 km north of Benidorm). Starting from a parking place at the spring "Moulinares" at Finestrat, it is either a ca 2,5 h walk on the steep south side, or a ca 3 h walk around the west side with the final ascend on the north side.
+<br/>Landing places are rare, due to dens vegetation, steep terrain or buildings. I found the local football field (Finestrat) to be an acceptable landing...
+<br/>(changed Longitude to W only, Staffan 2023-03-07)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4557">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4557</a></description>
+			  <LookAt>
+				<longitude>-0.19250000</longitude>
+				<latitude>38.59722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.19250000,38.59722222,1410</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Serrella</name>
+			  <description>Flott flysted på nordlige vinder i nærheten av Benasau.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8689">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8689</a></description>
+			  <LookAt>
+				<longitude>-0.31277778</longitude>
+				<latitude>38.70250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.31277778,38.70250000,1285</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra Cortina (Benidorm, Finestrat, Terra Mitica)</name>
+			  <description>Ligger rett ovenfor fornøyelsesparken "Terra Mitica" i nærheten av Benidorm og Finestrat. Fint hang ved solgangsbris. Dessuten er asfaltflatene ved parken nedenfor en fin termikkilde.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2224">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2224</a></description>
+			  <LookAt>
+				<longitude>-0.16138889</longitude>
+				<latitude>38.57027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.16138889,38.57027778,150</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>TOIX, Monte de Toix, Altea</name>
+			  <description>MED HG LITEN LANDING 
+<br/>3 KM TIL STOR LANDING PÅ STRAND
+<br/>MÅ HA GOD HØYDE CA 450 M FOR SIKERHET FLYR OVER HAV<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1079">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1079</a></description>
+			  <LookAt>
+				<longitude>0.02305556</longitude>
+				<latitude>38.63111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>0.02305556,38.63111111,370</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Aguadulce</name>
+			  <description>Start över Aguadulce med landning på stranden.
+<br/>Åk upp med jeep -kontakta lokala klubben<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7265">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7265</a></description>
+			  <LookAt>
+				<longitude>-2.57083333</longitude>
+				<latitude>36.82361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.57083333,36.82361111,260</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Algodonales, Sierra de Lijar, "Levante" SE and SW</name>
+			  <description>One of the main takeoffs near Algodonales.
+<br/>To get there drive A-382 towards Jerez past the petrol station just outside town. After about 400m turn right at a sign: PISTAS. Follow signs saying PISTAS for two more right turns. Through La Muela! After turning to the gravelroad - drive to the end.
+<br/>
+<br/>Hovedlanding kan sees fra SØ takeoff. Ellers er det mange veldig store jorder nedenfor SØ-takeoff.
+<br/>
+<br/>
+<br/>Se also: http://www.civalgodonales.com/
+<br/>         http://www.flyspain.co.uk/
+<br/>         http://www.ganterfly.de
+<br/>         http://www.fly-algo.com/<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=993">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=993</a></description>
+			  <LookAt>
+				<longitude>-5.39333333</longitude>
+				<latitude>36.89833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.39333333,36.89833333,1026</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Algodonales, Sierra de Lijar, "Poniente" W</name>
+			  <description>One of the main takeoffs near Algodonales.
+<br/>To get there drive A-382 towards Jerez past the petrol station just outside town. After about 400m turn right at a sign: PISTAS. Follow signs saying PISTAS for two more right turns. Keep right and drive to the end of the road.
+<br/> 
+<br/>Hovedlanding litt lenger nord. Kan sees fra utkikspunkt ved start. Reservelanding ved veien nedenfor takeoff.
+<br/>
+<br/>Weatherstation Poniente: http://home.no/lijarest/
+<br/>Wap Poniente: http://home.no/lijarest/wap/
+<br/>Webcam view up to Levante: http://www.ganterfly.de/c/webcam.htm
+<br/>
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3211">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3211</a></description>
+			  <LookAt>
+				<longitude>-5.41583333</longitude>
+				<latitude>36.89472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.41583333,36.89472222,906</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Algodonales, Sierra de Lijar, North, svært skjerlen i bruk</name>
+			  <description>Ta vegen til venstre inn en grind like før du kommer til S og Ø-starten på Levante. Følg veien ca 4 km. Starten ligger ca 100m fra veien på høyre side.
+<br/>Eller så kan man ta til vestre på bakketoppen etter NV-starten. Og følge veien ca5-6km.
+<br/>Kan lande på vestlandingen, ellers er det store jorder å lande på.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5895">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5895</a></description>
+			  <LookAt>
+				<longitude>-5.39416667</longitude>
+				<latitude>36.91500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.39416667,36.91500000,933</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Algodonales, Sierra de Lijar, NW, den like ved veien.</name>
+			  <description>NW - Sierra de Lijar - Algodonales
+<br/>Takeoff ligger rett ved siden av veien, med et "lysthus" ved siden av. Kun plass til å legge ut en vinge om gangen.
+<br/>Hovedlanding samme som fra "Poniente"<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5140">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5140</a></description>
+			  <LookAt>
+				<longitude>-5.40777778</longitude>
+				<latitude>36.90333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.40777778,36.90333333,870</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alicun</name>
+			  <description>Bra start kort med litet stup.
+<br/>Rörig landning i uttorkad fod med elbledning i varje ände.
+<br/>Detta ställe kan vara bra vid hård östlig vind vid kusten då ligger detta i lä och kan vara flygbart.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6877">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6877</a></description>
+			  <LookAt>
+				<longitude>-2.61882370</longitude>
+				<latitude>36.95476550</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.61882370,36.95476550,1074</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalucia , Matalascañas</name>
+			  <description>Great coastal soaring site. From here you can soar many kilometers towards the northwest. 
+<br/>
+<br/>The take off is situated just 100 m northwest of the lighthouse with the radar. 
+<br/>
+<br/>Coming from Matalascañas and driving northwest along the coast take to the left in the first roundabout outside the city. Follow the gravel road to the camping ground. When you see the camping entrance on your right side, take to the left. You will find the take off close to the first cafe, on the right side of the road.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4702">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4702</a></description>
+			  <LookAt>
+				<longitude>-6.57361111</longitude>
+				<latitude>37.01000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-6.57361111,37.01000000,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalucia - Teba</name>
+			  <description>Sør for Campillos. Start øst for landsbyen på søppelhaugen, eller vest for landsbyen langs veien. (ta til høyre med en gang når du er oppe i landsbyen)
+<br/>Veldig fint hangsted, du kan fly over landsbyen og soare deg opp på høyere toppen.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1731">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1731</a></description>
+			  <LookAt>
+				<longitude>-4.92611111</longitude>
+				<latitude>36.98055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.92611111,36.98055556,570</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalucia, El Bosque</name>
+			  <description>Sør for Villamartin. Start opp grusvei langs veien til Benaoama. Gjennom en grind på begynnelsen av veien. En lavere start rett nedenfor veien. like før stien opp til øvre start. Parkering langs denne skogsveien.
+<br/> Hovedlanding er veldig stor og godt synlig fra øvre start. Reservelanding langs hovedveien og ellers mange jorder å nødlande på.
+<br/>Fin hangplass, med et avlangt fjell fra S til N. store muligheter for å skru seg opp i termikk.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1730">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1730</a></description>
+			  <LookAt>
+				<longitude>-5.49083333</longitude>
+				<latitude>36.75638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.49083333,36.75638889,750</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalucia, Sierra Nevada, Granada, Cenes de la Vega</name>
+			  <description>Flott flysted nærme byen Granada. Følg skilting gjennom Granada til Sierra Nevada. Når du passerer Cenes er landing på ved side av hovedveg ved en trafikkmaskin. Til start. Fortsett mot Sierra Nevada. Ta inn til høyre ved skilting til Campingplass. Kjør forbi denne og nedover. Grusvei (i denne grusvei må du ha spesielt tillatelse for å kjøre, du kan bli bottelagt hvis du ikke har tillatelse) til høyre etter en del nedstigning. Følg denne en god stund til en kommer til en del benker. ca 10 min å gå opp der til den nedre takeoff. Prøv å ikke fly av høyde over hovedveg. Kan være termisk på og ved landing.
+<br/>
+<br/>Om du skal fly i Cenes de la Vega, er det nødvendig å betale for å benytte landing både for å parkere og for å lande. Du kan kjøpe dagkort, ukekort og årskort på følgende linken: 
+<br/>
+<br/>https://tiendadeparapentedraco.com/service-taller-aterrizaje/1097-colaboracion-uso-del-aterrizaje-cenes-landing-facilities-cenes-de-la-vega.html
+<br/>
+<br/>Ved følgende link kan du sjekket vindmåler som har blitt installert på starten: 
+<br/>
+<br/>https://www.openwindmap.org/windbird-1638<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1746">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1746</a></description>
+			  <LookAt>
+				<longitude>-3.51916667</longitude>
+				<latitude>37.14222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.51916667,37.14222222,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia - Conil</name>
+			  <description>Kysthang NV for byen. Hanget er trangt og 3-4 vinger kan være mye. Har flydd der med 6-7 vinger og det var i overkant. Videre nordover er det et meget langt hang, men ikke lett å få startet der.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3227">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3227</a></description>
+			  <LookAt>
+				<longitude>-6.10027778</longitude>
+				<latitude>36.28250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-6.10027778,36.28250000,12</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia - Polopos La Mamola </name>
+			  <description>NOT for low airtime pilots. No landing place almost all way to the sea, good lift but no place for mistakes.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=10694">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=10694</a></description>
+			  <LookAt>
+				<longitude>-3.30277778</longitude>
+				<latitude>36.80694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.30277778,36.80694444,1100</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia - Vejer</name>
+			  <description>Fint hang og termikksted på vest. Kjør gjennom sentrum og opp til vindmøllene. Før du kommer til møllene og rett etter en stor rund antenne er det en grusvei inn til høyre. Ta av der for å komme til PG-starten. HG-starten ligger ved en kafé 200 meter mot nord. Gode topplandingsmuligheter. Ligger ca en mil inn i landet for Atlanterhavet - flott utsikt. Landingen ligger her: N 36 15 02, W 05 58 56.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3229">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3229</a></description>
+			  <LookAt>
+				<longitude>-5.97611111</longitude>
+				<latitude>36.24055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.97611111,36.24055556,210</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia, Alfacar</name>
+			  <description>Hill side take off, easy start, landing down near the olive groves. Great thermalling in September and according to the locals, just about any other time of the year except January.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1685">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1685</a></description>
+			  <LookAt>
+				<longitude>-3.56138889</longitude>
+				<latitude>37.25944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.56138889,37.25944444,1380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia, Loma del Gato - lower launch</name>
+			  <description>.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2552">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2552</a></description>
+			  <LookAt>
+				<longitude>-3.65797472</longitude>
+				<latitude>36.76571806</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.65797472,36.76571806,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusia, Loma del Gato - upper launch</name>
+			  <description>Further up the road from Loma del Gato lower launch. 4X4 vihicle needed. Thermals on the ridge coming up.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7446">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7446</a></description>
+			  <LookAt>
+				<longitude>-3.64638889</longitude>
+				<latitude>36.77555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.64638889,36.77555556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusien, Almunecar, Altamar</name>
+			  <description>Berg beläget i närheten av Almunecar. Bra start, men ganska dålig väg till toppen.
+<br/>
+<br/>Härligt ställe att starta på och flyga ner mot staden och sedan hanga på hotellen och slottsruinen nere vid stranden.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4750">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4750</a></description>
+			  <LookAt>
+				<longitude>-3.63138889</longitude>
+				<latitude>36.76166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.63138889,36.76166667,560</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Andalusien, Almunecar, Otivar</name>
+			  <description>Termiskt ställe, inte långt ifrån Almunecar. Under goda förhållanden så finns en relativt kort men ganska trixig XC ner till stranden i Almunecar (La Herradura).
+<br/>
+<br/>Inte så stor, men bra start. Körväg hela vägen fram. 
+<br/>
+<br/>Landningen är relativt liten, med tallar mitt i och undvik att flyga för långt. Kräver tålamod under termiska förhållanden! Nedanför är djupa dalar och dåligt med landningsplatser. Landningen ligger på en platå, ca 500 m under starten. Botten av dalen ligger ca 3-400 meter längre ned.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1797">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1797</a></description>
+			  <LookAt>
+				<longitude>-3.70222222</longitude>
+				<latitude>36.83361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.70222222,36.83361111,954</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Atalaya 1500, Orgiva, Sierra Nevada</name>
+			  <description>Some more info here:
+<br/>http://granadainfo.com/hv/
+<br/>http://www.fly-park-almunecar.com/site/content/fp_fluggebiete_orgiva.html
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2152">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2152</a></description>
+			  <LookAt>
+				<longitude>-3.39388889</longitude>
+				<latitude>36.94000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.39388889,36.94000000,1500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Atalaya 2100, Orgiva, Sierra Nevada</name>
+			  <description>http://www.fly-park-almunecar.com/site/content/fp_fluggebiete_orgiva.html
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2154">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2154</a></description>
+			  <LookAt>
+				<longitude>-3.39111111</longitude>
+				<latitude>36.95916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.39111111,36.95916667,2100</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Atalaya East, Orgiva, Sierra Nevada</name>
+			  <description>http://granadainfo.com/hv/
+<br/>http://www.fly-park-almunecar.com/site/content/fp_fluggebiete_orgiva.html<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2153">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2153</a></description>
+			  <LookAt>
+				<longitude>-3.38138889</longitude>
+				<latitude>36.95388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.38138889,36.95388889,1619</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bolonia - Faro de Camarinal</name>
+			  <description>Lite kysthang vendt mot Playa de los Alemanes. Kjør fra Bolonia nordover mot fjellet ett stykke opp i bakken kan man parkere, her er det et skilt med oversikt over området, følg veien mot fyrlykta, takeoff er rett ved denne.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6288">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6288</a></description>
+			  <LookAt>
+				<longitude>-5.80972222</longitude>
+				<latitude>36.09083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.80972222,36.09083333,78</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Calaceite antennas, near Torrox (and Nerja) </name>
+			  <description>The flight zone of Calaceite is located east of Torrox, next to the A-7 road. This is the highest and biggest location with antennas/small sheds near Torrox, Nerja and the coastline. The near sea makes it very generous in thermal currents and favours flight. There might be a rotor danger if the wind is strong and very east. Start at platform in front of antennas. Landing is about 1500 m. straight ahead by the coast (be AWARE of the high voltage span you have to pass half way out, SEE the two masts that are far apart and the span/cables between them). Land on the beaches or on the landing just under/besides urbanization Laradera del Mar 2 (look for the old round tower). If windy at start you must be careful of the wired fence - possible then to go a few meters down the slope, will give you meters and better contact with the ground. 
+<br/>Coming from Nerja by the coastal road you find the way to the start either driving up by big white sign "Calaceite" (urbanizacion Calaceite/Callle Jacaranda, Calle Arce) on the rock just over coastal road N-340, or drive nearer Torrox and from N-340 (where you meet the first houses to your left on the beach) take right and up to large urbanizacion El Penoncillo/Torrox-park (the best quality road to the antennas!!) - always choose the steepest road.. 
+<br/>
+<br/>A wide tourist network may be found at the website http://www.torrox.es.
+<br/>Weatherstation:
+<br/>http://www.vuelolibreandalucia.es/meteo/IQ030_meteo.html
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4630">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4630</a></description>
+			  <LookAt>
+				<longitude>-3.93111111</longitude>
+				<latitude>36.75194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.93111111,36.75194444,360</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Carchuna, Motril</name>
+			  <description>In Carchuna muss man damit rechnen das die Polizei kommt, wenn man sich nicht vorher bei Antonio Castro, dem Inhaber der Flugschule in Motril gemeldet und die Konditionen besprochen hat. Also vorher dort anrufen!
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1665">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1665</a></description>
+			  <LookAt>
+				<longitude>-3.45833333</longitude>
+				<latitude>36.69611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.45833333,36.69611111,200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Castala</name>
+			  <description>Nice start good when its strong vest<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6883">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6883</a></description>
+			  <LookAt>
+				<longitude>-2.91711650</longitude>
+				<latitude>36.89671830</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.91711650,36.89671830,1210</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Castell de Ferro</name>
+			  <description>Well known local PG+HG area on Spanish coasta del Tropicale
+<br/>
+<br/>Landing at the beach (Playa von Castell de Ferro)
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1661">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1661</a></description>
+			  <LookAt>
+				<longitude>-3.36000000</longitude>
+				<latitude>36.72000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.36000000,36.72000000,200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Castellar-Jaen</name>
+			  <description>Fint flysted nordøst i Jaen provinsen. Fint landingen. Vær OBS med kabler i starten, men ikke noe problem for å starte.
+<br/>
+<br/>Foto: start området fra lufta, forran kablene, og under advance vingen, der hvor det er noen personer.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5499">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5499</a></description>
+			  <LookAt>
+				<longitude>-3.43194444</longitude>
+				<latitude>38.66500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.43194444,38.66500000,815</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cogollos</name>
+			  <description>Flying site 20 minutes from Alfacar. Good for Soaring and Thermals. Pls contact Antonio in Parapentetropical for how to get there instructions.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3318">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3318</a></description>
+			  <LookAt>
+				<longitude>-3.55222222</longitude>
+				<latitude>37.31777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.55222222,37.31777778,1282</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Darro</name>
+			  <description>Flysted som ligger 50 km fra Granada by. I retning mot Guadix, Baza, Murcia.
+<br/>Ta motorveien fra Granda til Guadix og ca 10 km for Guadix ta av til Diezma, derfra må finnes veien til Darro, etter at du har krysset landsbyen (Darro), du finner en restaurant på høyre side av veien som heter "Venta del Puntal". Vis a vis denne spise sted finnes en grussvei, kjør den 100 meter til landing. Parker der og da mås gå opp til starten 10-15 min.
+<br/>Starten er i gress men masse steiner rundt om kring.
+<br/>
+<br/>Veldig god vingen kontroll kreves.
+<br/>Være OBS at starten ligger på topen og det er en del kompresjon på starten. I tillegg vær OBS at starten er i Hjørnet effekt av hele fjel kjede som heter Sierra Harana (max 2000moh).
+<br/>
+<br/>Veldig fint flysted  med nora vind. Mulighet til XC.
+<br/>
+<br/>Å fly med nordvest kan være litt humpete, men veldig bra med nord og nordøst. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5874">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5874</a></description>
+			  <LookAt>
+				<longitude>-3.28861111</longitude>
+				<latitude>37.39805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.28861111,37.39805556,1164</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>El Purche</name>
+			  <description>Fra kamping El Purche, ta veien som drar neddover mot Monachil, etter 100 meter naar veien beginer aa gaa neddover. La bilen.
+<br/>Fra der det er nódvendig aa gaa 10 minuter. Ta fórste veien til hóyre. Veien blir med asfalt plutselig, Det er privat veien men det er lov aa bruke inntil starten. Paa starten det er nódvendig aa starte nedd fra en vegg som tilhórer til huset som er paa starten.I denne dalen det er flere landinger , ved siden av elv(uten vann). Men det er bedre aa lande paa Cenes de la Vega, med termikk det er mulig aa komme inntil Cenes.
+<br/>dette sted er bedre om vinteren, om sommer er ikke bra, naar der et sommer bedre aa dra til Cenes de la Vega.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3598">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3598</a></description>
+			  <LookAt>
+				<longitude>-3.49996667</longitude>
+				<latitude>37.13531667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.49996667,37.13531667,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>El Yelmo-Cortijos Nuevos(Jaen)</name>
+			  <description>Utrolig fin fjell i Jaen provinsen, nordoest fra Jaen by, perfekt til PG og HG, fint start.
+<br/>Fra tettsted Cortijos Nuevos kjoert til El Ojuelo og videre oppover til EL Yelmo.Fin vei for aa kjoere oppover, men mange svinger, kjør forsiktig i svingene du kan fine andre biler nedover.Det kan være farlig vei hvis kjører man furt.Om vinter det er snø der oppe og da er nødvendig å gå opp.
+<br/>
+<br/>Flyforholdene kan vaere kraftig i sommer midt paa dagen, perfekt soaring i kveld med vestvind.
+<br/>OBS:nordover fra starten cirka 200 meter det er en Høyspentlinje, vær oppmerksomt med det.Det har vært noen ulykker der pga den.
+<br/>Forholdene er perfekt med vesta vind, går det bra med sydvest men ikke så bra med nordvest selv om det er mulig å fly.
+<br/>
+<br/>Landinga ligger i Cortijos Nuevos eventuelt i El Ojuelo.
+<br/>
+<br/>I området hvert år blir en fin Festival med mange piloter, første helg i Juli hvert år.Området er kjent også fordi det var her Raul Rodriguez begynte med alle sine akrogreia og for veldig god olivieolje.
+<br/>
+<br/>Kontakt person i omraadet Dani Martinez: 0034-607301716, han kan tilby overnatting i Cortijos Nuevos, besoek www.cortijodelcura.com
+<br/> <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4105">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4105</a></description>
+			  <LookAt>
+				<longitude>-2.65861111</longitude>
+				<latitude>38.25388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.65861111,38.25388889,1809</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Granada, Tiena/Moclin</name>
+			  <description>Flott flysted nær Granada. Et virkelig bra termisk sted. Vanskelig å finne. Landing ligger i utkanten av Tiena der bebyggelsen stopper opp. Landing på v side av vegen. Kjør forbi Moclin vestover til en kommer til en kirkegård. Til høyre rett etter kirkegård. Kjør en stund gjennom olvienlunden til en kommer mot toppen. En parkering på h.side. Gå opp i høyden mot SØ og en vil finne start. Zoom på bildet og forklaring er der.
+<br/>
+<br/>NB!! 400 meter over start er det en TMA
+<br/>
+<br/>Great termal flying place near Granada. Hard to find start and landing. Landing in the end of the town Tiena. Drive past Mocling direction W. At the graveyard hit the dirtroad. First right. Drive trough the olive's and at the top park right of the road. Walk up NE 10 minutes and you'll find the start.
+<br/>Click at the photo for details for this start.
+<br/> 
+<br/>NB!! TMA 400 m above takeoff.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3621">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3621</a></description>
+			  <LookAt>
+				<longitude>-3.81222222</longitude>
+				<latitude>37.32638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.81222222,37.32638889,1183</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Jabalcon-Zujar (Granada)</name>
+			  <description>Fjell som er plasert 10 km unna Baza i Granada provinsen.
+<br/>Det er noedvendig aa dra til Zujar fra Baza og aa dra oppover mot fjell fra Zujar.Det er to hovede starter den hoeyeste er paa topp av fjell(w og nw) men foer det er en start(s og se).
+<br/>Pa dette sted pleier aa blaase ganske mye av og til, pga det er bra til HG, hvor noen piloter har flydd inntil Aguilas ved kysten
+<br/>Weatherstation:
+<br/>http://www.vuelolibreandalucia.es/meteo/IQ031_meteo.html<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3963">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3963</a></description>
+			  <LookAt>
+				<longitude>-2.82111111</longitude>
+				<latitude>37.56611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.82111111,37.56611111,1480</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La Herradura</name>
+			  <description>Kysthang i byen, west for Almunecar
+<br/>
+<br/>Fint kusthang med landning på stranden. Kör till La Herradura och parkera längs stranden. Tar drygt 10 minuter att gå upp längs vägen ut mot udden. Alternativt ta bilen upp och parkera någonstans ovanför starten, finns några parkeringar där men skönt att ha bilen på stranden när man landar. 
+<br/>
+<br/>Fin start men träd bakom så bra skärmkontroll gäller eftersom det skall blåsa en del för att vara bra. Gå inte för långt in direkt till vänster efter start, blir venturi i öppningen där.
+<br/>
+<br/>Annars är det bara att gasa på och ha kul, går att flyga hela vägen längst ut på udden samt en bit över staden.. Bra dagar blir det typ hävning och man kan få höjder på 1000 m plus. 
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1792">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1792</a></description>
+			  <LookAt>
+				<longitude>-3.73444444</longitude>
+				<latitude>36.73083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.73444444,36.73083333,80</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Las Redes - El Puerto de Santa Maria</name>
+			  <description>Coastal soaring above the beach. Restricted area. Need special permission from the Rota Naval base and clearance from the military airport tower before take off.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5959">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5959</a></description>
+			  <LookAt>
+				<longitude>6.27616667</longitude>
+				<latitude>36.60097222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.27616667,36.60097222,50</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Loja</name>
+			  <description>Flott flysted på vest 20 min fra Granada. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2719">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2719</a></description>
+			  <LookAt>
+				<longitude>-4.18291667</longitude>
+				<latitude>37.13300000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.18291667,37.13300000,788</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Loja Levante</name>
+			  <description>Fin ryddet start men litt bratt og kort.
+<br/>Stor landing på jordet rett ned for start eller på veteranfotballbanen nede i Loja.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8372">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8372</a></description>
+			  <LookAt>
+				<longitude>-4.13805556</longitude>
+				<latitude>37.13333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.13805556,37.13333333,990</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Montellano, Lower start</name>
+			  <description>Samme retning som oppe, fint å bruke om det blæs litt oppå toppstarten.
+<br/>Samme landing, dvs. hovedlanding.
+<br/>
+<br/>25 min fra Algo<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9446">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9446</a></description>
+			  <LookAt>
+				<longitude>-5.54250000</longitude>
+				<latitude>37.00722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.54250000,37.00722222,390</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Montellano, Upper start</name>
+			  <description>Stor og fin start, plass til mange vinger, kjempeplass å rigge litt bak på starten.
+<br/>Her kan du topplande på start, god plass.
+<br/>Stor og fin landing, den er litt helling på den.
+<br/>
+<br/>25 min fra Algo<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1111">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1111</a></description>
+			  <LookAt>
+				<longitude>-5.54694444</longitude>
+				<latitude>37.00555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.54694444,37.00555556,517</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Nerja, Pico de Cielo</name>
+			  <description>From Nerja (45min east of Malaga)go to the Cuevas de Nerja, except turn left  at the main entrance and follow the dirt track into the mountains. After a few km there is a branch; follow the road to the right. From now on you really wish you had a 4WD, and even some tranquilizers. Drive as far as you can get, and then continue by foot up the mountains. An hour hiking will take you to the first take-off opportunities, 2-3 hours will take you to the top.
+<br/>Landing is at the closed-down old sugar factory outside Nerja/Maro, on the beach if not packed, or in the forest if you cannot make it to the coast. Look for open areas, there are not many.
+<br/>Final approach passes over the A7 autovia and some powerlines, so be sure to have enough altitude.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6141">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6141</a></description>
+			  <LookAt>
+				<longitude>-3.81694444</longitude>
+				<latitude>36.80055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.81694444,36.80055556,1508</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Office, Bubion, Sierra Nevada</name>
+			  <description>Landing 150 meter below
+<br/>or tricky landing 700 meters below in Bubion. 
+<br/>
+<br/>http://granadainfo.com/hv
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2155">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2155</a></description>
+			  <LookAt>
+				<longitude>-3.33750000</longitude>
+				<latitude>36.96666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.33750000,36.96666667,2055</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Olias, Castell de Ferro</name>
+			  <description>En meget høy start, kan egentlig starte på alle vindretninger om du er litt kreativ. Anbefaler trinn 4 om du ikke har instruktør med deg. 
+<br/>
+<br/>Finns en elev-landing ved elva, fly mot s-ø. Eller du kan lande på stranda(mot s-ø) i Castell de Ferro, ca 11 km ut dit.
+<br/>
+<br/>Bildet: Ved mastene ligger starten.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5029">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5029</a></description>
+			  <LookAt>
+				<longitude>-3.40416667</longitude>
+				<latitude>36.81972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.40416667,36.81972222,1800</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Orgiva</name>
+			  <description>Easy take off, landing down at the hippy camp in the river bed.
+<br/>Landing coordinates:
+<br/>N 36Â° 56' 20''  W 3Â° 23' 41''<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1684">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1684</a></description>
+			  <LookAt>
+				<longitude>-3.39472222</longitude>
+				<latitude>36.89000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.39472222,36.89000000,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Puntal de Siles.</name>
+			  <description>Start nordøst fra El Yelmo.
+<br/>Lang vei å kjøre til starten men utsikten fra toppen er det verdt.
+<br/>Landing ved siden av badebasseng i Siles.
+<br/>Kan virke med sørvest også med litt skrått vind<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9450">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9450</a></description>
+			  <LookAt>
+				<longitude>-2.55400000</longitude>
+				<latitude>38.36846667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.55400000,38.36846667,1505</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra Alhamilla, Almeria</name>
+			  <description>soaring, thermalling<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6795">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6795</a></description>
+			  <LookAt>
+				<longitude>-2.40385610</longitude>
+				<latitude>36.95729250</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-2.40385610,36.95729250,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra de Lijar new NorthWest start</name>
+			  <description>Relatively new start. You continue passed the old NW start by the road, until the gate w/ a lock. Walk 1 km. Please study google for further details, and please fillout missing descriptions as I am not a local pilot and thus am unfamiliar with the local  names for the area.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4876">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4876</a></description>
+			  <LookAt>
+				<longitude>-5.39388889</longitude>
+				<latitude>36.91861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.39388889,36.91861111,919</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra De Lucena</name>
+			  <description>a small mountain, nice for soaring in strong wind. 
+<br/>
+<br/>landing : 37Â°22'5" (37.3682)N; 4Â°27'39" (4.4609)W - 
+<br/>
+<br/>http://www.paraglidingearth.com/pgearth/index.php?site=9148<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4806">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4806</a></description>
+			  <LookAt>
+				<longitude>4.46750000</longitude>
+				<latitude>37.37555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>4.46750000,37.37555556,840</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra Nevada,Granada,Cenes 2</name>
+			  <description>DO NOT USE THIS
+<br/>
+<br/>Same as: Sierra Nevada,Granada,Cenes de la vega<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2726">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2726</a></description>
+			  <LookAt>
+				<longitude>-3.51916667</longitude>
+				<latitude>37.14222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.51916667,37.14222222,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Spain, Sierra Nevada, Loma de Cauchiles</name>
+			  <description>CLOSED!!!
+<br/>
+<br/>Used during the PG Worlds 2001.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=393">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=393</a></description>
+			  <LookAt>
+				<longitude>-3.43250000</longitude>
+				<latitude>37.12305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.43250000,37.12305556,3200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tablones, Orgiva, Sierra Nevada</name>
+			  <description>Some additional info here:
+<br/>http://granadainfo.com/hv/
+<br/>http://www.fly-park-almunecar.com<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2151">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2151</a></description>
+			  <LookAt>
+				<longitude>-3.37611111</longitude>
+				<latitude>36.87861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.37611111,36.87861111,690</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tamango Hill, Torrox / Nerja</name>
+			  <description>Coastal hang. At coastgroad N-340, on the border between Torrox and Nerja. You will see urbanization sign "Tamango Hill" just on the inside of the road - now drive up to the holiday houses. Follow main road and you will come to road Calle Tizziano. The first and LOWER START is at the beginning of the last row of houses. Not to much space there at the little side road.. (100m. a.s.l. and SE, S, and SW). 
+<br/>THE MAIN STARTS are a little bit higher up. You drive C. Tizziano to the end and then drive the dirt road for about 500 - 1000 m. Then take the little road left and you will find two nice big natural starts, just besides each other. It is possible to see the start at the mountain side, just after the first climb on the dirt road. The first natural start points to SE/Nerja and the other to SW/Torrox. Possible to land on one of the beaches or on the landing site just besides/under Ladera del Mar 2 (the next urbanization towards Torrox).
+<br/>Or you can try toplanding. Either way, not a very long walk back for your car.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7721">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7721</a></description>
+			  <LookAt>
+				<longitude>-3.92111111</longitude>
+				<latitude>36.74361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.92111111,36.74361111,160</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Johnnys Place, Yaiza</name>
+			  <description>Very nice soft sloping launch. Please try to make as little damage on the crops in the growing season. Usable launch when the wind is too northern and too strong on other launches. Good, strong thermals. Nice landing on the brown dirt field nearest to the cemetry in the start of the valley, just behind the village.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6376">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6376</a></description>
+			  <LookAt>
+				<longitude>13.76024167</longitude>
+				<latitude>28.93506111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.76024167,28.93506111,390</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote - Sanddune/Volcano between LA CALETA and SOO</name>
+			  <description>Take off to the right from the road going from La Caleta to Soo, just before arriving a small village. There is a brick fense following the start of the road (which is an off-road really).<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2664">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2664</a></description>
+			  <LookAt>
+				<longitude>-13.60777778</longitude>
+				<latitude>29.11666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.60777778,29.11666667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Arrieta.</name>
+			  <description>Kystheng, hvis d blåser for mye på MALA
+<br/>Landingaplass for HG/PG.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6846">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6846</a></description>
+			  <LookAt>
+				<longitude>-13.46444444</longitude>
+				<latitude>29.12194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.46444444,29.12194444,15</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, el Cuchillo</name>
+			  <description>South west of Soo.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1154">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1154</a></description>
+			  <LookAt>
+				<longitude>-13.65472222</longitude>
+				<latitude>29.08555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.65472222,29.08555556,150</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Famara Risco</name>
+			  <description>Behind the round bungalows. Landing on the road below TO, or on the beach.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7994">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7994</a></description>
+			  <LookAt>
+				<longitude>-13.53972222</longitude>
+				<latitude>29.11583333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.53972222,29.11583333,100</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Famara Upper start</name>
+			  <description>Famara is the biggest flying site on the island and the real reason that people come to Lanzarote to fly. The cliff run is around 21km and the max height of the cliffs is 1780ft/700m. There are two take off sites, one higher than the other, just outside the town of Teguise. At the foot of the take off is the landing zone which is a huge area of sandy soil. You can also land on the beach next to the little town of Famara. The cliffs run all the way up to the top of the island and at the tip, form the other side of the Mirador del Rio cliffs. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1153">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1153</a></description>
+			  <LookAt>
+				<longitude>-13.55805556</longitude>
+				<latitude>29.08000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.55805556,29.08000000,415</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Famara,  lower start</name>
+			  <description>Most used start.Top-landing.Famara is the biggest flying site on the island and the real reason that people come to Lanzarote to fly. The cliff run is around 21km and the max height of the cliffs is around 700m. There are two take off sites, one higher than the other, just outside the town of Teguise. At the foot of the take off is the landing zone which is a huge area of sandy soil. You can also land on the beach next to the little town of Famara. The cliffs run all the way up to the top of the island and at the tip, form the other side of the Mirador del Rio cliffs.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1161">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1161</a></description>
+			  <LookAt>
+				<longitude>-13.57805556</longitude>
+				<latitude>29.06277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.57805556,29.06277778,270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Femes, lower start</name>
+			  <description>SW takeoff in Femes, lower to.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8295">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8295</a></description>
+			  <LookAt>
+				<longitude>-13.78666667</longitude>
+				<latitude>28.91250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.78666667,28.91250000,300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Macher</name>
+			  <description>Samme som: TINASORIA og LANZAROTE - MACHER.Fareslar a bruke LANZAROTE-LANZAROTE,TINASORIA.
+<br/>Like vest for Puerto del Carmen, også kalt TINASORIA.Use LANZAROTE-LANZAROTE,TINASORIA!!<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2625">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2625</a></description>
+			  <LookAt>
+				<longitude>-12.70972222</longitude>
+				<latitude>28.95305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-12.70972222,28.95305556,460</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Mala</name>
+			  <description>If you are coming from Arrecife, Turn left from main road in Mala.Park and walk across the dam to the TO. Large Ridge; enough space to set up many HG/PG's: if wind is too strong, there are a few alternative TO's available lower on the ridge. Nice place for XC. NB Look for aeroplanes from Arrecife.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=888">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=888</a></description>
+			  <LookAt>
+				<longitude>-13.47750000</longitude>
+				<latitude>29.11083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.47750000,29.11083333,180</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Mirador del Rio</name>
+			  <description>Nice place for soaring and termalling.. Landing in a footballfield down in Orzola. Bad road to start.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=887">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=887</a></description>
+			  <LookAt>
+				<longitude>-13.47250000</longitude>
+				<latitude>29.22000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.47250000,29.22000000,425</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Orzola</name>
+			  <description>Liten take off ved stranda utenfor Orzola. En vinge om gangen. Fin start nar det blaser for mye andre steder.
+<br/>Landing pa stranda foran start.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5094">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5094</a></description>
+			  <LookAt>
+				<longitude>-13.46333333</longitude>
+				<latitude>29.22416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.46333333,29.22416667,35</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Playa Quemada</name>
+			  <description>Kan være flybart ved sterk SE vind.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3590">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3590</a></description>
+			  <LookAt>
+				<longitude>-13.73944444</longitude>
+				<latitude>28.90888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.73944444,28.90888889,70</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Puerto Calero</name>
+			  <description>Dirt track 500m west from Secrets Lanzarote Resort & Spa in Puerto calero.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8726">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8726</a></description>
+			  <LookAt>
+				<longitude>-13.71583333</longitude>
+				<latitude>28.91388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.71583333,28.91388889,40</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Skolebakke ved Tao</name>
+			  <description>En slak lang ås med liten høydeforskjell. Kan brukes til skolebakke. Mulig å soare på åsen ved sterk vind. NB Landing hvor som helst Nord nordøst for starten men obs turbulens ved mye vind. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6374">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6374</a></description>
+			  <LookAt>
+				<longitude>-13.61194444</longitude>
+				<latitude>29.03305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.61194444,29.03305556,320</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Tenesar</name>
+			  <description>Ofte flybart hvis det blåser for mye andre steder.
+<br/>Det er ryddet to startplasser.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6239">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6239</a></description>
+			  <LookAt>
+				<longitude>-13.71611111</longitude>
+				<latitude>29.07944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.71611111,29.07944444,50</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote, Tinasoria</name>
+			  <description>Samme som: LANZAROTE - MACHER og MACHER.Fareslar a bruke LANZAROTE-LANZAROTE,TINASORIA.(This)
+<br/>Directly above Ma'cher you'll find Tinasoria.
+<br/>(southwest of Puerto del Carmen)
+<br/>It's possible to drive all the way up to start, which is a perfect place for toplanding.Also called Macher.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1042">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1042</a></description>
+			  <LookAt>
+				<longitude>-13.71194444</longitude>
+				<latitude>28.95305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.71194444,28.95305556,460</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lanzarote,Famara,Upper (finnes fra før)</name>
+			  <description>Famara is the biggest flying site on the island and the real reason that  people come to Lanzarote to fly. The cliff run is around 12k and the max  height of the cliffs is 1780ft. There are two take off sites, one higher  than the other, just outside the town of Teguise. At the foot of the  take off is the landing zone which is a huge area of sandy soil. You can  also land on the beach next to the little town of Famara. The cliffs run  all the way up to the top of the island and at the tip, form the other  side of the Mirador del Rio cliffs.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2165">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2165</a></description>
+			  <LookAt>
+				<longitude>-13.55555556</longitude>
+				<latitude>29.03083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-13.55555556,29.03083333,415</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tinasoria</name>
+			  <description>Samme som: TINASORIA og MACHER.Fareslar a bruke LANZAROTE-LANZAROTE,TINASORIA.
+<br/>Se mer info under linken<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4737">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4737</a></description>
+			  <LookAt>
+				<longitude>-12.71027778</longitude>
+				<latitude>28.95055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-12.71027778,28.95055556,325</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Estepona Beach Urb. Costa lita</name>
+			  <description>Kjør fra Marbella A7 mot Estepona Kryss motorveien ved Bel-Air kjør mot Costa lita veed stranden er det et lite område med gress
+<br/>
+<br/>PPG start<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3654">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3654</a></description>
+			  <LookAt>
+				<longitude>-5.04061111</longitude>
+				<latitude>36.45922222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.04061111,36.45922222,3</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>guainos bajos)</name>
+			  <description>new start - please give it a proper name and description (2007-03-13 22:06:12)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3257">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3257</a></description>
+			  <LookAt>
+				<longitude>-0.69972222</longitude>
+				<latitude>38.61416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-0.69972222,38.61416667,1333</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Malaga, Valle de Abdalajis, Levante  </name>
+			  <description>Popular site in this part of Spain both for HG and PG pilots. Several launch sites depending on wind direction (see link to more info)
+<br/>
+<br/>Drive to the centre of Valle de Abdalajis. There you will find signs to both the local flying club, and to the takeoff. The takeoff is west of  the village, at the west side. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=492">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=492</a></description>
+			  <LookAt>
+				<longitude>-4.72083333</longitude>
+				<latitude>36.93166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.72083333,36.93166667,750</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Malaga, Valle de Abdalajis, Norte, Capilla</name>
+			  <description>Popular site in this part of Spain both for HG and PG pilots. Several launch sites depending on wind direction (see link to more info)
+<br/>
+<br/>Driving from Campillos on the N357 direction Malaga, take left at the junction marked "Embalses". This is shortly before the junction Teba to the right.
+<br/>Follow the signs towards Valle de Abdalajis. Cross the dam, keep left. Continue to follow the signs to Valle. Continue until you see a large sign and information board on the right side of the road. On this board you will find information on alle takeoffs and landings. Take right at this sign, again right at the next junction, then left at the next junction. Follow the road until you get to the takeoff.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4387">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4387</a></description>
+			  <LookAt>
+				<longitude>-4.71138889</longitude>
+				<latitude>36.95222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.71138889,36.95222222,780</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sierra de Lújar, Castell de Ferro</name>
+			  <description>Kjør opp mot Lujar, men ta til høyre mot Rubite. Følg Orgiva til du ser veien til toppen som går opp på østsiden av fjellet.
+<br/>Fint startsted på sørsiden av fjellet, noen hundremeter fra Antennene.
+<br/>Landing på stranda i Castell-de-Ferro! 
+<br/>
+<br/>Dette er en sklitur på 12 km noe som krever et glidetall på ca 6.5 i snitt for å nå fram til hovedlanding.
+<br/>
+<br/>Alternativ landing i det tørrlagte elveleiet etter 7 km. Hit når du med 4.5 i snitt.
+<br/>
+<br/>Øverste bilde: Panorama med utsikt fra start. Landing på stranda helt til venstre i bildet.
+<br/>
+<br/>Venstre under: Utsikt som venter deg på sklituren!
+<br/>
+<br/>Høyre under: Rikelig med landingsplass på stranda.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1794">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1794</a></description>
+			  <LookAt>
+				<longitude>-3.40138889</longitude>
+				<latitude>36.82194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-3.40138889,36.82194444,1824</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Pedro Bernardo, West</name>
+			  <description>West launch on the mountain behind Pedro Bernardo.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3021">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3021</a></description>
+			  <LookAt>
+				<longitude>-4.90583333</longitude>
+				<latitude>40.25638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-4.90583333,40.25638889,1250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Piedrahita, La Lastra</name>
+			  <description>Take off near the Village La lastra wich is close to Piedrahita. Used for south wind direction.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2014">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2014</a></description>
+			  <LookAt>
+				<longitude>-5.44611111</longitude>
+				<latitude>40.33888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.44611111,40.33888889,1541</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Puerto de Chia, Piedrahita</name>
+			  <description>On the back (south side) of the mountain ridge at Piedrahita.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3020">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3020</a></description>
+			  <LookAt>
+				<longitude>-5.18083333</longitude>
+				<latitude>40.45194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.18083333,40.45194444,1834</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Salamanca, Álamo</name>
+			  <description>Small ridge in the middle of the flat lands. Alternative launch when higher winds are too strong and/or the wind is coming over the back at the Peña Negra launch.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8095">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=8095</a></description>
+			  <LookAt>
+				<longitude>5.47222222</longitude>
+				<latitude>40.55666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.47222222,40.55666667,1300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Salamanca, Piedrahita, Peña Negra.</name>
+			  <description>Main start of Piedrahita. In the top of "Puerto de Peñanegra".
+<br/>Info from paraglider earth: The take off area is divided into two sections: above and below the road. With zero wind it is generally better to take off below the road as it is steeper. With a few km/hr of wind, the top take of is used. If you top land, the best area is the flatter area near the windsock on the west side of the upper launch. The whole area is a little rocky, and also there are a number of gorse bushes.
+<br/>
+<br/>Landing :	 The flatter fields of the valley are approximately a 4.5:1 glide from Launch. There is a landing field at the half way point on the spine running down on the right of take off. This is just before the forested section (called locally the Monte de Jura). There are also good fields in the gulley before the forested section next to the road. On the Chalet spine there is the option to land near the Chalets. The official landing field in the valley can change year by year. for 2008 and onwards it is a large field on the hill side of the Panera Bar/Steve HamÂ´s house.
+<br/>People to contact :	 Steve Ham C/Somoza 20 (road to take off) Piedrahita.(0034) 920360550<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=454">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=454</a></description>
+			  <LookAt>
+				<longitude>-5.30111111</longitude>
+				<latitude>40.42166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-5.30111111,40.42166667,1900</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Arafo, Upper Takeoff</name>
+			  <description>The Arafo Takeoff is by the road, but there are at least two more good takeoffs up the hill. This is about a 10 minutes hike up. Look for a tree in front of the takeoff and a low wall behind it...<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7282">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7282</a></description>
+			  <LookAt>
+				<longitude>-16.43293889</longitude>
+				<latitude>28.37891694</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.43293889,28.37891694,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Arico</name>
+			  <description>Lavt hang, toplanding er hovedlanding. Om man er nødt til å lande i bunnen anbefales de gamle potet-terrassene.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5880">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5880</a></description>
+			  <LookAt>
+				<longitude>-16.49194444</longitude>
+				<latitude>28.15944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.49194444,28.15944444,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ifonce</name>
+			  <description>Det høye fjellet med flat topp rett sør for Infonche. Man må enten gå opp eller topplande og så fly videre. Stor flate som heller svakt i sørlig retning. Knusktørre små tornekratt over alt så vær forsiktig med vingen. Ved topplanding så vær obs på mulig sterk termikk og turbulens. 
+<br/>Helt greit å fly til stranda eller Taucho hovedlanding. 
+<br/>Ikke fly særlig lenger østover, da er du ganske fort i kontrollsonen til flyplassen<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7837">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=7837</a></description>
+			  <LookAt>
+				<longitude>-16.69944444</longitude>
+				<latitude>28.10361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.69944444,28.10361111,1000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Izana</name>
+			  <description>new start - please give it a proper name and description (2007-01-28 23:43:58)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3209">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3209</a></description>
+			  <LookAt>
+				<longitude>-16.49027778</longitude>
+				<latitude>28.32916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.49027778,28.32916667,2250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Los Gigantes</name>
+			  <description>Anbefaler å bruke siten kun på gode termikk-dager. Reservelandingen som er den eneste man kan nå uten løft er ikke spesielt bra. 
+<br/>
+<br/>http://www.para42.com/en/index.html<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6438">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6438</a></description>
+			  <LookAt>
+				<longitude>-16.81805556</longitude>
+				<latitude>28.24916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.81805556,28.24916667,600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Santa María del Mar, Santa Cruz, Tenerife</name>
+			  <description>Nice soaring site. Good landing zone at the bottom.
+<br/>Lite men fint kysthang. Fin start og stor flat landing rett under. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6360">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=6360</a></description>
+			  <LookAt>
+				<longitude>-16.29555556</longitude>
+				<latitude>28.42277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.29555556,28.42277778,84</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Taucho</name>
+			  <description>DONÂ´T USE/LOGG HERE, CHOOSE "TAUCHO" OR CLICK AT LINK, THANKÂ´S 
+<br/>
+<br/>
+<br/>
+<br/>Just up the hill near Fanabe - where the coloured spots in the air are - each afternoon... *g*<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3246">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3246</a></description>
+			  <LookAt>
+				<longitude>-16.73333333</longitude>
+				<latitude>28.13333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.73333333,28.13333333,750</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife - Igueste </name>
+			  <description>Sørleg hang. Lokal plass, ikkje mange flyg her. Ca 20 min å gå. <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9484">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=9484</a></description>
+			  <LookAt>
+				<longitude>-16.14861111</longitude>
+				<latitude>28.52361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.14861111,28.52361111,150</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Barranco Hondo</name>
+			  <description>Thermodynamic and cross country<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5930">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5930</a></description>
+			  <LookAt>
+				<longitude>-16.36888889</longitude>
+				<latitude>28.39861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.36888889,28.39861111,670</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Fasnia</name>
+			  <description>Dynamic
+<br/>Liten kolle, kan startes på nesten alle rettninger, men best på østlige vinder, da man får vinden inn i en liten bolle, som blir bedre løft. Stedet er ganske termisk.
+<br/>
+<br/>Landing ved to vannreservoarer SØ for start. Man kjører forbi dem på vei til start. 
+<br/>
+<br/>Her kan man kjøre helt opp til toppen.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1783">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1783</a></description>
+			  <LookAt>
+				<longitude>-16.43277778</longitude>
+				<latitude>28.22916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.43277778,28.22916667,468</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Fasnia2</name>
+			  <description>Liten hangbar vulkan!<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2677">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2677</a></description>
+			  <LookAt>
+				<longitude>-16.43138889</longitude>
+				<latitude>28.22888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.43138889,28.22888889,450</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Ifonche</name>
+			  <description>Thermals and cross country
+<br/>Takeoff in the mountain above Playa des Americas. Pass the village Ifonche and find the narrow, but cemented, road out on the cliff edge to the left. There are two take-off places, one on each side of the rock. Landing is in front of the highway at the go-kart track. Or fly to taucho main landing of there are thermals. This site can get kind of turbulent after 13:00.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2157">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2157</a></description>
+			  <LookAt>
+				<longitude>-16.69027778</longitude>
+				<latitude>28.12055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.69027778,28.12055556,995</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Jama</name>
+			  <description>Thermals
+<br/>Take-off beside the road above the village Jama.
+<br/>Landing is in the bowl-like walley below, follow narrow roads above football-field. 
+<br/>!!Be aware!! The rocks to the left creates a large rotor at the landing if there is a strong easterly wind. Check the sea, and windsocks along the road by the airport, before flying.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2614">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=2614</a></description>
+			  <LookAt>
+				<longitude>-16.65750000</longitude>
+				<latitude>28.11500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.65750000,28.11500000,930</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, La Corona</name>
+			  <description>Thermal
+<br/>Green carpet by the radiotowers.
+<br/>Great place for morning thermals.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5119">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5119</a></description>
+			  <LookAt>
+				<longitude>-16.60083333</longitude>
+				<latitude>28.37833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.60083333,28.37833333,744</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Ladera de Guimar</name>
+			  <description>Thermodynamic and cross country
+<br/>Fint hang. 
+<br/>Kjør opp TF-28 og ta av den bratte grusveien opp til høyre ved statuen ved utsiktsplassen Mirador del Puertito de Güimar. Parkering like ved start som nå er en betongdekket, bratt helling. Landing på stranden på Puertito de Güimar eller flatmark rett ut fra takeoff merket med "fallskjermklubb" på google maps<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5882">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5882</a></description>
+			  <LookAt>
+				<longitude>-16.41805556</longitude>
+				<latitude>28.29166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.41805556,28.29166667,739</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Las Teresitas</name>
+			  <description>Heng/termisk heng med landing på sandstrand like utfor start. Pass på å lande på øvre østre delen av stranda, det er ikke lov å lande andre steder på stranda!
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5905">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5905</a></description>
+			  <LookAt>
+				<longitude>-16.18777778</longitude>
+				<latitude>28.51083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.18777778,28.51083333,75</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Los Pinos </name>
+			  <description>Denne plassen er stengt av grunneier -ref Henry fra Para42 25/1-2023. (Espen Åshammer)
+<br/>
+<br/>Thermals and cross country
+<br/>På fjellet over Taucho, kjør veien videre forbi Taucho helt til man kommer til et blindei skilt (parkeringsplass rett fram) ta så til høyre, hold til høyre og parker ved siden av grusveien før bommen. Følg gå forbi bommen og traktorvei/stien ca. 10 minutter gange fra parkeringen. 
+<br/>Veldig fin og bra opparbeidet start som absolutt er verdt gåturen. Denne starten er ikke veldig godt kjent så her slipper man de lange startkøene det til tider kan være på Taucho. Samme landing som Taucho.
+<br/>
+<br/>NB! Dette er en stupstart.
+<br/>
+<br/>Denne starten er stengt ifølge lokale piloter pga flere fatale ulykker de siste årene.
+<br/>
+<br/>Korrigering: starten er IKKE stengt! Henry fra Para42.com tar med piloter dit når forholdene tilsier det (Frank Dahle).
+<br/>
+<br/>2019-12-28. Starten er blokkert med store steiner slik at det ikke er mulig å ta av. Har flydd over og sett med egne øyne. Taucho er alternativ start. (Ingrid Busvold)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4363">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=4363</a></description>
+			  <LookAt>
+				<longitude>-16.72222222</longitude>
+				<latitude>28.14416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.72222222,28.14416667,950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Panonrama de Teide, Para Puerto de la Cruz</name>
+			  <description>både Hang och start för att glida till Puerto de la cruz.
+<br/>stannade här och hangade, men pga orekade landningar så vart det inget ner flyg.
+<br/>
+<br/>Cred till Simon F för denna finna plast och Test piloten Olle...<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3212">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3212</a></description>
+			  <LookAt>
+				<longitude>-16.49583333</longitude>
+				<latitude>28.32916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.49583333,28.32916667,2200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Taganana</name>
+			  <description>Dynamic
+<br/>Nord øst på Tenerife. Nydelig sted for hang.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5521">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5521</a></description>
+			  <LookAt>
+				<longitude>-16.22733333</longitude>
+				<latitude>28.55786111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.22733333,28.55786111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Tamaimo</name>
+			  <description>Thermodynamic
+<br/>Take off, close to Los Gigantes.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5108">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5108</a></description>
+			  <LookAt>
+				<longitude>-16.82916667</longitude>
+				<latitude>28.24888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.82916667,28.24888889,600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Taucho</name>
+			  <description>Thermals and cross country.
+<br/>Kjør motorveien fra Playa del Americas i retning av Guia de Isora. Etter ca. 8 km. kommer du til et stort industriområde på venstre side. Se etter et stort grønt supermarked. På sjøsiden av supermarkedet er det satt opp en del streamere og der er hovedlandingen. Koordinatene dit er: N 28.07.14, W 016.44.30. 
+<br/>
+<br/>Starten (  http://vimeo.com/34555156  ) finner du enten ved å følge veien videre til du ser skilt mot Taucho, eller ta til høyre i første rundkjøring du møter etter at motorveien er slutt på vei mot Guia de Isora. Så kjører du rett opp bakken og fortsetter "rett frem" i ca. 20 min. Da ser du sikkert en del biler og streamere på høyre side. Er du alene, kan det lønne seg å parkere på landing og haike opp, eller rett og slett ta taxi fra Playa de Las Americas, og fly hjem etterpå. (Taxi från LZ upp till Taucho ca. 7-10e)
+<br/>
+<br/>Når det er flybart vil du se gliders i luften. Greit utgangspunkt for kortere distanseturer i både nordlig og sørlig retning. Når du skrur deg opp over starten, ser du majestetiske Teide på 3.717 moh i bakgrunnen. 
+<br/>
+<br/>Taucho er den enkleste og mest brukte starten på Teneriffe.
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1059">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=1059</a></description>
+			  <LookAt>
+				<longitude>-16.73583333</longitude>
+				<latitude>28.14472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.73583333,28.14472222,790</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Taucho - Paragliding Park</name>
+			  <description>Note: Takeoff was originally registred as being in Germany, however the coordinates was from Tenerife and all flights registered are there so I've changed name and country (erdal)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=10244">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=10244</a></description>
+			  <LookAt>
+				<longitude>-16.73611111</longitude>
+				<latitude>28.14472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.73611111,28.14472222,771</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Teide, Valle de Güimar</name>
+			  <description>You can se Puerto de Güimar from the take off. The take off is right beside the road. 
+<br/>Follow the ridge down to the beach at Puerto de Güimar. 
+<br/>Precausions: There are power lines above the mainroad above Puerto de Güimar. Check your alltitude.
+<br/>
+<br/>This start is safest eary in the morning, takeoff before 11:00 or late in the evening takeoff after 17:00<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3766">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=3766</a></description>
+			  <LookAt>
+				<longitude>-16.49166667</longitude>
+				<latitude>28.32222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.49166667,28.32222222,2230</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tenerife, Tierra del Trigo (El Tanque)</name>
+			  <description>Dynamic
+<br/>Starten ligger på baksiden av en restaurant. Hovedlanding er på nest siste nes etter det store bassenget ved kysten, ca 4,5 km vestover. Super landing, synlig hvis man går 50m utpå kanten fra start. Nødlanding på stranden rett nedenfor start, eller ved den gule fabrikken ved kysten ca 3km vestover (på veien). Fin termikk, og flott natur, selv om dette er nordkysten. Flott sted.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5878">https://flightlog.org/fl.html?l=1a=22country_id=195start_id=5878</a></description>
+			  <LookAt>
+				<longitude>-16.78583333</longitude>
+				<latitude>28.36000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-16.78583333,28.36000000,618</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

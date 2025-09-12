@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Sillian, Thurntaler (new)</name>
+			  <description>Last part of the road to the starting place is private.&lt;br/&gt;Landing place at N 46Â° 45' 00'' E 12Â° 25' 49''.&lt;br/&gt;Landing can be very windy!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2476&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2476&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.39694444</longitude>
+				<latitude>46.76722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.39694444,46.76722222,2178</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gerlitzen/Annenheim 1500m</name>
+			  <description>Steep start with a narrow opening in the trees.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4267&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4267&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.89611111</longitude>
+				<latitude>46.67361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.89611111,46.67361111,1475</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Goldeck, Spittal an der Drau</name>
+			  <description>Det er flere starter pÃ¥ Goldeck som dekker alle vindretninger unntatt rett fra Ã¸st. Rett nedenfor gondolbanen er det en fin gressbakke med vindpÃ¸lse. &lt;br/&gt;Legg merke til at alle de Ã¸stre flankene pÃ¥ Ã¥sen mÃ¥ flyes i retning Spittal.&lt;br/&gt;En av de vakreste utsiktene over Spittal og Lake Millstatt er fra Goldeck. Med Goldeckbahn kan du nÃ¥ alle startstedene fra Spittal. Starten av gondolbanen ligger 5 min gange fra landing og koster 12 euro(2018) for en tur. Rundt den grÃ¸nne toppen pÃ¥ 2.100 moh har du en fantastisk utsikt over hele fjellet og panorama opp til Grossglockner. Hvis vindstyrken er riktig, kan du starte i nesten alle retninger i dette omrÃ¥det. Spesielt ved nordavind har Goldeck pÃ¥ slutten av Tauern-dalen en ideell slaghelling. Hvis nordvinden er pÃ¥, kan du soare frem og tilbake i toppomrÃ¥det. Nordretningen forklarer ogsÃ¥ hvorfor Goldeck ikke er ideelt for distanseflyging. De mest frekventerte ruter fÃ¸rer langs de nordlige flankene mot Villach. Alle andre ruter krever pilot med en hÃ¸y grad av erfaring, da hver Ã¥s og fjellsidene mÃ¥ flyes rundt.&lt;br/&gt;Den store landingen ligger nÃ¦r dalstasjonen pÃ¥ Goldeckbahn i Spittal. Det er viktig Ã¥ merke seg at dette landingsstedet noen ganger brukes av helikoptre. Ved landing er det er stort badeland med innendÃ¸rs og utendÃ¸rs basseng som er et perfekt sted Ã¥ parkere familien mens man henger og dingler.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8146&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8146&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.45650000</longitude>
+				<latitude>46.76208333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.45650000,46.76208333,2100</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Greifenburg, Emberger Alm 1</name>
+			  <description>VÃ¤gbeskrivning till start.&lt;br/&gt;FrÃ¥n Landning kÃ¶r in i Greifenburg. FÃ¶lj skyltar mot Emberger Alm. Alternativ: Ta en flygtaxi/buss frÃ¥n landning till starten.&lt;br/&gt;&lt;br/&gt;VÃ¤gbeskrivning landning.&lt;br/&gt;FrÃ¥n Lienz kÃ¶r igenom Greifenburg. 100 meter efter svÃ¤ng hÃ¶ger(skyltat) mot campingen. GÃ¥ igenom campingen.&lt;br/&gt;Landing: N 46Â° 44' 48'' E 13Â° 11' 34''&lt;br/&gt;Landningen Ã¤r bra. Se upp fÃ¶r elledning och andra piloter. &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Alternativ:&lt;br/&gt;Start frÃ¥n Amberger Alm. TvÃ¥ starter. Syd och Sydost.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2475&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2475&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.14972222</longitude>
+				<latitude>46.77250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.14972222,46.77250000,1740</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Greifenburg, Landing.</name>
+			  <description>VÃ¤gbeskrivning till start.&lt;br/&gt;FrÃ¥n Landning kÃ¶r in i Greifenburg. FÃ¶lj skyltar mot Emberger Alm. Alternativ: Ta en flygtaxi/buss frÃ¥n landning till starten.&lt;br/&gt;&lt;br/&gt;VÃ¤gbeskrivning landning.&lt;br/&gt;FrÃ¥n Lienz kÃ¶r igenom Greifenburg. 100 meter efter svÃ¤ng hÃ¶ger(skyltat) mot campingen. GÃ¥ igenom campingen.&lt;br/&gt;&lt;br/&gt;Landningen Ã¤r bra. Se upp fÃ¶r elledning och andra piloter. &lt;br/&gt;&lt;br/&gt;Alternativ:&lt;br/&gt;Start frÃ¥n Amberger Alm. TvÃ¥ starter. Syd och Sydost.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=867&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=867&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.19277778</longitude>
+				<latitude>46.74666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.19277778,46.74666667,1940</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Karkogel - Abtenau -Saltzburg</name>
+			  <description>Karkogel lies on top of the Abtenau lift.&lt;br/&gt;Abtenau ligger nÃ¤ra saltzburg&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1446&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1446&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.35972222</longitude>
+				<latitude>47.54472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.35972222,47.54472222,1170</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Spittal, Tschiernock</name>
+			  <description>VÃ¤gbeskrivning till starten.&lt;br/&gt;KÃ¶r till Treffling, dÃ¤rifrÃ¥n Ã¤r det skyltat mot Tschiernock. Bomavgift fÃ¶r att kÃ¶ra upp. KÃ¶r till stolsliften. GÃ¥ 200 meter vÃ¤ster ut. Alternativ Ã¥k upp med stolsliften till en hÃ¶gre start.&lt;br/&gt;&lt;br/&gt;Landning.&lt;br/&gt;Ãk till Treffling och fortsÃ¤tt norr ut, sÃ¥ ser man landningen frÃ¥n vÃ¤gen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=869&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=869&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.74555556</longitude>
+				<latitude>46.17666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.74555556,46.17666667,2088</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Trattberg, Kuchl, Abtenau</name>
+			  <description>A really large grass take-off with multiple directions. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1935&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1935&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>13.26916667</longitude>
+				<latitude>47.63777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>13.26916667,47.63777778,1640</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Achensee (Maurach)</name>
+			  <description>Achensee is 45 km East/North of Innsbruck.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1046&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1046&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.76250000</longitude>
+				<latitude>47.44194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.76250000,47.44194444,2000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Achensee (Rofan)</name>
+			  <description>Take off at the Rofan lift station.&lt;br/&gt;You can also take off on the lower part (in front of original TO).&lt;br/&gt;&lt;br/&gt; &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4592&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4592&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.69611111</longitude>
+				<latitude>47.42750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.69611111,47.42750000,1465</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ellmau, Hartkaiser</name>
+			  <description>Benytt Hartkaiser banen opp til start. Ca 400m og gÃ¥ fra landing til bunnstasjonen.&lt;br/&gt;Start er pÃ¥ vest eller Ã¸stsiden av toppstasjonen avhengig av vindretning. Vanlig Ã¸st fÃ¸r klokken 12 og pÃ¥ vestsiden etter 12.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4594&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4594&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.27277778</longitude>
+				<latitude>47.49388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.27277778,47.49388889,1500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Fiss, SchÃ¶njoch</name>
+			  <description>Start direction south directly under the Bergdiamant restaurant.&lt;br/&gt;Start direction north ca 500 meter east from the restaurant.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3554&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3554&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.58888889</longitude>
+				<latitude>47.07388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.58888889,47.07388889,2420</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Flugplatz Lienz-Nikolsdorf</name>
+			  <description>Zivilflugplatz in Nikolsdorf nÃ¤he Lienz.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3713&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3713&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.87777778</longitude>
+				<latitude>46.79833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.87777778,46.79833333,638</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Fulpmes, Kreuzjoch</name>
+			  <description>Gondola from Fulpmes.&lt;br/&gt;Landing area directly south og Fulpmes.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2213&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2213&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.30750000</longitude>
+				<latitude>47.14500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.30750000,47.14500000,2090</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Grubigstein, Lermoos</name>
+			  <description>Gondol Grubigstein 1 og 2 fÃ¸rer deg til toppen. Det er starter pÃ¥ alle vindretninger men nordlig og nordvest er skrÃ¥ og utfordrende. Det er 2 holfuy stasjoner pÃ¥ to forskjellige startomrÃ¥der og en ved landing. Landingen er stor og ligger 2 minutters gange fra starten av gondolen. Der ligger ogsÃ¥ en PG-butikk som drives av hyggelige og dyktige piloter! Fantastisk utsikt mot Zugspitze og super logistikk! Bildet er fra start nr 4 med utsikt rett mot Zugspitze.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8126&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8126&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.84730556</longitude>
+				<latitude>47.38586111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.84730556,47.38586111,2050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hopfgarten / SÃ¶ll, Hohe Salve</name>
+			  <description>Bergbana till toppen. Huvudlandning i SÃ¶ll.&lt;br/&gt;Andra landningar Ã¤r Westendorf och mÃ¶jligen Hopfgarten.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3119&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3119&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.20277778</longitude>
+				<latitude>47.46416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.20277778,47.46416667,1825</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>JÃ¶chelspitze, Bach </name>
+			  <description>JÃ¶chelspitze Top station, 5 min walk to the east (follow the trail &quot;Lehrpfad&quot;) &lt;br/&gt; &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4591&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4591&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.36708333</longitude>
+				<latitude>47.27651389</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.36708333,47.27651389,1805</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kalkwand, Stubaital</name>
+			  <description>Fjellstart ved innsteget av Imspitze Via Ferrata. &lt;br/&gt;Mulig Ã¥ ta av i flere retninger, avhengig av hvor man skal.&lt;br/&gt;Ved landing i Stubaital starter man mot NV. &lt;br/&gt;Fin sti opp via Innsbrucker Hutte.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=10437&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=10437&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.32021722</longitude>
+				<latitude>47.04351972</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.32021722,47.04351972,2560</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Kals, Adlerlounge</name>
+			  <description>Perfect takeoff right beside the cable car, which usually runs up from 9 a.m. onwards.&lt;br/&gt;Even in light northerly conditions well startable.&lt;br/&gt;It is sometimes hard to get back, so time your lat turnpoint well (=rather early) and watch out for strong valley winds coming from the main Alpine ridge, if you try to land in Kals...&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8157&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8157&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.59640000</longitude>
+				<latitude>46.99338056</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.59640000,46.99338056,2390</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>kitzbÃ¼hel Hahnenkamm </name>
+			  <description>Fin start i toppen av bakken berÃ¸mt for Hahnenkamm-Rennen. Nydelig utgangspunkt for xc i flere retninger. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4266&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4266&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.37138889</longitude>
+				<latitude>47.42638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.37138889,47.42638889,1668</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>KÃ¶ssen, Jansenstation</name>
+			  <description>Place for the NM 2002.&lt;br/&gt;Jansenstation is the highest launch in KÃ¶ssen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=785&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=785&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.43638889</longitude>
+				<latitude>47.62833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.43638889,47.62833333,1590</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>KÃ¶ssen, Scheibenwald</name>
+			  <description>On the way up to the top of Unterberg, where you go from one lift to the other. (Just above the hut.)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1016&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=1016&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.43277778</longitude>
+				<latitude>47.63138889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.43277778,47.63138889,1510</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>KÃ¶ssen, Unterberghorn</name>
+			  <description>Launches:&lt;br/&gt;1. BÃ¤renhÃ¼tte (N/E) 1478m, easy, main launch next&lt;br/&gt;to the cablecar, GPS: 47Â°37â55.03âN, 12Â°25â53.42âE&lt;br/&gt;2. BÃ¤renhÃ¼tte (W) medium, 50m above the BÃ¤renhÃ¼tte&lt;br/&gt;restaurant. GPS: 47Â°37â52.83âN, 12Â°25â51.77âE&lt;br/&gt;3. Summit ridge (E/NE) 1670m, easy, 30 min&lt;br/&gt;walk from BÃ¤renhÃ¼tte towards the summit,&lt;br/&gt;GPS: 47Â°37â33.72âN, 12Â°26â9.92âE&lt;br/&gt;4. Summit (W/SW) 1720m, medium, 35 min walk&lt;br/&gt;from BÃ¤renhÃ¼tte, GPS: 47Â°37â28.72âN, 12Â°26â9.30âE&lt;br/&gt;&lt;br/&gt;The house thermals usually release left and right of&lt;br/&gt;the long, grassy ridge, or in front of it, just above the&lt;br/&gt;valley (depending on the wind and the time of day).&lt;br/&gt;&lt;br/&gt;The side valley to the west(Niederhauer valley) is a narrow forested gully with&lt;br/&gt;no landings at all: it can be tricky if you get too low.&lt;br/&gt;The area has a reputation as a âBermuda triangleâ and&lt;br/&gt;occasionally an adventurous pilot gets lost in a tree.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2122&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2122&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.43972222</longitude>
+				<latitude>47.61805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.43972222,47.61805556,1500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Lienz, Zettersfeld HG launch</name>
+			  <description>Hang gliding launch from road up to Steinermandl Panorama&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=6667&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=6667&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.78786583</longitude>
+				<latitude>46.87024983</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.78786583,46.87024983,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Loferer Alm, Lofer</name>
+			  <description>Not a very large start, only room to take a few steps until you leave the cliff&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=9613&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=9613&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.66222222</longitude>
+				<latitude>47.59305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.66222222,47.59305556,1650</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mayrhofen im Zillertal</name>
+			  <description>Ta Pinkenbanen opp til toppen(2 heiser). GÃ¥ deretter ca 10 minutter videre. Der stÃ¥r et skilt med sÃ¸rstart. Denne starten er ganske liten. Jeg gikk videre til neste start som er et stort jorde der det stÃ¥r en vindpÃ¸lse. SÃ¸rstart dette ogsÃ¥. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5014&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5014&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.80444444</longitude>
+				<latitude>47.17166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.80444444,47.17166667,2000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mayrhofen, Penken</name>
+			  <description>Penkenbahn and 3SB Penken (chairlift, you don`t have to wear ski!).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2189&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2189&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.81666667</longitude>
+				<latitude>47.17611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.81666667,47.17611111,2010</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Neustift im Stubaital, Elfer</name>
+			  <description>New fast gondola from Neustift.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2211&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2211&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.32444444</longitude>
+				<latitude>47.09833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.32444444,47.09833333,1810</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Niederau, Markbachjoch</name>
+			  <description>Lift from village Niederau.&lt;br/&gt;&lt;br/&gt;Take off some 50 m from lift station (behind restaurant).&lt;br/&gt;Landing at lift station OK if you talk to Kurt at WildschÃ¶nau flying school first else you should land at the bottom of the school hill/slope.&lt;br/&gt;Lots of tandem traffic on weekends (landing at the lift).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4280&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4280&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.09416667</longitude>
+				<latitude>47.43250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.09416667,47.43250000,1450</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ãtz</name>
+			  <description>47Â° 12' 15'' N,10Â° 53' 22'' O&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5057&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5057&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.88944444</longitude>
+				<latitude>47.20416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.88944444,47.20416667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Pertisau, Achensee</name>
+			  <description>Ta heisen opp fra Pertisau, takeoff rett ved heisen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5777&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=5777&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.69611111</longitude>
+				<latitude>47.42722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.69611111,47.42722222,1450</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Seefelder Joch, Tirol</name>
+			  <description>Starten kan nÃ¥s ved Bergbahnen RosshÃ¼tte eller til fots. &lt;br/&gt;&lt;br/&gt;Se nettsiden til den lokale paragliding klubben for mer info om starten og landingene i Seefeld. https://paragleitclub-seefeld.clubdesk.com &lt;br/&gt;&lt;br/&gt;Info fra ParaglidingMap:&lt;br/&gt;Vest: https://www.paraglidingmap.com/app/site/123383?tab=0 &lt;br/&gt;Ãst: https://www.paraglidingmap.com/app/site/123224?tab=0 &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=10435&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=10435&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.23980694</longitude>
+				<latitude>47.34060139</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.23980694,47.34060139,2060</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Solden suckers</name>
+			  <description>Generelt er stedet fullt av elendig service, men flott natur og et praktfult flysted, men mest for den som liker slapp sercvice og lite frisk, ung mentalitet&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4065&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=4065&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.91138889</longitude>
+				<latitude>46.92111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.91138889,46.92111111,2480</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Spieljoch</name>
+			  <description>Next to the mountain top station of the Spieljoch Bahn in Fuegen, Zillertal.&lt;br/&gt;&lt;br/&gt;Landing field on a gentle slope next to the valley station.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=9316&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=9316&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.79500000</longitude>
+				<latitude>47.33250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.79500000,47.33250000,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Staller Sattel</name>
+			  <description>1-1,5h hike from the lake; Rocky launch, so watch your lines!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8990&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8990&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.19966667</longitude>
+				<latitude>46.90119444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.19966667,46.90119444,2500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tannheim, Neunerkoepfle</name>
+			  <description>http://www.paragliding365.com/index-p-flightarea_details_45.html&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3873&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=3873&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.54194444</longitude>
+				<latitude>47.48250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.54194444,47.48250000,1806</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Westendorf, Choralpe</name>
+			  <description>Gondolbane opp fra Westendorf, 600 m Ã¥ gÃ¥ til start fra toppen av den.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=926&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=926&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.24388889</longitude>
+				<latitude>47.41888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.24388889,47.41888889,1790</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>WildschÃ¶nau, Niederau</name>
+			  <description>Same place as &quot;Niederau, Markbachjoch&quot; which should be used for logs (proper name, this isn't)&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;new start - please give it a proper name and description (2006-07-02 01:14:04)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2966&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2966&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.09388889</longitude>
+				<latitude>47.43250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.09388889,47.43250000,1430</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zell im Zillertal, Rosenalm</name>
+			  <description>Gondelbahn up fram Zell.&lt;br/&gt;You have to start in the piste! ca 150m down from the bergstation.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2192&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2192&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.93861111</longitude>
+				<latitude>47.24638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.93861111,47.24638889,1700</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, 150 (Wanglspitze) </name>
+			  <description>Speedriding spot&lt;br/&gt;Easy start on the ridge 50 meters from the 150er Tux gondola&lt;br/&gt;Good for riding the first part&lt;br/&gt;Easy landing close to the same gondola.&lt;br/&gt;No cables across the run&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8356&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8356&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.77500000</longitude>
+				<latitude>47.18361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.77500000,47.18361111,2390</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, Horbergbach / Horbergtal</name>
+			  <description>Speedriding spot&lt;br/&gt;Easy take off and landing&lt;br/&gt;Possible to land/stop beside a garage close to the 150er Tux gondola &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8358&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8358&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.77000000</longitude>
+				<latitude>47.18694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.77000000,47.18694444,2360</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, Lanersbach -&gt; Tux</name>
+			  <description>Speedriding and paragliding spot&lt;br/&gt;Easy take off and lot of riding possible before the first plateau.&lt;br/&gt;Beware of cables between the huts before the trees and a few cables at the landing running diagonally NW-SE direction&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8359&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8359&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.77055556</longitude>
+				<latitude>47.18500000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.77055556,47.18500000,2380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, Melchboden</name>
+			  <description>http://www.austrianarena.com/sites.html&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2933&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2933&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.82472222</longitude>
+				<latitude>47.21888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.82472222,47.21888889,2000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, Penkenjoch -&gt; Finkenberg</name>
+			  <description>Speedriding and paragliding spot&lt;br/&gt;Easy take off&lt;br/&gt;Possible to follow a narrow gully on skiers left. &lt;br/&gt;Landing just above the Finkenberger Almbahn 1.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8360&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8360&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.80194444</longitude>
+				<latitude>47.16777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.80194444,47.16777778,2050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillertal, Tuxer Joch -&gt; Hintertux</name>
+			  <description>Speedflying spot (minimum 11-13m recommended)&lt;br/&gt;Easy take off&lt;br/&gt;Easy to spot the only cable across the slopes &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8361&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=8361&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.64777778</longitude>
+				<latitude>47.09416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.64777778,47.09416667,2370</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Zillerthal, Perler</name>
+			  <description>http://www.golden-eagles.at/&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2934&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=14&amp;amp;start_id=2934&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.84611111</longitude>
+				<latitude>47.20027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.84611111,47.20027778,1150</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Beklemeto, Sopot</name>
+			  <description>Beklemeto Pass 15km west of Sopot.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=10039&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=10039&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>24.61277778</longitude>
+				<latitude>42.74250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>24.61277778,42.74250000,1220</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Glufishevo (South of Sliven)</name>
+			  <description>Small soarable hill to initiate flatland flying.&lt;br/&gt;2 hours drive east of Sopot &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=10341&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=10341&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>26.32305556</longitude>
+				<latitude>42.53194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>26.32305556,42.53194444,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Shambhala, Sopot</name>
+			  <description>Situated in the Stara Planina mountainrange.&lt;br/&gt;&lt;br/&gt;Cable chairlift to takeoff usually runs at irregular intervals during the day, although not running every day in year 2010.&lt;br/&gt;&lt;br/&gt;Space for 50+ gliders on launch when wind is from the south.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=1097&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=1097&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>24.75027778</longitude>
+				<latitude>42.68666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>24.75027778,42.68666667,1440</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Skalsko</name>
+			  <description>Mountain next to Skalsko&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=9427&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=33&amp;amp;start_id=9427&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>25.37888889</longitude>
+				<latitude>42.96472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>25.37888889,42.96472222,659</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

@@ -59,6 +59,24 @@ export class ParaglidingLocationService {
   }
 
   /**
+   * Get a single paragliding location by its flightlog ID
+   */
+  static async getByFlightlogId(flightlogId: string): Promise<ParaglidingLocation | null> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .select('*')
+      .eq('flightlog_id', flightlogId)
+      .maybeSingle();
+
+    if (error) {
+      console.error(`Error fetching location with flightlog_id ${flightlogId}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
    * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
    */
   static async getAllMainLocationsWithForecast(): Promise<ParaglidingLocationWithForecast[]> {
@@ -140,4 +158,40 @@ export class ParaglidingLocationService {
 
     return allLocations;
   }
+
+
+  /**
+   * Update an existing location
+   */
+  static async update(id: string, updates: Partial<Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>>): Promise<ParaglidingLocation> {
+    const { data, error } = await supabase
+      .from('paragliding_locations')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating location:', error);
+      throw error;
+    }
+
+    return data;
+  }
+
+  /**
+   * Delete a location (soft delete by setting is_active to false)
+   */
+  static async delete(id: string): Promise<void> {
+    const { error } = await supabase
+      .from('paragliding_locations')
+      .update({ is_active: false })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting location:', error);
+      throw error;
+    }
+  }
+
 }

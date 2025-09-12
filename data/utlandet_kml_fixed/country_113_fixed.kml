@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Mun Gyeong</name>
+			  <description>Start used in the PWC Oct. 2002
+<br/>About 5-10 km from Mun Gyeong (visible from town, follow signposts to Flying Land)<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=113start_id=1015">https://flightlog.org/fl.html?l=1a=22country_id=113start_id=1015</a></description>
+			  <LookAt>
+				<longitude>128.17444444</longitude>
+				<latitude>36.73083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>128.17444444,36.73083333,860</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

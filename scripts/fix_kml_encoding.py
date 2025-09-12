@@ -63,6 +63,15 @@ def fix_kml_encoding(input_file, output_file=None):
         'Ã¹': 'ù',  # ù
         'Ã±': 'ñ',  # ñ
         'Ã§': 'ç',  # ç
+        # Additional accented characters
+        'Ãª': 'ê',  # ê (e.g., "CaprÃªs" -> "Caprês")
+        'Ã¡': 'á',  # á (e.g., "Ãlamo" -> "Álamo") 
+        'Ã­': 'í',  # í (e.g., "MarÃ­a" -> "María")
+        'Ã©': 'é',  # é (already there but ensuring it's correct)
+        'Ã³': 'ó',  # ó (already there but ensuring it's correct)
+        'Ãº': 'ú',  # ú (already there but ensuring it's correct)
+        # Special case for Ãlamo -> Álamo (there might be a non-printable char)
+        'Ã': 'Á',  # Specific fix for this case
     }
     
     for wrong, correct in utf8_fixes.items():

@@ -1,0 +1,2836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>CastÃ©rino, Mont Chajol</name>
+			  <description>1.5 hour walk from CastÃ©rino&lt;br/&gt;Take-off anywhere on the top of the ridge going to mont chajol.&lt;br/&gt;Plenty of room to land at CastÃ©rino near the nordic ski place.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4030&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4030&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.52611111</longitude>
+				<latitude>44.11027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.52611111,44.11027778,2200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Oraison - St Pancrace Le Relais</name>
+			  <description>&lt;br/&gt;&quot;Do not fly by South tendencies (and a fortiori SE): strong risk of not reaching the landfall Off very sensitive terrain (electric line, horses ...) and dangerous (houses). Only the official landing is allowed (no escape solutions to the north: urban area). Do not go north if you are not sure that your finesse will allow you to join the landing.&quot;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8196&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8196&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.92091667</longitude>
+				<latitude>43.89963333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.92091667,43.89963333,528</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Roquebrune Cap-Martin, Mont-Gros</name>
+			  <description>On top of Monaco&lt;br/&gt;Landing on the &quot;Golfe bleu&quot; beach.&lt;br/&gt;&lt;br/&gt;Avoid flying over the nearby military base, the prince' house and Monte Carlo.&lt;br/&gt;&lt;br/&gt;There are buses Monday, Thursday, Friday, Saturday and Sunday (NO bus Tuesday and Wednesday) at:&lt;br/&gt;10:00, 11:45, 14:30 and 16:00.&lt;br/&gt;&lt;br/&gt;http://www.xcmag.com/2014/02/guide-to-greolieres-france/&lt;br/&gt;&lt;br/&gt;The bus costs 1.5 euro, and have to be booked the day in advance at +33 800 740 538.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2818&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2818&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.44277778</longitude>
+				<latitude>43.76583333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.44277778,43.76583333,686</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sospel, Mont Agaisen</name>
+			  <description>north of monaco&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1. Mont Agaisen (SSE/S/SSW) 750m, easy, de luxe launch with a green carpet and a natural slope (below right). Toplandable! &lt;br/&gt;GPS: 43Â°53â12.94âN,7Â°27â16.32âE.&lt;br/&gt;&lt;br/&gt;2. La Lavina (SE/E) 1100m, medium, slope with a lip caused by the track which encircles the slope. &lt;br/&gt;GPS: 43Â°52â1.28âN, 7Â°24â48.72âE.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;1. Pigeonnier (335m) huge field just E of Sospel&lt;br/&gt;GPS: 43Â°52â41.92âN, 7Â°27â29.81âE.&lt;br/&gt;&lt;br/&gt;2. La Frighiera (420m) small field on private property, surrounded by trees.&lt;br/&gt;GPS: 43Â°52â54.97âN, 7Â°25â41.90âE.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3639&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3639&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.45472222</longitude>
+				<latitude>43.88611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.45472222,43.88611111,850</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tourrettes-sur-Loup, Courmettes</name>
+			  <description>On the other side of the loup Valley from Gourdon, long ridge west-faced.&lt;br/&gt;From pont-du-loup, drive towards tourrettes-sur-loup for 3/4km then turn left at the sign &quot;les courmettes&quot; and drive all the way up. Park at the farm then walk 10min on the 4wd road along the ridge and go at the view point. Hard to take-off as lines easily get tangled in thyme.&lt;br/&gt;The landing field is down in the loup valley, at Vallettes, which is also used in winter from Gourdon.&lt;br/&gt;&lt;br/&gt;On the picture you can see Gourdon village and the haut montet ridge&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3761&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3761&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.01027778</longitude>
+				<latitude>43.72000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.01027778,43.72000000,843</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Annecy, Montmin, Col de la Forclaz</name>
+			  <description>From paraglidingearth:&lt;br/&gt;Take off :	alti: 1240m &lt;br/&gt;from Annecy go to 'col de la forclaz'. here take the road to the north and park your car after a few meters. Walk 10 mn.&lt;br/&gt;&lt;br/&gt;Landing :	 alti: 460m &lt;br/&gt;Doussard, near the cross road with Annecy and Planfait.&lt;br/&gt;&lt;br/&gt;Au-dessus du lac d'Annecy, 10 minutes de marche du col de la Forclaz.&lt;br/&gt;Atterros Ã  Doussard ou au bord de la route au fond du lac.&lt;br/&gt;&lt;br/&gt;Near Annecy lake, 10 minutes walk from the col de la Forclaz.&lt;br/&gt;Landing at Doussard or by the road besides the lake.&lt;br/&gt;webkamera Doussard&lt;br/&gt;:http://www.paratroc.com/societe/webcam-fr.php&lt;br/&gt;webkamera annecy-sjÃ¸en:&lt;br/&gt;http://www.talloires-lac-annecy.com/fr/webcam.html&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=491&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=491&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.24694444</longitude>
+				<latitude>45.81416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.24694444,45.81416667,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Annecy, Talloires, Planfait </name>
+			  <description>NedanfÃ¶r Dents de Lanfon i Talloires norr om AnnecysjÃ¶n. &lt;br/&gt;&lt;br/&gt;Take off :	Not that wide but somehow easy take-off. &lt;br/&gt;Some paragliding school use it every day in summer so it's sometimes a bit crowdy &lt;br/&gt;&lt;br/&gt;Landing :	 Overflyinf of the houses close to landing zone south of it is prohibited !!!! &lt;br/&gt;&lt;br/&gt;Right hand base for landing south &lt;br/&gt;&lt;br/&gt;Left hand base for landing north (make a side step to avoid flying over houses close to landing zone, it's forbidden).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=752&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=752&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.22333333</longitude>
+				<latitude>45.85305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.22333333,45.85305556,950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Arc1600 Bourg-st-Maurice</name>
+			  <description>Take-off in a ski slope of arc1600.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2361&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2361&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.76388889</longitude>
+				<latitude>45.55666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.76388889,45.55666667,1596</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Avoriaz</name>
+			  <description>Used for Pre-European PG Open 22-30.06.2005.&lt;br/&gt;Used monday 27th.&lt;br/&gt;One need to take the skilift from the east end of the little lake east of Avoriaz or walk (400m alt.diff).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2397&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2397&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.78696111</longitude>
+				<latitude>46.17435000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.78696111,46.17435000,2200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bourg Saint Maurice - Arc 2000 (La Cachette)</name>
+			  <description>FÃ¶r att nÃ¥ denna start tar du bergbanan (funicular) frÃ¥n Bourg-st-Maurice centrum, hoppar pÃ¥ sittliften som tar dig frÃ¥n bergbanans bergstation till starten. &lt;br/&gt;&lt;br/&gt;Som for all flyging i Bourg Saint Maurice, mÃ¥ man vÃ¦re oppmerksom pÃ¥ dalvinden pÃ¥ landing.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2104&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2104&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.80000000</longitude>
+				<latitude>45.57638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.80000000,45.57638889,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix</name>
+			  <description>Up the 1st stage of Le Brevent cable car.&lt;br/&gt;&lt;br/&gt;PLEASE NOTE: TOP LANDING IS NOT ALLOWED.&lt;br/&gt;&lt;br/&gt;Planpraz (S/SSW) 2040m, easy, for PG and HG,&lt;br/&gt;GPS: 45Â°56â11.76âN, 6Â°51â4.46âE&lt;br/&gt;You pass under the free-hanging cable to BrÃ©vent&lt;br/&gt;on the right (its highest side).&lt;br/&gt;&lt;br/&gt;Planpraz (Aiguilles Rouges side) is good in the&lt;br/&gt;morning until early afternoon. The house thermals&lt;br/&gt;are in front of you and later more in the gully below&lt;br/&gt;BrÃ©vent. To the left in front of takeoff there are the&lt;br/&gt;Brevent cable car cables. Keep right and pass under&lt;br/&gt;the cables with a good safety margin. Overflying the&lt;br/&gt;highest ridge to the right (W/NW) of launch at less&lt;br/&gt;than 1,000m above ground level is forbidden! N or&lt;br/&gt;W winds stronger than 20km/h at 2000m will cause&lt;br/&gt;a leeside situation: expect strong, turbulent conditions.&lt;br/&gt;For XC flights towards the FlÃ©gÃ¨re, beware of&lt;br/&gt;the horizontal cables of the BreventâFlÃ©gÃ¨re cable&lt;br/&gt;car in the Combe Lachenal at approx 1,700m!&lt;br/&gt;&lt;br/&gt;Main Landing: Bois du Bouchet&lt;br/&gt;&lt;br/&gt;Weather link: http://www.compagniedumontblanc.fr/fr/meteo&lt;br/&gt;&lt;br/&gt;Webcamera: http://www.chamonet.com/chamonix/webcams/brevent-planpraz.html&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=537&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=537&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.84388889</longitude>
+				<latitude>45.93000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.84388889,45.93000000,2030</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix - Grands Montets</name>
+			  <description>Going there: the cable car is at 20 mn from Chamonix.&lt;br/&gt;&lt;br/&gt;Comments: one of the nicest flight of Chamonix with 'aiguille du midi'&lt;br/&gt;&lt;br/&gt;http://federation.ffvl.fr/structure/304/sites/74012&lt;br/&gt;&lt;br/&gt;Access via cable car from ArgentiÃ¨re.&lt;br/&gt;&lt;br/&gt;Grands Montets is an alpine, high altitude&lt;br/&gt;launch on a glacier for PG and HG. Good in the&lt;br/&gt;afternoon! You walk down a bit from the station&lt;br/&gt;to the launch on the slope. The winds should be&lt;br/&gt;fairly smooth with no strong wind announced.&lt;br/&gt;You have to reach the official landings at&lt;br/&gt;Chamonix, so donât play for too long on the&lt;br/&gt;slopes because when you sink down you might&lt;br/&gt;not penetrate against the valley-wind! This launch&lt;br/&gt;can be excellent in spring and autumn, on calm&lt;br/&gt;afternoons with thermals from the Montenvers&lt;br/&gt;valley towards Grands Montet. You can thermal&lt;br/&gt;up to the level of the Drus and Aiguille Verte&lt;br/&gt;with some luck. Breathtaking views! The launch is&lt;br/&gt;forbidden in July/August!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4488&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4488&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.95972222</longitude>
+				<latitude>45.94777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.95972222,45.94777778,3234</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix - Le Prarion Plancert</name>
+			  <description>take the gondola and walk over the top. follow the ski pist. - advanced start due to cables and trees.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6665&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6665&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.73694444</longitude>
+				<latitude>45.89194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.73694444,45.89194444,1620</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix, Mont Blanc 4810</name>
+			  <description>Top of west Europe / 4810. &lt;br/&gt;&lt;br/&gt;(added coordinates  /SR)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7553&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7553&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.86500000</longitude>
+				<latitude>45.83222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.86500000,45.83222222,4810</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix, Plaine Joux</name>
+			  <description>See: &lt;br/&gt;http://www.holidayrentals.btinternet.co.uk/aerialsports.htm&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=833&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=833&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.73972222</longitude>
+				<latitude>45.94972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.73972222,45.94972222,1360</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cluses</name>
+			  <description>Start up by the antennas, fly over to the mountain to the left. In the evening it becomes a thermodynamic soring site.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1573&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1573&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.61250000</longitude>
+				<latitude>46.08444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.61250000,46.08444444,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col de Forclaz- Montmin</name>
+			  <description>The same as other &quot;montmin&quot; ,donÂ´t know why it show up as new?&lt;br/&gt;&lt;br/&gt;2017-08-14: changed the coordinates just a little bit, so the other &quot;montmin&quot; gets selected by default when uploading a track log from GPSdump.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2523&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2523&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.24750000</longitude>
+				<latitude>45.81472222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.24750000,45.81472222,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col de la Frasse</name>
+			  <description>Takeoff pÃ¥ austsida av Roc des BÃ¦ufs.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10256&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10256&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.16916667</longitude>
+				<latitude>45.75166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.16916667,45.75166667,1458</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col de la Sambuy, Seythenex, Annecy</name>
+			  <description>Ta stolheisen fra &quot;Station de la Sambuy&quot; i Seythenex. Det finnes en nordvendt takeoff rett der stolheisen ankommer (det er ikke denne). Ta stien 300m opp til toppen av lia vest for stolheisen.&lt;br/&gt;&lt;br/&gt;Om sommeren er det gratis shuttlebus til &quot;Station de la Sambuy&quot;.&lt;br/&gt;&lt;br/&gt;Ny landing! Val de TamiÃ©: 45Â°42'01&quot;N 6Â°18'33&quot;E.&lt;br/&gt;De lokale pleier Ã¥ lande hvor de vil, men det er mange hÃ¸yspentledninger i omrÃ¥det, sÃ¥ den offisielle landingen er nok tryggest.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7620&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7620&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.26416667</longitude>
+				<latitude>45.69527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.26416667,45.69527778,2080</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col des Nantets</name>
+			  <description>Takeoff for tidlig start med flyging pÃ¥ austsida av ArÃªte Couturier.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10257&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10257&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.26361111</longitude>
+				<latitude>45.84222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.26361111,45.84222222,1507</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col du Joly, Hauteluce</name>
+			  <description>Nice grassy slopes just above the col, with the Mont Blanc massive as a backdrop. Drivable to launch, rough gravel on the last bit. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6109&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6109&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.66444444</longitude>
+				<latitude>45.79166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.66444444,45.79166667,2060</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col du Tamie / Plan de Langot</name>
+			  <description>Southeast facing launch in a small clearing in the woods, overlooking the Albertville valley.&lt;br/&gt;&lt;br/&gt;Park the car at the end of the road of 'La ramaz'.&lt;br/&gt;15 to 20 min walk on a steep trail.&lt;br/&gt;&lt;br/&gt;Weather hazards : Dangerous by north wind or when de 'faverges' breeze is instaled in the 'tamie' valley.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6114&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6114&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.32194444</longitude>
+				<latitude>45.68194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.32194444,45.68194444,1200</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Colonges, Saleve, Les Crets</name>
+			  <description>Just on the Swiss/French border. Close to Geneve.&lt;br/&gt;Picture is from the &quot;Les Crets&quot; Launch.&lt;br/&gt;&lt;br/&gt;Launch&lt;br/&gt;&lt;br/&gt;1. Les Crets (SW-NW) 1270m, easy, toplandable,&lt;br/&gt;GPS: 46Â° 7â48.00âN, 6Â°10â20.00âE&lt;br/&gt;&lt;br/&gt;2.TÃ©lÃ©pherique (N) 1090m, &lt;br/&gt;GPS: 46Â° 9â17.09âN, 6Â°11â38.42âE. &lt;br/&gt;Just E of the cablecar, beyond the&lt;br/&gt;terrace.&lt;br/&gt;&lt;br/&gt;3. La Table dâOrientation (N/NW) 1200m, medium. &lt;br/&gt;GPS: 46Â° 8â55.19âN, 6Â°11â21.00âE. &lt;br/&gt;From the cablecar top station follow the path to the observatory for about 20 min.&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;1. Pont de Zone (405m) &lt;br/&gt;GPS: 46Â°10â22.80âN, 6Â°12â31.20âE.&lt;br/&gt;&lt;br/&gt;2. Le Coin (680m) &lt;br/&gt;GPS: 46Â°8â2.16âN, 6Â°9â38.40âE.&lt;br/&gt;&lt;br/&gt;3. Pas de lâEchelle (430m) club landing, small field surrounded by houses, 300m W of the cablecar, only for experienced pilots!&lt;br/&gt;GPS: 46Â° 9â41.10âN, 6Â°10â55.53âE.&lt;br/&gt;&lt;br/&gt;4. CVLG (425m) club landing between Troinex and Veyrier.&lt;br/&gt;GPS: 46Â° 9â44.75âN, 6Â° 9â29.00âE.&lt;br/&gt;&lt;br/&gt;Flying school: www.SalÃ¨veairlines.com, ÃtrembiÃ¨res,&lt;br/&gt;Tel. +33 (0)4 5039 7159&lt;br/&gt;&lt;br/&gt;Webcam SalÃ¨ve - Les Crets: http://paradelta.ch/webcam/live/webcam_paradelta.php&lt;br/&gt;&lt;br/&gt;Wind Sensor SalÃ¨ve - Les Crets: http://www.romma.fr/station_24.php?id=73&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=862&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=862&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.17222222</longitude>
+				<latitude>46.13000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.17222222,46.13000000,1380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>CÃ´te 2000 - Bourg St Maurice</name>
+			  <description>Start on cow fields. Landing at Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m), official site. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3890&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3890&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.71166667</longitude>
+				<latitude>45.60666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.71166667,45.60666667,1990</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Couteaux - Orcier Ã  Thonon- Les- Bains</name>
+			  <description>Kontakt Le CHOTO (Club des Hommes Oiseaux Thonon Orcier) fÃ¸r en kommer pÃ¥ besÃ¸k. Klubben har mange aktive medlemmer som kan fortelle mer om starten. &lt;br/&gt;&lt;br/&gt;Stor landing like ved klubbhuset.   &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6613&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6613&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.50000000</longitude>
+				<latitude>46.28666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.50000000,46.28666667,1330</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Crozet, Saint-Genis-Pouilly</name>
+			  <description>Take the gondola from Crozet and walk north up to the small bumbs in the terrain towards the top north of the gondola. Choose the top with the best wind conditions. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8366&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8366&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.98500000</longitude>
+				<latitude>46.29611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.98500000,46.29611111,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Dix du Face - Bourg St Maurice</name>
+			  <description>Start in ski slope next to the middle station of the egg lift. Landing at Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m), official site.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3893&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3893&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.79472222</longitude>
+				<latitude>45.56416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.79472222,45.56416667,2120</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Entrevernes, Annecy</name>
+			  <description>Bra stÃ¤lle fÃ¶r morgonflyg.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1867&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1867&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.19388889</longitude>
+				<latitude>45.78333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.19388889,45.78333333,700</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Eybaudia, Alberville</name>
+			  <description>Good high start with lots of goats.&lt;br/&gt;Take a narrow road from main road to alberville.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2362&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2362&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.38033333</longitude>
+				<latitude>45.60680556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.38033333,45.60680556,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Fort 1500 - Bourg st Maurice</name>
+			  <description>East side take-off in Bourg st Maurice.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2371&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2371&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.74944444</longitude>
+				<latitude>45.63000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.74944444,45.63000000,1780</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Fort 2000 - Bourg St Maurice</name>
+			  <description>Start on cow fields next to an old fortress.&lt;br/&gt;&lt;br/&gt;Fort 2000 / Fort de la Platte (S/SW) 1950m, easy, on the grass slope in front of the viewpoint, &lt;br/&gt;GPS: 45Â°38â14.60âN, 6Â°44â34.81âE. &lt;br/&gt;Access as above but at the end continue to Fort de la Platte.&lt;br/&gt;&lt;br/&gt;Two landing alternatives: &lt;br/&gt;1) Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m) official site,&lt;br/&gt;2) Rugby field 45Â°37'12''N-6Â°46'56''E (808 m).&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3892&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3892&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.74333333</longitude>
+				<latitude>45.63777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.74333333,45.63777778,1950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Grand Bornand, Mont Lachat</name>
+			  <description>Grand Bornand, Haute-Savoie, France. &lt;br/&gt;&lt;br/&gt;Launch&lt;br/&gt;1. Le ChÃ¢tillon (S-W) 2020m, easy. The entire grass slope 2 min south of the top station of the chairlift, below the trail.&lt;br/&gt;GPS: 45Â°57â30.85âN, 6Â°28â35.34âE.&lt;br/&gt;&lt;br/&gt;2. Covaleux (SW/W) 1510m, easy.&lt;br/&gt;GPS: 45Â°56â56.07âN, 6Â°28â2.40âE&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;1. Le Bouchet S (1000m) PG&amp;HG.&lt;br/&gt;GPS: 45Â°56â10.22âN, 6Â°27â25.31âE&lt;br/&gt;&lt;br/&gt;2. Le Terret (920m) Grand Bornand.&lt;br/&gt;GPS: 45Â°56â30.69âN, 6Â°26â5.51âE.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=750&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=750&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.47666667</longitude>
+				<latitude>45.95833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.47666667,45.95833333,2050</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Granier - Bourg St Maurice</name>
+			  <description>Start on cow fields. Closest landing at the Y between Aime and Macot (705 m).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3894&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3894&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.62313889</longitude>
+				<latitude>45.57701389</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.62313889,45.57701389,2040</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>L'Anglettaz</name>
+			  <description>Continue up the pathway from the &quot;Chalet&quot;. Turn right up the slope after ~10 minutes. The take-off is on the other side of the summit ridge.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7693&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7693&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.24305556</longitude>
+				<latitude>45.96333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.24305556,45.96333333,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>l'Arbaron</name>
+			  <description>On the road to Flaine to the Pierre CarrÃ©e pass, park to the golf club house, follow the golf course, turn south at the end of the golf course and then follow a path on the ridge: 20 minutes walk.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8636&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8636&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.66416667</longitude>
+				<latitude>46.00750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.66416667,46.00750000,1950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>L'Index - Chamonix</name>
+			  <description>Start ovanfÃ¶r Chamonix.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3858&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3858&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.87500000</longitude>
+				<latitude>45.96777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.87500000,45.96777778,2365</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La Clusaz, CrÃªt du Loup</name>
+			  <description>Take-off on the ski slope, close to the chair lift crÃªt du loup. Alternatively you can take-off lower at crÃªt du merle. Thermal right in front of the take-off.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2352&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2352&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.45138889</longitude>
+				<latitude>45.89083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.45138889,45.89083333,1850</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La Poudreuse - Bourg St Maurice</name>
+			  <description>Start on the left of the ski lifts. Beware of the lifts if wind is NV.&lt;br/&gt;&lt;br/&gt;Three landing alternatives: &lt;br/&gt;1) Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m) official site, &lt;br/&gt;2) Nancroix, Les amies 45Â°31'55''N - 06Â°46'33''E (1455 m) small,  &lt;br/&gt;3) Nancroix, Bouldering site 45Â°32'13''N - 06Â°46'01''E (1391 m) slope.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3889&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3889&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.78888889</longitude>
+				<latitude>45.54805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.78888889,45.54805556,2170</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Marlens, Annecy</name>
+			  <description>Morgonstart. Man ser huvudlandningen tydligt ;-)&lt;br/&gt;VÃ¦r obs pÃ¥ dalvind pÃ¥ landing etter kl. 13. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1868&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1868&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.32916667</longitude>
+				<latitude>45.78111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.32916667,45.78111111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt. Cherry (Les Gets)</name>
+			  <description>Take off used for competitions in Morzine.&lt;br/&gt;The view is towards north with Morzine in the valley to the lower right and Avoriaz on the cliffs middle right.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=922&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=922&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.64666667</longitude>
+				<latitude>46.16833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.64666667,46.16833333,1800</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Parmelan</name>
+			  <description>Takeoff under toppen nytta under Bornes to Fly.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10253&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10253&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.23555556</longitude>
+				<latitude>45.94638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.23555556,45.94638889,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Pointe de Merdassier</name>
+			  <description>Mange mulige takeoffplassar og mange mulige landingar.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10252&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10252&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.43861111</longitude>
+				<latitude>45.86333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.43861111,45.86333333,2187</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Roc des BÃ¦ufs</name>
+			  <description>Takeoff pÃ¥ vestsida av ryggen rett under hÃ¸gaste punkt pÃ¥ ryggen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10254&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10254&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.16194444</longitude>
+				<latitude>45.75250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.16194444,45.75250000,1540</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Rochers de la Bade</name>
+			  <description>Takeoff frÃ¥ nokon bakkar eit stykke under toppen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10255&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10255&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.10472222</longitude>
+				<latitude>45.63527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.10472222,45.63527778,1475</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>SamoÃ«ns, 1600</name>
+			  <description>Ta den lille rÃ¸d banen opp, starten ligger rett til hÃ¸yre for heishuset. Flott gresskledd start.&lt;br/&gt;&lt;br/&gt;Local school: http://www.parapente-samoens.com/ &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1080&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1080&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.70083333</longitude>
+				<latitude>46.05527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.70083333,46.05527778,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>SAMOÃNS, La Bourgeoise</name>
+			  <description>Site de parapente&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2487&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2487&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.72027778</longitude>
+				<latitude>46.11527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.72027778,46.11527778,1330</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St Jaques at La Plagne - Bourg St Maurice</name>
+			  <description>Many start alternatives depending on wind and clouds. Short flights also possible to the south.&lt;br/&gt;&lt;br/&gt;Two landing alternatives: 1) Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m) official site, &lt;br/&gt;2) Y between Aime and Macot 45Â°33'12.5''N - 06Â°39'57''E (715 m)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3891&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3891&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.72000000</longitude>
+				<latitude>45.49833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.72000000,45.49833333,2560</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sulens, Annecy</name>
+			  <description>Graskledd topp, mange mulige takeoffplassar.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10243&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10243&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.36777778</longitude>
+				<latitude>45.82277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.36777778,45.82277778,1800</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tete de Balme</name>
+			  <description>Takeof from south side of tete de balme top lift. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8662&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8662&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.96355556</longitude>
+				<latitude>46.02994444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.96355556,46.02994444,2321</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Thollon-Les-MÃ©mises</name>
+			  <description>Thollon les memisees er et skianlegg med nydelig utsikt over Lac leman. Starten ligger ved siden av gondolbanen. &lt;br/&gt;&lt;br/&gt;Mer informasjon  &lt;br/&gt;http://www.thollonlesmemises.com/&lt;br/&gt;&lt;br/&gt;http://www.voler.info/media/sites/thollon-les-memises.pdf&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6637&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6637&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.72777778</longitude>
+				<latitude>46.38111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.72777778,46.38111111,1650</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ugine</name>
+			  <description>Great view of Mt.Blanc from this start.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=984&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=984&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.44444444</longitude>
+				<latitude>45.79694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.44444444,45.79694444,1730</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Vallandry - Bourg St Maurice</name>
+			  <description>Start in skiing slope.&lt;br/&gt;&lt;br/&gt;Three landing alternatives:&lt;br/&gt;1) Ilettes 45Â°35'35''N - 06Â°45'05''E (751 m) official site, &lt;br/&gt;2) Nancroix, Les amies 45Â°31'55''N - 06Â°46'33''E (1455 m) small, &lt;br/&gt;3) Nancroix, Bouldering site 45Â°32'13''N - 06Â°46'01''E (1391 m) slope.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3888&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3888&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.77361111</longitude>
+				<latitude>45.55194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.77361111,45.55194444,1890</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Alpes-Maritimes, La Colmiane, Pic de Colmiane.</name>
+			  <description>....&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6765&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6765&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.19138889</longitude>
+				<latitude>44.09555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.19138889,44.09555556,2060</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Aspres-sur-BuÃ«ch, St. Apotre</name>
+			  <description>Startsted med SV vendt start, men ved termikk er det antakelig Ã¥ starte pÃ¥ de fleste vindretninger bortsett fra ved for kraftig bakvind.  &lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1. St. ApÃ´tre (SE/S) 1460m, medium; W of the antenna at the end of the road; &lt;br/&gt;GPS: 44Â°32â25.99âN, 5Â°44â36.78âE. &lt;br/&gt;Short takeoffs for regular pilots. Entering La Faurie (N of Aspres) turn left on D42b, go through Seille, follow the forest road signs for Site de Vol Libre towards La Longeagne, turn left on the split towards Col de Marjories on a bad piste (or walk 10-15 min) and continue to the antenna.&lt;br/&gt;&lt;br/&gt;2. PrÃ© des Nonnes (S/SW) 1530m, easy, main takeoff on La Longeagne, big toplandable field. Park away from the glide-path! &lt;br/&gt;GPS: 44Â°32â27.42âN, 5Â°42â45.65âE. Access: as for (1) just donât turn left at the junction with the road to the antenna â drive up to the saddle.&lt;br/&gt;&lt;br/&gt;3. ChamoussiÃ¨re (W) 1545m, easy, at the W end above the village of Villard, just above the track. From launch (2) continue towards the end of La Longeagne.&lt;br/&gt;GPS: 44Â°32â55.30âN, 5Â°42â12.79âE.&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;1. St. Pierre dâArgenÃ§on (815m) field for HG &amp; PG.&lt;br/&gt;GPS: 44Â°31â26.70âN, 5 42â24.78âE.&lt;br/&gt;&lt;br/&gt;2. Le Chevalet (820m) opposite (N of ) the ultralight strip (signed circuit); do not overfly the aerodrome. &lt;br/&gt;GPS:44Â°31â12.62âN, 5Â°44â18.81âE.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=560&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=560&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.71277778</longitude>
+				<latitude>44.54055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.71277778,44.54055556,1460</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Beaumont</name>
+			  <description>Over Serres, West of Gap.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=711&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=711&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.70555556</longitude>
+				<latitude>44.40833333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.70555556,44.40833333,1490</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bergies</name>
+			  <description>good starting point for Sisteron&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7028&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7028&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.51092778</longitude>
+				<latitude>44.20469028</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.51092778,44.20469028,1360</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ceillac</name>
+			  <description>http://buissair.free.fr/site_de_vol/queyras/queyras.htm&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3050&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3050&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.78333333</longitude>
+				<latitude>44.66666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.78333333,44.66666667,1850</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix - Le Tour - Domaine Balme</name>
+			  <description>Great versatile SW/S facing area in the end of the Chamonix valley. Well suited for entry level Speedriding and soaring. Can work on weak N/NE winds if sun gets to work in the valley. &lt;br/&gt;&lt;br/&gt;Be sure to get acquainted with the local regulations. See details in the rules and regulations for flying in the Chamonix here: http://www.chamonix.com/pdf/vol_libre_en.pdf&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6398&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6398&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.96250000</longitude>
+				<latitude>49.03027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.96250000,49.03027778,2250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix, Aiguille du Midi</name>
+			  <description>Chamonix, Mont-Blac side. Start mot sÃ¸r eller nord.&lt;br/&gt;Bilde: Starten sett fra utsiktsplattformen pÃ¥ toppen av Aiguille du Midi. Nord er til hÃ¸yre pÃ¥ bildet.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1660&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1660&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.89666667</longitude>
+				<latitude>45.88111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.89666667,45.88111111,3612</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamonix, La Flegere</name>
+			  <description>At the end of the first lift.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3843&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3843&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.88555556</longitude>
+				<latitude>45.96111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.88555556,45.96111111,1950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chorges - Jambon</name>
+			  <description>Main parking Serre Michel(H878+X7, 05230 Chorges) just north of Chorges. Possible to drive further if your car is good.&lt;br/&gt;&lt;br/&gt;A &gt;50 min hike from the parking. Well established path due the Piolit hike. An excellent starting-point for XC flights.&lt;br/&gt;&lt;br/&gt;Main landing next to football pitch in Chorges. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7606&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7606&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.27166667</longitude>
+				<latitude>44.59888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.27166667,44.59888889,2083</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chorges - La BÃ¢tie-Neuve</name>
+			  <description>An advanced steep start, great for evening flights when the wind comes from the west. Parking next to the take-off.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7608&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7608&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.23527778</longitude>
+				<latitude>44.58388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.23527778,44.58388889,1575</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chorges - Les Balons</name>
+			  <description>En bra bit att gÃ¥ och vill man gÃ¥ hÃ¶gre Ã¤r det bara att knata pÃ¥. Finns nÃ¥gra olika grÃ¤skullar att vÃ¤lja mellan.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7605&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7605&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.28444444</longitude>
+				<latitude>44.59305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.28444444,44.59305556,1900</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chorges - Low take-off</name>
+			  <description>Lowest take-off, near parking. Beware of electric lines!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7607&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7607&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.28194444</longitude>
+				<latitude>44.58194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.28194444,44.58194444,1640</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col Agnel, Molines-en-Queyras</name>
+			  <description>Tidleg start mot SÃ&lt;br/&gt;Ettermiddagsflyging mot NV&lt;br/&gt;HÃ¸g start, ta hensyn til ver og vind i hÃ¸gda!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7138&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=7138&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.98194444</longitude>
+				<latitude>44.68416667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.98194444,44.68416667,2750</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col du Granon Tom's Start - Briancon </name>
+			  <description>his launch is a few hundred meters east of the official take-off, roughly a five-minute walk from the Buvette du Granon (buvette meaning âhutâ or small cafÃ©). It offers a better orientation to the wind and an improved chance of catching the house thermal from the forest below. However, pilots should have good wing control and be aware of potential dust devils on thermic days. It is known as âTomâs startâ because Tom, the designer from Little Cloud, often uses it.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10677&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10677&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.61388889</longitude>
+				<latitude>44.96302778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.61388889,44.96302778,2412</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Laragne, Buc Sederon</name>
+			  <description>Nabostarten til Sederon. Ligger litt lengre vest fra Sederon. Det er mulig Ã¥ kjÃ¸re opp, dog mer grusvei enn til Sederon. Gikk fint Ã¥ kjÃ¸re opp med minibusser.&lt;br/&gt;&lt;br/&gt;Fin Ã¥ starte nÃ¥r det er vestlig vind, og Sederon kommer i leside.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5700&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5700&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.47805556</longitude>
+				<latitude>44.21250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.47805556,44.21250000,1311</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Laragne, camping</name>
+			  <description>Bra for Mosquito-flyging.&lt;br/&gt;&lt;br/&gt;Landing of Chabre-Laragne take-off.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=592&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=592&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.83333333</longitude>
+				<latitude>44.31305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.83333333,44.31305556,570</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Laragne, Chabre</name>
+			  <description>Hovedstarten ved Laragne. Koordinaten er for toppen av veien merket med veiskilt til Chabre-Larange (eller Larange Chabre). KjÃ¸r inn til Chateauneuf de Chabre, derfra er det skiltet med 'Voile Libre' En rekke starter som ligger langs ridgen innen av avstand av ca. 500 meter. Alle startene ligger ved veien. Fineste starten for S og N er pÃ¥ toppen, noen minutters gÃ¥tur fra enden av veien. Ved lite vind er det vistnok mulig Ã¥ start uansett vindretning. Startene i seg selv vender bÃ¥de mot S og N.&lt;br/&gt;&lt;br/&gt;Launch&lt;br/&gt;1. (N/S) 1265m, medium, &lt;br/&gt;GPS: 44Â°18â11.94âN, 5Â°46â36.67âE. &lt;br/&gt;On the right where the access road reaches the long Chabre ridge. Not good in the&lt;br/&gt;afternoon. Not recommended for PG!&lt;br/&gt;&lt;br/&gt;2. Les Espranons (S) 1285m, easy, MAIN Launch for PG and HG below the road. Donât launch above&lt;br/&gt;the road with stronger winds as the N side here is a vertical cliff! &lt;br/&gt;GPS: 44Â°17â55.24âN, 5Â°45â59.92âE.&lt;br/&gt;&lt;br/&gt;3. (S/SW) easy, and (N) medium-difficult, 1354m, W of the end of the road, towards the highest point.&lt;br/&gt;Best launch in the afternoon. N launch only suitable for good pilots! &lt;br/&gt;GPS: 44Â°17â52.10âN, 5Â°45â48.53âE.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;1. North, LâÃle dâOriane (565m) &lt;br/&gt;GPS: 44Â°19â12.08âN, 5Â°47â33.33âE. &lt;br/&gt;Drive to the big supermarket in Laragne. Follow the signs (opposite) for Air dâatterisage for about 1 km on a dead-end road to the industrial zone.&lt;br/&gt;&lt;br/&gt;2. Laragne-MontÃ©glin campsite(570m) &lt;br/&gt;GPS: 44Â°18â45.32âN, 5Â°50â2.20âE.&lt;br/&gt;The main landing zone for HG and good PG pilots (glide ratio of 10 required!) easy to find, E of the railway line, 1 km SE of Laragne town centre.&lt;br/&gt;&lt;br/&gt;3. PG south &amp; emergency, Chabre(980m) &lt;br/&gt;GPS: 44Â°17â23.74âN, 5Â°46â2.53âE,&lt;br/&gt;a bit narrow and uneven, surrounded by forest, signed on the way to takeoff.&lt;br/&gt;&lt;br/&gt;4. South main landing (735m) PG &amp; HG. &lt;br/&gt;GPS: 44Â°16â46.54âN, 5Â°46â30.25âE.&lt;br/&gt;Good size field but surrounded by forest, right of the road to launch (signed).&lt;br/&gt;&lt;br/&gt;5. Barret-sur-MÃ©ouge (650m) HG&amp;PG, just before the entrance of the village, left of the D942 ChateauneufâSÃ©deron.&lt;br/&gt;GPS: 44Â°15â45.13âN, 5Â°44â28.18âE&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=558&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=558&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.76638889</longitude>
+				<latitude>44.29861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.76638889,44.29861111,1330</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Laragne, Sederon</name>
+			  <description>Ridge start.&lt;br/&gt;Also called &quot;Sederon-mevouillon : bergies&quot;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1989&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1989&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.51055556</longitude>
+				<latitude>44.20388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.51055556,44.20388889,1340</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt. Colombis - Gap-Tallard</name>
+			  <description>Region: Hautes-Alpes&lt;br/&gt;&lt;br/&gt;Start mot vest og Ã¸st. Farlig ved Nordlig vind i fÃ¸lge oppslag pÃ¥ stedet. &lt;br/&gt;Ved solinnstrÃ¥ling skal det vÃ¦re mulig Ã¥ starte uansett vindretning, bortsett fra ved N. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=559&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=559&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.21555556</longitude>
+				<latitude>44.49250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.21555556,44.49250000,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Orcieres Merlette</name>
+			  <description>see http://perso.orange.fr/gil.disdier/qna2.html (french)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3049&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3049&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.13666667</longitude>
+				<latitude>44.69805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.13666667,44.69805556,2100</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Plan de l'Aiguille</name>
+			  <description>Beware of the electic line and the cables of the cable car.&lt;br/&gt;&lt;br/&gt;Landing : Chamonix, Bois-du-Bouchet. Near the little lake.&lt;br/&gt;&lt;br/&gt;Going there : 	Highway to Chamonix. There's a parking at the cable car station. Take the cable car to the intermediate station (Plan de l'Aiguille) ~ 20 EUROS for a one day special pass for paragliding. &lt;br/&gt;&lt;br/&gt;From the landing, you can reach the cable car lower station (where you just let your car, remember?) by foot, ~15mn.&lt;br/&gt;&lt;br/&gt;Weather hazards : 	There are often _very_ strong thermal conditions. The wind can rise very quickly in the valley. Welcome to the mountains !&lt;br/&gt;&lt;br/&gt;Flight regulation : 	It is not allowed to fly in July and August&lt;br/&gt;&lt;br/&gt;People to contact : 	Club des Grattes-Ciel&lt;br/&gt;http://www.lesgratteciel.org&lt;br/&gt;&lt;br/&gt;Website : 	http://www.ffvl.fr/sites/sites.php3?id=74012&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4313&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4313&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.88305556</longitude>
+				<latitude>45.90444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.88305556,45.90444444,2231</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Saint Jean Montclar (BelvÃ©dÃ¨re)</name>
+			  <description>Very good and big take-off. Ski lift open during summer. Weekends mai - june. Good for soaring and longer thermal flights in southern alps. &lt;br/&gt;&lt;br/&gt;https://www.montclar.com/equipement/telesiege-du-belvedere/&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4258&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4258&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.37027778</longitude>
+				<latitude>44.40305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.37027778,44.40305556,1900</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Saint Vincets Les Forts</name>
+			  <description>SE of Gap&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2099&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2099&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.38083333</longitude>
+				<latitude>44.44750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.38083333,44.44750000,1250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St Vincent les Forts</name>
+			  <description>SE of Gap- Official french HG/PG site. Parking, resturante and toilett on takeoff. Very good for toplanding.&lt;br/&gt;Nice thermal and ridge riding place&lt;br/&gt;Good startpoint for XC flights.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2100&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2100&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.37222222</longitude>
+				<latitude>44.44333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.37222222,44.44333333,1250</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St-Vincent-les-Forts</name>
+			  <description>TrÃ¨s connu par vent de Nord.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1017&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1017&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.37638889</longitude>
+				<latitude>44.44166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.37638889,44.44166667,1270</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St. Jean, Dormillouse, La Combe</name>
+			  <description>Ligger sÃ¸r for Lac de Serre Poncon. Egner seg til kveldssoaring nÃ¥r det blÃ¥ser mistralvind ellers i omrÃ¥det. KjÃ¸r til tettstedet Seyne sÃ¸r for startstedet og bestill skyss til toppen av den lokale campingplass-eieren. (dÃ¥rlig vei, stengt for allmenheten)&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1. La Combe/Plateau de la Chau(W) 1860m, easy, GPS: 44Â°24â11.56âN, 6Â°22â11.33âE &lt;br/&gt;and just above (SW/NW) 1900m (^560m) easy-medium,&lt;br/&gt;GPS: 44Â°24â10.87âN, 6Â°22â21.90âE. This is the main launch (toplandable) and is 5-10 min from the La Combe section of the chairlift.&lt;br/&gt;&lt;br/&gt;2. La Cabane / Plateau de la Chau (S) 1840m,&lt;br/&gt;medium-difficult, &lt;br/&gt;GPS: 44Â°23â43.63âN, 6Â°22â18.98âE.&lt;br/&gt;Flat grassed area above the forest, only for experienced pilots, in wind! Below the La Cabane section of the chairlift, on the S side of the plateau.&lt;br/&gt;&lt;br/&gt;3. La BrÃªche (SW) medium, 2450m, alpine launch,&lt;br/&gt;rarely in use, GPS: 44Â°24â16.57âN, 6Â°23â9.48âE. 1hr by chairlift + 15 min walk down from the last chairlift section.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;Col St. Jean (1340m) &lt;br/&gt;GPS: 44Â°25â2.57âN,6Â°21â5.36âE, &lt;br/&gt;landing field with parking, right of the road to St. Jean, 200m before the entrance of the village.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1545&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1545&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>44.40305556</longitude>
+				<latitude>44.40333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>44.40305556,44.40333333,1900</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Allevard</name>
+			  <description>Deux dÃ©collages dans la station du Collet d'Allevard :&lt;br/&gt;- les Plagnes, sur la crÃªte en haut du tÃ©lÃ©siÃ¨ge du mÃªme nom ;&lt;br/&gt;- le Collet, juste sous la route en arrivant Ã  la station.&lt;br/&gt;&lt;br/&gt;Atterro au bout du lac d'Allevard.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1118&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1118&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.13333333</longitude>
+				<latitude>45.39611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.13333333,45.39611111,2070</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Allevard - main start</name>
+			  <description>Fin grÃ¤sstart mycket nÃ¤ra bra vÃ¤g och parkering. Landning norr om dammvallen.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3408&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3408&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.10666667</longitude>
+				<latitude>45.39361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.10666667,45.39361111,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Chamrousse</name>
+			  <description>Ski resort over Grenoble.&lt;br/&gt;Take-off at l'Aiguillette, small summit over le Recoin de Chamrousse, 10 minutes walk to go there.&lt;br/&gt;Landing at St-Martin-d'Uriage, next to the elementary school.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=675&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=675&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.88138889</longitude>
+				<latitude>45.13055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.88138889,45.13055556,1839</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>ChÃ¢tel</name>
+			  <description>Near Courtets, north of Obiou.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1534&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1534&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.81055556</longitude>
+				<latitude>44.81916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.81055556,44.81916667,1840</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Colombiers</name>
+			  <description>Au-dessus d'Entraygues, au pied des Ecrins.&lt;br/&gt;Brise forte l'aprÃ¨s-midi.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1127&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1127&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.92861111</longitude>
+				<latitude>44.86916667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.92861111,44.86916667,1700</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Connex</name>
+			  <description>Nord-Est de la Mure, Sud de Grenoble.&lt;br/&gt;Site du matin.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=791&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=791&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.73333333</longitude>
+				<latitude>45.00444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.73333333,45.00444444,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Courtets</name>
+			  <description>Sous le sommet de l'Obiou (DÃ©voluy).&lt;br/&gt;Au Sud de Mens traverser Baudille-et-Pipet, l'atterro est dans un champ Ã  la sortie du village Ã  droite.&lt;br/&gt;Le dÃ©co est visible sur la route forestiÃ¨re au-dessus.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=991&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=991&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.79333333</longitude>
+				<latitude>44.77444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.79333333,44.77444444,1380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gresse - Serpaton</name>
+			  <description>DÃ©collage de Gresse-en-Vercors, 30 km au sud de Grenoble&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=792&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=792&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.55000000</longitude>
+				<latitude>44.91666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.55000000,44.91666667,1600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Le Diable, Les Deux Alpes</name>
+			  <description>&lt;br/&gt;Le Diable (SW/W) 2380m, easy, just S of the top cablecar station on the slopes (in summer beside the piste). &lt;br/&gt;GPS: 44Â°59â47.87âN, 6Â° 8â52.95âE.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;2. Venosc (970m) &lt;br/&gt;GPS: 44Â°59â16.81âN, 6Â°7â2.43âE.&lt;br/&gt;Meadow E of the cablecar (windsock). Return by&lt;br/&gt;cablecar (check the operation periods) or by car.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4312&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4312&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.15250000</longitude>
+				<latitude>44.99527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.15250000,44.99527778,2380</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt Tabor, Saint HonorÃ©, south-east of Grenoble</name>
+			  <description>2-2,5 hrs/5,6 kms walk from the bottom of St HonorÃ©'s ski lift. Various, big take-offs.&lt;br/&gt;To get to St. HonorÃ©, drive via Vizille, south-east of Grenoble. Follow signs to St. HonorÃ© 1500.&lt;br/&gt;&lt;br/&gt;Photo: looking north-west, towards Grenoble from the summit.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2610&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2610&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.84583333</longitude>
+				<latitude>44.96666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.84583333,44.96666667,2150</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St Hilaire du Touvet, Grenoble</name>
+			  <description>The North and South launches cover the range of prevailing winds, although the house thermal out in front can sometimes produce a tailwind on the vast astroturfed south launch. In spring it starts working early in the day and after climbing out from a ratty start above the white cliffs below launch you can relax and pick your route.&lt;br/&gt;In calmer autumnal weather take the two-hour hike up to Dent De Crolles above the town for some high mountain soaring and a float back down to your start point&lt;br/&gt;WHEN TO GO&lt;br/&gt;April, May and June have the best XC weather, but the Coupe Icare is in September.&lt;br/&gt;ALTITUDE&lt;br/&gt;Launch: 900m (Dent des Crolles 2,040m)&lt;br/&gt;Landing:230m&lt;br/&gt;&lt;br/&gt;Site de la Coupe Icare, bien protÃ©gÃ©.&lt;br/&gt;Deux dÃ©cos : au tapis en haut du funiculaire, et dans un champ au NE du village (dÃ©co Sud).&lt;br/&gt;Atterrissage Ã  Lumbin, sur le bord de la Nationale.&lt;br/&gt;Beaucoup de monde en l'air.&lt;br/&gt;Coupe Icare: http://www.coupe-icare.org/GB_home.html&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=495&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=495&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.89055556</longitude>
+				<latitude>45.31166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.89055556,45.31166667,950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St-Pierre d'Allevard</name>
+			  <description>Petit site du matin au-dessus de St-Pierre d'Allevard.&lt;br/&gt;DÃ©co dans un champ au-dessus du parking (indiquÃ©).&lt;br/&gt;Atterro sur le bord du lac.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1117&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1117&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.03333333</longitude>
+				<latitude>45.38333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.03333333,45.38333333,1000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Villard-de-Lans</name>
+			  <description>Vercors, 20 min walk after the lift.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1610&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1610&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.57055556</longitude>
+				<latitude>45.02388889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.57055556,45.02388889,1870</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Salvi, Montegrossu, Calvi, Haute-Corse, Korsika</name>
+			  <description>Takeoff lies on the left-hand side of the road going east from Montegrossu. Landing at N42Â°32'50&quot; E8Â°50'27&quot;.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2290&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2290&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.86305556</longitude>
+				<latitude>42.55250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.86305556,42.55250000,491</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>San Sebastiano, Ajaccio, Corse</name>
+			  <description>Flott flysted, god utsikt over lekker kystlinje og innover paa oeya.&lt;br/&gt;Parkering i Appieto, 20 min aa gaa til start. Landing paa stranda i bukta rett nord fra starten.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2304&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2304&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.75500000</longitude>
+				<latitude>42.02111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.75500000,42.02111111,680</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tartavello, Ajaccio, Corse</name>
+			  <description>Fin start, fin landing, hyggelige lokale piloter. Man kan paa bra dager fly ut til kysten og lande paa stranda.&lt;br/&gt;&lt;br/&gt;Landinga ligger ved hovedveien fra Ajaccio mot Corte/Bastia (ved paragliderfotgjengerskiltet).&lt;br/&gt;&lt;br/&gt;Landing rett over venstre fot paa bildet.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2303&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2303&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.90722222</longitude>
+				<latitude>42.07222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.90722222,42.07222222,886</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>St. AndrÃ©-Les-Alpes, Chalvet</name>
+			  <description>At good days the thermals lift at both sides, but will gradually go over to the west side of the mountain. &lt;br/&gt;&lt;br/&gt;Launch&lt;br/&gt;1. (NE/E) 1546m, easy, flat dome, windsock, &lt;br/&gt;GPS: 43Â°58â38.88âN, 6Â°29â28.20âE&lt;br/&gt;&lt;br/&gt;2. (S/SE) 1538m, easy, just a little lower before (1), grass slope with windsock.&lt;br/&gt;GPS: 43Â°58â35.99âN, 6Â°29â28.89âE. &lt;br/&gt;Both (1) and(2) are toplandable!&lt;br/&gt;&lt;br/&gt;3. (SW) 1552m, medium, steep slope, better for HG than PG, windsock on the edge above the summit road. &lt;br/&gt;GPS: 43Â°58â34.17âN, 6Â°28â54.07âE.&lt;br/&gt;&lt;br/&gt;4. (W) 1554m, easy, excellent for PG, toplandable, windsocks, just N of the parking at the end of summit road. &lt;br/&gt;GPS: 43Â°58â42.01âN, 6Â°28â47.84âE.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Landing in downtown St. AndrÃ© should be used mainly. Also one landing-field under the westerly takeoff close to a camping-field.&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;1. St. AndrÃ©, zone de Loisir âLes Isclesâ (885m).&lt;br/&gt;Access: Very big field at the southern exit of St. AndrÃ©, after the Spar Supermarket follow the signs for Les Iscles. Pass the industrial plants and Camping Les Iscles on your left. Continue straight to the parking and the flying school Aeroglis (windsock).&lt;br/&gt;GPS: 43Â°57â31.12âN, 6Â°30â38.61âE&lt;br/&gt;&lt;br/&gt;2. Moriez (940m) landing field for PG, just above the N202 BarrÃªmeâSt.AndrÃ© at the southern exit of Moriez right above the entrance of Camping Le PastaÃ¯re. &lt;br/&gt;GPS: 43Â°57â40.00âN, 6Â°28â37.08âE.&lt;br/&gt;&lt;br/&gt;3. The field at La Mure, left of the road, is not an official landing. Ask for further info at Aerogliss.&lt;br/&gt;&lt;br/&gt;4. Training hill E of the river for strong winds and training, open to all pilots except when the school is teaching. Behind Camping Les Iscles, go across the bridge and head up. &lt;br/&gt;GPS: 43Â°57â24.03âN, 6Â°30â57.50âE.&lt;br/&gt;&lt;br/&gt;The valley-wind can be strong at the middle of the day.&lt;br/&gt;&lt;br/&gt;Local paragliderschool offers transportation to take-off, weather-forecast, info and equipment. Located at the main LZ.&lt;br/&gt;&lt;br/&gt;The flying is powerful around midday and anabatic in the afternoons. Especially between 11h00 and 17h00 from May until August the wind can increase beyond 40km/h on some days.&lt;br/&gt;&lt;br/&gt;In the height of summer the day reaches its best from 15h00â18h00 with incredible distances possible!&lt;br/&gt;http://www.para2000.org/weather/mto-pro-r.html&lt;br/&gt;&lt;br/&gt;Taxi de lâEtoile at Moustiers:&lt;br/&gt;Tel. +33 (0)4 9274 6687 &lt;br/&gt;or Cell: +33 (0)60737 3378.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=490&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=490&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.48000000</longitude>
+				<latitude>43.97805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.48000000,43.97805556,1660</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cap SiciÃ©</name>
+			  <description>The take off place and landing place are the same, you must fly only if you are sure you can land at the take off place. Even on smoothly condition wind, strong wind can come fast. Flyable on E wind direction.&lt;br/&gt;&lt;br/&gt;Access from La Seyne sur mer, direction &quot;La corniche varoise&quot;.&lt;br/&gt;Road is not open from June to end of August, but you can parc your car at Camping de la forÃªt Janasse, 40 min walk to the start.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6299&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6299&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.85888889</longitude>
+				<latitude>43.05527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.85888889,43.05527778,170</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Cime du merlier, Isola2000</name>
+			  <description>1.5 hour walk from Isola2000. You can use the ski lift in winter.&lt;br/&gt;Land at Isola2000 (700m height diff) or at Isola village (1800m height diff).&lt;br/&gt;The south-west face is an amazing ridge that goes down to the tinÃ©e river (&lt;800m). In summer there can be strong valley wind at Isola.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3945&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3945&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.11944444</longitude>
+				<latitude>44.18083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.11944444,44.18083333,2600</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col de Bleyne</name>
+			  <description>Between GreoliÃ©res and S:t Andre&lt;br/&gt;&lt;br/&gt;Nice place for XC with normally higher cloudbase than in Greolieres. &lt;br/&gt;&lt;br/&gt;Possible to drive to take-off, if the barrier is open, which it normally isn`t! &lt;br/&gt;&lt;br/&gt;Take off from the main road towards St. Auban, after you have droven past the green fence. Turn to the right up a narrow road 200 meters after a single house on the right side of the road. &lt;br/&gt;&lt;br/&gt;Landing by the main junction to Thorenc.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1003&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1003&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.81111111</longitude>
+				<latitude>43.81361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.81111111,43.81361111,1570</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col du Granon - Briancon</name>
+			  <description>Near Briancon&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10064&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=10064&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.60283889</longitude>
+				<latitude>44.96414389</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.60283889,44.96414389,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gourdon, Cavillore</name>
+			  <description>Take off just above Gourdon village.&lt;br/&gt;&lt;br/&gt;Landing on the open field just above the parking field.&lt;br/&gt;&lt;br/&gt;20 minutes hike to the top. &lt;br/&gt;&lt;br/&gt;An alternative to Haut Montet (the main launch) when it blows from SW. &lt;br/&gt;&lt;br/&gt;Altitude restriction from 2000 meters asl, due to Nice Cote dÃ© Azur airport. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3251&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3251&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.97777778</longitude>
+				<latitude>43.72944444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.97777778,43.72944444,1012</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gourdon, Kennedy</name>
+			  <description>Mainly Hang gliders start here, but can be used by paragliders too. Two take offs.&lt;br/&gt;&lt;br/&gt;Landing zone in the valley.&lt;br/&gt;&lt;br/&gt;To get to take off drive the main road from Pre Du Lac towards Gourdon. After 10 min take a little road to the right (situated in the first forest you drive through) A little road goes all the way out to the take off.&lt;br/&gt;&lt;br/&gt;Alternative to Haut Montet when the mistral is not too strong. &lt;br/&gt;&lt;br/&gt;Altitude restriction with max height of 2000 meters asl, due to Nice Cote de Azur airport.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3254&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3254&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.98000000</longitude>
+				<latitude>43.70361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.98000000,43.70361111,645</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gourdon, Le Haut Montet</name>
+			  <description>Northwest of Nice by Gourdon.&lt;br/&gt;&lt;br/&gt;Gourdon&lt;br/&gt;1. lâEmbarnier (S) 1105m, medium, main takeoff for HG &amp; PG, but risk of rotor from the promontory rocks when the wind is stronger! &lt;br/&gt;GPS: 43Â°43â32.01âN, 6Â°56â49.65âE.  &lt;br/&gt;&lt;br/&gt;2. lâEmbarnier (S/SW) 1160m, easy, big even slope&lt;br/&gt;GPS:43Â°43â26.52âN, 6Â°56â38.23âE&lt;br/&gt;&lt;br/&gt;3. Col de Cavillore (S/SE) 1030m, easy-medium,&lt;br/&gt;GPS: 43Â°43â49.35âN, 6Â°58â20.30âE.&lt;br/&gt;&lt;br/&gt;Altitude restrictions due Nice airport. Max altitude 2000 asl. Not allowed to fly XC down to the sea.&lt;br/&gt;&lt;br/&gt;Thermals year around. Best conditions in winter. Very reliable flying weather in general.&lt;br/&gt;&lt;br/&gt;Gourdon is usually protected from west wind but it can be turbulent if you fly too high as breeze (SSE) and real wind (W) cross each other in different directions.&lt;br/&gt;A good idea is to check the wind at Lachens mountain as it is very exposed to the NW wind (mistral).&lt;br/&gt;&lt;br/&gt;In winter the best thermal activity is located in the loup valley: Gourdon village, Kennedy and Courmettes. Usual XC flights are: Gourdon - Observatoire - Grasse and/or Gourdon - Village - Courmette, Tourette sur loup, Saint-Jannet (with return).&lt;br/&gt;In summer people don't usually fly in the loup valley as the breeze is too strong and does not let you reach the landing field at Vallettes. Also the thermal house at the village can be rough. There is a much higher potential for XC at col de bleyne or saint-andre les alpes in summer.&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;1. Domaine de St. Ambroise (830m) big field in&lt;br/&gt;the valley below the plateau. &lt;br/&gt;GPS: 43Â°43â33.54âN,6Â°57â34.44âE. &lt;br/&gt;&lt;br/&gt;2. Landing Cavillore (851m) very small field.&lt;br/&gt;GPS: 43Â°43â37.74âN, 6Â°58â8.64âE.&lt;br/&gt;&lt;br/&gt;3. Rives du Loup (175m) big field below the road, landing for all Gourdon takeoffs. HG &amp; PG.&lt;br/&gt;GPS: 43Â°42â0.57âN, 7Â° 0â20.45âE.&lt;br/&gt;&lt;br/&gt;The official landing field is below the parking place at Cavillore (read info at take-off). Easy top landing on the back. The landing field in the loup valley is the obvious huge field at the very end and it's a long way to glide to so be careful. Please don't get it wrong: it's strictly forbidden to land at any other place, the site is threatened to be closed, two take-off have already been banned at Tourette and Courmette.&lt;br/&gt;&lt;br/&gt;There is a bus every day but Sunday going from Vallettes to Gourdon for 1 euro, check time schedule at www.envibus.fr&lt;br/&gt;&lt;br/&gt;Gourdon wind talker:&lt;br/&gt;http://www.balisemeteo.com/balise.php?idBalise=63&lt;br/&gt;&lt;br/&gt;Lachens wind talker:&lt;br/&gt;http://www.balisemeteo.com/balise.php?idBalise=49&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1004&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1004&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.94666667</longitude>
+				<latitude>43.72555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.94666667,43.72555556,1165</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>GrÃ©oliÃ¨res, Montagne du Cheiron</name>
+			  <description>Main start at 1550m (4WD or 1:15 walk from landing)&lt;br/&gt;Lower start at 1025 m (30 min walk from landing)&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1.Le Dahut or â300â (S/SE) 1052m, easy, the main takeoff. GPS: 43Â°48â0.99âN, 6Â°57â20.00âE&lt;br/&gt;&lt;br/&gt;2. Le â600â (S/SE) 1440m, easy, GPS: 43Â°48â32.85âN,6Â°57â39.01âE&lt;br/&gt;&lt;br/&gt;3. Le â700â (S/SE) 1540m,medium, GPS: 43Â°48â37.27âN,6Â°57â26.68âE.&lt;br/&gt;&lt;br/&gt;4. Cheiron summit (S/SE) 1750m, medium. GPS: 43Â°48â56.81âN, 6Â°58â12.48âE&lt;br/&gt;&lt;br/&gt;5. Le Jerusalem (S) 1729m, easy-medium, GPS:43Â°49â0.58âN, 6Â°58â42.47âE&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;GrÃ©oliÃ¨res (800m) big field for HG &amp; PG at the entrance of the village; just take the left road at the split and park near the hut (windsock). &lt;br/&gt;GPS:43Â°47â45.76âN, 6Â°56â52.93âE&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=552&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=552&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.94361111</longitude>
+				<latitude>43.80194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.94361111,43.80194444,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>GrÃ©oliÃ¨res, Montagne du Cheiron.</name>
+			  <description>Main start at 1550m (4WD or 1:15 walk from landing)&lt;br/&gt;Lower start at 1025 m (30 min walk from landing)&lt;br/&gt;&lt;br/&gt;Launch:&lt;br/&gt;1.Le Dahut or â300â (S/SE) 1052m, easy, the main takeoff. GPS: 43Â°48â0.99âN, 6Â°57â20.00âE&lt;br/&gt;&lt;br/&gt;2. Le â600â (S/SE) 1440m, easy, GPS: 43Â°48â32.85âN,6Â°57â39.01âE&lt;br/&gt;&lt;br/&gt;3. Le â700â (S/SE) 1540m,medium, GPS: 43Â°48â37.27âN,6Â°57â26.68âE.&lt;br/&gt;&lt;br/&gt;4. Cheiron summit (S/SE) 1750m, medium. GPS: 43Â°48â56.81âN, 6Â°58â12.48âE&lt;br/&gt;&lt;br/&gt;5. Le Jerusalem (S) 1729m, easy-medium, GPS:43Â°49â0.58âN, 6Â°58â42.47âE&lt;br/&gt;&lt;br/&gt;Landing:&lt;br/&gt;GrÃ©oliÃ¨res (800m) big field for HG &amp; PG at the entrance of the village; just take the left road at the split and park near the hut (windsock). &lt;br/&gt;GPS:43Â°47â45.76âN, 6Â°56â52.93âE&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6768&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=6768&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.05777778</longitude>
+				<latitude>43.79888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.05777778,43.79888889,1400</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>GrÃ©oliÃ¨res, Mt. Cheiron</name>
+			  <description>Takeoff in Greolieres, landing is at the school.&lt;br/&gt;Picture is from just below takeoff and looking at the landing area.&lt;br/&gt;Greolieres is situated 25km from the coast tucked behind the first range of mountains in a deep valley with a &lt;br/&gt;massive 1770m high mountain towering above the village. &lt;br/&gt;GPS coordinates are for the village (landing).&lt;br/&gt;Orienation: South, 300m to 1000m top to bottom. &lt;br/&gt;Access: Get a lift up in the paragliding school's 4WD, cost 30ff, or else walking to the lowest take-off takes 30 &lt;br/&gt;minutes. &lt;br/&gt;Good dynamic soaring site mixed with thermals, and out and return possibilities. Very easy take-off and &lt;br/&gt;landing. &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=523&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=523&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.94361111</longitude>
+				<latitude>43.80194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.94361111,43.80194444,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La Roque-Esclapon, Montagne de Lachens</name>
+			  <description>Segelflygarna frÃ¥n Fayence kommer gÃ¤rna in pÃ¥ berget och tar hÃ¶jd.&lt;br/&gt;&lt;br/&gt;Altitude is for SW-start.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=488&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=488&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.64694444</longitude>
+				<latitude>43.73361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.64694444,43.73361111,1455</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>La-Sainte-Victoire</name>
+			  <description>Puyloubier&lt;br/&gt;Bouches-Du-RhÃ´ne&lt;br/&gt;France&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8632&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8632&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.56944444</longitude>
+				<latitude>43.53611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.56944444,43.53611111,610</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Monaco, Monte Carlo, Mont Gros</name>
+			  <description>Launch&lt;br/&gt;1. Mont Gros (S-W) 677m, easy-medium, dome with a perfectly arranged green carpet. Crosswind makes it tricky for pilots with little experience as the launch ends in steep scree slope! &lt;br/&gt;GPS: 43Â°45â55.69âN, 7Â°26â33.55âE&lt;br/&gt;&lt;br/&gt;2. Mont Gros (E/SE) 660m, medium, short flat slope, surrounded by bush, you need good headwind and launch skill! &lt;br/&gt;GPS: 43Â°45â58.31âN, 7Â°26â36.29âE&lt;br/&gt;&lt;br/&gt;3. LaÃ¯ BarraÃ¯ (SE-SSW) 695m, medium, grassy dome, expert launch.&lt;br/&gt;GPS: 43Â°45â21.38âN, 7Â°24â38.57âE.&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;Plage du Golf Bleu (0m) beach. GPS: 43 45â32.97âN, 7Â°27â18.48âE.&lt;br/&gt;&lt;br/&gt;Flying&lt;br/&gt;The site is open as follows: 16 Novemberâ30 April(no limitation); 1 Mayâ30 June, 1 Septemberâ30 September (before 08h00 and after 18h00); 10 Octoberâ15 November (after 11h15). &lt;br/&gt;The altitude limit is 1950m ASL as you are flying within the range of LR-R83, a flight prohibition zone above Mont Agel. &lt;br/&gt;No flying west of La Turbie or above Monaco! Check the detailed aerial chart at the LaÃ¯ BarraÃ¯ infoboard.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=553&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=553&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.43527778</longitude>
+				<latitude>43.76722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.43527778,43.76722222,686</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Romaniere</name>
+			  <description>Romaniere, also under the name Les Opies.&lt;br/&gt;&lt;br/&gt;Very nice takeoff and flying location in the Provence, Les Alpilles. Not very high mountains but still spectacular.&lt;br/&gt;The site is managed by the Istres flying club. It is under some restrictions regarding roof. Also you must be aware of the the tripple ridge effect of rotor at low heights in some areas.&lt;br/&gt;&lt;br/&gt;Site is described by&lt;br/&gt;http://www.iavl.fr&lt;br/&gt;http://www.paraglidingearth.com/?site=10072&lt;br/&gt;https://federation.ffvl.fr/sites_pratique/voir/1875&lt;br/&gt;&lt;br/&gt;There is a parking space along D17, west of Eyguieres, marked with a road sign. A short 20 minute walk upto the launch. Very nice setup with lots of space to set up the glider and handle at launch.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8158&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=8158&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>4.98500000</longitude>
+				<latitude>43.70222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>4.98500000,43.70222222,268</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Saint-Vallier-de-Thiey</name>
+			  <description>Naturstart med en del smÃ¥stein, men helt ok. Kort gÃ¥tur opp langs en sti fra vei D6085. Brukes en del av en profesjonell tandempilot som heter Jean-Vincent Ducrocq og driver firmaet Spir'it Parapente (https://www.spiritparapente.com/)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=9727&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=9727&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.82833333</longitude>
+				<latitude>43.71000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.82833333,43.71000000,1040</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Signes, Agnis</name>
+			  <description>Launch&lt;br/&gt;1. Agnis (E-W) 723m, small plateau with two launch directions (SE/SW) both easy and toplandable.&lt;br/&gt;GPS: 43Â°18â8.03âN, 5Â°52â22.17âE.&lt;br/&gt;Access is via the piste, take the club shuttle up.&lt;br/&gt;Private cars are not allowed. You can walk using the GR (1 hr): the route is sketched on the clubâs website(or ask any local).&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;1. Traversa or âDeltaâ, main landing, 345m, big field for HG &amp; PG, just S of the D2 towards MÃ©oune, 300m E of the village entrance. &lt;br/&gt;GPS: 43Â°17â18.10âN, 5Â°52â16.18âE.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Other launch:&lt;br/&gt;2. La Croix (N/NE) 750m, easy, a launch for the winter or mornings or with smooth N winds. Much less crowded than Agnis! &lt;br/&gt;GPS: 43Â°16â7.48âN, 5Â°53â36.26âE. &lt;br/&gt;Access is via shuttle bus as well, depending on the weather (usually mornings). Private car access is possible, but takes a long time. Ask at the flying school for details of the itinerary.&lt;br/&gt;&lt;br/&gt;Landing&lt;br/&gt;2. Les Launes, 315m, alternative landing field and for flights from La Croix, &lt;br/&gt;GPS: 43Â°17â0.37âN, 5Â°53â25.42âE. &lt;br/&gt;It is E of the water channel crossing the valley, towards the base of La Croix, just S of the D2.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5188&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5188&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.87277778</longitude>
+				<latitude>43.30222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.87277778,43.30222222,723</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Thorenc, Col de Bleine</name>
+			  <description>Ca 15 km fra GrÃ©oliÃ¨res&lt;br/&gt;About 15 km further into the valley from GrÃ©oliÃ¨res&lt;br/&gt;Big start and landing.&lt;br/&gt;&lt;br/&gt;(photo 2007-03-28)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2142&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2142&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.81111111</longitude>
+				<latitude>43.81333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.81111111,43.81333333,1530</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Valette de prals, VÃ©subie, Saint-Grat</name>
+			  <description>Located in the Vesubie valley, at the edge of the Mercantour national park (flying is prohibited).&lt;br/&gt;2 hours walk from St-Grat. Land in the Gordolasque valley or glide west to st-martin de la vÃ©subie, Roquebiliere or even la colmiane.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3938&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=3938&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>7.36222222</longitude>
+				<latitude>44.06361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>7.36222222,44.06361111,2500</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Aix-Les-Bains BelvÃ©dÃ¨re du mont Revard</name>
+			  <description>Excellent site at Lac du Bourget.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=9609&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=9609&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.97480556</longitude>
+				<latitude>45.68319444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.97480556,45.68319444,1491</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Col des Egaux</name>
+			  <description>Liten start ca 10 km soer for Chambery. Plass til ei solovinge paa start. Veldig fint kveldsheng. Lite bruke flysted.&lt;br/&gt;Landing ved kirka (N45'27,934&quot; E5'49,150&quot;).&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2373&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2373&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.80694444</longitude>
+				<latitude>45.44194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.80694444,45.44194444,968</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Le Meruz</name>
+			  <description>Private takeoff&lt;br/&gt;&lt;br/&gt;Takeoff above Ugine. Need to follow the rules for the takeoff. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4470&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=4470&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.41463889</longitude>
+				<latitude>45.78486111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.41463889,45.78486111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Les Saisies - Bisanne</name>
+			  <description>Near Les Saisies.&lt;br/&gt;Landing near Beaufort.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1532&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1532&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.50305556</longitude>
+				<latitude>45.74722222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.50305556,45.74722222,1950</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Montgirod</name>
+			  <description>Over Aime.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1535&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=1535&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.57305556</longitude>
+				<latitude>45.55361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.57305556,45.55361111,1960</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Montlambert</name>
+			  <description>Near MontmÃ©lian.&lt;br/&gt;Often protected from Nord winds.&lt;br/&gt;Landing near St-Jean-de-la-Porte.&lt;br/&gt;10 minutes walk to take-off.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=732&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=732&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.10527778</longitude>
+				<latitude>45.55750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.10527778,45.55750000,890</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Province, Lac d' Aiguebelette</name>
+			  <description>Very nice take-off for western winds. Good site for afternoon/evening.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2318&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=2318&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.80750000</longitude>
+				<latitude>45.60194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.80750000,45.60194444,1095</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Sapenay</name>
+			  <description>Max 1200 mas. No flights towards south. Three take-offs - please refer to link for more information.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=856&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=856&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.87500000</longitude>
+				<latitude>45.82222222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.87500000,45.82222222,790</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tignes le Lac</name>
+			  <description>Vinterstart (starter med ski).&lt;br/&gt;Ta Ã©n av heisene Aeroski (fra Tignes le Lac) eller Tufs (fra Val Claret). Start ligger rett utfor pÃ¥ venstresida av lÃ¸ypa H, og er markert med et rÃ¸dt gjerde.&lt;br/&gt;Landing er pÃ¥ innsjÃ¸en.&lt;br/&gt;&lt;br/&gt;English&lt;br/&gt;Winterstart (with skis)&lt;br/&gt;Take one of the ski lifts Aeroski (from Tignes le Lac) or Tufs (from Val Claret). Takeoff is just outside on left from the start of piste H, and is marked with a red barrier.&lt;br/&gt;Landing is on the lake.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5934&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=5934&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>6.91916667</longitude>
+				<latitude>45.45444444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>6.91916667,45.45444444,2768</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>VÃ©rel - Sire</name>
+			  <description>PrÃ¨s de ChambÃ©ry, Ã  mi-hauteur du Sire.&lt;br/&gt;Laisser la voiture Ã  Pragondan, 20 minutes de marche. DÃ©co parfois turbulent, thermique juste devant.&lt;br/&gt;Pas de vol en vallÃ©e Ã  plus de 200 m / sol.&lt;br/&gt;&lt;br/&gt;Kanonfin grÃ¤sstart. Se upp med luftrummet.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=849&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=73&amp;amp;start_id=849&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>5.94861111</longitude>
+				<latitude>45.62777778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>5.94861111,45.62777778,900</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

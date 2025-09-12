@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Anarchist (Osoyoos)</name>
+			  <description>Description of Launch: 
+<br/>A small crude grassy slope over a rock bluff. A short steep 150' hike in up a 40Â° slope.
+<br/>Great HG and PG site. Great Scenery.
+<br/>Launch Road Name and Directions:
+<br/>Hyw. 3 heading East from Osoyoos, turn north and drive in 2.4 Km on Long Joe Road.
+<br/>(Last road off on long hill heading East out of Osoyoos... or the first road if you're coming down the hill heading West.)
+<br/>Then take the first Left turn heading north for 0.6 Km. A short hike uphill to a small grassy slope.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=6189">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=6189</a></description>
+			  <LookAt>
+				<longitude>-119.40263889</longitude>
+				<latitude>49.04519444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-119.40263889,49.04519444,1110</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bridal Falls, Hope BC</name>
+			  <description>Fraser Valley, South Western British Columbia, Canada, Bridal Falls between Chilliwack and Hope BC on the Trans Canada Highway<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3040">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3040</a></description>
+			  <LookAt>
+				<longitude>-121.74833333</longitude>
+				<latitude>49.17055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-121.74833333,49.17055556,740</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Golden, Mount 7, Lower Start</name>
+			  <description>Possible to drive up with a normal car if you are careful.
+<br/>Official landing field is at the Golden Eco Adventure Ranch 6km south of downtown Golden.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=5324">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=5324</a></description>
+			  <LookAt>
+				<longitude>-116.88555556</longitude>
+				<latitude>51.27555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-116.88555556,51.27555556,1940</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hemlock Valley</name>
+			  <description>Next to the eastern chairlift. In summer it's not really a launch. There are bushes and rocks everywhere. I don't recommend it to anyone.
+<br/>
+<br/>In winter, reports say that people launch from near the western chairlift, which requires Eastern winds.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4293">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4293</a></description>
+			  <LookAt>
+				<longitude>-121.93472222</longitude>
+				<latitude>49.39083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-121.93472222,49.39083333,1300</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mackenzie Lower (Pemberton)</name>
+			  <description>2 hours drive from Vancouver to LZ.  contacts: 
+<br/>	Jim Orava 894-5502 
+<br/>Mike Sadan 894-6162 
+<br/>Ty 905-9503 
+<br/>Nigel Protter 894-5558
+<br/>
+<br/>	Elevation: 2500ASL, SW, suits HG & PG, room to set up many HG's. 
+<br/>
+<br/>Head east out of Pemberton take the road which heads north just after crossing the bridge over the Lillooet River on the road to D'Arcy. Turn left (west) at the power lines. There is a dirt road that will take you to the takeoff. Stay on the road. Do not be tempted to turn right. You will need 4X4 vehicle if you do not want to trash your nice car.
+<br/>Landing :	Pemberton Community Centre across from Spierings Automotive. Check for posted schedule if booked by field sports. Excellent for paragliders (all aspects). Smaller but ok for H.G. (not sure). To use any other field (ie. large H.G.field or for students, must make prior arrangement with landowners). Landings on XC generally ok with exception of crops and livestock.
+<br/>Going there :	na.
+<br/>Comments :	Cross-Country: 
+<br/>40km Out and return along ridge to NW is common. East to Lillooet Lake 14km (watch for Airport Traffic). SE to Whistler (limited landing options, valley winds) E to Duffy Lake and Lillooet (has been done,<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=6970">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=6970</a></description>
+			  <LookAt>
+				<longitude>122.79925000</longitude>
+				<latitude>50.35230000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>122.79925000,50.35230000,745</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mount Woodside, Agassiz BC</name>
+			  <description>Fraser Valley, South Western British Columbia Canada (13 km) 8 miles west of Agassiz on Hwy 7<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3043">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3043</a></description>
+			  <LookAt>
+				<longitude>-121.88750000</longitude>
+				<latitude>49.24333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-121.88750000,49.24333333,650</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt Mackenzie, Revelstoke</name>
+			  <description>Private property of Revelstoke Mountain Resort. Contact them or local Revelstoke pilots for access.
+<br/>
+<br/>The coordinates mark South facing launch. There are also launches facing W and NW near the top of the chairlift.<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4222">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4222</a></description>
+			  <LookAt>
+				<longitude>-118.09666667</longitude>
+				<latitude>50.96083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-118.09666667,50.96083333,2210</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mt Prevost</name>
+			  <description>Launch:
+<br/>S: short launch needs vind
+<br/>SW: Fine and large launch field
+<br/>W: ridge soaring
+<br/>
+<br/>Landing Directions:
+<br/>
+<br/>4 km north of Duncan turn west  onto Hwy 18 to (Lake Cowichan) for 2 km. (Go 1 km
+<br/>past Somenos road to LZ).  The LZ is on the North side of the road just before the bend in the highway. The alternate field is at the 
+<br/>Motocross Track. Just past the main field, in the middle of the corner, take the gravel road which turns right. Go through the trees and turn 
+<br/>left into the race track.  The LZ is the field NE of the racetrack. We are no longer permitted to land at the golf course. Landing field is on the other side of the road.
+<br/>
+<br/><br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=674">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=674</a></description>
+			  <LookAt>
+				<longitude>-123.76666667</longitude>
+				<latitude>48.83333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-123.76666667,48.83333333,762</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Oakley Hurley World</name>
+			  <description>Private land, organized by Reg/Cathy company Backcountry snowcats<br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3999">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=3999</a></description>
+			  <LookAt>
+				<longitude>-122.95527778</longitude>
+				<latitude>50.54694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-122.95527778,50.54694444,2000</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Toilet Bowl, Savona</name>
+			  <description> <br/><a href="https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4224">https://flightlog.org/fl.html?l=1a=22country_id=38start_id=4224</a></description>
+			  <LookAt>
+				<longitude>-120.90333333</longitude>
+				<latitude>50.75194444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-120.90333333,50.75194444,420</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

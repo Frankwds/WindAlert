@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Atacco ved Tapala</name>
+			  <description>Starten ligger pÃ¥ privat eiendom og kan bare flys pÃ¥ ukedager nÃ¥r eieren ikke er hjemme og stedet bestyres av gartneren.Han kan bestikkes for ca 100 pesos per person. MÃ¥ ha bil med god bakkeklaring. RÃ¸ff kjÃ¸ring. Siste 200 meterene mÃ¥ man gÃ¥ opp. Sti bakenfor steinvegg. Ryddig, liten og fin start. Masse alternative jorder Ã¥ lande pÃ¥. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=138&amp;amp;start_id=6840&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=138&amp;amp;start_id=6840&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>-103.72916667</longitude>
+				<latitude>19.94138889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-103.72916667,19.94138889,2310</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Yelapa, Puerto Vallarta</name>
+			  <description>http://www.adventureparagliding.com/events/yelapa.htm&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=138&amp;amp;start_id=841&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=138&amp;amp;start_id=841&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>-105.45194444</longitude>
+				<latitude>20.48694444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>-105.45194444,20.48694444,150</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>

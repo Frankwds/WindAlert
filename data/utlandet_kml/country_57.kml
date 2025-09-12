@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://earth.google.com/kml/2.0">
+        <Folder>
+          <open>1</open>
+          <name>www.flightlog.org</name>
+          <description>Take off places from <a href="www.flightlog.org">www.flightlog.org</a></description><Placemark>
+			  <name>Team Danmark/MDK optrÃ¦kscenter.Fasterholt.</name>
+			  <description>OptrÃ¦kscenteret ligger i midt jylland nÃ¦mere betegnet Fasterholdt tÃ¦t pÃ¥ Herning.&lt;br/&gt;Kontaktperson : Flemming Lauritsen, +45 20668023&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=855&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=855&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.11638889</longitude>
+				<latitude>56.00055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.11638889,56.00055556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bovbjerg</name>
+			  <description>Underbar hang, gott om plats att landa pÃ¥.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2019&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2019&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.12027778</longitude>
+				<latitude>56.53138889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.12027778,56.53138889,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Bovbjerg Fyr</name>
+			  <description>StÃ¸rste hÃ¸jde er 40m oppe ved fyret. SkrÃ¦nterne strÃ¦kker sig over ca. 3,5 km. Der kan topstartes- og landes og stranden er bred. Start kan ske ved fyret eller lÃ¦ngere nede mod Ferring.&lt;br/&gt;Pas pÃ¥! - Oppe ved fyret kan der vÃ¦re kraftig rotor.&lt;br/&gt;Et andet godt startsted er lÃ¦ngere sydpÃ¥, ved Trans kirke, se detailkort. Der kan flyves hele vejen op til Bovbjerg Fyr. SkrÃ¦nterne er lavere her og kan altsÃ¥ flyves med mere vind. Startstedet er pÃ¥ plÃ¦nen ved kirken og er super&lt;br/&gt;&lt;br/&gt;Fra Lemvig, kÃ¸r ad 513 mod Thorsminde. Drej fra mod Ferring. I Ferring by, gÃ¥r der en vej op til fyret, hvor der kan parkeres. PrÃ¸v ogsÃ¥ det lave startsted, fra Ferring by, kÃ¸r ca. 50m ad vejen op mod fyret, drej ad grusvej til hÃ¸jre ud mod skrÃ¦nten. Her er der ogsÃ¥ fine parkerings- og startmuligheder.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10299&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10299&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.11972222</longitude>
+				<latitude>56.51305556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.11972222,56.51305556,40</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Damsted, Skagen</name>
+			  <description>KÃ¶r mot Skagen. NÃ¤r du kommer fram till Skagen befinner du dig pÃ¥ Fredrikhavnstedtsvej. KÃ¶r Ã¶ver jÃ¤rnvÃ¤gen. SvÃ¤ng fÃ¶rsta vÃ¤gen till hÃ¶ger(Drachmannsvej). SvÃ¤ng hÃ¶ger i fÃ¶rsta 4-kors(damstedsvej) och kÃ¶r tills du inte kommer lÃ¤ngre.&lt;br/&gt;&lt;br/&gt;Hanget Ã¤r lÃ¥gt, men verkar vara vÃ¤ldigt lÃ¥ngt. BestÃ¥r av sandkullar med strandgrÃ¤s och strand framfÃ¶r.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=696&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=696&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.55416667</longitude>
+				<latitude>57.70555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.55416667,57.70555556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Dokkedal</name>
+			  <description>Hang med bra start &amp; landning Ã¶ster om Aalborg.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1602&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1602&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.26055556</longitude>
+				<latitude>56.90361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.26055556,56.90361111,48</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ebeltoft kobberhage 2</name>
+			  <description>SkrÃ¦nten er ca. 30m hÃ¸j og 2 km lang - Den nordligste del af skrÃ¦nten kan flyves pÃ¥ ÃNÃ - Ã, den sydlige del pÃ¥ ÃSÃ - Ã.&lt;br/&gt;&lt;br/&gt;Fra Ãrhus ad hovedvej 15 mod Ebeltoft. Fra Ebeltoft til Boeslum og videre til Kobberhage. Se detailkort&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10301&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10301&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.73647222</longitude>
+				<latitude>56.18541667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.73647222,56.18541667,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Eierslev, Mors</name>
+			  <description>Starten Ã¤r lite knepig med en hel del buskar och i ovankant av hela hanget gÃ¥r ett elstÃ¤ngsel. Starten vi anvÃ¤nde ligger i norra delen av hanget. Man bÃ¶r prata med bonden/bÃ¶nderna som har djuren innan man flyger.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2461&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2461&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.90722222</longitude>
+				<latitude>56.94166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.90722222,56.94166667,22</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>ErtebÃ¸lle</name>
+			  <description>Fin liten hang stÃ¸rste hÃ¸jde er 20m. SkrÃ¦nten er egnet for begyndere.&lt;br/&gt;&lt;br/&gt;Anbefales at starte i den nordlige del da der er fin grÃ¦s at starte pÃ¥ og derefter koble sig pÃ¥ hanget!&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2017&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2017&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.18666667</longitude>
+				<latitude>56.81861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.18666667,56.81861111,20</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ferring trans kjerke</name>
+			  <description>StÃ¸rste hÃ¸jde er 40m oppe ved fyret. SkrÃ¦nterne strÃ¦kker sig over ca. 3,5 km. Der kan topstartes- og landes og stranden er bred. Start kan ske ved fyret eller lÃ¦ngere nede mod Ferring.&lt;br/&gt;Pas pÃ¥! - Oppe ved fyret kan der vÃ¦re kraftig rotor.&lt;br/&gt;Et andet godt startsted er lÃ¦ngere sydpÃ¥, ved Trans kirke, se detailkort. Der kan flyves hele vejen op til Bovbjerg Fyr. SkrÃ¦nterne er lavere her og kan altsÃ¥ flyves med mere vind. Startstedet er pÃ¥ plÃ¦nen ved kirken og er super&lt;br/&gt;&lt;br/&gt;Fra Lemvig, kÃ¸r ad 513 mod Thorsminde. Drej fra mod Ferring. I Ferring by, gÃ¥r der en vej op til fyret, hvor der kan parkeres. PrÃ¸v ogsÃ¥ det lave startsted, fra Ferring by, kÃ¸r ca. 50m ad vejen op mod fyret, drej ad grusvej til hÃ¸jre ud mod skrÃ¦nten. Her er der ogsÃ¥ fine parkerings- og startmuligheder&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10300&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10300&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.12083333</longitude>
+				<latitude>56.49805556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.12083333,56.49805556,40</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gjerrild</name>
+			  <description>Et kystheng pÃ¥ Jyllands Ã¸stkyst. Det er en parkeringsplass, med toaletter, rett ved henget.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10511&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10511&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.85305556</longitude>
+				<latitude>56.52055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.85305556,56.52055556,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Glatved Strand</name>
+			  <description>Lite hang som fungerer pÃ¥ Ã¸/sÃ¸.&lt;br/&gt;KjÃ¸r mot Glatved strand og hold til venstre rett fÃ¸r innkjÃ¸ting til p-plass grustak.&lt;br/&gt;Starten er som beskrevet pÃ¥ danske hps sine sider rett til venstre for et jorde/gressplen.&lt;br/&gt;Funker ikke pÃ¥ ÃNÃ og vÃ¦r obs for rotor pÃ¥ start.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10302&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10302&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.86666667</longitude>
+				<latitude>56.30000000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.86666667,56.30000000,20</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hanstholm</name>
+			  <description>U have nearly all flying directions in the area&lt;br/&gt;The best site is one kilometer east of the pinpointed location.&lt;br/&gt;This is a location also popular for flying RC sailplaines.&lt;br/&gt;Communicate, and we can all do our hobbies without worries.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=533&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=533&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.62500000</longitude>
+				<latitude>57.12361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.62500000,57.12361111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>HelgenÃ¦s Lushage</name>
+			  <description>SkrÃ¦nten er ca. 40m hÃ¸j. Gode muligheder for topstart- og landing. Stranden er forholdsvis smal, men der kan landes pÃ¥ stranden. &lt;br/&gt;Fra Ãrhus, kÃ¸r ad hovedvej 15 til Mols og videre til HelgenÃ¦s. FÃ¸lg skiltene til Esby. Derfra ad grusvej mod Lushage. Parkering pÃ¥ P-pladsen, derfra til fods 5 -10 minutter VÃ¦r forsiktig pÃ¥ sterk vind.Lett og tro at det er mindre vind pÃ¥ start en de er i lufta.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=597&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=597&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.53166667</longitude>
+				<latitude>56.10083333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.53166667,56.10083333,40</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>HelgenÃ¦s Ãrby Sletterhage</name>
+			  <description>Fint hang med fin startplass inntil skogen pÃ¥ bildet.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3816&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3816&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.50250000</longitude>
+				<latitude>56.10972222</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.50250000,56.10972222,18</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>HelligsÃ¶, KobberÃ¶gÃ¥rd</name>
+			  <description>Start pÃ¥ privat mark.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3841&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3841&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.31777778</longitude>
+				<latitude>56.71583333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.31777778,56.71583333,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Husby klit</name>
+			  <description>Husby klit&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10316&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10316&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.12636111</longitude>
+				<latitude>56.28963889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.12636111,56.28963889,64</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hvide Sande</name>
+			  <description>Klintene her er ganske lave, slik at det mÃ¥ blÃ¥se ganske mye for Ã¥ fly (gÃ¥ litt hvitt utpÃ¥ sjÃ¸en)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=4237&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=4237&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.12777778</longitude>
+				<latitude>55.98611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.12777778,55.98611111,5</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hvide Sande - Ãrgab - Tingodden</name>
+			  <description>A bit bigger and higher costal hang on the dunes south of Hvide Sande.&lt;br/&gt;Popssible to start on the top and on the beach.&lt;br/&gt;Great beach and great place.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8149&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8149&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.14283333</longitude>
+				<latitude>55.94961111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.14283333,55.94961111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Hvide Sande - StomklÃ¸ven</name>
+			  <description>Costal hang just north of Hvide Sande / Nr. Lyngvig lighthouse.&lt;br/&gt;&lt;br/&gt;Gravel road with parking just behind the dunes.&lt;br/&gt;Not very many people here :-)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8134&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8134&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>56.07944444</longitude>
+				<latitude>8.10111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>56.07944444,8.10111111,2</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Jylland - Hamborg</name>
+			  <description>Fin gresskledt skrÃ¥ning pÃ¥ et par hundre meter.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=842&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=842&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.65527778</longitude>
+				<latitude>57.11666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.65527778,57.11666667,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>KlitmÃ¸ller  Hanstholm</name>
+			  <description>Parking is possible a few metres from the coordinates. &lt;br/&gt;&lt;br/&gt;It is possible to soar all the way down to KlitmÃ¸ller and up to Hanstholm. &lt;br/&gt;&lt;br/&gt;Great for both beginners and advanced pilots who wants to play around. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=9640&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=9640&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.55722222</longitude>
+				<latitude>57.08611111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.55722222,57.08611111,8</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>LÃ¸kken - rubjerg knude</name>
+			  <description>Imellom lÃ¸kken &amp; rubjerg knude&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10312&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10312&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.75588889</longitude>
+				<latitude>57.42575000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.75588889,57.42575000,32</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>LÃ¸kken, NÃ¸rre Lyngby</name>
+			  <description>Nordens lÃ¤ckraste kusthang! Ãver 8 km lÃ¥ngt.&lt;br/&gt;Bred strand. HÃ¶gsta hÃ¶jden Ã¤r vid rubjerg knude i norr. Det Ã¤r inte tillÃ¥tet att starta var som helst pÃ¥ hanget.&lt;br/&gt;&lt;br/&gt;Se link til lokal flyklubb for info (se link).&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;13 juli 06: KjÃ¸r til NÃ¸rre Lyngby, 5 km nord for selve LÃ¸kken by. Her er sandveggen hÃ¸yere enn ved LÃ¸kken. Man kan kjÃ¸re ned pÃ¥ stranden, men i tÃ¸rr sand kjÃ¸rer man seg lett fast uten 4WD.&lt;br/&gt;&lt;br/&gt;Startteknikk: Baklengs start, snu deg og rygg mot sandveggen. Du vil bli lÃ¸ftet opp. Sving gjerne til en av sidene om du penetrerer for mye. &lt;br/&gt;Flyteknikk: Ha stirrup lett tilgjengelig for Ã¥ unngÃ¥ Ã¥ blÃ¥se bakpÃ¥ i rotor bak toppen. Hold deg med god margin foran pÃ¥ hanget nÃ¥r det er mye vind.&lt;br/&gt;Landing:&lt;br/&gt;Fly utover sjÃ¸en, til lÃ¸ftet gradvis avtar. Juster deg bakover mens du synker inntil du har bena i vannkanten. GÃ¥ litt bakover og legg ned vingen i tÃ¸rr sand.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=535&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=535&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.72916667</longitude>
+				<latitude>57.39111111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.72916667,57.39111111,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mols , FuglsÃ¸ Strand</name>
+			  <description>Skrenten er 35m pÃ¥ det hÃ¸yeste og ca. 1 km langt&lt;br/&gt; Fint for alle nivÃ¥&lt;br/&gt; PÃ¥ gode dager kan en fly nordover pÃ¥ skogen og sÃ¸rover helt til campingen, da snakker vi om over 2 km totalt.&lt;br/&gt; Det er starten pÃ¥ hÃ¸yeste punktet som er merket av pÃ¥ koordinatene og som er ringet inn med gult pÃ¥ bildet.&lt;br/&gt; Den befinner seg 670 m NÃ fra FuglsÃ¸ Strand Offentlig Parkering som er ringet inn med rÃ¸dt pÃ¥ bildet, gÃ¥r sti hele veien ut.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=596&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=596&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.54972222</longitude>
+				<latitude>56.18638889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.54972222,56.18638889,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Mulbjerg</name>
+			  <description>Mulbjerg, ikke et fjell akkurat, men et kort heng pÃ¥ Ãstkysten like sydÃ¸st for Ãlborg.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=6146&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=6146&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.25892500</longitude>
+				<latitude>56.90304444</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.25892500,56.90304444,50</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>NÃ¤sby</name>
+			  <description>Hangflyg&lt;br/&gt;SÃ¶der om LogstÃ¶r ligger NÃ¤sby.&lt;br/&gt;Hanget Ã¤r flera kilometer lÃ¥ngt. LÃ¤gst i sÃ¶der. HÃ¶ga branta sandsluttningar i norr. Fina snÃ¤lla grÃ¤sstarter. Landning sker pÃ¥ stranden eller pÃ¥ lÃ¤mpliga topplandningsstÃ¤llen. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=695&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=695&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.17222222</longitude>
+				<latitude>56.90027778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.17222222,56.90027778,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>RisgÃ¥rde - Strandby</name>
+			  <description>Hang.&lt;br/&gt;Brant start. Kort hang. Inget stÃ¤lle man Ã¥ker till i 1:a hand. Kommer man sÃ¶der i frÃ¥n ser man hanget pÃ¥ vÃ¤nster sida ut mot vattnet (vÃ¤g 533)&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=697&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=697&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.19805556</longitude>
+				<latitude>56.76750000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.19805556,56.76750000,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Rybjerg knude</name>
+			  <description>VÃ¤ldigt hÃ¶g sanddyna. Norra delen av LÃ¶kkenhanget.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1970&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1970&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.77194444</longitude>
+				<latitude>57.45055556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.77194444,57.45055556,95</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Struer, Toftum Bjerge</name>
+			  <description>Ett hang som finns nÃ¤ra Humlum, i Struer kommun pÃ¥ Midtjylland.&lt;br/&gt;Ãven om vinden Ã¤r fel tidigt pÃ¥ dagen kan det, en solig dag med mycket termisk aktivitet inÃ¥t land, vÃ¤nda framÃ¥t eftermiddag och det blir mÃ¶jligt att fÃ¥ ett fint kvÃ¤llsflyg. Ligger nÃ¤ra campingen Toftum Bjerge.&lt;br/&gt;Fint stÃ¤lle !&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1055&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1055&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.53269444</longitude>
+				<latitude>56.54600000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.53269444,56.54600000,50</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Tolstrup, LÃ¸gstÃ¸r</name>
+			  <description>GrÃ¤sslÃ¤nt. LÃ¤tt start och landning. Cirka 300 meter lÃ¥ngt.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1969&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1969&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.28805556</longitude>
+				<latitude>56.98166667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.28805556,56.98166667,30</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ulbjerg Klint</name>
+			  <description>Small soaring site, just south of Store Klinthoj. Grass covered hill with a wide beach beneath. Use this site when it is too windy to fly on Store Klinthoj. Road to Ulbjerg Klint when you come from the south on 533, leads all the way to the beach, where you can park. Good place to fly when it is too windy on the coast.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3770&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3770&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.31444444</longitude>
+				<latitude>56.62361111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.31444444,56.62361111,15</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Vejers</name>
+			  <description>Kystheng pÃ¥ Danmarks vestkyst. Liten hÃ¸ydeforskjell ca 4-5 meter. Stranden er stor og man kan kjÃ¸re ut og parkere/campe pÃ¥ stranden. Henget strekker seg flere kilometer.&lt;br/&gt;&lt;br/&gt;Stranden er en del av et skytefelt. NÃ¥r det er skyteÃ¸velse er det flyforbud. Sjekk NOTAMer her: https://briefing.naviair.dk/app/map&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2481&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2481&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.11611111</longitude>
+				<latitude>55.62277778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.11611111,55.62277778,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>VenÃ¶</name>
+			  <description>Bra hang fÃ¶r skolning.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2018&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2018&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.62138889</longitude>
+				<latitude>56.54250000</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.62138889,56.54250000,7</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>VenÃ¸borg, VenÃ¸</name>
+			  <description>Kystheng pÃ¥ VenÃ¸. Funker pÃ¥ vest nÃ¥r det blÃ¥ser for mye lenger ut mot kysten. Alternativ til Humlu. &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10567&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=10567&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>9.16339444</longitude>
+				<latitude>57.07978889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>9.16339444,57.07978889,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Odby, Krik Vig</name>
+			  <description>Ligger like ved Humlum&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2356&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2356&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>8.31138889</longitude>
+				<latitude>56.72333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>8.31138889,56.72333333,20</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>FrederiksvÃ¦rk, Lille Kregme</name>
+			  <description>Fint VSV hang som kan bli flera kilometer lÃ¥ngt norrut mot FrederiksvÃ¦rk... &lt;br/&gt;Toppstarta (och landa) gÃ¥r fint inne i hÃ¤sthagen. Finns jÃ¤ttefin badstrand att landa pÃ¥ sÃ¶der om starten ocksÃ¥ eller nere pÃ¥ vissa stÃ¤llen. &lt;br/&gt;&lt;br/&gt;OBS finns ingen allemansrÃ¤tt i Danmark och mÃ¥nga delar av strandenremsan lÃ¤ngre bort pÃ¥ hanget Ã¤r privat mark sÃ¥ Ã¤r nog ej populÃ¤rt om man bombar dÃ¤r. &lt;br/&gt;&lt;br/&gt;Parkera vid korsningen innan Guldsmedsvej och gÃ¥ ut pÃ¥ stigen som leder ut pÃ¥ Ã¤ngarna och ner till havet... &lt;br/&gt;&lt;br/&gt;Foto: Toppstarten&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=5805&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=5805&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.03277778</longitude>
+				<latitude>55.93666667</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.03277778,55.93666667,25</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Gilleleje Feriecenter, SjÃ¦lland</name>
+			  <description>Takeoff er foran strandbygget pÃ¥ Gilleleje Feriecenter. Det gÃ¥r an Ã¥ lande samme sted. Alternativt kan du lande 50 nedenfor starten pÃ¥ hÃ¸yre side pÃ¥ stranden. Eller 100 meter til venstre for starten. PÃ¥ en gresslette. Det kan vÃ¦re lokale flyregler som endrer seg. Snakk med de pÃ¥ Feriecenteret hvis du ikke fÃ¥r tak i noen andre. Hanget gÃ¥r ca. 1000 meter ut mot nord. HÃ¸yde opp til 30 meter? (Ãystein Walle 2/8-2011)&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=4965&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=4965&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.26555556</longitude>
+				<latitude>56.12527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.26555556,56.12527778,5</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Heather Hill</name>
+			  <description>RÃ¥geleje Strand&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8215&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=8215&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.14830556</longitude>
+				<latitude>56.09252778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.14830556,56.09252778,0</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>HerstedhÃ¸je (Glostrup, KÃ¸benhavn)</name>
+			  <description>A round, artificial hill covered in grass. Flyable in all wind directions, but S, W or N are preferable. There are sheep, but they don't seem to mind the paragliders much (look out for sheep shit). W is perfect for schooling. A nice place to play and practice ground handling. When the wind is strong soaring is also possible. There is a cafeteria just beside it, where you can get something to drink.&lt;br/&gt;&lt;br/&gt;How to get there:&lt;br/&gt;From Copenhagen, drive the road towards Roskilde. About 1 km after Glostrup take a right at the HerstedÃ¸stervej road and follow it 3-4 km until a green sign marked &quot;HerstedÃ¸ster Naturpark&quot; or similar.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2888&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=2888&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>12.36333333</longitude>
+				<latitude>55.68888889</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>12.36333333,55.68888889,67</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>KyndelÃ¸se</name>
+			  <description>Lite kystheng pÃ¥ KyndelÃ¸se. Se bilde for mer info.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=9287&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=9287&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.84805556</longitude>
+				<latitude>55.71555556</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.84805556,55.71555556,10</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>RÃ¸snÃ¦s - Kongstrup strandvej</name>
+			  <description>This is not a good descrption of access. We walked from the &quot;old coordinates&quot; to this site, which had a good take off. The old site was behind an electrical fence now. Its possible to park by the public parking and walk here - but that takes you down to the beach and up again.&lt;br/&gt;This site requires direct wind. I tried it on WSW which was difficult.&lt;br/&gt;&lt;br/&gt;NB! This description and site should be trimmed by locals!&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=6616&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=6616&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.99305556</longitude>
+				<latitude>55.72527778</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.99305556,55.72527778,16</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>SkjoldenÃ¦sholm</name>
+			  <description>XC'SjÃ¦lland club car towing site &lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1965&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=1965&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>11.81833333</longitude>
+				<latitude>55.52333333</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>11.81833333,55.52333333,50</coordinates>
+			  </Point>
+			  </Placemark><Placemark>
+			  <name>Ulstrup</name>
+			  <description>25-27 meters hÃ¶gt grÃ¤sbeklÃ¤tt hang. Perfekt nybÃ¶rjare hang. Fina landningsmÃ¶jligheter pÃ¥ bÃ¥de toppen och stranden. KÃ¶r mot Kalundborg och ta sedan vÃ¤gen mot Ulstrup. Detta Ã¤r ett privat omrÃ¥de sÃ¥ stÃ¤ll bilen vid vÃ¤gen, och gÃ¥ upp till hanget. Visa stÃ¶rsta mÃ¶jliga aktsamhet.&lt;br/&gt;&lt;a href=&quot;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3441&quot;&gt;https://flightlog.org/fl.html?l=1&amp;amp;a=22&amp;amp;country_id=57&amp;amp;start_id=3441&lt;/a&gt;</description>
+			  <LookAt>
+				<longitude>10.97611111</longitude>
+				<latitude>55.72861111</latitude>
+				<range>500000</range>
+				<tilt>0</tilt>
+				<heading>0</heading>
+			  </LookAt>
+			  <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+			  <Style>
+				<IconStyle>
+				  <Icon>
+					<href>root://icons/palette-2.png</href>
+					<w>32</w>
+					<h>32</h>
+				  </Icon>
+				</IconStyle>
+			  </Style>
+			  <Point>
+				<coordinates>10.97611111,55.72861111,25</coordinates>
+			  </Point>
+			  </Placemark></Folder>
+        </kml>
