@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
-import LocationCard from "@/app/components/LocationCard";
+import LocationCard from "@/app/components/LocationCards";
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();

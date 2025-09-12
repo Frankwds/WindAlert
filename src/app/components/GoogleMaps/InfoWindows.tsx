@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import LocationCard from '../LocationCard';
+import LocationCard from '../LocationCards';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;

@@ -68,6 +68,7 @@ export interface ParaglidingMarkerData {
   latitude: number;
   longitude: number;
   altitude: number;
+  flightlog_id?: string | null;
   forecast_cache?: MinimalForecast[];
   n: boolean;
   e: boolean;
