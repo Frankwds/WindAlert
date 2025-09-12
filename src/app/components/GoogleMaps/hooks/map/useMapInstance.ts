@@ -99,16 +99,17 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
 
         // Add listeners for map position changes after map is fully initialized
 
-        const savePosition = () => {
-          const center = map.getCenter();
-          const zoom = map.getZoom();
-          if (center && zoom) {
-            onMapPositionChange(
-              { lat: center.lat(), lng: center.lng() },
-              zoom
-            );
+        if (onMapPositionChange) {
+          const savePosition = () => {
+            const center = map.getCenter();
+            const zoom = map.getZoom();
+            if (center && zoom) {
+              onMapPositionChange(
+                { lat: center.lat(), lng: center.lng() },
+                zoom
+              );
+            }
           }
-
 
           // Listen for zoom and pan changes
           map.addListener('zoom_changed', savePosition);
@@ -123,7 +124,7 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
     };
 
     initMap();
-  }, []); // Only initialize once - don't depend on initialMapState changes
+  }, []);
 
   // Handle skyways layer visibility
   useEffect(() => {
