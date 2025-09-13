@@ -1,33 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps'
+import { useFullscreen } from '@/lib/hooks/useFullscreen';
 
 export default function Home() {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  useEffect(() => {
-    const savedFullscreen = localStorage.getItem('windlord-fullscreen');
-    if (savedFullscreen !== null) {
-      setIsFullscreen(JSON.parse(savedFullscreen));
-    }
-  }, []);
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(prev => {
-      const newFullscreen = !prev;
-      localStorage.setItem('windlord-fullscreen', JSON.stringify(newFullscreen));
-      return newFullscreen;
-    });
-  };
-
-  useEffect(() => {
-    if (isFullscreen) {
-      document.body.classList.add('fullscreen-map-active');
-    } else {
-      document.body.classList.remove('fullscreen-map-active');
-    }
-  }, [isFullscreen]);
+  const { isFullscreen, toggleFullscreen } = useFullscreen();
 
   return (
     <main className="flex-1 w-full h-full ">

@@ -8,7 +8,7 @@ import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const links = [
   { href: "/", label: "Hovedstarter", description: " - Med værmelding" },
-  { href: "/locations/all", label: "Alle starter", description: " - Med alt annet" },
+  { href: "/locations/all", label: "Alle starter" },
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },

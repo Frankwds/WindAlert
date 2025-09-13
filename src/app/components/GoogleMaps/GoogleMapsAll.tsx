@@ -3,7 +3,7 @@
 import React, { useMemo } from 'react';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { MapLayerToggle, ZoomControls, MyLocation, WindFilterCompass, FilterControl } from '@/app/components/GoogleMaps/mapControls';
+import { MapLayerToggle, ZoomControls, MyLocation, WindFilterCompass, FilterControl, FullscreenControl } from '@/app/components/GoogleMaps/mapControls';
 import { Clusterer } from './clusterer';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
@@ -15,7 +15,12 @@ const CLUSTERER_OPTIONS = {
   minPoints: 2
 } as const;
 
-const GoogleMapsAll: React.FC = () => {
+interface GoogleMapsAllProps {
+  isFullscreen: boolean;
+  toggleFullscreen: () => void;
+}
+
+const GoogleMapsAll: React.FC<GoogleMapsAllProps> = ({ isFullscreen, toggleFullscreen }) => {
   useInfoWindowStyles();
 
   const {
@@ -131,6 +136,7 @@ const GoogleMapsAll: React.FC = () => {
 
             {/* Map Controls */}
             <div className="absolute bottom-3 right-3 z-10 flex flex-row gap-2">
+              <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
               <ZoomControls map={mapInstance} />
             </div>
             <MyLocation map={mapInstance} closeOverlays={closeOverlays} />
