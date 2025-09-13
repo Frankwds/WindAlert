@@ -25,7 +25,7 @@ export default function Navigation() {
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3 max-w-4xl mx-auto">
         <div className="flex items-center">
-          <div className={`mr-6 flex items-center cursor-pointer `}
+          <div className={`mr-6 flex items-center cursor-pointer group`}
             onClick={() => router.push("/")}>
             <Image
               key={theme}
@@ -34,7 +34,7 @@ export default function Navigation() {
               width={64}
               height={64}
               priority
-              className="transition-transform hover:scale-115 select-none"
+              className="transition-transform group-hover:scale-115 select-none"
 
             />
             <h1
