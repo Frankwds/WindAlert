@@ -54,7 +54,7 @@ export default function LoginButton() {
         <button
           aria-label="Logg ut"
           onClick={() => signOut()}
-          className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded"
+          className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none"
         >
           <div className="flex items-center justify-center bg-[var(--accent)] text-white font-bold rounded-full w-6 h-6 text-xs">
             {session.user?.name?.charAt(0)?.toUpperCase() || 'U'}
@@ -72,7 +72,7 @@ export default function LoginButton() {
       <button
         aria-label="Logg inn med Google"
         onClick={() => signIn("google")}
-        className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded"
+        className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none"
       >
         <div className="flex items-center justify-center bg-white w-6 h-6 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4">

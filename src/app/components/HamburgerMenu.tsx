@@ -74,7 +74,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                   href={href}
                   target={external ? '_blank' : '_self'}
                   rel={external ? 'noopener noreferrer' : ''}
-                  className={`block px-4 py-2 text-sm transition-all duration-200 flex items-center ${pathname === href
+                  className={`block px-4 py-2 text-sm transition-all duration-200 flex items-center select-none ${pathname === href
                     ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
                     : "text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]"
                     }`}
