@@ -29,7 +29,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
       <div className="mt-4">
         <h4 className="font-bold text-lg mb-2 text-[var(--foreground)]">Atmosfæriske forhold (ECMWF)</h4>
         <div className="grid grid-cols-5 gap-x-4 gap-y-2 text-sm">
-          <div className="font-semibold">Høyde</div>
+          <div className="font-semibold">Høyde moh.</div>
           <div className="font-semibold">Vind (m/s)</div>
           <div className="font-semibold">Retning</div>
           <div className="font-semibold">Temp. (°C)</div>
@@ -50,7 +50,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           {hour.geopotential_height_1000hpa >= altitude && (
             <>
               <div className="font-medium">
-                {hour.geopotential_height_1000hpa} moh
+                {hour.geopotential_height_1000hpa}
               </div>
               <div>{Math.round(hour.wind_speed_1000hpa)}</div>
               <div className="flex items-center gap-2">
