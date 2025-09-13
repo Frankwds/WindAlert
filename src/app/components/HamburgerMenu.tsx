@@ -9,6 +9,7 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile';
 interface LinkItem {
   href: string;
   label: string;
+  description?: string;
   external?: boolean;
 }
 
@@ -54,11 +55,11 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
       </button>
 
       <div
-        className={`absolute right-0 mt-2 w-64 bg-[var(--nav-bg)] rounded-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        className={`absolute right-0 mt-2 w-74 bg-[var(--nav-bg)] rounded-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           }`}
       >
         <ul className="py-1">
-          {links.map(({ href, label, external }) => (
+          {links.map(({ href, label, description, external }) => (
             <li key={href}>
               <Link
                 href={href}
@@ -70,12 +71,19 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                   }`}
                 onClick={() => setIsOpen(false)}
               >
-                <span>{label}</span>
-                {external && (
-                  <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                )}
+                <div className="flex items-center">
+                  <span>{label}</span>
+                  {description && (
+                    <span className="text-xs text-[var(--nav-text)]/50 ml-1">
+                      {description}
+                    </span>
+                  )}
+                  {external && (
+                    <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  )}
+                </div>
               </Link>
             </li>
           ))}
