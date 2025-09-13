@@ -7,8 +7,8 @@ import HamburgerMenu from "./HamburgerMenu";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const links = [
-  { href: "/", label: "Hovedstarter", description: " - Med værmelding og holfuy." },
-  { href: "/locations/all", label: "Alle starter", description: " - Med begrenset info." },
+  { href: "/", label: "Hovedstarter", description: " - Med værmelding" },
+  { href: "/locations/all", label: "Alle starter", description: " - Med alt annet" },
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },
