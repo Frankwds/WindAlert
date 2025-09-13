@@ -65,7 +65,7 @@ export class ParaglidingLocationService {
     const { data, error } = await supabase
       .from('paragliding_locations')
       .select(`
-        id, name, latitude, longitude, altitude, n, e, s, w, ne, se, sw, nw,
+        id, name, latitude, flightlog_id, longitude, altitude, n, e, s, w, ne, se, sw, nw,
         forecast_cache(
           time,
           is_day,
