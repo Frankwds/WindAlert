@@ -3,9 +3,9 @@
 import React, { useMemo } from 'react';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { MapLayerToggle, ZoomControls, MyLocation, WindFilterCompass } from '@/app/components/GoogleMaps/mapControls';
+import { MapLayerToggle, ZoomControls, MyLocation, WindFilterCompass, FilterControl } from '@/app/components/GoogleMaps/mapControls';
 import { Clusterer } from './clusterer';
-import { ParaglidingClusterRenderer } from './clusterer/Renderers';
+import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMapsAll } from './hooks/useGoogleMapsAll';
 
@@ -24,19 +24,29 @@ const GoogleMapsAll: React.FC = () => {
     isLoading,
     error,
     paraglidingMarkers,
+    weatherStationMarkers,
+    showParaglidingMarkers,
+    showWeatherStationMarkers,
     selectedWindDirections,
     windFilterExpanded,
     windFilterAndOperator,
+    isFilterControlOpen,
+    showSkywaysLayer,
+    setShowParaglidingMarkers,
+    setShowWeatherStationMarkers,
     setWindFilterExpanded,
+    setIsFilterControlOpen,
+    setShowSkywaysLayer,
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays
   } = useGoogleMapsAll();
 
-  // Create stable renderer instance
+  // Create stable renderer instances
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
+  const weatherStationRenderer = useMemo(() => new WeatherStationClusterRenderer(), []);
 
-  // Memoized clusterer for all paragliding locations
+  // Memoized clusterers
   const memoizedParaglidingClusterer = useMemo(() => {
     if (!mapInstance || paraglidingMarkers.length === 0) return null;
     return (
@@ -48,6 +58,33 @@ const GoogleMapsAll: React.FC = () => {
       />
     );
   }, [mapInstance, paraglidingMarkers, paraglidingRenderer]);
+
+  const memoizedWeatherStationClusterer = useMemo(() => {
+    if (!mapInstance || weatherStationMarkers.length === 0) return null;
+    return (
+      <Clusterer
+        map={mapInstance}
+        markers={weatherStationMarkers}
+        renderer={weatherStationRenderer}
+        algorithmOptions={CLUSTERER_OPTIONS}
+      />
+    );
+  }, [mapInstance, weatherStationMarkers, weatherStationRenderer]);
+
+  // Memoized filter control
+  const memoizedFilterControl = useMemo(() => (
+    <FilterControl
+      showParagliding={showParaglidingMarkers}
+      showWeatherStations={showWeatherStationMarkers}
+      showSkyways={showSkywaysLayer}
+      onParaglidingFilterChange={setShowParaglidingMarkers}
+      onWeatherStationFilterChange={setShowWeatherStationMarkers}
+      onSkywaysFilterChange={setShowSkywaysLayer}
+      isOpen={isFilterControlOpen}
+      onToggle={setIsFilterControlOpen}
+      closeOverlays={closeOverlays}
+    />
+  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, isFilterControlOpen, closeOverlays, setShowParaglidingMarkers, setShowWeatherStationMarkers, setShowSkywaysLayer, setIsFilterControlOpen]);
 
   if (error) {
     return (
@@ -70,9 +107,13 @@ const GoogleMapsAll: React.FC = () => {
         />
 
         {memoizedParaglidingClusterer}
+        {memoizedWeatherStationClusterer}
 
         {mapInstance && (
           <>
+            {/* Filter Control */}
+            {memoizedFilterControl}
+
             {/* Layer Toggle */}
             <MapLayerToggle map={mapInstance} />
 
