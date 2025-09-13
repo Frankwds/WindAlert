@@ -7,6 +7,7 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   svg.setAttribute("width", "40");
   svg.setAttribute("height", "40");
   svg.setAttribute("viewBox", "0 0 40 40");
+  svg.style.userSelect = 'none';
 
   const directions = [
     { name: 'n', angle: -90 },
@@ -56,6 +57,7 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
   container.style.position = 'relative';
   container.style.width = '32px';
   container.style.height = '32px';
+  container.style.userSelect = 'none';
 
   const img = document.createElement('img');
   img.src = '/paraglider.png';
@@ -67,6 +69,7 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
   img.style.zIndex = '1';
   img.draggable = false;
   img.style.cursor = 'pointer';
+  img.style.userSelect = 'none';
 
   const svg = createDirectionCircle(locationToWindDirectionSymbols(location));
   svg.style.position = 'absolute';
@@ -84,8 +87,9 @@ export const createWeatherStationMarkerElement = (): HTMLElement => {
   const img = document.createElement('img');
   img.src = '/windsockBlue.png';
   img.alt = 'Weather station';
-  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out';
+  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out select-none';
   img.draggable = false;
   img.style.cursor = 'pointer';
+  img.style.userSelect = 'none';
   return img;
 };

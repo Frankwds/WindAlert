@@ -35,7 +35,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
       <div className="flex gap-2">
         <button
           onClick={handleToggle}
-          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)]`}
+          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)] select-none`}
           style={{ display: isSatellite ? 'none' : 'block' }}
         >
           <Image
@@ -51,7 +51,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className =
 
         <button
           onClick={handleToggle}
-          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)]`}
+          className={`relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)] select-none`}
           style={{ display: isSatellite ? 'block' : 'none' }}
         >
           <Image

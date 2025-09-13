@@ -79,7 +79,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           }
           setIsExpanded(!isExpanded);
         }}
-        className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer"
+        className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer select-none"
       >
         <div className="relative">
           <Image src="/weather-icons/clearsky_day.svg" alt="Filter promising sites" width={32} height={32} />

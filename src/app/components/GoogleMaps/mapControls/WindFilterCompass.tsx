@@ -87,7 +87,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
                 e.stopPropagation();
                 onFilterLogicChange();
               }}
-              className={`w-6 h-6 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold`}
+              className={`w-6 h-6 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold select-none`}
               title={`Filter logic: ${windFilterAndOperator ? 'AND (&)' : 'OR (||)'}`}
             >
               {windFilterAndOperator ? '&' : '||'}

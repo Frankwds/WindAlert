@@ -34,11 +34,11 @@ export default function Navigation() {
               width={64}
               height={64}
               priority
-              className="transition-transform hover:scale-115"
+              className="transition-transform hover:scale-115 select-none"
 
             />
             <h1
-              className="ml-3 text-2xl font-bold text-[var(--nav-text)] ">
+              className="ml-3 text-2xl font-bold text-[var(--nav-text)] select-none">
               WindLord
             </h1>
           </div>
