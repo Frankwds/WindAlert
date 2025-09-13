@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { useState } from "react";
 
 const links = [
   { href: "/", label: "Hovedstarter", description: " - Med værmelding" },
@@ -20,13 +21,18 @@ export default function Navigation() {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const isMobile = useIsMobile();
+  const [isFlying, setIsFlying] = useState(false);
 
   return (
     <nav className="px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]">
       <div className="flex items-center justify-between py-3 max-w-4xl mx-auto">
         <div className="flex items-center">
           <div className={`mr-6 flex items-center cursor-pointer group`}
-            onClick={() => router.push("/")}>
+            onClick={() => {
+              setIsFlying(true);
+              setTimeout(() => setIsFlying(false), 400);
+              router.push("/");
+            }}>
             <Image
               key={theme}
               src={theme === 'light' ? "/windlord-semi-dark.png" : "/windlord-dark.png"}
@@ -34,7 +40,7 @@ export default function Navigation() {
               width={64}
               height={64}
               priority
-              className="transition-transform group-hover:scale-115 select-none"
+              className={`transition-transform group-hover:scale-115 select-none ${isFlying ? 'animate-fly' : ''}`}
 
             />
             <h1
