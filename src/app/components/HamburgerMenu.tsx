@@ -64,7 +64,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
         </button>
 
         <div
-          className={`absolute right-[-16px] top-[calc(var(--nav-height,80px)-16px)] w-74 bg-[var(--nav-bg)] rounded-b-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          className={`absolute right-[-16px] top-[calc(var(--nav-height,80px)-16px)] w-64 bg-[var(--nav-bg)] rounded-b-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
             }`}
         >
           <ul className="py-1">

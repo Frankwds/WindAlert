@@ -47,23 +47,19 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           <div className="text-[var(--foreground)] font-medium">{Math.round(hour.temperature)}</div>
           <div />
 
-          {hour.geopotential_height_1000hpa >= altitude && (
-            <>
-              <div className="font-medium">
-                {hour.geopotential_height_1000hpa}
-              </div>
-              <div>{Math.round(hour.wind_speed_1000hpa)}</div>
-              <div className="flex items-center gap-2">
-                <WindDirectionArrow direction={hour.wind_direction_1000hpa} size={20} color="var(--foreground)" />
-                <span className="text-xs">{getWindDirection(hour.wind_direction_1000hpa)}</span>
-              </div>
-              <div>{Math.round(hour.temperature_1000hpa)}</div>
-              <div />
-            </>
-          )}
+          <div className="font-medium">
+            {hour.geopotential_height_1000hpa}
+          </div>
+          <div>{Math.round(hour.wind_speed_1000hpa)}</div>
+          <div className="flex items-center gap-2">
+            <WindDirectionArrow direction={hour.wind_direction_1000hpa} size={20} color="var(--foreground)" />
+            <span className="text-xs">{getWindDirection(hour.wind_direction_1000hpa)}</span>
+          </div>
+          <div>{Math.round(hour.temperature_1000hpa)}</div>
+          <div />
 
           <div className="font-medium">
-            {hour.geopotential_height_925hpa} moh
+            {hour.geopotential_height_925hpa}
           </div>
           <div>{Math.round(hour.wind_speed_925hpa)}</div>
           <div className="flex items-center gap-2">
@@ -76,7 +72,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
           </div>
 
           <div className="font-medium">
-            {hour.geopotential_height_850hpa} moh
+            {hour.geopotential_height_850hpa}
           </div>
           <div>{Math.round(hour.wind_speed_850hpa)}</div>
           <div className="flex items-center gap-2">
@@ -89,7 +85,7 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
 
           </div>
           <div className="font-medium">
-            {hour.geopotential_height_700hpa} moh
+            {hour.geopotential_height_700hpa}
           </div>
           <div>{Math.round(hour.wind_speed_700hpa)}</div>
           <div className="flex items-center gap-2">
