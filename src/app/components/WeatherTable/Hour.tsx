@@ -33,7 +33,7 @@ const Hour: React.FC<HourProps> = ({
     <div className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
       <div
         onClick={onToggle}
-        className={`grid grid-cols-6 gap-4 py-1 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
+        className={`grid grid-cols-[3fr_3fr_3fr_3fr_3fr_3fr_1fr] p-1 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
            ${showValidation && hour.is_promising
             ? "bg-[var(--success)]/10 border-l-4 border-[var(--success)]/30"
             : showValidation && !hour.is_promising
@@ -93,6 +93,18 @@ const Hour: React.FC<HourProps> = ({
         {/* Wind direction column */}
         <div className="flex justify-center">
           <WindDirectionArrow direction={hour.wind_direction} />
+        </div>
+
+        {/* Expand arrow column */}
+        <div className="flex justify-center">
+          <svg
+            className={`w-4 h-4 text-[var(--muted)] transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
       </div>
 
