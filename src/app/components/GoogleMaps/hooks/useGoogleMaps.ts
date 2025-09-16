@@ -7,12 +7,9 @@ import { useMapControls, useOverlayManagement } from './controls';
 import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from '../InfoWindows';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
-interface UseGoogleMapsProps {
-  isFullscreen: boolean;
-  toggleFullscreen: () => void;
-}
 
-export const useGoogleMaps = ({ isFullscreen, toggleFullscreen }: UseGoogleMapsProps) => {
+
+export const useGoogleMaps = () => {
   // Initialize map state
   const { mapState, updateFilters, updateMapPosition } = useMapState();
 
@@ -156,8 +153,5 @@ export const useGoogleMaps = ({ isFullscreen, toggleFullscreen }: UseGoogleMapsP
     closeInfoWindow,
     closeOverlays,
 
-    // Props
-    isFullscreen,
-    toggleFullscreen
   };
 };

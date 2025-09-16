@@ -10,11 +10,10 @@ interface ConditionalMainProps {
 export default function ConditionalMain({ children }: ConditionalMainProps) {
   const pathname = usePathname();
   const isMapPage = pathname === "/" || pathname === "/locations/all";
-
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full w-full">
       <Navigation />
-      <main className={`flex-1 ${isMapPage ? "w-full" : "max-w-4xl mx-auto w-full"}`}>
+      <main className={`${isMapPage ? "w-full h-full" : "max-w-4xl mx-auto w-full"}`}>
         {children}
       </main>
     </div>

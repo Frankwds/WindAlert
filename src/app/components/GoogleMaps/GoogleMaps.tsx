@@ -50,7 +50,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays
-  } = useGoogleMaps({ isFullscreen, toggleFullscreen });
+  } = useGoogleMaps();
 
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
@@ -129,7 +129,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
   }
 
   return (
-    <div className={`w-full h-full ${isFullscreen ? 'fixed top-0 left-0 right-0 bottom-0 z-[1000]' : ''}`}>
+    <div className={"w-full h-full"}>
       <div className="relative w-full h-full">
         {isLoading && <LoadingSpinner size="lg" text="Laster kart..." overlay />}
 
