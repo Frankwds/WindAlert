@@ -1,6 +1,6 @@
 'use client';
 
-import GoogleMapsAll from '@/app/components/GoogleMaps/GoogleMapsAll';
+import { GoogleMaps } from '@/app/components/GoogleMaps';
 import { useFullscreen } from '@/lib/hooks/useFullscreen';
 
 export default function AllStartsPage() {
@@ -8,7 +8,7 @@ export default function AllStartsPage() {
 
   return (
     <main className="flex-1 w-full h-full">
-      <GoogleMapsAll isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
+      <GoogleMaps variant="all" isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
     </main>
   );
 }

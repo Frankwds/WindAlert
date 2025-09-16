@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import LocationCard, { LocationCardAll } from '../LocationCards';
+import LocationCardMain, { LocationCardAll } from '../LocationCards';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -17,7 +17,7 @@ interface AllStartsInfoWindowProps {
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
   return (
-    <LocationCard
+    <LocationCardMain
       location={location}
       timezone="Europe/Oslo"
     />
@@ -60,10 +60,10 @@ export const getWeatherStationInfoWindowContent = (location: WeatherStationMarke
   return renderComponentToString(WeatherStationInfoWindow, { location });
 };
 
-export const getParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
+export const getParaglidingInfoWindowMain = (location: ParaglidingMarkerData) => {
   return <ParaglidingInfoWindow location={location} />;
 };
 
-export const getAllStartsInfoWindow = (location: ParaglidingMarkerData) => {
+export const getParaglidingInfoWindowAll = (location: ParaglidingMarkerData) => {
   return <AllStartsInfoWindow location={location} />;
 };

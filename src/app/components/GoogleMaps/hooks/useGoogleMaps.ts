@@ -1,15 +1,17 @@
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useMarkers, useMarkerFiltering } from './markers';
 import { useMapFilters } from './filters';
 import { useMapControls, useOverlayManagement } from './controls';
-import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from '../InfoWindows';
+import { getParaglidingInfoWindowAll, getParaglidingInfoWindowMain, getWeatherStationInfoWindowContent } from '../InfoWindows';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
+interface UseGoogleMapsProps {
+  variant: 'main' | 'all';
+}
 
-
-export const useGoogleMaps = () => {
+export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   // Initialize map state
   const { mapState, updateFilters, updateMapPosition } = useMapState();
 
@@ -54,7 +56,7 @@ export const useGoogleMaps = () => {
   }), []); // Empty dependency array - only use initial state once
 
   // Initialize map instance
-  const { mapRef, mapInstance, isLoading, error, createSkywaysLayer } = useMapInstance({
+  const { mapRef, mapInstance, isLoading, error } = useMapInstance({
     initialMapState,
     onMapReady: useCallback((map) => {
       // Initialize the InfoWindow when map is ready
@@ -85,26 +87,33 @@ export const useGoogleMaps = () => {
     } else {
       const infoWindowContent = document.createElement('div');
       const root = createRoot(infoWindowContent);
-      root.render(getParaglidingInfoWindow(location));
+
+      if (variant === 'all') {
+        root.render(getParaglidingInfoWindowAll(location));
+      } else {
+        root.render(getParaglidingInfoWindowMain(location));
+      }
+
       openInfoWindow(mapInstance, marker, infoWindowContent);
     }
-  }, [mapInstance, openInfoWindow, closeOverlays]);
+  }, [mapInstance, openInfoWindow, closeOverlays, variant]);
 
-  // Initialize markers
-  const markers = useMarkers({
+  // Initialize markers based on variant
+  const selectedMarkers = useMarkers({
     mapInstance,
-    onMarkerClick: handleMarkerClick
+    onMarkerClick: handleMarkerClick,
+    dataSource: variant
   });
 
   // Initialize marker filtering
   const filteredMarkers = useMarkerFiltering({
-    paraglidingMarkers: markers.paraglidingMarkers,
-    weatherStationMarkers: markers.weatherStationMarkers,
+    paraglidingMarkers: selectedMarkers.paraglidingMarkers,
+    weatherStationMarkers: selectedMarkers.weatherStationMarkers || [],
     showParaglidingMarkers: filters.showParaglidingMarkers,
     showWeatherStationMarkers: filters.showWeatherStationMarkers,
     selectedWindDirections: filters.selectedWindDirections,
     windFilterAndOperator: filters.windFilterAndOperator,
-    promisingFilter: filters.promisingFilter
+    promisingFilter: variant === 'main' ? filters.promisingFilter : null
   });
 
   // Save state when filters change
@@ -131,19 +140,14 @@ export const useGoogleMaps = () => {
     // Map instance
     mapRef,
     mapInstance,
-    isLoading,
-    error,
-    createSkywaysLayer,
+    isLoading: isLoading || selectedMarkers.isLoadingMarkers,
+    error: error || selectedMarkers.markersError || null,
 
-    // Markers
-    paraglidingMarkers: markers.paraglidingMarkers,
-    weatherStationMarkers: markers.weatherStationMarkers,
-    userLocationMarker: markers.userLocationMarker,
-    setUserLocationMarker: markers.setUserLocationMarker,
-
-    // Filtered markers
-    filteredParaglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
-    filteredWeatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
+    // Markers (use filtered markers for display)
+    paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
+    weatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
+    userLocationMarker: (selectedMarkers as any).userLocationMarker || null,
+    setUserLocationMarker: (selectedMarkers as any).setUserLocationMarker || (() => { }),
 
     // Filters
     ...filters,
@@ -152,6 +156,5 @@ export const useGoogleMaps = () => {
     infoWindowRef,
     closeInfoWindow,
     closeOverlays,
-
   };
 };

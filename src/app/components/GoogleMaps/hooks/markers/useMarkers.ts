@@ -1,46 +1,32 @@
 import { useState, useCallback, useEffect } from 'react';
 import { createAllMarkers } from '../../MarkerSetup';
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import { dataCache } from '@/lib/data-cache';
+import { useDataLoading } from '../data/useDataLoading';
+
+type DataSource = 'main' | 'all';
 
 interface UseMarkersProps {
   mapInstance: google.maps.Map | null;
   onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => void;
+  dataSource?: DataSource;
 }
 
-export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
+export const useMarkers = ({ mapInstance, onMarkerClick, dataSource = 'main' }: UseMarkersProps) => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
+  const { loadAllData, isDataLoading, dataLoadingError } = useDataLoading({ dataSource });
+
   const loadAllMarkers = useCallback(async () => {
-    if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
+    if (isLoadingMarkers) return;
 
     try {
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
-      let paraglidingLocations = await dataCache.getParaglidingLocations();
-      let weatherStations = await dataCache.getWeatherStations();
-
-      if (!paraglidingLocations || !weatherStations) {
-        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
-          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-          WeatherStationService.getNordicCountriesForMarkers()
-        ]);
-
-        paraglidingLocations = fetchedParaglidingLocations || [];
-        weatherStations = fetchedWeatherStations || [];
-
-        await Promise.all([
-          dataCache.setParaglidingLocations(paraglidingLocations),
-          dataCache.setWeatherStations(weatherStations)
-        ]);
-      }
+      const { paraglidingLocations, weatherStations } = await loadAllData();
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
@@ -56,21 +42,19 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onMarkerClick, isLoadingMarkers]);
+  }, [onMarkerClick, isLoadingMarkers, loadAllData]);
 
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && paraglidingMarkers.length === 0 && weatherStationMarkers.length === 0) {
       loadAllMarkers();
     }
-  }, [mapInstance, isLoadingMarkers, paraglidingMarkers.length, weatherStationMarkers.length]);
+  }, [mapInstance, isLoadingMarkers, paraglidingMarkers.length, weatherStationMarkers.length, loadAllMarkers]);
 
   return {
     paraglidingMarkers,
     weatherStationMarkers,
-    userLocationMarker,
-    setUserLocationMarker,
     loadAllMarkers,
-    isLoadingMarkers,
-    markersError
+    isLoadingMarkers: isLoadingMarkers || isDataLoading,
+    markersError: markersError || dataLoadingError,
   };
 };

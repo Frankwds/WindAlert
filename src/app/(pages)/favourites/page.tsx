@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
-import LocationCard from "@/app/components/LocationCards";
+import LocationCardMain from "@/app/components/LocationCards";
 
 export default function FavouritesPage() {
   const { data: session, status } = useSession();
@@ -65,7 +65,7 @@ export default function FavouritesPage() {
                 key={location.id}
                 className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]"
               >
-                <LocationCard
+                <LocationCardMain
                   location={location}
                   timezone="Europe/Oslo"
                 />

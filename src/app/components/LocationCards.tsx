@@ -15,7 +15,7 @@ interface LocationCardProps {
   timezone?: string;
 }
 
-export default function LocationCard({
+export default function LocationCardMain({
   location,
   timezone = 'Europe/Oslo'
 }: LocationCardProps) {

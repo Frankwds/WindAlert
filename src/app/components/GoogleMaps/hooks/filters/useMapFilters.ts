@@ -41,15 +41,6 @@ export const useMapFilters = ({
     setWindFilterAndOperator(prev => !prev);
   }, []);
 
-  const resetFilters = useCallback(() => {
-    setShowParaglidingMarkers(true);
-    setShowWeatherStationMarkers(true);
-    setSelectedWindDirections([]);
-    setWindFilterAndOperator(true);
-    setPromisingFilter(null);
-    setShowSkywaysLayer(false);
-  }, []);
-
   return {
     // State
     showParaglidingMarkers,
@@ -76,6 +67,5 @@ export const useMapFilters = ({
     // Handlers
     handleWindDirectionChange,
     handleWindFilterLogicChange,
-    resetFilters
   };
 };

@@ -1,1 +1,1 @@
-export { default as GoogleMaps } from './GoogleMaps';
+export { GoogleMaps } from './GoogleMaps';

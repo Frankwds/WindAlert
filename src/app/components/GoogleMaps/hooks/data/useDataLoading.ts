@@ -1,37 +1,66 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
+import { AllParaglidingLocationService } from '@/lib/supabase/allParaglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { dataCache } from '@/lib/data-cache';
+import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
-export const useDataLoading = () => {
+type DataSource = 'main' | 'all';
+
+interface UseDataLoadingProps {
+  dataSource?: DataSource;
+}
+
+export const useDataLoading = ({ dataSource = 'main' }: UseDataLoadingProps = {}) => {
+  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [dataLoadingError, setDataLoadingError] = useState<string | null>(null);
+
+
   const loadAllData = useCallback(async () => {
+    setIsDataLoading(true);
+    setDataLoadingError(null);
+
     try {
-      let paraglidingLocations = await dataCache.getParaglidingLocations();
-      let weatherStations = await dataCache.getWeatherStations();
+      const isMainDataSource = dataSource === 'main';
 
-      if (!paraglidingLocations || !weatherStations) {
-        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
-          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-          WeatherStationService.getNordicCountriesForMarkers()
-        ]);
+      let weatherStations: WeatherStationMarkerData[] | null = await dataCache.getWeatherStations();
 
-        paraglidingLocations = fetchedParaglidingLocations || [];
-        weatherStations = fetchedWeatherStations || [];
+      let paraglidingLocations: ParaglidingMarkerData[] | null = isMainDataSource
+        ? await dataCache.getParaglidingLocations()
+        : await dataCache.getAllParaglidingLocations();
 
-        await Promise.all([
-          dataCache.setParaglidingLocations(paraglidingLocations),
-          dataCache.setWeatherStations(weatherStations)
-        ]);
+      if (!paraglidingLocations) {
+        paraglidingLocations = isMainDataSource
+          ? await ParaglidingLocationService.getAllActiveForMarkersWithForecast()
+          : await AllParaglidingLocationService.getAllActiveForMarkers();
+
+        await (isMainDataSource
+          ? dataCache.setParaglidingLocations(paraglidingLocations)
+          : dataCache.setAllParaglidingLocations(paraglidingLocations));
       }
 
-      return { paraglidingLocations, weatherStations };
+      if (!weatherStations) {
+        weatherStations = await WeatherStationService.getNordicCountriesForMarkers();
+        await dataCache.setWeatherStations(weatherStations);
+      }
+
+      return {
+        paraglidingLocations,
+        weatherStations,
+      };
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load data';
+      setDataLoadingError(errorMessage);
       console.error('Error loading data:', err);
       throw err;
+    } finally {
+      setIsDataLoading(false);
     }
-  }, []);
+  }, [dataSource]);
 
   return {
-    loadAllData
+    loadAllData,
+    isDataLoading,
+    dataLoadingError
   };
 };
