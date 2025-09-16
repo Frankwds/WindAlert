@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useMarkers, useMarkerFiltering } from './markers';
@@ -98,7 +98,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     }
   }, [mapInstance, openInfoWindow, closeOverlays, variant]);
 
-  // Initialize markers based on variant
   const selectedMarkers = useMarkers({
     mapInstance,
     onMarkerClick: handleMarkerClick,

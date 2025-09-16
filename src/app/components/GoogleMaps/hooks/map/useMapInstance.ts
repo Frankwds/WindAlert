@@ -94,7 +94,9 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
         map.setOptions({ scaleControl: true });
 
         setMapInstance(map);
-        setIsLoading(false);
+        map.addListener('tilesloaded', () => {
+          setIsLoading(false);
+        });
         onMapReadyRef.current(map);
 
         // Add listeners for map position changes after map is fully initialized
