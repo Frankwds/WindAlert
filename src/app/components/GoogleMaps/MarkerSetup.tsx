@@ -21,10 +21,12 @@ export const createAllMarkers = ({
   });
 
   // Create weather station markers with info windows
-  const weatherStationMarkers = weatherStations.map(location => {
-    const marker = createWeatherStationMarker(location, onMarkerClick);
-    return marker;
-  });
+  // const weatherStationMarkers = weatherStations.map(location => {
+  //   const marker = createWeatherStationMarker(location, onMarkerClick);
+  //   return marker;
+  // });
+  console.log('weatherStations', weatherStations);
+  const weatherStationMarkers: google.maps.marker.AdvancedMarkerElement[] = [];
 
   return { paraglidingMarkers, weatherStationMarkers };
 };

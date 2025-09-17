@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { WeatherStation, WeatherStationMarkerData } from './types';
+import { StationData, WeatherStation, WeatherStationMarkerData } from './types';
 import { calculateDistance } from './utils';
 
 export class WeatherStationService {
@@ -21,26 +21,41 @@ export class WeatherStationService {
 
     return data || [];
   }
+
   /**
-   * Get weather stations in Norway, Sweden, and Denmark optimized for markers
-   */
-  static async getNordicCountriesForMarkers(): Promise<WeatherStationMarkerData[]> {
+ * Get all active weather stations that have data in station_data table
+ */
+  static async getAllActiveWithData(): Promise<WeatherStationMarkerData[]> {
     const { data, error } = await supabase
       .from('weather_stations')
-      .select('id, station_id, name, latitude, longitude, altitude')
-      .eq('is_active', true)
-      .in('country', ['Norway', 'Sweden', 'Denmark'])
-      .order('name');
+      .select(`
+          id,
+          station_id,
+          name,
+          latitude,
+          longitude,
+          altitude,
+          station_data!inner(
+            id,
+            station_id,
+            wind_speed,
+            wind_gust,
+            wind_min_speed,
+            direction,
+            temperature,
+            updated_at
+          )
+        `)
+      .eq('is_active', true);
 
     if (error) {
-      console.error('Error fetching Nordic weather stations for markers:', error);
+      console.error('Error fetching active weather stations with data:', error);
       throw error;
     }
 
+    // Convert to WeatherStationMarkerData format
     return data || [];
   }
-
-
 
 
   static async getByCountry(country: string): Promise<WeatherStation[]> {
@@ -143,4 +158,3 @@ export class WeatherStationService {
     return data?.map(station => station.station_id) || [];
   }
 }
-

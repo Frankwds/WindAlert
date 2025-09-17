@@ -101,7 +101,7 @@ export interface WeatherStationMarkerData {
   latitude: number;
   longitude: number;
   altitude: number;
-  data?: StationData[];
+  station_data: StationData[];
 }
 
 export interface StationData {

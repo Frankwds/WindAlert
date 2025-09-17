@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     const stationsNeedingImport = holfuyData
       .filter(station => !validStationIds.includes(station.station_id))
       .map(station => station.station_id)
-      .filter(id => ![113, 612, 689, 1154, 1514, 1876].includes(id));
+      .filter(id => ![113, 612, 689, 1154, 1514, 1876, 1918].includes(id));
 
     if (stationsNeedingImport.length > 0) {
       console.log(`${stationsNeedingImport.length} stations need to be imported:`, stationsNeedingImport);

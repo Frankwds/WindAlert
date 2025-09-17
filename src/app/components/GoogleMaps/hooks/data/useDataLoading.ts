@@ -12,7 +12,7 @@ export const useDataLoading = () => {
       if (!paraglidingLocations || !weatherStations) {
         const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
           ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-          WeatherStationService.getNordicCountriesForMarkers()
+          WeatherStationService.getAllActiveWithData()
         ]);
 
         paraglidingLocations = fetchedParaglidingLocations || [];
