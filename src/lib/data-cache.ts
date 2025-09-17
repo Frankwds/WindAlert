@@ -5,7 +5,10 @@ interface Cache<T> {
   timestamp: number | null;
 }
 
-const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
+const CACHE_DURATION_WEATHER_STATIONS = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION_ALL_PARAGLIDING = 14 * 24 * 60 * 60 * 1000; // 14 days
+
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
 const STORE_NAME = 'cache';
@@ -50,11 +53,11 @@ class DataCache {
     });
   }
 
-  private isCacheValid(timestamp: number | null): boolean {
+  private isCacheValid(timestamp: number | null, cacheDuration: number): boolean {
     if (!timestamp) {
       return false;
     }
-    return (Date.now() - timestamp) < CACHE_DURATION;
+    return (Date.now() - timestamp) < cacheDuration;
   }
 
   private async getFromStorage(key: string): Promise<Cache<any> | null> {
@@ -128,7 +131,7 @@ class DataCache {
 
   async getParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {
     const cached = await this.getFromStorage(this.PARAGLIDING_KEY);
-    if (cached && this.isCacheValid(cached.timestamp)) {
+    if (cached && this.isCacheValid(cached.timestamp, CACHE_DURATION_PARAGLIDING_WITH_FORECAST)) {
       return cached.data;
     }
     return null;
@@ -140,7 +143,7 @@ class DataCache {
 
   async getWeatherStations(): Promise<WeatherStationMarkerData[] | null> {
     const cached = await this.getFromStorage(this.WEATHER_KEY);
-    if (cached && this.isCacheValid(cached.timestamp)) {
+    if (cached && this.isCacheValid(cached.timestamp, CACHE_DURATION_WEATHER_STATIONS)) {
       return cached.data;
     }
     return null;
@@ -154,7 +157,8 @@ class DataCache {
     const cached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
 
     // Check if cache exists and is newer than the hardcoded minimum timestamp
-    if (cached && cached.data && cached.timestamp && cached.timestamp >= ALL_PARAGLIDING_MIN_TIMESTAMP) {
+    if (cached && cached.data && cached.timestamp && cached.timestamp >= ALL_PARAGLIDING_MIN_TIMESTAMP
+      && this.isCacheValid(cached.timestamp, CACHE_DURATION_ALL_PARAGLIDING)) {
       return cached.data;
     }
 

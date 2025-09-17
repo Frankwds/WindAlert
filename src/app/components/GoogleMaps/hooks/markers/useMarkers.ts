@@ -1,9 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { createAllMarkers } from '../../MarkerSetup';
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
-import { dataCache } from '@/lib/data-cache';
+import { useDataLoading } from '../data/useDataLoading';
 
 interface UseMarkersProps {
   mapInstance: google.maps.Map | null;
@@ -17,6 +15,8 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
+  const { loadAllData } = useDataLoading();
+
   const loadAllMarkers = useCallback(async () => {
     if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
 
@@ -24,23 +24,7 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
-      let paraglidingLocations = await dataCache.getParaglidingLocations();
-      let weatherStations = await dataCache.getWeatherStations();
-
-      if (!paraglidingLocations || !weatherStations) {
-        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
-          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
-          WeatherStationService.getAllActiveWithData()
-        ]);
-
-        paraglidingLocations = fetchedParaglidingLocations || [];
-        weatherStations = fetchedWeatherStations || [];
-
-        await Promise.all([
-          dataCache.setParaglidingLocations(paraglidingLocations),
-          dataCache.setWeatherStations(weatherStations)
-        ]);
-      }
+      const { paraglidingLocations, weatherStations } = await loadAllData();
 
       const { paraglidingMarkers, weatherStationMarkers } = createAllMarkers({
         paraglidingLocations,
@@ -56,7 +40,7 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onMarkerClick, isLoadingMarkers]);
+  }, [onMarkerClick, isLoadingMarkers, loadAllData]);
 
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && paraglidingMarkers.length === 0 && weatherStationMarkers.length === 0) {
