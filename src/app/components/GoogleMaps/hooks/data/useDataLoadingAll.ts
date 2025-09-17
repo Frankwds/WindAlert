@@ -1,29 +1,37 @@
 import { useCallback } from 'react';
 import { AllParaglidingLocationService } from '@/lib/supabase/allParaglidingLocations';
+import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { dataCache } from '@/lib/data-cache';
 
 export const useDataLoadingAll = () => {
-  const loadAllParaglidingData = useCallback(async () => {
+  const loadAllData = useCallback(async () => {
     try {
-      // Try to get from cache first (no TTL for static data)
       let paraglidingLocations = await dataCache.getAllParaglidingLocations();
+      let weatherStations = await dataCache.getWeatherStations();
 
-      if (!paraglidingLocations) {
-        // Fetch from database if not in cache
-        paraglidingLocations = await AllParaglidingLocationService.getAllActiveForMarkers();
+      if (!paraglidingLocations || !weatherStations) {
+        const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
+          AllParaglidingLocationService.getAllActiveForMarkers(),
+          WeatherStationService.getAllActiveWithData()
+        ]);
 
-        // Cache the data (no TTL - it's static)
-        await dataCache.setAllParaglidingLocations(paraglidingLocations);
+        paraglidingLocations = fetchedParaglidingLocations || [];
+        weatherStations = fetchedWeatherStations || [];
+
+        await Promise.all([
+          dataCache.setParaglidingLocations(paraglidingLocations),
+          dataCache.setWeatherStations(weatherStations)
+        ]);
       }
 
-      return { paraglidingLocations };
+      return { paraglidingLocations, weatherStations };
     } catch (err) {
-      console.error('Error loading all paragliding data:', err);
+      console.error('Error loading all data:', err);
       throw err;
     }
   }, []);
 
   return {
-    loadAllParaglidingData
+    loadAllData
   };
 };

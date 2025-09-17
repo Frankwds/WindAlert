@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useAllMarkers } from './markers/useAllMarkers';
-import { useMarkers } from './markers/useMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
 import { useMapControls, useOverlayManagement } from './controls';
@@ -109,14 +108,8 @@ export const useGoogleMapsAll = () => {
     }
   }, [mapInstance, openInfoWindow, closeOverlays]);
 
-  // Initialize all markers (paragliding locations from all_paragliding_locations table)
+  // Initialize all markers (paragliding locations and weather stations)
   const allMarkers = useAllMarkers({
-    mapInstance,
-    onMarkerClick: handleMarkerClick
-  });
-
-  // Initialize weather station markers (from cache)
-  const weatherMarkers = useMarkers({
     mapInstance,
     onMarkerClick: handleMarkerClick
   });
@@ -124,7 +117,7 @@ export const useGoogleMapsAll = () => {
   // Apply filtering to all markers
   const { filteredParaglidingMarkers, filteredWeatherStationMarkers } = useMarkerFiltering({
     paraglidingMarkers: allMarkers.paraglidingMarkers,
-    weatherStationMarkers: weatherMarkers.weatherStationMarkers,
+    weatherStationMarkers: allMarkers.weatherStationMarkers,
     showParaglidingMarkers,
     showWeatherStationMarkers,
     selectedWindDirections,
@@ -155,8 +148,8 @@ export const useGoogleMapsAll = () => {
     // Map instance
     mapRef,
     mapInstance,
-    isLoading: isLoading || allMarkers.isLoading || weatherMarkers.isLoadingMarkers,
-    error: error || allMarkers.error || weatherMarkers.markersError,
+    isLoading: isLoading || allMarkers.isLoading,
+    error: error || allMarkers.error,
 
     // Markers (filtered)
     paraglidingMarkers: filteredParaglidingMarkers,
