@@ -4,7 +4,7 @@ import { useMapInstance, useMapState } from './map';
 import { useMarkers, useMarkerFiltering } from './markers';
 import { useMapFilters } from './filters';
 import { useMapControls, useOverlayManagement } from './controls';
-import { getParaglidingInfoWindow, getWeatherStationInfoWindowContent } from '../InfoWindows';
+import { getParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
 
@@ -80,8 +80,10 @@ export const useGoogleMaps = () => {
     closeOverlays();
 
     if ('station_id' in location) {
-      const content = getWeatherStationInfoWindowContent(location);
-      openInfoWindow(mapInstance, marker, content);
+      const infoWindowContent = document.createElement('div');
+      const root = createRoot(infoWindowContent);
+      root.render(getWeatherStationInfoWindow(location));
+      openInfoWindow(mapInstance, marker, infoWindowContent);
     } else {
       const infoWindowContent = document.createElement('div');
       const root = createRoot(infoWindowContent);

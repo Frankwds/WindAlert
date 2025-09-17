@@ -1,7 +1,7 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import LocationCard, { LocationCardAll } from '../LocationCards';
+import StationDataTable from '../StationDataTable';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingMarkerData;
@@ -26,17 +26,31 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
 
 export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> = ({ location }) => {
   return (
-    <div>
-      <h3 className="font-bold text-lg mb-2">🌤️{location.name} ({location.altitude}m)</h3>
-      <div className='flex flex-row justify-center'>
-        <div className=''>
-          <iframe
-            src={`https://widget.holfuy.com/?station=${location.station_id}&su=m/s&t=C&lang=en&mode=rose&size=160`}
-            style={{ width: '160px', height: '160px', color: 'var(--foreground)' }}
-          ></iframe>
-        </div>
-
+    <div className="p-4 max-w-md">
+      {/* Station Header with Holfuy Link */}
+      <div className="mb-4">
+        <a
+          href={`https://holfuy.com/en/weather/${location.station_id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1"
+        >
+          <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
+            🌤️{location.name} ({location.altitude}m)
+          </h3>
+        </a>
       </div>
+
+      {/* Historical Data Table */}
+      {location.station_data && location.station_data.length > 0 && (
+        <div className="mt-4">
+          <h4 className="font-semibold text-sm mb-2 text-[var(--muted-foreground)]">Historical Data</h4>
+          <StationDataTable
+            stationData={location.station_data}
+            timezone="Europe/Oslo"
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -48,16 +62,9 @@ export const AllStartsInfoWindow: React.FC<AllStartsInfoWindowProps> = ({ locati
     />
   );
 };
-// Utility function to render any React component to HTML string
-export const renderComponentToString = <T extends Record<string, any>>(
-  Component: React.ComponentType<T>,
-  props: T
-): string => {
-  return renderToString(React.createElement(Component, props));
-};
 
-export const getWeatherStationInfoWindowContent = (location: WeatherStationMarkerData): string => {
-  return renderComponentToString(WeatherStationInfoWindow, { location });
+export const getWeatherStationInfoWindow = (location: WeatherStationMarkerData) => {
+  return <WeatherStationInfoWindow location={location} />;
 };
 
 export const getParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
