@@ -16,8 +16,14 @@ interface GoogleMapsProps {
   variant: 'main' | 'all';
 }
 
-const getClustererOptions = (variant: 'main' | 'all') => ({
+const getParaglidingClustererOptions = (variant: 'main' | 'all') => ({
   radius: variant === 'main' ? 60 : 125,
+  maxZoom: 15,
+  minPoints: 2
+} as const);
+
+const getWeatherStationClustererOptions = () => ({
+  radius: 40,
   maxZoom: 15,
   minPoints: 2
 } as const);
@@ -105,7 +111,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
         map={mapInstance}
         markers={paraglidingMarkers}
         renderer={paraglidingRenderer}
-        algorithmOptions={getClustererOptions(variant)}
+        algorithmOptions={getParaglidingClustererOptions(variant)}
       />
     );
   }, [mapInstance, paraglidingMarkers, paraglidingRenderer, variant]);
@@ -117,10 +123,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
         map={mapInstance}
         markers={weatherStationMarkers}
         renderer={weatherStationRenderer}
-        algorithmOptions={getClustererOptions(variant)}
+        algorithmOptions={getWeatherStationClustererOptions()}
       />
     );
-  }, [mapInstance, weatherStationMarkers, weatherStationRenderer, variant]);
+  }, [mapInstance, weatherStationMarkers, weatherStationRenderer]);
 
 
   if (error) {
