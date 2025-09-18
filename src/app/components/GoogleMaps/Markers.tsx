@@ -83,23 +83,22 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
   return container;
 }
 
-export const createWeatherStationMarkerElement = (): HTMLElement => {
-  const img = document.createElement('img');
-  img.src = '/windsockBlue.png';
-  img.alt = 'Weather station';
-  img.className = 'w-8 h-8 cursor-pointer transition-transform duration-200 ease-in-out select-none';
-  img.draggable = false;
-  img.style.cursor = 'pointer';
-  img.style.userSelect = 'none';
-  return img;
+
+// Function to determine wind arrow color based on speed
+const getWindArrowColor = (speed: number): string => {
+  const roundedSpeed = Math.round(speed);
+  if (roundedSpeed < 4) return 'var(--success)'; // green for calm winds
+  if (roundedSpeed < 6) return '#00FF00'; // bright green for light winds
+  if (roundedSpeed <= 9) return 'var(--warning)'; // orange for moderate winds
+  return 'var(--error)'; // red for strong winds
 };
 
-const createHollowWindTriangleSVG = (direction: number, color: string = '#d8d8d8') => {
+const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, color: string = '#d8d8d8') => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '42');
   svg.setAttribute('height', '42');
   svg.setAttribute('viewBox', '0 0 24 24');
-  svg.style.transform = `rotate(${direction + 180}deg)`;
+  svg.style.transform = `${isClustered ? 'scale(0.8)' : `rotate(${direction + 180}deg)`}`;
   svg.style.transformOrigin = 'center';
   svg.style.transition = 'transform 0.2s ease-in-out';
 
@@ -122,8 +121,16 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
     .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
 
   if (!latestData) {
-    // Fallback to original marker if no wind data
-    return createWeatherStationMarkerElement();
+    // Fallback to blue wind arrow with no text, 0 degrees
+    const container = document.createElement('div');
+    container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+    container.style.cursor = 'pointer';
+    container.style.userSelect = 'none';
+
+    const svg = createHollowWindTriangleSVG(true, 0, '#d8d8d8');
+    container.appendChild(svg);
+
+    return container;
   }
 
 
@@ -133,8 +140,9 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
 
-  // Create wind arrow SVG using template function
-  const svg = createHollowWindTriangleSVG(latestData.direction);
+  // Create wind arrow SVG using template function with dynamic color
+  const windColor = getWindArrowColor(latestData.wind_speed);
+  const svg = createHollowWindTriangleSVG(false, latestData.direction, windColor);
   container.appendChild(svg);
 
   // Create non-rotating text overlay

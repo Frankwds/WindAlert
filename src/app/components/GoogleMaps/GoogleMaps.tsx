@@ -117,7 +117,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
         map={mapInstance}
         markers={weatherStationMarkers}
         renderer={weatherStationRenderer}
-        algorithmOptions={getClustererOptions(variant)}
+        algorithmOptions={{
+          radius: 35,
+          maxZoom: 15,
+          minPoints: 2
+        }}
       />
     );
   }, [mapInstance, weatherStationMarkers, weatherStationRenderer, variant]);
