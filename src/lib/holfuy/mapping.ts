@@ -5,6 +5,7 @@ import { StationData } from '../supabase/types';
  * Maps Holfuy API response data to StationData format for database storage
  */
 export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): Omit<StationData, 'id'>[] {
+  console.log(holfuyData)
   return holfuyData.map(station => ({
     station_id: station.stationId,
     wind_speed: station.wind.speed,
@@ -12,6 +13,6 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): Omit<St
     wind_min_speed: station.wind.min,
     direction: station.wind.direction,
     temperature: station.temperature,
-    updated_at: station.dateTime,
+    updated_at: station.dateTime + '+02:00',
   }));
 }
