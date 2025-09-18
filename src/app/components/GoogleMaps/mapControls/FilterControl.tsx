@@ -3,6 +3,23 @@
 import React from 'react';
 import Image from 'next/image';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { createWeatherStationClusterElement } from '../Markers';
+
+// Wind arrow icon component for filter control
+const WindArrowIcon = () => {
+  const [iconElement, setIconElement] = React.useState<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    const element = createWeatherStationClusterElement(2, 270);
+    // Make it smaller for filter control
+    element.style.transform = 'scale(0.8)';
+    setIconElement(element);
+  }, []);
+
+  if (!iconElement) return null;
+
+  return <div dangerouslySetInnerHTML={{ __html: iconElement.outerHTML }} />;
+};
 
 interface FilterControlProps {
   showParagliding: boolean;
@@ -114,7 +131,9 @@ export const FilterControl: React.FC<FilterControlProps> = ({
                   onChange={handleWeatherStationChange}
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                <Image src="/windsockBlue.png" alt="Værstasjon" width={24} height={24} className="w-6 h-6" />
+                <div className="w-6 h-6 flex items-center justify-center ">
+                  <WindArrowIcon />
+                </div>
               </label>
 
               <label htmlFor="skyways" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>

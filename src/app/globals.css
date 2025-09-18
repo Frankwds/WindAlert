@@ -24,6 +24,7 @@
   --nav-text: #f9fafb;
   
   /* Wind Speed Colors */
+  --wind-none: #d8d8d8;      /* light gray - 0 knots */
   --wind-calm: #90EE90;      /* light green - < 4 knots */
   --wind-light: #00FF00;     /* bright green - 4-5 knots */
   --wind-moderate: #FFA500;  /* orange - 6-9 knots */

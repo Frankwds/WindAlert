@@ -87,6 +87,7 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
 // Function to determine wind arrow color based on speed
 const getWindArrowColor = (speed: number): string => {
   const roundedSpeed = Math.round(speed);
+  if (roundedSpeed === 0) return 'var(--wind-none)';
   if (roundedSpeed < 4) return 'var(--wind-calm)';
   if (roundedSpeed < 6) return 'var(--wind-light)';
   if (roundedSpeed <= 9) return 'var(--wind-moderate)';
