@@ -4,7 +4,8 @@ import { MinimalForecast } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
-import { useState, useRef, useEffect } from "react";
+import { useDataGrouping } from "@/lib/hooks/useDataGrouping";
+import { useMemo } from "react";
 
 interface MinimalHourlyWeatherProps {
   forecast: MinimalForecast[];
@@ -17,60 +18,24 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
   forecast,
   timezone,
 }) => {
-  const getFirstDayFromSorted = (weatherData: MinimalForecast[]) => {
-    if (weatherData && weatherData.length > 0) {
-      const firstDay = new Date(weatherData[0].time).toLocaleDateString([], {
-        weekday: 'short',
-        timeZone: timezone,
-      });
-      return firstDay;
-    }
-    return null;
-  }
-  const [activeDay, setActiveDay] = useState<string | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [sortedForecast, setSortedForecast] = useState<MinimalForecast[]>(forecast);
-
   // Filter to future hours on the client to avoid SSR hydration mismatches
-  useEffect(() => {
+  const filteredForecast = useMemo(() => {
     const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
-    const filtered = forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
-    const sorted = filtered.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
-    setSortedForecast(sorted);
-    setActiveDay(getFirstDayFromSorted(sorted));
+    return forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
   }, [forecast]);
 
-  // Scroll to center when active day changes
-  useEffect(() => {
-    if (activeDay && scrollContainerRef.current && activeDay !== getFirstDayFromSorted(sortedForecast)) {
-      const container = scrollContainerRef.current;
-      const table = container.querySelector('table');
-      if (table) {
-        const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
-        container.scrollLeft = scrollLeft;
-      }
-      return
-    }
-    if (activeDay && scrollContainerRef.current && activeDay === getFirstDayFromSorted(sortedForecast)) {
-      const container = scrollContainerRef.current;
-      const table = container.querySelector('table');
-      if (table) {
-        container.scrollLeft = 0;
-      }
-    }
-  }, [activeDay, getFirstDayFromSorted]);
-
-  const groupedByDay = sortedForecast.reduce((acc, hour) => {
-    const day = new Date(hour.time).toLocaleDateString([], {
-      weekday: 'short',
-      timeZone: timezone,
-    });
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(hour);
-    return acc;
-  }, {} as Record<string, MinimalForecast[]>);
+  const {
+    sortedData: sortedForecast,
+    groupedByDay,
+    activeDay,
+    setActiveDay,
+    scrollContainerRef,
+  } = useDataGrouping({
+    data: filteredForecast,
+    timezone,
+    timeField: 'time',
+    sortOrder: 'asc', // Forecast data should be chronological
+  });
 
   // Create visual representation of promising hours (10:00-22:00)
   const getPromisingHoursVisual = (day: string) => {

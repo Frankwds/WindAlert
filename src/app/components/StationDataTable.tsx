@@ -2,7 +2,7 @@
 
 import { StationData } from "@/lib/supabase/types";
 import WindDirectionArrow from "./WindDirectionArrow";
-import { useState, useRef, useEffect } from "react";
+import { useDataGrouping } from "@/lib/hooks/useDataGrouping";
 
 interface StationDataTableProps {
   stationData: StationData[];
@@ -13,65 +13,24 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
   stationData,
   timezone,
 }) => {
-
-  const getFirstDayFromSorted = (data: StationData[]) => {
-    if (data && data.length > 0) {
-      const firstDay = new Date(data[0].updated_at).toLocaleDateString([], {
-        weekday: 'short',
-        timeZone: timezone,
-      });
-      return firstDay;
-    }
-    return null;
-  }
-
-  const [activeDay, setActiveDay] = useState<string | null>(getFirstDayFromSorted(stationData));
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [sortedStationData, setSortedStationData] = useState<StationData[]>(stationData);
-
-
-  // Sort data by updated_at in descending order (most recent first)
-  useEffect(() => {
-    const sorted = [...stationData].sort((a, b) =>
-      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-    );
-    setSortedStationData(sorted);
-    setActiveDay(getFirstDayFromSorted(sorted));
-  }, [stationData]);
-
-  // Scroll to center when active day changes
-  useEffect(() => {
-    if (activeDay && scrollContainerRef.current && activeDay !== getFirstDayFromSorted(sortedStationData)) {
-      const container = scrollContainerRef.current;
-      const table = container.querySelector('table');
-      if (table) {
-        const scrollLeft = (table.scrollWidth - container.clientWidth) / 2;
-        container.scrollLeft = scrollLeft;
-      }
-      return
-    }
-    if (activeDay && scrollContainerRef.current && activeDay === getFirstDayFromSorted(sortedStationData)) {
-      const container = scrollContainerRef.current;
-      const table = container.querySelector('table');
-      if (table) {
-        container.scrollLeft = 0;
-      }
-    }
-  }, [activeDay, getFirstDayFromSorted]);
-
-  const groupedByDay = sortedStationData.reduce((acc, data) => {
-    const day = new Date(data.updated_at).toLocaleDateString([], {
-      weekday: 'short',
-      timeZone: timezone,
-    });
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(data);
-    return acc;
-  }, {} as Record<string, StationData[]>);
+  const {
+    sortedData: sortedStationData,
+    groupedByDay,
+    activeDay,
+    setActiveDay,
+    scrollContainerRef,
+  } = useDataGrouping({
+    data: stationData,
+    timezone,
+    timeField: 'updated_at',
+    sortOrder: 'desc', // Station data should be reverse chronological (most recent first)
+  });
 
   const dataRows = [
+    {
+      label: "Station ID",
+      getValue: (data: StationData) => data.station_id,
+    },
     {
       label: "Wind Speed",
       getValue: (data: StationData) => `${Math.round(data.wind_speed)}`,
