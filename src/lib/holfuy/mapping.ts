@@ -23,6 +23,9 @@ function roundToQuarterHour(dateTimeString: string): string {
   date.setSeconds(0);
   date.setMilliseconds(0);
 
+  // Becasue the time is in utc 2, but is being stored in the database as +00:00
+  date.setHours(date.getHours() - 2);
+
   return date.toISOString();
 }
 
