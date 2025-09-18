@@ -1,4 +1,4 @@
-import { ParaglidingMarkerData, WeatherStationMarkerData } from './supabase/types';
+import { ParaglidingMarkerData, StationData, WeatherStationMarkerData } from './supabase/types';
 
 interface Cache<T> {
   data: T | null;
@@ -149,8 +149,34 @@ class DataCache {
     return null;
   }
 
+
   async setWeatherStations(data: WeatherStationMarkerData[]): Promise<void> {
     await this.setToStorage(this.WEATHER_KEY, data);
+  }
+
+  async appendWeatherStationData(latestData: StationData[]): Promise<WeatherStationMarkerData[] | null> {
+
+    // Get all stations for the update
+    const allStations = await this.getWeatherStations();
+    if (!allStations) {
+      return null;
+    }
+
+    const updatedStations = allStations.map(station => {
+      const latestForStation = latestData.find(data => data.station_id === station.station_id);
+      if (latestForStation) {
+        // Append new data point to existing station_data array
+        return {
+          ...station,
+          station_data: [...station.station_data, latestForStation]
+        };
+      }
+      return station;
+    });
+
+    await this.setToStorage(this.WEATHER_KEY, updatedStations);
+
+    return updatedStations || null;
   }
 
   async getAllParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {

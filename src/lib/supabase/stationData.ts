@@ -118,6 +118,41 @@ export class StationDataService {
     return Array.from(latestByStation.values());
   }
 
+  static async getLatestForAllStationsNewerThan(timestamp: string): Promise<StationData[]> {
+    // Add 2 minutes buffer to the timestamp to account for potential delays
+    const bufferedTimestamp = new Date(new Date(timestamp).getTime() + 2 * 60 * 1000).toISOString();
+
+    const { data, error } = await supabase
+      .from('station_data')
+      .select('*')
+      .gt('updated_at', bufferedTimestamp)
+
+    if (error) {
+      console.error('Error fetching latest data for all stations:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
+
+  /**
+   * Check if there's newer data than the given timestamp (with 2-minute buffer)
+   */
+  static async hasNewerDataThan(timestamp: string): Promise<boolean> {
+    const { data, error } = await supabase
+      .from('station_data')
+      .select('updated_at')
+      .gt('updated_at', timestamp)
+      .limit(1);
+
+    if (error) {
+      console.error('Error checking for newer data:', error);
+      throw error;
+    }
+
+    return data && data.length > 0;
+  }
+
   /**
    * Get data for multiple stations within a time range
    */

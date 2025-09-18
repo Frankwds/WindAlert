@@ -96,7 +96,7 @@ export interface ParaglidingLocationForCache {
 
 export interface WeatherStationMarkerData {
   id: string;
-  station_id: string;
+  station_id: number;
   name: string;
   latitude: number;
   longitude: number;
