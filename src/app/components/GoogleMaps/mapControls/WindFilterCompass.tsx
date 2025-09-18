@@ -11,7 +11,7 @@ interface WindFilterCompassProps {
   windFilterAndOperator: boolean;
   onFilterLogicChange: () => void;
   closeOverlays: (options?: { keep?: string }) => void;
-  isAllStarts?: boolean;
+  variant: 'main' | 'all';
 }
 
 const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
@@ -22,7 +22,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   windFilterAndOperator,
   onFilterLogicChange,
   closeOverlays: onCloseOverlays,
-  isAllStarts = false
+  variant
 }) => {
   const isMobile = useIsMobile();
   const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
@@ -54,9 +54,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
 
   return (
     <div
-      className={`absolute top-3 ${isAllStarts ? 'right-3' : 'right-16'} z-10 cursor-pointer`}
-      // onMouseEnter={() => setIsExpanded(true)}
-      // onMouseLeave={() => setIsExpanded(false)}
+      className={`absolute top-3 ${variant === 'all' ? 'right-3' : 'right-16'} z-10 cursor-pointer`}
       onClick={() => {
         if (!isExpanded) {
           onCloseOverlays({ keep: 'windfilter' });

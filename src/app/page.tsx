@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <main className="flex-1 w-full h-full ">
-      <GoogleMaps isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
+      <GoogleMaps isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} variant="main" />
     </main>
   );
 }

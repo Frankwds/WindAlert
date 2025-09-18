@@ -13,15 +13,16 @@ import { useGoogleMaps } from './hooks/useGoogleMaps';
 interface GoogleMapsProps {
   isFullscreen: boolean;
   toggleFullscreen: () => void;
+  variant: 'main' | 'all';
 }
 
-const CLUSTERER_OPTIONS = {
-  radius: 60,
+const getClustererOptions = (variant: 'main' | 'all') => ({
+  radius: variant === 'main' ? 60 : 125,
   maxZoom: 15,
   minPoints: 2
-} as const;
+} as const);
 
-const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen }) => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen, variant }) => {
   useInfoWindowStyles();
 
   const {
@@ -50,7 +51,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays
-  } = useGoogleMaps({ variant: 'main' });
+  } = useGoogleMaps({ variant });
 
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
@@ -80,18 +81,22 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
       windFilterAndOperator={windFilterAndOperator}
       onFilterLogicChange={handleWindFilterLogicChange}
       closeOverlays={closeOverlays}
+      variant={variant}
     />
-  ), [selectedWindDirections, windFilterExpanded, windFilterAndOperator, handleWindDirectionChange, handleWindFilterLogicChange, closeOverlays]);
+  ), [selectedWindDirections, windFilterExpanded, windFilterAndOperator, handleWindDirectionChange, handleWindFilterLogicChange, closeOverlays, variant]);
 
-  const memoizedPromisingFilter = useMemo(() => (
-    <PromisingFilter
-      isExpanded={isPromisingFilterExpanded}
-      setIsExpanded={setIsPromisingFilterExpanded}
-      onFilterChange={setPromisingFilter}
-      initialFilter={promisingFilter}
-      closeOverlays={closeOverlays}
-    />
-  ), [isPromisingFilterExpanded, promisingFilter, closeOverlays]);
+  const memoizedPromisingFilter = useMemo(() => {
+    if (variant !== 'main') return null;
+    return (
+      <PromisingFilter
+        isExpanded={isPromisingFilterExpanded}
+        setIsExpanded={setIsPromisingFilterExpanded}
+        onFilterChange={setPromisingFilter}
+        initialFilter={promisingFilter}
+        closeOverlays={closeOverlays}
+      />
+    );
+  }, [variant, isPromisingFilterExpanded, promisingFilter, closeOverlays]);
 
   const memoizedParaglidingClusterer = useMemo(() => {
     if (!mapInstance || paraglidingMarkers.length === 0) return null;
@@ -100,10 +105,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
         map={mapInstance}
         markers={paraglidingMarkers}
         renderer={paraglidingRenderer}
-        algorithmOptions={CLUSTERER_OPTIONS}
+        algorithmOptions={getClustererOptions(variant)}
       />
     );
-  }, [mapInstance, paraglidingMarkers, paraglidingRenderer]);
+  }, [mapInstance, paraglidingMarkers, paraglidingRenderer, variant]);
 
   const memoizedWeatherStationClusterer = useMemo(() => {
     if (!mapInstance || weatherStationMarkers.length === 0) return null;
@@ -112,10 +117,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
         map={mapInstance}
         markers={weatherStationMarkers}
         renderer={weatherStationRenderer}
-        algorithmOptions={CLUSTERER_OPTIONS}
+        algorithmOptions={getClustererOptions(variant)}
       />
     );
-  }, [mapInstance, weatherStationMarkers, weatherStationRenderer]);
+  }, [mapInstance, weatherStationMarkers, weatherStationRenderer, variant]);
 
 
   if (error) {
