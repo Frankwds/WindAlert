@@ -22,7 +22,6 @@ export const useWeatherStationData = () => {
   }, []);
 
   const loadLatestWeatherStationData = useCallback(async () => {
-
     try {
       const allWeatherStations = await dataCache.getWeatherStations();
       if (!allWeatherStations) {
@@ -38,7 +37,7 @@ export const useWeatherStationData = () => {
         return null;
       }
 
-      const latestData = await StationDataService.getLatestForAllStationsNewerThan(latestCacheTimestamp);
+      const latestData = await StationDataService.getLatestStationDataForAllNewerThan(latestCacheTimestamp);
 
       if (latestData && latestData.length > 0) {
         const updatedWeatherStations = await dataCache.appendWeatherStationData(latestData);

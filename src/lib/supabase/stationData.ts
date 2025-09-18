@@ -118,7 +118,7 @@ export class StationDataService {
     return Array.from(latestByStation.values());
   }
 
-  static async getLatestForAllStationsNewerThan(timestamp: string): Promise<StationData[]> {
+  static async getLatestStationDataForAllNewerThan(timestamp: string): Promise<StationData[]> {
     // Add 2 minutes buffer to the timestamp to account for potential delays
     const bufferedTimestamp = new Date(new Date(timestamp).getTime() + 2 * 60 * 1000).toISOString();
 

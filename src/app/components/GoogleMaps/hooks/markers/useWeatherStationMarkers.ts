@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { createWeatherStationMarkers } from '../../MarkerSetup';
 import { WeatherStationMarkerData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
+import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
@@ -14,8 +15,8 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const [markersError, setMarkersError] = useState<string | null>(null);
 
   const { loadWeatherStationData, loadLatestWeatherStationData } = useWeatherStationData();
-  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isTabVisibleRef = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
     if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
@@ -37,8 +38,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
-    if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
-
     try {
       const weatherStations = await loadLatestWeatherStationData();
       if (weatherStations) {
@@ -49,19 +48,9 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       console.error('Error updating weather station markers with latest data:', err);
       setMarkersError(err instanceof Error ? err.message : 'Failed to update weather station markers');
     }
-  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadLatestWeatherStationData]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
-  const debouncedUpdateMarkers = useCallback(() => {
-    // Clear existing timeout
-    if (debounceTimeoutRef.current) {
-      clearTimeout(debounceTimeoutRef.current);
-    }
 
-    // Set new timeout with 1 second debounce
-    debounceTimeoutRef.current = setTimeout(() => {
-      updateMarkersWithLatestData();
-    }, 1000);
-  }, [updateMarkersWithLatestData]);
 
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && weatherStationMarkers.length === 0) {
@@ -72,22 +61,21 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   // Set up 5-minute live updates
   useEffect(() => {
     if (mapInstance && weatherStationMarkers.length > 0) {
-      // Set up interval for live updates every 5 minutes
       intervalRef.current = setInterval(() => {
-        debouncedUpdateMarkers();
-      }, 5 * 8 * 1000); // 8 minutes
+        if (!isTabVisibleRef.current) {
+          return;
+        }
+        updateMarkersWithLatestData();
+      }, 8 * 1 * 1000); // 8 minutes
 
       // Cleanup interval on unmount or when dependencies change
       return () => {
         if (intervalRef.current) {
           clearInterval(intervalRef.current);
         }
-        if (debounceTimeoutRef.current) {
-          clearTimeout(debounceTimeoutRef.current);
-        }
       };
     }
-  }, [mapInstance, weatherStationMarkers.length, debouncedUpdateMarkers]);
+  }, [mapInstance, weatherStationMarkers.length]);
 
   return {
     weatherStationMarkers,
