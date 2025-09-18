@@ -1,4 +1,4 @@
-import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { ParaglidingMarkerData, WeatherStationMarkerData, StationData } from '@/lib/supabase/types';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
@@ -92,4 +92,68 @@ export const createWeatherStationMarkerElement = (): HTMLElement => {
   img.style.cursor = 'pointer';
   img.style.userSelect = 'none';
   return img;
+};
+
+const createHollowWindTriangleSVG = (direction: number, color: string = '#d8d8d8') => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '42');
+  svg.setAttribute('height', '42');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.style.transform = `rotate(${direction + 180}deg)`;
+  svg.style.transformOrigin = 'center';
+  svg.style.transition = 'transform 0.2s ease-in-out';
+
+  // Clean wind arrow based on the provided SVG
+  // Scaled and centered for 24x24 viewBox
+  const windArrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  windArrow.setAttribute('d', 'M12 2 L2 22 L10 18 L14 18 L22 22 L12 2 Z');
+  windArrow.setAttribute('fill', color);
+  windArrow.setAttribute('stroke', 'black');
+  windArrow.setAttribute('stroke-width', '0.5');
+  svg.appendChild(windArrow);
+
+  return svg;
+};
+
+export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {
+  // Get the most recent wind data
+  const latestData = stationData
+    .filter(data => data.wind_speed !== null && data.direction !== null)
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
+
+  if (!latestData) {
+    // Fallback to original marker if no wind data
+    return createWeatherStationMarkerElement();
+  }
+
+
+
+  const container = document.createElement('div');
+  container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.style.cursor = 'pointer';
+  container.style.userSelect = 'none';
+
+  // Create wind arrow SVG using template function
+  const svg = createHollowWindTriangleSVG(latestData.direction);
+  container.appendChild(svg);
+
+  // Create non-rotating text overlay
+  const textOverlay = document.createElement('div');
+  textOverlay.style.position = 'absolute';
+  textOverlay.style.top = '50%';
+  textOverlay.style.left = '50%';
+  textOverlay.style.transform = 'translate(-50%, -50%)';
+  textOverlay.style.pointerEvents = 'none';
+  textOverlay.style.textAlign = 'center';
+  textOverlay.style.fontSize = '12px';
+  textOverlay.style.fontWeight = 'bold';
+  textOverlay.style.color = 'black';
+  textOverlay.style.textShadow = '1px 1px 2px rgba(255,255,255,0.8)';
+  textOverlay.style.lineHeight = '1';
+  textOverlay.style.zIndex = '10';
+  textOverlay.textContent = `${Math.round(latestData.wind_speed)}`;
+
+  container.appendChild(textOverlay);
+
+  return container;
 };

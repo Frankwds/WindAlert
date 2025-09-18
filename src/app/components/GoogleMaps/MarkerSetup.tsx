@@ -1,5 +1,5 @@
 import { WeatherStationMarkerData, ParaglidingMarkerData } from '@/lib/supabase/types';
-import { createParaglidingMarkerElementWithDirection, createWeatherStationMarkerElement } from './Markers';
+import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement } from './Markers';
 
 type onMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => void;
 
@@ -58,7 +58,7 @@ export const createParaglidingMarker = (location: ParaglidingMarkerData, onMarke
 };
 
 export const createWeatherStationMarker = (location: WeatherStationMarkerData, onMarkerClick: onMarkerClickHandler) => {
-  const markerElement = createWeatherStationMarkerElement();
+  const markerElement = createWeatherStationWindMarkerElement(location.station_data);
 
   const marker = new google.maps.marker.AdvancedMarkerElement({
     position: { lat: location.latitude!, lng: location.longitude! },
