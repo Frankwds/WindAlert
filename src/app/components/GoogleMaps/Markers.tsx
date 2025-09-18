@@ -98,7 +98,7 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
   svg.setAttribute('width', '42');
   svg.setAttribute('height', '42');
   svg.setAttribute('viewBox', '0 0 24 24');
-  svg.style.transform = `${isClustered ? 'scale(0.8)' : `rotate(${direction + 180}deg)`}`;
+  svg.style.transform = `rotate(${direction + 180}deg)${isClustered ? 'scale(0.8)' : ``}`;
   svg.style.transformOrigin = 'center';
   svg.style.transition = 'transform 0.2s ease-in-out';
 
@@ -112,6 +112,20 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
   svg.appendChild(windArrow);
 
   return svg;
+};
+
+export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWindDirection: number): HTMLElement => {
+  const container = document.createElement('div');
+  container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.style.cursor = 'pointer';
+  container.style.userSelect = 'none';
+
+  // Create wind arrow SVG for cluster (no text, just the arrow)
+  const windColor = getWindArrowColor(meanWindSpeed);
+  const svg = createHollowWindTriangleSVG(true, meanWindDirection, windColor);
+  container.appendChild(svg);
+
+  return container;
 };
 
 export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {

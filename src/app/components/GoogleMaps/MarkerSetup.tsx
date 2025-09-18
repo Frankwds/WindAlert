@@ -60,6 +60,16 @@ export const createParaglidingMarker = (location: ParaglidingMarkerData, onMarke
 export const createWeatherStationMarker = (location: WeatherStationMarkerData, onMarkerClick: onMarkerClickHandler) => {
   const markerElement = createWeatherStationWindMarkerElement(location.station_data);
 
+  // Store wind data in the marker element for cluster access
+  const latestData = location.station_data
+    .filter(data => data.wind_speed !== null && data.direction !== null)
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
+
+  if (latestData) {
+    markerElement.dataset.windSpeed = latestData.wind_speed.toString();
+    markerElement.dataset.windDirection = latestData.direction.toString();
+  }
+
   const marker = new google.maps.marker.AdvancedMarkerElement({
     position: { lat: location.latitude!, lng: location.longitude! },
     title: location.name,
@@ -79,6 +89,7 @@ export const createWeatherStationMarker = (location: WeatherStationMarkerData, o
     event.stopPropagation();
     onMarkerClick(marker, location);
   });
+
 
   return marker;
 };
