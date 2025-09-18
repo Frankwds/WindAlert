@@ -4,12 +4,18 @@ import { useMapInstance, useMapState } from './map';
 import { useMarkers, useMarkerFiltering } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
-import { getParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
+import { getParaglidingInfoWindow, getAllStartsInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
+type Variant = 'main' | 'all';
+
+interface UseGoogleMapsProps {
+  variant: Variant;
+}
 
 
-export const useGoogleMaps = () => {
+
+export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   // Initialize map state
   const { mapState, updateFilters, updateMapPosition } = useMapState();
 
@@ -19,7 +25,7 @@ export const useGoogleMaps = () => {
     initialShowWeatherStationMarkers: mapState.showWeatherStationMarkers,
     initialSelectedWindDirections: mapState.selectedWindDirections,
     initialWindFilterAndOperator: mapState.windFilterAndOperator,
-    initialPromisingFilter: mapState.promisingFilter,
+    initialPromisingFilter: variant === 'main' ? mapState.promisingFilter : null,
     initialShowSkywaysLayer: mapState.showSkywaysLayer
   });
 
@@ -87,16 +93,19 @@ export const useGoogleMaps = () => {
     } else {
       const infoWindowContent = document.createElement('div');
       const root = createRoot(infoWindowContent);
-      root.render(getParaglidingInfoWindow(location));
+      root.render(variant === 'main'
+        ? getParaglidingInfoWindow(location)
+        : getAllStartsInfoWindow(location)
+      );
       openInfoWindow(mapInstance, marker, infoWindowContent);
     }
-  }, [mapInstance, openInfoWindow, closeOverlays]);
+  }, [mapInstance, openInfoWindow, closeOverlays, variant]);
 
   // Initialize markers
   const markers = useMarkers({
     mapInstance,
     onMarkerClick: handleMarkerClick,
-    variant: 'main'
+    variant
   });
 
   // Initialize marker filtering
@@ -107,7 +116,7 @@ export const useGoogleMaps = () => {
     showWeatherStationMarkers: filters.showWeatherStationMarkers,
     selectedWindDirections: filters.selectedWindDirections,
     windFilterAndOperator: filters.windFilterAndOperator,
-    promisingFilter: filters.promisingFilter
+    promisingFilter: variant === 'main' ? filters.promisingFilter : null
   });
 
   // Save state when filters change
@@ -117,7 +126,7 @@ export const useGoogleMaps = () => {
       showWeatherStationMarkers: filters.showWeatherStationMarkers,
       selectedWindDirections: filters.selectedWindDirections,
       windFilterAndOperator: filters.windFilterAndOperator,
-      promisingFilter: filters.promisingFilter,
+      promisingFilter: variant === 'main' ? filters.promisingFilter : null,
       showSkywaysLayer: filters.showSkywaysLayer
     });
   }, [
@@ -127,6 +136,7 @@ export const useGoogleMaps = () => {
     filters.windFilterAndOperator,
     filters.promisingFilter,
     filters.showSkywaysLayer,
+    variant,
     updateFilters
   ]);
 
@@ -134,17 +144,12 @@ export const useGoogleMaps = () => {
     // Map instance
     mapRef,
     mapInstance,
-    isLoading,
-    error,
-    createSkywaysLayer,
-
-    // Markers
-    paraglidingMarkers: markers.paraglidingMarkers,
-    weatherStationMarkers: markers.weatherStationMarkers,
+    isLoading: isLoading || markers.isLoadingMarkers,
+    error: error || markers.markersError,
 
     // Filtered markers
-    filteredParaglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
-    filteredWeatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
+    paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
+    weatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
 
     // Filters
     ...filters,
@@ -152,7 +157,6 @@ export const useGoogleMaps = () => {
     // Controls
     infoWindowRef,
     closeInfoWindow,
-    closeOverlays,
-
+    closeOverlays
   };
 };

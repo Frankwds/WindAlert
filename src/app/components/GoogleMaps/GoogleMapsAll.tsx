@@ -7,7 +7,7 @@ import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterComp
 import { Clusterer } from './clusterer';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
-import { useGoogleMapsAll } from './hooks/useGoogleMapsAll';
+import { useGoogleMaps } from './hooks/useGoogleMaps';
 
 interface GoogleMapsAllProps {
   isFullscreen: boolean;
@@ -45,7 +45,7 @@ const GoogleMapsAll: React.FC<GoogleMapsAllProps> = ({ isFullscreen, toggleFulls
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays
-  } = useGoogleMapsAll();
+  } = useGoogleMaps({ variant: 'all' });
 
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);

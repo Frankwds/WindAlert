@@ -29,8 +29,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
     mapInstance,
     isLoading,
     error,
-    filteredParaglidingMarkers,
-    filteredWeatherStationMarkers,
+    paraglidingMarkers,
+    weatherStationMarkers,
     showParaglidingMarkers,
     showWeatherStationMarkers,
     selectedWindDirections,
@@ -50,7 +50,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays
-  } = useGoogleMaps();
+  } = useGoogleMaps({ variant: 'main' });
 
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
@@ -94,28 +94,28 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen 
   ), [isPromisingFilterExpanded, promisingFilter, closeOverlays]);
 
   const memoizedParaglidingClusterer = useMemo(() => {
-    if (!mapInstance || filteredParaglidingMarkers.length === 0) return null;
+    if (!mapInstance || paraglidingMarkers.length === 0) return null;
     return (
       <Clusterer
         map={mapInstance}
-        markers={filteredParaglidingMarkers}
+        markers={paraglidingMarkers}
         renderer={paraglidingRenderer}
         algorithmOptions={CLUSTERER_OPTIONS}
       />
     );
-  }, [mapInstance, filteredParaglidingMarkers, paraglidingRenderer]);
+  }, [mapInstance, paraglidingMarkers, paraglidingRenderer]);
 
   const memoizedWeatherStationClusterer = useMemo(() => {
-    if (!mapInstance || filteredWeatherStationMarkers.length === 0) return null;
+    if (!mapInstance || weatherStationMarkers.length === 0) return null;
     return (
       <Clusterer
         map={mapInstance}
-        markers={filteredWeatherStationMarkers}
+        markers={weatherStationMarkers}
         renderer={weatherStationRenderer}
         algorithmOptions={CLUSTERER_OPTIONS}
       />
     );
-  }, [mapInstance, filteredWeatherStationMarkers, weatherStationRenderer]);
+  }, [mapInstance, weatherStationMarkers, weatherStationRenderer]);
 
 
   if (error) {
