@@ -1,1 +1,2 @@
-export { useDataLoading } from './useDataLoading';
+export { useWeatherStationData } from './useWeatherStationData';
+export { useParaglidingData } from './useParaglidingData';
