@@ -1,2 +1,2 @@
-export { useMapControls } from './useMapControls';
+export { useInfoWindows } from './useInfoWindows';
 export { useOverlayManagement } from './useOverlayManagement';

@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-export const useMapControls = () => {
+export const useInfoWindows = () => {
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
 
   const closeInfoWindow = useCallback(() => {

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
 import { useMarkers, useMarkerFiltering } from './markers';
 import { useMapFilters } from './filters';
-import { useMapControls, useOverlayManagement } from './controls';
+import { useInfoWindows, useOverlayManagement } from './controls';
 import { getParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 
@@ -24,7 +24,7 @@ export const useGoogleMaps = () => {
   });
 
   // Initialize map controls
-  const { infoWindowRef, closeInfoWindow, openInfoWindow } = useMapControls();
+  const { infoWindowRef, closeInfoWindow, openInfoWindow } = useInfoWindows();
 
   // Initialize overlay management first (needed for map click handler)
   const { closeOverlays } = useOverlayManagement({

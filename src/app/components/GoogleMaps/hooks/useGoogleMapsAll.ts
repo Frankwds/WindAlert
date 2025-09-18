@@ -4,7 +4,7 @@ import { useMapInstance, useMapState } from './map';
 import { useAllMarkers } from './markers/useAllMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
-import { useMapControls, useOverlayManagement } from './controls';
+import { useInfoWindows, useOverlayManagement } from './controls';
 import { LocationCardAll } from '../../LocationCards';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import { getWeatherStationInfoWindow } from '../InfoWindows';
@@ -39,7 +39,7 @@ export const useGoogleMapsAll = () => {
   });
 
   // Initialize map controls
-  const { infoWindowRef, closeInfoWindow, openInfoWindow } = useMapControls();
+  const { infoWindowRef, closeInfoWindow, openInfoWindow } = useInfoWindows();
 
   // Initialize overlay management
   const { closeOverlays } = useOverlayManagement({
