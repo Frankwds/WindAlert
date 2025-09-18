@@ -5,10 +5,10 @@ import { useWeatherStationData } from '../data/useWeatherStationData';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
-  onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationMarkerData) => void;
+  onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationMarkerData) => void;
 }
 
-export const useWeatherStationMarkers = ({ mapInstance, onMarkerClick }: UseWeatherStationMarkersProps) => {
+export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick }: UseWeatherStationMarkersProps) => {
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
@@ -23,7 +23,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onMarkerClick }: UseWeat
       setMarkersError(null);
 
       const weatherStations = await loadWeatherStationData();
-      const markers = createWeatherStationMarkers(weatherStations, onMarkerClick);
+      const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
 
       setWeatherStationMarkers(markers);
     } catch (err) {
@@ -32,7 +32,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onMarkerClick }: UseWeat
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onMarkerClick, isLoadingMarkers, loadWeatherStationData]);
+  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData]);
 
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && weatherStationMarkers.length === 0) {

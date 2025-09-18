@@ -158,7 +158,6 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
     mapRef,
     mapInstance,
     isLoading,
-    error,
-    createSkywaysLayer
+    error
   };
 };

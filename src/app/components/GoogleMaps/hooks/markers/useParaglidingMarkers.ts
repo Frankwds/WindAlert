@@ -7,11 +7,11 @@ type Variant = 'main' | 'all';
 
 interface UseParaglidingMarkersProps {
   mapInstance: google.maps.Map | null;
-  onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData) => void;
+  onParaglidingMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData) => void;
   variant: Variant;
 }
 
-export const useParaglidingMarkers = ({ mapInstance, onMarkerClick, variant }: UseParaglidingMarkersProps) => {
+export const useParaglidingMarkers = ({ mapInstance, onParaglidingMarkerClick, variant }: UseParaglidingMarkersProps) => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
@@ -26,7 +26,7 @@ export const useParaglidingMarkers = ({ mapInstance, onMarkerClick, variant }: U
       setMarkersError(null);
 
       const paraglidingLocations = await loadParaglidingData();
-      const markers = createParaglidingMarkers(paraglidingLocations, onMarkerClick);
+      const markers = createParaglidingMarkers(paraglidingLocations, onParaglidingMarkerClick);
 
       setParaglidingMarkers(markers);
     } catch (err) {
@@ -35,7 +35,7 @@ export const useParaglidingMarkers = ({ mapInstance, onMarkerClick, variant }: U
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onMarkerClick, isLoadingMarkers, loadParaglidingData]);
+  }, [onParaglidingMarkerClick, isLoadingMarkers, loadParaglidingData]);
 
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && paraglidingMarkers.length === 0) {

@@ -66,10 +66,10 @@ export const getWeatherStationInfoWindow = (location: WeatherStationMarkerData) 
   return <WeatherStationInfoWindow location={location} />;
 };
 
-export const getParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
+export const getMainParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
   return <ParaglidingInfoWindow location={location} />;
 };
 
-export const getAllStartsInfoWindow = (location: ParaglidingMarkerData) => {
+export const getAllParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
   return <AllStartsInfoWindow location={location} />;
 };
