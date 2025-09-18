@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useAllMarkers } from './markers/useAllMarkers';
+import { useMarkers } from './markers/useMarkers';
 import { useMarkerFiltering } from './markers/useMarkerFiltering';
 import { useMapFilters } from './filters/useMapFilters';
 import { useInfoWindows, useOverlayManagement } from './controls';
@@ -111,9 +111,10 @@ export const useGoogleMapsAll = () => {
   }, [mapInstance, openInfoWindow, closeOverlays]);
 
   // Initialize all markers (paragliding locations and weather stations)
-  const allMarkers = useAllMarkers({
+  const allMarkers = useMarkers({
     mapInstance,
-    onMarkerClick: handleMarkerClick
+    onMarkerClick: handleMarkerClick,
+    variant: 'all'
   });
 
   // Apply filtering to all markers
@@ -150,8 +151,8 @@ export const useGoogleMapsAll = () => {
     // Map instance
     mapRef,
     mapInstance,
-    isLoading: isLoading || allMarkers.isLoading,
-    error: error || allMarkers.error,
+    isLoading: isLoading || allMarkers.isLoadingMarkers,
+    error: error || allMarkers.markersError,
 
     // Markers (filtered)
     paraglidingMarkers: filteredParaglidingMarkers,

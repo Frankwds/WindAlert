@@ -3,18 +3,21 @@ import { createAllMarkers } from '../../MarkerSetup';
 import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
 import { useDataLoading } from '../data/useDataLoading';
 
+type Variant = 'main' | 'all';
+
 interface UseMarkersProps {
   mapInstance: google.maps.Map | null;
   onMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData | WeatherStationMarkerData) => void;
+  variant: Variant;
 }
 
-export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
+export const useMarkers = ({ mapInstance, onMarkerClick, variant }: UseMarkersProps) => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
-  const { loadAllData } = useDataLoading();
+  const { loadAllData } = useDataLoading({ variant });
 
   const loadAllMarkers = useCallback(async () => {
     if (isLoadingMarkers) return; // Prevent multiple simultaneous loads

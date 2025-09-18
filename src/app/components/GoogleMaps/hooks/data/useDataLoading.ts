@@ -1,17 +1,28 @@
 import { useCallback } from 'react';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
+import { AllParaglidingLocationService } from '@/lib/supabase/allParaglidingLocations';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { dataCache } from '@/lib/data-cache';
 
-export const useDataLoading = () => {
+type Variant = 'main' | 'all';
+
+interface UseDataLoadingProps {
+  variant: Variant;
+}
+
+export const useDataLoading = ({ variant }: UseDataLoadingProps) => {
   const loadAllData = useCallback(async () => {
     try {
-      let paraglidingLocations = await dataCache.getParaglidingLocations();
+      let paraglidingLocations = variant === 'main'
+        ? await dataCache.getParaglidingLocations()
+        : await dataCache.getAllParaglidingLocations();
       let weatherStations = await dataCache.getWeatherStations();
 
       if (!paraglidingLocations || !weatherStations) {
         const [fetchedParaglidingLocations, fetchedWeatherStations] = await Promise.all([
-          ParaglidingLocationService.getAllActiveForMarkersWithForecast(),
+          variant === 'main'
+            ? ParaglidingLocationService.getAllActiveForMarkersWithForecast()
+            : AllParaglidingLocationService.getAllActiveForMarkers(),
           WeatherStationService.getAllActiveWithData()
         ]);
 
@@ -19,7 +30,9 @@ export const useDataLoading = () => {
         weatherStations = fetchedWeatherStations || [];
 
         await Promise.all([
-          dataCache.setParaglidingLocations(paraglidingLocations),
+          variant === 'main'
+            ? dataCache.setParaglidingLocations(paraglidingLocations)
+            : dataCache.setAllParaglidingLocations(paraglidingLocations),
           dataCache.setWeatherStations(weatherStations)
         ]);
       }
@@ -29,7 +42,7 @@ export const useDataLoading = () => {
       console.error('Error loading data:', err);
       throw err;
     }
-  }, []);
+  }, [variant]);
 
   return {
     loadAllData

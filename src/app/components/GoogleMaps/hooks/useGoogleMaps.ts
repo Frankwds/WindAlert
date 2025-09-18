@@ -95,7 +95,8 @@ export const useGoogleMaps = () => {
   // Initialize markers
   const markers = useMarkers({
     mapInstance,
-    onMarkerClick: handleMarkerClick
+    onMarkerClick: handleMarkerClick,
+    variant: 'main'
   });
 
   // Initialize marker filtering
