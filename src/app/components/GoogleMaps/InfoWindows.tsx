@@ -44,7 +44,6 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
       {/* Historical Data Table */}
       {location.station_data && location.station_data.length > 0 && (
         <div className="mt-4">
-          <h4 className="font-semibold text-sm mb-2 text-[var(--muted-foreground)]">Historical Data</h4>
           <StationDataTable
             stationData={location.station_data}
             timezone="Europe/Oslo"
