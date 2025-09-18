@@ -63,7 +63,7 @@ export const createWeatherStationMarker = (location: WeatherStationMarkerData, o
   const marker = new google.maps.marker.AdvancedMarkerElement({
     position: { lat: location.latitude!, lng: location.longitude! },
     title: location.name,
-    content: markerElement
+    content: markerElement,
   });
 
   markerElement.addEventListener('mouseenter', () => {

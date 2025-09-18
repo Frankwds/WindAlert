@@ -23,6 +23,12 @@
   --nav-bg: #1f2937;
   --nav-text: #f9fafb;
   
+  /* Wind Speed Colors */
+  --wind-calm: #90EE90;      /* light green - < 4 knots */
+  --wind-light: #00FF00;     /* bright green - 4-5 knots */
+  --wind-moderate: #FFA500;  /* orange - 6-9 knots */
+  --wind-strong: #FF0000;    /* red - > 9 knots */
+  
   /* Standardized Opacity Values */
   /* Use these values as reference for Tailwind opacity classes: /10, /30, /50 */
   --opacity-sm: 0.1;
