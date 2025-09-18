@@ -12,8 +12,6 @@ interface MinimalHourlyWeatherProps {
   timezone: string;
 }
 
-
-
 const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
   forecast,
   timezone,
@@ -25,7 +23,6 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
   }, [forecast]);
 
   const {
-    sortedData: sortedForecast,
     groupedByDay,
     activeDay,
     setActiveDay,
@@ -34,7 +31,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     data: filteredForecast,
     timezone,
     timeField: 'time',
-    sortOrder: 'asc', // Forecast data should be chronological
+    sortOrder: 'asc',
   });
 
   // Create visual representation of promising hours (10:00-22:00)

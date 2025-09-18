@@ -14,7 +14,6 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
   timezone,
 }) => {
   const {
-    sortedData: sortedStationData,
     groupedByDay,
     activeDay,
     setActiveDay,
@@ -28,23 +27,23 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
 
   const dataRows = [
     {
-      label: "Station ID",
-      getValue: (data: StationData) => data.station_id,
+
+      getValue: (data: StationData) => new Date(data.updated_at).toLocaleTimeString(["nb-NO"], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: timezone,
+      }),
     },
     {
-      label: "Wind Speed",
-      getValue: (data: StationData) => `${Math.round(data.wind_speed)}`,
+      getValue: (data: StationData) => data.temperature ? `${Math.round(data.temperature)}°` : 'N/A',
     },
     {
-      label: "Wind Gust",
-      getValue: (data: StationData) => `${Math.round(data.wind_gust)}`,
+      getValue: (data: StationData) => `${Math.round(data.wind_speed)} (${Math.round(data.wind_gust)})`,
     },
+
     {
-      label: "Min Speed",
-      getValue: (data: StationData) => `${Math.round(data.wind_min_speed)}`,
-    },
-    {
-      label: "Direction",
+
       getValue: (data: StationData) => (
         <WindDirectionArrow
           direction={data.direction}
@@ -54,10 +53,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
         />
       ),
     },
-    {
-      label: "Temperature",
-      getValue: (data: StationData) => data.temperature ? `${Math.round(data.temperature)}°` : 'N/A',
-    },
+
   ];
 
   return (
@@ -77,9 +73,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
           >
             <div className="flex flex-col items-center">
               <div className="mb-1">{day}</div>
-              <div className="text-xs text-[var(--muted-foreground)]">
-                {groupedByDay[day].length} readings
-              </div>
+
             </div>
           </button>
         ))}
@@ -91,32 +85,15 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
           className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200"
         >
           <table className="min-w-full text-sm text-center">
-            <thead>
-              <tr className="border-b border-[var(--border)]">
-                {groupedByDay[activeDay].map((data, colIndex) => (
-                  <th key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)] text-[var(--foreground)]">
-                    {new Date(data.updated_at).toLocaleTimeString(["nb-NO"], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false,
-                      timeZone: timezone,
-                    })}
-                  </th>
-                ))}
-              </tr>
-            </thead>
             <tbody>
               {dataRows.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
                   className={`border-b border-[var(--border)] last:border-b-0`}
                 >
-                  <td className="px-2 py-1 whitespace-nowrap bg-[var(--background)] text-left text-[var(--muted-foreground)] font-medium">
-                    {row.label}
-                  </td>
                   {groupedByDay[activeDay].map((data, colIndex) => (
                     <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
-                      <div className="w-12 flex items-center justify-center mx-auto">
+                      <div className={`w-12 flex items-center justify-center mx-auto ${rowIndex === 0 ? 'font-bold' : ''}`}>
                         {row.getValue(data)}
                       </div>
                     </td>
