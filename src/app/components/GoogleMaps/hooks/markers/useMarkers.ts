@@ -11,7 +11,6 @@ interface UseMarkersProps {
 export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
-  const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
@@ -51,8 +50,6 @@ export const useMarkers = ({ mapInstance, onMarkerClick }: UseMarkersProps) => {
   return {
     paraglidingMarkers,
     weatherStationMarkers,
-    userLocationMarker,
-    setUserLocationMarker,
     loadAllMarkers,
     isLoadingMarkers,
     markersError

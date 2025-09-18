@@ -140,8 +140,6 @@ export const useGoogleMaps = () => {
     // Markers
     paraglidingMarkers: markers.paraglidingMarkers,
     weatherStationMarkers: markers.weatherStationMarkers,
-    userLocationMarker: markers.userLocationMarker,
-    setUserLocationMarker: markers.setUserLocationMarker,
 
     // Filtered markers
     filteredParaglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
