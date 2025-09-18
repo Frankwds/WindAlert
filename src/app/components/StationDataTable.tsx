@@ -14,9 +14,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
   timezone,
 }) => {
 
-  const [sortedStationData, setSortedStationData] = useState<StationData[]>(stationData);
-
-  const getFirstDay = (data: StationData[]) => {
+  const getFirstDayFromSorted = (data: StationData[]) => {
     if (data && data.length > 0) {
       const firstDay = new Date(data[0].updated_at).toLocaleDateString([], {
         weekday: 'short',
@@ -27,8 +25,9 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
     return null;
   }
 
-  const [activeDay, setActiveDay] = useState<string | null>(getFirstDay(sortedStationData));
+  const [activeDay, setActiveDay] = useState<string | null>(getFirstDayFromSorted(stationData));
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [sortedStationData, setSortedStationData] = useState<StationData[]>(stationData);
 
 
   // Sort data by updated_at in descending order (most recent first)
@@ -37,12 +36,12 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
       new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
     );
     setSortedStationData(sorted);
-    setActiveDay(getFirstDay(sorted));
+    setActiveDay(getFirstDayFromSorted(sorted));
   }, [stationData]);
 
   // Scroll to center when active day changes
   useEffect(() => {
-    if (activeDay && scrollContainerRef.current && activeDay !== getFirstDay(sortedStationData)) {
+    if (activeDay && scrollContainerRef.current && activeDay !== getFirstDayFromSorted(sortedStationData)) {
       const container = scrollContainerRef.current;
       const table = container.querySelector('table');
       if (table) {
@@ -51,14 +50,14 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
       }
       return
     }
-    if (activeDay && scrollContainerRef.current && activeDay === getFirstDay(sortedStationData)) {
+    if (activeDay && scrollContainerRef.current && activeDay === getFirstDayFromSorted(sortedStationData)) {
       const container = scrollContainerRef.current;
       const table = container.querySelector('table');
       if (table) {
         container.scrollLeft = 0;
       }
     }
-  }, [activeDay, getFirstDay]);
+  }, [activeDay, getFirstDayFromSorted]);
 
   const groupedByDay = sortedStationData.reduce((acc, data) => {
     const day = new Date(data.updated_at).toLocaleDateString([], {
