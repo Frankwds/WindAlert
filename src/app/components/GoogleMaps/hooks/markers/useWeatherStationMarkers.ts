@@ -58,7 +58,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     }
   }, [mapInstance, isLoadingMarkers, weatherStationMarkers.length, loadMarkers]);
 
-  // Set up 5-minute live updates
+  // Set up 15-minute live updates
   useEffect(() => {
     if (mapInstance && weatherStationMarkers.length > 0) {
       intervalRef.current = setInterval(() => {
@@ -66,7 +66,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
           return;
         }
         updateMarkersWithLatestData();
-      }, 8 * 60 * 1000); // 8 minutes
+      }, 15 * 60 * 1000); // 15 minutes
 
       // Cleanup interval on unmount or when dependencies change
       return () => {
