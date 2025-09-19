@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-
-type Theme = "light" | "dark";
+import { getTheme, setTheme, type Theme } from "../../lib/localstorage/themeStorage";
 
 interface ThemeContextType {
   theme: Theme;
@@ -12,27 +11,27 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
     // Check localStorage first, then system preference
-    const savedTheme = localStorage.getItem("windlord_theme") as Theme;
+    const savedTheme = getTheme();
     if (savedTheme) {
-      setTheme(savedTheme);
+      setThemeState(savedTheme);
     } else {
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      setTheme(systemTheme);
+      setThemeState(systemTheme);
     }
   }, []);
 
   useEffect(() => {
     // Update document attribute and localStorage when theme changes
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("windlord_theme", theme);
+    setTheme(theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === "light" ? "dark" : "light");
+    setThemeState(prev => prev === "light" ? "dark" : "light");
   };
 
   return (

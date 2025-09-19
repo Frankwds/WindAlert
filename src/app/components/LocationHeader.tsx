@@ -6,6 +6,7 @@ import WindCompass from './windCompass';
 import { MapIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import FavouriteHeart from './FavouriteHeart';
 import ExternalLinkIcon from './ExternalLinkIcon';
+import { getMapState, updateMapState } from '../../lib/localstorage/mapStorage';
 
 interface LocationHeaderProps {
   name: string;
@@ -22,26 +23,10 @@ export default function LocationHeader({ name, description, windDirections, loca
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMapLinkClick = () => {
-    // Get existing map state to preserve filters and other settings
-    const existingState = localStorage.getItem('windlordMapState');
-    let mapState = {};
-
-    if (existingState) {
-      try {
-        mapState = JSON.parse(existingState);
-      } catch (e) {
-        console.error('Could not parse existing map state', e);
-      }
-    }
-
-    // Update only center and zoom, preserve everything else
-    const updatedState = {
-      ...mapState,
+    updateMapState({
       center: { lat: latitude, lng: longitude },
-      zoom: 12 // Set a reasonable zoom level for location view
-    };
-
-    localStorage.setItem('windlordMapState', JSON.stringify(updatedState));
+      zoom: 12
+    });
   };
 
   return (

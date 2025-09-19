@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
+import { getFullscreenState, setFullscreenState } from '../localstorage/mapStorage';
 
 export const useFullscreen = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    const savedFullscreen = localStorage.getItem('windlord-fullscreen');
-    if (savedFullscreen !== null) {
-      setIsFullscreen(JSON.parse(savedFullscreen));
-    }
+    setIsFullscreen(getFullscreenState());
   }, []);
 
   const toggleFullscreen = () => {
     setIsFullscreen(prev => {
       const newFullscreen = !prev;
-      localStorage.setItem('windlord-fullscreen', JSON.stringify(newFullscreen));
+      setFullscreenState(newFullscreen);
       return newFullscreen;
     });
   };

@@ -13,7 +13,7 @@ const links = [
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
   { href: '/contact', label: 'Kontakt' },
-  { href: 'https://luftrom.info/viewer#5/64.940/16.743/', label: 'Luftrom.info', description: " - Sjekk før du flyr!!", external: true },
+  { href: 'https://luftrom.info/viewer', label: 'Luftrom.info', description: " - Sjekk før du flyr!!", external: true },
   { href: 'https://thermal.kk7.ch/', label: 'Thermal.kk7', description: " - Takk for skyways<3", external: true },
 ];
 

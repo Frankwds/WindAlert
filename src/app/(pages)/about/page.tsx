@@ -81,7 +81,7 @@ export default function AboutPage() {
             <li>Se bare starter med lovende vær ifølge Yr.no</li>
             <li>Se bare starter med valgt vindretning</li>
 
-            <li>Bruke "Skyways" fra thermal.kk7 for å se hvor folk har flydd før.</li>
+            <li>Bruke Skyways fra thermal.kk7 for å se hvor folk har flydd før.</li>
           </ul>
           <br />
           <p className="text-base sm:text-lg">
