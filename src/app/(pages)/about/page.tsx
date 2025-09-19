@@ -58,15 +58,36 @@ export default function AboutPage() {
             <br /><br />
             Værmeldinger hentes løpende, den eldste værmeldingen i bruk nå, ble oppdatert {lastUpdatedDate}.
             <br />
-            Værmeldingen på hver enkelt side hentes på nytt hver gang du besøker siden.
+            Værmeldingen på siden til hver enkelt start hentes på nytt hver gang du besøker den.
             <br /><br />
-            Yr brukes så lenge de har time-for-time data tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF, som jeg mener skal være den beste..
+            Yr brukes så lenge de har time-for-time data tilgjengelig. Den settes da sammen med atmosfærisk værdata fra ECMWF.
             <br />
             Deretter brukes kun ECMWF for de resterende timene WindLord viser.
+            <br /><br />
+            Værstasjonene oppdateres live straks ny data kommer inn, uten at du trenger å laste siden på nytt.
           </p>
         </section>
 
+        <section className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
+            📍 Hvor skal jeg fly?
+          </h2>
+          <p className="text-base sm:text-lg">
+            Gwaihir gjør det enklere å finne nye steder å fly, spesielt hvis du er i et område du ikke kjenner så godt til.
+          </p>
+          <br />
+          <h4 className="text-xl font-bold mb-2 ">I hovedstarter kan du:</h4>
+          <ul className="list-disc list-outside space-y-2 text-base sm:text-lg ml-4 pl-2">
+            <li>Se bare starter med lovende vær ifølge Yr.no</li>
+            <li>Se bare starter med valgt vindretning</li>
 
+            <li>Bruke "Skyways" fra thermal.kk7 for å se hvor folk har flydd før.</li>
+          </ul>
+          <br />
+          <p className="text-base sm:text-lg">
+            Alle starter er en egen side i menyen, du kan ikke skjule starter som ikke har lovende vær, men alt annet er tilgjengelig.
+          </p>
+        </section>
 
         <section className="mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold border-b-2 border-[var(--border)] pb-2 mb-4">
