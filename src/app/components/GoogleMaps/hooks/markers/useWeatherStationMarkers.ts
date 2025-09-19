@@ -14,29 +14,33 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const { loadWeatherStationData, loadLatestWeatherStationData } = useWeatherStationData();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const isTabVisibleRef = usePageVisibility();
+  const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
+    console.log('Loading weather station markers');
     if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
-
     try {
+
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
-      const weatherStations = await loadWeatherStationData();
-      const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
-
-      setWeatherStationMarkers(markers);
+      const { weatherStations, isUpdated } = await loadWeatherStationData();
+      if (isUpdated || isFirstLoad) {
+        const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
+        setWeatherStationMarkers(markers);
+        setIsFirstLoad(false);
+      }
     } catch (err) {
       console.error('Error loading weather station markers:', err);
       setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData]);
+  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData, isFirstLoad]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
     try {
@@ -51,13 +55,19 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     }
   }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
-
-
+  // Load markers on page load
   useEffect(() => {
     if (mapInstance && !isLoadingMarkers && weatherStationMarkers.length === 0) {
       loadMarkers();
     }
   }, [mapInstance, isLoadingMarkers, weatherStationMarkers.length, loadMarkers]);
+
+  // Load markers on page visibility change
+  useEffect(() => {
+    if (isVisibleState && !isFirstLoad) {
+      loadMarkers();
+    }
+  }, [isVisibleState]);
 
   // Set up 15-minute live updates starting at the next 15-minute mark
   useEffect(() => {
@@ -75,7 +85,8 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
 
         // Now start the regular 15-minute interval
         intervalRef.current = setInterval(() => {
-          if (!isTabVisibleRef.current) {
+          // skip if tab is not in use
+          if (!isVisibleRef.current) {
             return;
           }
           updateMarkersWithLatestData();
@@ -90,11 +101,10 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
         }
       };
     }
-  }, [mapInstance, weatherStationMarkers.length, updateMarkersWithLatestData, isTabVisibleRef]);
+  }, [mapInstance, weatherStationMarkers.length, updateMarkersWithLatestData, isVisibleRef]);
 
   return {
     weatherStationMarkers,
-    loadMarkers,
     isLoadingMarkers,
     markersError
   };

@@ -5,14 +5,17 @@ import { dataCache, WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 
 export const useWeatherStationData = () => {
   const loadWeatherStationData = useCallback(async () => {
+    let isUpdated = false;
     try {
       let weatherStations = await dataCache.getWeatherStations();
 
       if (!weatherStations) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
-        weatherStations = weatherStations || [];
+        weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);
-        return weatherStations;
+
+        isUpdated = true;
+        return { weatherStations, isUpdated };
       }
 
       const sortedStationData = weatherStations[0].station_data
@@ -23,12 +26,14 @@ export const useWeatherStationData = () => {
       // if latestCacheTimestamp is older than UPDATE_INTERVAL, reload the data
       if (new Date(latestCacheTimestamp).getTime() < Date.now() - WEATHER_STATIONS_UPDATE_INTERVAL) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
-        weatherStations = weatherStations || [];
+        weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);
-        return weatherStations;
+
+        isUpdated = true;
+        return { weatherStations, isUpdated };
       }
 
-      return weatherStations;
+      return { weatherStations, isUpdated };
     } catch (err) {
       console.error('Error loading weather station data:', err);
       throw err;
