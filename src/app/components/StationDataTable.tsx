@@ -39,7 +39,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
         })
         return (
           <div className="flex flex-col items-center">
-            <div className="text-xs text-[var(--muted)]">{time}</div>
+            <div className="text-xs ">{time}</div>
           </div>
         )
       }
@@ -48,7 +48,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
     {
       getValue: (data: StationData) => {
         const windColor = getWindSpeedColor(data.wind_speed);
-        const gustColor = getWindSpeedColor(data.wind_gust);
+        const gustColor = getWindSpeedColor(data.wind_gust > 1 ? data.wind_gust - 1 : data.wind_gust);
         return (
           <div className="relative rounded">
             <div className="flex flex-col items-center">
@@ -95,7 +95,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
             <div
               className="absolute inset-0 rounded"
               style={{
-                backgroundColor: temperature < 0 ? 'blue' : 'orange',
+                backgroundColor: temperature < 0 ? 'blue' : 'yellow',
                 opacity: opacity
               }}
             />
