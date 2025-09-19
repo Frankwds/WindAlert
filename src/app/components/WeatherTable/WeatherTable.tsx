@@ -31,7 +31,11 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
     }
   };
 
-  if (!groupedByDay || groupedByDay[Object.keys(groupedByDay)[0]].length === 0) {
+  const hasValidData = groupedByDay &&
+    Object.keys(groupedByDay).length > 0 &&
+    Object.values(groupedByDay).some(forecasts => forecasts && forecasts.length > 0);
+
+  if (!hasValidData) {
     return (
       <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
         <div className="text-center py-8">

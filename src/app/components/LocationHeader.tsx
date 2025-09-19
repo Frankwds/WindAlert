@@ -71,7 +71,7 @@ export default function LocationHeader({ name, description, windDirections, loca
             }`}
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        {description.length > 400 && (
+        {description.length > 800 && (
           <div className={`cursor-pointer relative ${isExpanded ? 'hidden' : 'block'}`} onClick={() => setIsExpanded(true)}>
             <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--background)] to-transparent" />
             <button
