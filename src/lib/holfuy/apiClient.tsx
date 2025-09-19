@@ -22,7 +22,7 @@ export async function fetchHolfuyData(): Promise<Omit<StationData, 'id'>[]> {
   }
   const fixieAuth = fixieUrl.auth.split(':');
 
-  const response = await axios.get(`https://api.holfuy.com/live/?s=all&pw=${apiKey}&m=JSON&tu=C&su=m/s`, {
+  const response = await axios.get(`https://api.holfuy.com/live/?s=all&pw=${apiKey}&m=JSON&tu=C&su=m/s&avg=1`, {
     proxy: {
       protocol: 'http',
       host: fixieUrl.hostname,

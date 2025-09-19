@@ -2,14 +2,14 @@ import { HolfuyStationData } from './types';
 import { StationData } from '../supabase/types';
 
 /**
- * Rounds a datetime string to the nearest quarter hour (00, :15, :30, :45)
+ * Rounds a datetime string to the nearest 5 minutes
  */
-function roundToQuarterHour(dateTimeString: string): string {
+function roundTo5Minutes(dateTimeString: string): string {
   const date = new Date(dateTimeString);
   const minutes = date.getMinutes();
 
-  // Round to nearest quarter hour
-  const roundedMinutes = Math.round(minutes / 15) * 15;
+  // Round to nearest 5 minutes
+  const roundedMinutes = Math.round(minutes / 5) * 5;
 
   // Handle hour overflow when rounding up
   if (roundedMinutes === 60) {
@@ -40,6 +40,6 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): Omit<St
     wind_min_speed: station.wind.min,
     direction: station.wind.direction,
     temperature: station.temperature,
-    updated_at: roundToQuarterHour(station.dateTime),
+    updated_at: roundTo5Minutes(station.dateTime),
   }));
 }
