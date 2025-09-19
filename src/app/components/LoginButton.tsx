@@ -1,43 +1,48 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useCallback, useMemo } from "react";
-import { upsertUser } from "@/lib/supabase/users";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function LoginButton() {
-  const { data: session, status } = useSession();
+  const { user, loading, signInWithGoogle, signOut } = useAuth();
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Memoize user data to prevent unnecessary re-renders
-  const userData = useMemo(() => {
-    if (!session?.user?.email || !session.user.id) return null;
-    return {
-      email: session.user.email,
-      name: session.user.name,
-      image_url: session.user.image ?? undefined,
-      google_id: session.user.id
-    };
-  }, [session?.user?.email, session?.user?.id, session?.user?.name, session?.user?.image]);
+  const handleSignIn = async () => {
+    setIsSigningIn(true);
+    setError(null);
 
-  // Optimized user sync with useCallback
-  const handleUserSync = useCallback(async () => {
-    if (userData) {
-      try {
-        await upsertUser(userData);
-      } catch (error) {
-        console.error('Failed to sync user:', error);
+    try {
+      const { error } = await signInWithGoogle();
+      if (error) {
+        setError(error.message);
       }
+    } catch (err) {
+      setError('En uventet feil oppstod ved innlogging');
+    } finally {
+      setIsSigningIn(false);
     }
-  }, [userData]);
+  };
 
-  // Only sync when user data changes and component mounts
-  useMemo(() => {
-    if (userData) {
-      handleUserSync();
+  const handleSignOut = async () => {
+    setIsSigningOut(true);
+    setError(null);
+
+    try {
+      const { error } = await signOut();
+      if (error) {
+        setError(error.message);
+      }
+    } catch (err) {
+      setError('En uventet feil oppstod ved utlogging');
+    } finally {
+      setIsSigningOut(false);
     }
-  }, [userData, handleUserSync]);
+  };
 
   // Loading state
-  if (status === "loading") {
+  if (loading) {
     return (
       <div className="flex items-center justify-center">
         <div className="animate-pulse bg-[var(--nav-text)]/10 rounded px-4 py-2 w-full">
@@ -47,20 +52,41 @@ export default function LoginButton() {
     );
   }
 
+  // Error state
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-2">
+        <div className="text-red-500 text-xs text-center px-2">{error}</div>
+        <button
+          onClick={() => setError(null)}
+          className="text-xs text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]/70"
+        >
+          Prøv igjen
+        </button>
+      </div>
+    );
+  }
+
   // Signed in state
-  if (session) {
+  if (user) {
+    const displayName = user.user_metadata?.full_name || user.user_metadata?.name || user.email || 'User';
+    const initials = displayName.charAt(0).toUpperCase();
+
     return (
       <div className="flex items-center justify-center">
         <button
           aria-label="Logg ut"
-          onClick={() => signOut()}
-          className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none"
+          onClick={handleSignOut}
+          disabled={isSigningOut}
+          className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none disabled:opacity-50"
         >
           <div className="flex items-center justify-center bg-[var(--accent)] text-white font-bold rounded-full w-6 h-6 text-xs">
-            {session.user?.name?.charAt(0)?.toUpperCase() || 'U'}
+            {initials}
           </div>
-          <span className="flex-1 text-left">{session.user?.name || session.user?.email || 'User'}</span>
-          <span className="text-xs opacity-60">Logg ut</span>
+          <span className="flex-1 text-left">{displayName}</span>
+          <span className="text-xs opacity-60">
+            {isSigningOut ? 'Logger ut...' : 'Logg ut'}
+          </span>
         </button>
       </div>
     );
@@ -71,8 +97,9 @@ export default function LoginButton() {
     <div className="flex items-center justify-center">
       <button
         aria-label="Logg inn med Google"
-        onClick={() => signIn("google")}
-        className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none"
+        onClick={handleSignIn}
+        disabled={isSigningIn}
+        className="group flex items-center gap-3 w-full px-4 py-2 text-sm transition-all duration-200 text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none disabled:opacity-50"
       >
         <div className="flex items-center justify-center bg-white w-6 h-6 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4">
@@ -94,7 +121,9 @@ export default function LoginButton() {
             />
           </svg>
         </div>
-        <span className="flex-1 text-left">Logg inn med Google</span>
+        <span className="flex-1 text-left">
+          {isSigningIn ? 'Logger inn...' : 'Logg inn med Google'}
+        </span>
       </button>
     </div>
   );

@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
 import LocationCard from "@/app/components/LocationCards";
 
 export default function FavouritesPage() {
-  const { data: session, status } = useSession();
+  const { user, loading: authLoading } = useAuth();
   const [
     locations,
     setLocations,
@@ -15,24 +15,29 @@ export default function FavouritesPage() {
     []
   );
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (status === "authenticated" && session?.user?.id) {
-      FavouriteLocationService.getAllForUserWithForecast(session.user.id)
+    if (user?.id) {
+      setLoading(true);
+      setError(null);
+
+      FavouriteLocationService.getAllForUserWithForecast(user.id)
         .then((favs) => {
           setLocations(favs);
           setLoading(false);
         })
-        .catch((error) => {
-          console.error("Failed to fetch favourites:", error);
+        .catch((err) => {
+          console.error("Failed to fetch favourites:", err);
+          setError("Kunne ikke laste favoritter");
           setLoading(false);
         });
-    } else if (status === "unauthenticated") {
+    } else if (!authLoading) {
       setLoading(false);
     }
-  }, [session, status]);
+  }, [user, authLoading]);
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <main className="flex min-h-screen flex-col items-center p-8">
         <div className="z-10 w-full max-w-5xl">
@@ -43,12 +48,44 @@ export default function FavouritesPage() {
     );
   }
 
-  if (status === "unauthenticated") {
+  if (!user) {
     return (
       <main className="flex min-h-screen flex-col items-center p-8">
         <div className="z-10 w-full max-w-5xl">
           <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
           <p>Vennligst logg inn for å se dine favorittsteder.</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="flex min-h-screen flex-col items-center p-8">
+        <div className="z-10 w-full max-w-5xl">
+          <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
+          <div className="text-center">
+            <p className="text-red-500 mb-4">{error}</p>
+            <button
+              onClick={() => {
+                setError(null);
+                setLoading(true);
+                FavouriteLocationService.getAllForUserWithForecast(user.id)
+                  .then((favs) => {
+                    setLocations(favs);
+                    setLoading(false);
+                  })
+                  .catch((err) => {
+                    console.error("Failed to fetch favourites:", err);
+                    setError("Kunne ikke laste favoritter");
+                    setLoading(false);
+                  });
+              }}
+              className="px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent)]/90"
+            >
+              Prøv igjen
+            </button>
+          </div>
         </div>
       </main>
     );

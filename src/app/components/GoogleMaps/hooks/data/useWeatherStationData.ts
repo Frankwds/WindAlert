@@ -24,7 +24,7 @@ export const useWeatherStationData = () => {
       const latestCacheTimestamp = sortedStationData[0].updated_at;
 
       // if latestCacheTimestamp is older than UPDATE_INTERVAL, reload the data
-      if (new Date(latestCacheTimestamp).getTime() < Date.now() - WEATHER_STATIONS_UPDATE_INTERVAL) {
+      if (new Date(latestCacheTimestamp).getTime() < Date.now() - (WEATHER_STATIONS_UPDATE_INTERVAL - 2 * 60 * 1000)) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
         weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);

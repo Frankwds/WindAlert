@@ -2,9 +2,9 @@ import React from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
-import Provider from "./components/Provider";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import ConditionalMain from "./components/ConditionalMain";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,11 +42,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[var(--background)] text-[var(--foreground)]`}
       >
-        <Provider>
+        <AuthProvider>
           <ThemeProvider>
             <ConditionalMain>{children}</ConditionalMain>
           </ThemeProvider>
-        </Provider>
+        </AuthProvider>
       </body>
     </html>
   );

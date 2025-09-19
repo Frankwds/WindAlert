@@ -10,14 +10,14 @@ export class FavouriteLocationService {
    * Get all favourite locations for a user
    */
   static async getAllForUser(
-    googleId: string
+    userId: string
   ): Promise<ParaglidingLocation[]> {
     const { data, error } = await supabase
       .from("favourite_locations")
       .select(`
       paragliding_locations!inner(*)
     `)
-      .eq("google_id", googleId);
+      .eq("user_id", userId);
 
     if (error) {
       console.error("Error fetching favourite locations:", error);
@@ -29,13 +29,13 @@ export class FavouriteLocationService {
   }
 
   static async getAllForUserWithForecast(
-    googleId: string
+    userId: string
   ): Promise<(ParaglidingLocation & { forecast_cache: MinimalForecast[] })[]> {
     // Step 1: Get all favourite locations for the user
     const { data: favData, error: favError } = await supabase
       .from("favourite_locations")
       .select("paragliding_locations!inner(*)")
-      .eq("google_id", googleId);
+      .eq("user_id", userId);
 
     if (favError) {
       console.error("Error fetching favourite locations:", favError);
@@ -87,13 +87,13 @@ export class FavouriteLocationService {
    * Check if a location is a favourite for a user
    */
   static async isFavourite(
-    googleId: string,
+    userId: string,
     locationId: string
   ): Promise<boolean> {
     const { data, error } = await supabase
       .from("favourite_locations")
       .select("id")
-      .eq("google_id", googleId)
+      .eq("user_id", userId)
       .eq("location_id", locationId)
       .single();
 
@@ -110,12 +110,12 @@ export class FavouriteLocationService {
    * Add a location to a user's favourites
    */
   static async add(
-    googleId: string,
+    userId: string,
     locationId: string
   ): Promise<FavouriteLocation> {
     const { data, error } = await supabase
       .from("favourite_locations")
-      .insert({ google_id: googleId, location_id: locationId })
+      .insert({ user_id: userId, location_id: locationId })
       .select()
       .single();
 
@@ -130,11 +130,11 @@ export class FavouriteLocationService {
   /**
    * Remove a location from a user's favourites
    */
-  static async remove(googleId: string, locationId: string): Promise<void> {
+  static async remove(userId: string, locationId: string): Promise<void> {
     const { error } = await supabase
       .from("favourite_locations")
       .delete()
-      .eq("google_id", googleId)
+      .eq("user_id", userId)
       .eq("location_id", locationId);
 
     if (error) {

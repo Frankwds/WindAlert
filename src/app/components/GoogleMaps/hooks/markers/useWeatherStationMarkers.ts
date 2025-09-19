@@ -21,7 +21,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
-    console.log('Loading weather station markers');
     if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
     try {
 
