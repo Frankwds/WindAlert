@@ -64,6 +64,7 @@ export const createWeatherStationMarker = (location: WeatherStationMarkerData, o
     title: location.name,
     content: markerElement,
   });
+  marker.zIndex = 2000;
 
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';

@@ -17,7 +17,7 @@ export class WeatherStationClusterRenderer implements Renderer {
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,
       content: markerElement,
-      zIndex: 1000 + cluster.count,
+      zIndex: 2000 + cluster.count,
     });
 
     return marker;
