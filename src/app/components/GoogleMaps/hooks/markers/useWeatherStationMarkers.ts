@@ -66,7 +66,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
           return;
         }
         updateMarkersWithLatestData();
-      }, 8 * 1 * 1000); // 8 minutes
+      }, 8 * 60 * 1000); // 8 minutes
 
       // Cleanup interval on unmount or when dependencies change
       return () => {

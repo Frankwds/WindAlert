@@ -3,6 +3,7 @@
 import { StationData } from "@/lib/supabase/types";
 import WindDirectionArrow from "./WindDirectionArrow";
 import { useDataGrouping } from "@/lib/hooks/useDataGrouping";
+import { getWindSpeedColor, getTemperatureOpacity } from "@/lib/utils/getValueColors";
 
 interface StationDataTableProps {
   stationData: StationData[];
@@ -29,18 +30,47 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
   const dataRows = [
     {
 
-      getValue: (data: StationData) => new Date(data.updated_at).toLocaleTimeString(["nb-NO"], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-        timeZone: timezone,
-      }),
+      getValue: (data: StationData) => {
+        const time = new Date(data.updated_at).toLocaleTimeString(["nb-NO"], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+          timeZone: timezone,
+        })
+        return (
+          <div className="flex flex-col items-center">
+            <div className="text-xs text-[var(--muted)]">{time}</div>
+          </div>
+        )
+      }
     },
+
     {
-      getValue: (data: StationData) => data.temperature ? `${Math.round(data.temperature)}°` : 'N/A',
-    },
-    {
-      getValue: (data: StationData) => `${Math.round(data.wind_speed)} (${Math.round(data.wind_gust)})`,
+      getValue: (data: StationData) => {
+        const windColor = getWindSpeedColor(data.wind_speed);
+        const gustColor = getWindSpeedColor(data.wind_gust);
+        return (
+          <div className="relative rounded">
+            <div className="flex flex-col items-center">
+              <div className="relative rounded  w-11 flex items-center justify-center">
+                <div
+                  className="absolute inset-0 rounded-t opacity-70"
+                  style={{ backgroundColor: windColor }}
+                />
+                <span className="relative font-medium">{data.wind_speed}</span>
+              </div>
+              <hr />
+              <div className="relative rounded w-11 flex items-center justify-center">
+                <div
+                  className="absolute inset-0 rounded-b opacity-70"
+                  style={{ backgroundColor: gustColor }}
+                />
+                <span className="relative font-semibold text-xs">({data.wind_gust})</span>
+              </div>
+            </div>
+          </div>
+        );
+      },
     },
 
     {
@@ -54,7 +84,28 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
         />
       ),
     },
+    {
+      getValue: (data: StationData) => {
+        if (!data.temperature) return null;
+        const temperature = Math.round(data.temperature);
+        const opacity = temperature ? getTemperatureOpacity(temperature) : 0;
 
+        return (
+          <div className="relative rounded w-11 flex items-center justify-center">
+            <div
+              className="absolute inset-0 rounded"
+              style={{
+                backgroundColor: temperature < 0 ? 'blue' : 'orange',
+                opacity: opacity
+              }}
+            />
+            <span className="relative font-medium">
+              {`${temperature}°`}
+            </span>
+          </div>
+        );
+      },
+    },
   ];
 
   return (
@@ -93,8 +144,8 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
                   className={`border-b border-[var(--border)] last:border-b-0`}
                 >
                   {groupedByDay[activeDay].map((data, colIndex) => (
-                    <td key={colIndex} className="px-1 py-1 whitespace-nowrap bg-[var(--background)]">
-                      <div className={`w-12 flex items-center justify-center mx-auto ${rowIndex === 0 ? 'font-bold' : ''}`}>
+                    <td key={colIndex} className=" py-1 whitespace-nowrap bg-[var(--background)]">
+                      <div className={`flex pl-1 items-center justify-center  ${rowIndex === 0 ? 'font-bold' : ''}`}>
                         {row.getValue(data)}
                       </div>
                     </td>
