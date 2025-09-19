@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { StationDataService } from '@/lib/supabase/stationData';
-import { dataCache } from '@/lib/data-cache';
+import { dataCache, WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 
 export const useWeatherStationData = () => {
   const loadWeatherStationData = useCallback(async () => {
@@ -12,6 +12,20 @@ export const useWeatherStationData = () => {
         weatherStations = await WeatherStationService.getAllActiveWithData();
         weatherStations = weatherStations || [];
         await dataCache.setWeatherStations(weatherStations);
+        return weatherStations;
+      }
+
+      const sortedStationData = weatherStations[0].station_data
+        .filter(data => data.wind_speed !== null && data.direction !== null)
+        .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+      const latestCacheTimestamp = sortedStationData[0].updated_at;
+
+      // if latestCacheTimestamp is older than UPDATE_INTERVAL, reload the data
+      if (new Date(latestCacheTimestamp).getTime() < Date.now() - WEATHER_STATIONS_UPDATE_INTERVAL) {
+        weatherStations = await WeatherStationService.getAllActiveWithData();
+        weatherStations = weatherStations || [];
+        await dataCache.setWeatherStations(weatherStations);
+        return weatherStations;
       }
 
       return weatherStations;
@@ -33,9 +47,6 @@ export const useWeatherStationData = () => {
         .filter(data => data.wind_speed !== null && data.direction !== null)
         .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
       const latestCacheTimestamp = sortedStationData[0].updated_at;
-      if (!latestCacheTimestamp) {
-        return null;
-      }
 
       const latestData = await StationDataService.getLatestStationDataForAllNewerThan(latestCacheTimestamp);
 

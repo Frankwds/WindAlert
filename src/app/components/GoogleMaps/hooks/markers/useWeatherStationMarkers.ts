@@ -3,6 +3,7 @@ import { createWeatherStationMarkers } from '../../MarkerSetup';
 import { WeatherStationMarkerData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
+import { WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
@@ -78,7 +79,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
             return;
           }
           updateMarkersWithLatestData();
-        }, 15 * 60 * 1000);
+        }, WEATHER_STATIONS_UPDATE_INTERVAL);
       }, delay);
 
       // Cleanup timeout and interval on unmount or when dependencies change

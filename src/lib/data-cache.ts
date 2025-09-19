@@ -7,7 +7,7 @@ interface Cache<T> {
 
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
 const CACHE_DURATION_ALL_PARAGLIDING = 14 * 24 * 60 * 60 * 1000; // 14 days
-const CACHE_DURATION_WEATHER_STATIONS = 15 * 60 * 1000; // 15 minutes
+export const WEATHER_STATIONS_UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
