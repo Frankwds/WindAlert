@@ -3,17 +3,12 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
-import { MinimalForecast, ParaglidingLocation } from "@/lib/supabase/types";
+import { ParaglidingMarkerData } from "@/lib/supabase/types";
 import LocationCard from "@/app/components/LocationCards";
 
 export default function FavouritesPage() {
   const { user, loading: authLoading } = useAuth();
-  const [
-    locations,
-    setLocations,
-  ] = useState<(ParaglidingLocation & { forecast_cache: MinimalForecast[] })[]>(
-    []
-  );
+  const [locations, setLocations] = useState<ParaglidingMarkerData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

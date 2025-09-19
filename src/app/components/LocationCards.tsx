@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ParaglidingLocation, ParaglidingMarkerData } from '@/lib/supabase/types';
+import { ParaglidingMarkerData } from '@/lib/supabase/types';
 import MinimalHourlyWeather from './GoogleMaps/MinimalHourlyWeather';
 import TinyWindCompass from './GoogleMaps/TinyWindCompass';
 import ExternalLinkIcon from './ExternalLinkIcon';
@@ -11,7 +11,7 @@ import { DocumentTextIcon, SunIcon, ArrowPathIcon } from '@heroicons/react/24/ou
 import { CloudIcon } from '@heroicons/react/24/solid';
 
 interface LocationCardProps {
-  location: (ParaglidingLocation | ParaglidingMarkerData) & { forecast_cache?: any[] };
+  location: ParaglidingMarkerData;
   timezone?: string;
 }
 
