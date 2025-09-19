@@ -1,7 +1,7 @@
 import { Cluster, Renderer } from "@googlemaps/markerclusterer";
 import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement } from "../Markers";
 import { ParaglidingMarkerData } from "@/lib/supabase/types";
-import { getMeanValues } from "./util";
+import { getDominantWind } from "./util";
 
 export class WeatherStationClusterRenderer implements Renderer {
   public render(cluster: Cluster) {
@@ -9,7 +9,7 @@ export class WeatherStationClusterRenderer implements Renderer {
     const markers = cluster.markers;
 
     // Calculate mean wind data from clustered markers
-    const { windSpeed, windDirection } = getMeanValues(markers);
+    const { windSpeed, windDirection } = getDominantWind(markers);
 
     // Create cluster element with mean wind data (no text, just arrow)
     const markerElement = createWeatherStationClusterElement(windSpeed, windDirection);
