@@ -23,7 +23,7 @@ const getParaglidingClustererOptions = (variant: 'main' | 'all') => ({
 } as const);
 
 const getWeatherStationClustererOptions = () => ({
-  radius: 40,
+  radius: 35,
   maxZoom: 15,
   minPoints: 2
 } as const);

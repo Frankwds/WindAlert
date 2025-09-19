@@ -106,10 +106,11 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
   // Clean wind arrow based on the provided SVG
   // Scaled and centered for 24x24 viewBox
   const windArrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  windArrow.setAttribute('d', 'M12 2 L2 22 L10 18 L14 18 L22 22 L12 2 Z');
+  windArrow.setAttribute('d', 'M12 2 L4 20 L11 16 L13 16 L20 20 L12 2 Z');
   windArrow.setAttribute('fill', color);
   windArrow.setAttribute('stroke', 'black');
-  windArrow.setAttribute('stroke-width', '0.5');
+  windArrow.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
+  windArrow.setAttribute('stroke-linecap', 'round');
   svg.appendChild(windArrow);
 
   return svg;
@@ -130,37 +131,33 @@ export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWi
 };
 
 export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {
-  // Get the most recent wind data
-  const latestData = stationData
-    .filter(data => data.wind_speed !== null && data.direction !== null)
-    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
-
-  if (!latestData) {
-    // Fallback to blue wind arrow with no text, 0 degrees
-    const container = document.createElement('div');
-    container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
-    container.style.cursor = 'pointer';
-    container.style.userSelect = 'none';
-
-    const svg = createHollowWindTriangleSVG(true, 0, '#d8d8d8');
-    container.appendChild(svg);
-
-    return container;
-  }
-
-
 
   const container = document.createElement('div');
   container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
 
-  // Create wind arrow SVG using template function with dynamic color
+  if (stationData.length === 0) {
+    const svg = createHollowWindTriangleSVG(true, 0, getWindArrowColor(0));
+    container.appendChild(svg);
+    return container;
+  }
+
+  const latestData = stationData
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
+
   const windColor = getWindArrowColor(latestData.wind_speed);
   const svg = createHollowWindTriangleSVG(false, latestData.direction, windColor);
-  container.appendChild(svg);
+  const textOverlay = createTextOverlay(latestData.wind_speed);
 
-  // Create non-rotating text overlay
+  container.appendChild(svg);
+  container.appendChild(textOverlay);
+
+  return container;
+};
+
+// Create non-rotating text overlay
+const createTextOverlay = (windSpeed: number): HTMLElement => {
   const textOverlay = document.createElement('div');
   textOverlay.style.position = 'absolute';
   textOverlay.style.top = '50%';
@@ -171,12 +168,10 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
   textOverlay.style.fontSize = '12px';
   textOverlay.style.fontWeight = 'bold';
   textOverlay.style.color = 'black';
-  textOverlay.style.textShadow = '1px 1px 2px rgba(255,255,255,0.8)';
+  textOverlay.style.textShadow = '0px 0px 1px rgba(255,255,255,1),0px 0px 3px rgba(255,255,255,1)';
   textOverlay.style.lineHeight = '1';
   textOverlay.style.zIndex = '10';
-  textOverlay.textContent = `${Math.round(latestData.wind_speed)}`;
+  textOverlay.textContent = `${Math.round(windSpeed)}`;
 
-  container.appendChild(textOverlay);
-
-  return container;
+  return textOverlay;
 };
