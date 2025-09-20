@@ -14,16 +14,17 @@ interface LocationHeaderProps {
   longitude: number;
   altitude: number;
   flightlog_id: string;
+  isMain: boolean;
 }
 
-export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, altitude, flightlog_id }: LocationHeaderProps) {
+export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, altitude, flightlog_id, isMain }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="mb-4">
       <div className="flex gap-1 mb-4 mx-2 flex-wrap">
         <FavouriteHeart locationId={locationId} />
-        <BackToMapButton latitude={latitude} longitude={longitude} />
+        <BackToMapButton latitude={latitude} longitude={longitude} isMain={isMain} />
         <FlightlogButton flightlogId={flightlog_id} />
         <YrButton latitude={latitude} longitude={longitude} />
         <WindyButton latitude={latitude} longitude={longitude} />

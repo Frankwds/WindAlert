@@ -25,6 +25,7 @@ export interface ParaglidingLocation {
   country: string;
   flightlog_id: string;
   is_active: boolean;
+  is_main: boolean;
   created_at: string;
   updated_at: string;
   n: boolean;

@@ -6,7 +6,7 @@ import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import MinimalHourlyWeather from './GoogleMaps/MinimalHourlyWeather';
 import TinyWindCompass from './GoogleMaps/TinyWindCompass';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-import { CompactFlightlogButton, WindyButton, YrButton, FlightlogButton, GoogleMapsButton } from './ExternalLinkButtons';
+import { CompactFlightlogButton, WindyButton, YrButton, GoogleMapsButton } from './ExternalLinkButtons';
 
 interface LocationCardProps {
   location: ParaglidingLocationWithForecast;

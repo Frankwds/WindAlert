@@ -69,6 +69,7 @@ export default async function LocationPage({ params }: Props) {
         longitude={location.longitude}
         altitude={location.altitude}
         flightlog_id={location.flightlog_id}
+        isMain={location.is_main}
       />
 
       <WeatherTable
