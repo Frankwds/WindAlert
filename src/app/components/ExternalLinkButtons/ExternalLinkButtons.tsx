@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { MapIcon, ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
-import { DocumentTextIcon, SunIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { DocumentTextIcon, SunIcon } from '@heroicons/react/24/outline';
 import { CloudIcon } from '@heroicons/react/24/solid';
-import ExternalLinkIcon from '../ExternalLinkIcon';
+import ExternalLinkIcon from './ExternalLinkIcon';
+import WindyIcon from './WindyIcon';
 import { updateMapState } from '../../../lib/localstorage/mapStorage';
 
 interface BackToMapButtonProps {
@@ -48,7 +49,7 @@ export function WindyButton({ latitude, longitude }: WindyButtonProps) {
       className="flex items-center justify-center max-w-28 min-w-24 gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0"
       title="View on Windy.com"
     >
-      <ArrowPathIcon className="w-5 h-5 flex-shrink-0" />
+      <WindyIcon className="w-5 h-5 flex-shrink-0" />
       <span className="text-sm font-medium whitespace-nowrap">Windy</span>
       <ExternalLinkIcon className="w-4 h-4 flex-shrink-0" />
     </Link>

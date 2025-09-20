@@ -1,7 +1,6 @@
 'use client';
 
 import { ForecastCache1hr } from "@/lib/supabase/types";
-import ExternalLinkIcon from "../ExternalLinkIcon";
 import Day from "./Day";
 import { ParaglidingLocation } from "@/lib/supabase/types";
 import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
