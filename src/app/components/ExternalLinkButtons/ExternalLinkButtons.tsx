@@ -11,9 +11,10 @@ import { updateMapState } from '../../../lib/localstorage/mapStorage';
 interface BackToMapButtonProps {
   latitude: number;
   longitude: number;
+  isMain: boolean;
 }
 
-export function BackToMapButton({ latitude, longitude }: BackToMapButtonProps) {
+export function BackToMapButton({ latitude, longitude, isMain }: BackToMapButtonProps) {
   const handleMapLinkClick = () => {
     updateMapState({
       center: { lat: latitude, lng: longitude },
@@ -23,7 +24,7 @@ export function BackToMapButton({ latitude, longitude }: BackToMapButtonProps) {
 
   return (
     <Link
-      href="/"
+      href={isMain ? "/" : "/locations/all"}
       onClick={handleMapLinkClick}
       className="flex flex-1 items-center max-w-20 px-2 py-2 justify-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer"
       title="Find on Map"

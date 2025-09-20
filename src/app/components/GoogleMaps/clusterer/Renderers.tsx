@@ -35,6 +35,7 @@ export class ParaglidingClusterRenderer implements Renderer {
       longitude: position.lng(),
       altitude: 0,
       flightlog_id: 'cluster',
+      is_main: false,
       n: false,
       ne: false,
       e: false,
