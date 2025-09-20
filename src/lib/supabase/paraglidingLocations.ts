@@ -72,4 +72,50 @@ export class ParaglidingLocationService {
 
     return (data as ParaglidingLocationWithForecast[]) || [];
   }
+
+
+  /**
+* Get ALL active paragliding locations using pagination.
+*/
+  static async getAllActiveLocations(): Promise<ParaglidingLocationWithForecast[]> {
+    const PAGE_SIZE = 1000;
+    let allLocations: ParaglidingLocationWithForecast[] = [];
+    let page = 0;
+    let hasMoreData = true;
+
+    while (hasMoreData) {
+      const from = page * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+
+      const { data, error } = await supabase
+        .from('all_paragliding_locations')
+        .select(`
+          id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw
+        `)
+        .eq('is_active', true)
+        .range(from, to); // 👈 Use range for pagination
+
+      if (error) {
+        console.error(`Error fetching locations on page ${page}:`, error);
+        throw error;
+      }
+
+      if (data && data.length > 0) {
+        // Add the fetched chunk to our main array
+        allLocations = [...allLocations, ...data];
+        page++;
+        // If we received fewer rows than we asked for, it's the last page
+        if (data.length < PAGE_SIZE) {
+          hasMoreData = false;
+        }
+      } else {
+        // No more data to fetch
+        hasMoreData = false;
+      }
+    }
+    console.log(`Fetched ${allLocations?.length} active locations for markers`);
+
+    return allLocations;
+  }
+
 }

@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { AllParaglidingLocationService } from '@/lib/supabase/allParaglidingLocations';
 import { dataCache } from '@/lib/data-cache';
 
 type Variant = 'main' | 'all';
@@ -19,7 +18,7 @@ export const useParaglidingData = ({ variant }: UseParaglidingDataProps) => {
       if (!paraglidingLocations) {
         paraglidingLocations = variant === 'main'
           ? await ParaglidingLocationService.getAllMainLocationsWithForecast()
-          : await AllParaglidingLocationService.getAllActiveLocations();
+          : await ParaglidingLocationService.getAllActiveLocations();
         paraglidingLocations = paraglidingLocations || [];
 
         if (variant === 'main') {
