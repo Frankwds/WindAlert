@@ -50,25 +50,19 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
 
   return (
     <div className="bg-[var(--background)] pb-4 rounded-lg shadow-[var(--shadow-lg)] p-1 sm:p-6 border border-[var(--border)]">
-      {showValidation ? (
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
-            Hva menes med lovende?
-          </h2>
-        </div>
-      ) : (
-        <div className="mb-4">
-          <a
-            href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
-          >
-            Yr.no
-            <ExternalLinkIcon size={24} className="inline-block" />
-          </a>
-        </div>
-      )}
+
+      <div className="mb-4">
+        <a
+          href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
+        >
+          Yr.no
+          <ExternalLinkIcon size={24} className="inline-block" />
+        </a>
+      </div>
+
       <div className="space-y-4">
         {Object.entries(groupedByDay).map(([weekdayName, dailyForecast]) => (
           <Day
