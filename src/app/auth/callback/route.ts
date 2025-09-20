@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
-  const redirectTo = requestUrl.searchParams.get('redirect_to');
 
   if (code) {
     const cookieStore = cookies();
@@ -24,21 +23,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Validate and sanitize the redirect URL
-  let finalRedirectTo = '/';
-
-  if (redirectTo) {
-    try {
-      const decodedRedirect = decodeURIComponent(redirectTo);
-      // Basic validation to prevent open redirects
-      if (decodedRedirect.startsWith('/') && !decodedRedirect.startsWith('//')) {
-        finalRedirectTo = decodedRedirect;
-      }
-    } catch (error) {
-      console.error('Error decoding redirect URL:', error);
-    }
-  }
-
-  console.log('Redirecting to:', finalRedirectTo);
-  return NextResponse.redirect(`${requestUrl.origin}${finalRedirectTo}`);
+  // Redirect to a page that will handle the client-side redirect
+  return NextResponse.redirect(`${requestUrl.origin}/auth/redirect`);
 }

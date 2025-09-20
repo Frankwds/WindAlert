@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { StationDataService } from '@/lib/supabase/stationData';
-import { dataCache, WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
+import { dataCache } from '@/lib/data-cache';
 
 export const useWeatherStationData = () => {
 
