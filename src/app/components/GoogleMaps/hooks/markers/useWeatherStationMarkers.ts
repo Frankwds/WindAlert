@@ -15,7 +15,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
-  const { loadWeatherStationData, loadLatestWeatherStationData } = useWeatherStationData();
+  const { loadLatestWeatherStationData } = useWeatherStationData();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const hasLoadedInitialMarkers = useRef<boolean>(false);
@@ -24,12 +24,15 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const loadMarkers = useCallback(async () => {
     if (isLoadingRef.current) return;
     try {
-      console.log('ACTUALLY Loading weather station markers');
+      console.log('ACTUALLY CREATING weather station markers');
       isLoadingRef.current = true;
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
-      const { weatherStations } = await loadWeatherStationData();
+      const weatherStations = await loadLatestWeatherStationData(true);
+      if (!weatherStations) {
+        throw new Error('Failed to load weather station data in loadLatestWeatherStationData');
+      }
       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
       setWeatherStationMarkers(markers);
       hasLoadedInitialMarkers.current = true;
@@ -41,16 +44,16 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       isLoadingRef.current = false;
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, loadWeatherStationData]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
     if (isLoadingRef.current) return;
     try {
       isLoadingRef.current = true;
       console.log('ACTUALLY2 Updating weather station markers with latest data');
-      const weatherStations = await loadLatestWeatherStationData();
+      const weatherStations = await loadLatestWeatherStationData(false);
       if (weatherStations) {
-        console.log('ACTUALLY2 CREATINGweather station markers');
+        console.log('ACTUALLY2 CREATING weather station markers');
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
       }
