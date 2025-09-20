@@ -21,7 +21,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
-    if (isLoadingMarkers) return; // Prevent multiple simultaneous loads
+    if (isLoadingMarkers) return;
     try {
 
       setIsLoadingMarkers(true);
@@ -41,66 +41,66 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     }
   }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData, isFirstLoad]);
 
-  const updateMarkersWithLatestData = useCallback(async () => {
-    try {
-      const weatherStations = await loadLatestWeatherStationData();
-      if (weatherStations) {
-        const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
-        setWeatherStationMarkers(markers);
-      }
-    } catch (err) {
-      console.error('Error updating weather station markers with latest data:', err);
-      setMarkersError(err instanceof Error ? err.message : 'Failed to update weather station markers');
-    }
-  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
+  // const updateMarkersWithLatestData = useCallback(async () => {
+  //   try {
+  //     const weatherStations = await loadLatestWeatherStationData();
+  //     if (weatherStations) {
+  //       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
+  //       setWeatherStationMarkers(markers);
+  //     }
+  //   } catch (err) {
+  //     console.error('Error updating weather station markers with latest data:', err);
+  //     setMarkersError(err instanceof Error ? err.message : 'Failed to update weather station markers');
+  //   }
+  // }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
   // Load markers on page load
   useEffect(() => {
-    if (mapInstance && !isLoadingMarkers && weatherStationMarkers.length === 0) {
+    if (mapInstance && weatherStationMarkers.length === 0) {
       loadMarkers();
     }
-  }, [mapInstance, isLoadingMarkers, weatherStationMarkers.length, loadMarkers]);
+  }, [mapInstance, weatherStationMarkers.length, loadMarkers]);
 
   // Load markers on page visibility change
-  useEffect(() => {
-    if (isVisibleState && !isFirstLoad) {
-      loadMarkers();
-    }
-  }, [isVisibleState]);
+  // useEffect(() => {
+  //   if (isVisibleState && !isFirstLoad) {
+  //     loadMarkers();
+  //   }
+  // }, [isVisibleState]);
 
   // Set up 15-minute live updates starting at the next 15-minute mark
-  useEffect(() => {
-    if (mapInstance && weatherStationMarkers.length > 0) {
-      const now = new Date();
-      const currentMinutes = now.getMinutes();
+  // useEffect(() => {
+  //   if (mapInstance && weatherStationMarkers.length > 0) {
+  //     const now = new Date();
+  //     const currentMinutes = now.getMinutes();
 
 
-      const minutesToNext = 15 - (currentMinutes % 15) + 1; // +1 for padding
-      const delay = minutesToNext * 60 * 1000;
+  //     const minutesToNext = 15 - (currentMinutes % 15) + 1; // +1 for padding
+  //     const delay = minutesToNext * 60 * 1000;
 
-      const timeoutId = setTimeout(() => {
-        console.log('Updating markers with latest data');
-        updateMarkersWithLatestData();
+  //     const timeoutId = setTimeout(() => {
+  //       console.log('Updating markers with latest data');
+  //       updateMarkersWithLatestData();
 
-        // Now start the regular 15-minute interval
-        intervalRef.current = setInterval(() => {
-          // skip if tab is not in use
-          if (!isVisibleRef.current) {
-            return;
-          }
-          updateMarkersWithLatestData();
-        }, WEATHER_STATIONS_UPDATE_INTERVAL);
-      }, delay);
+  //       // Now start the regular 15-minute interval
+  //       intervalRef.current = setInterval(() => {
+  //         // skip if tab is not in use
+  //         if (!isVisibleRef.current) {
+  //           return;
+  //         }
+  //         updateMarkersWithLatestData();
+  //       }, WEATHER_STATIONS_UPDATE_INTERVAL);
+  //     }, delay);
 
-      // Cleanup timeout and interval on unmount or when dependencies change
-      return () => {
-        clearTimeout(timeoutId);
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }
-  }, [mapInstance, weatherStationMarkers.length, updateMarkersWithLatestData, isVisibleRef]);
+  //     // Cleanup timeout and interval on unmount or when dependencies change
+  //     return () => {
+  //       clearTimeout(timeoutId);
+  //       if (intervalRef.current) {
+  //         clearInterval(intervalRef.current);
+  //       }
+  //     };
+  //   }
+  // }, [mapInstance, weatherStationMarkers.length, updateMarkersWithLatestData, isVisibleRef]);
 
   return {
     weatherStationMarkers,

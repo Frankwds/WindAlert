@@ -9,7 +9,7 @@ export const useWeatherStationData = () => {
     try {
       let weatherStations = await dataCache.getWeatherStations();
 
-      if (!weatherStations) {
+      if (!weatherStations || weatherStations.length === 0) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
         weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);
