@@ -4,29 +4,11 @@ import { ParaglidingLocation, ParaglidingLocationForCache, ParaglidingMarkerData
 export class ParaglidingLocationService {
 
   /**
-   * Get all active paragliding locations
-   */
-  static async getAllActive(): Promise<ParaglidingLocation[]> {
-    const { data, error } = await supabase
-      .from('paragliding_locations')
-      .select('*')
-      .eq('is_active', true)
-      .order('name');
-
-    if (error) {
-      console.error('Error fetching active locations:', error);
-      throw error;
-    }
-
-    return data || [];
-  }
-
-  /**
    * Get a single paragliding location by its ID
    */
   static async getById(id: string): Promise<ParaglidingLocation | null> {
     const { data, error } = await supabase
-      .from('paragliding_locations')
+      .from('all_paragliding_locations')
       .select('*')
       .eq('id', id)
       .single();
@@ -42,12 +24,13 @@ export class ParaglidingLocationService {
   /**
    * Get multiple paragliding locations by their IDs
    */
-  static async getByIds(ids: string[]): Promise<ParaglidingLocationForCache[]> {
+  static async getMainActiveByIds(ids: string[]): Promise<ParaglidingLocationForCache[]> {
     const { data, error } = await supabase
-      .from('paragliding_locations')
+      .from('all_paragliding_locations')
       .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw')
       .in('id', ids)
-      .eq('is_active', true);
+      .eq('is_active', true)
+      .eq('is_main', true);
 
     if (error) {
       console.error(`Error fetching locations with ids ${ids.join(', ')}:`, error);

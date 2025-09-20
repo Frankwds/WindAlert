@@ -102,7 +102,7 @@ async function processLocationsWithOldestForecastData() {
       locationIds = [...locationIds, ...locationIdsOldestData];
     }
 
-    const locations = await ParaglidingLocationService.getByIds(locationIds);
+    const locations = await ParaglidingLocationService.getMainActiveByIds(locationIds);
 
     console.log(`Processing ${locations.length} locations total`);
 
