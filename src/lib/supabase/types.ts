@@ -62,7 +62,7 @@ export interface MinimalForecast {
   is_promising: boolean;
 }
 
-export interface ParaglidingMarkerData {
+export interface ParaglidingLocationWithForecast {
   id: string;
   name: string;
   latitude: number;

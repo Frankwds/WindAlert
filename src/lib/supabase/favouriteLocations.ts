@@ -1,14 +1,14 @@
 import { supabase } from "./client";
 import {
   FavouriteLocation,
-  ParaglidingMarkerData,
+  ParaglidingLocationWithForecast,
 } from "./types";
 
 export class FavouriteLocationService {
 
   static async getAllForUserWithForecast(
     userId: string
-  ): Promise<ParaglidingMarkerData[]> {
+  ): Promise<ParaglidingLocationWithForecast[]> {
     try {
       const now = new Date();
       const { data, error } = await supabase
@@ -36,7 +36,7 @@ export class FavouriteLocationService {
         throw new Error(`Failed to fetch favourites: ${error.message}`);
       }
 
-      return (data?.map((fav: any) => fav.paragliding_locations) as ParaglidingMarkerData[]) || [];
+      return (data?.map((fav: any) => fav.paragliding_locations) as ParaglidingLocationWithForecast[]) || [];
     } catch (error) {
       console.error("Error in getAllForUserWithForecast:", error);
       throw error;

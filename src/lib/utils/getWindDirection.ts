@@ -1,4 +1,4 @@
-import { ParaglidingLocationForCache, ParaglidingMarkerData } from "../supabase/types";
+import { ParaglidingLocationForCache, ParaglidingLocationWithForecast } from "../supabase/types";
 
 export const windDirectionMapping: { [key: string]: { min: number; max: number } } = {
   'N': { min: 337.5, max: 22.5 },
@@ -31,7 +31,7 @@ export function getWindDirection(windDirection: number): string {
   return "Ukjent";
 }
 
-export function locationToWindDirectionSymbols(location: ParaglidingLocationForCache | ParaglidingMarkerData): string[] {
+export function locationToWindDirectionSymbols(location: ParaglidingLocationForCache | ParaglidingLocationWithForecast): string[] {
   return [
     location.n ? 'n' : '',
     location.e ? 'e' : '',

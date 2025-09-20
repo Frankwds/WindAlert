@@ -1,13 +1,13 @@
 import { useState, useCallback, useEffect } from 'react';
 import { createParaglidingMarkers } from '../../MarkerSetup';
-import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { useParaglidingData } from '../data/useParaglidingData';
 
 type Variant = 'main' | 'all';
 
 interface UseParaglidingMarkersProps {
   mapInstance: google.maps.Map | null;
-  onParaglidingMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingMarkerData) => void;
+  onParaglidingMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
   variant: Variant;
 }
 

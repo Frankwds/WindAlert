@@ -18,7 +18,7 @@ export const useParaglidingData = ({ variant }: UseParaglidingDataProps) => {
 
       if (!paraglidingLocations) {
         paraglidingLocations = variant === 'main'
-          ? await ParaglidingLocationService.getAllActiveMainForMarkersWithForecast()
+          ? await ParaglidingLocationService.getAllMainLocationsWithForecast()
           : await AllParaglidingLocationService.getAllActiveForMarkers();
         paraglidingLocations = paraglidingLocations || [];
 

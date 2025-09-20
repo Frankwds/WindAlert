@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 
 interface PromisingFilter {
   selectedDay: number;
@@ -33,7 +33,7 @@ export const useMarkerFiltering = ({
     if (!promisingFilter) return markers;
 
     return markers.filter(marker => {
-      const locationData = (marker as any).locationData as ParaglidingMarkerData;
+      const locationData = (marker as any).locationData as ParaglidingLocationWithForecast;
       const forecast = locationData.forecast_cache;
 
       if (!forecast) return false;
@@ -81,11 +81,11 @@ export const useMarkerFiltering = ({
     if (windDirections.length === 0) return markers;
 
     return markers.filter(marker => {
-      const locationData = (marker as any).locationData as ParaglidingMarkerData;
+      const locationData = (marker as any).locationData as ParaglidingLocationWithForecast;
       if (windFilterAndOperator) {
-        return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+        return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]);
       } else {
-        return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingMarkerData]);
+        return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]);
       }
     });
   };

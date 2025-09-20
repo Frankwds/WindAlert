@@ -1,4 +1,4 @@
-import { ParaglidingMarkerData, WeatherStationMarkerData, StationData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast, WeatherStationMarkerData, StationData } from '@/lib/supabase/types';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
@@ -52,7 +52,7 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
 };
 
 
-export const createParaglidingMarkerElementWithDirection = (location: ParaglidingMarkerData): HTMLElement => {
+export const createParaglidingMarkerElementWithDirection = (location: ParaglidingLocationWithForecast): HTMLElement => {
   const container = document.createElement('div');
   container.style.position = 'relative';
   container.style.width = '32px';

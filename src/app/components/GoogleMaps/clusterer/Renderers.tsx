@@ -1,6 +1,6 @@
 import { Cluster, Renderer } from "@googlemaps/markerclusterer";
 import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement } from "../Markers";
-import { ParaglidingMarkerData } from "@/lib/supabase/types";
+import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
 import { getDominantWind } from "./util";
 
 export class WeatherStationClusterRenderer implements Renderer {
@@ -28,7 +28,7 @@ export class ParaglidingClusterRenderer implements Renderer {
   public render(cluster: Cluster) {
     const position = cluster.position;
 
-    const clusterLocationData: ParaglidingMarkerData = {
+    const clusterLocationData: ParaglidingLocationWithForecast = {
       id: 'cluster',
       name: 'Cluster',
       latitude: position.lat(),

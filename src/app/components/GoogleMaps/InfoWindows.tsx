@@ -1,10 +1,10 @@
 import React from 'react';
-import { ParaglidingMarkerData, WeatherStationMarkerData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast, WeatherStationMarkerData } from '@/lib/supabase/types';
 import LocationCard, { LocationCardAll } from '../LocationCards';
 import StationDataTable from '../StationDataTable';
 
 interface ParaglidingInfoWindowProps {
-  location: ParaglidingMarkerData;
+  location: ParaglidingLocationWithForecast;
 }
 
 interface WeatherStationInfoWindowProps {
@@ -12,7 +12,7 @@ interface WeatherStationInfoWindowProps {
 }
 
 interface AllStartsInfoWindowProps {
-  location: ParaglidingMarkerData;
+  location: ParaglidingLocationWithForecast;
 }
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
@@ -66,10 +66,10 @@ export const getWeatherStationInfoWindow = (location: WeatherStationMarkerData) 
   return <WeatherStationInfoWindow location={location} />;
 };
 
-export const getMainParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
+export const getMainParaglidingInfoWindow = (location: ParaglidingLocationWithForecast) => {
   return <ParaglidingInfoWindow location={location} />;
 };
 
-export const getAllParaglidingInfoWindow = (location: ParaglidingMarkerData) => {
+export const getAllParaglidingInfoWindow = (location: ParaglidingLocationWithForecast) => {
   return <AllStartsInfoWindow location={location} />;
 };

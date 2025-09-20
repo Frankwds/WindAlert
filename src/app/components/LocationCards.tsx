@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ParaglidingMarkerData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import MinimalHourlyWeather from './GoogleMaps/MinimalHourlyWeather';
 import TinyWindCompass from './GoogleMaps/TinyWindCompass';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 import { CompactFlightlogButton, WindyButton, YrButton, FlightlogButton, GoogleMapsButton } from './ExternalLinkButtons';
 
 interface LocationCardProps {
-  location: ParaglidingMarkerData;
+  location: ParaglidingLocationWithForecast;
   timezone: string;
 }
 
@@ -52,7 +52,7 @@ export default function LocationCard({
 }
 
 interface LocationCardAllProps {
-  location: ParaglidingMarkerData;
+  location: ParaglidingLocationWithForecast;
 }
 
 export function LocationCardAll({ location }: LocationCardAllProps) {

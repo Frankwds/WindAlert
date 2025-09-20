@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { ParaglidingLocation, ParaglidingLocationForCache, ParaglidingMarkerData } from './types';
+import { ParaglidingLocation, ParaglidingLocationForCache, ParaglidingLocationWithForecast } from './types';
 
 export class ParaglidingLocationService {
 
@@ -43,7 +43,7 @@ export class ParaglidingLocationService {
   /**
    * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
    */
-  static async getAllActiveMainForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
+  static async getAllMainLocationsWithForecast(): Promise<ParaglidingLocationWithForecast[]> {
     const now = new Date();
     const { data, error } = await supabase
       .from('all_paragliding_locations')
@@ -70,6 +70,6 @@ export class ParaglidingLocationService {
       throw error;
     }
 
-    return (data as ParaglidingMarkerData[]) || [];
+    return (data as ParaglidingLocationWithForecast[]) || [];
   }
 }

@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { ParaglidingLocation, ParaglidingMarkerData } from './types';
+import { ParaglidingLocation, ParaglidingLocationWithForecast } from './types';
 
 export class AllParaglidingLocationService {
 
@@ -24,9 +24,9 @@ export class AllParaglidingLocationService {
   /**
   * Get ALL active paragliding locations using pagination.
   */
-  static async getAllActiveForMarkers(): Promise<ParaglidingMarkerData[]> {
+  static async getAllActiveForMarkers(): Promise<ParaglidingLocationWithForecast[]> {
     const PAGE_SIZE = 1000;
-    let allLocations: ParaglidingMarkerData[] = [];
+    let allLocations: ParaglidingLocationWithForecast[] = [];
     let page = 0;
     let hasMoreData = true;
 

@@ -1,4 +1,4 @@
-import { ParaglidingMarkerData, StationData, WeatherStationMarkerData } from './supabase/types';
+import { ParaglidingLocationWithForecast, StationData, WeatherStationMarkerData } from './supabase/types';
 
 interface Cache<T> {
   data: T | null;
@@ -129,7 +129,7 @@ class DataCache {
     }
   }
 
-  async getParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {
+  async getParaglidingLocations(): Promise<ParaglidingLocationWithForecast[] | null> {
     const cached = await this.getFromStorage(this.PARAGLIDING_KEY);
     if (cached && this.isCacheValid(cached.timestamp, CACHE_DURATION_PARAGLIDING_WITH_FORECAST)) {
       return cached.data;
@@ -137,7 +137,7 @@ class DataCache {
     return null;
   }
 
-  async setParaglidingLocations(data: ParaglidingMarkerData[]): Promise<void> {
+  async setParaglidingLocations(data: ParaglidingLocationWithForecast[]): Promise<void> {
     await this.setToStorage(this.PARAGLIDING_KEY, data);
   }
 
@@ -179,7 +179,7 @@ class DataCache {
     return updatedStations || null;
   }
 
-  async getAllParaglidingLocations(): Promise<ParaglidingMarkerData[] | null> {
+  async getAllParaglidingLocations(): Promise<ParaglidingLocationWithForecast[] | null> {
     const cached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
 
     // Check if cache exists and is newer than the hardcoded minimum timestamp
@@ -192,7 +192,7 @@ class DataCache {
     return null;
   }
 
-  async setAllParaglidingLocations(data: ParaglidingMarkerData[]): Promise<void> {
+  async setAllParaglidingLocations(data: ParaglidingLocationWithForecast[]): Promise<void> {
     await this.setToStorage(this.ALL_PARAGLIDING_KEY, data);
   }
 
