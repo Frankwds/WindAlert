@@ -33,7 +33,7 @@ const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
           <g key={dir}>
             <path
               d={getPath(i)}
-              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] transition-colors duration-200 ${isAllowed ? "fill-[var(--success)]" : ""}`}
+              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isAllowed ? "fill-[var(--success)]" : ""}`}
             />
           </g>
         );

@@ -106,16 +106,16 @@ interface CompactFlightlogButtonProps {
 
 export function CompactFlightlogButton({ flightlogId }: CompactFlightlogButtonProps) {
   return (
-    <a
+    <Link
       href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center row px-2 py-2 mr-2 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer"
+      className="flex items-center row px-2 py-2 mr-2 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer select-none"
       title="View on Flightlog.org"
     >
       <DocumentTextIcon className="w-5 h-5" />
       <ExternalLinkIcon className="w-2 h-2 mb-4 ml-[-7px]" />
-    </a>
+    </Link>
   );
 }
 
@@ -132,7 +132,7 @@ export function GoogleMapsButton({ latitude, longitude }: GoogleMapsButtonProps)
       href={googleMapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-1 items-center max-w-36 min-w-32 justify-center gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer flex-1 min-w-0"
+      className="flex flex-1 items-center max-w-40 min-w-36 justify-center gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer flex-1 min-w-0"
       title="View on Google Maps"
     >
       <MapIcon className="w-5 h-5 flex-shrink-0" />

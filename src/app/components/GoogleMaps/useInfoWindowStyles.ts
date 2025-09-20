@@ -66,7 +66,6 @@ export const useInfoWindowStyles = () => {
           height: 32px !important;
           top: 8px !important; /* Adjusted for merged layout */
           right: 8px !important; /* Adjusted for merged layout */
-          transition: all 0.2s ease !important;
           position: absolute !important;
           z-index: 1000 !important;
         }
