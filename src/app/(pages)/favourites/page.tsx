@@ -59,11 +59,11 @@ export default function FavouritesPage() {
       <div className="z-10 w-full max-w-5xl">
         <h1 className="text-4xl font-bold mb-8 text-center">Favoritter</h1>
         {locations.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex flex-wrap gap-4 justify-center ">
             {locations.map((location) => (
               <div
                 key={location.id}
-                className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]"
+                className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)] w-full max-w-sm sm:w-[calc(50%-0.5rem)] flex-shrink-0"
               >
                 {location.is_main ? (
                   <LocationCard
