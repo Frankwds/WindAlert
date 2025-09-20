@@ -40,6 +40,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // If user just signed in and we're on the callback page, redirect to intended page
+        if (event === 'SIGNED_IN' && session && window.location.pathname === '/auth/callback') {
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectTo = urlParams.get('redirect_to');
+          if (redirectTo) {
+            try {
+              const decodedRedirect = decodeURIComponent(redirectTo);
+              if (decodedRedirect.startsWith('/') && !decodedRedirect.startsWith('//')) {
+                window.location.href = decodedRedirect;
+                return;
+              }
+            } catch (error) {
+              console.error('Error handling redirect:', error);
+            }
+          }
+          // Fallback to home if no valid redirect
+          window.location.href = '/';
+        }
       }
     );
 
@@ -47,10 +66,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
+    // Store the current page to redirect back to after login
+    const currentPath = window.location.pathname + window.location.search + window.location.hash;
+    const redirectUrl = `${window.location.origin}/auth/callback?redirect_to=${encodeURIComponent(currentPath)}`;
+
+    console.log('Signing in with Google, will redirect to:', currentPath);
+    console.log('Full redirect URL:', redirectUrl);
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`
+        redirectTo: redirectUrl
       }
     });
     return { error };
