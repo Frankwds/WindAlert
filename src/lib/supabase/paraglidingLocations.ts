@@ -43,10 +43,10 @@ export class ParaglidingLocationService {
   /**
    * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
    */
-  static async getAllActiveForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
+  static async getAllActiveMainForMarkersWithForecast(): Promise<ParaglidingMarkerData[]> {
     const now = new Date();
     const { data, error } = await supabase
-      .from('paragliding_locations')
+      .from('all_paragliding_locations')
       .select(`
         id, name, latitude, flightlog_id, longitude, altitude, n, e, s, w, ne, se, sw, nw,
         forecast_cache(
@@ -61,6 +61,7 @@ export class ParaglidingLocationService {
         )
       `)
       .eq('is_active', true)
+      .eq('is_main', true)
       .gte('forecast_cache.time', now.toISOString())
       .order('name');
 
