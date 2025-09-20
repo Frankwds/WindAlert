@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import ExternalLinkIcon from "./ExternalLinkIcon";
+import { GoogleMapsButton } from "./externalLinkButtons";
 
 interface GoogleMapsProps {
   latitude: number;
@@ -31,16 +32,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
 
   return (
     <div className="p-4">
-      <div className="mb-4">
-        <a
-          href={googleMapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
-        > Google Maps
-          <ExternalLinkIcon size={24} className="inline-block" />
-        </a>
-      </div>
+      <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
       <Image
         width={640}
         height={640}

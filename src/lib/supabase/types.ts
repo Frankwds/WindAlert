@@ -23,7 +23,7 @@ export interface ParaglidingLocation {
   latitude: number;
   altitude: number;
   country: string;
-  flightlog_id: string | null;
+  flightlog_id: string;
   is_active: boolean;
   created_at: string;
   updated_at: string;

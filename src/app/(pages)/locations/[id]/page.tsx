@@ -70,14 +70,16 @@ export default async function LocationPage({ params }: Props) {
         altitude={location.altitude}
         flightlog_id={location.flightlog_id}
       />
-      <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
+
       <WeatherTable
         groupedByDay={groupedByDay}
         sixHourSymbolsByDay={sixHourSymbolsByDay}
         location={location}
         showValidation={true}
       />
+
       <WindyWidget lat={location.latitude} long={location.longitude} />
+      <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
 
     </div>
   );

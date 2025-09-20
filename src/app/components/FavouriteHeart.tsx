@@ -83,7 +83,7 @@ export default function FavouriteHeart({ locationId }: Props) {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center">
         <button
           onClick={() => setError(null)}
           className="flex items-center gap-2 px-4 py-2 rounded-lg border border-red-300 bg-red-50"
@@ -101,7 +101,7 @@ export default function FavouriteHeart({ locationId }: Props) {
     <button
       onClick={toggleFavourite}
       disabled={loading}
-      className={`flex items-center gap-2 ml-2 pl-2 rounded-lg border border-[var(--border)] cursor-pointer ${!isMobile ? 'hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]' : ''}`}
+      className={`flex items-center gap-2 pl-2 rounded-lg border border-[var(--border)] cursor-pointer ${!isMobile ? 'hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]' : ''}`}
       title={isFavourite ? "Fjern fra favoritter" : "Legg til favoritter"}
     >
       {isFavourite ? (

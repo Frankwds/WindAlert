@@ -1,12 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import WindCompass from './windCompass';
-import { MapIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import FavouriteHeart from './FavouriteHeart';
-import ExternalLinkIcon from './ExternalLinkIcon';
-import { getMapState, updateMapState } from '../../lib/localstorage/mapStorage';
+import { BackToMapButton, CardFlightlogButton, CompactFlightlogButton, GoogleMapsButton, WindyButton, YrButton } from './externalLinkButtons';
 
 interface LocationHeaderProps {
   name: string;
@@ -16,47 +13,24 @@ interface LocationHeaderProps {
   latitude: number;
   longitude: number;
   altitude: number;
-  flightlog_id?: string | null;
+  flightlog_id: string;
 }
 
 export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, altitude, flightlog_id }: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleMapLinkClick = () => {
-    updateMapState({
-      center: { lat: latitude, lng: longitude },
-      zoom: 12
-    });
-  };
-
   return (
     <div className="mb-4">
       {/* Action buttons above header */}
-      <div className="flex gap-3 mb-4">
+      <div className="flex gap-1 mb-2 mx-2">
         <FavouriteHeart locationId={locationId} />
-        <Link
-          href="/"
-          onClick={handleMapLinkClick}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer"
-          title="Find on Map"
-        >
-          <MapIcon className="w-4 h-4" />
-          <span className="text-sm font-medium">Kart</span>
-        </Link>
-
-        {flightlog_id && (
-          <a
-            href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] transition-all duration-200 cursor-pointer"
-            title="View on Flightlog.org"
-          >
-            <DocumentTextIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Flightlog</span>
-            <ExternalLinkIcon className="w-4 h-4" />
-          </a>
-        )}
+        <BackToMapButton latitude={latitude} longitude={longitude} />
+        <CardFlightlogButton flightlogId={flightlog_id} />
+      </div>
+      <div className="flex gap-1 mb-4 mx-2">
+        <YrButton latitude={latitude} longitude={longitude} />
+        <WindyButton latitude={latitude} longitude={longitude} />
+        <GoogleMapsButton latitude={latitude} longitude={longitude} />
       </div>
 
 
