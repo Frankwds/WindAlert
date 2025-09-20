@@ -14,7 +14,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const { loadWeatherStationData, loadLatestWeatherStationData } = useWeatherStationData();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -23,15 +22,13 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const loadMarkers = useCallback(async () => {
     if (isLoadingMarkers) return;
     try {
-
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
       const { weatherStations, isUpdated } = await loadWeatherStationData();
-      if (isUpdated || isFirstLoad) {
+      if (isUpdated) {
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
-        setIsFirstLoad(false);
       }
     } catch (err) {
       console.error('Error loading weather station markers:', err);
@@ -39,7 +36,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     } finally {
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData, isFirstLoad]);
+  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData]);
 
   // const updateMarkersWithLatestData = useCallback(async () => {
   //   try {
