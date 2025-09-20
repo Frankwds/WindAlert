@@ -88,8 +88,6 @@ async function processBatch(locations: ParaglidingLocationForCache[]) {
   }
 }
 
-
-
 async function processLocationsWithOldestForecastData() {
   try {
     const locationIdsNoData = await ForecastCacheService.getLocationsWithNoForecastData(BATCH_SIZE);
