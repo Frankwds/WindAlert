@@ -119,6 +119,11 @@ export class StationDataService {
   }
 
   static async getLatestStationDataForAllNewerThan(timestamp: string): Promise<StationData[]> {
+    // check that timestamp is older than 15 minutes
+    if (new Date(timestamp).getTime() > Date.now() - 15 * 60 * 1000) {
+      return [];
+    }
+
     // Add 2 minutes buffer to the timestamp to account for potential delays
     const bufferedTimestamp = new Date(new Date(timestamp).getTime() + 2 * 60 * 1000).toISOString();
 

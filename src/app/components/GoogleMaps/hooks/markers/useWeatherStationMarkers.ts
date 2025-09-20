@@ -17,52 +17,64 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
 
   const { loadWeatherStationData, loadLatestWeatherStationData } = useWeatherStationData();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isLoadingRef = useRef<boolean>(false);
+  const hasLoadedInitialMarkers = useRef<boolean>(false);
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
-    if (isLoadingMarkers) return;
+    if (isLoadingRef.current) return;
     try {
+      console.log('ACTUALLY Loading weather station markers');
+      isLoadingRef.current = true;
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
       const { weatherStations } = await loadWeatherStationData();
       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
       setWeatherStationMarkers(markers);
+      hasLoadedInitialMarkers.current = true;
 
     } catch (err) {
       console.error('Error loading weather station markers:', err);
       setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
     } finally {
+      isLoadingRef.current = false;
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, isLoadingMarkers, loadWeatherStationData]);
+  }, [onWeatherStationMarkerClick, loadWeatherStationData]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
+    if (isLoadingRef.current) return;
     try {
+      isLoadingRef.current = true;
+      console.log('ACTUALLY2 Updating weather station markers with latest data');
       const weatherStations = await loadLatestWeatherStationData();
       if (weatherStations) {
+        console.log('ACTUALLY2 CREATINGweather station markers');
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
       }
     } catch (err) {
       console.error('Error updating weather station markers with latest data:', err);
       setMarkersError(err instanceof Error ? err.message : 'Failed to update weather station markers');
+    } finally {
+      isLoadingRef.current = false;
     }
   }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
   // Load markers on page load
   useEffect(() => {
-    if (mapInstance && weatherStationMarkers.length === 0) {
+    if (mapInstance && !hasLoadedInitialMarkers.current) {
       loadMarkers();
     }
-  }, [mapInstance, weatherStationMarkers.length, loadMarkers]);
+  }, [mapInstance, loadMarkers]);
 
   // Load markers on page visibility change
-  // useEffect(() => {
-  //   if (isVisibleState && !isFirstLoad) {
-  //     loadMarkers();
-  //   }
-  // }, [isVisibleState]);
+  useEffect(() => {
+    if (isVisibleState && hasLoadedInitialMarkers.current) {
+      updateMarkersWithLatestData();
+    }
+  }, [updateMarkersWithLatestData, isVisibleState]);
 
   // Set up 15-minute live updates starting at the next 15-minute mark
   useEffect(() => {

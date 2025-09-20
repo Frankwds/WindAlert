@@ -11,25 +11,19 @@ export const useWeatherStationData = () => {
 
       if (!weatherStations || weatherStations.length === 0) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
-        weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);
-
-
         return { weatherStations };
       }
 
       const sortedStationData = weatherStations[0].station_data
         .filter(data => data.wind_speed !== null && data.direction !== null)
         .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
-      const latestCacheTimestamp = sortedStationData[0].updated_at;
+      const latestUpdateTime = sortedStationData[0].updated_at;
 
       // if latestCacheTimestamp is older than UPDATE_INTERVAL, reload the data
-      if (new Date(latestCacheTimestamp).getTime() < Date.now() - (WEATHER_STATIONS_UPDATE_INTERVAL - 2 * 60 * 1000)) {
+      if (new Date(latestUpdateTime).getTime() < Date.now() - (WEATHER_STATIONS_UPDATE_INTERVAL - 2 * 60 * 1000)) {
         weatherStations = await WeatherStationService.getAllActiveWithData();
-        weatherStations = weatherStations;
         await dataCache.setWeatherStations(weatherStations);
-
-
         return { weatherStations };
       }
 
@@ -51,15 +45,24 @@ export const useWeatherStationData = () => {
       const sortedStationData = allWeatherStations[0].station_data
         .filter(data => data.wind_speed !== null && data.direction !== null)
         .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
-      const latestCacheTimestamp = sortedStationData[0].updated_at;
+      const latestUpdateTime = sortedStationData[0].updated_at;
 
-      const latestData = await StationDataService.getLatestStationDataForAllNewerThan(latestCacheTimestamp);
-
-      if (latestData && latestData.length > 0) {
-        const updatedWeatherStations = await dataCache.appendWeatherStationData(latestData);
+      // check if latestCacheTimestamp is older than 30 minutes
+      if (new Date(latestUpdateTime).getTime() < Date.now() - 30 * 60 * 1000) {
+        console.log('ACTUALLY3 GETTING ALL ACTIVE WITH DATA');
+        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData();
+        await dataCache.setWeatherStations(updatedWeatherStations);
         return updatedWeatherStations;
       }
 
+      const latestData = await StationDataService.getLatestStationDataForAllNewerThan(latestUpdateTime);
+
+      if (latestData && latestData.length > 0) {
+        console.log('ACTUALLY3 APPENDING weather station data');
+        const updatedWeatherStations = await dataCache.appendWeatherStationData(latestData);
+        return updatedWeatherStations;
+      }
+      console.log('ACTUALLY3 NO NEW DATA');
       return null;
     } catch (err) {
       console.error('Error loading latest weather station data:', err);
