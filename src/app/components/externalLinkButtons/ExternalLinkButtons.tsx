@@ -24,11 +24,11 @@ export function BackToMapButton({ latitude, longitude }: BackToMapButtonProps) {
     <Link
       href="/"
       onClick={handleMapLinkClick}
-      className="flex flex-1 items-center max-w-18 px-1 justify-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer"
+      className="flex flex-1 items-center max-w-20 px-2 py-2 justify-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer"
       title="Find on Map"
     >
-      <ArrowUturnLeftIcon className="w-3 h-3 flex-shrink-0 scale-y-[-1] " />
-      <span className="text-xs font-medium whitespace-nowrap">Kart</span>
+      <ArrowUturnLeftIcon className="w-4 h-4 flex-shrink-0 scale-y-[-1] " />
+      <span className="text-sm font-medium whitespace-nowrap">Kart</span>
       {/* <MapIcon className="w-4 h-4 flex-shrink-0" /> */}
     </Link>
   );
@@ -45,12 +45,12 @@ export function WindyButton({ latitude, longitude }: WindyButtonProps) {
       href={`https://www.windy.com/${latitude.toFixed(3)}/${longitude.toFixed(3)}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center max-w-24 min-w-20 gap-1 px-2 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0"
+      className="flex items-center justify-center max-w-28 min-w-24 gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0"
       title="View on Windy.com"
     >
-      <ArrowPathIcon className="w-4 h-4 flex-shrink-0" />
-      <span className="text-xs font-medium whitespace-nowrap">Windy</span>
-      <ExternalLinkIcon className="w-3 h-3 flex-shrink-0" />
+      <ArrowPathIcon className="w-5 h-5 flex-shrink-0" />
+      <span className="text-sm font-medium whitespace-nowrap">Windy</span>
+      <ExternalLinkIcon className="w-4 h-4 flex-shrink-0" />
     </Link>
   );
 }
@@ -66,15 +66,15 @@ export function YrButton({ latitude, longitude }: YrButtonProps) {
       href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-1 items-center max-w-20 min-w-16 justify-center gap-1 py-2 px-2 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer "
+      className="flex flex-1 items-center max-w-24 min-w-20 justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer "
       title="View on Yr.no"
     >
       <div className="flex flex-shrink-0">
-        <CloudIcon className="w-4 h-4" />
-        <SunIcon className="w-4 h-4 ml-[-11px]" />
+        <CloudIcon className="w-5 h-5" />
+        <SunIcon className="w-5 h-5 ml-[-13px]" />
       </div>
-      <span className="text-xs font-medium whitespace-nowrap">Yr</span>
-      <ExternalLinkIcon className="w-3 h-3 flex-shrink-0" />
+      <span className="text-sm font-medium whitespace-nowrap">Yr</span>
+      <ExternalLinkIcon className="w-4 h-4 flex-shrink-0" />
     </Link>
   );
 }
@@ -89,12 +89,12 @@ export function FlightlogButton({ flightlogId }: FlightlogButtonProps) {
       href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center max-w-30 min-w-24 gap-1 py-2 px-5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0"
+      className="flex items-center justify-center max-w-36 min-w-28 gap-1.5 py-2.5 px-6 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0"
       title="View on Flightlog.org"
     >
-      <DocumentTextIcon className="w-4 h-4 flex-shrink-0" />
-      <span className="text-xs font-medium whitespace-nowrap">Flightlog</span>
-      <ExternalLinkIcon className="w-3 h-3 flex-shrink-0" />
+      <DocumentTextIcon className="w-5 h-5 flex-shrink-0" />
+      <span className="text-sm font-medium whitespace-nowrap">Flightlog</span>
+      <ExternalLinkIcon className="w-4 h-4 flex-shrink-0" />
     </Link>
   );
 }
@@ -132,12 +132,12 @@ export function GoogleMapsButton({ latitude, longitude }: GoogleMapsButtonProps)
       href={googleMapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-1 items-center max-w-32 min-w-28 justify-center gap-1 px-2 py-2 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer flex-1 min-w-0"
+      className="flex flex-1 items-center max-w-36 min-w-32 justify-center gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer flex-1 min-w-0"
       title="View on Google Maps"
     >
-      <MapIcon className="w-4 h-4 flex-shrink-0" />
-      <span className="text-xs font-medium whitespace-nowrap">Google Maps</span>
-      <ExternalLinkIcon className="w-3 h-3 flex-shrink-0" />
+      <MapIcon className="w-5 h-5 flex-shrink-0" />
+      <span className="text-sm font-medium whitespace-nowrap">Google Maps</span>
+      <ExternalLinkIcon className="w-4 h-4 flex-shrink-0" />
     </Link>
   );
 }
