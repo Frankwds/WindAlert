@@ -24,7 +24,7 @@ export class AllParaglidingLocationService {
   /**
   * Get ALL active paragliding locations using pagination.
   */
-  static async getAllActiveForMarkers(): Promise<ParaglidingLocationWithForecast[]> {
+  static async getAllActiveLocations(): Promise<ParaglidingLocationWithForecast[]> {
     const PAGE_SIZE = 1000;
     let allLocations: ParaglidingLocationWithForecast[] = [];
     let page = 0;
