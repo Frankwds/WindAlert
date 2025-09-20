@@ -19,7 +19,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
   location,
   showValidation = false,
 }) => {
-  const { latitude, longitude, altitude } = location;
+  const { altitude } = location;
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
 
   const handleDayToggle = (dayName: string) => {

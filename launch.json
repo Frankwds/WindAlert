@@ -22,7 +22,7 @@
             "pathMappings": [
                 {
                     "url": "webpack://_N_E",
-                    "path": "${workspaceFolder}"
+                    "path": "/home/frank/Code/WindAlert"
                 }
             ]
         },

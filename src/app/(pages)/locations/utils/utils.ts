@@ -25,7 +25,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
       if (!sixHourSymbolsByDay[day]) {
         sixHourSymbolsByDay[day] = [];
       }
-      if (hours.length === 0) {
+      if (hours.length <= 1) {
         return;
       }
       if (!hours[0].time.includes("T22:00:00Z")) { // day has begun
