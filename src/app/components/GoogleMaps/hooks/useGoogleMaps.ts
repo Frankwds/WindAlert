@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering } from './markers';
+import { useParaglidingMarkers, useMarkerFiltering } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
 import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
@@ -94,14 +94,14 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow, closeOverlays, variant]);
 
-  const {
-    weatherStationMarkers,
-    isLoadingMarkers: isLoadingWeatherStationMarkers,
-    markersError: markersErrorWeatherStationMarkers
-  } = useWeatherStationMarkers({
-    mapInstance,
-    onWeatherStationMarkerClick
-  });
+  // const {
+  //   weatherStationMarkers,
+  //   isLoadingMarkers: isLoadingWeatherStationMarkers,
+  //   markersError: markersErrorWeatherStationMarkers
+  // } = useWeatherStationMarkers({
+  //   mapInstance,
+  //   onWeatherStationMarkerClick
+  // });
 
   const { paraglidingMarkers,
     isLoadingMarkers: isLoadingParaglidingMarkers,
@@ -114,7 +114,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   const filteredMarkers = useMarkerFiltering({
     paraglidingMarkers: paraglidingMarkers,
-    weatherStationMarkers: weatherStationMarkers,
+    weatherStationMarkers: [],
     showParaglidingMarkers: filters.showParaglidingMarkers,
     showWeatherStationMarkers: filters.showWeatherStationMarkers,
     selectedWindDirections: filters.selectedWindDirections,
@@ -146,8 +146,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     mapRef,
     mapInstance,
-    isLoading: isLoading || isLoadingParaglidingMarkers || isLoadingWeatherStationMarkers,
-    error: error || markersErrorParaglidingMarkers || markersErrorWeatherStationMarkers,
+    isLoading: isLoading || isLoadingParaglidingMarkers,
+    error: error || markersErrorParaglidingMarkers,
 
 
     paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
