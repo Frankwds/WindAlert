@@ -4,9 +4,8 @@ import { ForecastCache1hr } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
 import WindDirectionArrow from "../WindDirectionArrow";
-import HourlyWeatherDetails from "../HourlyWeatherDetails";
-import FailureCard from "../FailureCard";
-import WarningCard from "../WarningCard";
+import Details from "./Details";
+import ValidationList from "./ValidationList";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface HourProps {
@@ -111,17 +110,8 @@ const Hour: React.FC<HourProps> = ({
       {/* Expanded details */}
       {isExpanded && (
         <div className="px-3 py-4 bg-[var(--background)] border border-[var(--border)] rounded-md shadow-[var(--shadow-sm)]">
-          {showValidation && (
-            <div className="mb-4">
-              {!hour.is_promising && hour.validation_failures && (
-                <FailureCard failuresCsv={hour.validation_failures} />
-              )}
-              {hour.validation_warnings && hour.validation_warnings.length > 0 && (
-                <WarningCard warningsCsv={hour.validation_warnings} />
-              )}
-            </div>
-          )}
-          <HourlyWeatherDetails hour={hour} windDirections={windDirections} altitude={altitude} />
+          <ValidationList failuresCsv={hour.validation_failures} WarningsCsv={hour.validation_warnings} />
+          <Details hour={hour} windDirections={windDirections} altitude={altitude} />
         </div>
       )}
     </div>

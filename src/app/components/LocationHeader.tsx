@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import WindCompass from './windCompass';
 import FavouriteHeart from './FavouriteHeart';
-import { BackToMapButton, FlightlogButton, CompactFlightlogButton, GoogleMapsButton, WindyButton, YrButton } from './externalLinkButtons';
+import { BackToMapButton, FlightlogButton, GoogleMapsButton, WindyButton, YrButton } from './externalLinkButtons';
 
 interface LocationHeaderProps {
   name: string;

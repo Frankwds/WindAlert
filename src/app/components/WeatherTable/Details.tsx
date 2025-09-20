@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { getWindDirection } from "../../lib/utils/getWindDirection";
-import { getWeatherIcon } from "../../lib/utils/getWeatherIcons";
-import WindDirectionArrow from "./WindDirectionArrow";
-import TinyWindCompass from "./GoogleMaps/TinyWindCompass";
+import { getWindDirection } from "../../../lib/utils/getWindDirection";
+import { getWeatherIcon } from "../../../lib/utils/getWeatherIcons";
+import WindDirectionArrow from "../WindDirectionArrow";
+import TinyWindCompass from "../GoogleMaps/TinyWindCompass";
 import { ForecastCache1hr } from "@/lib/supabase/types";
 
-const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: ForecastCache1hr, windDirections: string[], altitude: number }) => {
+const Details = ({ hour, windDirections, altitude }: { hour: ForecastCache1hr, windDirections: string[], altitude: number }) => {
   const weatherIcon = getWeatherIcon(hour.weather_code);
 
   return (
@@ -168,4 +168,4 @@ const HourlyWeatherDetails = ({ hour, windDirections, altitude }: { hour: Foreca
   );
 };
 
-export default HourlyWeatherDetails;
+export default Details;
