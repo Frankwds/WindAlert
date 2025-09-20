@@ -105,7 +105,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                   key={index}
                   type="button"
                   onClick={() => setSelectedDay(index)}
-                  className={`flex-1 py-1.5 px-3 text-sm font-medium transition-all cursor-pointer ${index === 0 ? "rounded-l-md" : ""
+                  className={`flex-1 py-1.5 px-3 text-sm font-medium cursor-pointer ${index === 0 ? "rounded-l-md" : ""
                     } ${index === dayLabels.length - 1 ? "rounded-r-md" : ""
                     } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
                     } ${selectedDay === index
@@ -172,8 +172,8 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="flex gap-2">
-            <button onClick={handleReset} className={`flex-1 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} transition-colors cursor-pointer`}>Tilbakestill</button>
-            <button onClick={handleApply} className={`flex-1 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow transition-colors cursor-pointer`}>Bruk</button>
+            <button onClick={handleReset} className={`flex-1 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} cursor-pointer`}>Tilbakestill</button>
+            <button onClick={handleApply} className={`flex-1 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow cursor-pointer`}>Bruk</button>
           </div>
         </div>
       )}

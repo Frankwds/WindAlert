@@ -73,7 +73,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
         {/* Toggle Button */}
         <button
           onClick={toggleDropdown}
-          className={`flex items-center gap-4 p-2 ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} transition-all duration-200 ease-in-out rounded-lg cursor-pointer min-w-[72px] select-none`}
+          className={`flex items-center gap-4 p-2 ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} rounded-lg cursor-pointer min-w-[72px] select-none`}
           aria-label="Toggle filters"
         >
           {/* Filters Icon */}
@@ -101,7 +101,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={`text-[var(--muted)] transition-transform duration-200 ease-in-out ${isOpen ? 'rotate-180' : ''
+            className={`text-[var(--muted)] ${isOpen ? 'rotate-180' : ''
               }`}
           >
             <polyline points="6,9 12,15 18,9" />

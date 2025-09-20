@@ -79,7 +79,7 @@ const Day: React.FC<DayProps> = ({
         : showValidation && !hasPromisingHours
           ? "bg-[var(--error)]/10 border-l-4 border-[var(--error)]/50"
           : "bg-[var(--background)] border border-[var(--border)]"
-        } rounded-lg transition-shadow duration-200 ${!isMobile ? 'hover:shadow-[var(--shadow-hover)]' : ''}`}
+        } rounded-lg  ${!isMobile ? 'hover:shadow-[var(--shadow-hover)]' : ''}`}
     >
       <div className="p-2 space-y-1">
         {dailyForecast.map((hour) => (

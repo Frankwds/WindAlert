@@ -115,7 +115,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
           <button
             key={day}
             onClick={() => setActiveDay(day)}
-            className={`flex-1 py-1.5 px-3 transition-all cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
+            className={`flex-1 py-1.5 px-3 cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
               } ${index === Object.keys(groupedByDay).length - 1 ? "rounded-r-md" : ""
               } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
               } ${activeDay === day
@@ -134,7 +134,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
       {activeDay && (
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-thin transition-all duration-200"
+          className="overflow-x-auto overflow-y-hidden scrollbar-thin "
         >
           <table className="min-w-full text-sm text-center">
             <tbody>

@@ -30,7 +30,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                 href={windyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline transition-colors duration-200 cursor-pointer inline-flex items-center gap-2"
+                className="text-xl font-bold mb-2 text-[var(--foreground)] hover:text-[var(--accent)] hover:underline cursor-pointer inline-flex items-center gap-2"
               >
                 Windy.com
                 <ExternalLinkIcon size={24} className="inline-block" />
@@ -55,7 +55,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                   <button
                     key={layer}
                     onClick={() => setSelectedLayer(layer)}
-                    className={`flex-1 py-1.5 px-3 transition-all cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
+                    className={`flex-1 py-1.5 px-3 cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
                       } ${index === 2 ? "rounded-r-md" : ""
                       } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
                       } ${selectedLayer === layer
@@ -73,7 +73,7 @@ const WindyWidget: React.FC<WindyWidgetProps> = ({ lat, long }) => {
                   <button
                     key={m}
                     onClick={() => setModelIndex(index)}
-                    className={`flex-1 py-1.5 px-3 transition-all cursor-pointer ${index === 0 ? "rounded-l-md" : ""
+                    className={`flex-1 py-1.5 px-3 cursor-pointer ${index === 0 ? "rounded-l-md" : ""
                       } ${index === models.length - 1 ? "rounded-r-md" : ""
                       } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
                       } ${modelIndex === index

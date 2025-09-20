@@ -62,14 +62,14 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
         }
       }}
     >
-      <svg viewBox={isExpanded ? "0 0 130 130" : "0 0 44 44"} className={`transition-all duration-300 ${isExpanded ? 'w-48 h-48' : 'w-11 h-11'}`}>
+      <svg viewBox={isExpanded ? "0 0 130 130" : "0 0 44 44"} className={`${isExpanded ? 'w-48 h-48' : 'w-11 h-11'}`}>
         {directions.map((dir, i) => {
           const isSelected = selectedDirections.includes(dir);
           return (
             <g key={dir} onClick={() => handleDirectionClick(dir)}>
               <path
                 d={getPath(i)}
-                className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] transition-colors duration-200 ${isSelected ? "fill-[var(--success)]" : ""}`}
+                className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isSelected ? "fill-[var(--success)]" : ""}`}
               />
             </g>
           );
@@ -85,7 +85,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
                 e.stopPropagation();
                 onFilterLogicChange();
               }}
-              className={`w-6 h-6 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] duration-200 ease-in-out flex items-center justify-center font-mono text-sm font-bold select-none`}
+              className={`w-6 h-6 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] flex items-center justify-center font-mono text-sm font-bold select-none`}
               title={`Filter logic: ${windFilterAndOperator ? 'AND (&)' : 'OR (||)'}`}
             >
               {windFilterAndOperator ? '&' : '||'}
