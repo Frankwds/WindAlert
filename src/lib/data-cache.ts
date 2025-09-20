@@ -5,9 +5,9 @@ interface Cache<T> {
   timestamp: number | null;
 }
 
-export const WEATHER_STATIONS_UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutes
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
 const CACHE_DURATION_ALL_PARAGLIDING = 14 * 24 * 60 * 60 * 1000; // 14 days
+export const WEATHER_STATIONS_UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
