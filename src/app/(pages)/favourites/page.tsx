@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
-import LocationCard from "@/app/components/LocationCards";
+import LocationCard, { LocationCardAll } from "@/app/components/LocationCards";
 
 export default function FavouritesPage() {
   const { user, loading: authLoading } = useAuth();
@@ -65,10 +65,16 @@ export default function FavouritesPage() {
                 key={location.id}
                 className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 sm:p-6 border border-[var(--border)]"
               >
-                <LocationCard
-                  location={location}
-                  timezone="Europe/Oslo"
-                />
+                {location.is_main ? (
+                  <LocationCard
+                    location={location}
+                    timezone="Europe/Oslo"
+                  />
+                ) : (
+                  <LocationCardAll
+                    location={location}
+                  />
+                )}
               </div>
             ))}
           </div>

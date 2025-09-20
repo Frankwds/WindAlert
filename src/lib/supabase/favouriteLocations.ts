@@ -15,7 +15,7 @@ export class FavouriteLocationService {
         .from("favourite_locations")
         .select(`
           all_paragliding_locations!inner(
-            id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw,
+            id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw, is_main,
             forecast_cache(
               time,
               is_day,

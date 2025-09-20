@@ -70,6 +70,7 @@ export interface ParaglidingLocationWithForecast {
   longitude: number;
   altitude: number;
   flightlog_id: string;
+  is_main: boolean;
   forecast_cache?: MinimalForecast[];
   n: boolean;
   e: boolean;
