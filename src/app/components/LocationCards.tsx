@@ -6,7 +6,7 @@ import { ParaglidingMarkerData } from '@/lib/supabase/types';
 import MinimalHourlyWeather from './GoogleMaps/MinimalHourlyWeather';
 import TinyWindCompass from './GoogleMaps/TinyWindCompass';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-import { CompactFlightlogButton, WindyButton, YrButton, CardFlightlogButton } from './externalLinkButtons';
+import { CompactFlightlogButton, WindyButton, YrButton, FlightlogButton } from './externalLinkButtons';
 
 interface LocationCardProps {
   location: ParaglidingMarkerData;
@@ -70,7 +70,7 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
       <div className="flex items-center gap-1 justify-center flex-wrap">
         <WindyButton latitude={location.latitude} longitude={location.longitude} />
         <YrButton latitude={location.latitude} longitude={location.longitude} />
-        <CardFlightlogButton flightlogId={location.flightlog_id} />
+        <FlightlogButton flightlogId={location.flightlog_id} />
       </div>
     </div>
   );

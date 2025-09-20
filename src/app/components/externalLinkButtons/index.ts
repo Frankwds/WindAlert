@@ -3,6 +3,6 @@ export {
   BackToMapButton,
   WindyButton,
   YrButton,
-  CardFlightlogButton,
+  FlightlogButton,
   GoogleMapsButton,
 } from './ExternalLinkButtons';

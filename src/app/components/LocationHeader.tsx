@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import WindCompass from './windCompass';
 import FavouriteHeart from './FavouriteHeart';
-import { BackToMapButton, CardFlightlogButton, CompactFlightlogButton, GoogleMapsButton, WindyButton, YrButton } from './externalLinkButtons';
+import { BackToMapButton, FlightlogButton, CompactFlightlogButton, GoogleMapsButton, WindyButton, YrButton } from './externalLinkButtons';
 
 interface LocationHeaderProps {
   name: string;
@@ -21,13 +21,10 @@ export default function LocationHeader({ name, description, windDirections, loca
 
   return (
     <div className="mb-4">
-      {/* Action buttons above header */}
-      <div className="flex gap-1 mb-2 mx-2">
+      <div className="flex gap-1 mb-4 mx-2 flex-wrap">
         <FavouriteHeart locationId={locationId} />
         <BackToMapButton latitude={latitude} longitude={longitude} />
-        <CardFlightlogButton flightlogId={flightlog_id} />
-      </div>
-      <div className="flex gap-1 mb-4 mx-2">
+        <FlightlogButton flightlogId={flightlog_id} />
         <YrButton latitude={latitude} longitude={longitude} />
         <WindyButton latitude={latitude} longitude={longitude} />
         <GoogleMapsButton latitude={latitude} longitude={longitude} />

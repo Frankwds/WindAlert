@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import ExternalLinkIcon from "./ExternalLinkIcon";
-import { GoogleMapsButton } from "./externalLinkButtons";
 
 interface GoogleMapsProps {
   latitude: number;
@@ -26,23 +24,35 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
   }
 
   const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&${markers}&key=${apiKey}`;
-
+  const mapSrcTerrain = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=terrain&${markers}&key=${apiKey}`;
   // Google Maps URL with coordinates, zoom level 10, and satellite view
   const googleMapsUrl = `https://maps.google.com/?q=${latitude},${longitude}&z=12&t=k`;
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex flex-col items-center">
       <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
-      <Image
-        width={640}
-        height={640}
-        className="w-full h-auto max-w-[600px] rounded-lg shadow-[var(--shadow-lg)]"
-        src={mapSrc}
-        alt="Map showing location"
-        unoptimized // Required for dynamic URLs
-        priority
-      />
+      <div className="flex gap-4 flex-wrap justify-center">
+        <Image
+          width={640}
+          height={640}
+          className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
+          src={mapSrc}
+          alt="Map showing location"
+          unoptimized // Required for dynamic URLs
+          priority
+        />
+        <Image
+          width={640}
+          height={640}
+          className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
+          src={mapSrcTerrain}
+          alt="Map showing location"
+          unoptimized // Required for dynamic URLs
+          priority
+        />
+      </div>
     </div>
+
   );
 };
 
