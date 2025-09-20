@@ -14,7 +14,7 @@ export class FavouriteLocationService {
       const { data, error } = await supabase
         .from("favourite_locations")
         .select(`
-          paragliding_locations!inner(
+          all_paragliding_locations!inner(
             id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw,
             forecast_cache(
               time,
@@ -29,14 +29,14 @@ export class FavouriteLocationService {
           )
         `)
         .eq("user_id", userId)
-        .gte("paragliding_locations.forecast_cache.time", now.toISOString());
+        .gte("all_paragliding_locations.forecast_cache.time", now.toISOString());
 
       if (error) {
         console.error("Error fetching favourite locations with forecast:", error);
         throw new Error(`Failed to fetch favourites: ${error.message}`);
       }
 
-      return (data?.map((fav: any) => fav.paragliding_locations) as ParaglidingLocationWithForecast[]) || [];
+      return (data?.map((fav: any) => fav.all_paragliding_locations) as ParaglidingLocationWithForecast[]) || [];
     } catch (error) {
       console.error("Error in getAllForUserWithForecast:", error);
       throw error;
