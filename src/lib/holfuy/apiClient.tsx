@@ -35,7 +35,14 @@ export async function fetchHolfuyData(): Promise<{
 
   // Validate and parse the response data
   const validatedData = holfuyResponseSchema.parse(response.data.measurements);
-  const { stationData, holfuyStation } = mapHolfuyToStationData(validatedData);
+
+  const validStations = validatedData.filter(station => {
+    const lat = parseFloat(station.location.latitude);
+    const lng = parseFloat(station.location.longitude);
+    return lat !== 0 && lng !== 0 && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+  });
+
+  const { stationData, holfuyStation } = mapHolfuyToStationData(validStations);
 
   return { stationData, holfuyStation };
 }

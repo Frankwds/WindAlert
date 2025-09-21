@@ -7,7 +7,8 @@ import { StationData, WeatherStation } from '../supabase/types';
  * Maps Holfuy API response data to StationData format for database storage
  */
 export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
-  stationData: Omit<StationData, 'id'>[], holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
+  stationData: Omit<StationData, 'id'>[],
+  holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
 } {
   const stationData = holfuyData.map(station => ({
     station_id: station.stationId,
