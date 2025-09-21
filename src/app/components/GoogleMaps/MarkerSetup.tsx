@@ -92,7 +92,7 @@ export const createLandingMarker = (location: ParaglidingLocationWithForecast): 
     position: { lat: location.landing_latitude!, lng: location.landing_longitude! },
     title: `${location.name} landing`,
     content: markerElement,
-    zIndex: 1000
+    zIndex: 300
   });
 
   // Store the location data with the marker

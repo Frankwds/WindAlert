@@ -30,6 +30,9 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   // Create a ref for closeOverlays to avoid circular dependency
   const closeOverlaysRef = useRef<() => void>(() => { });
 
+  // Ref to track when we're in the middle of a paragliding marker click to not clear the landing marker on filter changes
+  const isParaglidingMarkerClickRef = useRef(false);
+
   const onMapReadyRef = useRef<(map: google.maps.Map) => void>(() => { });
   const onMapClickRef = useRef<() => void>(() => { });
   const onMapPositionChangeRef = useRef(updateMapPosition);
@@ -95,6 +98,9 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   const onParaglidingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
     if (!mapInstance) return;
 
+    // Set flag to prevent filter change effects from clearing landing marker
+    isParaglidingMarkerClickRef.current = true;
+
     closeOverlaysRef.current();
 
     // Always clear existing landing marker first
@@ -112,6 +118,11 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       : getAllParaglidingInfoWindow(location)
     );
     openInfoWindow(mapInstance, marker, infoWindowContent);
+
+    // Reset flag after a short delay to allow the landing marker to be set
+    setTimeout(() => {
+      isParaglidingMarkerClickRef.current = false;
+    }, 100);
   }, [mapInstance, openInfoWindow, variant, showLandingMarker, clearLandingMarker]);
 
   const {
@@ -146,17 +157,23 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   // Clear landing marker when filter controls change
   useEffect(() => {
-    clearLandingMarker();
+    if (!isParaglidingMarkerClickRef.current) {
+      clearLandingMarker();
+    }
   }, [filters.isFilterControlOpen, clearLandingMarker]);
 
   // Clear landing marker when wind filter changes
   useEffect(() => {
-    clearLandingMarker();
+    if (!isParaglidingMarkerClickRef.current) {
+      clearLandingMarker();
+    }
   }, [filters.windFilterExpanded, clearLandingMarker]);
 
   // Clear landing marker when promising filter changes
   useEffect(() => {
-    clearLandingMarker();
+    if (!isParaglidingMarkerClickRef.current) {
+      clearLandingMarker();
+    }
   }, [filters.isPromisingFilterExpanded, clearLandingMarker]);
 
   const filteredMarkers = useMarkerFiltering({
