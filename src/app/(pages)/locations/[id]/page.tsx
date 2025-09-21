@@ -14,7 +14,7 @@ import { combineDataSources } from "@/app/api/cron/_lib/utils/combineData";
 import { fetchYrDataClient } from "@/lib/yr/apiClient";
 import { mapYrData } from "@/lib/yr/mapping";
 import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
-import { DEFAULT_ALERT_RULE } from "@/app/api/cron/mockdata/alert-rules";
+import { DEFAULT_ALERT_RULE } from "@/app/api/cron/_lib/validate/alert-rules";
 import { isGoodParaglidingCondition } from "@/app/api/cron/_lib/validate/validateDataPoint";
 import { getSixHourSymbolsByDay } from "../utils/utils";
 import { groupForecastByDay } from "../utils/utils";
