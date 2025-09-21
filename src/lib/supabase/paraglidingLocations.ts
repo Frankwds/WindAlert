@@ -69,6 +69,7 @@ export class ParaglidingLocationService {
       console.error('Error fetching active locations for markers with forecast:', error);
       throw error;
     }
+    console.log(`Fetched ${data?.length} active locations with forecast`);
 
     return (data as ParaglidingLocationWithForecast[]) || [];
   }

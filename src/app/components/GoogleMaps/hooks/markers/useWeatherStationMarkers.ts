@@ -24,7 +24,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const loadMarkers = useCallback(async () => {
     if (isLoadingRef.current) return;
     try {
-      console.log('ACTUALLY CREATING weather station markers');
       isLoadingRef.current = true;
       setIsLoadingMarkers(true);
       setMarkersError(null);
@@ -50,10 +49,8 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     if (isLoadingRef.current) return;
     try {
       isLoadingRef.current = true;
-      console.log('ACTUALLY2 Updating weather station markers with latest data');
       const weatherStations = await loadLatestWeatherStationData(false);
       if (weatherStations) {
-        console.log('ACTUALLY2 CREATING weather station markers');
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
       }
@@ -90,7 +87,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       const delay = minutesToNext * 60 * 1000;
 
       const timeoutId = setTimeout(() => {
-        console.log('Updating markers with latest data');
         updateMarkersWithLatestData();
 
         // Now start the regular 15-minute interval

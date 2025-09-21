@@ -80,6 +80,7 @@ export class WeatherStationService {
       console.error('Error fetching active weather stations with data:', error);
       throw error;
     }
+    console.log(`Fetched ${data?.length} active weather stations with data`);
 
     // Convert to WeatherStationMarkerData format
     return data || [];

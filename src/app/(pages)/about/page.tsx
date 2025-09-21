@@ -12,7 +12,6 @@ export default function AboutPage() {
       try {
         const lastUpdatedHour = await ForecastCacheService.getOldestForecastData();
         if (lastUpdatedHour && lastUpdatedHour.updated_at) {
-          console.log(lastUpdatedHour.updated_at);
           const formattedDate = new Date(lastUpdatedHour.updated_at).toLocaleDateString('no-NO', {
             year: 'numeric',
             month: '2-digit',

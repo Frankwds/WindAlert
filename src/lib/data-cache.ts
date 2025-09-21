@@ -156,7 +156,6 @@ class DataCache {
 
 
   async appendWeatherStationData(latestData: StationData[]): Promise<WeatherStationMarkerData[] | null> {
-    console.log('latestData', latestData);
     // Get all stations for the update
     const allStations = await this.getWeatherStations();
     if (!allStations) {

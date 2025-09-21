@@ -12,6 +12,7 @@ export class StationDataService {
       return [];
     }
 
+
     // Add 2 minutes buffer to the timestamp to account for potential delays
     const bufferedTimestamp = new Date(new Date(timestamp).getTime() + 2 * 60 * 1000).toISOString();
 
@@ -24,7 +25,7 @@ export class StationDataService {
       console.error('Error fetching latest data for all stations:', error);
       throw error;
     }
-
+    console.log(`Fetched ${data?.length} station data newer than ${bufferedTimestamp}`);
     return data || [];
   }
   /**

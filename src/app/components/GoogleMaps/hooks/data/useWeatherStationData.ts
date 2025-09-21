@@ -24,7 +24,6 @@ export const useWeatherStationData = () => {
 
       // check if latestCacheTimestamp is older than 30 minutes
       if (new Date(latestUpdateTime).getTime() < Date.now() - 30 * 60 * 1000) {
-        console.log('ACTUALLY3 GETTING ALL ACTIVE WITH DATA');
         const updatedWeatherStations = await WeatherStationService.getAllActiveWithData();
         await dataCache.setWeatherStations(updatedWeatherStations);
         return updatedWeatherStations;
@@ -33,11 +32,9 @@ export const useWeatherStationData = () => {
       const latestData = await StationDataService.getAllStationDataNewerThan(latestUpdateTime);
 
       if (latestData && latestData.length > 0) {
-        console.log('ACTUALLY3 APPENDING weather station data');
         const updatedWeatherStations = await dataCache.appendWeatherStationData(latestData);
         return updatedWeatherStations;
       }
-      console.log('ACTUALLY3 NO NEW DATA');
 
       if (firstLoad) {
         return allWeatherStations;
