@@ -22,8 +22,8 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
   const holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[] = holfuyData.map(station => ({
     station_id: station.stationId,
     name: station.stationName,
-    latitude: parseFloat(station.location.latitude),
-    longitude: parseFloat(station.location.longitude),
+    latitude: parseFloat(parseFloat(station.location.latitude).toFixed(5)),
+    longitude: parseFloat(parseFloat(station.location.longitude).toFixed(5)),
     altitude: station.location.altitude,
     country: 'Norway',
     region: null,
