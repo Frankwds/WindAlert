@@ -45,10 +45,12 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
 
       // Fetch YR data for landing location if it exists
       if (location.landing_latitude && location.landing_longitude) {
+        console.log(`Fetching YR data for landing data for location ${location.id}`);
         const yrLandingData = await fetchYrData(
           location.landing_latitude,
           location.landing_longitude
         );
+
         const mappedYrLandingData = mapYrData(yrLandingData);
 
         combinedData = combinedData.map((dataPoint) => {
@@ -61,7 +63,7 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
             ...dataPoint,
             landing_wind: landingDataPoint?.wind_speed,
             landing_gust: landingDataPoint?.wind_speed_of_gust,
-            landing_wind_direction: landingDataPoint?.wind_from_direction,
+            landing_wind_direction: landingDataPoint?.wind_from_direction ? Math.round(landingDataPoint?.wind_from_direction) : undefined,
           };
         });
       }
@@ -142,7 +144,6 @@ export async function GET(request: NextRequest) {
     console.log('Unauthorized cron job attempt');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-
 
   try {
     console.log('Starting forecast update in background');

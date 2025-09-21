@@ -14,7 +14,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: Weat
 
   return {
     // Basic identification
-    time: meteoDataPoint.time + 'Z',
+    time: meteoDataPoint.time + ':00Z',
     location_id: '', // This will be set in the cron job
     is_promising: false, // Will be set in the cron job
     is_yr_data: !!yrDataPoint,
