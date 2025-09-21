@@ -25,7 +25,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       markerRef.current.position = location;
     } else {
       const markerElement = document.createElement('div');
-      markerElement.style.transform = 'translate(0%, -50%)';
+      markerElement.style.transform = 'translate(0%, 50%)';
       markerElement.innerHTML = `
         <div style="
           width: 20px;
