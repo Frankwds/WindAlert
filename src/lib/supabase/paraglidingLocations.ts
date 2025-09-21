@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { ParaglidingLocation, ParaglidingLocationForCache, ParaglidingLocationWithForecast } from './types';
+import { ParaglidingLocation, MinimalParaglidingLocation, ParaglidingLocationWithForecast } from './types';
 
 export class ParaglidingLocationService {
 
@@ -24,7 +24,7 @@ export class ParaglidingLocationService {
   /**
    * Get multiple paragliding locations by their IDs
    */
-  static async getMainActiveByIds(ids: string[]): Promise<ParaglidingLocationForCache[]> {
+  static async getMainActiveByIds(ids: string[]): Promise<MinimalParaglidingLocation[]> {
     const { data, error } = await supabase
       .from('all_paragliding_locations')
       .select('id, latitude, longitude, n, e, s, w, ne, se, sw, nw')

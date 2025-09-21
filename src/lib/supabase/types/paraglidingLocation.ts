@@ -21,7 +21,7 @@ export interface ParaglidingLocation {
   nw: boolean;
 }
 
-export type ParaglidingLocationForCache = Pick<ParaglidingLocation,
+export type MinimalParaglidingLocation = Pick<ParaglidingLocation,
   | 'id'
   | 'latitude'
   | 'longitude'

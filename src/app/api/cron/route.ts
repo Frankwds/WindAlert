@@ -9,13 +9,13 @@ import { fetchYrData } from '@/lib/yr/apiClient';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
-import { ForecastCache1hr, ParaglidingLocationForCache } from '@/lib/supabase/types';
+import { ForecastCache1hr, MinimalParaglidingLocation } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './_lib/validate/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 const BATCH_SIZE = 50;
 
-async function processBatch(locations: ParaglidingLocationForCache[]) {
+async function processBatch(locations: MinimalParaglidingLocation[]) {
 
   // Fetch OpenMeteo data for all locations in bulk
   const latitudes = locations.map((location) => location.latitude);
