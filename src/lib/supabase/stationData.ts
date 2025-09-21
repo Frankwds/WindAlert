@@ -44,4 +44,14 @@ export class StationDataService {
     return data || [];
   }
 
+  static async compressYesterdayStationData(): Promise<any> {
+    const { data, error } = await supabase.rpc('compress_yesterday_station_data_copy');
+
+    if (error) {
+      console.error('Error compressing data:', error);
+      throw error;
+    }
+
+    return data;
+  }
 }
