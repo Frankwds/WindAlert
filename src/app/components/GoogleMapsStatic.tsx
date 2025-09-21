@@ -4,10 +4,8 @@ import Image from "next/image";
 interface GoogleMapsProps {
   latitude: number;
   longitude: number;
-  landing?: {
-    lat: number;
-    long: number;
-  };
+  landing_latitude?: number;
+  landing_longitude?: number;
 }
 
 interface MapUrls {
@@ -16,7 +14,7 @@ interface MapUrls {
   googleMapsUrl: string;
 }
 
-const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing }) => {
+const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing_latitude, landing_longitude }) => {
   const [mapUrls, setMapUrls] = useState<MapUrls | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,9 +30,9 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
           lon: longitude.toString(),
         });
 
-        if (landing) {
-          params.append('landingLat', landing.lat.toString());
-          params.append('landingLon', landing.long.toString());
+        if (landing_latitude && landing_longitude) {
+          params.append('landingLat', landing_latitude.toString());
+          params.append('landingLon', landing_longitude.toString());
         }
 
         const response = await fetch(`/api/static-map?${params}`);
@@ -55,7 +53,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
     };
 
     fetchMapUrls();
-  }, [latitude, longitude, landing]);
+  }, [latitude, longitude, landing_latitude, landing_longitude]);
 
   if (loading) {
     return (

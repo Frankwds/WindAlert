@@ -145,7 +145,7 @@ export default function LocationPage({ params }: Props) {
       />
 
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <GoogleMaps latitude={location.latitude} longitude={location.longitude} />
+      <GoogleMaps latitude={location.latitude} longitude={location.longitude} landing_latitude={location.landing_latitude} landing_longitude={location.landing_longitude} />
 
     </div>
   );
