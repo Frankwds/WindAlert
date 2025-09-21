@@ -6,7 +6,7 @@ export class StationDataService {
   /**
    * Get latest data for all stations newer than a given timestamp
    */
-  static async getLatestStationDataForAllNewerThan(timestamp: string): Promise<StationData[]> {
+  static async getAllStationDataNewerThan(timestamp: string): Promise<StationData[]> {
     // check that timestamp is older than 15 minutes
     if (new Date(timestamp).getTime() > Date.now() - 15 * 60 * 1000) {
       return [];

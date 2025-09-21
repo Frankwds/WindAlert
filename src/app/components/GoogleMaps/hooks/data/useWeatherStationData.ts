@@ -30,7 +30,7 @@ export const useWeatherStationData = () => {
         return updatedWeatherStations;
       }
 
-      const latestData = await StationDataService.getLatestStationDataForAllNewerThan(latestUpdateTime);
+      const latestData = await StationDataService.getAllStationDataNewerThan(latestUpdateTime);
 
       if (latestData && latestData.length > 0) {
         console.log('ACTUALLY3 APPENDING weather station data');
