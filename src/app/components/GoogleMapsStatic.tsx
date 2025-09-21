@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface GoogleMapsProps {
@@ -10,23 +10,74 @@ interface GoogleMapsProps {
   };
 }
 
+interface MapUrls {
+  hybrid: string;
+  terrain: string;
+  googleMapsUrl: string;
+}
+
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing }) => {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  const [mapUrls, setMapUrls] = useState<MapUrls | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!apiKey) {
-    return <p>Google Maps API key is missing.</p>;
+  useEffect(() => {
+    const fetchMapUrls = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const params = new URLSearchParams({
+          lat: latitude.toString(),
+          lon: longitude.toString(),
+        });
+
+        if (landing) {
+          params.append('landingLat', landing.lat.toString());
+          params.append('landingLon', landing.long.toString());
+        }
+
+        const response = await fetch(`/api/static-map?${params}`);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch map URLs');
+        }
+
+        const data = await response.json();
+        setMapUrls(data);
+      } catch (err) {
+        console.error('Error fetching map URLs:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load map');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMapUrls();
+  }, [latitude, longitude, landing]);
+
+  if (loading) {
+    return (
+      <div className="p-4 flex flex-col items-center">
+        <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
+        <div className="flex justify-center items-center min-h-[400px]">
+          <p className="text-[var(--foreground)]">Loading map...</p>
+        </div>
+      </div>
+    );
   }
 
-  // Build markers string - main location (red) + landing (green) if available
-  let markers = `markers=color:red%7Clabel:S%7C${latitude},${longitude}`;
-  if (landing) {
-    markers += `&markers=color:green%7Clabel:L%7C${landing.lat},${landing.long}`;
+  if (error || !mapUrls) {
+    return (
+      <div className="p-4 flex flex-col items-center">
+        <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
+        <div className="flex justify-center items-center min-h-[400px]">
+          <p className="text-red-600">{error || 'Failed to load map'}</p>
+        </div>
+      </div>
+    );
   }
-
-  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=hybrid&${markers}&key=${apiKey}`;
-  const mapSrcTerrain = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=13&size=640x640&maptype=terrain&${markers}&key=${apiKey}`;
-  // Google Maps URL with coordinates, zoom level 10, and satellite view
-  const googleMapsUrl = `https://maps.google.com/?q=${latitude},${longitude}&z=12&t=k`;
 
   return (
     <div className="p-4 flex flex-col items-center">
@@ -36,7 +87,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
           width={640}
           height={640}
           className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
-          src={mapSrc}
+          src={mapUrls.hybrid}
           alt="Map showing location"
           unoptimized // Required for dynamic URLs
           priority
@@ -45,14 +96,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing })
           width={640}
           height={640}
           className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
-          src={mapSrcTerrain}
+          src={mapUrls.terrain}
           alt="Map showing location"
           unoptimized // Required for dynamic URLs
           priority
         />
       </div>
     </div>
-
   );
 };
 
