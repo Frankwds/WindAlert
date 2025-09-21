@@ -14,44 +14,39 @@ export async function GET(request: NextRequest) {
   try {
     console.log('Fetching and mapping Holfuy data...');
 
-    // Get valid station IDs from weather_stations table
-    const validStationIds = await WeatherStationService.getAllStationIdsNorway();
-    console.log(`Found ${validStationIds.length} valid station IDs in database`);
-
     // Fetch data from Holfuy API and map to StationData format
-    const holfuyData = await fetchHolfuyData();
-    console.log(`Successfully fetched ${holfuyData.length} records from Holfuy API`);
+    const { stationData, holfuyStation } = await fetchHolfuyData();
+    console.log(`Successfully fetched ${stationData.length} records from Holfuy API`);
 
-    // Filter data to only include stations that exist in weather_stations table
-    const filteredData = holfuyData.filter(station =>
-      validStationIds.includes(station.station_id)
-    );
+    // Find which stations are missing from the database
+    const stationIds = [...new Set(holfuyStation.map(station => station.station_id))];
+    const missingStationIds = await WeatherStationService.getAllMissingStationIds(stationIds);
 
-    const stationsNeedingImport = holfuyData
-      .filter(station => !validStationIds.includes(station.station_id))
-      .map(station => station.station_id)
-      .filter(id => ![113, 612, 689, 1154, 1514, 1876, 1918].includes(id));
+    if (missingStationIds.length > 0) {
+      console.log(`Found ${missingStationIds.length} new stations to upsert: ${missingStationIds.join(', ')}`);
 
-    if (stationsNeedingImport.length > 0) {
-      console.log(`${stationsNeedingImport.length} stations need to be imported:`, stationsNeedingImport);
+      // Filter holfuyStation to only include missing stations
+      const newStations = holfuyStation.filter(station =>
+        missingStationIds.includes(station.station_id)
+      );
+
+      // Upsert only the missing stations
+      await WeatherStationService.upsertMany(newStations);
+      console.log(`Successfully upserted ${newStations.length} new stations`);
     }
 
-    console.log(`Processing ${filteredData.length} valid records for database storage`);
-
-    // Store filtered data in database
-    const storedData = await StationDataService.insertMany(filteredData);
+    // Store all station data in database
+    const storedData = await StationDataService.insertMany(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
     return NextResponse.json({
       success: true,
       data: {
-        fetched: holfuyData.length,
-        filtered: filteredData.length,
-        filteredOut: stationsNeedingImport.length,
-        filteredOutIds: stationsNeedingImport,
+        fetched: stationData.length,
         stored: storedData.length,
+        newStations: missingStationIds.length,
       },
-      message: `Successfully fetched ${holfuyData.length} stations, filtered to ${filteredData.length} valid stations, and stored ${storedData.length} records`
+      message: `Successfully stored ${storedData.length} records and upserted ${missingStationIds.length} new stations`
     });
 
   } catch (error) {

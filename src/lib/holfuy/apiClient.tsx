@@ -2,9 +2,11 @@ import axios from 'axios';
 import url from 'url';
 import { holfuyResponseSchema } from './zod';
 import { mapHolfuyToStationData } from './mapping';
-import { StationData } from '../supabase/types';
+import { StationData, WeatherStation } from '../supabase/types';
 
-export async function fetchHolfuyData(): Promise<Omit<StationData, 'id'>[]> {
+export async function fetchHolfuyData(): Promise<{
+  stationData: Omit<StationData, 'id'>[], holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
+}> {
   const proxyUrl = process.env.FIXIE_URL;
   const apiKey = process.env.HOLFUY_API_KEY;
 
@@ -22,7 +24,7 @@ export async function fetchHolfuyData(): Promise<Omit<StationData, 'id'>[]> {
   }
   const fixieAuth = fixieUrl.auth.split(':');
 
-  const response = await axios.get(`https://api.holfuy.com/live/?s=all&pw=${apiKey}&m=JSON&tu=C&su=m/s&avg=1&utc`, {
+  const response = await axios.get(`https://api.holfuy.com/live/?s=all&pw=${apiKey}&m=JSON&tu=C&su=m/s&avg=1&utc&loc`, {
     proxy: {
       protocol: 'http',
       host: fixieUrl.hostname,
@@ -33,7 +35,7 @@ export async function fetchHolfuyData(): Promise<Omit<StationData, 'id'>[]> {
 
   // Validate and parse the response data
   const validatedData = holfuyResponseSchema.parse(response.data.measurements);
-  const mappedData = mapHolfuyToStationData(validatedData);
+  const { stationData, holfuyStation } = mapHolfuyToStationData(validatedData);
 
-  return mappedData;
+  return { stationData, holfuyStation };
 }

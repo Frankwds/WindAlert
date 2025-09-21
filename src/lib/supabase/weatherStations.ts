@@ -1,21 +1,49 @@
 import { supabase } from './client';
-import { StationData, WeatherStation, WeatherStationMarkerData } from './types';
+import { WeatherStation, WeatherStationMarkerData } from './types';
 import { calculateDistance } from './utils';
 
 export class WeatherStationService {
 
+
   /**
-   * Get all active weather stations
+   * Find which station IDs from the provided list don't exist in the database
+   * Uses IN to find existing IDs, then filters to find missing ones
    */
-  static async getAllActive(): Promise<WeatherStation[]> {
+  static async getAllMissingStationIds(stationIds: number[]): Promise<number[]> {
+    if (stationIds.length === 0) return [];
+
+    // Query to find which station IDs from our list DO exist in the database
     const { data, error } = await supabase
       .from('weather_stations')
-      .select('*')
-      .eq('is_active', true)
-      .order('name');
+      .select('station_id')
+      .in('station_id', stationIds);
 
     if (error) {
-      console.error('Error fetching active weather stations:', error);
+      console.error('Error finding existing station IDs:', error);
+      throw error;
+    }
+
+    // Return station IDs that are in our list but NOT in the database
+    const existingIds = data?.map(row => row.station_id) || [];
+    return stationIds.filter(id => !existingIds.includes(id));
+  }
+
+  /**
+   * Upsert multiple weather stations
+   */
+  static async upsertMany(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
+    if (stations.length === 0) return [];
+
+    const { data, error } = await supabase
+      .from('weather_stations')
+      .upsert(stations, {
+        onConflict: 'station_id',
+        ignoreDuplicates: false
+      })
+      .select();
+
+    if (error) {
+      console.error('Error upserting weather stations:', error);
       throw error;
     }
 
@@ -55,106 +83,5 @@ export class WeatherStationService {
 
     // Convert to WeatherStationMarkerData format
     return data || [];
-  }
-
-
-  static async getByCountry(country: string): Promise<WeatherStation[]> {
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .select('*')
-      .eq('country', country)
-      .eq('is_active', true)
-      .order('name');
-
-    if (error) {
-      console.error('Error fetching weather stations by country:', error);
-      throw error;
-    }
-
-    return data || [];
-  }
-
-  /**
-   * Get weather stations within a certain radius of a point (in kilometers)
-   */
-  static async getWithinRadius(
-    centerLat: number,
-    centerLng: number,
-    radiusKm: number
-  ): Promise<WeatherStation[]> {
-    // Using Haversine formula for distance calculation
-    // This is a simplified approach - for production, consider using PostGIS
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .select('*')
-      .eq('is_active', true)
-      .not('latitude', 'is', null)
-      .not('longitude', 'is', null);
-
-    if (error) {
-      console.error('Error fetching weather stations for radius search:', error);
-      throw error;
-    }
-
-    if (!data) return [];
-
-    // Filter stations within radius using Haversine formula
-    return data.filter(station => {
-      if (!station.latitude || !station.longitude) return false;
-
-      const distance = calculateDistance(
-        centerLat,
-        centerLng,
-        station.latitude,
-        station.longitude
-      );
-      return distance <= radiusKm;
-    });
-  }
-
-  static async getByStationId(stationId: number): Promise<WeatherStation | null> {
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .select('*')
-      .eq('station_id', stationId)
-      .maybeSingle();
-    if (error) {
-      console.error('Error fetching weather station by station ID:', error);
-      throw error;
-    }
-
-    return data || null;
-  }
-
-  static async insert(station: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>): Promise<WeatherStation | null> {
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .insert(station)
-      .select()
-      .single();
-    if (error) {
-      console.error('Error inserting weather station:', error);
-      throw error;
-    }
-
-    return data || null;
-  }
-
-  /**
-   * Get all unique station IDs from weather_stations table
-   */
-  static async getAllStationIdsNorway(): Promise<number[]> {
-    const { data, error } = await supabase
-      .from('weather_stations')
-      .select('station_id')
-      .eq('country', 'Norway')
-      .eq('is_active', true);
-
-    if (error) {
-      console.error('Error fetching station IDs:', error);
-      throw error;
-    }
-
-    return data?.map(station => station.station_id) || [];
   }
 }

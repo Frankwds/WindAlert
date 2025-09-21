@@ -11,6 +11,11 @@ export const windDataSchema = z.object({
 export const holfuyStationDataSchema = z.object({
   stationId: z.number(),
   stationName: z.string(),
+  location: z.object({
+    latitude: z.string(),
+    longitude: z.string(),
+    altitude: z.number(),
+  }),
   dateTime: z.string(),
   wind: windDataSchema,
   humidity: z.number().optional(),
@@ -18,5 +23,7 @@ export const holfuyStationDataSchema = z.object({
   rain: z.number().optional(),
   temperature: z.number().optional(),
 });
+
+export type HolfuyStationData = z.infer<typeof holfuyStationDataSchema>;
 
 export const holfuyResponseSchema = z.array(holfuyStationDataSchema);
