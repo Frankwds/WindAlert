@@ -1,6 +1,5 @@
 import { supabase } from './client';
 import { WeatherStation, WeatherStationMarkerData } from './types';
-import { calculateDistance } from './utils';
 
 export class WeatherStationService {
 
