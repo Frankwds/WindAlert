@@ -1,5 +1,3 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import WeatherTable from "@/app/components/WeatherTable";
 import GoogleMaps from "@/app/components/GoogleMapsStatic";
