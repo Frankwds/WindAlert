@@ -73,3 +73,26 @@ export const getMainParaglidingInfoWindow = (location: ParaglidingLocationWithFo
 export const getAllParaglidingInfoWindow = (location: ParaglidingLocationWithForecast) => {
   return <AllStartsInfoWindow location={location} />;
 };
+
+interface LandingInfoWindowProps {
+  location: ParaglidingLocationWithForecast;
+}
+
+export const LandingInfoWindow: React.FC<LandingInfoWindowProps> = ({ location }) => {
+  return (
+    <div className="p-4 max-w-sm">
+      <h3 className="font-bold text-lg text-center text-[var(--accent)]">
+        🛬 {location.name} landing
+      </h3>
+      {location.landing_altitude && (
+        <p className="text-center text-sm text-gray-600 mt-2">
+          Altitude: {location.landing_altitude}m
+        </p>
+      )}
+    </div>
+  );
+};
+
+export const getLandingInfoWindow = (location: ParaglidingLocationWithForecast) => {
+  return <LandingInfoWindow location={location} />;
+};

@@ -1,5 +1,5 @@
 import { WeatherStationWithData, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
-import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement } from './Markers';
+import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement, createLandingMarkerElement } from './Markers';
 
 type onParaglidingMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
 type onWeatherStationMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
@@ -80,6 +80,27 @@ export const createWeatherStationMarker = (location: WeatherStationWithData, onM
     onMarkerClick(marker, location);
   });
 
+
+  return marker;
+};
+
+
+export const createLandingMarker = (location: ParaglidingLocationWithForecast): google.maps.marker.AdvancedMarkerElement => {
+  const markerElement = createLandingMarkerElement();
+
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: { lat: location.landing_latitude!, lng: location.landing_longitude! },
+    title: `${location.name} landing`,
+    content: markerElement,
+    zIndex: 1000
+  });
+
+  // Store the location data with the marker
+  (marker as any).locationData = location;
+
+  markerElement.addEventListener('click', (event: Event) => {
+    event.stopPropagation();
+  });
 
   return marker;
 };

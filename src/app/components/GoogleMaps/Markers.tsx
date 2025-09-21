@@ -175,3 +175,34 @@ const createTextOverlay = (windSpeed: number): HTMLElement => {
 
   return textOverlay;
 };
+
+export const createLandingMarkerElement = (): HTMLElement => {
+  const container = document.createElement('div');
+  container.style.position = 'relative';
+  container.style.width = '20px';
+  container.style.height = '20px';
+  container.style.userSelect = 'none';
+  container.style.cursor = 'pointer';
+
+  const circle = document.createElement('div');
+  circle.style.width = '20px';
+  circle.style.height = '20px';
+  circle.style.borderRadius = '50%';
+  circle.style.backgroundColor = '#00ff00';
+  circle.style.border = '2px solid #ffffff';
+  circle.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+  circle.style.transition = 'transform 0.2s ease-in-out';
+
+  // Add hover effects
+  circle.addEventListener('mouseenter', () => {
+    circle.style.transform = 'scale(1.1)';
+  });
+
+  circle.addEventListener('mouseleave', () => {
+    circle.style.transform = 'scale(1)';
+  });
+
+  container.appendChild(circle);
+
+  return container;
+};

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering } from './markers';
+import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering, useLandingMarker } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
-import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
+import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow, getLandingInfoWindow } from '../InfoWindows';
 import { ParaglidingLocationWithForecast, WeatherStationWithData } from '@/lib/supabase/types';
 
 type Variant = 'main' | 'all';
@@ -27,20 +27,16 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   const { infoWindowRef, closeInfoWindow, openInfoWindow } = useInfoWindows();
 
-  const { closeOverlays } = useOverlayManagement({
-    setWindFilterExpanded: filters.setWindFilterExpanded,
-    setIsPromisingFilterExpanded: filters.setIsPromisingFilterExpanded,
-    setIsFilterControlOpen: filters.setIsFilterControlOpen,
-    closeInfoWindow
-  });
+  // Create a ref for closeOverlays to avoid circular dependency
+  const closeOverlaysRef = useRef<() => void>(() => { });
 
   const onMapReadyRef = useRef<(map: google.maps.Map) => void>(() => { });
   const onMapClickRef = useRef<() => void>(() => { });
   const onMapPositionChangeRef = useRef(updateMapPosition);
 
   useEffect(() => {
-    onMapClickRef.current = closeOverlays;
-  }, [closeOverlays]);
+    onMapClickRef.current = () => closeOverlaysRef.current();
+  }, []);
 
   useEffect(() => {
     onMapPositionChangeRef.current = updateMapPosition;
@@ -72,18 +68,42 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   const onWeatherStationMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
     if (!mapInstance) return;
 
-    closeOverlays();
+    closeOverlaysRef.current();
 
     const infoWindowContent = document.createElement('div');
     const root = createRoot(infoWindowContent);
     root.render(getWeatherStationInfoWindow(location));
     openInfoWindow(mapInstance, marker, infoWindowContent);
-  }, [mapInstance, openInfoWindow, closeOverlays]);
+  }, [mapInstance, openInfoWindow]);
+
+  const onLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
+    if (!mapInstance) return;
+
+    closeOverlaysRef.current();
+
+    const infoWindowContent = document.createElement('div');
+    const root = createRoot(infoWindowContent);
+    root.render(getLandingInfoWindow(location));
+    openInfoWindow(mapInstance, marker, infoWindowContent);
+  }, [mapInstance, openInfoWindow]);
+
+  const { currentLandingMarker, clearLandingMarker, showLandingMarker } = useLandingMarker({
+    mapInstance,
+    onLandingMarkerClick
+  });
 
   const onParaglidingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
     if (!mapInstance) return;
 
-    closeOverlays();
+    closeOverlaysRef.current();
+
+    // Always clear existing landing marker first
+    clearLandingMarker();
+
+    // Handle landing marker - check if both landing coordinates exist
+    if (location.landing_latitude && location.landing_longitude) {
+      showLandingMarker(location);
+    }
 
     const infoWindowContent = document.createElement('div');
     const root = createRoot(infoWindowContent);
@@ -92,7 +112,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       : getAllParaglidingInfoWindow(location)
     );
     openInfoWindow(mapInstance, marker, infoWindowContent);
-  }, [mapInstance, openInfoWindow, closeOverlays, variant]);
+  }, [mapInstance, openInfoWindow, variant, showLandingMarker, clearLandingMarker]);
 
   const {
     weatherStationMarkers,
@@ -111,6 +131,33 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     onParaglidingMarkerClick,
     variant
   });
+
+  const { closeOverlays } = useOverlayManagement({
+    setWindFilterExpanded: filters.setWindFilterExpanded,
+    setIsPromisingFilterExpanded: filters.setIsPromisingFilterExpanded,
+    setIsFilterControlOpen: filters.setIsFilterControlOpen,
+    closeInfoWindow
+  });
+
+  // Update the ref with the actual closeOverlays function
+  useEffect(() => {
+    closeOverlaysRef.current = closeOverlays;
+  }, [closeOverlays]);
+
+  // Clear landing marker when filter controls change
+  useEffect(() => {
+    clearLandingMarker();
+  }, [filters.isFilterControlOpen, clearLandingMarker]);
+
+  // Clear landing marker when wind filter changes
+  useEffect(() => {
+    clearLandingMarker();
+  }, [filters.windFilterExpanded, clearLandingMarker]);
+
+  // Clear landing marker when promising filter changes
+  useEffect(() => {
+    clearLandingMarker();
+  }, [filters.isPromisingFilterExpanded, clearLandingMarker]);
 
   const filteredMarkers = useMarkerFiltering({
     paraglidingMarkers: paraglidingMarkers,
@@ -159,6 +206,9 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     infoWindowRef,
     closeInfoWindow,
-    closeOverlays
+    closeOverlays,
+    currentLandingMarker,
+    clearLandingMarker,
+    showLandingMarker
   };
 };

@@ -56,7 +56,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     setShowSkywaysLayer,
     handleWindDirectionChange,
     handleWindFilterLogicChange,
-    closeOverlays
+    closeOverlays,
+    currentLandingMarker
   } = useGoogleMaps({ variant });
 
   // Create stable renderer instances to prevent recreation on every render
@@ -151,6 +152,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
 
         {memoizedParaglidingClusterer}
         {memoizedWeatherStationClusterer}
+        {currentLandingMarker && mapInstance && (
+          <div style={{ display: 'none' }}>
+            {/* Landing marker is automatically rendered by Google Maps when added to map */}
+          </div>
+        )}
 
         {mapInstance && (
           <>
