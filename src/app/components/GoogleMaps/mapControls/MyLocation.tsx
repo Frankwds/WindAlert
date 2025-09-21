@@ -27,14 +27,15 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       const markerElement = document.createElement('div');
       markerElement.style.transform = 'translate(0%, 50%)';
       markerElement.innerHTML = `
-        <div style="
-          width: 20px;
-          height: 20px;
-          background-color: #4285F4;
-          border: 2px solid white;
-          border-radius: 50%;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        "></div>
+        <img 
+          src="/paragliderBlue.png" 
+          alt="My Location" 
+          style="
+            width: 24px;
+            height: 24px;
+            filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
+          "
+        />
       `;
 
       markerRef.current = new google.maps.marker.AdvancedMarkerElement({
