@@ -10,7 +10,7 @@ import { ForecastCacheService } from '@/lib/supabase/forecastCache';
 import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { ForecastCache1hr, ParaglidingLocationForCache } from '@/lib/supabase/types';
-import { DEFAULT_ALERT_RULE } from './mockdata/alert-rules';
+import { DEFAULT_ALERT_RULE } from './_lib/validate/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 const BATCH_SIZE = 50;
