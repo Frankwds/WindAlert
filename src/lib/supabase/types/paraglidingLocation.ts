@@ -19,6 +19,9 @@ export interface ParaglidingLocation {
   se: boolean;
   sw: boolean;
   nw: boolean;
+  landing_latitude?: number;
+  landing_longitude?: number;
+  landing_altitude?: number;
 }
 
 export type MinimalParaglidingLocation = Pick<ParaglidingLocation,
@@ -33,4 +36,7 @@ export type MinimalParaglidingLocation = Pick<ParaglidingLocation,
   | 'se'
   | 'sw'
   | 'nw'
+  | 'landing_latitude'
+  | 'landing_longitude'
+  | 'landing_altitude'
 >;

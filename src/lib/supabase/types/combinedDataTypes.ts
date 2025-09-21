@@ -31,6 +31,9 @@ export type ParaglidingLocationWithForecast = Pick<ParaglidingLocation,
   | 'se'
   | 'sw'
   | 'nw'
+  | 'landing_latitude'
+  | 'landing_longitude'
+  | 'landing_altitude'
 > & {
   forecast_cache?: MinimalForecast[];
 };
