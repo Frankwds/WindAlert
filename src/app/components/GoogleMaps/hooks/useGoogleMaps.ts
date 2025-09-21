@@ -5,7 +5,7 @@ import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering } f
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
 import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow } from '../InfoWindows';
-import { ParaglidingLocationWithForecast, WeatherStationMarkerData } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast, WeatherStationWithData } from '@/lib/supabase/types';
 
 type Variant = 'main' | 'all';
 
@@ -69,7 +69,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     }, [])
   });
 
-  const onWeatherStationMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationMarkerData) => {
+  const onWeatherStationMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
     if (!mapInstance) return;
 
     closeOverlays();

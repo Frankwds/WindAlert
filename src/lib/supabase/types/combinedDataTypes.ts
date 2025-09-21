@@ -4,7 +4,7 @@ import { WeatherStation } from "./weatherStation";
 import { ParaglidingLocation } from "./paraglidingLocation";
 
 // Utility types that extend, omit, or pick from base types
-export type WeatherStationMarkerData = Pick<WeatherStation,
+export type WeatherStationWithData = Pick<WeatherStation,
   | 'id'
   | 'station_id'
   | 'name'

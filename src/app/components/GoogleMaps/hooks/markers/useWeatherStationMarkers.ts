@@ -1,13 +1,13 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { createWeatherStationMarkers } from '../../MarkerSetup';
-import { WeatherStationMarkerData } from '@/lib/supabase/types';
+import { WeatherStationWithData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
 import { WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
-  onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationMarkerData) => void;
+  onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
 }
 
 export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick }: UseWeatherStationMarkersProps) => {

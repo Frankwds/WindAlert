@@ -1,8 +1,8 @@
-import { WeatherStationMarkerData, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import { WeatherStationWithData, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement } from './Markers';
 
 type onParaglidingMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
-type onWeatherStationMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationMarkerData) => void;
+type onWeatherStationMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
 
 export const createParaglidingMarkers = (paraglidingLocations: ParaglidingLocationWithForecast[], onMarkerClick: onParaglidingMarkerClickHandler) => {
   return paraglidingLocations.map(location => {
@@ -11,7 +11,7 @@ export const createParaglidingMarkers = (paraglidingLocations: ParaglidingLocati
   });
 };
 
-export const createWeatherStationMarkers = (weatherStations: WeatherStationMarkerData[], onMarkerClick: onWeatherStationMarkerClickHandler) => {
+export const createWeatherStationMarkers = (weatherStations: WeatherStationWithData[], onMarkerClick: onWeatherStationMarkerClickHandler) => {
   return weatherStations.map(location => {
     const marker = createWeatherStationMarker(location, onMarkerClick);
     return marker;
@@ -46,7 +46,7 @@ export const createParaglidingMarker = (location: ParaglidingLocationWithForecas
   return marker;
 };
 
-export const createWeatherStationMarker = (location: WeatherStationMarkerData, onMarkerClick: onWeatherStationMarkerClickHandler) => {
+export const createWeatherStationMarker = (location: WeatherStationWithData, onMarkerClick: onWeatherStationMarkerClickHandler) => {
   const markerElement = createWeatherStationWindMarkerElement(location.station_data);
 
   // Store wind data in the marker element for cluster access

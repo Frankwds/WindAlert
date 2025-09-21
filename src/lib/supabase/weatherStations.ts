@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { WeatherStation, WeatherStationMarkerData } from './types';
+import { WeatherStation, WeatherStationWithData } from './types';
 
 export class WeatherStationService {
 
@@ -52,7 +52,7 @@ export class WeatherStationService {
   /**
  * Get all active weather stations that have data in station_data table
  */
-  static async getAllActiveWithData(): Promise<WeatherStationMarkerData[]> {
+  static async getAllActiveWithData(): Promise<WeatherStationWithData[]> {
     const { data, error } = await supabase
       .from('weather_stations')
       .select(`
