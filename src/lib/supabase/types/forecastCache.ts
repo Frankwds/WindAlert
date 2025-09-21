@@ -1,4 +1,4 @@
-export interface MinimalForecast extends Pick<ForecastCache1hr,
+export type MinimalForecast = Pick<ForecastCache1hr,
   | 'time'
   | 'is_day'
   | 'weather_code'
@@ -7,7 +7,7 @@ export interface MinimalForecast extends Pick<ForecastCache1hr,
   | 'wind_gusts'
   | 'wind_direction'
   | 'is_promising'
-> { }
+>;
 
 export interface ForecastCache1hr {
   // Basic identification
