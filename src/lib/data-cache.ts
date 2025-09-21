@@ -154,8 +154,9 @@ class DataCache {
     await this.setToStorage(this.WEATHER_KEY, data);
   }
 
-  async appendWeatherStationData(latestData: StationData[]): Promise<WeatherStationMarkerData[] | null> {
 
+  async appendWeatherStationData(latestData: StationData[]): Promise<WeatherStationMarkerData[] | null> {
+    console.log('latestData', latestData);
     // Get all stations for the update
     const allStations = await this.getWeatherStations();
     if (!allStations) {
@@ -163,20 +164,20 @@ class DataCache {
     }
 
     const updatedStations = allStations.map(station => {
-      const latestForStation = latestData.find(data => data.station_id === station.station_id);
-      if (latestForStation) {
-        // Append new data point to existing station_data array
-        return {
-          ...station,
-          station_data: [...station.station_data, latestForStation]
-        };
-      }
+      const latestForStation = latestData.filter(data => data.station_id === station.station_id);
+
+      // Append new data points, or simply keep the existing data
+      return {
+        ...station,
+        station_data: [...station.station_data, ...latestForStation]
+      };
+
       return station;
     });
 
     await this.setToStorage(this.WEATHER_KEY, updatedStations);
 
-    return updatedStations || null;
+    return updatedStations;
   }
 
   async getAllParaglidingLocations(): Promise<ParaglidingLocationWithForecast[] | null> {
