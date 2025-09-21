@@ -24,3 +24,16 @@ export async function fetchYrData(latitude: number, longitude: number): Promise<
   }
   return response.json();
 }
+
+export async function fetchYrDataClient(latitude: number, longitude: number): Promise<any> {
+  const url = `/api/yr?lat=${latitude.toFixed(4)}&lon=${longitude.toFixed(4)}`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Failed to fetch weather data for ${latitude},${longitude}: ${response.statusText}`, errorText);
+    throw new Error(`Failed to fetch weather data`);
+  }
+  return response.json();
+}

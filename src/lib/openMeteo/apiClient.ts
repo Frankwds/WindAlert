@@ -61,3 +61,28 @@ export async function fetchMeteoData(latitude: number | number[], longitude: num
 
   return response.json();
 }
+
+export async function fetchMeteoDataClient(latitude: number | number[], longitude: number | number[]): Promise<any> {
+  const { baseURL, params } = API_URL_CONFIG;
+  const url = new URL(baseURL);
+
+  const latString = Array.isArray(latitude) ? latitude.join(',') : latitude.toFixed(4).toString();
+  const lonString = Array.isArray(longitude) ? longitude.join(',') : longitude.toFixed(4).toString();
+
+  url.searchParams.append('latitude', latString);
+  url.searchParams.append('longitude', lonString);
+
+  Object.entries(params).forEach(([key, value]) => {
+    url.searchParams.append(key, value);
+  });
+
+  const response = await fetch(url.toString());
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Failed to fetch weather data for ${latString},${lonString}: ${response.statusText}`, errorText);
+    throw new Error(`Failed to fetch weather data`);
+  }
+
+  return response.json();
+}
