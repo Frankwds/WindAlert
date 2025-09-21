@@ -14,11 +14,15 @@ export async function GET(request: NextRequest) {
     console.log('Compressing Holfuy data for yesterday...');
 
     const data = await StationDataService.compressYesterdayStationData();
-
-    console.log('Successfully compressed Holfuy data:', data);
+    console.log(`Successfully compressed 
+      ${data.original_records} original records into 
+      ${data.compressed_records} compressed records, for 
+      ${data.stations_processed} unique stations`);
     return NextResponse.json({
-      message: 'Successfully compressed Holfuy data',
-      stats: data && data.length > 0 ? data[0] : null
+      message: `Successfully compressed 
+      ${data.original_records} original records into 
+      ${data.compressed_records} compressed records, for 
+      ${data.stations_processed} unique stations`,
     });
 
   } catch (error) {
