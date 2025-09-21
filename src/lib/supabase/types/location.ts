@@ -62,4 +62,4 @@ export interface ParaglidingLocationForCache {
 }
 
 // Import MinimalForecast from forecast types
-import { MinimalForecast } from './forecast';
+import { MinimalForecast } from './forecastCache';

@@ -1,13 +1,13 @@
-export interface MinimalForecast {
-  time: string;
-  is_day: 0 | 1;
-  weather_code: string;
-  temperature: number;
-  wind_speed: number;
-  wind_gusts: number;
-  wind_direction: number;
-  is_promising: boolean;
-}
+export interface MinimalForecast extends Pick<ForecastCache1hr,
+  | 'time'
+  | 'is_day'
+  | 'weather_code'
+  | 'temperature'
+  | 'wind_speed'
+  | 'wind_gusts'
+  | 'wind_direction'
+  | 'is_promising'
+> { }
 
 export interface ForecastCache1hr {
   // Basic identification

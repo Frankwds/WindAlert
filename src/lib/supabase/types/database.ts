@@ -1,7 +1,7 @@
 import { User } from './user';
 import { FavouriteLocation, ParaglidingLocation } from './location';
 import { WeatherStation, StationData } from './weather';
-import { ForecastCache1hr } from './forecast';
+import { ForecastCache1hr } from './forecastCache';
 
 export type Database = {
   public: {
