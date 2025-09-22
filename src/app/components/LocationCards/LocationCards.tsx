@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
-import MinimalHourlyWeather from '@/app/components/MinimalWeatherTable/MinimalHourlyWeather';
+import MinimalHourlyWeather from '@/app/components/LocationCards/MinimalHourlyWeather';
 import TinyWindCompass from '@/app/components/GoogleMaps/TinyWindCompass';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 import { CompactFlightlogButton, WindyButton, YrButton, GoogleMapsButton } from '@/app/components/ExternalLinkButtons';

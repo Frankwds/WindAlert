@@ -1,6 +1,6 @@
 import React from 'react';
 import { ParaglidingLocationWithForecast, WeatherStationWithData } from '@/lib/supabase/types';
-import LocationCard, { LocationCardAll } from '../shared/LocationCards';
+import LocationCard, { LocationCardAll } from '../LocationCards/LocationCards';
 import StationDataTable from './StationDataTable';
 import { GoogleMapsButton, YrButton } from '../ExternalLinkButtons';
 
