@@ -6,6 +6,7 @@ import WeatherTable from "@/app/components/LocationPage/WeatherTable";
 import GoogleMaps from "@/app/components/LocationPage/GoogleMapsStatic";
 import WindyWidget from "@/app/components/LocationPage/windyWidget";
 import LocationHeader from "@/app/components/LocationPage/LocationHeader";
+import { Contribute } from "@/app/components/LocationPage/Contribute/Contribute";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 import { fetchMeteoDataClient } from "@/lib/openMeteo/apiClient";
 import { openMeteoResponseSchema } from "@/lib/openMeteo/zod";
@@ -147,6 +148,17 @@ export default function LocationPage({ params }: Props) {
       <WindyWidget lat={location.latitude} long={location.longitude} />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude}
         landing_latitude={location.landing_latitude} landing_longitude={location.landing_longitude} />
+
+      <Contribute
+        latitude={location.latitude}
+        longitude={location.longitude}
+        landingLatitude={location.landing_latitude}
+        landingLongitude={location.landing_longitude}
+        onSave={(landingLat, landingLng) => {
+          // TODO: Implement API call to save landing coordinates
+          console.log('Saving landing coordinates:', { landingLat, landingLng });
+        }}
+      />
 
     </div>
   );
