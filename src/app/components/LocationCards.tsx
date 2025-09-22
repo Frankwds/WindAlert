@@ -21,7 +21,7 @@ export default function LocationCard({
 
   return (
     <div className="min-w-50 max-w-90">
-      <div className="flex items-center mb-2">
+      <div className="flex items-center">
         <CompactFlightlogButton flightlogId={location.flightlog_id} />
 
         <Link
@@ -30,14 +30,21 @@ export default function LocationCard({
           className="flex-1"
         >
           <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
-            {location.name} ({location.altitude}m)
+            {location.name}
           </h3>
+
+
 
         </Link>
         <TinyWindCompass allowedDirections={allowedDirections} />
 
 
       </div>
+      {location.landing_altitude && (
+        <p className="text-center text-sm text-gray-600 mt-[-10px]">
+          Høyde: {location.altitude}moh
+        </p>
+      )}
       <hr className="mt-2 mb-4" />
       {location.forecast_cache && location.forecast_cache.length > 0 ? (
         <MinimalHourlyWeather
@@ -60,7 +67,7 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
 
   return (
     <div className="min-w-50 max-w-90">
-      <div className="flex items-center mb-2">
+      <div className="flex items-center">
         <CompactFlightlogButton flightlogId={location.flightlog_id} />
         <Link
           href={`/locations/${location.id}`}
@@ -68,12 +75,18 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
           className="flex-1"
         >
           <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
-            {location.name} ({location.altitude}m)
+            {location.name}
           </h3>
         </Link>
 
+
         <TinyWindCompass allowedDirections={allowedDirections} />
       </div>
+      {location.landing_altitude && (
+        <p className="text-center text-sm text-gray-600 mt-[-10px]">
+          Høyde: {location.altitude}moh
+        </p>
+      )}
       <hr className="mt-2 mb-4" />
       <div className="flex items-center gap-1 justify-center flex-wrap">
         <YrButton latitude={location.latitude} longitude={location.longitude} />
