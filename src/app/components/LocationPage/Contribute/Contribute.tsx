@@ -15,13 +15,13 @@ interface ContributeProps {
 export const Contribute: React.FC<ContributeProps> = ({
   latitude,
   longitude,
-  landingLatitude,
-  landingLongitude,
+  landingLatitude: intialLandingLatitude,
+  landingLongitude: initialLandingLongitude,
   onSave
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(landingLatitude);
-  const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(landingLongitude);
+  const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
+  const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
   const [hasChanges, setHasChanges] = useState(false);
 
   const handleLandingChange = useCallback((lat: number, lng: number) => {
@@ -74,21 +74,22 @@ export const Contribute: React.FC<ContributeProps> = ({
             <ContributeMap
               latitude={latitude}
               longitude={longitude}
-              landingLatitude={landingLatitude}
-              landingLongitude={landingLongitude}
+              landingLatitude={intialLandingLatitude}
+              landingLongitude={initialLandingLongitude}
               onLandingChange={handleLandingChange}
             />
 
             <div className="flex justify-end">
               <button
                 onClick={handleSave}
-                disabled={!currentLandingLat || !currentLandingLng}
-                className={`px-4 py-2 rounded-md font-medium transition-colors ${currentLandingLat && currentLandingLng
+                disabled={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
+                className={`px-4 py-2 rounded-md font-medium transition-colors ${currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)
                   ? 'bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90'
                   : 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'
                   }`}
               >
-                {hasChanges ? 'Lagre endringer' : 'Lagre landing'}
+                {currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
+                  'Lagre endringer' : 'Gjør endringer for å lagre'}
               </button>
             </div>
           </div>
@@ -96,4 +97,15 @@ export const Contribute: React.FC<ContributeProps> = ({
       </Collapsible>
     </div>
   );
+};
+
+const currentLandingIsValid = (
+  currentLandingLat: number | undefined, currentLandingLng: number | undefined,
+  initialLatitude: number | undefined, initialLongitude: number | undefined
+) => {
+  if (!currentLandingLat || !currentLandingLng) {
+    return false;
+  }
+
+  return currentLandingLat !== initialLatitude || currentLandingLng !== initialLongitude;
 };

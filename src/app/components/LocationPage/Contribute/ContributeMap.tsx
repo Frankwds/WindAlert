@@ -4,7 +4,7 @@ import React from 'react';
 import { LoadingSpinner } from '../../shared/LoadingSpinner';
 import { ErrorState } from '../../shared/ErrorState';
 import { MapLayerToggle, ZoomControls } from '../../GoogleMaps/mapControls';
-import { useContributeMap } from './useContributeMap';
+import { useContributeMap } from './hooks/useContributeMap';
 
 interface ContributeMapProps {
   latitude: number;
