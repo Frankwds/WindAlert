@@ -3,7 +3,7 @@
 import { ForecastCache1hr } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
-import WindDirectionArrow from "../WindDirectionArrow";
+import WindDirectionArrow from "../shared/WindDirectionArrow";
 import Details from "./Details";
 import ValidationList from "./ValidationList";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";

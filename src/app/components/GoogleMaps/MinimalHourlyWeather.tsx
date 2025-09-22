@@ -3,7 +3,7 @@
 import { MinimalForecast } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
-import WindDirectionArrow from "../WindDirectionArrow";
+import WindDirectionArrow from "../shared/WindDirectionArrow";
 import { useDataGrouping } from "@/lib/hooks/useDataGrouping";
 import { useMemo } from "react";
 

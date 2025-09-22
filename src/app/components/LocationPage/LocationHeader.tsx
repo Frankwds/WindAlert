@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import WindCompass from '../windCompass';
-import FavouriteHeart from '../FavouriteHeart';
+import WindCompass from '../shared/windCompass';
+import FavouriteHeart from '../shared/FavouriteHeart';
 import { BackToMapButton, FlightlogButton, GoogleMapsButton, WindyButton, YrButton } from '../ExternalLinkButtons';
 
 interface LocationHeaderProps {

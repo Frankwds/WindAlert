@@ -3,7 +3,7 @@
 import React from "react";
 import { getWindDirection } from "../../../lib/utils/getWindDirection";
 import { getWeatherIcon } from "../../../lib/utils/getWeatherIcons";
-import WindDirectionArrow from "../WindDirectionArrow";
+import WindDirectionArrow from "../shared/WindDirectionArrow";
 import TinyWindCompass from "../GoogleMaps/TinyWindCompass";
 import { ForecastCache1hr } from "@/lib/supabase/types";
 
