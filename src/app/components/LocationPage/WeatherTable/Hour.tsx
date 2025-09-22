@@ -3,9 +3,9 @@
 import { ForecastCache1hr } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
-import WindDirectionArrow from "../shared/WindDirectionArrow";
+import WindDirectionArrow from "@/app/components/shared/WindDirectionArrow";
 import Details from "./Details";
-import ValidationList from "./ValidationList";
+import ValidationList from "@/app/components/LocationPage/WeatherTable/ValidationList";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 interface HourProps {

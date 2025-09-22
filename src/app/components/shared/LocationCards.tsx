@@ -3,10 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
-import MinimalHourlyWeather from '../GoogleMaps/MinimalHourlyWeather';
-import TinyWindCompass from '../GoogleMaps/TinyWindCompass';
+import MinimalHourlyWeather from '@/app/components/MinimalWeatherTable/MinimalHourlyWeather';
+import TinyWindCompass from '@/app/components/GoogleMaps/TinyWindCompass';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-import { CompactFlightlogButton, WindyButton, YrButton, GoogleMapsButton } from '../ExternalLinkButtons';
+import { CompactFlightlogButton, WindyButton, YrButton, GoogleMapsButton } from '@/app/components/ExternalLinkButtons';
 
 interface LocationCardProps {
   location: ParaglidingLocationWithForecast;
@@ -32,9 +32,6 @@ export default function LocationCard({
           <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
             {location.name}
           </h3>
-
-
-
         </Link>
         <TinyWindCompass allowedDirections={allowedDirections} />
 

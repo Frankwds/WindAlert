@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
-import WeatherTable from "@/app/components/WeatherTable";
+import WeatherTable from "@/app/components/LocationPage/WeatherTable";
 import GoogleMaps from "@/app/components/LocationPage/GoogleMapsStatic";
 import WindyWidget from "@/app/components/LocationPage/windyWidget";
 import LocationHeader from "@/app/components/LocationPage/LocationHeader";
