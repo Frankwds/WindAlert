@@ -58,7 +58,10 @@ export class ParaglidingLocationService {
           wind_speed,
           wind_gusts,
           wind_direction,
-          is_promising
+          is_promising,
+          landing_wind,
+          landing_gust,
+          landing_wind_direction
         )
       `)
       .eq('is_active', true)
