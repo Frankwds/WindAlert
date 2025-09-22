@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useTheme } from "@/app/contexts/ThemeContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import HamburgerMenu from "./HamburgerMenu";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { useState } from "react";

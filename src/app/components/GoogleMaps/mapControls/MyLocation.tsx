@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useTheme } from '../../../contexts/ThemeContext';
+import { useTheme } from '../../../../contexts/ThemeContext';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 
 interface MyLocationProps {
