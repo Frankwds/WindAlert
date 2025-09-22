@@ -43,6 +43,8 @@ export const createParaglidingMarker = (location: ParaglidingLocationWithForecas
     onMarkerClick(marker, location);
   });
 
+  marker.zIndex = 1000;
+
   return marker;
 };
 
@@ -64,7 +66,6 @@ export const createWeatherStationMarker = (location: WeatherStationWithData, onM
     title: location.name,
     content: markerElement,
   });
-  marker.zIndex = 2000;
 
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1)';
@@ -79,7 +80,7 @@ export const createWeatherStationMarker = (location: WeatherStationWithData, onM
     event.stopPropagation();
     onMarkerClick(marker, location);
   });
-
+  marker.zIndex = 2000;
 
   return marker;
 };
@@ -93,6 +94,9 @@ export const createLandingMarker = (location: ParaglidingLocationWithForecast): 
     title: `${location.name} landing`,
     content: markerElement,
   });
+
+  // Set high z-index to ensure landing marker appears above other markers
+  marker.zIndex = 500;
 
   // Store the location data with the marker
   (marker as any).locationData = location;

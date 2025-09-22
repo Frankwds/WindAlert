@@ -179,31 +179,61 @@ const createTextOverlay = (windSpeed: number): HTMLElement => {
 export const createLandingMarkerElement = (): HTMLElement => {
   const container = document.createElement('div');
   container.style.position = 'relative';
-  container.style.width = '20px';
-  container.style.height = '20px';
+  container.style.width = '24px';
+  container.style.height = '32px';
   container.style.userSelect = 'none';
   container.style.cursor = 'pointer';
 
-  const circle = document.createElement('div');
-  circle.style.width = '20px';
-  circle.style.height = '20px';
-  circle.style.borderRadius = '50%';
-  circle.style.backgroundColor = '#00ff00';
-  circle.style.border = '2px solid #ffffff';
-  circle.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
-  circle.style.transition = 'transform 0.2s ease-in-out';
-  circle.style.zIndex = '-1000';
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '24');
+  svg.setAttribute('height', '32');
+  svg.setAttribute('viewBox', '-8 -8 440 528');
+
+  // Create the group element
+  const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+  // Main pin body (dark green with white border)
+  const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  mainPath.setAttribute('style', 'fill:darkgreen;stroke:white;stroke-width:8;');
+  mainPath.setAttribute('d', 'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   L62.275,362.141c-7.231-7.157-13.872-14.905-19.996-23.095C15.716,303.703,0,259.726,0,212.061   c0-51.06,18.077-97.914,48.182-134.512c8.78-10.773,18.668-20.586,29.366-29.367C114.147,18.077,161.074,0,212.134,0   c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z');
+
+  // Center circle (brown)
+  const centerPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  centerPath.setAttribute('style', 'fill:white;');
+  centerPath.setAttribute('d', 'M339.392,212.081c0,70.284-56.968,127.258-127.259,127.258   c-70.277,0-127.258-56.974-127.258-127.258S141.856,84.822,212.133,84.822C282.424,84.822,339.392,141.797,339.392,212.081z');
+
+  // Shadow/overlay (dark brown with opacity)
+  const shadowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  shadowPath.setAttribute('style', 'opacity:0.13;fill:#604C3F;');
+  shadowPath.setAttribute('d', 'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   V0c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z');
+
+  // Add 'L' text in the center
+  const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.setAttribute('x', '212');
+  text.setAttribute('y', '270');
+  text.setAttribute('text-anchor', 'middle');
+  text.setAttribute('fill', 'black');
+  text.setAttribute('font-size', '200');
+  text.setAttribute('font-weight', 'bold');
+  text.setAttribute('font-family', 'Arial, sans-serif');
+  text.textContent = 'L';
+
+  group.appendChild(mainPath);
+  group.appendChild(centerPath);
+  group.appendChild(shadowPath);
+  group.appendChild(text);
+  svg.appendChild(group);
+  container.appendChild(svg);
 
   // Add hover effects
-  circle.addEventListener('mouseenter', () => {
-    circle.style.transform = 'scale(1.1)';
+  container.addEventListener('mouseenter', () => {
+    container.style.transform = 'scale(1.1)';
   });
 
-  circle.addEventListener('mouseleave', () => {
-    circle.style.transform = 'scale(1)';
+  container.addEventListener('mouseleave', () => {
+    container.style.transform = 'scale(1)';
   });
-
-  container.appendChild(circle);
 
   return container;
 };
