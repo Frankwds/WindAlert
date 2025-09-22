@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
-import { createWeatherStationClusterElement } from '../Markers';
+import { createWeatherStationClusterElement } from '../../shared/Markers';
 
 // Wind arrow icon component for filter control
 const WindArrowIcon = () => {

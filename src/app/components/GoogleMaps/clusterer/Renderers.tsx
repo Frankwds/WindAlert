@@ -1,5 +1,5 @@
 import { Cluster, Renderer } from "@googlemaps/markerclusterer";
-import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement } from "../Markers";
+import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement } from "../../shared/Markers";
 import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
 import { getDominantWind } from "./util";
 

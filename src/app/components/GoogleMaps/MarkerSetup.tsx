@@ -1,5 +1,5 @@
 import { WeatherStationWithData, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
-import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement, createLandingMarkerElement } from './Markers';
+import { createParaglidingMarkerElementWithDirection, createWeatherStationWindMarkerElement, createLandingMarkerElement } from '../shared/Markers';
 
 type onParaglidingMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
 type onWeatherStationMarkerClickHandler = (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
