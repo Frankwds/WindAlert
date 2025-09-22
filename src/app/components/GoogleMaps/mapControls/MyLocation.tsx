@@ -17,12 +17,21 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
   const watchIdRef = useRef<number | null>(null);
   const [isTracking, setIsTracking] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [heading, setHeading] = useState<number | null>(null);
 
-  const updateMarker = (location: { lat: number; lng: number }) => {
+  const updateMarker = (location: { lat: number; lng: number }, heading: number | null) => {
     if (!map) return;
 
     if (markerRef.current) {
       markerRef.current.position = location;
+      // Update rotation if heading is available
+      if (heading !== null) {
+        const markerElement = markerRef.current.content as HTMLElement;
+        const imgElement = markerElement.querySelector('img');
+        if (imgElement) {
+          imgElement.style.transform = `rotate(${heading}deg)`;
+        }
+      }
     } else {
       const markerElement = document.createElement('div');
       markerElement.style.transform = 'translate(0%, 50%)';
@@ -34,6 +43,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
             width: 24px;
             height: 24px;
             filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease-out;
+            transform: ${heading !== null ? `rotate(${heading}deg)` : 'rotate(0deg)'};
           "
         />
       `;
@@ -59,6 +70,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       watchIdRef.current = null;
     }
     setIsTracking(false);
+    setHeading(null);
   };
 
   const handleMyLocationClick = () => {
@@ -87,7 +99,15 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
           lng: position.coords.longitude,
         };
 
-        updateMarker(location);
+        // Extract heading from position
+        const newHeading = position.coords.heading;
+        if (newHeading !== null && !isNaN(newHeading)) {
+          setHeading(newHeading);
+        } else {
+          setHeading(null);
+        }
+
+        updateMarker(location, newHeading);
 
         if (isFollowing && map) {
           map.setCenter(location);
@@ -137,7 +157,13 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
           className={`w-8 h-8 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] flex items-center justify-center font-bold text-lg select-none`}
           title={
             isTracking
-              ? (isFollowing ? "Stop following location (Right-click to clear cache)" : "Follow location (Right-click to clear cache)")
+              ? (isFollowing
+                ? (heading !== null
+                  ? "Stop following location with direction arrow (Right-click to clear cache)"
+                  : "Stop following location (Right-click to clear cache)")
+                : (heading !== null
+                  ? "Follow location with direction arrow (Right-click to clear cache)"
+                  : "Follow location (Right-click to clear cache)"))
               : "My Location (Right-click to clear cache)"
           }
         >
