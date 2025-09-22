@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Navigation from "./navigation";
+import Navigation from "./components/Navigation/navigation";
+
 
 interface ConditionalMainProps {
   children: React.ReactNode;

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import WeatherTable from "@/app/components/WeatherTable";
 import GoogleMaps from "@/app/components/GoogleMapsStatic";
-import WindyWidget from "@/app/components/windyWidget";
+import WindyWidget from "@/app/components/LocationPage/windyWidget";
 import LocationHeader from "@/app/components/LocationHeader";
 import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 import { fetchMeteoDataClient } from "@/lib/openMeteo/apiClient";

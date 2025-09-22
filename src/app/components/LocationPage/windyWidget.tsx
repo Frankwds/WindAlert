@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ExternalLinkIcon from "./ExternalLinkButtons/ExternalLinkIcon";
+import ExternalLinkIcon from "../ExternalLinkButtons/ExternalLinkIcon";
 
 interface WindyWidgetProps {
   lat: number;
