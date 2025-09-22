@@ -3,7 +3,7 @@
 import { ForecastCache1hr } from "@/lib/supabase/types";
 import { getWeatherIcon } from "@/lib/utils/getWeatherIcons";
 import Image from "next/image";
-import Collapsible from "../Collapsible";
+import Collapsible from "../shared/Collapsible";
 import Hour from "./Hour";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { useState } from "react";
