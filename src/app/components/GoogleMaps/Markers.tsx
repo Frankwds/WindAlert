@@ -192,6 +192,7 @@ export const createLandingMarkerElement = (): HTMLElement => {
   circle.style.border = '2px solid #ffffff';
   circle.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
   circle.style.transition = 'transform 0.2s ease-in-out';
+  circle.style.zIndex = '-1000';
 
   // Add hover effects
   circle.addEventListener('mouseenter', () => {
