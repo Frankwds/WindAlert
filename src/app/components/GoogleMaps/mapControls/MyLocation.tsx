@@ -18,86 +18,88 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
   const [isTracking, setIsTracking] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
+  const createMarkerElement = () => {
+    const markerElement = document.createElement('div');
+    markerElement.style.transform = 'translate(0%, 50%)';
+    markerElement.innerHTML = `
+      <div style="
+        position: relative; 
+        width: 24px; 
+        height: 24px;
+        transition: transform 0.3s ease-out;
+      ">
+        <img 
+          src="/paragliderBlue.png" 
+          alt="My Location" 
+          style="
+            width: 24px;
+            height: 24px;
+            filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
+          "
+        />
+        <div class="heading-arrow" style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(8px, -50%);
+          width: 16px;
+          height: 16px;
+          display: none;
+        "></div>
+      </div>
+    `;
+    return markerElement;
+  };
+
+  const updateMyLocation = (heading: number | null) => {
+    if (!markerRef.current) return;
+
+    const markerElement = markerRef.current.content as HTMLElement;
+    const containerDiv = markerElement.querySelector('div[style*="position: relative"]') as HTMLElement;
+    const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
+
+    if (!containerDiv || !arrowContainer) return;
+
+    if (heading !== null) {
+      // Show arrow
+      arrowContainer.style.display = 'block';
+
+      // Update rotation
+      containerDiv.style.transform = `rotate(${heading - 90}deg)`;
+
+      // Update SVG
+      const existingSvg = arrowContainer.querySelector('svg');
+      if (existingSvg) existingSvg.remove();
+
+      const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
+      svgArrow.style.width = '16px';
+      svgArrow.style.height = '16px';
+      arrowContainer.appendChild(svgArrow);
+    } else {
+      // Hide arrow
+      arrowContainer.style.display = 'none';
+
+      // Reset rotation
+      containerDiv.style.transform = 'rotate(0deg)';
+    }
+  };
+
   const updateMarker = (location: { lat: number; lng: number }, heading: number | null) => {
     if (!map) return;
 
     if (markerRef.current) {
       markerRef.current.position = location;
-      // Update rotation if heading is available
-      if (heading !== null) {
-        const markerElement = markerRef.current.content as HTMLElement;
-        const containerDiv = markerElement.querySelector('div[style*="position: relative"]') as HTMLElement;
-        const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
-
-        if (containerDiv) {
-          containerDiv.style.transform = `rotate(${heading - 90}deg)`;
-        }
-
-        // Update or create SVG arrow
-        if (arrowContainer) {
-          // Remove existing SVG if any
-          const existingSvg = arrowContainer.querySelector('svg');
-          if (existingSvg) {
-            existingSvg.remove();
-          }
-
-          // Create new SVG arrow
-          const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
-          svgArrow.style.width = '16px';
-          svgArrow.style.height = '16px';
-          arrowContainer.appendChild(svgArrow);
-        }
-      }
     } else {
-      const markerElement = document.createElement('div');
-      markerElement.style.transform = 'translate(0%, 50%)';
-      markerElement.innerHTML = `
-        <div style="
-          position: relative; 
-          width: 24px; 
-          height: 24px;
-          transition: transform 0.3s ease-out;
-        ">
-          <img 
-            src="/paragliderBlue.png" 
-            alt="My Location" 
-            style="
-              width: 24px;
-              height: 24px;
-              filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
-            "
-          />
-          ${heading !== null ? `
-            <div class="heading-arrow" style="
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(8px, -50%);
-              width: 16px;
-              height: 16px;
-            "></div>
-          ` : ''}
-        </div>
-      `;
-
+      const markerElement = createMarkerElement();
       markerRef.current = new google.maps.marker.AdvancedMarkerElement({
         position: location,
         map,
         title: 'My Location',
         content: markerElement,
       });
-
-      // Add SVG arrow if heading is available
-      if (heading !== null) {
-        const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
-        if (arrowContainer) {
-          const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
-          svgArrow.style.width = '16px';
-          svgArrow.style.height = '16px';
-          arrowContainer.appendChild(svgArrow);
-        }
-      }
     }
+
+    updateMyLocation(heading);
   };
 
   const createHeadingArrowSVG = (isClustered: boolean, color: string = '#d8d8d8') => {
@@ -163,8 +165,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
         };
 
         // Extract heading from position
-        // const newHeading = position.coords.heading;
-        updateMarker(location, 270);
+        const newHeading = position.coords.heading;
+        updateMarker(location, newHeading);
 
         if (isFollowing && map) {
           map.setCenter(location);
