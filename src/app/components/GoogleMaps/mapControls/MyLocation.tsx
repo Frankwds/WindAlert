@@ -27,26 +27,59 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       // Update rotation if heading is available
       if (heading !== null) {
         const markerElement = markerRef.current.content as HTMLElement;
-        const imgElement = markerElement.querySelector('img');
-        if (imgElement) {
-          imgElement.style.transform = `rotate(${heading}deg)`;
+        const containerDiv = markerElement.querySelector('div[style*="position: relative"]') as HTMLElement;
+        const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
+
+        if (containerDiv) {
+          containerDiv.style.transform = `rotate(${heading}deg)`;
+        }
+
+        // Update or create SVG arrow
+        if (arrowContainer) {
+          // Remove existing SVG if any
+          const existingSvg = arrowContainer.querySelector('svg');
+          if (existingSvg) {
+            existingSvg.remove();
+          }
+
+          // Create new SVG arrow
+          const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
+          svgArrow.style.width = '16px';
+          svgArrow.style.height = '16px';
+          arrowContainer.appendChild(svgArrow);
         }
       }
     } else {
       const markerElement = document.createElement('div');
       markerElement.style.transform = 'translate(0%, 50%)';
       markerElement.innerHTML = `
-        <img 
-          src="/paragliderBlue.png" 
-          alt="My Location" 
-          style="
-            width: 24px;
-            height: 24px;
-            filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
-            transition: transform 0.3s ease-out;
-            transform: ${heading !== null ? `rotate(${heading}deg)` : 'rotate(0deg)'};
-          "
-        />
+        <div style="
+          position: relative; 
+          width: 24px; 
+          height: 24px;
+          transition: transform 0.3s ease-out;
+          transform: ${heading !== null ? `rotate(${heading}deg)` : 'rotate(0deg)'};
+        ">
+          <img 
+            src="/paragliderBlue.png" 
+            alt="My Location" 
+            style="
+              width: 24px;
+              height: 24px;
+              filter: drop-shadow(-2px -2px 3px rgba(0,0,0,0.6)) drop-shadow(-2px -2px 2px rgba(0,0,0,0.4));
+            "
+          />
+          ${heading !== null ? `
+            <div class="heading-arrow" style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(8px, -50%);
+              width: 16px;
+              height: 16px;
+            "></div>
+          ` : ''}
+        </div>
       `;
 
       markerRef.current = new google.maps.marker.AdvancedMarkerElement({
@@ -55,7 +88,39 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
         title: 'My Location',
         content: markerElement,
       });
+
+      // Add SVG arrow if heading is available
+      if (heading !== null) {
+        const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
+        if (arrowContainer) {
+          const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
+          svgArrow.style.width = '16px';
+          svgArrow.style.height = '16px';
+          arrowContainer.appendChild(svgArrow);
+        }
+      }
     }
+  };
+  const createHeadingArrowSVG = (isClustered: boolean, color: string = '#d8d8d8') => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '42');
+    svg.setAttribute('height', '42');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.style.transform = `rotate(90deg)${isClustered ? 'scale(0.8)' : ''}`;
+    svg.style.transformOrigin = 'center';
+    svg.style.transition = 'transform 0.2s ease-in-out';
+
+    // Clean heading arrow based on the provided SVG
+    // Scaled and centered for 24x24 viewBox
+    const headingArrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    headingArrow.setAttribute('d', 'M12 2 L4 20 L11 16 L13 16 L20 20 L12 2 Z');
+    headingArrow.setAttribute('fill', color);
+    headingArrow.setAttribute('stroke', 'black');
+    headingArrow.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
+    headingArrow.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(headingArrow);
+
+    return svg;
   };
 
   const startTracking = () => {
@@ -102,12 +167,12 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
         // Extract heading from position
         const newHeading = position.coords.heading;
         if (newHeading !== null && !isNaN(newHeading)) {
-          setHeading(newHeading);
+          setHeading(newHeading - 90);
         } else {
           setHeading(null);
         }
 
-        updateMarker(location, newHeading);
+        updateMarker(location, newHeading ? newHeading - 90 : null);
 
         if (isFollowing && map) {
           map.setCenter(location);
