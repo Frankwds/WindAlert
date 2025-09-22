@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { FavouriteLocationService } from "@/lib/supabase/favouriteLocations";
 import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
-import LocationCard, { LocationCardAll } from "@/app/components/LocationCards";
+import LocationCard, { LocationCardAll } from "@/app/components/shared/LocationCards";
 
 export default function FavouritesPage() {
   const { user, loading: authLoading } = useAuth();

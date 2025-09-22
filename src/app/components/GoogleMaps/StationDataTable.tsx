@@ -1,7 +1,7 @@
 'use client';
 
 import { StationData } from "@/lib/supabase/types";
-import WindDirectionArrow from "./shared/WindDirectionArrow";
+import WindDirectionArrow from "../shared/WindDirectionArrow";
 import { useDataGrouping } from "@/lib/hooks/useDataGrouping";
 import { getWindSpeedColor, getTemperatureOpacity } from "@/lib/utils/getValueColors";
 
