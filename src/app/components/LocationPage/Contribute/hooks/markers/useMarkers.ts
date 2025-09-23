@@ -1,4 +1,4 @@
-import { createLandingMarkerElement } from '@/app/components/shared/Markers';
+import { createLandingMarkerElement, createParaglidingMarkerElement, createParaglidingMarkerElementWithDirection } from '@/app/components/shared/Markers';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseMarkersProps {
@@ -28,24 +28,16 @@ export const useMarkers = ({
   }, [onLandingChange]);
 
   const createTakeoffMarker = useCallback((map: google.maps.Map) => {
-    const marker = new google.maps.marker.AdvancedMarkerElement({
+    const takeoffMarker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: latitude, lng: longitude },
       title: 'Takeoff Location'
     });
 
     // Create red pin element
-    const pinElement = document.createElement('div');
-    pinElement.style.width = '20px';
-    pinElement.style.height = '20px';
-    pinElement.style.backgroundColor = '#ef4444'; // red-500
-    pinElement.style.borderRadius = '50% 50% 50% 0';
-    pinElement.style.border = '2px solid white';
-    pinElement.style.transform = 'rotate(-45deg)';
-    pinElement.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
-
-    marker.content = pinElement;
-    return marker;
+    const markerElement = createParaglidingMarkerElement();
+    takeoffMarker.content = markerElement;
+    return takeoffMarker;
   }, [latitude, longitude]);
 
   const createLandingMarker = useCallback((map: google.maps.Map, lat: number, lng: number) => {

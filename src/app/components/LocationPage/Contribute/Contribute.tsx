@@ -54,7 +54,7 @@ export const Contribute: React.FC<ContributeProps> = ({
     <div className="mt-6 center justify-center">
       <h1 className="text-2xl font-bold">Bidra:</h1>
       <Collapsible
-        title="Legg til Landing"
+        title="Rediger Landing"
         isOpen={isOpen}
         onToggle={handleToggle}
         className="bg-[var(--card)] border border-[var(--border)] rounded-lg"

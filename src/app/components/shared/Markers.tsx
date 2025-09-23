@@ -51,6 +51,29 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   return svg;
 };
 
+export const createParaglidingMarkerElement = (): HTMLElement => {
+  const container = document.createElement('div');
+  container.style.position = 'relative';
+  container.style.width = '32px';
+  container.style.height = '32px';
+  container.style.userSelect = 'none';
+
+  const img = document.createElement('img');
+  img.src = '/paraglider.png';
+  img.alt = 'Paragliding location';
+  img.className = 'w-6 h-6'; // 24px
+  img.style.position = 'absolute';
+  img.style.top = '4px'; // Center 24px image in 32px container
+  img.style.left = '4px';
+  img.style.zIndex = '1';
+  img.draggable = false;
+  img.style.cursor = 'pointer';
+  img.style.userSelect = 'none';
+
+  container.appendChild(img);
+
+  return container;
+}
 
 export const createParaglidingMarkerElementWithDirection = (location: ParaglidingLocationWithForecast): HTMLElement => {
   const container = document.createElement('div');
