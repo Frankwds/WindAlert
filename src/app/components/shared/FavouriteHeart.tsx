@@ -76,7 +76,6 @@ export default function FavouriteHeart({ locationId }: Props) {
         className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)]"
       >
         <HeartIconOutline className="w-4 h-4 text-red-500" />
-        <span className="text-sm font-medium">Laster...</span>
       </button>
     );
   }
@@ -90,7 +89,7 @@ export default function FavouriteHeart({ locationId }: Props) {
           title="Klikk for å prøve igjen"
         >
           <HeartIconOutline className="w-4 h-4 text-red-500" />
-          <span className="text-sm font-medium text-red-600">Feil</span>
+          <span className="text-sm font-medium text-red-600">Det skjedde en feil.</span>
         </button>
         <span className="text-xs text-red-500 text-center">{error}</span>
       </div>

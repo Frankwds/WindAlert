@@ -8,11 +8,6 @@ import { ForecastCache1hr } from './forecastCache';
 export type Database = {
   public: {
     Tables: {
-      users: {
-        Row: User;
-        Insert: Omit<User, 'created_at' | 'updated_at'>;
-        Update: Partial<Omit<User, 'created_at' | 'updated_at'>>;
-      };
       all_paragliding_locations: {
         Row: ParaglidingLocation;
         Insert: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>;
