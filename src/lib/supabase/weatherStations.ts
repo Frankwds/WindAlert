@@ -28,27 +28,6 @@ export class WeatherStationService {
     return stationIds.filter(id => !existingIds.includes(id));
   }
 
-  /**
-   * Upsert multiple weather stations
-   */
-  static async upsertMany(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
-    if (stations.length === 0) return [];
-
-    const { data, error } = await supabaseServer
-      .from('weather_stations')
-      .upsert(stations, {
-        onConflict: 'station_id',
-        ignoreDuplicates: false
-      })
-      .select();
-
-    if (error) {
-      console.error('Error upserting weather stations:', error);
-      throw error;
-    }
-
-    return data || [];
-  }
 
   /**
  * Get all active weather stations that have data in station_data table

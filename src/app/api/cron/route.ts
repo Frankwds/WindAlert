@@ -12,6 +12,7 @@ import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 import { ForecastCache1hr, MinimalParaglidingLocation } from '@/lib/supabase/types';
 import { DEFAULT_ALERT_RULE } from './_lib/validate/alert-rules';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
+import { Server } from '@/lib/supabase/server';
 
 const BATCH_SIZE = 50;
 
@@ -83,7 +84,7 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
       });
 
       // Upsert forecast data
-      await ForecastCacheService.upsert(validatedForecastData);
+      await Server.upsert(validatedForecastData);
     } catch (error) {
       console.error(`Failed to process location ${location.id}:`, error);
     }
@@ -130,7 +131,7 @@ async function cleanupOldForecastData() {
 
   console.log(`Deleting forecast data older than: ${twoHoursAgoISO}`);
 
-  await ForecastCacheService.deleteOldData(twoHoursAgoISO);
+  await Server.deleteOldData(twoHoursAgoISO);
 
   console.log('Forecast data cleanup completed successfully');
 }

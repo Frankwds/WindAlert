@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { fetchHolfuyData } from '@/lib/holfuy/apiClient';
 import { StationDataService } from '@/lib/supabase/stationData';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
+import { Server } from '@/lib/supabase/server';
 
 export async function GET(request: NextRequest) {
   const token = request.headers.get('token');
@@ -31,7 +32,7 @@ export async function GET(request: NextRequest) {
       );
 
       // Upsert only the missing stations
-      await WeatherStationService.upsertMany(newStations);
+      await Server.upsertMany(newStations);
       console.log(`Successfully upserted ${newStations.length} new stations`);
     }
 

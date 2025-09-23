@@ -124,40 +124,4 @@ export class ParaglidingLocationService {
 
     return allLocations;
   }
-
-  /**
-   * Update landing coordinates for a paragliding location
-   */
-  static async updateLocationLanding(
-    locationId: string,
-    landingLatitude: number,
-    landingLongitude: number,
-    landingAltitude?: number | null
-  ): Promise<ParaglidingLocation | null> {
-    const updateData: Partial<ParaglidingLocation> = {
-      landing_latitude: landingLatitude,
-      landing_longitude: landingLongitude,
-      updated_at: new Date().toISOString()
-    };
-
-    // Only update altitude if it's provided (including 0)
-    if (landingAltitude !== undefined && landingAltitude !== null) {
-      updateData.landing_altitude = landingAltitude;
-    }
-
-    const { data, error } = await supabaseServer
-      .from('all_paragliding_locations')
-      .update(updateData)
-      .eq('id', locationId)
-      .select('*')
-      .single();
-
-    if (error) {
-      console.error(`Error updating landing coordinates for location ${locationId}:`, error);
-      return null;
-    }
-
-    return data;
-  }
-
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
+import { Server } from '@/lib/supabase/server';
 
 /**
  * Calculate distance between two points using Haversine formula
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Update the landing coordinates
-    const updatedLocation = await ParaglidingLocationService.updateLocationLanding(
+    const updatedLocation = await Server.updateLocationLanding(
       locationId,
       landingLatitude,
       landingLongitude,

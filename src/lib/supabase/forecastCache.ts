@@ -4,35 +4,6 @@ import { ForecastCache1hr } from './types';
 
 export class ForecastCacheService {
 
-  /**
-   * Upsert forecast data (insert or update)
-   * @param forecastData 
-   */
-  static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
-    const { error } = await supabaseServer
-      .from('forecast_cache')
-      .upsert(forecastData, { onConflict: 'time,location_id' });
-
-    if (error) {
-      console.error('Error upserting forecast data:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Delete old forecast data before a specific time
-   */
-  static async deleteOldData(beforeTime: string): Promise<void> {
-    const { error } = await supabaseServer
-      .from('forecast_cache')
-      .delete()
-      .lt('time', beforeTime);
-
-    if (error) {
-      console.error('Error deleting old forecast data:', error);
-      throw error;
-    }
-  }
 
 
   /**

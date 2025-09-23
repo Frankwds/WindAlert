@@ -13,7 +13,7 @@ export type Database = {
         Insert: Omit<User, 'created_at' | 'updated_at'>;
         Update: Partial<Omit<User, 'created_at' | 'updated_at'>>;
       };
-      paragliding_locations: {
+      all_paragliding_locations: {
         Row: ParaglidingLocation;
         Insert: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at'>>;
@@ -37,6 +37,18 @@ export type Database = {
         Row: StationData;
         Insert: Omit<StationData, 'id'>;
         Update: Partial<Omit<StationData, 'id'>>;
+      };
+    };
+    Views: {
+      locations_with_oldest_forecast: {
+        Row: { id: string };
+        Insert: never;
+        Update: never;
+      };
+      locations_without_forecast: {
+        Row: { id: string };
+        Insert: never;
+        Update: never;
       };
     };
   };
