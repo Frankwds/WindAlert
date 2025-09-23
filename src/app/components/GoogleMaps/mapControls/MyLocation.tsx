@@ -41,7 +41,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(8px, -50%);
+          transform: translate(8px, -60%);
           width: 16px;
           height: 16px;
           display: none;
@@ -59,7 +59,6 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
     const arrowContainer = markerElement.querySelector('div.heading-arrow') as HTMLElement;
 
     if (!containerDiv || !arrowContainer) return;
-
     if (heading !== null) {
       // Show arrow
       arrowContainer.style.display = 'block';
@@ -72,8 +71,8 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
       if (existingSvg) existingSvg.remove();
 
       const svgArrow = createHeadingArrowSVG(false, '#3b82f6');
-      svgArrow.style.width = '16px';
-      svgArrow.style.height = '16px';
+      svgArrow.style.width = '24px';
+      svgArrow.style.height = '24px';
       arrowContainer.appendChild(svgArrow);
     } else {
       // Hide arrow
