@@ -29,6 +29,7 @@ export const Contribute: React.FC<ContributeProps> = ({
   const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
   const [currentLandingAltitude, setCurrentLandingAltitude] = useState<number | undefined>(initialLandingAltitude);
   const [hasChanges, setHasChanges] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const contributeRef = useRef<HTMLDivElement>(null);
 
   // Scroll to the bottom of the contribute section when it opens
@@ -48,6 +49,7 @@ export const Contribute: React.FC<ContributeProps> = ({
     setCurrentLandingLat(lat);
     setCurrentLandingLng(lng);
     setHasChanges(true);
+    setError(null); // Clear any previous errors when landing changes
   }, []);
 
   const handleAltitudeChange = useCallback((altitude: number) => {
@@ -57,15 +59,16 @@ export const Contribute: React.FC<ContributeProps> = ({
 
   const handleSave = useCallback(async () => {
     if (!currentLandingLat || !currentLandingLng) {
-      alert('Please select a landing location first by clicking on the map.');
+      alert('Velg et landingsted først ved å klikke på kartet.');
       return;
     }
 
     const confirmed = confirm(
-      'Are you sure you want to save this landing location? This change will affect everyone using WindLord.'
+      'Er du sikker på at du vil lagre dette landingstedet? Endringen din vil vises for alle som bruker WindLord.'
     );
 
     if (confirmed) {
+      setError(null); // Clear any previous errors
       try {
         const response = await fetch('/api/contribute/landing', {
           method: 'POST',
@@ -74,6 +77,8 @@ export const Contribute: React.FC<ContributeProps> = ({
           },
           body: JSON.stringify({
             locationId,
+            takeoffLatitude: latitude,
+            takeoffLongitude: longitude,
             landingLatitude: currentLandingLat,
             landingLongitude: currentLandingLng,
             landingAltitude: currentLandingAltitude,
@@ -82,23 +87,21 @@ export const Contribute: React.FC<ContributeProps> = ({
 
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to save landing coordinates');
+          setError(errorData.error || 'Failed to save landing coordinates');
+          return;
         }
 
-        const result = await response.json();
-        console.log('Landing coordinates saved successfully:', result);
-
-        // Call the optional onSave callback
         onSave?.(currentLandingLat, currentLandingLng, currentLandingAltitude);
         setHasChanges(false);
+        setError(null);
 
         alert('Landing coordinates saved successfully!');
       } catch (error) {
         console.error('Error saving landing coordinates:', error);
-        alert(`Failed to save landing coordinates: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        setError(`Failed to save landing coordinates: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     }
-  }, [locationId, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);
+  }, [locationId, latitude, longitude, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);
 
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);
@@ -132,40 +135,48 @@ export const Contribute: React.FC<ContributeProps> = ({
               landingLongitude={initialLandingLongitude}
               onLandingChange={handleLandingChange}
             />
-
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <label htmlFor="altitude-input" className="text-sm font-medium text-[var(--foreground)]">
-                  Høyde:
-                </label>
-                <input
-                  id="altitude-input"
-                  type="number"
-                  min="0"
-                  step="1"
-                  value={currentLandingAltitude || ''}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (value === '') {
-                      handleAltitudeChange(undefined as any);
-                    } else {
-                      const numValue = parseInt(value, 10);
-                      if (!isNaN(numValue)) {
-                        handleAltitudeChange(numValue);
-                      }
-                    }
-                  }}
-                  className="w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-                  placeholder="0"
-                />
-                <span className="text-xs text-[var(--muted)]">moh.</span>
+            {error && (
+              <div className="text-sm text-[var(--error)] text-center mx-20">
+                {error}
               </div>
-              <ButtonAccept
-                onClick={handleSave}
-                title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
-                  'Lagre endringer' : 'Gjør endringer for å lagre'}
-                disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
-              />
+            )}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <label htmlFor="altitude-input" className="text-sm font-medium text-[var(--foreground)]">
+                    Høyde:
+                  </label>
+                  <input
+                    id="altitude-input"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={currentLandingAltitude || ''}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === '') {
+                        handleAltitudeChange(undefined as any);
+                      } else {
+                        const numValue = parseInt(value, 10);
+                        if (!isNaN(numValue)) {
+                          handleAltitudeChange(numValue);
+                        }
+                      }
+                    }}
+                    className="w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    placeholder="0"
+                  />
+                  <span className="text-xs text-[var(--muted)]">moh.</span>
+                </div>
+
+                <ButtonAccept
+                  onClick={handleSave}
+                  title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
+                    'Lagre endringer' : 'Gjør endringer for å lagre'}
+                  disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
+                />
+              </div>
+
             </div>
           </div>
         ) : null}
