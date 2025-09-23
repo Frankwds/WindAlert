@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
 
 interface PromisingFilterProps {
   isExpanded: boolean;
@@ -172,8 +173,18 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           </div>
 
           <div className="flex gap-2">
-            <button onClick={handleReset} className={`flex-1 py-2 rounded-md border border-[var(--border)] ${!isMobile ? 'hover:bg-black/5 dark:hover:bg-white/10' : ''} cursor-pointer`}>Tilbakestill</button>
-            <button onClick={handleApply} className={`flex-1 py-2 rounded-md bg-blue-600 ${!isMobile ? 'hover:bg-blue-700' : ''} text-white shadow cursor-pointer`}>Bruk</button>
+            <ButtonNeutral
+              onClick={handleReset}
+              title="Tilbakestill"
+              className="flex-1"
+              isMobile={isMobile}
+            />
+            <ButtonAccept
+              onClick={handleApply}
+              title="Bruk"
+              className="flex-1"
+              isMobile={isMobile}
+            />
           </div>
         </div>
       )}

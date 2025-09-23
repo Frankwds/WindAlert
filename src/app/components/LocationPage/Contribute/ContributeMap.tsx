@@ -21,7 +21,6 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
   landingLongitude,
   onLandingChange
 }) => {
-  const [isMapActive, setIsMapActive] = useState(false);
 
   const {
     mapRef,
@@ -62,12 +61,6 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
         </>
       )}
 
-      {!isMapActive && (
-        <div
-          className="absolute top-0 left-0 w-full h-full cursor-pointer"
-          onClick={() => setIsMapActive(true)}
-        />
-      )}
     </div>
   );
 };

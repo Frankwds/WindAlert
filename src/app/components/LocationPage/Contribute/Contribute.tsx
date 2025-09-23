@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Collapsible from '../../shared/Collapsible';
 import { ContributeMap } from './ContributeMap';
+import { ButtonAccept } from '../../shared';
 
 interface ContributeProps {
   latitude: number;
@@ -76,7 +77,7 @@ export const Contribute: React.FC<ContributeProps> = ({
         {isOpen ? (
           <div className="space-y-4">
             <div className="text-sm text-[var(--muted)]">
-              <p>Klikk på kartet for å plassere landing. Dra den grønne markøren for å flytte den.</p>
+              <p>Klikk på kartet for å plassere landing. Dra den grønne markøren for å flytte landingen.</p>
               <p className="mt-1">
                 <span className="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
                 Rød markør: Takeoff
@@ -94,17 +95,12 @@ export const Contribute: React.FC<ContributeProps> = ({
             />
 
             <div className="flex justify-end">
-              <button
+              <ButtonAccept
                 onClick={handleSave}
-                disabled={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
-                className={`px-4 py-2 rounded-md font-medium transition-colors ${currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)
-                  ? 'bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90'
-                  : 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'
-                  }`}
-              >
-                {currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
+                title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
                   'Lagre endringer' : 'Gjør endringer for å lagre'}
-              </button>
+                disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
+              />
             </div>
           </div>
         ) : null}
