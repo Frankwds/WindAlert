@@ -63,7 +63,8 @@ export const useMapInstance = ({
           fullscreenControl: false,
           zoomControl: false,
           clickableIcons: false,
-          scrollwheel: true
+          scrollwheel: true,
+          gestureHandling: 'greedy'
         });
         map.setOptions({ scaleControl: true });
 
