@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Collapsible from '../../shared/Collapsible';
 import { ContributeMap } from './ContributeMap';
 
@@ -23,6 +23,20 @@ export const Contribute: React.FC<ContributeProps> = ({
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
   const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
   const [hasChanges, setHasChanges] = useState(false);
+  const contributeRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to the bottom of the contribute section when it opens
+  useEffect(() => {
+    if (isOpen && contributeRef.current) {
+      // Small delay to ensure the content is rendered
+      setTimeout(() => {
+        contributeRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end'
+        });
+      }, 100);
+    }
+  }, [isOpen]);
 
   const handleLandingChange = useCallback((lat: number, lng: number) => {
     setCurrentLandingLat(lat);
@@ -51,7 +65,7 @@ export const Contribute: React.FC<ContributeProps> = ({
   }, [isOpen]);
 
   return (
-    <div className="mt-6 center justify-center">
+    <div ref={contributeRef} className="mt-6 center justify-center">
       <h1 className="text-2xl font-bold">Bidra:</h1>
       <Collapsible
         title="Rediger Landing"
