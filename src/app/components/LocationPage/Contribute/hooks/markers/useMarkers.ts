@@ -19,8 +19,7 @@ export const useMarkers = ({
   onLandingChange
 }: UseMarkersProps) => {
   const onLandingChangeRef = useRef(onLandingChange);
-  const [landingMarker, setLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
-  const [takeoffMarker, setTakeoffMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
+  const [landingMarker, setLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null); // We use the ref
 
   // Update ref when callback changes
   useEffect(() => {
@@ -28,7 +27,7 @@ export const useMarkers = ({
   }, [onLandingChange]);
 
   const createTakeoffMarker = useCallback((map: google.maps.Map) => {
-    const takeoffMarker = new google.maps.marker.AdvancedMarkerElement({
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: latitude, lng: longitude },
       title: 'Takeoff Location'
@@ -36,8 +35,8 @@ export const useMarkers = ({
 
     // Create red pin element
     const markerElement = createParaglidingMarkerElement();
-    takeoffMarker.content = markerElement;
-    return takeoffMarker;
+    marker.content = markerElement;
+    return marker;
   }, [latitude, longitude]);
 
   const createLandingMarker = useCallback((map: google.maps.Map, lat: number, lng: number) => {
@@ -87,8 +86,7 @@ export const useMarkers = ({
   useEffect(() => {
     if (!mapInstance) return;
 
-    const takeoff = createTakeoffMarker(mapInstance);
-    setTakeoffMarker(takeoff);
+    createTakeoffMarker(mapInstance);
 
     // Create landing marker if coordinates exist
     if (landingLatitude && landingLongitude) {
