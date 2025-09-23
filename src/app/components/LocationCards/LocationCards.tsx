@@ -37,8 +37,8 @@ export default function LocationCard({
 
 
       </div>
-      {location.landing_altitude && (
-        <p className="text-center text-sm text-gray-600 mt-[-10px]">
+      {location.altitude && (
+        <p className="text-center text-sm text-gray-600">
           Høyde: {location.altitude}moh
         </p>
       )}
@@ -79,8 +79,8 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
 
         <TinyWindCompass allowedDirections={allowedDirections} />
       </div>
-      {location.landing_altitude && (
-        <p className="text-center text-sm text-gray-600 mt-[-10px]">
+      {location.altitude && (
+        <p className="text-center text-sm text-gray-600">
           Høyde: {location.altitude}moh
         </p>
       )}
