@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { LoadingSpinner } from '../../shared/LoadingSpinner';
 import { ErrorState } from '../../shared/ErrorState';
 import { MapLayerToggle, ZoomControls } from '../../GoogleMaps/mapControls';
@@ -21,6 +21,8 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
   landingLongitude,
   onLandingChange
 }) => {
+  const [isMapActive, setIsMapActive] = useState(false);
+
   const {
     mapRef,
     mapInstance,
@@ -58,6 +60,13 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
           <MapLayerToggle map={mapInstance} initialMapTypeSatellite />
           <ZoomControls map={mapInstance} />
         </>
+      )}
+
+      {!isMapActive && (
+        <div
+          className="absolute top-0 left-0 w-full h-full cursor-pointer"
+          onClick={() => setIsMapActive(true)}
+        />
       )}
     </div>
   );
