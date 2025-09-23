@@ -7,6 +7,7 @@ import WindDirectionArrow from "@/app/components/shared/WindDirectionArrow";
 import Details from "./Details";
 import ValidationList from "@/app/components/LocationPage/WeatherTable/ValidationList";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { useRef, useEffect } from "react";
 
 interface HourProps {
   hour: ForecastCache1hr;
@@ -27,9 +28,22 @@ const Hour: React.FC<HourProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const weatherIcon = getWeatherIcon(hour.weather_code);
+  const hourRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to the hour when it expands
+  useEffect(() => {
+    if (isExpanded && hourRef.current) {
+      setTimeout(() => {
+        hourRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [isExpanded]);
 
   return (
-    <div className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
+    <div ref={hourRef} className={`space-y-1 ${!showValidation && !isExpanded ? 'relative after:absolute after:bottom-0 after:left-2.5 after:right-2.5 after:h-px after:bg-[var(--border)] last:after:hidden' : ''}`}>
       <div
         onClick={onToggle}
         className={`grid grid-cols-[3fr_3fr_3fr_3fr_3fr_3fr_1fr] p-1 items-center rounded-md transition-all ${!isMobile ? 'hover:bg-[var(--accent)]/5' : ''} cursor-pointer
