@@ -29,7 +29,6 @@ export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandi
   }, []);
 
   const showLandingMarker = useCallback((location: ParaglidingLocationWithForecast, paraglidingPosition: { lat: number; lng: number }) => {
-    console.log('showLandingMarker', location, paraglidingPosition);
     if (!mapInstance || !location.landing_latitude || !location.landing_longitude) return;
 
     // Validate coordinates
@@ -63,6 +62,13 @@ export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandi
     landingMarker.map = mapInstance;
     setCurrentLandingMarker(landingMarker);
 
+
+    const lineSymbol = {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 8, // The size of the dot
+      strokeColor: "#393",
+    };
+
     // Create line between paragliding and landing markers
     const line = new google.maps.Polyline({
       path: [
@@ -70,14 +76,20 @@ export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandi
         { lat: location.landing_latitude, lng: location.landing_longitude }
       ],
       strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      zIndex: 250
-    });
+      strokeOpacity: 0,
 
-    // Set dashed pattern using setOptions after creation (TypeScript workaround)
-    (line as any).setOptions({
-      strokePattern: [10, 5] // 50/50 dot and dash pattern
+      zIndex: 250,
+
+      icons: [{
+        icon: {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          strokeColor: '#FF0000'
+        },
+
+        repeat: '15px'
+      }]
     });
 
     line.setMap(mapInstance);

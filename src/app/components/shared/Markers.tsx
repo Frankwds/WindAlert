@@ -57,6 +57,7 @@ export const createParaglidingMarkerElement = (): HTMLElement => {
   container.style.width = '32px';
   container.style.height = '32px';
   container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
 
   const img = document.createElement('img');
   img.src = '/paraglider.png';
@@ -81,6 +82,7 @@ export const createParaglidingMarkerElementWithDirection = (location: Paraglidin
   container.style.width = '32px';
   container.style.height = '32px';
   container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
 
   const img = document.createElement('img');
   img.src = '/paraglider.png';
@@ -252,11 +254,11 @@ export const createLandingMarkerElement = (): HTMLElement => {
 
   // Add hover effects
   container.addEventListener('mouseenter', () => {
-    container.style.transform = 'scale(1.1)';
+    container.style.transform = 'scale(1.1) translate(0%, 50%)';
   });
 
   container.addEventListener('mouseleave', () => {
-    container.style.transform = 'scale(1)';
+    container.style.transform = 'scale(1) translate(0%, 50%)';
   });
 
   return container;

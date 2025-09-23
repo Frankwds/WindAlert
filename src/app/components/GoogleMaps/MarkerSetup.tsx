@@ -31,11 +31,13 @@ export const createParaglidingMarker = (location: ParaglidingLocationWithForecas
   (marker as any).locationData = location;
 
   markerElement.addEventListener('mouseenter', () => {
-    markerElement.style.transform = 'scale(1.1)';
+    markerElement.style.transform = 'scale(1.1) translate(0%, 50%)';
+
   });
 
   markerElement.addEventListener('mouseleave', () => {
-    markerElement.style.transform = 'scale(1)';
+    markerElement.style.transform = 'scale(1) translate(0%, 50%)';
+
   });
 
   markerElement.addEventListener('click', (event: Event) => {
