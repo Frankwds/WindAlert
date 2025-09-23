@@ -94,11 +94,11 @@ export const Contribute: React.FC<ContributeProps> = ({
         onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
         setHasChanges(false);
         setError(null);
-
-        alert('Landing coordinates saved successfully!');
+        setIsOpen(false);
+        alert('Landingen er lagret! Takk for bidraget.');
       } catch (error) {
         console.error('Error saving landing coordinates:', error);
-        setError(`Failed to save landing coordinates: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        setError(`Det skjedde en feil. Prøv igjen senere. Meld gjerne fra om feilen via. mail. Legg ved stedets ID som du finner i URLen.`);
       }
     }
   }, [locationId, latitude, longitude, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);

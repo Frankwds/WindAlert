@@ -88,6 +88,14 @@ export const useMarkers = ({
 
     createTakeoffMarker(mapInstance);
 
+    // Clear existing landing marker first
+    setLandingMarker(prev => {
+      if (prev) {
+        prev.map = null;
+      }
+      return null;
+    });
+
     // Create landing marker if coordinates exist
     if (landingLatitude && landingLongitude) {
       const landingMarker = createLandingMarker(mapInstance, landingLatitude, landingLongitude);

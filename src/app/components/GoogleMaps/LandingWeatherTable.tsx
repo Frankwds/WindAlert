@@ -14,11 +14,24 @@ const LandingWeatherTable: React.FC<LandingWeatherTableProps> = ({
   forecast,
   timezone,
 }) => {
+  const hasLandingWind = forecast.some((f) => f.landing_wind !== null && f.landing_wind !== undefined && f.landing_wind !== 0);
+  if (!hasLandingWind) {
+    return (
+      <div className="bg-[var(--background)] rounded-lg">
+        <div className="text-center py-8">
+          <div className="text-[var(--foreground)] mb-4">
+            Ingen værmelding tilgjengelig enda.
+          </div>
+        </div>
+      </div>
+    );
+  }
   // Filter to future hours on the client to avoid SSR hydration mismatches
   const filteredForecast = useMemo(() => {
     const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
     return forecast.filter((f) => new Date(f.time).getTime() >= cutoff);
   }, [forecast]);
+
 
   const {
     groupedByDay,
