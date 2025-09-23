@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { createLandingMarker } from '../../MarkerSetup';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import { calculateDistance } from '@/lib/utils/calculateDistance';
 
 interface UseLandingMarkerProps {
   mapInstance: google.maps.Map | null;
@@ -37,6 +38,14 @@ export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandi
       isNaN(paraglidingPosition.lat) || isNaN(paraglidingPosition.lng) ||
       isNaN(location.landing_latitude) || isNaN(location.landing_longitude)) {
       console.warn('Invalid coordinates for landing line:', {
+        paraglidingPosition,
+        landingPosition: { lat: location.landing_latitude, lng: location.landing_longitude }
+      });
+      return;
+    }
+
+    if (calculateDistance(paraglidingPosition.lat, paraglidingPosition.lng, location.landing_latitude, location.landing_longitude) > 5000) {
+      console.warn('Distance between paragliding and landing is too great:', {
         paraglidingPosition,
         landingPosition: { lat: location.landing_latitude, lng: location.landing_longitude }
       });
