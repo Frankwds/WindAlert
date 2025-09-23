@@ -65,6 +65,7 @@ export const useMapInstance = ({
           clickableIcons: false,
           scrollwheel: true
         });
+        map.setOptions({ scaleControl: true });
 
         // Map click listener will be added by the parent hook
 
