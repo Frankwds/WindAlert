@@ -66,15 +66,15 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
     <div className="min-w-50 max-w-90">
       <div className="flex items-center">
         <CompactFlightlogButton flightlogId={location.flightlog_id} />
-        <Link
+        {/* <Link
           href={`/locations/${location.id}`}
           rel="noopener noreferrer"
           className="flex-1"
-        >
-          <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
-            {location.name}
-          </h3>
-        </Link>
+        > */}
+        <h3 className="font-bold gap-2 text-lg text-center     flex-1 "> {/* text-[var(--accent)] hover:underline */}
+          {location.name}
+        </h3>
+        {/* </Link> */}
 
 
         <TinyWindCompass allowedDirections={allowedDirections} />
