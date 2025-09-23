@@ -196,6 +196,29 @@ class DataCache {
     await this.setToStorage(this.ALL_PARAGLIDING_KEY, data);
   }
 
+  async updateParaglidingLocationById(
+    locationId: string,
+    updates: Partial<ParaglidingLocationWithForecast>
+  ): Promise<void> {
+    // Update in the main paragliding locations cache
+    const cached = await this.getFromStorage(this.PARAGLIDING_KEY);
+    if (cached && cached.data) {
+      const updatedData = cached.data.map((location: ParaglidingLocationWithForecast) =>
+        location.id === locationId ? { ...location, ...updates } : location
+      );
+      await this.setToStorage(this.PARAGLIDING_KEY, updatedData);
+    }
+
+    // Update in the all paragliding locations cache
+    const allCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
+    if (allCached && allCached.data) {
+      const updatedAllData = allCached.data.map((location: ParaglidingLocationWithForecast) =>
+        location.id === locationId ? { ...location, ...updates } : location
+      );
+      await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData);
+    }
+  }
+
   async clearCache(): Promise<void> {
     if (typeof window === 'undefined') {
       return;

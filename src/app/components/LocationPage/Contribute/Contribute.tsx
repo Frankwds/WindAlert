@@ -4,6 +4,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Collapsible from '../../shared/Collapsible';
 import { ContributeMap } from './ContributeMap';
 import { ButtonAccept } from '../../shared';
+import { dataCache } from '@/lib/data-cache';
 
 interface ContributeProps {
   locationId: string;
@@ -89,6 +90,18 @@ export const Contribute: React.FC<ContributeProps> = ({
           const errorData = await response.json();
           setError(errorData.error || 'Failed to save landing coordinates');
           return;
+        }
+
+        // Update the cache with the new landing coordinates
+        try {
+          await dataCache.updateParaglidingLocationById(locationId, {
+            landing_latitude: currentLandingLat,
+            landing_longitude: currentLandingLng,
+            landing_altitude: currentLandingAltitude,
+          });
+        } catch (cacheError) {
+          console.warn('Failed to update cache:', cacheError);
+          dataCache.clearCache();
         }
 
         onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
