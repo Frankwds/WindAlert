@@ -108,7 +108,16 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     // Handle landing marker - check if both landing coordinates exist
     if (location.landing_latitude && location.landing_longitude) {
-      showLandingMarker(location);
+      // Pass paragliding marker position to showLandingMarker
+      const paraglidingPosition = marker.position;
+      if (paraglidingPosition) {
+        // Convert LatLng to simple lat/lng object
+        const position = {
+          lat: typeof paraglidingPosition.lat === 'function' ? paraglidingPosition.lat() : paraglidingPosition.lat,
+          lng: typeof paraglidingPosition.lng === 'function' ? paraglidingPosition.lng() : paraglidingPosition.lng
+        };
+        showLandingMarker(location, position);
+      }
     }
 
     const infoWindowContent = document.createElement('div');

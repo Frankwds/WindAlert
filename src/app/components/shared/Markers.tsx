@@ -206,6 +206,7 @@ export const createLandingMarkerElement = (): HTMLElement => {
   container.style.height = '32px';
   container.style.userSelect = 'none';
   container.style.cursor = 'pointer';
+  container.style.transform = 'translate(0%, 25%)';
 
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
