@@ -12,7 +12,7 @@ interface ContributeProps {
   landingLatitude?: number;
   landingLongitude?: number;
   landingAltitude?: number;
-  onSave?: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
+  onSave: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
 export const Contribute: React.FC<ContributeProps> = ({
@@ -91,7 +91,7 @@ export const Contribute: React.FC<ContributeProps> = ({
           return;
         }
 
-        onSave?.(currentLandingLat, currentLandingLng, currentLandingAltitude);
+        onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
         setHasChanges(false);
         setError(null);
 

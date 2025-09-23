@@ -35,6 +35,11 @@ export default function LocationPage({ params }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // State for landing coordinates that can be updated
+  const [landingLatitude, setLandingLatitude] = useState<number | undefined>(undefined);
+  const [landingLongitude, setLandingLongitude] = useState<number | undefined>(undefined);
+  const [landingAltitude, setLandingAltitude] = useState<number | undefined>(undefined);
+
   useEffect(() => {
     const initializeData = async () => {
       try {
@@ -49,6 +54,11 @@ export default function LocationPage({ params }: Props) {
           notFound();
         }
         setLocation(locationData);
+
+        // Initialize landing coordinates state
+        setLandingLatitude(locationData.landing_latitude);
+        setLandingLongitude(locationData.landing_longitude);
+        setLandingAltitude(locationData.landing_altitude);
 
         // Fetch weather data
         const forecastData = await fetchMeteoDataClient(locationData.latitude, locationData.longitude);
@@ -147,17 +157,20 @@ export default function LocationPage({ params }: Props) {
 
       <WindyWidget lat={location.latitude} long={location.longitude} />
       <GoogleMaps latitude={location.latitude} longitude={location.longitude}
-        landing_latitude={location.landing_latitude} landing_longitude={location.landing_longitude} />
+        landing_latitude={landingLatitude} landing_longitude={landingLongitude} />
 
       <Contribute
         locationId={location.id}
         latitude={location.latitude}
         longitude={location.longitude}
-        landingLatitude={location.landing_latitude}
-        landingLongitude={location.landing_longitude}
-        landingAltitude={location.landing_altitude}
+        landingLatitude={landingLatitude}
+        landingLongitude={landingLongitude}
+        landingAltitude={landingAltitude}
         onSave={(landingLat, landingLng, landingAltitude) => {
-          // Optional callback for additional handling after save
+          // Update the state so GoogleMapsStatic reflects the changes
+          setLandingLatitude(landingLat);
+          setLandingLongitude(landingLng);
+          setLandingAltitude(landingAltitude);
           console.log('Landing coordinates saved:', { landingLat, landingLng, landingAltitude });
         }}
       />
