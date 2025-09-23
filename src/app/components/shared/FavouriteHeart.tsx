@@ -69,17 +69,6 @@ export default function FavouriteHeart({ locationId }: Props) {
     }
   };
 
-  if (loading || authLoading) {
-    return (
-      <button
-        disabled={true}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--border)]"
-      >
-        <HeartIconOutline className="w-4 h-4 text-red-500" />
-      </button>
-    );
-  }
-
   if (error) {
     return (
       <div className="flex flex-col items-center">
