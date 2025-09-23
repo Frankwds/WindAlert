@@ -101,6 +101,9 @@ export const LandingInfoWindow: React.FC<LandingInfoWindowProps> = ({ location }
           />
         </div>
       )}
+      <p className="text-center text-sm text-gray-600 mt-2">
+        Husk å les nøye om landingen og tillatelser før du flyr.
+      </p>
     </div>
   );
 };
