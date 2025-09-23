@@ -1,5 +1,5 @@
 import { supabaseServer } from './serverClient';
-import { ForecastCache1hr, ParaglidingLocation, WeatherStation } from './types';
+import { ForecastCache1hr, ParaglidingLocation, StationData, WeatherStation } from './types';
 
 export class Server {
 
@@ -90,4 +90,20 @@ export class Server {
     }
   }
 
+  /**
+   * Insert multiple station data records
+   */
+  static async insertMany(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
+    const { data, error } = await supabaseServer
+      .from('station_data')
+      .insert(dataArray)
+      .select();
+
+    if (error) {
+      console.error('Error inserting multiple station data records:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
 }

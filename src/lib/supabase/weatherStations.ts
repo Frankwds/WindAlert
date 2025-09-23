@@ -1,6 +1,5 @@
 import { supabase } from './client';
-import { supabaseServer } from './serverClient';
-import { WeatherStation, WeatherStationWithData } from './types';
+import { WeatherStationWithData } from './types';
 
 export class WeatherStationService {
 

@@ -1,5 +1,4 @@
 import { supabase } from './client';
-import { supabaseServer } from './serverClient';
 import { ParaglidingLocation, MinimalParaglidingLocation, ParaglidingLocationWithForecast } from './types';
 
 export class ParaglidingLocationService {

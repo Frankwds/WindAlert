@@ -1,5 +1,4 @@
 import { supabase } from './client';
-import { supabaseServer } from './serverClient';
 import { ForecastCache1hr } from './types';
 
 export class ForecastCacheService {

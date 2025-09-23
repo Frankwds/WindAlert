@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Store all station data in database
-    const storedData = await StationDataService.insertMany(stationData);
+    const storedData = await Server.insertMany(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
     return NextResponse.json({
