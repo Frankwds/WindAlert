@@ -37,11 +37,11 @@ export default function LocationCard({
 
 
       </div>
-      {location.altitude && (
+      {location.altitude ? (
         <p className="text-center text-sm text-gray-600">
           Høyde: {location.altitude}moh
         </p>
-      )}
+      ) : null}
       <hr className="mt-2 mb-4" />
       {location.forecast_cache && location.forecast_cache.length > 0 ? (
         <MinimalHourlyWeather
@@ -79,11 +79,11 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
 
         <TinyWindCompass allowedDirections={allowedDirections} />
       </div>
-      {location.altitude && (
+      {location.altitude ? (
         <p className="text-center text-sm text-gray-600">
           Høyde: {location.altitude}moh
         </p>
-      )}
+      ) : null}
       <hr className="mt-2 mb-4" />
       <div className="flex items-center gap-1 justify-center flex-wrap">
         <YrButton latitude={location.latitude} longitude={location.longitude} />
