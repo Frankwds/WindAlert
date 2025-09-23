@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { supabaseServer } from './serverClient';
 import { ForecastCache1hr } from './types';
 
 export class ForecastCacheService {
@@ -8,7 +9,7 @@ export class ForecastCacheService {
    * @param forecastData 
    */
   static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
-    const { error } = await supabase
+    const { error } = await supabaseServer
       .from('forecast_cache')
       .upsert(forecastData, { onConflict: 'time,location_id' });
 
@@ -22,7 +23,7 @@ export class ForecastCacheService {
    * Delete old forecast data before a specific time
    */
   static async deleteOldData(beforeTime: string): Promise<void> {
-    const { error } = await supabase
+    const { error } = await supabaseServer
       .from('forecast_cache')
       .delete()
       .lt('time', beforeTime);

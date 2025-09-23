@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { supabaseServer } from './serverClient';
 import { ParaglidingLocation, MinimalParaglidingLocation, ParaglidingLocationWithForecast } from './types';
 
 export class ParaglidingLocationService {
@@ -133,7 +134,7 @@ export class ParaglidingLocationService {
     landingLongitude: number,
     landingAltitude?: number | null
   ): Promise<ParaglidingLocation | null> {
-    const updateData: any = {
+    const updateData: Partial<ParaglidingLocation> = {
       landing_latitude: landingLatitude,
       landing_longitude: landingLongitude,
       updated_at: new Date().toISOString()
@@ -144,7 +145,7 @@ export class ParaglidingLocationService {
       updateData.landing_altitude = landingAltitude;
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseServer
       .from('all_paragliding_locations')
       .update(updateData)
       .eq('id', locationId)

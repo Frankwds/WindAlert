@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { supabaseServer } from './serverClient';
 import { StationData } from './types';
 
 export class StationDataService {
@@ -32,7 +33,7 @@ export class StationDataService {
    * Insert multiple station data records
    */
   static async insertMany(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseServer
       .from('station_data')
       .insert(dataArray)
       .select();

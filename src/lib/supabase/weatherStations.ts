@@ -1,4 +1,5 @@
 import { supabase } from './client';
+import { supabaseServer } from './serverClient';
 import { WeatherStation, WeatherStationWithData } from './types';
 
 export class WeatherStationService {
@@ -33,7 +34,7 @@ export class WeatherStationService {
   static async upsertMany(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
     if (stations.length === 0) return [];
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseServer
       .from('weather_stations')
       .upsert(stations, {
         onConflict: 'station_id',
