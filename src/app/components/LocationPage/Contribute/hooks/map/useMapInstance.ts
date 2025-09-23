@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
 const MAP_CONFIG = {
-  DEFAULT_ZOOM: 12,
+  DEFAULT_ZOOM: 13,
   MAP_ID: 'WindLordContributeMapID'
 } as const;
 
@@ -56,7 +56,7 @@ export const useMapInstance = ({
         const map = new google.maps.Map(mapRef.current, {
           center: { lat: latitude, lng: longitude },
           zoom: MAP_CONFIG.DEFAULT_ZOOM,
-          mapTypeId: google.maps.MapTypeId.TERRAIN,
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
           mapId: MAP_CONFIG.MAP_ID,
           streetViewControl: false,
           disableDefaultUI: true,

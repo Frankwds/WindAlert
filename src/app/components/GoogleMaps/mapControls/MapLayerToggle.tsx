@@ -6,14 +6,15 @@ import Image from 'next/image';
 interface MapLayerToggleProps {
   map: google.maps.Map | null;
   className?: string;
+  initialMapTypeSatellite?: boolean;
 }
 
-export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className = '' }) => {
-  const [isSatellite, setIsSatellite] = useState(true);
+export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({ map, className = '', initialMapTypeSatellite = false }) => {
+  const [isSatellite, setIsSatellite] = useState(initialMapTypeSatellite);
 
   useEffect(() => {
     if (map) {
-      setIsSatellite(map.getMapTypeId() === google.maps.MapTypeId.HYBRID);
+      setIsSatellite(map.getMapTypeId() === google.maps.MapTypeId.SATELLITE);
     }
   }, [map]);
 

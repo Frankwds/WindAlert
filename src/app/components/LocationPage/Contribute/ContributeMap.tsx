@@ -55,7 +55,7 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
 
       {mapInstance && (
         <>
-          <MapLayerToggle map={mapInstance} />
+          <MapLayerToggle map={mapInstance} initialMapTypeSatellite />
           <ZoomControls map={mapInstance} />
         </>
       )}
