@@ -6,6 +6,7 @@ import { ContributeMap } from './ContributeMap';
 import { ButtonAccept } from '../../shared';
 
 interface ContributeProps {
+  locationId: string;
   latitude: number;
   longitude: number;
   landingLatitude?: number;
@@ -14,6 +15,7 @@ interface ContributeProps {
 }
 
 export const Contribute: React.FC<ContributeProps> = ({
+  locationId,
   latitude,
   longitude,
   landingLatitude: intialLandingLatitude,
@@ -45,7 +47,7 @@ export const Contribute: React.FC<ContributeProps> = ({
     setHasChanges(true);
   }, []);
 
-  const handleSave = useCallback(() => {
+  const handleSave = useCallback(async () => {
     if (!currentLandingLat || !currentLandingLng) {
       alert('Please select a landing location first by clicking on the map.');
       return;
@@ -56,10 +58,38 @@ export const Contribute: React.FC<ContributeProps> = ({
     );
 
     if (confirmed) {
-      onSave?.(currentLandingLat, currentLandingLng);
-      setHasChanges(false);
+      try {
+        const response = await fetch('/api/contribute/landing', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            locationId,
+            landingLatitude: currentLandingLat,
+            landingLongitude: currentLandingLng,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to save landing coordinates');
+        }
+
+        const result = await response.json();
+        console.log('Landing coordinates saved successfully:', result);
+
+        // Call the optional onSave callback
+        onSave?.(currentLandingLat, currentLandingLng);
+        setHasChanges(false);
+
+        alert('Landing coordinates saved successfully!');
+      } catch (error) {
+        console.error('Error saving landing coordinates:', error);
+        alert(`Failed to save landing coordinates: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      }
     }
-  }, [currentLandingLat, currentLandingLng, onSave]);
+  }, [locationId, currentLandingLat, currentLandingLng, onSave]);
 
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);

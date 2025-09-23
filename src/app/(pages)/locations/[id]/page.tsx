@@ -150,13 +150,14 @@ export default function LocationPage({ params }: Props) {
         landing_latitude={location.landing_latitude} landing_longitude={location.landing_longitude} />
 
       <Contribute
+        locationId={location.id}
         latitude={location.latitude}
         longitude={location.longitude}
         landingLatitude={location.landing_latitude}
         landingLongitude={location.landing_longitude}
         onSave={(landingLat, landingLng) => {
-          // TODO: Implement API call to save landing coordinates
-          console.log('Saving landing coordinates:', { landingLat, landingLng });
+          // Optional callback for additional handling after save
+          console.log('Landing coordinates saved:', { landingLat, landingLng });
         }}
       />
 

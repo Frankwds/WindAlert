@@ -124,4 +124,31 @@ export class ParaglidingLocationService {
     return allLocations;
   }
 
+  /**
+   * Update landing coordinates for a paragliding location
+   */
+  static async updateLocationLanding(
+    locationId: string,
+    landingLatitude: number,
+    landingLongitude: number
+  ): Promise<ParaglidingLocation | null> {
+    const { data, error } = await supabase
+      .from('all_paragliding_locations')
+      .update({
+        landing_latitude: landingLatitude,
+        landing_longitude: landingLongitude,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', locationId)
+      .select('*')
+      .single();
+
+    if (error) {
+      console.error(`Error updating landing coordinates for location ${locationId}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
 }
