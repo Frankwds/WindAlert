@@ -155,9 +155,10 @@ export default function LocationPage({ params }: Props) {
         longitude={location.longitude}
         landingLatitude={location.landing_latitude}
         landingLongitude={location.landing_longitude}
-        onSave={(landingLat, landingLng) => {
+        landingAltitude={location.landing_altitude}
+        onSave={(landingLat, landingLng, landingAltitude) => {
           // Optional callback for additional handling after save
-          console.log('Landing coordinates saved:', { landingLat, landingLng });
+          console.log('Landing coordinates saved:', { landingLat, landingLng, landingAltitude });
         }}
       />
 

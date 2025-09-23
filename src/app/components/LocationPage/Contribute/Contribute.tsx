@@ -11,7 +11,8 @@ interface ContributeProps {
   longitude: number;
   landingLatitude?: number;
   landingLongitude?: number;
-  onSave?: (landingLat: number, landingLng: number) => void;
+  landingAltitude?: number;
+  onSave?: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
 export const Contribute: React.FC<ContributeProps> = ({
@@ -20,11 +21,13 @@ export const Contribute: React.FC<ContributeProps> = ({
   longitude,
   landingLatitude: intialLandingLatitude,
   landingLongitude: initialLandingLongitude,
+  landingAltitude: initialLandingAltitude,
   onSave
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
   const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
+  const [currentLandingAltitude, setCurrentLandingAltitude] = useState<number | undefined>(initialLandingAltitude);
   const [hasChanges, setHasChanges] = useState(false);
   const contributeRef = useRef<HTMLDivElement>(null);
 
@@ -44,6 +47,11 @@ export const Contribute: React.FC<ContributeProps> = ({
   const handleLandingChange = useCallback((lat: number, lng: number) => {
     setCurrentLandingLat(lat);
     setCurrentLandingLng(lng);
+    setHasChanges(true);
+  }, []);
+
+  const handleAltitudeChange = useCallback((altitude: number) => {
+    setCurrentLandingAltitude(altitude);
     setHasChanges(true);
   }, []);
 
@@ -68,6 +76,7 @@ export const Contribute: React.FC<ContributeProps> = ({
             locationId,
             landingLatitude: currentLandingLat,
             landingLongitude: currentLandingLng,
+            landingAltitude: currentLandingAltitude,
           }),
         });
 
@@ -80,7 +89,7 @@ export const Contribute: React.FC<ContributeProps> = ({
         console.log('Landing coordinates saved successfully:', result);
 
         // Call the optional onSave callback
-        onSave?.(currentLandingLat, currentLandingLng);
+        onSave?.(currentLandingLat, currentLandingLng, currentLandingAltitude);
         setHasChanges(false);
 
         alert('Landing coordinates saved successfully!');
@@ -89,7 +98,7 @@ export const Contribute: React.FC<ContributeProps> = ({
         alert(`Failed to save landing coordinates: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     }
-  }, [locationId, currentLandingLat, currentLandingLng, onSave]);
+  }, [locationId, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);
 
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);
@@ -124,7 +133,33 @@ export const Contribute: React.FC<ContributeProps> = ({
               onLandingChange={handleLandingChange}
             />
 
-            <div className="flex justify-end">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <label htmlFor="altitude-input" className="text-sm font-medium text-[var(--foreground)]">
+                  Høyde:
+                </label>
+                <input
+                  id="altitude-input"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={currentLandingAltitude || ''}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '') {
+                      handleAltitudeChange(undefined as any);
+                    } else {
+                      const numValue = parseInt(value, 10);
+                      if (!isNaN(numValue)) {
+                        handleAltitudeChange(numValue);
+                      }
+                    }
+                  }}
+                  className="w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                  placeholder="0"
+                />
+                <span className="text-xs text-[var(--muted)]">moh.</span>
+              </div>
               <ButtonAccept
                 onClick={handleSave}
                 title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?

@@ -4,7 +4,7 @@ import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { locationId, landingLatitude, landingLongitude } = body;
+    const { locationId, landingLatitude, landingLongitude, landingAltitude } = body;
 
     // Validate required fields
     if (!locationId || !landingLatitude || !landingLongitude) {
@@ -27,11 +27,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate altitude if provided
+    if (landingAltitude !== undefined && landingAltitude !== null) {
+      if (typeof landingAltitude !== 'number' || landingAltitude < 0) {
+        return NextResponse.json(
+          { error: 'Invalid altitude (must be a positive number)' },
+          { status: 400 }
+        );
+      }
+    }
+
     // Update the landing coordinates
     const updatedLocation = await ParaglidingLocationService.updateLocationLanding(
       locationId,
       landingLatitude,
-      landingLongitude
+      landingLongitude,
+      landingAltitude
     );
 
     if (!updatedLocation) {
