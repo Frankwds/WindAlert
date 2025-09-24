@@ -53,7 +53,7 @@ export class StationDataService {
    */
   static async deleteAllOlderThanTwoDays(): Promise<{ deleted_records: number }> {
     const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - 2);
+    cutoffDate.setDate(cutoffDate.getDate() - 1); // Minus one day because of timezones and the server US home.
     cutoffDate.setHours(0, 0, 0, 0); // Start of day
 
     const { data, error } = await supabase

@@ -32,6 +32,7 @@ npm_output.log
 # Local Env Files
 .env
 .env.local
+.env.local.backup
 .env.development.local
 .env.test.local
 .env.production.local
