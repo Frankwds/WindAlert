@@ -84,7 +84,7 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
       });
 
       // Upsert forecast data
-      await Server.upsert(validatedForecastData);
+      await Server.upsertForecastCache(validatedForecastData);
     } catch (error) {
       console.error(`Failed to process location ${location.id}:`, error);
     }
@@ -131,7 +131,7 @@ async function cleanupOldForecastData() {
 
   console.log(`Deleting forecast data older than: ${twoHoursAgoISO}`);
 
-  await Server.deleteOldData(twoHoursAgoISO);
+  await Server.deleteOldForecastCache(twoHoursAgoISO);
 
   console.log('Forecast data cleanup completed successfully');
 }

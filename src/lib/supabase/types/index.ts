@@ -1,4 +1,3 @@
-export * from './user';
 export * from './paraglidingLocation';
 export * from './weatherStation';
 export * from './forecastCache';

@@ -1,4 +1,3 @@
-import { User } from './user';
 import { ParaglidingLocation } from './paraglidingLocation';
 import { FavouriteLocation } from './favouriteLocation';
 import { WeatherStation } from './weatherStation';

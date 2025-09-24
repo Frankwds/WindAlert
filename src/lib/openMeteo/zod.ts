@@ -1,9 +1,5 @@
 import { z } from 'zod';
 
-export const envSchema = z.object({
-  CRON_SECRET: z.string().min(1, { message: "CRON_SECRET is not set" }),
-});
-
 export const openMeteoResponseSchema = z.object({
   elevation: z.number(),
   hourly: z.object({

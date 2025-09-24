@@ -41,7 +41,7 @@ export class Server {
   /**
  * Upsert multiple weather stations
  */
-  static async upsertMany(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
+  static async upsertManyWeatherStation(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
     if (stations.length === 0) return [];
 
     const { data, error } = await supabaseServer
@@ -64,7 +64,7 @@ export class Server {
  * Upsert forecast data (insert or update)
  * @param forecastData 
  */
-  static async upsert(forecastData: ForecastCache1hr[]): Promise<void> {
+  static async upsertForecastCache(forecastData: ForecastCache1hr[]): Promise<void> {
     const { error } = await supabaseServer
       .from('forecast_cache')
       .upsert(forecastData, { onConflict: 'time,location_id' });
@@ -78,7 +78,7 @@ export class Server {
   /**
    * Delete old forecast data before a specific time
    */
-  static async deleteOldData(beforeTime: string): Promise<void> {
+  static async deleteOldForecastCache(beforeTime: string): Promise<void> {
     const { error } = await supabaseServer
       .from('forecast_cache')
       .delete()
@@ -93,7 +93,7 @@ export class Server {
   /**
    * Insert multiple station data records
    */
-  static async insertMany(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
+  static async insertManyStationData(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
     const { data, error } = await supabaseServer
       .from('station_data')
       .insert(dataArray)

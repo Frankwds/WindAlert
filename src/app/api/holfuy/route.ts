@@ -32,12 +32,12 @@ export async function GET(request: NextRequest) {
       );
 
       // Upsert only the missing stations
-      await Server.upsertMany(newStations);
+      await Server.upsertManyWeatherStation(newStations);
       console.log(`Successfully upserted ${newStations.length} new stations`);
     }
 
     // Store all station data in database
-    const storedData = await Server.insertMany(stationData);
+    const storedData = await Server.insertManyStationData(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
     return NextResponse.json({

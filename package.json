@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prod": "bash -c 'if [ -f .env.local ]; then mv .env.local .env.local.backup; fi && next dev; if [ -f .env.local.backup ]; then mv .env.local.backup .env.local; fi'",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
