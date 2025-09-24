@@ -26,7 +26,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: Weat
     temperature: yrDataPoint?.air_temperature || meteoDataPoint.temperature2m,
     wind_speed: yrDataPoint?.wind_speed || meteoDataPoint.windSpeed10m,
     wind_direction: Math.trunc(yrDataPoint?.wind_from_direction || meteoDataPoint.windDirection10m),
-    wind_gusts: yrDataPoint?.wind_speed_of_gust || meteoDataPoint.windGusts10m,
+    wind_gusts: yrDataPoint?.wind_speed_of_gust,
     precipitation: yrDataPoint?.precipitation_amount || meteoDataPoint.precipitation,
 
     precipitation_max: yrDataPoint?.precipitation_amount_max || 0,

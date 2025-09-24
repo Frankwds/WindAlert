@@ -78,11 +78,11 @@ export function isGoodParaglidingCondition(
 
   const isLowWind = dp.wind_speed < alert_rule.MIN_WIND_SPEED;
   const isMaxWind = dp.wind_speed > alert_rule.MAX_WIND_SPEED;
-  const isMaxGust = dp.wind_gusts > alert_rule.MAX_GUST;
+  const isMaxGust = dp.wind_gusts !== undefined && dp.wind_gusts > alert_rule.MAX_GUST;
   const isWrongWindDirection = !isWindDirectionGood(dp.wind_direction, location);
 
   const isMuchWind = dp.wind_speed >= alert_rule.MUCH_WIND;
-  const isMuchGust = dp.wind_gusts >= alert_rule.MUCH_GUST;
+  const isMuchGust = dp.wind_gusts !== undefined && dp.wind_gusts >= alert_rule.MUCH_GUST;
 
   const isTooWindy800m = dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa;
   const isTooWindy1500m = dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa;
@@ -92,8 +92,9 @@ export function isGoodParaglidingCondition(
   const isWindShear1500m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa);
   const isWindShear3000m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa);
 
-  const isMaybeRain = dp.precipitation_max > alert_rule.MAX_PRECIPITATION && dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
-  const isRain = dp.precipitation_min > alert_rule.MAX_PRECIPITATION;
+  const isMaybeRain = dp.precipitation_max !== undefined && dp.precipitation_min !== undefined &&
+    dp.precipitation_max > alert_rule.MAX_PRECIPITATION && dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
+  const isRain = dp.precipitation_min !== undefined && dp.precipitation_min > alert_rule.MAX_PRECIPITATION;
 
   // Weather symbol
   if (isBadWeather && dp.is_day) {

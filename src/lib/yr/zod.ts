@@ -4,8 +4,8 @@ import { z } from 'zod';
 const BaseInstantDetailsSchema = z.object({
   air_pressure_at_sea_level: z.number(),
   air_temperature: z.number(),
-  air_temperature_percentile_10: z.number(),
-  air_temperature_percentile_90: z.number(),
+  air_temperature_percentile_10: z.number().optional(),
+  air_temperature_percentile_90: z.number().optional(),
   cloud_area_fraction: z.number(),
   cloud_area_fraction_high: z.number(),
   cloud_area_fraction_low: z.number(),
@@ -18,25 +18,25 @@ const BaseInstantDetailsSchema = z.object({
 
 const BaseNextHoursDetailsSchema = z.object({
   precipitation_amount: z.number(),
-  precipitation_amount_max: z.number(),
-  precipitation_amount_min: z.number(),
-  probability_of_precipitation: z.number(),
+  precipitation_amount_max: z.number().optional(),
+  precipitation_amount_min: z.number().optional(),
+  probability_of_precipitation: z.number().optional(),
 });
 
 // 1-Hour Forecast Schemas
 const InstantDetailsSchema1Hour = BaseInstantDetailsSchema.extend({
   fog_area_fraction: z.number(),
   ultraviolet_index_clear_sky: z.number(),
-  wind_speed_of_gust: z.number(),
+  wind_speed_of_gust: z.number().optional(),
 });
 
 const InstantDetailsSchema6Hour = BaseInstantDetailsSchema.extend({
-  wind_speed_percentile_10: z.number(),
-  wind_speed_percentile_90: z.number(),
+  wind_speed_percentile_10: z.number().optional(),
+  wind_speed_percentile_90: z.number().optional(),
 });
 
 const Next1HoursDetailsSchema = BaseNextHoursDetailsSchema.extend({
-  probability_of_thunder: z.number(),
+  probability_of_thunder: z.number().optional(),
 });
 
 const Next6HoursDetailsSchema = BaseNextHoursDetailsSchema.extend({

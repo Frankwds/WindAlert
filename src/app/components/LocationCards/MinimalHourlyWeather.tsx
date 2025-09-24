@@ -79,9 +79,9 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     },
     {
       getValue: (hour: MinimalForecast) =>
-        `${Math.round(hour.wind_speed)} (${Math.round(
-          hour.wind_gusts
-        )})`,
+        hour.wind_gusts !== undefined
+          ? `${Math.round(hour.wind_speed)} (${Math.round(hour.wind_gusts)})`
+          : `${Math.round(hour.wind_speed)}`,
     },
     {
       getValue: (hour: MinimalForecast) => (

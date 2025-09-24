@@ -100,7 +100,9 @@ const Hour: React.FC<HourProps> = ({
         {/* Wind speed column */}
         <div className="text-center text-[var(--foreground)]">
           <span className="font-semibold text-sm">{Math.round(hour.wind_speed)}</span>
-          <span className="text-xs text-[var(--muted)] ml-1">({Math.round(hour.wind_gusts)})</span>
+          {hour.wind_gusts !== undefined && (
+            <span className="text-xs text-[var(--muted)] ml-1">({Math.round(hour.wind_gusts)})</span>
+          )}
         </div>
 
         {/* Wind direction column */}

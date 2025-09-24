@@ -37,8 +37,12 @@ const Details = ({ hour, windDirections, altitude }: { hour: ForecastCache1hr, w
 
           <div className="font-medium">{altitude} (yr)</div>
           <div className="text-[var(--foreground)]">
-            <span className="font-medium">{Math.round(hour.wind_speed)} ( {Math.round(hour.wind_gusts)})</span>
-
+            <span className="font-medium">
+              {hour.wind_gusts !== undefined
+                ? `${Math.round(hour.wind_speed)} (${Math.round(hour.wind_gusts)})`
+                : `${Math.round(hour.wind_speed)}`
+              }
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <WindDirectionArrow direction={hour.wind_direction} size={20} color="var(--foreground)" />

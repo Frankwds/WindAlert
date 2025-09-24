@@ -23,11 +23,11 @@ export interface ForecastCache1hr {
   temperature: number;
   wind_speed: number;
   wind_direction: number;
-  wind_gusts: number;
+  wind_gusts?: number;
   precipitation: number;
-  precipitation_max: number;
-  precipitation_min: number;
-  precipitation_probability: number;
+  precipitation_max?: number;
+  precipitation_min?: number;
+  precipitation_probability?: number;
   pressure_msl: number;
   weather_code: string;
   is_day: 0 | 1;
