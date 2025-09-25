@@ -30,8 +30,11 @@ export class WeatherStationService {
 
   /**
  * Get all active weather stations that have data in station_data table
+ * Optimized to use indexes efficiently by filtering station_data on recent data
  */
   static async getAllActiveWithData(): Promise<WeatherStationWithData[]> {
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
     const { data, error } = await supabase
       .from('weather_stations')
       .select(`
@@ -52,7 +55,8 @@ export class WeatherStationService {
             updated_at
           )
         `)
-      .eq('is_active', true);
+      .eq('is_active', true)
+      .gte('station_data.updated_at', twentyFourHoursAgo);
 
     if (error) {
       console.error('Error fetching active weather stations with data:', error);
