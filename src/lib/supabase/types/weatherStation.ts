@@ -1,6 +1,6 @@
 export interface WeatherStation {
   id: string;
-  station_id: number;
+  station_id: string;
   name: string;
   longitude: number;
   latitude: number;

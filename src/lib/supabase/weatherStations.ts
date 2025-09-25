@@ -8,7 +8,7 @@ export class WeatherStationService {
    * Find which station IDs from the provided list don't exist in the database
    * Uses IN to find existing IDs, then filters to find missing ones
    */
-  static async getAllMissingStationIds(stationIds: number[]): Promise<number[]> {
+  static async getAllMissingStationIds(stationIds: string[]): Promise<string[]> {
     if (stationIds.length === 0) return [];
 
     // Query to find which station IDs from our list DO exist in the database

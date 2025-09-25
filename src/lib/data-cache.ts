@@ -170,8 +170,6 @@ class DataCache {
         ...station,
         station_data: [...station.station_data, ...latestForStation]
       };
-
-      return station;
     });
 
     await this.setToStorage(this.WEATHER_KEY, updatedStations);

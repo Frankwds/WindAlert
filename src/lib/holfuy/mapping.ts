@@ -27,8 +27,8 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
     longitude: parseFloat(parseFloat(station.location.longitude).toFixed(5)),
     altitude: station.location.altitude,
     country: 'Norway',
-    region: null,
     is_active: true,
+    provider: 'Holfuy',
   }));
 
   return { stationData, holfuyStation };
