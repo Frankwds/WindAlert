@@ -7,11 +7,20 @@ export async function fetchMetFrostStations(): Promise<Omit<WeatherStation, 'id'
   try {
     console.log('Fetching Met Frost stations...');
 
+    const clientId = process.env.MET_CLIENT_ID;
+    if (!clientId) {
+      throw new Error('MET_CLIENT_ID environment variable is not set');
+    }
+
+    // Create Basic auth header (clientId:password format, but Met Frost only needs clientId)
+    const authHeader = Buffer.from(`${clientId}:`).toString('base64');
+
     const response = await axios.get('https://frost.met.no/sources/v0.jsonld', {
       timeout: 30000, // 30 second timeout
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'WindLord/1.0',
+        'User-Agent': 'WindAlert/1.0',
+        'Authorization': `Basic ${authHeader}`,
       },
     });
 
