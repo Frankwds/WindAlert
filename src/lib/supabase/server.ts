@@ -48,7 +48,7 @@ export class Server {
       .from('weather_stations')
       .upsert(stations, {
         onConflict: 'station_id',
-        ignoreDuplicates: false
+        ignoreDuplicates: true
       })
       .select();
 

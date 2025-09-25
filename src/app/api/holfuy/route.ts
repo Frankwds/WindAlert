@@ -18,23 +18,8 @@ export async function GET(request: NextRequest) {
     const { stationData, holfuyStation } = await fetchHolfuyData();
     console.log(`Successfully fetched ${stationData.length} records from Holfuy API`);
 
-    // Find which stations are missing from the database
-    const stationIds = [...new Set(holfuyStation.map(station => station.station_id))];
-    const missingStationIds = await WeatherStationService.getAllMissingStationIds(stationIds);
-
-    if (missingStationIds.length > 0) {
-      console.log(`Found ${missingStationIds.length} new stations to upsert: ${missingStationIds.join(', ')}`);
-
-      // Filter holfuyStation to only include missing stations
-      const newStations = holfuyStation.filter(station =>
-        missingStationIds.includes(station.station_id)
-      );
-
-      // Upsert only the missing stations
-      await Server.upsertManyWeatherStation(newStations);
-      console.log(`Successfully upserted ${newStations.length} new stations`);
-    }
-
+    // Upsert only the missing stations
+    const missingStationIds = await Server.upsertManyWeatherStation(holfuyStation);
     // Store all station data in database
     const storedData = await Server.insertManyStationData(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
