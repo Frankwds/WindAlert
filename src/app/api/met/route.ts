@@ -48,6 +48,15 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    for (const station of stationData) {
+      if (station.direction < 0) {
+        station.direction = station.direction + 360;
+      }
+      if (station.direction > 360) {
+        station.direction = station.direction - 360;
+      }
+    }
+
     // Store all station data in database with pagination
     const batchSize = 100;
     let totalStored = 0;
