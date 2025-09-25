@@ -20,11 +20,9 @@ export class StationDataService {
       const { data, error } = await supabase
         .from('latest_station_data_materialized')
         .select(`
-          id,
           station_id,
           wind_speed,
           wind_gust,
-          wind_min_speed,
           direction,
           temperature,
           updated_at
