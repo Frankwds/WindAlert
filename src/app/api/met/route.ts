@@ -12,10 +12,6 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    console.log('Fetching MET station IDs and data...');
-
-    // Step 1: Get all MET provider station IDs
-    console.log('Getting MET provider station IDs...');
     const metStationIds = await WeatherStationService.getStationIdsByProvider('MET');
     console.log(`Found ${metStationIds.length} MET stations`);
 
@@ -31,67 +27,61 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Step 2: Fetch data from MET API and map to StationData format
-    console.log('Fetching station data from MET API...');
-    const stationData = await fetchMetStationData(metStationIds);
-    console.log(`Successfully fetched ${stationData.length} records from MET API`);
-
-    if (stationData.length === 0) {
-      return NextResponse.json({
-        success: true,
-        data: {
-          stations: metStationIds.length,
-          fetched: 0,
-          stored: 0,
-        },
-        message: 'No station data fetched from MET API'
-      });
-    }
-
-    for (const station of stationData) {
-      if (station.direction < 0) {
-        station.direction = station.direction + 360;
-      }
-      if (station.direction > 360) {
-        station.direction = station.direction - 360;
-      }
-    }
-
-    // Store all station data in database with pagination
-    const batchSize = 100;
+    // Step 2: Fetch, process, and upsert data in batches
+    const API_BATCH_SIZE = 100;
+    let totalFetched = 0;
     let totalStored = 0;
     const errors: string[] = [];
 
-    for (let i = 0; i < stationData.length; i += batchSize) {
-      const batch = stationData.slice(i, i + batchSize);
-      const batchNumber = Math.floor(i / batchSize) + 1;
-      const totalBatches = Math.ceil(stationData.length / batchSize);
+    for (let i = 0; i < metStationIds.length; i += API_BATCH_SIZE) {
+      const stationBatch = metStationIds.slice(i, i + API_BATCH_SIZE);
+      const batchNumber = Math.floor(i / API_BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(metStationIds.length / API_BATCH_SIZE);
 
       try {
-        console.log(`Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`);
+        // Fetch data for this batch of stations
+        const stationData = await fetchMetStationData(stationBatch);
 
-        const storedBatch = await Server.upsertManyStationData(batch);
+        if (stationData.length === 0) {
+          continue;
+        }
+
+        // Process the data (normalize wind direction)
+        for (const station of stationData) {
+          if (station.direction < 0) {
+            station.direction = station.direction + 360;
+          }
+          if (station.direction > 360) {
+            station.direction = station.direction - 360;
+          }
+        }
+
+        totalFetched += stationData.length;
+
+        // Upsert this batch to database
+        const storedBatch = await Server.upsertManyStationData(stationData);
         totalStored += storedBatch.length;
 
-        console.log(`Batch ${batchNumber} completed: ${storedBatch.length} records stored`);
+        console.log(`Batch ${batchNumber}/${totalBatches}: ${storedBatch.length} records stored\n\n`);
       } catch (error) {
-        const errorMsg = `Error storing batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        const errorMsg = `Error processing API batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
         console.error(errorMsg);
         errors.push(errorMsg);
       }
     }
 
-    console.log(`Successfully stored ${totalStored} out of ${stationData.length} records in database`);
+    console.log(`\n📊 MET Data Processing Complete:`);
+    console.log(`Stations: ${metStationIds.length} | Fetched: ${totalFetched} | Stored: ${totalStored} | Errors: ${errors.length}`);
 
     return NextResponse.json({
       success: true,
       data: {
         stations: metStationIds.length,
-        fetched: stationData.length,
+        fetched: totalFetched,
         stored: totalStored,
         errors: errors.length,
       },
-      message: `Successfully stored ${totalStored} out of ${stationData.length} MET station data records from ${metStationIds.length} stations`,
+      message: `Successfully stored ${totalStored} out of ${totalFetched} MET station data records from ${metStationIds.length} stations`,
       ...(errors.length > 0 && { errorDetails: errors })
     });
 

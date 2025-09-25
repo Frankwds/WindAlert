@@ -35,8 +35,6 @@ export class WeatherStationService {
         allStationIds = [...allStationIds, ...pageStationIds];
         page++;
 
-        console.log(`Fetched ${pageStationIds.length} station IDs from page ${page} (total: ${allStationIds.length})`);
-
         // If we received fewer rows than we asked for, it's the last page
         if (data.length < PAGE_SIZE) {
           hasMoreData = false;

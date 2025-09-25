@@ -33,10 +33,7 @@ const QUERY_PARAMS = {
  */
 export async function fetchMetStationData(stationIds: string[]): Promise<Omit<StationData, 'id'>[]> {
   try {
-    console.log(`Fetching MET station data for last 10 minutes from ${stationIds.length} stations...`);
-
     if (stationIds.length === 0) {
-      console.log('No station IDs provided');
       return [];
     }
 
@@ -47,9 +44,6 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
 
     // Create Basic auth header
     const authHeader = Buffer.from(`${clientId}:`).toString('base64');
-
-    console.log(`Time range: ${QUERY_PARAMS.TIME_RANGE}`);
-    console.log(`Elements: ${QUERY_PARAMS.ELEMENTS.join(', ')}`);
 
     // Process stations in batches
     const allStationData: Omit<StationData, 'id'>[] = [];
@@ -80,19 +74,14 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
           },
         });
 
-        console.log(`API batch ${batchNumber} response: ${response.data?.data?.length || 0} data points`);
-
         // Validate and parse the response data
         const validatedData = metObservationsResponseSchema.parse(response.data);
-        console.log(`Validated ${validatedData.data.length} data points from API batch ${batchNumber}`);
 
         // Map to StationData format
         const batchStationData = mapMetObservationsToStationData(validatedData.data);
         allStationData.push(...batchStationData);
-
-        console.log(`API batch ${batchNumber} completed: ${batchStationData.length} records mapped`);
       } catch (error) {
-        const errorMsg = `Error processing API batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        const errorMsg = `Error processing API batch: ${error instanceof Error ? error.message : 'Unknown error'}`;
         console.error(`❌ ${errorMsg}`);
         errors.push(errorMsg);
         // Continue with remaining batches as requested
