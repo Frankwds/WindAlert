@@ -7,7 +7,7 @@ interface Cache<T> {
 
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
 const CACHE_DURATION_ALL_PARAGLIDING = 14 * 24 * 60 * 60 * 1000; // 14 days
-export const WEATHER_STATIONS_UPDATE_INTERVAL = 15 * 60 * 1000; // 15 minutes
+export const WEATHER_STATIONS_UPDATE_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
@@ -165,10 +165,31 @@ class DataCache {
     const updatedStations = allStations.map(station => {
       const latestForStation = latestData.filter(data => data.station_id === station.station_id);
 
-      // Append new data points, or simply keep the existing data
+      if (latestForStation.length === 0) {
+        // No new data for this station
+        return station;
+      }
+
+      // Get the latest timestamp for this station from cache
+      const existingTimestamps = station.station_data.map(data => data.updated_at);
+      const latestTimestamp = existingTimestamps.length > 0
+        ? Math.max(...existingTimestamps.map(ts => new Date(ts).getTime()))
+        : 0;
+
+      // Filter out data points that already exist (same timestamp)
+      const newDataPoints = latestForStation.filter(data =>
+        new Date(data.updated_at).getTime() > latestTimestamp
+      );
+
+      if (newDataPoints.length === 0) {
+        // No new data points to add
+        return station;
+      }
+
+      // Append only new data points
       return {
         ...station,
-        station_data: [...station.station_data, ...latestForStation]
+        station_data: [...station.station_data, ...newDataPoints]
       };
     });
 

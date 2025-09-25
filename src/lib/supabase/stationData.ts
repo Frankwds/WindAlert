@@ -4,28 +4,37 @@ import { StationData } from './types';
 export class StationDataService {
 
   /**
-   * Get latest data for all stations newer than a given timestamp
+   * Get latest data for all stations from materialized view
+   * Optionally filter by country for main page
    */
-  static async getAllStationDataNewerThan(timestamp: string): Promise<StationData[]> {
-    // check that timestamp is older than 15 minutes
-    if (new Date(timestamp).getTime() > Date.now() - 15 * 60 * 1000) {
-      return [];
+  static async getLatestStationData(isMain?: boolean): Promise<StationData[]> {
+    let query = supabase
+      .from('latest_station_data_materialized')
+      .select(`
+        id,
+        station_id,
+        wind_speed,
+        wind_gust,
+        wind_min_speed,
+        direction,
+        temperature,
+        updated_at,
+        weather_stations!inner(country)
+      `);
+
+    // Filter by country if this is the main page (Norway/Norge only)
+    if (isMain) {
+      query = query.in('weather_stations.country', ['Norway', 'Norge']);
     }
 
-
-    // Add 2 minutes buffer to the timestamp to account for potential delays
-    const bufferedTimestamp = new Date(new Date(timestamp).getTime() + 2 * 60 * 1000).toISOString();
-
-    const { data, error } = await supabase
-      .from('station_data')
-      .select('*')
-      .gt('updated_at', bufferedTimestamp)
+    const { data, error } = await query;
 
     if (error) {
-      console.error('Error fetching latest data for all stations:', error);
+      console.error('Error fetching latest station data from materialized view:', error);
       throw error;
     }
-    console.log(`Fetched ${data?.length} station data newer than ${bufferedTimestamp}`);
+
+    console.log(`Fetched ${data?.length} latest station data points from materialized view`);
     return data || [];
   }
 

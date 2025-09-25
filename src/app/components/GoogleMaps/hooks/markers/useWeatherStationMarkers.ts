@@ -77,27 +77,27 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     }
   }, [updateMarkersWithLatestData, isVisibleState]);
 
-  // Set up 15-minute live updates starting at the next 15-minute mark
+  // Set up 5-minute live updates starting at the next 5-minute mark
   useEffect(() => {
     if (mapInstance && weatherStationMarkers.length > 0) {
       const now = new Date();
       const currentMinutes = now.getMinutes();
 
-
-      const minutesToNext = 5 - (currentMinutes % 5) + 1; // +1 for padding
+      // Calculate minutes to next 5-minute mark (0, 5, 10, 15, etc.)
+      const minutesToNext = 5 - (currentMinutes % 5);
       const delay = minutesToNext * 60 * 1000;
 
       const timeoutId = setTimeout(() => {
         updateMarkersWithLatestData();
 
-        // Now start the regular 15-minute interval
+        // Now start the regular 5-minute interval
         intervalRef.current = setInterval(() => {
           // skip if tab is not in use
           if (!isVisibleRef.current) {
             return;
           }
           updateMarkersWithLatestData();
-        }, WEATHER_STATIONS_UPDATE_INTERVAL);
+        }, 5 * 60 * 1000); // 5 minutes
       }, delay);
 
       // Cleanup timeout and interval on unmount or when dependencies change

@@ -7,39 +7,26 @@ export const useWeatherStationData = () => {
 
   const loadLatestWeatherStationData = useCallback(async (firstLoad: boolean, isMain?: boolean) => {
     try {
-      const allWeatherStations = await dataCache.getWeatherStations();
-      if (!allWeatherStations || !allWeatherStations[0].station_data) {
-        if (firstLoad) {
-          const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
-          await dataCache.setWeatherStations(updatedWeatherStations);
-          return updatedWeatherStations;
-        }
-        console.warn('No cached weather station data to append to');
-        return null;
-      }
+      const cachedWeatherStations = await dataCache.getWeatherStations();
 
-      const sortedStationData = allWeatherStations[0].station_data
-        .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
-      const latestUpdateTime = sortedStationData[0].updated_at;
-
-      // check if latestCacheTimestamp is older than 30 minutes
-      if (new Date(latestUpdateTime).getTime() < Date.now() - 30 * 60 * 1000) {
+      if (!cachedWeatherStations || cachedWeatherStations.length === 0) {
+        // No cache - get all stations with latest data
         const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
         await dataCache.setWeatherStations(updatedWeatherStations);
         return updatedWeatherStations;
       }
 
-      const latestData = await StationDataService.getAllStationDataNewerThan(latestUpdateTime);
+      // We have cached data - get latest data from materialized view
+      const latestData = await StationDataService.getLatestStationData(isMain);
 
       if (latestData && latestData.length > 0) {
+        // Append only new data points to cache
         const updatedWeatherStations = await dataCache.appendWeatherStationData(latestData);
         return updatedWeatherStations;
       }
 
-      if (firstLoad) {
-        return allWeatherStations;
-      }
-      return null;
+      // No new data available, return cached data
+      return cachedWeatherStations;
     } catch (err) {
       console.error('Error loading latest weather station data:', err);
       throw err;
