@@ -140,7 +140,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     markersError: markersErrorWeatherStationMarkers
   } = useWeatherStationMarkers({
     mapInstance,
-    onWeatherStationMarkerClick
+    onWeatherStationMarkerClick,
+    isMain: variant === 'main'
   });
 
   const { paraglidingMarkers,

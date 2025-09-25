@@ -5,12 +5,12 @@ import { dataCache } from '@/lib/data-cache';
 
 export const useWeatherStationData = () => {
 
-  const loadLatestWeatherStationData = useCallback(async (firstLoad: boolean) => {
+  const loadLatestWeatherStationData = useCallback(async (firstLoad: boolean, isMain?: boolean) => {
     try {
       const allWeatherStations = await dataCache.getWeatherStations();
       if (!allWeatherStations || !allWeatherStations[0].station_data) {
         if (firstLoad) {
-          const updatedWeatherStations = await WeatherStationService.getAllActiveWithData();
+          const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
           await dataCache.setWeatherStations(updatedWeatherStations);
           return updatedWeatherStations;
         }
@@ -24,7 +24,7 @@ export const useWeatherStationData = () => {
 
       // check if latestCacheTimestamp is older than 30 minutes
       if (new Date(latestUpdateTime).getTime() < Date.now() - 30 * 60 * 1000) {
-        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData();
+        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
         await dataCache.setWeatherStations(updatedWeatherStations);
         return updatedWeatherStations;
       }

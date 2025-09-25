@@ -79,8 +79,9 @@ export class WeatherStationService {
  * Get all active weather stations that have data in station_data table
  * Optimized to use indexes efficiently by filtering station_data on recent data
  * Uses pagination to fetch 1000 records at a time
+ * @param isMain - If true, filters to only Norway/Norge stations
  */
-  static async getAllActiveWithData(): Promise<WeatherStationWithData[]> {
+  static async getAllActiveWithData(isMain?: boolean): Promise<WeatherStationWithData[]> {
     const PAGE_SIZE = 1000;
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     let allStations: WeatherStationWithData[] = [];
@@ -91,7 +92,7 @@ export class WeatherStationService {
       const from = page * PAGE_SIZE;
       const to = from + PAGE_SIZE - 1;
 
-      const { data, error } = await supabase
+      let query = supabase
         .from('weather_stations')
         .select(`
             id,
@@ -112,8 +113,14 @@ export class WeatherStationService {
             )
           `)
         .eq('is_active', true)
-        .gte('station_data.updated_at', twentyFourHoursAgo)
-        .range(from, to); // 👈 Use range for pagination
+        .gte('station_data.updated_at', twentyFourHoursAgo);
+
+      // Conditionally filter by country if isMain is true
+      if (isMain) {
+        query = query.in('country', ['Norway', 'Norge']);
+      }
+
+      const { data, error } = await query.range(from, to); // 👈 Use range for pagination
 
       if (error) {
         console.error(`Error fetching active weather stations with data on page ${page}:`, error);

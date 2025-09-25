@@ -8,9 +8,10 @@ import { WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
   onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
+  isMain?: boolean;
 }
 
-export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick }: UseWeatherStationMarkersProps) => {
+export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick, isMain }: UseWeatherStationMarkersProps) => {
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
@@ -28,7 +29,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       setIsLoadingMarkers(true);
       setMarkersError(null);
 
-      const weatherStations = await loadLatestWeatherStationData(true);
+      const weatherStations = await loadLatestWeatherStationData(true, isMain);
       if (!weatherStations) {
         throw new Error('Failed to load weather station data in loadLatestWeatherStationData');
       }
@@ -43,13 +44,13 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       isLoadingRef.current = false;
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData, isMain]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
     if (isLoadingRef.current) return;
     try {
       isLoadingRef.current = true;
-      const weatherStations = await loadLatestWeatherStationData(false);
+      const weatherStations = await loadLatestWeatherStationData(false, isMain);
       if (weatherStations) {
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
@@ -60,7 +61,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     } finally {
       isLoadingRef.current = false;
     }
-  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData, isMain]);
 
   // Load markers on page load
   useEffect(() => {
