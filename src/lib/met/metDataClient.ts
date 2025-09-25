@@ -4,8 +4,8 @@ import { mapMetObservationsToStationData } from './mapping';
 import { StationData } from '../supabase/types';
 import { Server } from '../supabase/server';
 
-// Station IDs for testing
-const STATION_IDS = ['SN61820', 'SN310000', 'SN88200', 'SN51460', 'SN73466'];
+// Batch size for API requests
+const API_BATCH_SIZE = 100;
 
 // Query parameters constants
 const QUERY_PARAMS = {
@@ -29,11 +29,17 @@ const QUERY_PARAMS = {
 
 /**
  * Gets the last 10 minutes of station data from MET Frost API
+ * @param stationIds Array of station IDs to fetch data for
  * @returns Promise<StationData[]> Array of station data records
  */
-export async function fetchMetStationData(): Promise<Omit<StationData, 'id'>[]> {
+export async function fetchMetStationData(stationIds: string[]): Promise<Omit<StationData, 'id'>[]> {
   try {
-    console.log('Fetching MET station data for last 10 minutes...');
+    console.log(`Fetching MET station data for last 10 minutes from ${stationIds.length} stations...`);
+
+    if (stationIds.length === 0) {
+      console.log('No station IDs provided');
+      return [];
+    }
 
     const clientId = process.env.MET_CLIENT_ID;
     if (!clientId) {
@@ -43,44 +49,78 @@ export async function fetchMetStationData(): Promise<Omit<StationData, 'id'>[]> 
     // Calculate time range (last 10 minutes)
     const now = new Date();
     const tenMinutesAgo = new Date(now.getTime() - 10 * 60 * 1000);
-
     const timeRange = `${tenMinutesAgo.toISOString()}/${now.toISOString()}`;
 
     // Create Basic auth header
     const authHeader = Buffer.from(`${clientId}:`).toString('base64');
 
-    // Build query parameters
-    const params = {
-      sources: STATION_IDS.join(','),
-      referencetime: timeRange,
-      elements: QUERY_PARAMS.ELEMENTS.join(','),
-    };
-
-    console.log(`Querying MET API for stations: ${STATION_IDS.join(', ')}`);
     console.log(`Time range: ${timeRange}`);
     console.log(`Elements: ${QUERY_PARAMS.ELEMENTS.join(', ')}`);
 
-    const response = await axios.get(QUERY_PARAMS.BASE_URL, {
-      params,
-      timeout: 30000, // 30 second timeout
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'WindAlert/1.0',
-        'Authorization': `Basic ${authHeader}`,
-      },
-    });
+    // Process stations in batches
+    const allStationData: Omit<StationData, 'id'>[] = [];
+    const errors: string[] = [];
 
-    console.log(`MET API response received: ${response.data?.data?.length || 0} data points`);
+    for (let i = 0; i < stationIds.length; i += API_BATCH_SIZE) {
+      const batch = stationIds.slice(i, i + API_BATCH_SIZE);
+      const batchNumber = Math.floor(i / API_BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(stationIds.length / API_BATCH_SIZE);
 
-    // Validate and parse the response data
-    const validatedData = metObservationsResponseSchema.parse(response.data);
-    console.log(`Validated ${validatedData.data.length} data points from MET API`);
+      try {
+        console.log(`Processing API batch ${batchNumber}/${totalBatches} (${batch.length} stations)...`);
 
-    // Map to StationData format
-    const stationData = mapMetObservationsToStationData(validatedData.data);
-    console.log(`Mapped ${stationData.length} station data records`);
+        // Build query parameters for this batch
+        const params = {
+          sources: batch.join(','),
+          referencetime: timeRange,
+          elements: QUERY_PARAMS.ELEMENTS.join(','),
+        };
+        // console.log(QUERY_PARAMS.BASE_URL, +'?' + Object.entries(params).map(([key, value]) => `${key}=${value}`).join('&'));
 
-    return stationData;
+        const response = await axios.get(QUERY_PARAMS.BASE_URL, {
+          params,
+          timeout: 30000, // 30 second timeout
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': 'WindAlert/1.0',
+            'Authorization': `Basic ${authHeader}`,
+          },
+        });
+        // console.log('Response:', response.data);
+
+        console.log(`API batch ${batchNumber} response: ${response.data?.data?.length || 0} data points`);
+
+        // Validate and parse the response data
+        const validatedData = metObservationsResponseSchema.parse(response.data);
+        console.log(`Validated ${validatedData.data.length} data points from API batch ${batchNumber}`);
+
+        // Map to StationData format
+        const batchStationData = mapMetObservationsToStationData(validatedData.data);
+        allStationData.push(...batchStationData);
+
+        console.log(`API batch ${batchNumber} completed: ${batchStationData.length} records mapped`);
+      } catch (error) {
+        const errorMsg = `Error processing API batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        console.error(`❌ ${errorMsg}`);
+        errors.push(errorMsg);
+        // Continue with remaining batches as requested
+      }
+    }
+
+    console.log(`\n📊 API Fetch Results:`);
+    console.log(`=====================`);
+    console.log(`Total stations requested: ${stationIds.length}`);
+    console.log(`Total records fetched: ${allStationData.length}`);
+    console.log(`API batch errors: ${errors.length}`);
+
+    if (errors.length > 0) {
+      console.log('\n❌ API batch errors encountered:');
+      errors.forEach((error, index) => {
+        console.log(`${index + 1}. ${error}`);
+      });
+    }
+
+    return allStationData;
 
   } catch (error) {
     console.error('Error fetching MET station data:', error);
@@ -102,9 +142,10 @@ export async function fetchMetStationData(): Promise<Omit<StationData, 'id'>[]> 
 
 /**
  * Fetches MET station data and inserts it into the database with pagination
+ * @param stationIds Array of station IDs to fetch data for
  * @returns Promise<{ insertedCount: number; errors: string[] }>
  */
-export async function fetchAndInsertMetStationData(): Promise<{
+export async function fetchAndInsertMetStationData(stationIds: string[]): Promise<{
   insertedCount: number;
   errors: string[];
 }> {
@@ -115,7 +156,7 @@ export async function fetchAndInsertMetStationData(): Promise<{
 
     // Step 1: Fetch station data from MET API
     console.log('📡 Fetching station data from MET API...');
-    const stationData = await fetchMetStationData();
+    const stationData = await fetchMetStationData(stationIds);
     console.log(`✅ Fetched ${stationData.length} station data records\n`);
 
     if (stationData.length === 0) {

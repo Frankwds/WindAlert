@@ -56,7 +56,7 @@ export const metObservationLevelSchema = z.object({
 export const metObservationSchema = z.object({
   elementId: z.string(),
   value: z.number(),
-  unit: z.string(),
+  unit: z.string().nullable().optional(),
   level: metObservationLevelSchema.optional(),
   timeOffset: z.string().optional(),
   timeResolution: z.string().optional(),

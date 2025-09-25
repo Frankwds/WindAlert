@@ -5,6 +5,53 @@ export class WeatherStationService {
 
 
   /**
+   * Get all station IDs for a specific provider with pagination
+   */
+  static async getStationIdsByProvider(provider: string): Promise<string[]> {
+    const PAGE_SIZE = 1000;
+    let allStationIds: string[] = [];
+    let page = 0;
+    let hasMoreData = true;
+
+    while (hasMoreData) {
+      const from = page * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+
+      const { data, error } = await supabase
+        .from('weather_stations')
+        .select('station_id')
+        .eq('provider', provider)
+        .eq('is_active', true)
+        .range(from, to); // 👈 Use range for pagination
+
+      if (error) {
+        console.error(`Error fetching station IDs by provider on page ${page}:`, error);
+        throw error;
+      }
+
+      if (data && data.length > 0) {
+        // Add the fetched chunk to our main array
+        const pageStationIds = data.map(row => row.station_id);
+        allStationIds = [...allStationIds, ...pageStationIds];
+        page++;
+
+        console.log(`Fetched ${pageStationIds.length} station IDs from page ${page} (total: ${allStationIds.length})`);
+
+        // If we received fewer rows than we asked for, it's the last page
+        if (data.length < PAGE_SIZE) {
+          hasMoreData = false;
+        }
+      } else {
+        // No more data to fetch
+        hasMoreData = false;
+      }
+    }
+
+    console.log(`Total station IDs fetched for provider '${provider}': ${allStationIds.length}`);
+    return allStationIds;
+  }
+
+  /**
    * Find which station IDs from the provided list don't exist in the database
    * Uses IN to find existing IDs, then filters to find missing ones
    */

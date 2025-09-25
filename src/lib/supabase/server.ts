@@ -106,4 +106,27 @@ export class Server {
 
     return data || [];
   }
+
+  /**
+   * Upsert multiple station data records
+   * Conflicts on station_id and updated_at to ensure only latest data is kept
+   */
+  static async upsertManyStationData(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
+    if (dataArray.length === 0) return [];
+
+    const { data, error } = await supabaseServer
+      .from('station_data')
+      .upsert(dataArray, {
+        onConflict: 'station_id,updated_at',
+        ignoreDuplicates: false
+      })
+      .select();
+
+    if (error) {
+      console.error('Error upserting multiple station data records:', error);
+      throw error;
+    }
+
+    return data || [];
+  }
 }
