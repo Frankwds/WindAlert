@@ -84,7 +84,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       const currentMinutes = now.getMinutes();
 
 
-      const minutesToNext = 15 - (currentMinutes % 15) + 1; // +1 for padding
+      const minutesToNext = 5 - (currentMinutes % 5) + 1; // +1 for padding
       const delay = minutesToNext * 60 * 1000;
 
       const timeoutId = setTimeout(() => {
