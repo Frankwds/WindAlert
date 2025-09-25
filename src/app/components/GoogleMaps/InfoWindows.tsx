@@ -33,18 +33,25 @@ export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ lo
 export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> = ({ location }) => {
   return (
     <div className="p-4 max-w-md">
-      {/* Station Header with Holfuy Link */}
+
       <div className="mb-4">
-        <a
-          href={`https://holfuy.com/en/weather/${location.station_id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1"
-        >
-          <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
-            🌤️{location.name} ({location.altitude}m)
-          </h3>
-        </a>
+        <div className="flex flex-col items-center">
+          <a
+            href={location.provider === 'Holfuy' ? `https://holfuy.com/en/weather/${location.station_id}` : `https://klimaservicesenter.no/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1"
+          >
+            <h3 className="font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline">
+              🌤️{location.name}
+            </h3>
+            {location.altitude && (
+              <p className="text-center text-sm text-gray-600">
+                Høyde: {location.altitude}moh
+              </p>
+            )}
+          </a>
+        </div>
       </div>
 
       {/* Historical Data Table */}
@@ -56,6 +63,7 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
           />
         </div>
       )}
+      <p className="text-sm text-gray-600 mt-2 text-center">Takk til {location.provider} for dataene</p>
     </div>
   );
 };

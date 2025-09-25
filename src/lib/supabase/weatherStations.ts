@@ -99,6 +99,7 @@ export class WeatherStationService {
             latitude,
             longitude,
             altitude,
+            provider,
             station_data!inner(
               id,
               station_id,

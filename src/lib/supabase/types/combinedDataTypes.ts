@@ -11,6 +11,7 @@ export type WeatherStationWithData = Pick<WeatherStation,
   | 'latitude'
   | 'longitude'
   | 'altitude'
+  | 'provider'
 > & {
   station_data: StationData[];
 };
