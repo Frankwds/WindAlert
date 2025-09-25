@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchMetFrostStations } from '@/lib/met/apiClient';
+import { fetchMetFrostStations } from '@/lib/met/stations';
 import { Server } from '@/lib/supabase/server';
 
 export async function GET(request: NextRequest) {

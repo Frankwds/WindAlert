@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { metFrostResponseSchema } from './zod';
 import { mapMetFrostToWeatherStation } from './mapping';
-import { WeatherStation } from '../supabase/types';
+import { WeatherStation } from '../../supabase/types';
 
 export async function fetchMetFrostStations(): Promise<Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]> {
   try {

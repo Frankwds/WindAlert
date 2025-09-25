@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { metObservationsResponseSchema } from './zod';
 import { mapMetObservationsToStationData } from './mapping';
-import { StationData } from '../supabase/types';
-import { Server } from '../supabase/server';
+import { StationData } from '../../supabase/types';
+import { Server } from '../../supabase/server';
 
 // Batch size for API requests
 const API_BATCH_SIZE = 100;

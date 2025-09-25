@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchMetStationData } from '@/lib/met/metDataClient';
+import { fetchMetStationData } from '@/lib/met/data';
 import { Server } from '@/lib/supabase/server';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 

@@ -1,6 +1,6 @@
 import { fetchMetFrostStations } from './apiClient';
-import { WeatherStationService } from '../supabase/weatherStations';
-import { Server } from '../supabase/server';
+import { WeatherStationService } from '../../supabase/weatherStations';
+import { Server } from '../../supabase/server';
 
 /**
  * Updates weather stations from Met Frost API
