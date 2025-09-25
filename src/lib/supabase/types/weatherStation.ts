@@ -6,9 +6,8 @@ export interface WeatherStation {
   latitude: number;
   altitude: number;
   country: string | null;
-  region: string | null;
   is_active: boolean;
-  created_at: string;
+  provider: string;
   updated_at: string;
 }
 
