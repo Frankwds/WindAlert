@@ -70,7 +70,7 @@ export function mapMetObservationsToStationData(observationsData: MetObservation
     .map(data => ({
       station_id: data.station_id,
       wind_speed: data.wind_speed!,
-      wind_gust: null,
+      wind_gust: data.wind_gust ?? null,
       wind_min_speed: null,
       direction: data.direction!,
       temperature: data.temperature,

@@ -4,12 +4,12 @@ import { Server } from '@/lib/supabase/server';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 
 export async function GET(request: NextRequest) {
-  // const token = request.headers.get('token');
-  // const expectedToken = process.env.CRON_SECRET;
-  // if (!token || !expectedToken || token !== expectedToken) {
-  //   console.log('Unauthorized MET API attempt');
-  //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  // }
+  const token = request.headers.get('token');
+  const expectedToken = process.env.CRON_SECRET;
+  if (!token || !expectedToken || token !== expectedToken) {
+    console.log('Unauthorized MET API attempt');
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
   try {
     console.log('Fetching MET station IDs and data...');

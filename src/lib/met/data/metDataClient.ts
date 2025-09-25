@@ -2,7 +2,6 @@ import axios from 'axios';
 import { metObservationsResponseSchema } from './zod';
 import { mapMetObservationsToStationData } from './mapping';
 import { StationData } from '../../supabase/types';
-import { Server } from '../../supabase/server';
 
 // Batch size for API requests
 const API_BATCH_SIZE = 100;
@@ -12,11 +11,14 @@ const QUERY_PARAMS = {
   // Base URL for MET Frost observations API
   BASE_URL: 'https://frost.met.no/observations/v0.jsonld',
 
+  // Time range
+  TIME_RANGE: 'latest',
+
   // Elements to fetch
   ELEMENTS: [
     'wind_speed',
     'wind_from_direction',
-    'max(wind_speed_of_gust%20PT10M)',
+    'max(wind_speed_of_gust PT10M)',
     'air_temperature'
   ],
 
@@ -43,15 +45,10 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
       throw new Error('MET_CLIENT_ID environment variable is not set');
     }
 
-    // Calculate time range (last 10 minutes)
-    const now = new Date();
-    const tenMinutesAgo = new Date(now.getTime() - 15 * 60 * 1000);
-    const timeRange = `${tenMinutesAgo.toISOString()}/${now.toISOString()}`;
-
     // Create Basic auth header
     const authHeader = Buffer.from(`${clientId}:`).toString('base64');
 
-    console.log(`Time range: ${timeRange}`);
+    console.log(`Time range: ${QUERY_PARAMS.TIME_RANGE}`);
     console.log(`Elements: ${QUERY_PARAMS.ELEMENTS.join(', ')}`);
 
     // Process stations in batches
@@ -69,10 +66,9 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
         // Build query parameters for this batch
         const params = {
           sources: batch.join(','),
-          referencetime: timeRange,
+          referencetime: QUERY_PARAMS.TIME_RANGE,
           elements: QUERY_PARAMS.ELEMENTS.join(','),
         };
-        // console.log(QUERY_PARAMS.BASE_URL, +'?' + Object.entries(params).map(([key, value]) => `${key}=${value}`).join('&'));
 
         const response = await axios.get(QUERY_PARAMS.BASE_URL, {
           params,
@@ -83,7 +79,6 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
             'Authorization': `Basic ${authHeader}`,
           },
         });
-        // console.log('Response:', response.data);
 
         console.log(`API batch ${batchNumber} response: ${response.data?.data?.length || 0} data points`);
 
