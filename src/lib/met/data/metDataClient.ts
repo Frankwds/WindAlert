@@ -3,8 +3,6 @@ import { metObservationsResponseSchema } from './zod';
 import { mapMetObservationsToStationData } from './mapping';
 import { StationData } from '../../supabase/types';
 
-// Batch size for API requests
-const API_BATCH_SIZE = 100;
 
 // Query parameters constants
 const QUERY_PARAMS = {
@@ -22,13 +20,11 @@ const QUERY_PARAMS = {
     'air_temperature'
   ],
 
-  // Batch size for database inserts
-  BATCH_SIZE: 100,
 } as const;
 
 /**
  * Gets the last 10 minutes of station data from MET Frost API
- * @param stationIds Array of station IDs to fetch data for
+ * @param stationIds Array of station IDs to fetch data for (should be <= 100 stations)
  * @returns Promise<StationData[]> Array of station data records
  */
 export async function fetchMetStationData(stationIds: string[]): Promise<Omit<StationData, 'id'>[]> {
@@ -45,63 +41,31 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
     // Create Basic auth header
     const authHeader = Buffer.from(`${clientId}:`).toString('base64');
 
-    // Process stations in batches
-    const allStationData: Omit<StationData, 'id'>[] = [];
-    const errors: string[] = [];
+    // Build query parameters
+    const params = {
+      sources: stationIds.join(','),
+      referencetime: QUERY_PARAMS.TIME_RANGE,
+      elements: QUERY_PARAMS.ELEMENTS.join(','),
+    };
 
-    for (let i = 0; i < stationIds.length; i += API_BATCH_SIZE) {
-      const batch = stationIds.slice(i, i + API_BATCH_SIZE);
-      const batchNumber = Math.floor(i / API_BATCH_SIZE) + 1;
-      const totalBatches = Math.ceil(stationIds.length / API_BATCH_SIZE);
+    const response = await axios.get(QUERY_PARAMS.BASE_URL, {
+      params,
+      timeout: 30000, // 30 second timeout
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'WindAlert/1.0',
+        'Authorization': `Basic ${authHeader}`,
+      },
+    });
 
-      try {
-        console.log(`Processing API batch ${batchNumber}/${totalBatches} (${batch.length} stations)...`);
+    // Validate and parse the response data
+    const validatedData = metObservationsResponseSchema.parse(response.data);
 
-        // Build query parameters for this batch
-        const params = {
-          sources: batch.join(','),
-          referencetime: QUERY_PARAMS.TIME_RANGE,
-          elements: QUERY_PARAMS.ELEMENTS.join(','),
-        };
+    // Map to StationData format
+    const stationData = mapMetObservationsToStationData(validatedData.data);
 
-        const response = await axios.get(QUERY_PARAMS.BASE_URL, {
-          params,
-          timeout: 30000, // 30 second timeout
-          headers: {
-            'Accept': 'application/json',
-            'User-Agent': 'WindAlert/1.0',
-            'Authorization': `Basic ${authHeader}`,
-          },
-        });
-
-        // Validate and parse the response data
-        const validatedData = metObservationsResponseSchema.parse(response.data);
-
-        // Map to StationData format
-        const batchStationData = mapMetObservationsToStationData(validatedData.data);
-        allStationData.push(...batchStationData);
-      } catch (error) {
-        const errorMsg = `Error processing API batch: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        console.error(`❌ ${errorMsg}`);
-        errors.push(errorMsg);
-        // Continue with remaining batches as requested
-      }
-    }
-
-    console.log(`\n📊 API Fetch Results:`);
-    console.log(`=====================`);
-    console.log(`Total stations requested: ${stationIds.length}`);
-    console.log(`Total stations with valid data: ${allStationData.length}`);
-    console.log(`Errors encountered while fetching: ${errors.length}`);
-
-    if (errors.length > 0) {
-      console.log('\n❌ API fetch errors encountered:');
-      errors.forEach((error, index) => {
-        console.log(`${index + 1}. ${error}`);
-      });
-    }
-
-    return allStationData;
+    console.log(`Fetched ${stationData.length} records from MET API`);
+    return stationData;
 
   } catch (error) {
     console.error('Error fetching MET station data:', error);

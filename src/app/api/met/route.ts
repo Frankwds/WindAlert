@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
         const storedBatch = await Server.upsertManyStationData(stationData);
         totalStored += storedBatch.length;
 
-        console.log(`Batch ${batchNumber}/${totalBatches}: ${storedBatch.length} records stored\n\n`);
+        console.log(`Batch ${batchNumber}/${totalBatches}: ${storedBatch.length} records stored\n`);
       } catch (error) {
         const errorMsg = `Error processing API batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
         console.error(errorMsg);
