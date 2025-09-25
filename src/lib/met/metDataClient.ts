@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { metObservationsResponseSchema, MetObservationsResponse } from './zod';
+import { metObservationsResponseSchema } from './zod';
 import { mapMetObservationsToStationData } from './mapping';
 import { StationData } from '../supabase/types';
 import { Server } from '../supabase/server';
@@ -16,7 +16,7 @@ const QUERY_PARAMS = {
   ELEMENTS: [
     'wind_speed',
     'wind_from_direction',
-    'wind_speed_of_gust',
+    'max(wind_speed_of_gust%20PT10M)',
     'air_temperature'
   ],
 
