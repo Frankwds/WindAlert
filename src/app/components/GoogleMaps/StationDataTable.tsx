@@ -48,7 +48,6 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
     {
       getValue: (data: StationData) => {
         const windColor = getWindSpeedColor(data.wind_speed);
-        const gustColor = getWindSpeedColor(data.wind_gust > 1 ? data.wind_gust - 1 : data.wind_gust);
         return (
           <div className="relative rounded">
             <div className="flex flex-col items-center">
@@ -60,13 +59,15 @@ const StationDataTable: React.FC<StationDataTableProps> = ({
                 <span className="relative font-medium">{data.wind_speed}</span>
               </div>
               <hr />
-              <div className="relative rounded w-11 flex items-center justify-center">
-                <div
-                  className="absolute inset-0 rounded-b opacity-70"
-                  style={{ backgroundColor: gustColor }}
-                />
-                <span className="relative font-semibold text-xs">({data.wind_gust})</span>
-              </div>
+              {data.wind_gust !== null ? (
+                <div className="relative rounded w-11 flex items-center justify-center">
+                  <div
+                    className="absolute inset-0 rounded-b opacity-70"
+                    style={{ backgroundColor: getWindSpeedColor(data.wind_gust > 1 ? data.wind_gust - 1 : data.wind_gust) }}
+                  />
+                  <span className="relative font-semibold text-xs">({data.wind_gust})</span>
+                </div>
+              ) : null}
             </div>
           </div>
         );
