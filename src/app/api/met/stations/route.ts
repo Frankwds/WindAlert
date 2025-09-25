@@ -11,9 +11,6 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    console.log('Fetching Met Frost stations...');
-
-    // Fetch all stations from Met Frost API
     const allStations = await fetchMetFrostStations();
     console.log(`Successfully fetched ${allStations.length} stations from Met Frost API`);
 

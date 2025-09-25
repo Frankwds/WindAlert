@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Step 2: Fetch, process, and upsert data in batches
-    const API_BATCH_SIZE = 180;
+    const API_BATCH_SIZE = 200;
     let totalFetched = 0;
     let totalStored = 0;
     const errors: string[] = [];
