@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     // Upsert only the missing stations
     const missingStationIds = await Server.upsertManyWeatherStation(holfuyStation);
     // Store all station data in database
-    const storedData = await Server.insertManyStationData(stationData);
+    const storedData = await Server.upsertManyStationData(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
     // Refresh the materialized view after upserting station data
