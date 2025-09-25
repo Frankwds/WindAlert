@@ -91,23 +91,6 @@ export class Server {
   }
 
   /**
-   * Insert multiple station data records
-   */
-  static async insertManyStationData(dataArray: Omit<StationData, 'id'>[]): Promise<StationData[]> {
-    const { data, error } = await supabaseServer
-      .from('station_data')
-      .insert(dataArray)
-      .select();
-
-    if (error) {
-      console.error('Error inserting multiple station data records:', error);
-      throw error;
-    }
-
-    return data || [];
-  }
-
-  /**
    * Upsert multiple station data records
    * Conflicts on station_id and updated_at to ensure only latest data is kept
    */

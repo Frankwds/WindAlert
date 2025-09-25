@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchHolfuyData } from '@/lib/holfuy/apiClient';
-import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { Server } from '@/lib/supabase/server';
 
 export async function GET(request: NextRequest) {
