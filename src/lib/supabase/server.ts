@@ -129,4 +129,17 @@ export class Server {
 
     return data || [];
   }
+
+  /**
+   * Refresh the latest station data materialized view
+   * Call this after upserting station data to keep the view up to date
+   */
+  static async refreshLatestStationData(): Promise<void> {
+    const { error } = await supabaseServer.rpc('refresh_latest_station_data');
+
+    if (error) {
+      console.error('Error refreshing latest station data materialized view:', error);
+      throw error;
+    }
+  }
 }

@@ -24,6 +24,10 @@ export async function GET(request: NextRequest) {
     const storedData = await Server.insertManyStationData(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
+    // Refresh the materialized view after upserting station data
+    await Server.refreshLatestStationData();
+    console.log('Successfully refreshed latest station data materialized view');
+
     return NextResponse.json({
       success: true,
       data: {
