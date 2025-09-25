@@ -5,19 +5,19 @@ import { dataCache } from '@/lib/data-cache';
 
 export const useWeatherStationData = () => {
 
-  const loadLatestWeatherStationData = useCallback(async (firstLoad: boolean, isMain?: boolean) => {
+  const loadLatestWeatherStationData = useCallback(async () => {
     try {
       const cachedWeatherStations = await dataCache.getWeatherStations();
 
       if (!cachedWeatherStations || cachedWeatherStations.length === 0) {
         // No cache - get all stations with latest data
-        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
+        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData();
         await dataCache.setWeatherStations(updatedWeatherStations);
         return updatedWeatherStations;
       }
 
       // We have cached data - get latest data from materialized view
-      const latestData = await StationDataService.getLatestStationData(isMain);
+      const latestData = await StationDataService.getLatestStationData();
 
       if (latestData && latestData.length > 0) {
         // Append only new data points to cache

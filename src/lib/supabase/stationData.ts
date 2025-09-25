@@ -5,10 +5,9 @@ export class StationDataService {
 
   /**
    * Get latest data for all stations from materialized view
-   * Optionally filter by country for main page
    */
-  static async getLatestStationData(isMain?: boolean): Promise<StationData[]> {
-    let query = supabase
+  static async getLatestStationData(): Promise<StationData[]> {
+    const { data, error } = await supabase
       .from('latest_station_data_materialized')
       .select(`
         id,
@@ -18,16 +17,8 @@ export class StationDataService {
         wind_min_speed,
         direction,
         temperature,
-        updated_at,
-        weather_stations!inner(country)
+        updated_at
       `);
-
-    // Filter by country if this is the main page (Norway/Norge only)
-    if (isMain) {
-      query = query.in('weather_stations.country', ['Norway', 'Norge']);
-    }
-
-    const { data, error } = await query;
 
     if (error) {
       console.error('Error fetching latest station data from materialized view:', error);

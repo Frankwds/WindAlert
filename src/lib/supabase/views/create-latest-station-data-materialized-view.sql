@@ -1,18 +1,16 @@
--- Create materialized view for latest station data with weather stations join
--- This view provides the latest data point for each active weather station
+-- Create materialized view for latest station data
+-- This view provides the latest data point for each station
 CREATE MATERIALIZED VIEW latest_station_data_materialized AS
 SELECT DISTINCT ON (station_id)
-    sd.id,
-    ws.station_id,
-    sd.wind_speed,
-    sd.wind_gust,
-    sd.wind_min_speed,
-    sd.direction,
-    sd.temperature,
-    sd.updated_at
-FROM station_data sd
-JOIN weather_stations ws ON sd.station_id = ws.station_id
-WHERE ws.is_active = true
+    id,
+    station_id,
+    wind_speed,
+    wind_gust,
+    wind_min_speed,
+    direction,
+    temperature,
+    updated_at
+FROM station_data
 ORDER BY station_id, updated_at DESC;
 
 -- Create index for better performance
