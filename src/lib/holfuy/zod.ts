@@ -9,7 +9,7 @@ export const windDataSchema = z.object({
 });
 
 export const holfuyStationDataSchema = z.object({
-  stationId: z.string(),
+  stationId: z.number(),
   stationName: z.string(),
   location: z.object({
     latitude: z.string(),

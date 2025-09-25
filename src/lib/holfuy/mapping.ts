@@ -11,7 +11,7 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
   holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
 } {
   const stationData = holfuyData.map(station => ({
-    station_id: station.stationId,
+    station_id: station.stationId.toString(),
     wind_speed: station.wind.speed,
     wind_gust: station.wind.gust,
     wind_min_speed: station.wind.min,
@@ -21,7 +21,7 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
   }));
 
   const holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[] = holfuyData.map(station => ({
-    station_id: station.stationId,
+    station_id: station.stationId.toString(),
     name: station.stationName,
     latitude: parseFloat(parseFloat(station.location.latitude).toFixed(5)),
     longitude: parseFloat(parseFloat(station.location.longitude).toFixed(5)),
