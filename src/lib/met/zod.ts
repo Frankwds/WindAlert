@@ -68,7 +68,7 @@ export const metObservationSchema = z.object({
 
 export const metObservationsDataSchema = z.object({
   sourceId: z.string(),
-  referenceTime: z.string().datetime(),
+  referenceTime: z.iso.datetime(),
   observations: z.array(metObservationSchema),
 });
 
@@ -76,14 +76,14 @@ export const metObservationsResponseSchema = z.object({
   '@context': z.string().url(),
   '@type': z.string(),
   apiVersion: z.string(),
-  license: z.string().url(),
-  createdAt: z.string().datetime(),
+  license: z.url(),
+  createdAt: z.iso.datetime(),
   queryTime: z.number(),
   currentItemCount: z.number().int(),
   itemsPerPage: z.number().int(),
   offset: z.number().int(),
   totalItemCount: z.number().int(),
-  currentLink: z.string().url().optional(),
+  currentLink: z.url().optional(),
   data: z.array(metObservationsDataSchema),
 });
 

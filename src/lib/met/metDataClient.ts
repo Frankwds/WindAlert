@@ -16,12 +16,9 @@ const QUERY_PARAMS = {
   ELEMENTS: [
     'wind_speed',
     'wind_from_direction',
-    'max(wind_speed_of_gust PT10M)',
+    'wind_speed_of_gust',
     'air_temperature'
   ],
-
-  // Time resolution (10 minutes)
-  TIME_RESOLUTION: 'PT10M',
 
   // Batch size for database inserts
   BATCH_SIZE: 100,
@@ -48,7 +45,7 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
 
     // Calculate time range (last 10 minutes)
     const now = new Date();
-    const tenMinutesAgo = new Date(now.getTime() - 10 * 60 * 1000);
+    const tenMinutesAgo = new Date(now.getTime() - 15 * 60 * 1000);
     const timeRange = `${tenMinutesAgo.toISOString()}/${now.toISOString()}`;
 
     // Create Basic auth header
@@ -110,11 +107,11 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
     console.log(`\n📊 API Fetch Results:`);
     console.log(`=====================`);
     console.log(`Total stations requested: ${stationIds.length}`);
-    console.log(`Total records fetched: ${allStationData.length}`);
-    console.log(`API batch errors: ${errors.length}`);
+    console.log(`Total stations with valid data: ${allStationData.length}`);
+    console.log(`Errors encountered while fetching: ${errors.length}`);
 
     if (errors.length > 0) {
-      console.log('\n❌ API batch errors encountered:');
+      console.log('\n❌ API fetch errors encountered:');
       errors.forEach((error, index) => {
         console.log(`${index + 1}. ${error}`);
       });
@@ -137,87 +134,5 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
     }
 
     throw new Error(`Failed to fetch MET station data: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
-}
-
-/**
- * Fetches MET station data and inserts it into the database with pagination
- * @param stationIds Array of station IDs to fetch data for
- * @returns Promise<{ insertedCount: number; errors: string[] }>
- */
-export async function fetchAndInsertMetStationData(stationIds: string[]): Promise<{
-  insertedCount: number;
-  errors: string[];
-}> {
-  const errors: string[] = [];
-
-  try {
-    console.log('🚀 Starting MET station data fetch and insert...\n');
-
-    // Step 1: Fetch station data from MET API
-    console.log('📡 Fetching station data from MET API...');
-    const stationData = await fetchMetStationData(stationIds);
-    console.log(`✅ Fetched ${stationData.length} station data records\n`);
-
-    if (stationData.length === 0) {
-      console.log('⚠️  No station data fetched from MET API');
-      return {
-        insertedCount: 0,
-        errors: ['No station data fetched from MET API'],
-      };
-    }
-
-    // Step 2: Insert data with pagination
-    console.log(`🔄 Inserting ${stationData.length} station data records with pagination...`);
-
-    const batchSize = QUERY_PARAMS.BATCH_SIZE;
-    let totalInserted = 0;
-
-    for (let i = 0; i < stationData.length; i += batchSize) {
-      const batch = stationData.slice(i, i + batchSize);
-      const batchNumber = Math.floor(i / batchSize) + 1;
-      const totalBatches = Math.ceil(stationData.length / batchSize);
-
-      try {
-        console.log(`📦 Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`);
-
-        const insertedRecords = await Server.insertManyStationData(batch);
-        totalInserted += insertedRecords.length;
-
-        console.log(`✅ Batch ${batchNumber} completed: ${insertedRecords.length} records inserted`);
-      } catch (error) {
-        const errorMsg = `Error inserting batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        console.error(`❌ ${errorMsg}`);
-        errors.push(errorMsg);
-
-        // Fail completely as requested
-        throw new Error(errorMsg);
-      }
-    }
-
-    console.log(`\n📊 Insert Results:`);
-    console.log(`==================`);
-    console.log(`Total records fetched: ${stationData.length}`);
-    console.log(`Successfully inserted: ${totalInserted}`);
-    console.log(`Errors: ${errors.length}`);
-
-    if (totalInserted > 0) {
-      console.log(`\n✅ Successfully inserted ${totalInserted} MET station data records!`);
-    }
-
-    return {
-      insertedCount: totalInserted,
-      errors,
-    };
-
-  } catch (error) {
-    const errorMsg = `Failed to fetch and insert MET station data: ${error instanceof Error ? error.message : 'Unknown error'}`;
-    console.error(`\n💥 ${errorMsg}`);
-    errors.push(errorMsg);
-
-    return {
-      insertedCount: 0,
-      errors,
-    };
   }
 }
