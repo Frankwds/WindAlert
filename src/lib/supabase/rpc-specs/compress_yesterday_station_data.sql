@@ -4,7 +4,10 @@ RETURNS TABLE(
   original_records INTEGER,
   compressed_records INTEGER,
   stations_processed INTEGER
-) AS $$
+) 
+SECURITY DEFINER
+SET search_path = public
+AS $$
 DECLARE
   v_original_records INTEGER := 0;
   v_compressed_records INTEGER := 0;
@@ -15,11 +18,11 @@ BEGIN
     SELECT 
       station_id,
       DATE_TRUNC('hour', updated_at + INTERVAL '45 minutes') as compressed_hour,
-      AVG(wind_speed) as wind_speed,
-      MAX(wind_gust) as wind_gust,
-      MIN(wind_min_speed) as wind_min_speed,
-      AVG(direction) as direction,
-      AVG(temperature) as temperature,
+      ROUND(AVG(wind_speed), 1) as wind_speed,
+      ROUND(MAX(wind_gust), 1) as wind_gust,
+      ROUND(MIN(wind_min_speed), 1) as wind_min_speed,
+      ROUND(AVG(direction), 1) as direction,
+      ROUND(AVG(temperature), 1) as temperature,
       MAX(updated_at) as updated_at
     FROM station_data 
     WHERE updated_at >= CURRENT_DATE - INTERVAL '1 day' 
