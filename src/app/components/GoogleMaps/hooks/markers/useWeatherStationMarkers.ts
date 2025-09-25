@@ -8,7 +8,7 @@ import { WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
   onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
-  isMain?: boolean;
+  isMain: boolean;
 }
 
 export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick, isMain }: UseWeatherStationMarkersProps) => {
@@ -16,7 +16,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
 
-  const { loadLatestWeatherStationData } = useWeatherStationData();
+  const { loadLatestWeatherStationData } = useWeatherStationData(isMain);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const hasLoadedInitialMarkers = useRef<boolean>(false);

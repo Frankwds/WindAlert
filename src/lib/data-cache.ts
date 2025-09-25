@@ -19,7 +19,8 @@ const ALL_PARAGLIDING_MIN_TIMESTAMP = new Date(ALL_PARAGLIDING_MIN_DATETIME).get
 
 class DataCache {
   private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
-  private readonly WEATHER_KEY = 'windlord_cache_weatherstation';
+  private readonly WEATHER_KEY_MAIN = 'windlord_cache_weatherstation';
+  private readonly WEATHER_KEY_ALL = 'windlord_cache_weatherstation_all';
   private readonly ALL_PARAGLIDING_KEY = 'windlord_cache_all_paragliding';
   private db: IDBDatabase | null = null;
 
@@ -141,8 +142,8 @@ class DataCache {
     await this.setToStorage(this.PARAGLIDING_KEY, data);
   }
 
-  async getWeatherStations(): Promise<WeatherStationWithData[] | null> {
-    const cache = await this.getFromStorage(this.WEATHER_KEY);
+  async getWeatherStations(isMain: boolean): Promise<WeatherStationWithData[] | null> {
+    const cache = await this.getFromStorage(isMain ? this.WEATHER_KEY_MAIN : this.WEATHER_KEY_ALL);
     if (cache) {
       return cache.data;
     }
@@ -150,14 +151,14 @@ class DataCache {
   }
 
 
-  async setWeatherStations(data: WeatherStationWithData[]): Promise<void> {
-    await this.setToStorage(this.WEATHER_KEY, data);
+  async setWeatherStations(data: WeatherStationWithData[], isMain: boolean): Promise<void> {
+    await this.setToStorage(isMain ? this.WEATHER_KEY_MAIN : this.WEATHER_KEY_ALL, data);
   }
 
 
-  async appendWeatherStationData(latestData: StationData[]): Promise<WeatherStationWithData[] | null> {
+  async appendWeatherStationData(latestData: StationData[], isMain: boolean): Promise<WeatherStationWithData[] | null> {
     // Get all stations for the update
-    const allStations = await this.getWeatherStations();
+    const allStations = await this.getWeatherStations(isMain);
     if (!allStations) {
       return null;
     }
@@ -193,7 +194,7 @@ class DataCache {
       };
     });
 
-    await this.setToStorage(this.WEATHER_KEY, updatedStations);
+    await this.setToStorage(this.WEATHER_KEY_MAIN, updatedStations);
 
     return updatedStations;
   }
@@ -250,7 +251,7 @@ class DataCache {
 
       await new Promise<void>((resolve, reject) => {
         const deleteParagliding = store.delete(this.PARAGLIDING_KEY);
-        const deleteWeather = store.delete(this.WEATHER_KEY);
+        const deleteWeather = store.delete(this.WEATHER_KEY_MAIN);
         const deleteAllParagliding = store.delete(this.ALL_PARAGLIDING_KEY);
 
         let completed = 0;
@@ -280,7 +281,7 @@ class DataCache {
 
     try {
       const paraglidingCached = await this.getFromStorage(this.PARAGLIDING_KEY);
-      const weatherCached = await this.getFromStorage(this.WEATHER_KEY);
+      const weatherCached = await this.getFromStorage(this.WEATHER_KEY_MAIN);
       const allParaglidingCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
       return paraglidingCached !== null || weatherCached !== null || allParaglidingCached !== null;
     } catch (error) {

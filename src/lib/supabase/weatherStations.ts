@@ -79,7 +79,7 @@ export class WeatherStationService {
  * Uses pagination to fetch 1000 records at a time
  * @param isMain - If true, filters to only Norway/Norge stations
  */
-  static async getAllActiveWithData(isMain?: boolean): Promise<WeatherStationWithData[]> {
+  static async getAllActiveWithData(isMain: boolean): Promise<WeatherStationWithData[]> {
     const PAGE_SIZE = 1000;
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     let allStations: WeatherStationWithData[] = [];
