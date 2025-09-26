@@ -101,7 +101,7 @@ export class Server {
       .from('station_data')
       .upsert(dataArray, {
         onConflict: 'station_id,updated_at',
-        ignoreDuplicates: false
+        ignoreDuplicates: true
       })
       .select();
 

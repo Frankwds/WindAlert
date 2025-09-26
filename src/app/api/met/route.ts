@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     }
 
     console.log(`\n📊 MET Data Processing Complete:`);
-    console.log(`Stations: ${metStationIds.length} | Fetched: ${totalFetched} | Stored: ${totalStored} | Errors: ${errors.length}`);
+    console.log(`Stations: ${metStationIds.length} | Fetched: ${totalFetched} | New rows: ${totalStored} | Errors: ${errors.length}`);
 
     // Refresh the materialized view after all upserting is complete
     await Server.refreshLatestStationData();
