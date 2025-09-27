@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   try {
     console.log('Compressing Holfuy data for yesterday...');
 
-    const data = await Server.compressYesterdayStationData();
+    const data = await Server.compressOldStationData();
     console.log(`Successfully compressed 
       ${data.original_records} original records into 
       ${data.compressed_records} compressed records, for 

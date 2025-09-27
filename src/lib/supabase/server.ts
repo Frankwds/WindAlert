@@ -152,10 +152,13 @@ export class Server {
   //   compressed_records INTEGER,
   //   stations_processed INTEGER
   // )
-  static async compressYesterdayStationData(): Promise<{
+  static async compressOldStationData(): Promise<{
     original_records: number, compressed_records: number, stations_processed: number
   }> {
-    const { data, error } = await supabaseServer.rpc('compress_old_station_data');
+    const hourOffset = 12;
+    const { data, error } = await supabaseServer.rpc('compress_old_station_data', {
+      hours_old: hourOffset
+    });
 
     if (error) {
       console.error('Error compressing data:', error);

@@ -111,8 +111,12 @@ export class WeatherStationService {
               updated_at
             )
           `)
-        .eq('is_main', isMain)
-        .eq('is_active', true)
+        .eq('is_active', true);
+
+      // Only filter by is_main if isMain is true
+      if (isMain) {
+        query.eq('is_main', true);
+      }
 
       const { data, error } = await query.range(from, to); // 👈 Use range for pagination
 
