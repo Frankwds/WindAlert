@@ -155,7 +155,7 @@ export class Server {
   static async compressOldStationData(): Promise<{
     original_records: number, compressed_records: number, stations_processed: number
   }> {
-    const hourOffset = 12;
+    const hourOffset = 4;
     const { data, error } = await supabaseServer.rpc('compress_old_station_data', {
       hours_old: hourOffset
     });
