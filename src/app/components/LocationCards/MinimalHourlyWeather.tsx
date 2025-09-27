@@ -99,24 +99,26 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
     <div className="bg-[var(--background)] rounded-lg">
       <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
         {Object.keys(groupedByDay).map((day, index) => (
-          <button
-            key={day}
-            onClick={() => setActiveDay(day)}
-            className={`flex-1 py-1.5 px-3 cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
-              } ${index === Object.keys(groupedByDay).length - 1 ? "rounded-r-md" : ""
-              } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
-              } ${activeDay === day
-                ? "bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium"
-                : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
-              } `}
-          >
-            <div className="flex flex-col items-center">
-              <div className="mb-1">{day}</div>
-              <div className="flex w-full">
-                {getPromisingHoursVisual(day)}
+          groupedByDay[day].length > 2 && (
+            <button
+              key={day}
+              onClick={() => setActiveDay(day)}
+              className={`flex-1 py-1.5 px-3 cursor-pointer capitalize ${index === 0 ? "rounded-l-md" : ""
+                } ${index === Object.keys(groupedByDay).length - 1 ? "rounded-r-md" : ""
+                } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
+                } ${activeDay === day
+                  ? "bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium"
+                  : "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50"
+                } `}
+            >
+              <div className="flex flex-col items-center">
+                <div className="mb-1">{day}</div>
+                <div className="flex w-full">
+                  {getPromisingHoursVisual(day)}
+                </div>
               </div>
-            </div>
-          </button>
+            </button>
+          )
         ))}
       </div>
 
