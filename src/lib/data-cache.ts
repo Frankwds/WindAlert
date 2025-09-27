@@ -6,7 +6,7 @@ interface Cache<T> {
 }
 
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
-const CACHE_DURATION_ALL_PARAGLIDING = 14 * 24 * 60 * 60 * 1000; // 14 days
+const CACHE_DURATION_ALL_PARAGLIDING = 24 * 60 * 60 * 1000; // 1 day
 export const WEATHER_STATIONS_UPDATE_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
 const DB_NAME = 'WindLordCache';
@@ -14,7 +14,7 @@ const DB_VERSION = 1;
 const STORE_NAME = 'cache';
 
 // Hardcoded datetime for all paragliding locations cache invalidation
-const ALL_PARAGLIDING_MIN_DATETIME = "2025-09-13T18:00:00.000Z";
+const ALL_PARAGLIDING_MIN_DATETIME = "2025-09-27T16:00:00.000Z";
 const ALL_PARAGLIDING_MIN_TIMESTAMP = new Date(ALL_PARAGLIDING_MIN_DATETIME).getTime();
 
 class DataCache {
