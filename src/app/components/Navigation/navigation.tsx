@@ -8,7 +8,7 @@ import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { useState } from "react";
 
 const links = [
-  { href: "/", label: "Hovedstarter", description: " - Med værmelding" },
+  { href: "/", label: "Hovedstarter", description: " - I Norge" },
   { href: "/locations/all", label: "Alle starter" },
   { href: "/favourites", label: "Favoritter" },
   { href: "/about", label: "Om" },
