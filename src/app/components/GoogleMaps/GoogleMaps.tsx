@@ -47,6 +47,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     isPromisingFilterExpanded,
     isFilterControlOpen,
     showSkywaysLayer,
+    mapType,
+    onMapTypeChange,
     setShowParaglidingMarkers,
     setShowWeatherStationMarkers,
     setWindFilterExpanded,
@@ -160,7 +162,11 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
 
         {mapInstance && (
           <>
-            <MapLayerToggle map={mapInstance} />
+            <MapLayerToggle
+              map={mapInstance}
+              initialMapType={mapType}
+              onMapTypeChange={onMapTypeChange}
+            />
             <div className="absolute bottom-3 right-3 z-10 flex flex-row gap-2">
               <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
               <ZoomControls map={mapInstance} />

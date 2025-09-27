@@ -7,6 +7,7 @@ export type MapState = {
     lng: number;
   };
   zoom: number;
+  mapType: 'terrain' | 'satellite' | 'osm';
   showParaglidingMarkers: boolean;
   showWeatherStationMarkers: boolean;
   selectedWindDirections: string[];
@@ -31,6 +32,7 @@ const MapStateSchema = z.object({
     lng: z.number(),
   }),
   zoom: z.number(),
+  mapType: z.enum(['terrain', 'satellite', 'osm']),
   showParaglidingMarkers: z.boolean(),
   showWeatherStationMarkers: z.boolean(),
   selectedWindDirections: z.array(z.string()),
@@ -49,6 +51,7 @@ const MapStateSchema = z.object({
 const DEFAULT_MAP_STATE: MapState = {
   center: { lat: 65, lng: 8.5 },
   zoom: 5,
+  mapType: 'terrain',
   showParaglidingMarkers: true,
   showWeatherStationMarkers: false,
   selectedWindDirections: [],

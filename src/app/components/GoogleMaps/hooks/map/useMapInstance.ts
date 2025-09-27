@@ -18,9 +18,10 @@ interface UseMapInstanceProps {
   onMapClick: () => void;
   showSkywaysLayer: boolean;
   onMapPositionChange: (center: { lat: number; lng: number }, zoom: number) => void;
+  initialMapType?: 'terrain' | 'satellite' | 'osm';
 }
 
-export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSkywaysLayer = false, onMapPositionChange }: UseMapInstanceProps) => {
+export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSkywaysLayer = false, onMapPositionChange, initialMapType = 'terrain' }: UseMapInstanceProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +57,21 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
     });
   }, []);
 
+  const createOSMMapType = useCallback(() => {
+    return new google.maps.ImageMapType({
+      getTileUrl: (coord, zoom) => {
+        const x = coord.x;
+        const y = coord.y;
+        return `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`;
+      },
+      tileSize: new google.maps.Size(256, 256),
+      maxZoom: 19,
+      minZoom: 1,
+      name: 'OpenStreetMap',
+      alt: 'OpenStreetMap tiles'
+    });
+  }, []);
+
   useEffect(() => {
     const initMap = async () => {
       try {
@@ -77,10 +93,16 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
 
         if (!mapRef.current) return;
 
+        const mapTypeId = initialMapType === 'osm'
+          ? 'osm'
+          : initialMapType === 'satellite'
+            ? google.maps.MapTypeId.HYBRID
+            : google.maps.MapTypeId.TERRAIN;
+
         const map = new google.maps.Map(mapRef.current, {
           center: initialMapState?.center ?? MAP_CONFIG.DEFAULT_CENTER,
           zoom: initialMapState?.zoom ?? MAP_CONFIG.DEFAULT_ZOOM,
-          mapTypeId: google.maps.MapTypeId.TERRAIN,
+          mapTypeId,
           mapId: MAP_CONFIG.MAP_ID,
           streetViewControl: false,
           disableDefaultUI: true,
@@ -92,6 +114,10 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
 
         map.addListener('click', () => onMapClickRef.current());
         map.setOptions({ scaleControl: true });
+
+        // Register OSM map type
+        const osmMapType = createOSMMapType();
+        map.mapTypes.set('osm', osmMapType);
 
         setMapInstance(map);
         setIsLoading(false);

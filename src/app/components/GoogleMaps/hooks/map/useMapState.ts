@@ -50,14 +50,19 @@ export const useMapState = () => {
     saveState({ center, zoom });
   }, [saveState]);
 
-  const updateFilters = useCallback((filters: Partial<Pick<MapState, 'showParaglidingMarkers' | 'showWeatherStationMarkers' | 'selectedWindDirections' | 'windFilterAndOperator' | 'promisingFilter' | 'showSkywaysLayer'>>) => {
+  const updateFilters = useCallback((filters: Partial<Pick<MapState, 'showParaglidingMarkers' | 'showWeatherStationMarkers' | 'selectedWindDirections' | 'windFilterAndOperator' | 'promisingFilter' | 'showSkywaysLayer' | 'mapType'>>) => {
     saveState(filters);
+  }, [saveState]);
+
+  const updateMapType = useCallback((mapType: 'terrain' | 'satellite' | 'osm') => {
+    saveState({ mapType });
   }, [saveState]);
 
   return {
     mapState,
     updateMapPosition,
     updateFilters,
+    updateMapType,
     saveState
   };
 };

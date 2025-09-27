@@ -14,7 +14,7 @@ interface UseGoogleMapsProps {
 }
 
 export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
-  const { mapState, updateFilters, updateMapPosition } = useMapState();
+  const { mapState, updateFilters, updateMapPosition, updateMapType } = useMapState();
 
   const filters = useMapFilters({
     initialShowParaglidingMarkers: mapState.showParaglidingMarkers,
@@ -65,7 +65,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     showSkywaysLayer: filters.showSkywaysLayer,
     onMapPositionChange: useCallback((center: { lat: number; lng: number }, zoom: number) => {
       onMapPositionChangeRef.current(center, zoom);
-    }, [])
+    }, []),
+    initialMapType: mapState.mapType
   });
 
   const onWeatherStationMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
@@ -216,6 +217,10 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     updateFilters
   ]);
 
+  const handleMapTypeChange = useCallback((mapType: 'terrain' | 'satellite' | 'osm') => {
+    updateMapType(mapType);
+  }, [updateMapType]);
+
   return {
 
     mapRef,
@@ -230,6 +235,9 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     ...filters,
 
+    // Map type state
+    mapType: mapState.mapType,
+    onMapTypeChange: handleMapTypeChange,
 
     infoWindowRef,
     closeInfoWindow,
