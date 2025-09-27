@@ -81,7 +81,6 @@ export class WeatherStationService {
  */
   static async getAllActiveWithData(isMain: boolean): Promise<WeatherStationWithData[]> {
     const PAGE_SIZE = 500;
-    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     let allStations: WeatherStationWithData[] = [];
     let page = 0;
     let hasMoreData = true;
@@ -90,7 +89,7 @@ export class WeatherStationService {
       const from = page * PAGE_SIZE;
       const to = from + PAGE_SIZE - 1;
 
-      let query = supabase
+      const query = supabase
         .from('weather_stations')
         .select(`
             id,
@@ -100,6 +99,7 @@ export class WeatherStationService {
             longitude,
             altitude,
             provider,
+            is_main,
             station_data!inner(
               id,
               station_id,
@@ -111,13 +111,8 @@ export class WeatherStationService {
               updated_at
             )
           `)
+        .eq('is_main', isMain)
         .eq('is_active', true)
-        .gte('station_data.updated_at', twentyFourHoursAgo);
-
-      // Conditionally filter by country if isMain is true
-      if (isMain) {
-        query = query.in('country', ['Norway', 'Norge']);
-      }
 
       const { data, error } = await query.range(from, to); // 👈 Use range for pagination
 

@@ -125,4 +125,44 @@ export class Server {
       throw error;
     }
   }
+
+  /**
+   * Delete station data older than 24 hours from now.
+   */
+  static async deleteAllOlderThanTwentyFourHours(): Promise<{ deleted_records: number }> {
+    // Use UTC time to match the database timestamps
+    const cutoffDate = new Date();
+    cutoffDate.setUTCHours(cutoffDate.getUTCHours() - 24);
+
+    const { data, error } = await supabaseServer
+      .from('station_data')
+      .delete()
+      .lt('updated_at', cutoffDate.toISOString())
+      .select('id');
+
+    if (error) {
+      console.error('Error deleting old station data:', error);
+      throw error;
+    }
+
+    return { deleted_records: data?.length || 0 };
+  }
+  // RETURNS TABLE(
+  //   original_records INTEGER,
+  //   compressed_records INTEGER,
+  //   stations_processed INTEGER
+  // )
+  static async compressYesterdayStationData(): Promise<{
+    original_records: number, compressed_records: number, stations_processed: number
+  }> {
+    const { data, error } = await supabaseServer.rpc('compress_old_station_data');
+
+    if (error) {
+      console.error('Error compressing data:', error);
+      throw error;
+    }
+
+    return data && data.length > 0 ?
+      data[0] : { original_records: 0, compressed_records: 0, stations_processed: 0 }
+  }
 }

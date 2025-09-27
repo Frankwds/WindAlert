@@ -29,6 +29,7 @@ export function mapHolfuyToStationData(holfuyData: HolfuyStationData[]): {
     country: 'Norway',
     is_active: true,
     provider: 'Holfuy',
+    is_main: true,
   }));
 
   return { stationData, holfuyStation };

@@ -9,5 +9,6 @@ export interface WeatherStation {
   is_active: boolean;
   provider: string;
   updated_at: string;
+  is_main: boolean;
 }
 

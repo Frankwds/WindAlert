@@ -1,4 +1,4 @@
-import { StationDataService } from '@/lib/supabase/stationData';
+import { Server } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   try {
     console.log('Cleaning up Holfuy data...');
 
-    const deletedData = await StationDataService.deleteAllOlderThanTwoDays();
+    const deletedData = await Server.deleteAllOlderThanTwentyFourHours();
     console.log(`Successfully deleted ${deletedData.deleted_records} old station data`);
 
     return NextResponse.json({

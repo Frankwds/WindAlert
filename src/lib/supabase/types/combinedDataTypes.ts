@@ -12,6 +12,7 @@ export type WeatherStationWithData = Pick<WeatherStation,
   | 'longitude'
   | 'altitude'
   | 'provider'
+  | 'is_main'
 > & {
   station_data: StationData[];
 };

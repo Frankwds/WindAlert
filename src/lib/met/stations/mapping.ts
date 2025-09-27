@@ -29,6 +29,7 @@ export function mapMetFrostToWeatherStation(metFrostData: MetFrostStation[]): Om
         country: station.country || 'UKJENT',
         is_active: true,
         provider: 'MET',
+        is_main: station.country === 'Norge',
       };
     });
 }
