@@ -22,7 +22,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     initialSelectedWindDirections: mapState.selectedWindDirections,
     initialWindFilterAndOperator: mapState.windFilterAndOperator,
     initialPromisingFilter: variant === 'main' ? mapState.promisingFilter : null,
-    initialShowSkywaysLayer: mapState.showSkywaysLayer
+    initialShowSkywaysLayer: mapState.showSkywaysLayer,
+    initialShowThermalsLayer: mapState.showThermalsLayer
   });
 
   const { infoWindowRef, closeInfoWindow, openInfoWindow } = useInfoWindows();
@@ -63,6 +64,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       onMapClickRef.current();
     }, []),
     showSkywaysLayer: filters.showSkywaysLayer,
+    showThermalsLayer: filters.showThermalsLayer,
     onMapPositionChange: useCallback((center: { lat: number; lng: number }, zoom: number) => {
       onMapPositionChangeRef.current(center, zoom);
     }, []),
@@ -204,7 +206,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       selectedWindDirections: filters.selectedWindDirections,
       windFilterAndOperator: filters.windFilterAndOperator,
       promisingFilter: variant === 'main' ? filters.promisingFilter : null,
-      showSkywaysLayer: filters.showSkywaysLayer
+      showSkywaysLayer: filters.showSkywaysLayer,
+      showThermalsLayer: filters.showThermalsLayer
     });
   }, [
     filters.showParaglidingMarkers,
@@ -213,6 +216,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     filters.windFilterAndOperator,
     filters.promisingFilter,
     filters.showSkywaysLayer,
+    filters.showThermalsLayer,
     variant,
     updateFilters
   ]);

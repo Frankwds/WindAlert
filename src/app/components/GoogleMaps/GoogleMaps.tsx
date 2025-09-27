@@ -47,6 +47,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     isPromisingFilterExpanded,
     isFilterControlOpen,
     showSkywaysLayer,
+    showThermalsLayer,
     mapType,
     onMapTypeChange,
     setShowParaglidingMarkers,
@@ -56,6 +57,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     setIsPromisingFilterExpanded,
     setIsFilterControlOpen,
     setShowSkywaysLayer,
+    setShowThermalsLayer,
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays,
@@ -72,14 +74,16 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
       showParagliding={showParaglidingMarkers}
       showWeatherStations={showWeatherStationMarkers}
       showSkyways={showSkywaysLayer}
+      showThermals={showThermalsLayer}
       onParaglidingFilterChange={setShowParaglidingMarkers}
       onWeatherStationFilterChange={setShowWeatherStationMarkers}
       onSkywaysFilterChange={setShowSkywaysLayer}
+      onThermalsFilterChange={setShowThermalsLayer}
       isOpen={isFilterControlOpen}
       onToggle={setIsFilterControlOpen}
       closeOverlays={closeOverlays}
     />
-  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, isFilterControlOpen, closeOverlays]);
+  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, showThermalsLayer, isFilterControlOpen, closeOverlays]);
 
   const memoizedWindFilterCompass = useMemo(() => (
     <WindFilterCompass
@@ -154,14 +158,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
 
         {memoizedParaglidingClusterer}
         {memoizedWeatherStationClusterer}
-        {currentLandingMarker && mapInstance && (
-          <div style={{ display: 'none' }}>
-            {/* Landing marker is automatically rendered by Google Maps when added to map */}
-          </div>
-        )}
 
         {mapInstance && (
           <>
+            {currentLandingMarker && (
+              <div style={{ display: 'none' }}>
+                {/* Landing marker is automatically rendered by Google Maps when added to map */}
+              </div>
+            )}
             <MapLayerToggle
               map={mapInstance}
               initialMapType={mapType}

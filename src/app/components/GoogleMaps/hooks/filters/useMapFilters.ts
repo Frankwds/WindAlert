@@ -13,6 +13,7 @@ interface UseMapFiltersProps {
   initialWindFilterAndOperator?: boolean;
   initialPromisingFilter?: PromisingFilter | null;
   initialShowSkywaysLayer?: boolean;
+  initialShowThermalsLayer?: boolean;
 }
 
 export const useMapFilters = ({
@@ -21,7 +22,8 @@ export const useMapFilters = ({
   initialSelectedWindDirections = [],
   initialWindFilterAndOperator = true,
   initialPromisingFilter = null,
-  initialShowSkywaysLayer = false
+  initialShowSkywaysLayer = false,
+  initialShowThermalsLayer = false
 }: UseMapFiltersProps = {}) => {
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(initialShowParaglidingMarkers);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(initialShowWeatherStationMarkers);
@@ -32,6 +34,7 @@ export const useMapFilters = ({
   const [isPromisingFilterExpanded, setIsPromisingFilterExpanded] = useState(false);
   const [isFilterControlOpen, setIsFilterControlOpen] = useState(false);
   const [showSkywaysLayer, setShowSkywaysLayer] = useState(initialShowSkywaysLayer);
+  const [showThermalsLayer, setShowThermalsLayer] = useState(initialShowThermalsLayer);
 
   const handleWindDirectionChange = useCallback((directions: string[]) => {
     setSelectedWindDirections(directions);
@@ -48,6 +51,7 @@ export const useMapFilters = ({
     setWindFilterAndOperator(true);
     setPromisingFilter(null);
     setShowSkywaysLayer(false);
+    setShowThermalsLayer(false);
   }, []);
 
   return {
@@ -61,6 +65,7 @@ export const useMapFilters = ({
     isPromisingFilterExpanded,
     isFilterControlOpen,
     showSkywaysLayer,
+    showThermalsLayer,
 
     // Setters
     setShowParaglidingMarkers,
@@ -72,6 +77,7 @@ export const useMapFilters = ({
     setIsPromisingFilterExpanded,
     setIsFilterControlOpen,
     setShowSkywaysLayer,
+    setShowThermalsLayer,
 
     // Handlers
     handleWindDirectionChange,

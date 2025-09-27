@@ -17,11 +17,12 @@ interface UseMapInstanceProps {
   onMapReady: (map: google.maps.Map) => void;
   onMapClick: () => void;
   showSkywaysLayer: boolean;
+  showThermalsLayer: boolean;
   onMapPositionChange: (center: { lat: number; lng: number }, zoom: number) => void;
   initialMapType?: 'terrain' | 'satellite' | 'osm';
 }
 
-export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSkywaysLayer = false, onMapPositionChange, initialMapType = 'terrain' }: UseMapInstanceProps) => {
+export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSkywaysLayer = false, showThermalsLayer = false, onMapPositionChange, initialMapType = 'terrain' }: UseMapInstanceProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,6 +55,23 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
       minZoom: 1,
       name: 'Skyways',
       alt: 'Skyways thermal data layer'
+    });
+  }, []);
+
+  const createThermalsLayer = useCallback(() => {
+    return new google.maps.ImageMapType({
+      getTileUrl: (coord, zoom) => {
+        const x = coord.x;
+        const y = coord.y;
+        // Invert y for TMS (Tile Map Service) format
+        const invertedY = Math.pow(2, zoom) - 1 - y;
+        return `https://thermal.kk7.ch/tiles/thermals_all_all/${zoom}/${x}/${invertedY}.png?src=${window.location.hostname}`;
+      },
+      tileSize: new google.maps.Size(256, 256),
+      maxZoom: 18,
+      minZoom: 1,
+      name: 'Thermals',
+      alt: 'Thermals thermal data layer'
     });
   }, []);
 
@@ -179,6 +197,34 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
       }
     }
   }, [mapInstance, showSkywaysLayer, createSkywaysLayer]);
+
+  // Handle thermals layer visibility
+  useEffect(() => {
+    if (!mapInstance) return;
+
+    // Find the thermals layer in overlay map types
+    let thermalsLayerIndex = -1;
+    for (let i = 0; i < mapInstance.overlayMapTypes.getLength(); i++) {
+      const layer = mapInstance.overlayMapTypes.getAt(i);
+      if (layer && layer.name === 'Thermals') {
+        thermalsLayerIndex = i;
+        break;
+      }
+    }
+
+    if (showThermalsLayer) {
+      // Add thermals layer if not already present
+      if (thermalsLayerIndex === -1) {
+        const thermalsLayer = createThermalsLayer();
+        mapInstance.overlayMapTypes.push(thermalsLayer);
+      }
+    } else {
+      // Remove thermals layer if present
+      if (thermalsLayerIndex !== -1) {
+        mapInstance.overlayMapTypes.removeAt(thermalsLayerIndex);
+      }
+    }
+  }, [mapInstance, showThermalsLayer, createThermalsLayer]);
 
   return {
     mapRef,
