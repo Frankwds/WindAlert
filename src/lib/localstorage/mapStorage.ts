@@ -18,6 +18,7 @@ export type MapState = {
     minPromisingHours: number;
   } | null;
   showSkywaysLayer: boolean;
+  showThermalsLayer: boolean;
   isFullscreen: boolean;
   timestamp: number;
 };
@@ -43,6 +44,7 @@ const MapStateSchema = z.object({
     minPromisingHours: z.number(),
   }).nullable(),
   showSkywaysLayer: z.boolean(),
+  showThermalsLayer: z.boolean(),
   isFullscreen: z.boolean(),
   timestamp: z.number(),
 });
@@ -58,6 +60,7 @@ const DEFAULT_MAP_STATE: MapState = {
   windFilterAndOperator: true,
   promisingFilter: null,
   showSkywaysLayer: false,
+  showThermalsLayer: false,
   isFullscreen: false,
   timestamp: Date.now()
 };

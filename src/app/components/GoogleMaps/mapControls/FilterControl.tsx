@@ -25,9 +25,11 @@ interface FilterControlProps {
   showParagliding: boolean;
   showWeatherStations: boolean;
   showSkyways?: boolean;
+  showThermals?: boolean;
   onParaglidingFilterChange: (isVisible: boolean) => void;
   onWeatherStationFilterChange: (isVisible: boolean) => void;
   onSkywaysFilterChange?: (isVisible: boolean) => void;
+  onThermalsFilterChange?: (isVisible: boolean) => void;
   isOpen: boolean;
   onToggle: (isOpen: boolean) => void;
   closeOverlays: (options?: { keep?: string }) => void;
@@ -37,9 +39,11 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   showParagliding,
   showWeatherStations,
   showSkyways = false,
+  showThermals = false,
   onParaglidingFilterChange,
   onWeatherStationFilterChange,
   onSkywaysFilterChange,
+  onThermalsFilterChange,
   isOpen,
   onToggle,
   closeOverlays: onCloseOverlays,
@@ -57,6 +61,12 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   const handleSkywaysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onSkywaysFilterChange) {
       onSkywaysFilterChange(e.target.checked);
+    }
+  };
+
+  const handleThermalsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onThermalsFilterChange) {
+      onThermalsFilterChange(e.target.checked);
     }
   };
 
@@ -145,6 +155,17 @@ export const FilterControl: React.FC<FilterControlProps> = ({
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
                 <Image src="/thermalkk7.webp" alt="Skyways" width={24} height={24} className="w-6 h-6" />
+              </label>
+
+              <label htmlFor="thermals" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+                <input
+                  type="checkbox"
+                  id="thermals"
+                  checked={showThermals}
+                  onChange={handleThermalsChange}
+                  className="mr-2 h-4 w-4 cursor-pointer"
+                />
+                <Image src="/cumulonimbus.png" alt="Thermals" width={24} height={24} className="px-0.5 w-6 h-6" />
               </label>
             </div>
           </div>

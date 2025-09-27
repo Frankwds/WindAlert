@@ -43,3 +43,6 @@ npm_output.log
 # Turbopack
 .turbo/
 .prettierrc
+
+# other
+prompts.txt
