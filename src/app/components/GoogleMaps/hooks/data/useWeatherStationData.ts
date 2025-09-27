@@ -12,7 +12,7 @@ const assessCache = (weatherStations: WeatherStationWithData[] | null): { isSupe
 
 
   if (!weatherStations || weatherStations.length <= SAMPLE_SIZE) {
-    return { isSuperFresh: false, isProbablyStale: false };
+    return { isSuperFresh: false, isProbablyStale: true };
   }
 
   // Create a random sample of stations
@@ -52,8 +52,6 @@ export const useWeatherStationData = (isMain: boolean) => {
         await dataCache.setWeatherStations(updatedWeatherStations, isMain);
         return updatedWeatherStations;
       }
-
-
 
       // We have cached data - get latest data from materialized view
       const latestData = await StationDataService.getLatestStationData();

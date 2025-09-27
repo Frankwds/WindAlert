@@ -142,12 +142,12 @@ class DataCache {
     await this.setToStorage(this.PARAGLIDING_KEY, data);
   }
 
-  async getWeatherStations(isMain: boolean): Promise<WeatherStationWithData[] | null> {
+  async getWeatherStations(isMain: boolean): Promise<WeatherStationWithData[]> {
     const cache = await this.getFromStorage(isMain ? this.WEATHER_KEY_MAIN : this.WEATHER_KEY_ALL);
     if (cache) {
       return cache.data;
     }
-    return null;
+    return [];
   }
 
 
@@ -156,12 +156,7 @@ class DataCache {
   }
 
 
-  async appendWeatherStationData(cachedStations: WeatherStationWithData[], latestData: StationData[], isMain: boolean): Promise<WeatherStationWithData[] | null> {
-    // Get all stations for the update
-    if (!cachedStations) {
-      return null;
-    }
-
+  async appendWeatherStationData(cachedStations: WeatherStationWithData[], latestData: StationData[], isMain: boolean): Promise<WeatherStationWithData[]> {
     const updatedStations = cachedStations.map(station => {
       const latestForStation = latestData.filter(data => data.station_id === station.station_id);
 

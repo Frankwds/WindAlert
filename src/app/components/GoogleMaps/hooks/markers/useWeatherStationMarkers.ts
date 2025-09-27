@@ -30,9 +30,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       setMarkersError(null);
 
       const weatherStations = await loadLatestWeatherStationData();
-      if (!weatherStations) {
-        throw new Error('Failed to load weather station data in loadLatestWeatherStationData');
-      }
+
       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
       setWeatherStationMarkers(markers);
       hasLoadedInitialMarkers.current = true;
