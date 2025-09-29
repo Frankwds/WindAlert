@@ -1,4 +1,7 @@
 import React from 'react';
+import { contactMetadata } from './metadata';
+
+export const metadata = contactMetadata;
 
 const ContactPage = () => {
   return (

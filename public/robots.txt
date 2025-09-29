@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /_next/
+
+Sitemap: https://windlord.no/sitemap.xml
