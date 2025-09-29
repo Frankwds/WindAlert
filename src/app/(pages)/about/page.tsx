@@ -1,46 +1,4 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import { ForecastCacheService } from '@/lib/supabase/forecastCache';
-
 export default function AboutPage() {
-  const [lastUpdatedDate, setLastUpdatedDate] = useState('ukjent');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchLastUpdated = async () => {
-      try {
-        const lastUpdatedHour = await ForecastCacheService.getOldestForecastData();
-        if (lastUpdatedHour && lastUpdatedHour.updated_at) {
-          const formattedDate = new Date(lastUpdatedHour.updated_at).toLocaleDateString('no-NO', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-          });
-          setLastUpdatedDate(formattedDate);
-        }
-      } catch (error) {
-        console.error('Failed to fetch last updated date:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLastUpdated();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center">Om WindLord</h1>
-          <p>Laster...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8">
@@ -55,7 +13,7 @@ export default function AboutPage() {
             <br />
             Hver start har info fra flightlog, samt detaljert bakke -og atmosfærisk værmelding.
             <br /><br />
-            Værmeldinger hentes løpende, den eldste værmeldingen i bruk nå, ble oppdatert {lastUpdatedDate}.
+            Værmeldinger hentes løpende og oppdateres kontinuerlig og skal aldri være eldre enn 2-3 timer.
             <br />
             Værmeldingen på siden til hver enkelt start hentes på nytt hver gang du besøker den.
             <br /><br />
@@ -79,12 +37,12 @@ export default function AboutPage() {
           <ul className="list-disc list-outside space-y-2 text-base sm:text-lg ml-4 pl-2">
             <li>Se bare starter med lovende vær ifølge Yr.no</li>
             <li>Se bare starter med valgt vindretning</li>
-
-            <li>Bruke Skyways fra thermal.kk7 for å se hvor folk har flydd før.</li>
+            <li>Bruke Skyways og Termikk fra thermal.kk7 for å se hvor folk har flydd før.</li>
           </ul>
           <br />
           <p className="text-base sm:text-lg">
-            Alle starter er en egen side i menyen, du kan ikke skjule starter som ikke har lovende vær, men alt annet er tilgjengelig.
+            Alle starter er en egen side i menyen, her kan du ikke skjule starter uten lovende vær, men alt annet er tilgjengelig.
+            Inkludert starter og vindmålinger utenfor Norge.
           </p>
         </section>
 
