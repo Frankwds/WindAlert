@@ -25,7 +25,7 @@ export default function LocationCard({
         <CompactFlightlogButton flightlogId={location.flightlog_id} />
 
         <Link
-          href={`/locations/${location.id}`}
+          href={`/locations/${location.flightlog_id}`}
           rel="noopener noreferrer"
           className="flex-1"
         >
@@ -67,7 +67,7 @@ export function LocationCardAll({ location }: LocationCardAllProps) {
       <div className="flex items-center">
         <CompactFlightlogButton flightlogId={location.flightlog_id} />
         <Link
-          href={`/locations/${location.id}`}
+          href={`/locations/${location.flightlog_id}`}
           rel="noopener noreferrer"
           className="flex-1"
         >

@@ -24,11 +24,11 @@ import { ParaglidingLocation } from "@/lib/supabase/types";
 import { ForecastCache1hr } from "@/lib/supabase/types";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ flightlog_id: string }>;
 }
 
 export default function LocationPage({ params }: Props) {
-  const [locationId, setLocationId] = useState<string | null>(null);
+  const [flightlogId, setFlightlogId] = useState<string | null>(null);
   const [location, setLocation] = useState<ParaglidingLocation | null>(null);
   const [groupedByDay, setGroupedByDay] = useState<Record<string, ForecastCache1hr[]>>({});
   const [sixHourSymbolsByDay, setSixHourSymbolsByDay] = useState<Record<string, string[]>>({});
@@ -46,10 +46,10 @@ export default function LocationPage({ params }: Props) {
         setLoading(true);
         setError(null);
 
-        const id = (await params).id;
-        setLocationId(id);
+        const flightlogId = (await params).flightlog_id;
+        setFlightlogId(flightlogId);
 
-        const locationData = await ParaglidingLocationService.getById(id);
+        const locationData = await ParaglidingLocationService.getByFlightlogId(flightlogId);
         if (!locationData) {
           notFound();
         }
@@ -140,7 +140,7 @@ export default function LocationPage({ params }: Props) {
         name={location.name}
         description={location.description || ""}
         windDirections={locationToWindDirectionSymbols(location)}
-        locationId={locationId!}
+        locationId={location.id}
         latitude={location.latitude}
         longitude={location.longitude}
         altitude={location.altitude}

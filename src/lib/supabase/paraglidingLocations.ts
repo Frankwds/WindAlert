@@ -22,6 +22,24 @@ export class ParaglidingLocationService {
   }
 
   /**
+   * Get a single paragliding location by its flightlog_id
+   */
+  static async getByFlightlogId(flightlogId: string): Promise<ParaglidingLocation | null> {
+    const { data, error } = await supabase
+      .from('all_paragliding_locations')
+      .select('*')
+      .eq('flightlog_id', flightlogId)
+      .single();
+
+    if (error) {
+      console.error(`Error fetching location with flightlog_id ${flightlogId}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
    * Get multiple paragliding locations by their IDs
    */
   static async getMainActiveByIds(ids: string[]): Promise<MinimalParaglidingLocation[]> {
@@ -67,7 +85,6 @@ export class ParaglidingLocationService {
       .eq('is_active', true)
       .eq('is_main', true)
       .gte('forecast_cache.time', now.toISOString())
-      .order('name');
 
     if (error) {
       console.error('Error fetching active locations for markers with forecast:', error);
