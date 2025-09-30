@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 
 // Cache sitemap for 24 hours using Next.js built-in caching
-export const revalidate = 86400 // 24 hours in seconds
+export const revalidate = 86400 // 24 hours in seconds 
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://windlord.no'
@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     locationPages = locations.map((location) => ({
       url: `${baseUrl}/locations/${location.flightlog_id}`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'monthly' as const,
       priority: 0.9,
     }))
   } catch (error) {
