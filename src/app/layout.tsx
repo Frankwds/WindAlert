@@ -24,17 +24,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Frank Daniels" }],
   creator: "Frank Daniels",
   publisher: "WindLord",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
   openGraph: {
     type: "website",
     locale: "no_NO",
@@ -67,11 +56,30 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/icon.png",
   },
   manifest: "/manifest.webmanifest",
   alternates: {
     canonical: "https://windlord.no",
+  },
+  other: {
+    'application/ld+json': JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "WindLord",
+      "description": "Et gratis, åpen kildekode-kartverktøy for paraglidere. Finn og filtrer startsteder i Norge ved hjelp av sanntids værmeldinger og data fra vindstasjoner.",
+      "url": "https://windlord.no",
+      "applicationCategory": ["Sports", "Maps", "Weather", "Travel", "Navigation"],
+      "operatingSystem": "Any (Web browser)",
+      "provider": {
+        "@type": "Organization",
+        "name": "WindLord",
+        "url": "https://windlord.no",
+        "logo": "https://windlord.no/windlord.png",
+        "sameAs": [
+          "https://github.com/Frankwds/WindAlert"
+        ]
+      }
+    })
   },
 };
 

@@ -2,7 +2,7 @@ import { generateLocationMetadata } from "./metadata";
 import type { Metadata } from "next";
 
 // ISR: Revalidate every 30 days for caching
-export const revalidate = 60 * 60 * 24 * 30; // 30 days
+export const revalidate = 2592000
 
 export async function generateMetadata({
   params,
