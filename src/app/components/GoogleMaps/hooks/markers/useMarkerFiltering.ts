@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import { type WeatherCondition } from '../../mapControls/PromisingFilter';
 
 interface PromisingFilter {
   selectedDay: number;
   selectedTimeRange: [number, number];
   minPromisingHours: number;
+  selectedWeatherConditions: WeatherCondition[];
 }
 
 interface UseMarkerFilteringProps {
@@ -38,7 +40,7 @@ export const useMarkerFiltering = ({
 
       if (!forecast) return false;
 
-      const { selectedDay, selectedTimeRange, minPromisingHours } = promisingFilter;
+      const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions } = promisingFilter;
 
       // Calculate the target date based on day offset
       const dayOffset = selectedDay === 0 ? 0 : selectedDay === 1 ? 1 : 2;
@@ -65,7 +67,9 @@ export const useMarkerFiltering = ({
       let currentConsecutive = 0;
 
       for (const f of relevantForecasts) {
-        if (f.is_promising) {
+        const isGoodWeather = selectedWeatherConditions.length === 0 || selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
+
+        if (f.is_promising && isGoodWeather) {
           currentConsecutive++;
           maxConsecutivePromising = Math.max(maxConsecutivePromising, currentConsecutive);
         } else {

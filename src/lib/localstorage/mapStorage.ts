@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { WEATHER_CONDITIONS, type WeatherCondition } from '@/app/components/GoogleMaps/mapControls/PromisingFilter';
 
 // Type definition
 export type MapState = {
@@ -16,6 +17,7 @@ export type MapState = {
     selectedDay: number;
     selectedTimeRange: [number, number];
     minPromisingHours: number;
+    selectedWeatherConditions: WeatherCondition[];
   } | null;
   showSkywaysLayer: boolean;
   showThermalsLayer: boolean;
@@ -42,6 +44,7 @@ const MapStateSchema = z.object({
     selectedDay: z.number(),
     selectedTimeRange: z.tuple([z.number(), z.number()]),
     minPromisingHours: z.number(),
+    selectedWeatherConditions: z.array(z.enum(WEATHER_CONDITIONS)),
   }).nullable(),
   showSkywaysLayer: z.boolean(),
   showThermalsLayer: z.boolean(),
@@ -101,6 +104,12 @@ export const getMapState = (): MapState => {
 
   try {
     const rawData = JSON.parse(stored);
+
+    // Handle backward compatibility for selectedWeatherConditions
+    if (rawData.promisingFilter && !rawData.promisingFilter.hasOwnProperty('selectedWeatherConditions')) {
+      rawData.promisingFilter.selectedWeatherConditions = [];
+    }
+
     const parsedState = MapStateSchema.parse(rawData);
     return parsedState;
   } catch (error) {

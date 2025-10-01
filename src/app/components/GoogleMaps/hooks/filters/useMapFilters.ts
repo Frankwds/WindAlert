@@ -1,9 +1,11 @@
 import { useState, useCallback } from 'react';
+import { type WeatherCondition } from '../../mapControls/PromisingFilter';
 
 interface PromisingFilter {
   selectedDay: number;
   selectedTimeRange: [number, number];
   minPromisingHours: number;
+  selectedWeatherConditions: WeatherCondition[];
 }
 
 interface UseMapFiltersProps {

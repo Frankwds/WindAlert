@@ -7,11 +7,15 @@ import 'rc-slider/assets/index.css';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
 
+export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
+
+export const WEATHER_CONDITIONS: WeatherCondition[] = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'];
+
 interface PromisingFilterProps {
   isExpanded: boolean;
-  onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null) => void;
+  onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number, selectedWeatherConditions: WeatherCondition[] } | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
-  initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number } | null;
+  initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number, selectedWeatherConditions: WeatherCondition[] } | null;
   closeOverlays: (options?: { keep?: string }) => void;
 }
 
@@ -27,6 +31,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
   const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
   const [minPromisingHours, setMinPromisingHours] = useState(initialFilter?.minPromisingHours ?? 3);
+  const [selectedWeatherConditions, setSelectedWeatherConditions] = useState<WeatherCondition[]>(initialFilter?.selectedWeatherConditions ?? []);
   const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
 
   const dayLabels = useMemo(() => {
@@ -41,7 +46,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
 
   const handleApply = () => {
-    onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours });
+    onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions });
     setIsFilterActive(true);
     setIsExpanded(false);
   };
@@ -52,6 +57,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     setIsExpanded(false);
     setSelectedDay(0);
     setSelectedTimeRange([6, 18]);
+    setSelectedWeatherConditions([]);
   };
 
   useEffect(() => {
@@ -68,6 +74,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       setSelectedDay(initialFilter?.selectedDay ?? 0);
       setSelectedTimeRange(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
       setMinPromisingHours(initialFilter?.minPromisingHours ?? 3);
+      setSelectedWeatherConditions(initialFilter?.selectedWeatherConditions ?? []);
     }
   }, [isExpanded, initialFilter, currentHour]);
 
@@ -169,6 +176,36 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                 />
               </div>
               <button onClick={() => setMinPromisingHours(prev => Math.min(6, prev + 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">+</button>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex gap-2">
+              {WEATHER_CONDITIONS.map((condition) => (
+                <button
+                  key={condition}
+                  type="button"
+                  onClick={() => {
+                    setSelectedWeatherConditions(prev =>
+                      prev.includes(condition)
+                        ? prev.filter(c => c !== condition)
+                        : [...prev, condition]
+                    );
+                  }}
+                  className="relative w-12 h-12 bg-[var(--background)]/50 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-sm)] flex items-center justify-center cursor-pointer select-none hover:bg-[var(--background)]/70"
+                >
+                  <Image src={`/weather-icons/${condition}.svg`} alt={condition} width={32} height={32} />
+                  {selectedWeatherConditions.includes(condition) && (
+                    <Image
+                      src="/weather-icons/checkbox.svg"
+                      alt="Selected"
+                      width={32}
+                      height={32}
+                      className="absolute inset-0 opacity-70"
+                    />
+                  )}
+                </button>
+              ))}
             </div>
           </div>
 
