@@ -18,7 +18,7 @@ export default function LoginButton() {
       if (error) {
         setError(error.message);
       }
-    } catch (err) {
+    } catch {
       setError('En uventet feil oppstod ved innlogging');
     } finally {
       setIsSigningIn(false);
@@ -34,7 +34,7 @@ export default function LoginButton() {
       if (error) {
         setError(error.message);
       }
-    } catch (err) {
+    } catch {
       setError('En uventet feil oppstod ved utlogging');
     } finally {
       setIsSigningOut(false);

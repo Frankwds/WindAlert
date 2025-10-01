@@ -3,7 +3,6 @@ import { createWeatherStationMarkers } from '../../MarkerSetup';
 import { WeatherStationWithData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
-import { WEATHER_STATIONS_UPDATE_INTERVAL } from '@/lib/data-cache';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
@@ -42,7 +41,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       isLoadingRef.current = false;
       setIsLoadingMarkers(false);
     }
-  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData, isMain]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
   const updateMarkersWithLatestData = useCallback(async () => {
     if (isLoadingRef.current) return;
@@ -59,7 +58,7 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     } finally {
       isLoadingRef.current = false;
     }
-  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData, isMain]);
+  }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
   // Load markers on page load
   useEffect(() => {

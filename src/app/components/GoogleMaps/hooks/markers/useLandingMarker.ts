@@ -10,7 +10,7 @@ interface UseLandingMarkerProps {
 
 export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandingMarkerProps) => {
   const [currentLandingMarker, setCurrentLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null);
-  const [currentLandingLine, setCurrentLandingLine] = useState<google.maps.Polyline | null>(null);
+  const [, setCurrentLandingLine] = useState<google.maps.Polyline | null>(null);
 
   const clearLandingMarker = useCallback(() => {
     setCurrentLandingMarker(prev => {
@@ -61,13 +61,6 @@ export const useLandingMarker = ({ mapInstance, onLandingMarkerClick }: UseLandi
 
     landingMarker.map = mapInstance;
     setCurrentLandingMarker(landingMarker);
-
-
-    const lineSymbol = {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: 8, // The size of the dot
-      strokeColor: "#393",
-    };
 
     // Create line between paragliding and landing markers
     const line = new google.maps.Polyline({

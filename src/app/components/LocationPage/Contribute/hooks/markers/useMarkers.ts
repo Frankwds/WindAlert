@@ -1,4 +1,4 @@
-import { createLandingMarkerElement, createParaglidingMarkerElement, createParaglidingMarkerElementWithDirection } from '@/app/components/shared/Markers';
+import { createLandingMarkerElement, createParaglidingMarkerElement } from '@/app/components/shared/Markers';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseMarkersProps {
@@ -19,7 +19,7 @@ export const useMarkers = ({
   onLandingChange
 }: UseMarkersProps) => {
   const onLandingChangeRef = useRef(onLandingChange);
-  const [landingMarker, setLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null); // We use the ref
+  const [, setLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null); // We use the ref
 
   // Update ref when callback changes
   useEffect(() => {

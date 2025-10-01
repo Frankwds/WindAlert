@@ -59,7 +59,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
         infoWindowRef.current = new google.maps.InfoWindow();
       }
       onMapReadyRef.current(map);
-    }, []),
+    }, [infoWindowRef]),
     onMapClick: useCallback(() => {
       onMapClickRef.current();
     }, []),

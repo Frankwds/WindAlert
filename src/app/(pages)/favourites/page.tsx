@@ -10,7 +10,7 @@ export default function FavouritesPage() {
   const { user, loading: authLoading } = useAuth();
   const [locations, setLocations] = useState<ParaglidingLocationWithForecast[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (user?.id) {

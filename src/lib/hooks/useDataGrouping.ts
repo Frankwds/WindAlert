@@ -50,7 +50,7 @@ export function useDataGrouping<T extends DataWithTime>({
     });
     setSortedData(sorted);
     setActiveDay(getFirstDayFromSorted(sorted));
-  }, [data, timeField, sortOrder]);
+  }, [data, timeField, sortOrder, getFirstDayFromSorted]);
 
   // Scroll to center when active day changes
   useEffect(() => {
@@ -70,7 +70,7 @@ export function useDataGrouping<T extends DataWithTime>({
         container.scrollLeft = 0;
       }
     }
-  }, [activeDay, sortedData]);
+  }, [activeDay, sortedData, getFirstDayFromSorted]);
 
   // Group data by day
   const groupedByDay = sortedData.reduce((acc, item) => {

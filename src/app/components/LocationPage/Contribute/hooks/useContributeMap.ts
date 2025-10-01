@@ -20,7 +20,7 @@ export const useContributeMap = ({
   const { mapRef, mapInstance, isLoading, error } = useMapInstance({
     latitude,
     longitude,
-    onMapReady: useCallback((map) => {
+    onMapReady: useCallback(() => {
       // Map is ready, markers will be initialized by useContributeMarkers
     }, [])
   });

@@ -29,7 +29,6 @@ export const Contribute: React.FC<ContributeProps> = ({
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
   const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
   const [currentLandingAltitude, setCurrentLandingAltitude] = useState<number | undefined>(initialLandingAltitude);
-  const [hasChanges, setHasChanges] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const contributeRef = useRef<HTMLDivElement>(null);
 
@@ -49,13 +48,12 @@ export const Contribute: React.FC<ContributeProps> = ({
   const handleLandingChange = useCallback((lat: number, lng: number) => {
     setCurrentLandingLat(lat);
     setCurrentLandingLng(lng);
-    setHasChanges(true);
+
     setError(null); // Clear any previous errors when landing changes
   }, []);
 
   const handleAltitudeChange = useCallback((altitude: number) => {
     setCurrentLandingAltitude(altitude);
-    setHasChanges(true);
   }, []);
 
   const handleSave = useCallback(async () => {
@@ -105,7 +103,6 @@ export const Contribute: React.FC<ContributeProps> = ({
         }
 
         onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
-        setHasChanges(false);
         setError(null);
         setIsOpen(false);
         alert('Landingen er lagret! Takk for bidraget.');
@@ -189,7 +186,6 @@ export const Contribute: React.FC<ContributeProps> = ({
                   disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
                 />
               </div>
-
             </div>
           </div>
         ) : null}

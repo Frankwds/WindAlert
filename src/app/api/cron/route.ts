@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { after } from 'next/server';
 import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
 import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { mapYrData } from '../../../lib/yr/mapping';

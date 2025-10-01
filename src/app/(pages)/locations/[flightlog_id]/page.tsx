@@ -28,7 +28,6 @@ interface Props {
 }
 
 export default function LocationPage({ params }: Props) {
-  const [flightlogId, setFlightlogId] = useState<string | null>(null);
   const [location, setLocation] = useState<ParaglidingLocation | null>(null);
   const [groupedByDay, setGroupedByDay] = useState<Record<string, ForecastCache1hr[]>>({});
   const [sixHourSymbolsByDay, setSixHourSymbolsByDay] = useState<Record<string, string[]>>({});
@@ -47,7 +46,6 @@ export default function LocationPage({ params }: Props) {
         setError(null);
 
         const flightlogId = (await params).flightlog_id;
-        setFlightlogId(flightlogId);
 
         const locationData = await ParaglidingLocationService.getByFlightlogId(flightlogId);
         if (!locationData) {

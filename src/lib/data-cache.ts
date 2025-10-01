@@ -71,7 +71,7 @@ class DataCache {
       const transaction = db.transaction([STORE_NAME], 'readonly');
       const store = transaction.objectStore(STORE_NAME);
 
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const request = store.get(key);
 
         request.onerror = () => {

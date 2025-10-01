@@ -73,7 +73,6 @@ export function isGoodParaglidingCondition(
     'partlycloudy_day',
     'cloudy',
   ];
-  const isNight = !dp.is_day;
   const isBadWeather = !good_weather.includes(dp.weather_code);
 
   const isLowWind = dp.wind_speed < alert_rule.MIN_WIND_SPEED;

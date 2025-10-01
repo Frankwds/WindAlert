@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { LoadingSpinner } from '../../shared/LoadingSpinner';
 import { ErrorState } from '../../shared/ErrorState';
 import { MapLayerToggle, ZoomControls } from '../../GoogleMaps/mapControls';
