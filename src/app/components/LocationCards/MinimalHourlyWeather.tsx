@@ -46,10 +46,11 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({
 
     const segments = [];
     for (const hour of relevantHours) {
+      const isSunny = ['clearsky_day', 'fair_day', 'partlycloudy_day'].includes(hour.weather_code);
       segments.push(
         <div
           key={hour.time}
-          className={`h-1.5 flex-1 ${hour.is_promising ? 'bg-green-500' : 'bg-red-500'} 
+          className={`h-1.5 flex-1 ${isSunny && hour.is_promising ? 'bg-[var(--wind-light)]' : hour.is_promising ? 'bg-[var(--wind-calm)]' : 'bg-red-500'} 
             }`}
         />
       );
