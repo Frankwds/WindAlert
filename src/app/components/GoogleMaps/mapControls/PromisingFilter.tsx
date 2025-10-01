@@ -162,7 +162,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
               />
             </div>
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="font-bold mb-2">Minst {minPromisingHours} timer i strekk</h3>
             <div className="p-2 flex items-center">
               <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
@@ -179,7 +179,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <div className="flex gap-2">
               {WEATHER_CONDITIONS.map((condition) => (
                 <button
@@ -192,7 +192,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                         : [...prev, condition]
                     );
                   }}
-                  className="relative w-12 h-12 bg-[var(--background)]/50 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-sm)] flex items-center justify-center cursor-pointer select-none hover:bg-[var(--background)]/70"
+                  className="relative flex-1 h-12 bg-[var(--background)]/50 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-sm)] flex items-center justify-center cursor-pointer select-none hover:bg-[var(--background)]/70 hover:shadow-[var(--shadow-md)] hover:scale-105 transition-all duration-200"
                 >
                   <Image src={`/weather-icons/${condition}.svg`} alt={condition} width={32} height={32} />
                   {selectedWeatherConditions.includes(condition) && (
@@ -201,7 +201,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                       alt="Selected"
                       width={32}
                       height={32}
-                      className="absolute inset-0 opacity-70"
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70"
                     />
                   )}
                 </button>
