@@ -4,6 +4,7 @@ interface LayerConfig {
   name: string;
   alt: string;
   tilePath: string;
+  maxNativeZoom: number;
 }
 
 /**
@@ -85,15 +86,14 @@ const createScaledTile = (
  */
 const createThermalLayer = (config: LayerConfig) => {
   const baseConfig = createBaseLayerConfig(config);
-  const maxNativeZoom = 12;
 
   return {
     ...baseConfig,
     getTile: (coord: google.maps.Point, zoom: number, ownerDocument: Document) => {
-      if (zoom <= maxNativeZoom) {
+      if (zoom <= config.maxNativeZoom) {
         return createNativeTile(coord, zoom, ownerDocument, config.tilePath);
       }
-      return createScaledTile(coord, zoom, ownerDocument, config.tilePath, maxNativeZoom);
+      return createScaledTile(coord, zoom, ownerDocument, config.tilePath, config.maxNativeZoom);
     }
   };
 };
@@ -107,7 +107,8 @@ export const useThermalsLayer = () => {
     return createThermalLayer({
       name: 'Thermals',
       alt: 'Thermals thermal data layer',
-      tilePath: 'thermals_all_all'
+      tilePath: 'thermals_all_all',
+      maxNativeZoom: 12
     });
   }, []);
 
@@ -123,7 +124,8 @@ export const useSkywaysLayer = () => {
     return createThermalLayer({
       name: 'Skyways',
       alt: 'Skyways thermal data layer',
-      tilePath: 'skyways_all_all'
+      tilePath: 'skyways_all_all',
+      maxNativeZoom: 13
     });
   }, []);
 
