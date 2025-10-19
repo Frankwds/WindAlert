@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering, useLandingMarker } from './markers';
+import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering, useLandingMarker, useLandingMarkers } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
 import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow, getLandingInfoWindow } from '../InfoWindows';
@@ -19,6 +19,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   const filters = useMapFilters({
     initialShowParaglidingMarkers: mapState.showParaglidingMarkers,
     initialShowWeatherStationMarkers: mapState.showWeatherStationMarkers,
+    initialShowLandingsLayer: mapState.showLandingsLayer,
     initialSelectedWindDirections: mapState.selectedWindDirections,
     initialWindFilterAndOperator: mapState.windFilterAndOperator,
     initialPromisingFilter: variant === 'main' ? mapState.promisingFilter : null,
@@ -82,7 +83,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow]);
 
-  const onLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
+  const onStandaloneLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
     if (!mapInstance) return;
 
     closeOverlaysRef.current();
@@ -95,7 +96,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   const { currentLandingMarker, clearLandingMarker, showLandingMarker } = useLandingMarker({
     mapInstance,
-    onLandingMarkerClick
+    onLandingMarkerClick: onStandaloneLandingMarkerClick
   });
 
   const onParaglidingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
@@ -156,6 +157,15 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     variant
   });
 
+  const { landingMarkers,
+    isLoadingMarkers: isLoadingLandingMarkers,
+    markersError: markersErrorLandingMarkers
+  } = useLandingMarkers({
+    mapInstance,
+    onLandingMarkerClick: onStandaloneLandingMarkerClick,
+    variant
+  });
+
   const { closeOverlays } = useOverlayManagement({
     setWindFilterExpanded: filters.setWindFilterExpanded,
     setIsPromisingFilterExpanded: filters.setIsPromisingFilterExpanded,
@@ -192,8 +202,10 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   const filteredMarkers = useMarkerFiltering({
     paraglidingMarkers: paraglidingMarkers,
     weatherStationMarkers: weatherStationMarkers,
+    landingMarkers: landingMarkers,
     showParaglidingMarkers: filters.showParaglidingMarkers,
     showWeatherStationMarkers: filters.showWeatherStationMarkers,
+    showLandingsLayer: filters.showLandingsLayer,
     selectedWindDirections: filters.selectedWindDirections,
     windFilterAndOperator: filters.windFilterAndOperator,
     promisingFilter: variant === 'main' ? filters.promisingFilter : null
@@ -203,6 +215,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     updateFilters({
       showParaglidingMarkers: filters.showParaglidingMarkers,
       showWeatherStationMarkers: filters.showWeatherStationMarkers,
+      showLandingsLayer: filters.showLandingsLayer,
       selectedWindDirections: filters.selectedWindDirections,
       windFilterAndOperator: filters.windFilterAndOperator,
       promisingFilter: variant === 'main' ? filters.promisingFilter : null,
@@ -212,6 +225,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   }, [
     filters.showParaglidingMarkers,
     filters.showWeatherStationMarkers,
+    filters.showLandingsLayer,
     filters.selectedWindDirections,
     filters.windFilterAndOperator,
     filters.promisingFilter,
@@ -229,12 +243,13 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     mapRef,
     mapInstance,
-    isLoading: isLoading || isLoadingParaglidingMarkers || isLoadingWeatherStationMarkers,
-    error: error || markersErrorParaglidingMarkers || markersErrorWeatherStationMarkers,
+    isLoading: isLoading || isLoadingParaglidingMarkers || isLoadingWeatherStationMarkers || isLoadingLandingMarkers,
+    error: error || markersErrorParaglidingMarkers || markersErrorWeatherStationMarkers || markersErrorLandingMarkers,
 
 
     paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
     weatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
+    landingMarkers: filteredMarkers.filteredLandingMarkers,
 
 
     ...filters,

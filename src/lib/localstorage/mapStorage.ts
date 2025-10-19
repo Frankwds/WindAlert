@@ -11,6 +11,7 @@ export type MapState = {
   mapType: 'terrain' | 'satellite' | 'osm';
   showParaglidingMarkers: boolean;
   showWeatherStationMarkers: boolean;
+  showLandingsLayer: boolean;
   selectedWindDirections: string[];
   windFilterAndOperator: boolean;
   promisingFilter: {
@@ -38,6 +39,7 @@ const MapStateSchema = z.object({
   mapType: z.enum(['terrain', 'satellite', 'osm']),
   showParaglidingMarkers: z.boolean(),
   showWeatherStationMarkers: z.boolean(),
+  showLandingsLayer: z.boolean(),
   selectedWindDirections: z.array(z.string()),
   windFilterAndOperator: z.boolean(),
   promisingFilter: z.object({
@@ -59,6 +61,7 @@ const DEFAULT_MAP_STATE: MapState = {
   mapType: 'terrain',
   showParaglidingMarkers: true,
   showWeatherStationMarkers: false,
+  showLandingsLayer: false,
   selectedWindDirections: [],
   windFilterAndOperator: true,
   promisingFilter: null,

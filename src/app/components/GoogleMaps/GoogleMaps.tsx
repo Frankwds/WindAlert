@@ -38,8 +38,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     error,
     paraglidingMarkers,
     weatherStationMarkers,
+    landingMarkers,
     showParaglidingMarkers,
     showWeatherStationMarkers,
+    showLandingsLayer,
     selectedWindDirections,
     windFilterExpanded,
     windFilterAndOperator,
@@ -52,6 +54,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     onMapTypeChange,
     setShowParaglidingMarkers,
     setShowWeatherStationMarkers,
+    setShowLandingsLayer,
     setWindFilterExpanded,
     setPromisingFilter,
     setIsPromisingFilterExpanded,
@@ -67,23 +70,26 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
   const weatherStationRenderer = useMemo(() => new WeatherStationClusterRenderer(), []);
+  const landingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []); // Reuse paragliding renderer for landings
 
   // Memoized components to prevent unnecessary re-renders
   const memoizedFilterControl = useMemo(() => (
     <FilterControl
       showParagliding={showParaglidingMarkers}
       showWeatherStations={showWeatherStationMarkers}
+      showLandings={showLandingsLayer}
       showSkyways={showSkywaysLayer}
       showThermals={showThermalsLayer}
       onParaglidingFilterChange={setShowParaglidingMarkers}
       onWeatherStationFilterChange={setShowWeatherStationMarkers}
+      onLandingsFilterChange={setShowLandingsLayer}
       onSkywaysFilterChange={setShowSkywaysLayer}
       onThermalsFilterChange={setShowThermalsLayer}
       isOpen={isFilterControlOpen}
       onToggle={setIsFilterControlOpen}
       closeOverlays={closeOverlays}
     />
-  ), [showParaglidingMarkers, showWeatherStationMarkers, showSkywaysLayer, showThermalsLayer, isFilterControlOpen, closeOverlays]);
+  ), [showParaglidingMarkers, showWeatherStationMarkers, showLandingsLayer, showSkywaysLayer, showThermalsLayer, isFilterControlOpen, closeOverlays]);
 
   const memoizedWindFilterCompass = useMemo(() => (
     <WindFilterCompass
@@ -135,6 +141,18 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     );
   }, [mapInstance, weatherStationMarkers, weatherStationRenderer]);
 
+  const memoizedLandingClusterer = useMemo(() => {
+    if (!mapInstance || landingMarkers.length === 0) return null;
+    return (
+      <Clusterer
+        map={mapInstance}
+        markers={landingMarkers}
+        renderer={landingRenderer}
+        algorithmOptions={getParaglidingClustererOptions(variant)}
+      />
+    );
+  }, [mapInstance, landingMarkers, landingRenderer, variant]);
+
 
   if (error) {
     return (
@@ -158,6 +176,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
 
         {memoizedParaglidingClusterer}
         {memoizedWeatherStationClusterer}
+        {memoizedLandingClusterer}
 
         {mapInstance && (
           <>

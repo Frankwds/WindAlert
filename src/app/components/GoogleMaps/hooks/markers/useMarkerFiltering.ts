@@ -12,8 +12,10 @@ interface PromisingFilter {
 interface UseMarkerFilteringProps {
   paraglidingMarkers: google.maps.marker.AdvancedMarkerElement[];
   weatherStationMarkers: google.maps.marker.AdvancedMarkerElement[];
+  landingMarkers: google.maps.marker.AdvancedMarkerElement[];
   showParaglidingMarkers: boolean;
   showWeatherStationMarkers: boolean;
+  showLandingsLayer: boolean;
   selectedWindDirections: string[];
   windFilterAndOperator: boolean;
   promisingFilter: PromisingFilter | null;
@@ -22,8 +24,10 @@ interface UseMarkerFilteringProps {
 export const useMarkerFiltering = ({
   paraglidingMarkers,
   weatherStationMarkers,
+  landingMarkers,
   showParaglidingMarkers,
   showWeatherStationMarkers,
+  showLandingsLayer,
   selectedWindDirections,
   windFilterAndOperator,
   promisingFilter
@@ -105,9 +109,14 @@ export const useMarkerFiltering = ({
     return showWeatherStationMarkers ? weatherStationMarkers : [];
   }, [weatherStationMarkers, showWeatherStationMarkers]);
 
+  const filteredLandingMarkers = useMemo(() => {
+    return showLandingsLayer ? landingMarkers : [];
+  }, [landingMarkers, showLandingsLayer]);
+
   return {
     filteredParaglidingMarkers,
     filteredWeatherStationMarkers,
+    filteredLandingMarkers,
     filterParaglidingMarkersByPromising,
     filterParaglidingMarkersByWindDirection
   };

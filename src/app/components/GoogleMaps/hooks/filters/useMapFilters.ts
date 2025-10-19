@@ -11,6 +11,7 @@ interface PromisingFilter {
 interface UseMapFiltersProps {
   initialShowParaglidingMarkers?: boolean;
   initialShowWeatherStationMarkers?: boolean;
+  initialShowLandingsLayer?: boolean;
   initialSelectedWindDirections?: string[];
   initialWindFilterAndOperator?: boolean;
   initialPromisingFilter?: PromisingFilter | null;
@@ -21,6 +22,7 @@ interface UseMapFiltersProps {
 export const useMapFilters = ({
   initialShowParaglidingMarkers = true,
   initialShowWeatherStationMarkers = true,
+  initialShowLandingsLayer = false,
   initialSelectedWindDirections = [],
   initialWindFilterAndOperator = true,
   initialPromisingFilter = null,
@@ -29,6 +31,7 @@ export const useMapFilters = ({
 }: UseMapFiltersProps = {}) => {
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(initialShowParaglidingMarkers);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(initialShowWeatherStationMarkers);
+  const [showLandingsLayer, setShowLandingsLayer] = useState(initialShowLandingsLayer);
   const [selectedWindDirections, setSelectedWindDirections] = useState(initialSelectedWindDirections);
   const [windFilterExpanded, setWindFilterExpanded] = useState(false);
   const [windFilterAndOperator, setWindFilterAndOperator] = useState(initialWindFilterAndOperator);
@@ -49,6 +52,7 @@ export const useMapFilters = ({
   const resetFilters = useCallback(() => {
     setShowParaglidingMarkers(true);
     setShowWeatherStationMarkers(true);
+    setShowLandingsLayer(false);
     setSelectedWindDirections([]);
     setWindFilterAndOperator(true);
     setPromisingFilter(null);
@@ -60,6 +64,7 @@ export const useMapFilters = ({
     // State
     showParaglidingMarkers,
     showWeatherStationMarkers,
+    showLandingsLayer,
     selectedWindDirections,
     windFilterExpanded,
     windFilterAndOperator,
@@ -72,6 +77,7 @@ export const useMapFilters = ({
     // Setters
     setShowParaglidingMarkers,
     setShowWeatherStationMarkers,
+    setShowLandingsLayer,
     setSelectedWindDirections,
     setWindFilterExpanded,
     setWindFilterAndOperator,

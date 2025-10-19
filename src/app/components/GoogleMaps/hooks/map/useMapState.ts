@@ -50,7 +50,7 @@ export const useMapState = () => {
     saveState({ center, zoom });
   }, [saveState]);
 
-  const updateFilters = useCallback((filters: Partial<Pick<MapState, 'showParaglidingMarkers' | 'showWeatherStationMarkers' | 'selectedWindDirections' | 'windFilterAndOperator' | 'promisingFilter' | 'showSkywaysLayer' | 'showThermalsLayer' | 'mapType'>>) => {
+  const updateFilters = useCallback((filters: Partial<Pick<MapState, 'showParaglidingMarkers' | 'showWeatherStationMarkers' | 'showLandingsLayer' | 'selectedWindDirections' | 'windFilterAndOperator' | 'promisingFilter' | 'showSkywaysLayer' | 'showThermalsLayer' | 'mapType'>>) => {
     saveState(filters);
   }, [saveState]);
 

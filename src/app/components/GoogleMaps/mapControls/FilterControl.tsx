@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
-import { createWeatherStationClusterElement } from '../../shared/Markers';
+import { createWeatherStationClusterElement, createLandingMarkerElement } from '../../shared/Markers';
 
 // Wind arrow icon component for filter control
 const WindArrowIcon = () => {
@@ -21,13 +21,31 @@ const WindArrowIcon = () => {
   return <div dangerouslySetInnerHTML={{ __html: iconElement.outerHTML }} />;
 };
 
+// Landing icon component for filter control
+const LandingIcon = () => {
+  const [iconElement, setIconElement] = React.useState<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    const element = createLandingMarkerElement();
+    // Make it smaller for filter control
+    element.style.transform = 'scale(0.6)';
+    setIconElement(element);
+  }, []);
+
+  if (!iconElement) return null;
+
+  return <div dangerouslySetInnerHTML={{ __html: iconElement.outerHTML }} />;
+};
+
 interface FilterControlProps {
   showParagliding: boolean;
   showWeatherStations: boolean;
+  showLandings: boolean;
   showSkyways?: boolean;
   showThermals?: boolean;
   onParaglidingFilterChange: (isVisible: boolean) => void;
   onWeatherStationFilterChange: (isVisible: boolean) => void;
+  onLandingsFilterChange: (isVisible: boolean) => void;
   onSkywaysFilterChange?: (isVisible: boolean) => void;
   onThermalsFilterChange?: (isVisible: boolean) => void;
   isOpen: boolean;
@@ -38,10 +56,12 @@ interface FilterControlProps {
 export const FilterControl: React.FC<FilterControlProps> = ({
   showParagliding,
   showWeatherStations,
+  showLandings,
   showSkyways = false,
   showThermals = false,
   onParaglidingFilterChange,
   onWeatherStationFilterChange,
+  onLandingsFilterChange,
   onSkywaysFilterChange,
   onThermalsFilterChange,
   isOpen,
@@ -56,6 +76,10 @@ export const FilterControl: React.FC<FilterControlProps> = ({
 
   const handleWeatherStationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onWeatherStationFilterChange(e.target.checked);
+  };
+
+  const handleLandingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onLandingsFilterChange(e.target.checked);
   };
 
   const handleSkywaysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -143,6 +167,19 @@ export const FilterControl: React.FC<FilterControlProps> = ({
                 />
                 <div className="w-6 h-6 flex items-center justify-center ">
                   <WindArrowIcon />
+                </div>
+              </label>
+
+              <label htmlFor="landings" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+                <input
+                  type="checkbox"
+                  id="landings"
+                  checked={showLandings}
+                  onChange={handleLandingsChange}
+                  className="mr-2 h-4 w-4 cursor-pointer"
+                />
+                <div className="w-6 h-6 flex items-center justify-center">
+                  <LandingIcon />
                 </div>
               </label>
 
