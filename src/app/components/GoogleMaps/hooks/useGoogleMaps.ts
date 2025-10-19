@@ -83,7 +83,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     openInfoWindow(mapInstance, marker, infoWindowContent);
   }, [mapInstance, openInfoWindow]);
 
-  const onStandaloneLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
+  const onLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
     if (!mapInstance) return;
 
     closeOverlaysRef.current();
@@ -96,7 +96,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   const { currentLandingMarker, clearLandingMarker, showLandingMarker } = useLandingMarker({
     mapInstance,
-    onLandingMarkerClick: onStandaloneLandingMarkerClick
+    onLandingMarkerClick
   });
 
   const onParaglidingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
@@ -162,7 +162,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     markersError: markersErrorLandingMarkers
   } = useLandingMarkers({
     mapInstance,
-    onLandingMarkerClick: onStandaloneLandingMarkerClick,
+    onLandingMarkerClick,
     variant
   });
 

@@ -6,7 +6,7 @@ import { ErrorState } from '../shared/ErrorState';
 import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass, FullscreenControl } from '@/app/components/GoogleMaps/mapControls';
 import PromisingFilter from './mapControls/PromisingFilter';
 import { Clusterer } from './clusterer';
-import { ParaglidingClusterRenderer, WeatherStationClusterRenderer } from './clusterer/Renderers';
+import { ParaglidingClusterRenderer, WeatherStationClusterRenderer, LandingClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMaps } from './hooks/useGoogleMaps';
 
@@ -70,7 +70,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
   // Create stable renderer instances to prevent recreation on every render
   const paraglidingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []);
   const weatherStationRenderer = useMemo(() => new WeatherStationClusterRenderer(), []);
-  const landingRenderer = useMemo(() => new ParaglidingClusterRenderer(), []); // Reuse paragliding renderer for landings
+  const landingRenderer = useMemo(() => new LandingClusterRenderer(), []);
 
   // Memoized components to prevent unnecessary re-renders
   const memoizedFilterControl = useMemo(() => (

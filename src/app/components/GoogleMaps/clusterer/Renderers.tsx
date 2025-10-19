@@ -1,5 +1,5 @@
 import { Cluster, Renderer } from "@googlemaps/markerclusterer";
-import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement } from "../../shared/Markers";
+import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement, createLandingMarkerElement } from "../../shared/Markers";
 import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
 import { getDominantWind } from "./util";
 
@@ -52,6 +52,23 @@ export class ParaglidingClusterRenderer implements Renderer {
       position,
       content: markerElement,
       zIndex: 1000 + cluster.count,
+    });
+
+    return marker;
+  }
+}
+
+export class LandingClusterRenderer implements Renderer {
+  public render(cluster: Cluster) {
+    const position = cluster.position;
+
+    // Create cluster element using landing marker element
+    const markerElement = createLandingMarkerElement();
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      position,
+      content: markerElement,
+      zIndex: 500 + cluster.count, // Lower z-index than paragliding markers
     });
 
     return marker;
