@@ -9,6 +9,7 @@ import { Clusterer } from './clusterer';
 import { ParaglidingClusterRenderer, WeatherStationClusterRenderer, LandingClusterRenderer } from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMaps } from './hooks/useGoogleMaps';
+import { MapLoadingIndicator } from './MapLoadingIndicator';
 
 interface GoogleMapsProps {
   isFullscreen: boolean;
@@ -36,6 +37,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     mapInstance,
     isLoading,
     error,
+    isLoadingParaglidingMarkers,
+    isLoadingWeatherStationMarkers,
     paraglidingMarkers,
     weatherStationMarkers,
     landingMarkers,
@@ -198,6 +201,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
             {memoizedFilterControl}
             {memoizedWindFilterCompass}
             {memoizedPromisingFilter}
+            <MapLoadingIndicator
+              isLoadingParagliding={isLoadingParaglidingMarkers}
+              isLoadingWeatherStations={isLoadingWeatherStationMarkers}
+            />
           </>
         )}
       </div>

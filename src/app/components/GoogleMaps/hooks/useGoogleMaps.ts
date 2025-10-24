@@ -235,9 +235,12 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     mapRef,
     mapInstance,
-    isLoading: isLoading || isLoadingParaglidingAndLandingMarkers || isLoadingWeatherStationMarkers,
+    isLoading: isLoading,
     error: error || markersErrorParaglidingAndLandingMarkers || markersErrorWeatherStationMarkers,
 
+    // Individual marker loading states
+    isLoadingParaglidingMarkers: isLoadingParaglidingAndLandingMarkers,
+    isLoadingWeatherStationMarkers: isLoadingWeatherStationMarkers,
 
     paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
     weatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
