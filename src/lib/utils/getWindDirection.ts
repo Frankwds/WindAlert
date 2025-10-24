@@ -31,7 +31,8 @@ export function getWindDirection(windDirection: number): string {
   return "Ukjent";
 }
 
-export function locationToWindDirectionSymbols(location: MinimalParaglidingLocation | ParaglidingLocationWithForecast): string[] {
+export function locationToWindDirectionSymbols(location?: MinimalParaglidingLocation | ParaglidingLocationWithForecast): string[] {
+  if (!location) return [];
   return [
     location.n ? 'n' : '',
     location.e ? 'e' : '',

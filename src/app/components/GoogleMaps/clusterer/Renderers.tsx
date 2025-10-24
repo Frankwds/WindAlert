@@ -28,25 +28,7 @@ export class ParaglidingClusterRenderer implements Renderer {
   public render(cluster: Cluster) {
     const position = cluster.position;
 
-    const clusterLocationData: ParaglidingLocationWithForecast = {
-      id: 'cluster',
-      name: 'Cluster',
-      latitude: position.lat(),
-      longitude: position.lng(),
-      altitude: 0,
-      flightlog_id: 'cluster',
-      is_main: false,
-      n: false,
-      ne: false,
-      e: false,
-      se: false,
-      s: false,
-      sw: false,
-      w: false,
-      nw: false,
-    };
-
-    const markerElement = createParaglidingMarkerElementWithDirection(clusterLocationData);
+    const markerElement = createParaglidingMarkerElementWithDirection();
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,

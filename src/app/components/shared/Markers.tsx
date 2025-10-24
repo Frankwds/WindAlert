@@ -76,7 +76,7 @@ export const createParaglidingMarkerElement = (): HTMLElement => {
   return container;
 }
 
-export const createParaglidingMarkerElementWithDirection = (location: ParaglidingLocationWithForecast): HTMLElement => {
+export const createParaglidingMarkerElementWithDirection = (location?: ParaglidingLocationWithForecast): HTMLElement => {
   const container = document.createElement('div');
   container.style.position = 'relative';
   container.style.width = '32px';
