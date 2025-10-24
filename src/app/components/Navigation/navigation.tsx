@@ -11,11 +11,11 @@ const links = [
   { href: '/', label: 'Hovedstarter', description: ' - I Norge' },
   { href: '/locations/all', label: 'Alle starter' },
   { href: '/favourites', label: 'Favoritter' },
-  { href: '/contribute', label: 'Legg til start' },
   { href: '/about', label: 'Om' },
   { href: '/contact', label: 'Kontakt' },
   { href: 'https://luftrom.info/viewer', label: 'Luftrom.info', description: ' - Sjekk før du flyr!!', external: true },
   { href: 'https://thermal.kk7.ch/#64.2,17,4', label: 'Thermal.kk7', description: ' - Takk! <3', external: true },
+  { href: '/contribute', label: 'Bidra! 💪', description: ' - Legg til ny start' },
 ];
 
 export default function Navigation() {

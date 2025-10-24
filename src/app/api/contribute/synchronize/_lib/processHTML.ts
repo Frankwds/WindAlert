@@ -1,32 +1,13 @@
 import { ParaglidingLocation } from '@/lib/supabase/types';
 
-interface WindDirections {
-  n: boolean;
-  ne: boolean;
-  e: boolean;
-  se: boolean;
-  s: boolean;
-  sw: boolean;
-  w: boolean;
-  nw: boolean;
-}
-
 /**
- * Parse wind directions from image alt text
- * Example: " S SW W" -> { s: true, sw: true, w: true, others: false }
+ * Parse wind directions from image alt text and update locationData
+ * Example: " S SW W" -> sets s: true, sw: true, w: true, others remain false
  */
-function parseWindDirections(altText: string): WindDirections {
-  const directions: WindDirections = {
-    n: false,
-    ne: false,
-    e: false,
-    se: false,
-    s: false,
-    sw: false,
-    w: false,
-    nw: false,
-  };
-
+function parseWindDirections(
+  altText: string,
+  locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'>
+): void {
   // Split by spaces and clean up
   const parts = altText
     .trim()
@@ -37,33 +18,31 @@ function parseWindDirections(altText: string): WindDirections {
     const direction = part.toUpperCase();
     switch (direction) {
       case 'N':
-        directions.n = true;
+        locationData.n = true;
         break;
       case 'NE':
-        directions.ne = true;
+        locationData.ne = true;
         break;
       case 'E':
-        directions.e = true;
+        locationData.e = true;
         break;
       case 'SE':
-        directions.se = true;
+        locationData.se = true;
         break;
       case 'S':
-        directions.s = true;
+        locationData.s = true;
         break;
       case 'SW':
-        directions.sw = true;
+        locationData.sw = true;
         break;
       case 'W':
-        directions.w = true;
+        locationData.w = true;
         break;
       case 'NW':
-        directions.nw = true;
+        locationData.nw = true;
         break;
     }
   }
-
-  return directions;
 }
 
 /**
@@ -86,39 +65,38 @@ function extractLocationName(html: string): string {
     }
   }
 
-  throw new Error('Could not extract location name from breadcrumb');
+  // Return empty string if no name found
+  return '';
 }
 
 /**
- * Extract data from the main table
+ * Extract country from breadcrumb navigation
  */
-function extractTableData(html: string): {
-  country: string;
-  altitude: number;
-  description: string;
-  latitude: number;
-  longitude: number;
-  windDirections: WindDirections;
-} {
-  // Find the main data table
-  const tableMatch = html.match(/<table cellspacing='1' cellpadding='3' bgcolor='black'>([\s\S]*?)<\/table>/);
-  if (!tableMatch) {
-    throw new Error('Could not find main data table');
+function extractCountry(html: string): string {
+  // Look for country link in breadcrumb (e.g., <a href='...country_id=144'>Morocco</a>)
+  const countryMatch = html.match(/<span style='font-style:italic;'><a[^>]*country_id=\d+[^>]*>([^<]+)<\/a><\/span>/);
+  if (countryMatch) {
+    return countryMatch[1];
   }
 
-  const tableContent = tableMatch[1];
-  const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/g);
+  // Return empty string if no country found
+  return '';
+}
 
-  if (!rows) {
-    throw new Error('Could not parse table rows');
-  }
-
-  let country = 'Norway'; // Default
-  let altitude = 0;
-  let description = '';
-  let latitude = 0;
-  let longitude = 0;
-  let windDirections: WindDirections = {
+/**
+ * Extract location data from HTML
+ */
+function extractLocationData(html: string): Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> {
+  // Initialize empty location data
+  let locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> = {
+    name: '',
+    country: '',
+    altitude: 0,
+    description: '',
+    latitude: 0,
+    longitude: 0,
+    flightlog_id: '',
+    is_active: true,
     n: false,
     ne: false,
     e: false,
@@ -129,6 +107,23 @@ function extractTableData(html: string): {
     nw: false,
   };
 
+  // Extract location name and country
+  locationData.name = extractLocationName(html);
+  locationData.country = extractCountry(html);
+
+  // Find the main data table
+  const tableMatch = html.match(/<table cellspacing='1' cellpadding='3' bgcolor='black'>([\s\S]*?)<\/table>/);
+  if (!tableMatch) {
+    return locationData;
+  }
+
+  const tableContent = tableMatch[1];
+  const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/g);
+
+  if (!rows) {
+    return locationData;
+  }
+
   for (const row of rows) {
     const match = row.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/);
     if (!match) continue;
@@ -137,58 +132,48 @@ function extractTableData(html: string): {
 
     switch (label.trim()) {
       case 'region/fylke':
-        // Extract country from region (e.g., "Sogn og Fjordane" -> "Norway")
-        country = 'Norway';
+        // Region/fylke information is not needed since we extract country from breadcrumb
         break;
 
       case 'Høyde':
         // Extract altitude (e.g., "1000 meters asl" -> 1000)
         const altitudeMatch = value.match(/(\d+)\s*meters/);
         if (altitudeMatch) {
-          altitude = parseInt(altitudeMatch[1]);
+          locationData.altitude = parseInt(altitudeMatch[1]);
         }
         break;
 
       case 'Beskrivelse':
         // Extract description and wind directions
-        description = value;
+        locationData.description = value;
 
         // Find wind direction image
         const windImageMatch = value.match(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*alt='([^']*)'/);
         if (windImageMatch) {
-          windDirections = parseWindDirections(windImageMatch[1]);
+          parseWindDirections(windImageMatch[1], locationData);
 
           // Remove the wind direction image from description
-          description = description.replace(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g, '');
+          locationData.description = locationData.description.replace(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g, '');
         }
 
         // Clean up description
-        description = description.trim();
+        locationData.description = locationData.description.trim();
         break;
 
       case 'Koordinater':
         // Extract coordinates from Google Earth link
         const coordMatch = value.match(/earth\.google\.com\/web\/search\/([0-9.-]+),([0-9.-]+)/);
         if (coordMatch) {
-          latitude = parseFloat(coordMatch[1]);
-          longitude = parseFloat(coordMatch[2]);
+          locationData.latitude = parseFloat(coordMatch[1]);
+          locationData.longitude = parseFloat(coordMatch[2]);
         }
         break;
     }
   }
 
-  if (latitude === 0 || longitude === 0) {
-    throw new Error('Could not extract coordinates');
-  }
+  // Coordinates will be validated later in the route handler
 
-  return {
-    country,
-    altitude,
-    description,
-    latitude,
-    longitude,
-    windDirections,
-  };
+  return locationData;
 }
 
 /**
@@ -211,21 +196,14 @@ function processDescription(description: string, startId: string): string {
  * Process HTML from flightlog.org and extract paragliding location data
  */
 export function processHTML(html: string, startId: string): Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> {
-  // Extract data from HTML
-  const locationName = extractLocationName(html);
-  const tableData = extractTableData(html);
-  const processedDescription = processDescription(tableData.description, startId);
+  // Extract location data from HTML
+  const locationData = extractLocationData(html);
 
-  // Return location data without landing fields and is_main
-  return {
-    name: locationName,
-    description: processedDescription,
-    longitude: tableData.longitude,
-    latitude: tableData.latitude,
-    altitude: tableData.altitude,
-    country: tableData.country,
-    flightlog_id: startId,
-    is_active: true,
-    ...tableData.windDirections,
-  };
+  // Set the flightlog_id
+  locationData.flightlog_id = startId;
+
+  // Process description and add flightlog link
+  locationData.description = processDescription(locationData.description || '', startId);
+
+  return locationData;
 }
