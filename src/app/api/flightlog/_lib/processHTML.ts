@@ -38,8 +38,11 @@ function parseWindDirections(altText: string): WindDirections {
   };
 
   // Split by spaces and clean up
-  const parts = altText.trim().split(/\s+/).filter(part => part.length > 0);
-  
+  const parts = altText
+    .trim()
+    .split(/\s+/)
+    .filter(part => part.length > 0);
+
   for (const part of parts) {
     const direction = part.toUpperCase();
     switch (direction) {
@@ -82,7 +85,7 @@ function extractLocationName(html: string): string {
   if (breadcrumbMatch) {
     return breadcrumbMatch[2];
   }
-  
+
   // Fallback: look for any italic span without a link
   const fallbackMatch = html.match(/<span style='font-style:italic;'>([^<]+)<\/span>/g);
   if (fallbackMatch && fallbackMatch.length > 0) {
@@ -92,7 +95,7 @@ function extractLocationName(html: string): string {
       return nameMatch[1];
     }
   }
-  
+
   throw new Error('Could not extract location name from breadcrumb');
 }
 
@@ -115,7 +118,7 @@ function extractTableData(html: string): {
 
   const tableContent = tableMatch[1];
   const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>(.*?)<\/td><\/tr>/gs);
-  
+
   if (!rows) {
     throw new Error('Could not parse table rows');
   }
@@ -126,8 +129,14 @@ function extractTableData(html: string): {
   let latitude = 0;
   let longitude = 0;
   let windDirections: WindDirections = {
-    n: false, ne: false, e: false, se: false,
-    s: false, sw: false, w: false, nw: false,
+    n: false,
+    ne: false,
+    e: false,
+    se: false,
+    s: false,
+    sw: false,
+    w: false,
+    nw: false,
   };
 
   for (const row of rows) {
@@ -153,16 +162,16 @@ function extractTableData(html: string): {
       case 'Beskrivelse':
         // Extract description and wind directions
         description = value;
-        
+
         // Find wind direction image
         const windImageMatch = value.match(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*alt='([^']*)'/);
         if (windImageMatch) {
           windDirections = parseWindDirections(windImageMatch[1]);
-          
+
           // Remove the wind direction image from description
           description = description.replace(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g, '');
         }
-        
+
         // Clean up description
         description = description.trim();
         break;
@@ -197,9 +206,13 @@ function extractTableData(html: string): {
  */
 function processDescription(description: string, startId: string): string {
   // Clean up the description
-  let processedDescription = description
-    .replace(/<br\s*\/?>/gi, '<br/>')
-    .trim();
+  let processedDescription = description.replace(/<br\s*\/?>/gi, '<br/>').trim();
+
+  // Fix relative photo links by prepending flightlog.org domain
+  processedDescription = processedDescription.replace(/href='\/fl\.html\?([^']*)'/g, "href='https://www.flightlog.org/fl.html?$1'");
+
+  // Fix relative image sources by prepending flightlog.org domain
+  processedDescription = processedDescription.replace(/src='\/fl\.html\?([^']*)'/g, "src='https://www.flightlog.org/fl.html?$1'");
 
   // Add flightlog link
   const flightlogUrl = `https://flightlog.org/fl.html?l=1a=22country_id=160start_id=${startId}`;
