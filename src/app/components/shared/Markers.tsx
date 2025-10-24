@@ -146,6 +146,7 @@ export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWi
   container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
 
   // Create wind arrow SVG for cluster (no text, just the arrow)
   const windColor = getWindArrowColor(meanWindSpeed);
@@ -161,6 +162,7 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
   container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
 
   if (stationData.length === 0) {
     const svg = createHollowWindTriangleSVG(true, 0, getWindArrowColor(0));

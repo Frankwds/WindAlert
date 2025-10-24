@@ -11,7 +11,7 @@ const WindArrowIcon = () => {
 
   React.useEffect(() => {
     const element = createWeatherStationClusterElement(2, 270);
-    // Make it smaller for filter control
+    // Make it smaller for filter control and reset positioning
     element.style.transform = 'scale(0.8)';
     setIconElement(element);
   }, []);
