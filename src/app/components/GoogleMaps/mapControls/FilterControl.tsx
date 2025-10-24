@@ -27,8 +27,8 @@ const LandingIcon = () => {
 
   React.useEffect(() => {
     const element = createLandingMarkerElement();
-    // Make it smaller for filter control
-    element.style.transform = 'scale(0.6)';
+    // Reset inherited transform from createLandingMarkerElement
+    element.style.transform = 'translate(0%, 0%)';
     setIconElement(element);
   }, []);
 

@@ -1,5 +1,4 @@
 export { useWeatherStationMarkers } from './useWeatherStationMarkers';
-export { useParaglidingMarkers } from './useParaglidingMarkers';
-export { useLandingMarkers } from './useLandingMarkers';
+export { useParaglidingLocationsAndLandings } from './useParaglidingLocationsAndLandings';
 export { useMarkerFiltering } from './useMarkerFiltering';
 export { useLandingMarker } from './useLandingMarker';

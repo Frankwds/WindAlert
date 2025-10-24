@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useWeatherStationMarkers, useParaglidingMarkers, useMarkerFiltering, useLandingMarker, useLandingMarkers } from './markers';
+import { useWeatherStationMarkers, useMarkerFiltering, useLandingMarker, useParaglidingLocationsAndLandings } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
 import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow, getLandingInfoWindow } from '../InfoWindows';
@@ -148,20 +148,12 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     isMain: variant === 'main'
   });
 
-  const { paraglidingMarkers,
-    isLoadingMarkers: isLoadingParaglidingMarkers,
-    markersError: markersErrorParaglidingMarkers
-  } = useParaglidingMarkers({
+  const { paraglidingMarkers, landingMarkers,
+    isLoadingMarkers: isLoadingParaglidingAndLandingMarkers,
+    markersError: markersErrorParaglidingAndLandingMarkers
+  } = useParaglidingLocationsAndLandings({
     mapInstance,
     onParaglidingMarkerClick,
-    variant
-  });
-
-  const { landingMarkers,
-    isLoadingMarkers: isLoadingLandingMarkers,
-    markersError: markersErrorLandingMarkers
-  } = useLandingMarkers({
-    mapInstance,
     onLandingMarkerClick,
     variant
   });
@@ -243,8 +235,8 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
     mapRef,
     mapInstance,
-    isLoading: isLoading || isLoadingParaglidingMarkers || isLoadingWeatherStationMarkers || isLoadingLandingMarkers,
-    error: error || markersErrorParaglidingMarkers || markersErrorWeatherStationMarkers || markersErrorLandingMarkers,
+    isLoading: isLoading || isLoadingParaglidingAndLandingMarkers || isLoadingWeatherStationMarkers,
+    error: error || markersErrorParaglidingAndLandingMarkers || markersErrorWeatherStationMarkers,
 
 
     paraglidingMarkers: filteredMarkers.filteredParaglidingMarkers,
