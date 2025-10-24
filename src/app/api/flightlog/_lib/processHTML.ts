@@ -11,16 +11,6 @@ interface WindDirections {
   nw: boolean;
 }
 
-interface ParsedLocationData {
-  name: string;
-  description: string;
-  longitude: number;
-  latitude: number;
-  altitude: number;
-  country: string;
-  windDirections: WindDirections;
-}
-
 /**
  * Parse wind directions from image alt text
  * Example: " S SW W" -> { s: true, sw: true, w: true, others: false }
@@ -111,13 +101,13 @@ function extractTableData(html: string): {
   windDirections: WindDirections;
 } {
   // Find the main data table
-  const tableMatch = html.match(/<table cellspacing='1' cellpadding='3' bgcolor='black'>(.*?)<\/table>/s);
+  const tableMatch = html.match(/<table cellspacing='1' cellpadding='3' bgcolor='black'>([\s\S]*?)<\/table>/);
   if (!tableMatch) {
     throw new Error('Could not find main data table');
   }
 
   const tableContent = tableMatch[1];
-  const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>(.*?)<\/td><\/tr>/gs);
+  const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/g);
 
   if (!rows) {
     throw new Error('Could not parse table rows');
@@ -140,7 +130,7 @@ function extractTableData(html: string): {
   };
 
   for (const row of rows) {
-    const match = row.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>(.*?)<\/td><\/tr>/s);
+    const match = row.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/);
     if (!match) continue;
 
     const [, label, value] = match;
@@ -208,8 +198,8 @@ function processDescription(description: string, startId: string): string {
   // Clean up the description
   let processedDescription = description.replace(/<br\s*\/?>/gi, '<br/>').trim();
 
-  // Fix relative photo links by prepending flightlog.org domain
-  processedDescription = processedDescription.replace(/href='\/fl\.html\?([^']*)'/g, "href='https://www.flightlog.org/fl.html?$1'");
+  // Fix relative photo links by prepending flightlog.org domain and add target="_blank"
+  processedDescription = processedDescription.replace(/href='\/fl\.html\?([^']*)'/g, "href='https://www.flightlog.org/fl.html?$1' target='_blank'");
 
   // Fix relative image sources by prepending flightlog.org domain
   processedDescription = processedDescription.replace(/src='\/fl\.html\?([^']*)'/g, "src='https://www.flightlog.org/fl.html?$1'");
