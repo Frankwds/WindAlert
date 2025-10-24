@@ -88,7 +88,7 @@ function extractCountry(html: string): string {
  */
 function extractLocationData(html: string): Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> {
   // Initialize empty location data
-  let locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> = {
+  const locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> = {
     name: '',
     country: '',
     altitude: 0,
@@ -179,7 +179,7 @@ function extractLocationData(html: string): Omit<ParaglidingLocation, 'id' | 'cr
 /**
  * Process description and add flightlog link
  */
-function processDescription(description: string, startId: string): string {
+function processDescription(description: string): string {
   // Clean up the description
   let processedDescription = description.replace(/<br\s*\/?>/gi, '<br/>').trim();
 
@@ -203,7 +203,7 @@ export function processHTML(html: string, startId: string): Omit<ParaglidingLoca
   locationData.flightlog_id = startId;
 
   // Process description and add flightlog link
-  locationData.description = processDescription(locationData.description || '', startId);
+  locationData.description = processDescription(locationData.description || '');
 
   return locationData;
 }

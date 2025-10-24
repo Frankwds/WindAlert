@@ -98,8 +98,8 @@ export default function ContributePage() {
           <ol className='list-decimal list-inside space-y-2 text-sm'>
             <li>Gå til flightlog.org og finn stedet du vil legge til</li>
             <li>Se på URL-en i nettleseren</li>
-            <li>ID-en er tallet etter "start_id=" i URL-en</li>
-            <li>F.eks. hvis URL-en er "fl.html?l=2&a=22&country_id=160&start_id=1347", så er ID-en 1347</li>
+            <li>ID-en er tallet etter &quot;start_id=&quot; i URL-en</li>
+            <li>F.eks. hvis URL-en er &quot;fl.html?l=2&a=22&country_id=160&start_id=1347&quot;, så er ID-en 1347</li>
           </ol>
         </div>
       </div>
