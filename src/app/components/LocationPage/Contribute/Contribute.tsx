@@ -23,7 +23,7 @@ export const Contribute: React.FC<ContributeProps> = ({ locationId, startId, lat
     setSyncError(null);
 
     try {
-      const response = await fetch(`/api/flightlog/${startId}`);
+      const response = await fetch(`/api/contribute/synchronize/${startId}`);
 
       if (!response.ok) {
         const errorData = await response.json();
