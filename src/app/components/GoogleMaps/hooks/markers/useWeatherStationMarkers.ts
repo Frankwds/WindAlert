@@ -60,10 +60,16 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
     }
   }, [onWeatherStationMarkerClick, loadLatestWeatherStationData]);
 
-  // Load markers on page load
+  // Load markers on page load with a 2-second delay to prevent simultaneous database queries
   useEffect(() => {
     if (mapInstance && !hasLoadedInitialMarkers.current) {
-      loadMarkers();
+      const timeoutId = setTimeout(() => {
+        loadMarkers();
+      }, 2000); // 2-second delay to allow paragliding locations to load first
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [mapInstance, loadMarkers]);
 
