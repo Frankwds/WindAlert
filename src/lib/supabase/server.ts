@@ -147,6 +147,30 @@ export class Server {
 
     return { deleted_records: data?.length || 0 };
   }
+
+  /**
+   * Upsert a paragliding location by flightlog_id
+   * Preserves existing landing coordinates and is_main flag by excluding them from the upsert
+   */
+  static async upsertParaglidingLocation(
+    location: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'>
+  ): Promise<ParaglidingLocation> {
+    const { data, error } = await supabaseServer
+      .from('all_paragliding_locations')
+      .upsert(location, {
+        onConflict: 'flightlog_id',
+        ignoreDuplicates: false
+      })
+      .select('*')
+      .single();
+
+    if (error) {
+      console.error('Error upserting paragliding location:', error);
+      throw error;
+    }
+
+    return data;
+  }
   // RETURNS TABLE(
   //   original_records INTEGER,
   //   compressed_records INTEGER,
