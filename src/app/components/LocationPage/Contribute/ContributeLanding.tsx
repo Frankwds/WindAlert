@@ -23,7 +23,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   landingLatitude: intialLandingLatitude,
   landingLongitude: initialLandingLongitude,
   landingAltitude: initialLandingAltitude,
-  onSave
+  onSave,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
@@ -39,7 +39,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
       setTimeout(() => {
         contributeRef.current?.scrollIntoView({
           behavior: 'smooth',
-          block: 'end'
+          block: 'end',
         });
       }, 100);
     }
@@ -62,9 +62,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
       return;
     }
 
-    const confirmed = confirm(
-      'Er du sikker på at du vil lagre dette landingstedet? Endringen din vil vises for alle som bruker WindLord.'
-    );
+    const confirmed = confirm('Er du sikker på at du vil lagre dette landingstedet? Endringen din vil vises for alle som bruker WindLord.');
 
     if (confirmed) {
       setError(null); // Clear any previous errors
@@ -119,49 +117,34 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
 
   return (
     <div ref={contributeRef}>
-      <Collapsible
-        title="Rediger Landing"
-        isOpen={isOpen}
-        onToggle={handleToggle}
-        className="bg-[var(--card)] border border-[var(--border)] rounded-lg"
-      >
+      <Collapsible title='Rediger Landing' isOpen={isOpen} onToggle={handleToggle} className='bg-[var(--card)] border border-[var(--border)] rounded-lg'>
         {isOpen ? (
-          <div className="space-y-4">
-            <div className="text-sm text-[var(--muted)]">
+          <div className='space-y-4'>
+            <div className='text-sm text-[var(--muted)]'>
               <p>Klikk på kartet for å plassere landing. Dra den grønne markøren for å flytte landingen.</p>
-              <p className="mt-1">
-                <span className="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+              <p className='mt-1'>
+                <span className='inline-block w-3 h-3 bg-red-500 rounded-full mr-2'></span>
                 Rød markør: Takeoff
-                <span className="inline-block w-3 h-3 bg-green-500 rounded-full mx-2 ml-4"></span>
+                <span className='inline-block w-3 h-3 bg-green-500 rounded-full mx-2 ml-4'></span>
                 Grønn markør: Landing
               </p>
             </div>
 
-            <ContributeMap
-              latitude={latitude}
-              longitude={longitude}
-              landingLatitude={intialLandingLatitude}
-              landingLongitude={initialLandingLongitude}
-              onLandingChange={handleLandingChange}
-            />
-            {error && (
-              <div className="text-sm text-[var(--error)] text-center mx-20">
-                {error}
-              </div>
-            )}
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <label htmlFor="altitude-input" className="text-sm font-medium text-[var(--foreground)]">
+            <ContributeMap latitude={latitude} longitude={longitude} landingLatitude={intialLandingLatitude} landingLongitude={initialLandingLongitude} onLandingChange={handleLandingChange} />
+            {error && <div className='text-sm text-[var(--error)] text-center mx-20'>{error}</div>}
+            <div className='space-y-3'>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center gap-2'>
+                  <label htmlFor='altitude-input' className='text-sm font-medium text-[var(--foreground)]'>
                     Høyde:
                   </label>
                   <input
-                    id="altitude-input"
-                    type="number"
-                    min="0"
-                    step="1"
+                    id='altitude-input'
+                    type='number'
+                    min='0'
+                    step='1'
                     value={currentLandingAltitude || ''}
-                    onChange={(e) => {
+                    onChange={e => {
                       const value = e.target.value;
                       if (value === '') {
                         handleAltitudeChange(undefined as any);
@@ -172,16 +155,15 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
                         }
                       }
                     }}
-                    className="w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-                    placeholder="0"
+                    className='w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]'
+                    placeholder='0'
                   />
-                  <span className="text-xs text-[var(--muted)]">moh.</span>
+                  <span className='text-xs text-[var(--muted)]'>moh.</span>
                 </div>
 
                 <ButtonAccept
                   onClick={handleSave}
-                  title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ?
-                    'Lagre endringer' : 'Gjør endringer for å lagre'}
+                  title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ? 'Lagre endringer' : 'Gjør endringer for å lagre'}
                   disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
                 />
               </div>
@@ -193,10 +175,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   );
 };
 
-const currentLandingIsValid = (
-  currentLandingLat: number | undefined, currentLandingLng: number | undefined,
-  initialLatitude: number | undefined, initialLongitude: number | undefined
-) => {
+const currentLandingIsValid = (currentLandingLat: number | undefined, currentLandingLng: number | undefined, initialLatitude: number | undefined, initialLongitude: number | undefined) => {
   if (!currentLandingLat || !currentLandingLng) {
     return false;
   }

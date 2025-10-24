@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { notFound } from "next/navigation";
-import WeatherTable from "@/app/components/LocationPage/WeatherTable";
-import GoogleMaps from "@/app/components/LocationPage/GoogleMapsStatic";
-import WindyWidget from "@/app/components/LocationPage/windyWidget";
-import LocationHeader from "@/app/components/LocationPage/LocationHeader";
-import { Contribute } from "@/app/components/LocationPage/Contribute/Contribute";
-import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
-import { fetchMeteoDataClient } from "@/lib/openMeteo/apiClient";
-import { openMeteoResponseSchema } from "@/lib/openMeteo/zod";
-import { mapOpenMeteoData } from "@/lib/openMeteo/mapping";
-import { combineDataSources } from "@/app/api/cron/_lib/utils/combineData";
-import { fetchYrDataClient } from "@/lib/yr/apiClient";
-import { mapYrData } from "@/lib/yr/mapping";
-import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
-import { DEFAULT_ALERT_RULE } from "@/app/api/cron/_lib/validate/alert-rules";
-import { isGoodParaglidingCondition } from "@/app/api/cron/_lib/validate/validateDataPoint";
-import { getSixHourSymbolsByDay } from "../utils/utils";
-import { groupForecastByDay } from "../utils/utils";
-import { LoadingSpinner } from "@/app/components/shared";
-import { ParaglidingLocation } from "@/lib/supabase/types";
-import { ForecastCache1hr } from "@/lib/supabase/types";
+import { useEffect, useState } from 'react';
+import { notFound } from 'next/navigation';
+import WeatherTable from '@/app/components/LocationPage/WeatherTable';
+import GoogleMaps from '@/app/components/LocationPage/GoogleMapsStatic';
+import WindyWidget from '@/app/components/LocationPage/windyWidget';
+import LocationHeader from '@/app/components/LocationPage/LocationHeader';
+import { Contribute } from '@/app/components/LocationPage/Contribute/Contribute';
+import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
+import { fetchMeteoDataClient } from '@/lib/openMeteo/apiClient';
+import { openMeteoResponseSchema } from '@/lib/openMeteo/zod';
+import { mapOpenMeteoData } from '@/lib/openMeteo/mapping';
+import { combineDataSources } from '@/app/api/cron/_lib/utils/combineData';
+import { fetchYrDataClient } from '@/lib/yr/apiClient';
+import { mapYrData } from '@/lib/yr/mapping';
+import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
+import { DEFAULT_ALERT_RULE } from '@/app/api/cron/_lib/validate/alert-rules';
+import { isGoodParaglidingCondition } from '@/app/api/cron/_lib/validate/validateDataPoint';
+import { getSixHourSymbolsByDay } from '../utils/utils';
+import { groupForecastByDay } from '../utils/utils';
+import { LoadingSpinner } from '@/app/components/shared';
+import { ParaglidingLocation } from '@/lib/supabase/types';
+import { ForecastCache1hr } from '@/lib/supabase/types';
 
 interface Props {
   params: Promise<{ flightlog_id: string }>;
@@ -69,15 +69,11 @@ export default function LocationPage({ params }: Props) {
         const combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly);
 
         const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
-        const filteredForecast = combinedData.filter((f) => new Date(f.time).getTime() >= cutoff);
+        const filteredForecast = combinedData.filter(f => new Date(f.time).getTime() >= cutoff);
 
         // Add validation data to forecast
-        const validatedForecast = filteredForecast.map((hour) => {
-          const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
-            hour,
-            DEFAULT_ALERT_RULE,
-            locationToWindDirectionSymbols(locationData)
-          );
+        const validatedForecast = filteredForecast.map(hour => {
+          const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(hour, DEFAULT_ALERT_RULE, locationToWindDirectionSymbols(locationData));
           return {
             ...hour,
             location_id: locationData.id,
@@ -93,8 +89,8 @@ export default function LocationPage({ params }: Props) {
         setSixHourSymbolsByDay(sixHourSymbols);
         setGroupedByDay(grouped);
       } catch (err) {
-        console.error("Error loading location data:", err);
-        setError(err instanceof Error ? err.message : "Failed to load location data");
+        console.error('Error loading location data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load location data');
       } finally {
         setLoading(false);
       }
@@ -105,7 +101,7 @@ export default function LocationPage({ params }: Props) {
 
   if (loading) {
     return (
-      <div className="py-4 flex justify-center items-center min-h-64">
+      <div className='py-4 flex justify-center items-center min-h-64'>
         <LoadingSpinner />
       </div>
     );
@@ -113,10 +109,10 @@ export default function LocationPage({ params }: Props) {
 
   if (error) {
     return (
-      <div className="py-4 flex justify-center items-center min-h-64">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold text-red-600 mb-2">Error Loading Location</h2>
-          <p className="text-gray-600">{error}</p>
+      <div className='py-4 flex justify-center items-center min-h-64'>
+        <div className='text-center'>
+          <h2 className='text-xl font-semibold text-red-600 mb-2'>Error Loading Location</h2>
+          <p className='text-gray-600'>{error}</p>
         </div>
       </div>
     );
@@ -124,19 +120,19 @@ export default function LocationPage({ params }: Props) {
 
   if (!location) {
     return (
-      <div className="py-4 flex justify-center items-center min-h-64">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold text-gray-600">Location Not Found</h2>
+      <div className='py-4 flex justify-center items-center min-h-64'>
+        <div className='text-center'>
+          <h2 className='text-xl font-semibold text-gray-600'>Location Not Found</h2>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="py-4">
+    <div className='py-4'>
       <LocationHeader
         name={location.name}
-        description={location.description || ""}
+        description={location.description || ''}
         windDirections={locationToWindDirectionSymbols(location)}
         locationId={location.id}
         latitude={location.latitude}
@@ -146,19 +142,14 @@ export default function LocationPage({ params }: Props) {
         isMain={location.is_main}
       />
 
-      <WeatherTable
-        groupedByDay={groupedByDay}
-        sixHourSymbolsByDay={sixHourSymbolsByDay}
-        location={location}
-        showValidation={true}
-      />
+      <WeatherTable groupedByDay={groupedByDay} sixHourSymbolsByDay={sixHourSymbolsByDay} location={location} showValidation={true} />
 
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <GoogleMaps latitude={location.latitude} longitude={location.longitude}
-        landing_latitude={landingLatitude} landing_longitude={landingLongitude} />
+      <GoogleMaps latitude={location.latitude} longitude={location.longitude} landing_latitude={landingLatitude} landing_longitude={landingLongitude} />
 
       <Contribute
         locationId={location.id}
+        startId={location.flightlog_id}
         latitude={location.latitude}
         longitude={location.longitude}
         landingLatitude={landingLatitude}
@@ -169,10 +160,13 @@ export default function LocationPage({ params }: Props) {
           setLandingLatitude(landingLat);
           setLandingLongitude(landingLng);
           setLandingAltitude(landingAltitude);
-          console.log('Landing coordinates saved:', { landingLat, landingLng, landingAltitude });
+          console.log('Landing coordinates saved:', {
+            landingLat,
+            landingLng,
+            landingAltitude,
+          });
         }}
       />
-
     </div>
   );
 }

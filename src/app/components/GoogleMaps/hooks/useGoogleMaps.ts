@@ -24,19 +24,19 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     initialWindFilterAndOperator: mapState.windFilterAndOperator,
     initialPromisingFilter: variant === 'main' ? mapState.promisingFilter : null,
     initialShowSkywaysLayer: mapState.showSkywaysLayer,
-    initialShowThermalsLayer: mapState.showThermalsLayer
+    initialShowThermalsLayer: mapState.showThermalsLayer,
   });
 
   const { infoWindowRef, closeInfoWindow, openInfoWindow } = useInfoWindows();
 
   // Create a ref for closeOverlays to avoid circular dependency
-  const closeOverlaysRef = useRef<() => void>(() => { });
+  const closeOverlaysRef = useRef<() => void>(() => {});
 
   // Ref to track when we're in the middle of a paragliding marker click to not clear the landing marker on filter changes
   const isParaglidingMarkerClickRef = useRef(false);
 
-  const onMapReadyRef = useRef<(map: google.maps.Map) => void>(() => { });
-  const onMapClickRef = useRef<() => void>(() => { });
+  const onMapReadyRef = useRef<(map: google.maps.Map) => void>(() => {});
+  const onMapClickRef = useRef<() => void>(() => {});
   const onMapPositionChangeRef = useRef(updateMapPosition);
 
   useEffect(() => {
@@ -47,20 +47,25 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     onMapPositionChangeRef.current = updateMapPosition;
   }, [updateMapPosition]);
 
-  const initialMapState = useMemo(() => ({
-    center: mapState.center,
-    zoom: mapState.zoom
-  }), []);
-
+  const initialMapState = useMemo(
+    () => ({
+      center: mapState.center,
+      zoom: mapState.zoom,
+    }),
+    []
+  );
 
   const { mapRef, mapInstance, isLoading, error } = useMapInstance({
     initialMapState,
-    onMapReady: useCallback((map) => {
-      if (!infoWindowRef.current) {
-        infoWindowRef.current = new google.maps.InfoWindow();
-      }
-      onMapReadyRef.current(map);
-    }, [infoWindowRef]),
+    onMapReady: useCallback(
+      map => {
+        if (!infoWindowRef.current) {
+          infoWindowRef.current = new google.maps.InfoWindow();
+        }
+        onMapReadyRef.current(map);
+      },
+      [infoWindowRef]
+    ),
     onMapClick: useCallback(() => {
       onMapClickRef.current();
     }, []),
@@ -69,100 +74,108 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     onMapPositionChange: useCallback((center: { lat: number; lng: number }, zoom: number) => {
       onMapPositionChangeRef.current(center, zoom);
     }, []),
-    initialMapType: mapState.mapType
+    initialMapType: mapState.mapType,
   });
 
-  const onWeatherStationMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
-    if (!mapInstance) return;
+  const onWeatherStationMarkerClick = useCallback(
+    (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
+      if (!mapInstance) return;
 
-    closeOverlaysRef.current();
+      closeOverlaysRef.current();
 
-    const infoWindowContent = document.createElement('div');
-    const root = createRoot(infoWindowContent);
-    root.render(getWeatherStationInfoWindow(location));
-    openInfoWindow(mapInstance, marker, infoWindowContent);
-  }, [mapInstance, openInfoWindow]);
+      const infoWindowContent = document.createElement('div');
+      const root = createRoot(infoWindowContent);
+      root.render(getWeatherStationInfoWindow(location));
+      openInfoWindow(mapInstance, marker, infoWindowContent);
+    },
+    [mapInstance, openInfoWindow]
+  );
 
-  const onLandingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
-    if (!mapInstance) return;
+  const onLandingMarkerClick = useCallback(
+    (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
+      if (!mapInstance) return;
 
-    closeOverlaysRef.current();
+      closeOverlaysRef.current();
 
-    const infoWindowContent = document.createElement('div');
-    const root = createRoot(infoWindowContent);
-    root.render(getLandingInfoWindow(location));
-    openInfoWindow(mapInstance, marker, infoWindowContent);
-  }, [mapInstance, openInfoWindow]);
+      const infoWindowContent = document.createElement('div');
+      const root = createRoot(infoWindowContent);
+      root.render(getLandingInfoWindow(location));
+      openInfoWindow(mapInstance, marker, infoWindowContent);
+    },
+    [mapInstance, openInfoWindow]
+  );
 
   const { currentLandingMarker, clearLandingMarker, showLandingMarker } = useLandingMarker({
     mapInstance,
-    onLandingMarkerClick
+    onLandingMarkerClick,
   });
 
-  const onParaglidingMarkerClick = useCallback((marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
-    if (!mapInstance) return;
+  const onParaglidingMarkerClick = useCallback(
+    (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
+      if (!mapInstance) return;
 
-    // Set flag to prevent filter change effects from clearing landing marker
-    isParaglidingMarkerClickRef.current = true;
+      // Set flag to prevent filter change effects from clearing landing marker
+      isParaglidingMarkerClickRef.current = true;
 
-    closeOverlaysRef.current();
+      closeOverlaysRef.current();
 
-    // Always clear existing landing marker first
-    clearLandingMarker();
+      // Always clear existing landing marker first
+      clearLandingMarker();
 
-    // Handle landing marker - check if both landing coordinates exist
-    if (location.landing_latitude && location.landing_longitude) {
-      // Pass paragliding marker position to showLandingMarker
-      const paraglidingPosition = marker.position;
-      if (paraglidingPosition) {
-        // Convert LatLng to simple lat/lng object
-        const position = {
-          lat: typeof paraglidingPosition.lat === 'function' ? paraglidingPosition.lat() : paraglidingPosition.lat,
-          lng: typeof paraglidingPosition.lng === 'function' ? paraglidingPosition.lng() : paraglidingPosition.lng
-        };
-        showLandingMarker(location, position);
+      // Handle landing marker - check if both landing coordinates exist
+      if (location.landing_latitude && location.landing_longitude) {
+        // Pass paragliding marker position to showLandingMarker
+        const paraglidingPosition = marker.position;
+        if (paraglidingPosition) {
+          // Convert LatLng to simple lat/lng object
+          const position = {
+            lat: typeof paraglidingPosition.lat === 'function' ? paraglidingPosition.lat() : paraglidingPosition.lat,
+            lng: typeof paraglidingPosition.lng === 'function' ? paraglidingPosition.lng() : paraglidingPosition.lng,
+          };
+          showLandingMarker(location, position);
+        }
       }
-    }
 
-    const infoWindowContent = document.createElement('div');
-    const root = createRoot(infoWindowContent);
-    root.render(variant === 'main'
-      ? getMainParaglidingInfoWindow(location)
-      : getAllParaglidingInfoWindow(location)
-    );
-    openInfoWindow(mapInstance, marker, infoWindowContent);
+      const infoWindowContent = document.createElement('div');
+      const root = createRoot(infoWindowContent);
+      root.render(variant === 'main' ? getMainParaglidingInfoWindow(location) : getAllParaglidingInfoWindow(location));
+      openInfoWindow(mapInstance, marker, infoWindowContent);
 
-    // Reset flag after a short delay to allow the landing marker to be set
-    setTimeout(() => {
-      isParaglidingMarkerClickRef.current = false;
-    }, 100);
-  }, [mapInstance, openInfoWindow, variant, showLandingMarker, clearLandingMarker]);
+      // Reset flag after a short delay to allow the landing marker to be set
+      setTimeout(() => {
+        isParaglidingMarkerClickRef.current = false;
+      }, 100);
+    },
+    [mapInstance, openInfoWindow, variant, showLandingMarker, clearLandingMarker]
+  );
 
   const {
     weatherStationMarkers,
     isLoadingMarkers: isLoadingWeatherStationMarkers,
-    markersError: markersErrorWeatherStationMarkers
+    markersError: markersErrorWeatherStationMarkers,
   } = useWeatherStationMarkers({
     mapInstance,
     onWeatherStationMarkerClick,
-    isMain: variant === 'main'
+    isMain: variant === 'main',
   });
 
-  const { paraglidingMarkers, landingMarkers,
+  const {
+    paraglidingMarkers,
+    landingMarkers,
     isLoadingMarkers: isLoadingParaglidingAndLandingMarkers,
-    markersError: markersErrorParaglidingAndLandingMarkers
+    markersError: markersErrorParaglidingAndLandingMarkers,
   } = useParaglidingLocationsAndLandings({
     mapInstance,
     onParaglidingMarkerClick,
     onLandingMarkerClick,
-    variant
+    variant,
   });
 
   const { closeOverlays } = useOverlayManagement({
     setWindFilterExpanded: filters.setWindFilterExpanded,
     setIsPromisingFilterExpanded: filters.setIsPromisingFilterExpanded,
     setIsFilterControlOpen: filters.setIsFilterControlOpen,
-    closeInfoWindow
+    closeInfoWindow,
   });
 
   // Update the ref with the actual closeOverlays function
@@ -200,7 +213,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     showLandingsLayer: filters.showLandingsLayer,
     selectedWindDirections: filters.selectedWindDirections,
     windFilterAndOperator: filters.windFilterAndOperator,
-    promisingFilter: variant === 'main' ? filters.promisingFilter : null
+    promisingFilter: variant === 'main' ? filters.promisingFilter : null,
   });
 
   useEffect(() => {
@@ -212,7 +225,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       windFilterAndOperator: filters.windFilterAndOperator,
       promisingFilter: variant === 'main' ? filters.promisingFilter : null,
       showSkywaysLayer: filters.showSkywaysLayer,
-      showThermalsLayer: filters.showThermalsLayer
+      showThermalsLayer: filters.showThermalsLayer,
     });
   }, [
     filters.showParaglidingMarkers,
@@ -224,15 +237,17 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     filters.showSkywaysLayer,
     filters.showThermalsLayer,
     variant,
-    updateFilters
+    updateFilters,
   ]);
 
-  const handleMapTypeChange = useCallback((mapType: 'terrain' | 'satellite' | 'osm') => {
-    updateMapType(mapType);
-  }, [updateMapType]);
+  const handleMapTypeChange = useCallback(
+    (mapType: 'terrain' | 'satellite' | 'osm') => {
+      updateMapType(mapType);
+    },
+    [updateMapType]
+  );
 
   return {
-
     mapRef,
     mapInstance,
     isLoading: isLoading,
@@ -246,7 +261,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     weatherStationMarkers: filteredMarkers.filteredWeatherStationMarkers,
     landingMarkers: filteredMarkers.filteredLandingMarkers,
 
-
     ...filters,
 
     // Map type state
@@ -258,6 +272,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     closeOverlays,
     currentLandingMarker,
     clearLandingMarker,
-    showLandingMarker
+    showLandingMarker,
   };
 };
