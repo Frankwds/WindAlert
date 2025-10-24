@@ -204,10 +204,6 @@ function processDescription(description: string, startId: string): string {
   // Fix relative image sources by prepending flightlog.org domain
   processedDescription = processedDescription.replace(/src='\/fl\.html\?([^']*)'/g, "src='https://www.flightlog.org/fl.html?$1'");
 
-  // Add flightlog link
-  const flightlogUrl = `https://flightlog.org/fl.html?l=1a=22country_id=160start_id=${startId}`;
-  processedDescription += `<br/><a href="${flightlogUrl}">${flightlogUrl}</a>`;
-
   return processedDescription;
 }
 
