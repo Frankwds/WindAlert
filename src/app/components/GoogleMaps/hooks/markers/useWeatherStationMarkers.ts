@@ -1,16 +1,23 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { createWeatherStationMarkers } from '../../MarkerSetup';
-import { WeatherStationWithData } from '@/lib/supabase/types';
+import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
-  onWeatherStationMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => void;
+  onWeatherStationMarkerClick: (
+    marker: google.maps.marker.AdvancedMarkerElement,
+    location: WeatherStationWithLatestData
+  ) => void;
   isMain: boolean;
 }
 
-export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerClick, isMain }: UseWeatherStationMarkersProps) => {
+export const useWeatherStationMarkers = ({
+  mapInstance,
+  onWeatherStationMarkerClick,
+  isMain,
+}: UseWeatherStationMarkersProps) => {
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
@@ -33,7 +40,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
       setWeatherStationMarkers(markers);
       hasLoadedInitialMarkers.current = true;
-
     } catch (err) {
       console.error('Error loading weather station markers:', err);
       setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
@@ -116,6 +122,6 @@ export const useWeatherStationMarkers = ({ mapInstance, onWeatherStationMarkerCl
   return {
     weatherStationMarkers,
     isLoadingMarkers,
-    markersError
+    markersError,
   };
 };

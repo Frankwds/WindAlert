@@ -2,7 +2,6 @@ import { supabase } from './client';
 import { StationData } from './types';
 
 export class StationDataService {
-
   /**
    * Get latest data for all stations from materialized view with pagination
    * Automatically fetches all pages like weatherStations.ts
@@ -19,14 +18,16 @@ export class StationDataService {
 
       const { data, error } = await supabase
         .from('latest_station_data_materialized')
-        .select(`
+        .select(
+          `
           station_id,
           wind_speed,
           wind_gust,
           direction,
           temperature,
           updated_at
-        `)
+        `
+        )
         .range(from, to);
 
       if (error) {
@@ -51,5 +52,33 @@ export class StationDataService {
 
     console.log(`Fetched ${allStationData.length} latest station data points from materialized view`);
     return allStationData;
+  }
+
+  /**
+   * Get all historical data for a specific weather station
+   * @param stationId - The station ID to fetch data for
+   */
+  static async getStationDataByStationId(stationId: string): Promise<StationData[]> {
+    const { data, error } = await supabase
+      .from('station_data')
+      .select(
+        `
+        station_id,
+        wind_speed,
+        wind_gust,
+        direction,
+        temperature,
+        updated_at
+      `
+      )
+      .eq('station_id', stationId)
+      .order('updated_at', { ascending: false });
+
+    if (error) {
+      console.error(`Error fetching station data for station ${stationId}:`, error);
+      throw error;
+    }
+
+    return data || [];
   }
 }

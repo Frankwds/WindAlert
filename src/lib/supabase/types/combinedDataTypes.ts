@@ -1,10 +1,18 @@
-import { MinimalForecast } from "./forecastCache";
-import { StationData } from "./stationData";
-import { WeatherStation } from "./weatherStation";
-import { ParaglidingLocation } from "./paraglidingLocation";
+import { MinimalForecast } from './forecastCache';
+import { StationData } from './stationData';
+import { WeatherStation } from './weatherStation';
+import { ParaglidingLocation } from './paraglidingLocation';
 
 // Utility types that extend, omit, or pick from base types
-export type WeatherStationWithData = Pick<WeatherStation,
+export type WeatherStationWithData = Pick<
+  WeatherStation,
+  'id' | 'station_id' | 'name' | 'latitude' | 'longitude' | 'altitude' | 'provider' | 'is_main'
+> & {
+  station_data: StationData[];
+};
+
+export type WeatherStationWithLatestData = Pick<
+  WeatherStation,
   | 'id'
   | 'station_id'
   | 'name'
@@ -13,11 +21,15 @@ export type WeatherStationWithData = Pick<WeatherStation,
   | 'altitude'
   | 'provider'
   | 'is_main'
+  | 'country'
+  | 'is_active'
+  | 'updated_at'
 > & {
-  station_data: StationData[];
+  station_data: StationData; // Single object, not array
 };
 
-export type ParaglidingLocationWithForecast = Pick<ParaglidingLocation,
+export type ParaglidingLocationWithForecast = Pick<
+  ParaglidingLocation,
   | 'id'
   | 'name'
   | 'latitude'
@@ -39,4 +51,3 @@ export type ParaglidingLocationWithForecast = Pick<ParaglidingLocation,
 > & {
   forecast_cache?: MinimalForecast[];
 };
-

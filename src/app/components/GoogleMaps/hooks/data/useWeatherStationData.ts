@@ -1,76 +1,45 @@
 import { useCallback } from 'react';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { StationDataService } from '@/lib/supabase/stationData';
-import { dataCache } from '@/lib/data-cache';
-import { WeatherStationWithData } from '@/lib/supabase/types';
-
-const SAMPLE_SIZE = 50;
-const STALE_THRESHOLD_MINUTES = 35;
-const SUPER_FRESH_THRESHOLD_MINUTES = 10;
-
-const assessCache = (weatherStations: WeatherStationWithData[] | null): { isSuperFresh: boolean, isProbablyStale: boolean } => {
-
-
-  if (!weatherStations || weatherStations.length <= SAMPLE_SIZE) {
-    return { isSuperFresh: false, isProbablyStale: true };
-  }
-
-  // Create a random sample of stations
-  const randomSample = weatherStations
-    .sort(() => 0.5 - Math.random()) // A simple way to shuffle the array
-    .slice(0, SAMPLE_SIZE);         // Take the first 15 from the shuffled list
-
-  // Now, run the efficient check on just this small sample
-  const mostRecentUpdateInSample = randomSample
-    .flatMap(station => station.station_data)
-    .map(dataPoint => new Date(dataPoint.updated_at).getTime())
-    .reduce((max, current) => Math.max(max, current), -Infinity);
-
-  // This result is now a "best guess" based on the sample
-  return {
-    isSuperFresh: mostRecentUpdateInSample > Date.now() - (SUPER_FRESH_THRESHOLD_MINUTES * 60 * 1000),
-    isProbablyStale: mostRecentUpdateInSample < Date.now() - (STALE_THRESHOLD_MINUTES * 60 * 1000)
-  };
-};
+import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 
 export const useWeatherStationData = (isMain: boolean) => {
-
-  const loadLatestWeatherStationData = useCallback(async () => {
+  const loadLatestWeatherStationData = useCallback(async (): Promise<WeatherStationWithLatestData[]> => {
     try {
-      const cachedWeatherStations = await dataCache.getWeatherStations(isMain);
+      // Fetch weather stations metadata
+      const weatherStations = await WeatherStationService.getAllActive(isMain);
 
-      // If a sample of stations have latest data older than 35 minutes, we will getAllActiveWithData
-      const { isSuperFresh, isProbablyStale } = assessCache(cachedWeatherStations);
-
-      if (isSuperFresh) {
-        return cachedWeatherStations;
-      }
-
-      if (!cachedWeatherStations || cachedWeatherStations.length === 0 || isProbablyStale) {
-        // No cache - get all stations with latest data
-        const updatedWeatherStations = await WeatherStationService.getAllActiveWithData(isMain);
-        await dataCache.setWeatherStations(updatedWeatherStations, isMain);
-        return updatedWeatherStations;
-      }
-
-      // We have cached data - get latest data from materialized view
+      // Fetch latest data points for all stations
       const latestData = await StationDataService.getLatestStationData();
 
-      if (latestData && latestData.length > 0) {
-        // Append only new data points to cache
-        const updatedWeatherStations = await dataCache.appendWeatherStationData(cachedWeatherStations, latestData, isMain);
-        return updatedWeatherStations;
-      }
+      // Create a map of station_id to latest data for efficient lookup
+      const latestDataMap = new Map(latestData.map(data => [data.station_id, data]));
 
-      // No new data available, return cached data
-      return cachedWeatherStations;
+      // Combine weather stations with their latest data
+      const stationsWithLatestData: WeatherStationWithLatestData[] = weatherStations
+        .map(station => {
+          const latestStationData = latestDataMap.get(station.station_id);
+          if (!latestStationData) {
+            // Skip stations that don't have any data
+            return null;
+          }
+
+          return {
+            ...station,
+            station_data: latestStationData,
+          } as WeatherStationWithLatestData;
+        })
+        .filter((station): station is WeatherStationWithLatestData => station !== null);
+
+      console.log(`Combined ${stationsWithLatestData.length} weather stations with latest data`);
+      return stationsWithLatestData;
     } catch (err) {
       console.error('Error loading latest weather station data:', err);
       throw err;
     }
-  }, []);
+  }, [isMain]);
 
   return {
-    loadLatestWeatherStationData
+    loadLatestWeatherStationData,
   };
 };

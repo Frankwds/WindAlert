@@ -1,11 +1,21 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useMapInstance, useMapState } from './map';
-import { useWeatherStationMarkers, useMarkerFiltering, useLandingMarker, useParaglidingLocationsAndLandings } from './markers';
+import {
+  useWeatherStationMarkers,
+  useMarkerFiltering,
+  useLandingMarker,
+  useParaglidingLocationsAndLandings,
+} from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement } from './controls';
-import { getMainParaglidingInfoWindow, getAllParaglidingInfoWindow, getWeatherStationInfoWindow, getLandingInfoWindow } from '../InfoWindows';
-import { ParaglidingLocationWithForecast, WeatherStationWithData } from '@/lib/supabase/types';
+import {
+  getMainParaglidingInfoWindow,
+  getAllParaglidingInfoWindow,
+  getWeatherStationInfoWindow,
+  getLandingInfoWindow,
+} from '../InfoWindows';
+import { ParaglidingLocationWithForecast, WeatherStationWithLatestData } from '@/lib/supabase/types';
 
 type Variant = 'main' | 'all';
 
@@ -78,7 +88,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   });
 
   const onWeatherStationMarkerClick = useCallback(
-    (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithData) => {
+    (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithLatestData) => {
       if (!mapInstance) return;
 
       closeOverlaysRef.current();
