@@ -23,9 +23,8 @@ export async function GET(request: NextRequest) {
     const storedData = await Server.upsertManyStationData(stationData);
     console.log(`Successfully stored ${storedData.length} records in database`);
 
-    // Refresh the materialized view after upserting station data
-    await Server.refreshLatestStationData();
-    console.log('Successfully refreshed latest station data materialized view');
+    // Update latest_station_data table
+    await Server.refreshLatestStationData(stationData);
 
     return NextResponse.json({
       success: true,
@@ -34,9 +33,8 @@ export async function GET(request: NextRequest) {
         stored: storedData.length,
         newStations: missingStationIds.length,
       },
-      message: `Successfully stored ${storedData.length} records and upserted ${missingStationIds.length} new stations`
+      message: `Successfully stored ${storedData.length} records and upserted ${missingStationIds.length} new stations`,
     });
-
   } catch (error) {
     console.error('Error processing Holfuy data:', error);
 
@@ -44,7 +42,7 @@ export async function GET(request: NextRequest) {
       {
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error occurred',
-        message: 'Failed to process Holfuy data'
+        message: 'Failed to process Holfuy data',
       },
       { status: 500 }
     );

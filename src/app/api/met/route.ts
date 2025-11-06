@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
           fetched: 0,
           stored: 0,
         },
-        message: 'No MET stations found in database'
+        message: 'No MET stations found in database',
       });
     }
 
@@ -61,21 +61,22 @@ export async function GET(request: NextRequest) {
         // Upsert this batch to database
         const storedBatch = await Server.upsertManyStationData(stationData);
         totalStored += storedBatch.length;
+        await Server.refreshLatestStationData(stationData);
 
         console.log(`Batch ${batchNumber}/${totalBatches}: ${storedBatch.length} records stored\n`);
       } catch (error) {
-        const errorMsg = `Error processing API batch ${batchNumber}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        const errorMsg = `Error processing API batch ${batchNumber}: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`;
         console.error(errorMsg);
         errors.push(errorMsg);
       }
     }
 
     console.log(`\n📊 MET Data Processing Complete:`);
-    console.log(`Stations: ${metStationIds.length} | Fetched: ${totalFetched} | New rows: ${totalStored} | Errors: ${errors.length}`);
-
-    // Refresh the materialized view after all upserting is complete
-    await Server.refreshLatestStationData();
-    console.log('Successfully refreshed latest station data materialized view');
+    console.log(
+      `Stations: ${metStationIds.length} | Fetched: ${totalFetched} | New rows: ${totalStored} | Errors: ${errors.length}`
+    );
 
     return NextResponse.json({
       success: true,
@@ -86,9 +87,8 @@ export async function GET(request: NextRequest) {
         errors: errors.length,
       },
       message: `Successfully stored ${totalStored} out of ${totalFetched} MET station data records from ${metStationIds.length} stations`,
-      ...(errors.length > 0 && { errorDetails: errors })
+      ...(errors.length > 0 && { errorDetails: errors }),
     });
-
   } catch (error) {
     console.error('Error processing MET station data:', error);
 
@@ -96,7 +96,7 @@ export async function GET(request: NextRequest) {
       {
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error occurred',
-        message: 'Failed to process MET station data'
+        message: 'Failed to process MET station data',
       },
       { status: 500 }
     );

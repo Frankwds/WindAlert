@@ -2,7 +2,6 @@ import { supabaseServer } from './serverClient';
 import { ForecastCache1hr, ParaglidingLocation, StationData, WeatherStation } from './types';
 
 export class Server {
-
   /**
    * Update landing coordinates for a paragliding location
    */
@@ -15,7 +14,7 @@ export class Server {
     const updateData: Partial<ParaglidingLocation> = {
       landing_latitude: landingLatitude,
       landing_longitude: landingLongitude,
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     // Only update altitude if it's provided (including 0)
@@ -39,16 +38,18 @@ export class Server {
   }
 
   /**
- * Upsert multiple weather stations
- */
-  static async upsertManyWeatherStation(stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]): Promise<WeatherStation[]> {
+   * Upsert multiple weather stations
+   */
+  static async upsertManyWeatherStation(
+    stations: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
+  ): Promise<WeatherStation[]> {
     if (stations.length === 0) return [];
 
     const { data, error } = await supabaseServer
       .from('weather_stations')
       .upsert(stations, {
         onConflict: 'station_id',
-        ignoreDuplicates: true
+        ignoreDuplicates: true,
       })
       .select();
 
@@ -61,9 +62,9 @@ export class Server {
   }
 
   /**
- * Upsert forecast data (insert or update)
- * @param forecastData 
- */
+   * Upsert forecast data (insert or update)
+   * @param forecastData
+   */
   static async upsertForecastCache(forecastData: ForecastCache1hr[]): Promise<void> {
     const { error } = await supabaseServer
       .from('forecast_cache')
@@ -79,10 +80,7 @@ export class Server {
    * Delete old forecast data before a specific time
    */
   static async deleteOldForecastCache(beforeTime: string): Promise<void> {
-    const { error } = await supabaseServer
-      .from('forecast_cache')
-      .delete()
-      .lt('time', beforeTime);
+    const { error } = await supabaseServer.from('forecast_cache').delete().lt('time', beforeTime);
 
     if (error) {
       console.error('Error deleting old forecast data:', error);
@@ -101,7 +99,7 @@ export class Server {
       .from('station_data')
       .upsert(dataArray, {
         onConflict: 'station_id,updated_at',
-        ignoreDuplicates: true
+        ignoreDuplicates: true,
       })
       .select();
 
@@ -114,14 +112,20 @@ export class Server {
   }
 
   /**
-   * Refresh the latest station data materialized view
-   * Call this after upserting station data to keep the view up to date
+   * Upsert latest station data to the latest_station_data table
+   * Call this after upserting station data to keep the latest data table up to date
+   * @param stationData - Array of station data records to upsert (will overwrite on conflict with station_id)
    */
-  static async refreshLatestStationData(): Promise<void> {
-    const { error } = await supabaseServer.rpc('refresh_latest_station_data');
+  static async refreshLatestStationData(stationData: Omit<StationData, 'id'>[]): Promise<void> {
+    if (stationData.length === 0) return;
+
+    const { error } = await supabaseServer.from('latest_station_data').upsert(stationData, {
+      onConflict: 'station_id',
+      ignoreDuplicates: false,
+    });
 
     if (error) {
-      console.error('Error refreshing latest station data materialized view:', error);
+      console.error('Error upserting latest station data:', error);
       throw error;
     }
   }
@@ -153,13 +157,16 @@ export class Server {
    * Preserves existing landing coordinates and is_main flag by excluding them from the upsert
    */
   static async upsertParaglidingLocation(
-    location: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'>
+    location: Omit<
+      ParaglidingLocation,
+      'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+    >
   ): Promise<ParaglidingLocation> {
     const { data, error } = await supabaseServer
       .from('all_paragliding_locations')
       .upsert(location, {
         onConflict: 'flightlog_id',
-        ignoreDuplicates: false
+        ignoreDuplicates: false,
       })
       .select('*')
       .single();
@@ -177,11 +184,13 @@ export class Server {
   //   stations_processed INTEGER
   // )
   static async compressOldStationData(): Promise<{
-    original_records: number, compressed_records: number, stations_processed: number
+    original_records: number;
+    compressed_records: number;
+    stations_processed: number;
   }> {
     const hourOffset = 4;
     const { data, error } = await supabaseServer.rpc('compress_old_station_data', {
-      hours_old: hourOffset
+      hours_old: hourOffset,
     });
 
     if (error) {
@@ -189,7 +198,6 @@ export class Server {
       throw error;
     }
 
-    return data && data.length > 0 ?
-      data[0] : { original_records: 0, compressed_records: 0, stations_processed: 0 }
+    return data && data.length > 0 ? data[0] : { original_records: 0, compressed_records: 0, stations_processed: 0 };
   }
 }

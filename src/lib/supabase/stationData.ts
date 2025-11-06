@@ -3,7 +3,7 @@ import { StationData } from './types';
 
 export class StationDataService {
   /**
-   * Get latest data for all stations from materialized view with pagination
+   * Get latest data for all stations from latest_station_data table with pagination
    * Automatically fetches all pages like weatherStations.ts
    * @param pageSize - Number of records per page (defaults to 1000)
    */
@@ -17,7 +17,7 @@ export class StationDataService {
       const to = from + pageSize - 1;
 
       const { data, error } = await supabase
-        .from('latest_station_data_materialized')
+        .from('latest_station_data')
         .select(
           `
           station_id,
@@ -31,7 +31,7 @@ export class StationDataService {
         .range(from, to);
 
       if (error) {
-        console.error(`Error fetching latest station data from materialized view on page ${page}:`, error);
+        console.error(`Error fetching latest station data on page ${page}:`, error);
         throw error;
       }
 
@@ -50,7 +50,7 @@ export class StationDataService {
       }
     }
 
-    console.log(`Fetched ${allStationData.length} latest station data points from materialized view`);
+    console.log(`Fetched ${allStationData.length} latest station data points`);
     return allStationData;
   }
 
