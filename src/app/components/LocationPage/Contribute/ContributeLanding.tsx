@@ -62,7 +62,9 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
       return;
     }
 
-    const confirmed = confirm('Er du sikker på at du vil lagre dette landingstedet? Endringen din vil vises for alle som bruker WindLord.');
+    const confirmed = confirm(
+      'Er du sikker på at du vil lagre dette landingstedet? Endringen din vil vises for alle som bruker WindLord.'
+    );
 
     if (confirmed) {
       setError(null); // Clear any previous errors
@@ -97,7 +99,8 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
           });
         } catch (cacheError) {
           console.warn('Failed to update cache:', cacheError);
-          dataCache.clearCache();
+          // Fall back to clearing cache
+          await dataCache.clearCache();
         }
 
         onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
@@ -106,7 +109,9 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
         alert('Landingen er lagret! Takk for bidraget.');
       } catch (error) {
         console.error('Error saving landing coordinates:', error);
-        setError(`Det skjedde en feil. Prøv igjen senere. Meld gjerne fra om feilen via. mail. Legg ved stedets ID som du finner i URLen.`);
+        setError(
+          `Det skjedde en feil. Prøv igjen senere. Meld gjerne fra om feilen via. mail. Legg ved stedets ID som du finner i URLen.`
+        );
       }
     }
   }, [locationId, latitude, longitude, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);
@@ -117,7 +122,12 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
 
   return (
     <div ref={contributeRef}>
-      <Collapsible title='Rediger Landing' isOpen={isOpen} onToggle={handleToggle} className='bg-[var(--card)] border border-[var(--border)] rounded-lg'>
+      <Collapsible
+        title='Rediger Landing'
+        isOpen={isOpen}
+        onToggle={handleToggle}
+        className='bg-[var(--card)] border border-[var(--border)] rounded-lg'
+      >
         {isOpen ? (
           <div className='space-y-4'>
             <div className='text-sm text-[var(--muted)]'>
@@ -130,7 +140,13 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
               </p>
             </div>
 
-            <ContributeMap latitude={latitude} longitude={longitude} landingLatitude={intialLandingLatitude} landingLongitude={initialLandingLongitude} onLandingChange={handleLandingChange} />
+            <ContributeMap
+              latitude={latitude}
+              longitude={longitude}
+              landingLatitude={intialLandingLatitude}
+              landingLongitude={initialLandingLongitude}
+              onLandingChange={handleLandingChange}
+            />
             {error && <div className='text-sm text-[var(--error)] text-center mx-20'>{error}</div>}
             <div className='space-y-3'>
               <div className='flex justify-between items-center'>
@@ -163,8 +179,24 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
 
                 <ButtonAccept
                   onClick={handleSave}
-                  title={currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude) ? 'Lagre endringer' : 'Gjør endringer for å lagre'}
-                  disabled={!currentLandingIsValid(currentLandingLat, currentLandingLng, intialLandingLatitude, initialLandingLongitude)}
+                  title={
+                    currentLandingIsValid(
+                      currentLandingLat,
+                      currentLandingLng,
+                      intialLandingLatitude,
+                      initialLandingLongitude
+                    )
+                      ? 'Lagre endringer'
+                      : 'Gjør endringer for å lagre'
+                  }
+                  disabled={
+                    !currentLandingIsValid(
+                      currentLandingLat,
+                      currentLandingLng,
+                      intialLandingLatitude,
+                      initialLandingLongitude
+                    )
+                  }
                 />
               </div>
             </div>
@@ -175,7 +207,12 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   );
 };
 
-const currentLandingIsValid = (currentLandingLat: number | undefined, currentLandingLng: number | undefined, initialLatitude: number | undefined, initialLongitude: number | undefined) => {
+const currentLandingIsValid = (
+  currentLandingLat: number | undefined,
+  currentLandingLng: number | undefined,
+  initialLatitude: number | undefined,
+  initialLongitude: number | undefined
+) => {
   if (!currentLandingLat || !currentLandingLng) {
     return false;
   }

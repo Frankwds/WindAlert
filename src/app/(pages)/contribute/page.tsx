@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { dataCache } from '@/lib/data-cache';
+import { ParaglidingLocation } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 
 export default function ContributePage() {
   const [startId, setStartId] = useState('');
@@ -35,6 +38,40 @@ export default function ContributePage() {
         return;
       }
 
+      // Get the new location data
+      const newLocation: ParaglidingLocation = await response.json();
+
+      // Add the location to cache if cache exists (without forecast)
+      try {
+        const locationWithForecast: ParaglidingLocationWithForecast = {
+          id: newLocation.id,
+          name: newLocation.name,
+          latitude: newLocation.latitude,
+          longitude: newLocation.longitude,
+          altitude: newLocation.altitude,
+          flightlog_id: newLocation.flightlog_id,
+          is_main: newLocation.is_main,
+          n: newLocation.n,
+          e: newLocation.e,
+          s: newLocation.s,
+          w: newLocation.w,
+          ne: newLocation.ne,
+          se: newLocation.se,
+          sw: newLocation.sw,
+          nw: newLocation.nw,
+          landing_latitude: newLocation.landing_latitude,
+          landing_longitude: newLocation.landing_longitude,
+          landing_altitude: newLocation.landing_altitude,
+          // forecast_cache is optional and not included
+        };
+
+        await dataCache.addParaglidingLocationIfCacheExists(locationWithForecast);
+      } catch (cacheError) {
+        console.warn('Failed to add location to cache:', cacheError);
+        // Fall back to clearing cache
+        await dataCache.clearCache();
+      }
+
       // Success - redirect to the location page
       router.push(`/locations/${startId.trim()}`);
     } catch (error) {
@@ -51,7 +88,10 @@ export default function ContributePage() {
         <h1 className='text-3xl sm:text-4xl font-bold mb-6'>Legg til start</h1>
 
         <div className='bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 shadow-[var(--shadow-md)]'>
-          <p className='text-base sm:text-lg mb-6'>Legg til en ny paragliding-start fra flightlog.org til WindLord. Skriv inn flightlog ID-en for stedet du vil legge til.</p>
+          <p className='text-base sm:text-lg mb-6'>
+            Legg til en ny paragliding-start fra flightlog.org til WindLord. Skriv inn flightlog ID-en for stedet du vil
+            legge til.
+          </p>
 
           <form onSubmit={handleSubmit} className='space-y-4'>
             <div>
@@ -67,7 +107,9 @@ export default function ContributePage() {
                 disabled={isLoading}
                 className='w-full px-3 py-2 border border-[var(--border)] rounded-md bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-50'
               />
-              <p className='text-sm text-[var(--muted)] mt-1'>Du finner flightlog ID-en i URL-en på flightlog.org siden for stedet</p>
+              <p className='text-sm text-[var(--muted)] mt-1'>
+                Du finner flightlog ID-en i URL-en på flightlog.org siden for stedet
+              </p>
             </div>
 
             <button

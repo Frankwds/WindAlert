@@ -2,6 +2,9 @@
 
 import React, { useState, useCallback } from 'react';
 import { ContributeLanding } from './ContributeLanding';
+import { dataCache } from '@/lib/data-cache';
+import { ParaglidingLocation } from '@/lib/supabase/types';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 
 interface ContributeProps {
   locationId: string;
@@ -14,7 +17,16 @@ interface ContributeProps {
   onSave: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
-export const Contribute: React.FC<ContributeProps> = ({ locationId, startId, latitude, longitude, landingLatitude, landingLongitude, landingAltitude, onSave }) => {
+export const Contribute: React.FC<ContributeProps> = ({
+  locationId,
+  startId,
+  latitude,
+  longitude,
+  landingLatitude,
+  landingLongitude,
+  landingAltitude,
+  onSave,
+}) => {
   const [syncError, setSyncError] = useState<string | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
 
@@ -29,6 +41,40 @@ export const Contribute: React.FC<ContributeProps> = ({ locationId, startId, lat
         const errorData = await response.json();
         setSyncError(errorData.error || 'Failed to sync with Flightlog');
         return;
+      }
+
+      // Get the updated location data
+      const updatedLocation: ParaglidingLocation = await response.json();
+
+      // Update the cache with the new location data (without forecast)
+      try {
+        const locationWithForecast: ParaglidingLocationWithForecast = {
+          id: updatedLocation.id,
+          name: updatedLocation.name,
+          latitude: updatedLocation.latitude,
+          longitude: updatedLocation.longitude,
+          altitude: updatedLocation.altitude,
+          flightlog_id: updatedLocation.flightlog_id,
+          is_main: updatedLocation.is_main,
+          n: updatedLocation.n,
+          e: updatedLocation.e,
+          s: updatedLocation.s,
+          w: updatedLocation.w,
+          ne: updatedLocation.ne,
+          se: updatedLocation.se,
+          sw: updatedLocation.sw,
+          nw: updatedLocation.nw,
+          landing_latitude: updatedLocation.landing_latitude,
+          landing_longitude: updatedLocation.landing_longitude,
+          landing_altitude: updatedLocation.landing_altitude,
+          // forecast_cache is optional and not included
+        };
+
+        await dataCache.updateParaglidingLocationById(updatedLocation.id, locationWithForecast);
+      } catch (cacheError) {
+        console.warn('Failed to update cache:', cacheError);
+        // Fall back to clearing cache
+        await dataCache.clearCache();
       }
 
       // Success - reload the page
@@ -76,7 +122,12 @@ export const Contribute: React.FC<ContributeProps> = ({ locationId, startId, lat
 
               <div className='text-[var(--muted)] flex-shrink-0 ml-2'>
                 <svg className='w-4 h-4 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' />
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'
+                  />
                 </svg>
               </div>
             </div>

@@ -184,6 +184,44 @@ class DataCache {
     }
   }
 
+  /**
+   * Add a new location to both caches, but only if the caches exist and have data.
+   * If the location already exists (by id), it will be updated instead.
+   */
+  async addParaglidingLocationIfCacheExists(location: ParaglidingLocationWithForecast): Promise<void> {
+    // Add/update in the main paragliding locations cache
+    const cached = await this.getFromStorage(this.PARAGLIDING_KEY);
+    if (cached && cached.data && Array.isArray(cached.data) && cached.data.length > 0) {
+      const existingIndex = cached.data.findIndex((loc: ParaglidingLocationWithForecast) => loc.id === location.id);
+
+      if (existingIndex >= 0) {
+        // Update existing location
+        const updatedData = [...cached.data];
+        updatedData[existingIndex] = { ...updatedData[existingIndex], ...location };
+        await this.setToStorage(this.PARAGLIDING_KEY, updatedData);
+      } else {
+        // Add new location
+        await this.setToStorage(this.PARAGLIDING_KEY, [...cached.data, location]);
+      }
+    }
+
+    // Add/update in the all paragliding locations cache
+    const allCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
+    if (allCached && allCached.data && Array.isArray(allCached.data) && allCached.data.length > 0) {
+      const existingIndex = allCached.data.findIndex((loc: ParaglidingLocationWithForecast) => loc.id === location.id);
+
+      if (existingIndex >= 0) {
+        // Update existing location
+        const updatedAllData = [...allCached.data];
+        updatedAllData[existingIndex] = { ...updatedAllData[existingIndex], ...location };
+        await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData);
+      } else {
+        // Add new location
+        await this.setToStorage(this.ALL_PARAGLIDING_KEY, [...allCached.data, location]);
+      }
+    }
+  }
+
   async clearCache(): Promise<void> {
     if (typeof window === 'undefined') {
       return;
