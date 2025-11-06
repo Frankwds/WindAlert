@@ -6,7 +6,10 @@ import { ParaglidingLocation } from '@/lib/supabase/types';
  */
 function parseWindDirections(
   altText: string,
-  locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'>
+  locationData: Omit<
+    ParaglidingLocation,
+    'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+  >
 ): void {
   // Split by spaces and clean up
   const parts = altText
@@ -50,7 +53,9 @@ function parseWindDirections(
  */
 function extractLocationName(html: string): string {
   // Look for the last italic span without a link in the breadcrumb
-  const breadcrumbMatch = html.match(/<span style='font-style:italic;'><a[^>]*>([^<]+)<\/a><\/span> <span style='font-family:Courier'>-><\/span> <span style='font-style:italic;'>([^<]+)<\/span>/);
+  const breadcrumbMatch = html.match(
+    /<span style='font-style:italic;'><a[^>]*>([^<]+)<\/a><\/span> <span style='font-family:Courier'>-><\/span> <span style='font-style:italic;'>([^<]+)<\/span>/
+  );
   if (breadcrumbMatch) {
     return breadcrumbMatch[2];
   }
@@ -70,13 +75,29 @@ function extractLocationName(html: string): string {
 }
 
 /**
- * Extract country from breadcrumb navigation
+ * Country ID to country name mapping
+ * Maps flightlog.org country_id values to country names
+ */
+const COUNTRY_ID_MAP: Record<number, string> = {
+  144: 'Morocco',
+  160: 'Norway',
+  // Add more mappings as needed
+};
+
+/**
+ * Extract country from "show in google earth" link
+ * The country_id in this link is the correct one, unlike the breadcrumb which may be wrong
  */
 function extractCountry(html: string): string {
-  // Look for country link in breadcrumb (e.g., <a href='...country_id=144'>Morocco</a>)
-  const countryMatch = html.match(/<span style='font-style:italic;'><a[^>]*country_id=\d+[^>]*>([^<]+)<\/a><\/span>/);
-  if (countryMatch) {
-    return countryMatch[1];
+  // Look for country_id in the "show in google earth" link
+  // Example: <a href='...map=google_earth&country_id=144&...'>'show in google earth'</a>
+  const googleEarthMatch = html.match(/map=google_earth[^']*country_id=(\d+)/);
+  if (googleEarthMatch) {
+    const countryId = parseInt(googleEarthMatch[1], 10);
+    const countryName = COUNTRY_ID_MAP[countryId];
+    if (countryName) {
+      return countryName;
+    }
   }
 
   // Return empty string if no country found
@@ -86,9 +107,17 @@ function extractCountry(html: string): string {
 /**
  * Extract location data from HTML
  */
-function extractLocationData(html: string): Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> {
+function extractLocationData(
+  html: string
+): Omit<
+  ParaglidingLocation,
+  'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+> {
   // Initialize empty location data
-  const locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> = {
+  const locationData: Omit<
+    ParaglidingLocation,
+    'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+  > = {
     name: '',
     country: '',
     altitude: 0,
@@ -153,7 +182,10 @@ function extractLocationData(html: string): Omit<ParaglidingLocation, 'id' | 'cr
           parseWindDirections(windImageMatch[1], locationData);
 
           // Remove the wind direction image from description
-          locationData.description = locationData.description.replace(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g, '');
+          locationData.description = locationData.description.replace(
+            /<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g,
+            ''
+          );
         }
 
         // Clean up description
@@ -184,10 +216,16 @@ function processDescription(description: string): string {
   let processedDescription = description.replace(/<br\s*\/?>/gi, '<br/>').trim();
 
   // Fix relative photo links by prepending flightlog.org domain and add target="_blank"
-  processedDescription = processedDescription.replace(/href='\/fl\.html\?([^']*)'/g, "href='https://www.flightlog.org/fl.html?$1' target='_blank'");
+  processedDescription = processedDescription.replace(
+    /href='\/fl\.html\?([^']*)'/g,
+    "href='https://www.flightlog.org/fl.html?$1' target='_blank'"
+  );
 
   // Fix relative image sources by prepending flightlog.org domain
-  processedDescription = processedDescription.replace(/src='\/fl\.html\?([^']*)'/g, "src='https://www.flightlog.org/fl.html?$1'");
+  processedDescription = processedDescription.replace(
+    /src='\/fl\.html\?([^']*)'/g,
+    "src='https://www.flightlog.org/fl.html?$1'"
+  );
 
   return processedDescription;
 }
@@ -195,7 +233,13 @@ function processDescription(description: string): string {
 /**
  * Process HTML from flightlog.org and extract paragliding location data
  */
-export function processHTML(html: string, startId: string): Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'> {
+export function processHTML(
+  html: string,
+  startId: string
+): Omit<
+  ParaglidingLocation,
+  'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+> {
   // Extract location data from HTML
   const locationData = extractLocationData(html);
 
