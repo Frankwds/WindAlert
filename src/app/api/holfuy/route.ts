@@ -17,23 +17,72 @@ export async function GET(request: NextRequest) {
     const { stationData, holfuyStation } = await fetchHolfuyData();
     console.log(`Successfully fetched ${stationData.length} records from Holfuy API`);
 
-    // Upsert only the missing stations
-    const missingStationIds = await Server.upsertManyWeatherStation(holfuyStation);
-    // Store all station data in database
-    const storedData = await Server.upsertManyStationData(stationData);
-    console.log(`Successfully stored ${storedData.length} records in database`);
+    // Step 1: Upsert stations in batches
+    const STATION_BATCH_SIZE = 200;
+    let totalNewStations = 0;
+    const stationErrors: string[] = [];
 
-    // Update latest_station_data table
-    await Server.refreshLatestStationData(stationData);
+    for (let i = 0; i < holfuyStation.length; i += STATION_BATCH_SIZE) {
+      const stationBatch = holfuyStation.slice(i, i + STATION_BATCH_SIZE);
+      const batchNumber = Math.floor(i / STATION_BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(holfuyStation.length / STATION_BATCH_SIZE);
+
+      try {
+        const missingStationIds = await Server.upsertManyWeatherStation(stationBatch);
+        totalNewStations += missingStationIds.length;
+        console.log(`Station batch ${batchNumber}/${totalBatches}: ${missingStationIds.length} new stations upserted`);
+      } catch (error) {
+        const errorMsg = `Error processing station batch ${batchNumber}: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`;
+        console.error(errorMsg);
+        stationErrors.push(errorMsg);
+      }
+    }
+
+    // Step 2: Store station data in batches
+    const DATA_BATCH_SIZE = 200;
+    let totalStored = 0;
+    const dataErrors: string[] = [];
+
+    for (let i = 0; i < stationData.length; i += DATA_BATCH_SIZE) {
+      const dataBatch = stationData.slice(i, i + DATA_BATCH_SIZE);
+      const batchNumber = Math.floor(i / DATA_BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(stationData.length / DATA_BATCH_SIZE);
+
+      try {
+        const storedBatch = await Server.upsertManyStationData(dataBatch);
+        totalStored += storedBatch.length;
+        await Server.refreshLatestStationData(dataBatch);
+        console.log(`Data batch ${batchNumber}/${totalBatches}: ${storedBatch.length} records stored`);
+      } catch (error) {
+        const errorMsg = `Error processing data batch ${batchNumber}: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`;
+        console.error(errorMsg);
+        dataErrors.push(errorMsg);
+      }
+    }
+
+    console.log(`\n📊 Holfuy Data Processing Complete:`);
+    console.log(
+      `Fetched: ${stationData.length} | Stored: ${totalStored} | New stations: ${totalNewStations} | Errors: ${
+        stationErrors.length + dataErrors.length
+      }`
+    );
 
     return NextResponse.json({
       success: true,
       data: {
         fetched: stationData.length,
-        stored: storedData.length,
-        newStations: missingStationIds.length,
+        stored: totalStored,
+        newStations: totalNewStations,
+        errors: stationErrors.length + dataErrors.length,
       },
-      message: `Successfully stored ${storedData.length} records and upserted ${missingStationIds.length} new stations`,
+      message: `Successfully stored ${totalStored} out of ${stationData.length} records and upserted ${totalNewStations} new stations`,
+      ...((stationErrors.length > 0 || dataErrors.length > 0) && {
+        errorDetails: [...stationErrors, ...dataErrors],
+      }),
     });
   } catch (error) {
     console.error('Error processing Holfuy data:', error);
