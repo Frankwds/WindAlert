@@ -8,7 +8,6 @@
 // import path from 'path';
 // import { batchImportKmlData } from './importKmlData';
 
-
 // async function main() {
 //   try {
 //     console.log('🚀 Starting paragliding locations import...\n');

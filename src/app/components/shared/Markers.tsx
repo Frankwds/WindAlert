@@ -2,11 +2,11 @@ import { ParaglidingLocationWithForecast, StationData } from '@/lib/supabase/typ
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
-  const svgNS = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(svgNS, "svg");
-  svg.setAttribute("width", "40");
-  svg.setAttribute("height", "40");
-  svg.setAttribute("viewBox", "0 0 40 40");
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', '40');
+  svg.setAttribute('height', '40');
+  svg.setAttribute('viewBox', '0 0 40 40');
   svg.style.userSelect = 'none';
 
   const directions = [
@@ -26,12 +26,12 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
 
   const getArcPath = (startAngle: number, endAngle: number) => {
     const start = {
-      x: center + radius * Math.cos(startAngle * Math.PI / 180),
-      y: center + radius * Math.sin(startAngle * Math.PI / 180),
+      x: center + radius * Math.cos((startAngle * Math.PI) / 180),
+      y: center + radius * Math.sin((startAngle * Math.PI) / 180),
     };
     const end = {
-      x: center + radius * Math.cos(endAngle * Math.PI / 180),
-      y: center + radius * Math.sin(endAngle * Math.PI / 180),
+      x: center + radius * Math.cos((endAngle * Math.PI) / 180),
+      y: center + radius * Math.sin((endAngle * Math.PI) / 180),
     };
     return `M ${start.x} ${start.y} A ${radius} ${radius} 0 0 1 ${end.x} ${end.y}`;
   };
@@ -39,11 +39,11 @@ const createDirectionCircle = (directionSymbols: string[]): SVGElement => {
   directions.forEach(({ name, angle }) => {
     const isVisible = directionSymbols.includes(name);
     if (isVisible) {
-      const path = document.createElementNS(svgNS, "path");
-      path.setAttribute("d", getArcPath(angle - 20, angle + 20));
-      path.setAttribute("stroke", "rgb(0, 128, 0)");
-      path.setAttribute("stroke-width", strokeWidth.toString());
-      path.setAttribute("fill", "none");
+      const path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('d', getArcPath(angle - 20, angle + 20));
+      path.setAttribute('stroke', 'rgb(0, 128, 0)');
+      path.setAttribute('stroke-width', strokeWidth.toString());
+      path.setAttribute('fill', 'none');
       svg.appendChild(path);
     }
   });
@@ -74,9 +74,11 @@ export const createParaglidingMarkerElement = (): HTMLElement => {
   container.appendChild(img);
 
   return container;
-}
+};
 
-export const createParaglidingMarkerElementWithDirection = (location?: ParaglidingLocationWithForecast): HTMLElement => {
+export const createParaglidingMarkerElementWithDirection = (
+  location?: ParaglidingLocationWithForecast
+): HTMLElement => {
   const container = document.createElement('div');
   container.style.position = 'relative';
   container.style.width = '32px';
@@ -106,8 +108,7 @@ export const createParaglidingMarkerElementWithDirection = (location?: Paraglidi
   container.appendChild(img);
 
   return container;
-}
-
+};
 
 // Function to determine wind arrow color based on speed
 const getWindArrowColor = (speed: number): string => {
@@ -143,7 +144,8 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
 
 export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWindDirection: number): HTMLElement => {
   const container = document.createElement('div');
-  container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.className =
+    'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
   container.style.transform = 'translate(0%, 50%)';
@@ -157,9 +159,9 @@ export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWi
 };
 
 export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {
-
   const container = document.createElement('div');
-  container.className = 'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.className =
+    'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
   container.style.cursor = 'pointer';
   container.style.userSelect = 'none';
   container.style.transform = 'translate(0%, 50%)';
@@ -170,8 +172,7 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
     return container;
   }
 
-  const latestData = stationData
-    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
+  const latestData = stationData.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
 
   const windColor = getWindArrowColor(latestData.wind_speed);
   const svg = createHollowWindTriangleSVG(false, latestData.direction, windColor);
@@ -212,7 +213,6 @@ export const createLandingMarkerElement = (): HTMLElement => {
   container.style.cursor = 'pointer';
   container.style.transform = 'translate(0%, 50%)';
 
-
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '24');
   svg.setAttribute('height', '32');
@@ -224,17 +224,26 @@ export const createLandingMarkerElement = (): HTMLElement => {
   // Main pin body (dark green with white border)
   const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   mainPath.setAttribute('style', 'fill:darkgreen;stroke:white;stroke-width:8;');
-  mainPath.setAttribute('d', 'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   L62.275,362.141c-7.231-7.157-13.872-14.905-19.996-23.095C15.716,303.703,0,259.726,0,212.061   c0-51.06,18.077-97.914,48.182-134.512c8.78-10.773,18.668-20.586,29.366-29.367C114.147,18.077,161.074,0,212.134,0   c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z');
+  mainPath.setAttribute(
+    'd',
+    'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   L62.275,362.141c-7.231-7.157-13.872-14.905-19.996-23.095C15.716,303.703,0,259.726,0,212.061   c0-51.06,18.077-97.914,48.182-134.512c8.78-10.773,18.668-20.586,29.366-29.367C114.147,18.077,161.074,0,212.134,0   c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z'
+  );
 
   // Center circle (brown)
   const centerPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   centerPath.setAttribute('style', 'fill:white;');
-  centerPath.setAttribute('d', 'M339.392,212.081c0,70.284-56.968,127.258-127.259,127.258   c-70.277,0-127.258-56.974-127.258-127.258S141.856,84.822,212.133,84.822C282.424,84.822,339.392,141.797,339.392,212.081z');
+  centerPath.setAttribute(
+    'd',
+    'M339.392,212.081c0,70.284-56.968,127.258-127.259,127.258   c-70.277,0-127.258-56.974-127.258-127.258S141.856,84.822,212.133,84.822C282.424,84.822,339.392,141.797,339.392,212.081z'
+  );
 
   // Shadow/overlay (dark brown with opacity)
   const shadowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   shadowPath.setAttribute('style', 'opacity:0.13;fill:#604C3F;');
-  shadowPath.setAttribute('d', 'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   V0c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z');
+  shadowPath.setAttribute(
+    'd',
+    'M424.269,212.061c0,58.586-23.759,111.638-62.128,150.007L213.684,510.451L212.134,512   V0c40.655,0,78.582,11.437,110.826,31.211c28.555,17.487,52.609,41.541,70.097,70.097   C412.831,133.552,424.269,171.478,424.269,212.061z'
+  );
 
   // Add 'L' text in the center
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');

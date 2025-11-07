@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface WindCompassProps {
   allowedDirections: string[];
 }
 
 const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
-  const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
+  const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = 20;
@@ -26,14 +26,14 @@ const TinyWindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
   };
 
   return (
-    <svg viewBox="0 0 44 44" className="w-11 h-11">
+    <svg viewBox='0 0 44 44' className='w-11 h-11'>
       {directions.map((dir, i) => {
         const isAllowed = allowedDirections.includes(dir);
         return (
           <g key={dir}>
             <path
               d={getPath(i)}
-              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isAllowed ? "fill-[var(--success)]" : ""}`}
+              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isAllowed ? 'fill-[var(--success)]' : ''}`}
             />
           </g>
         );

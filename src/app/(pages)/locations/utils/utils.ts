@@ -4,20 +4,23 @@ import { ForecastCache1hr } from '@/lib/supabase/types';
 export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
   const sixHourSymbolsByDay: Record<string, string[]> = {};
 
-  const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce((acc, hour) => {
-    const utcDate = new Date(hour.time);
-    const formatter = new Intl.DateTimeFormat('nb-NO', {
-      timeZone: 'Europe/Oslo',
-      weekday: 'long',
-    });
-    const day = formatter.format(utcDate).toLowerCase();
+  const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce(
+    (acc, hour) => {
+      const utcDate = new Date(hour.time);
+      const formatter = new Intl.DateTimeFormat('nb-NO', {
+        timeZone: 'Europe/Oslo',
+        weekday: 'long',
+      });
+      const day = formatter.format(utcDate).toLowerCase();
 
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(hour);
-    return acc;
-  }, {} as Record<string, WeatherDataPointYr1h[]>);
+      if (!acc[day]) {
+        acc[day] = [];
+      }
+      acc[day].push(hour);
+      return acc;
+    },
+    {} as Record<string, WeatherDataPointYr1h[]>
+  );
 
   Object.entries(yrdataGroupedByDay).forEach(([day, hours]) => {
     if (!sixHourSymbolsByDay[day]) {
@@ -73,19 +76,22 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
 }
 
 export function groupForecastByDay(forecast: ForecastCache1hr[]) {
-  const groupedByDay = forecast.reduce((acc, hour) => {
-    const utcDate = new Date(hour.time);
-    const formatter = new Intl.DateTimeFormat('nb-NO', {
-      timeZone: 'Europe/Oslo',
-      weekday: 'long',
-    });
-    const day = formatter.format(utcDate).toLowerCase();
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(hour);
-    return acc;
-  }, {} as Record<string, ForecastCache1hr[]>);
+  const groupedByDay = forecast.reduce(
+    (acc, hour) => {
+      const utcDate = new Date(hour.time);
+      const formatter = new Intl.DateTimeFormat('nb-NO', {
+        timeZone: 'Europe/Oslo',
+        weekday: 'long',
+      });
+      const day = formatter.format(utcDate).toLowerCase();
+      if (!acc[day]) {
+        acc[day] = [];
+      }
+      acc[day].push(hour);
+      return acc;
+    },
+    {} as Record<string, ForecastCache1hr[]>
+  );
 
   if (Object.keys(groupedByDay).length > 0) {
     const lastDayIndex = Object.keys(groupedByDay).length - 1;

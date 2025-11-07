@@ -59,5 +59,3 @@ const Clusterer: React.FC<ClustererProps> = ({ map, markers, renderer, algorithm
 };
 
 export default Clusterer;
-
-

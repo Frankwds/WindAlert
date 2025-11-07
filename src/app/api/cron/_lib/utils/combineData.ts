@@ -3,8 +3,6 @@ import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
 import { ForecastCache1hr } from '../../../../../lib/supabase/types';
 
 function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
-
-
   let isDay: 0 | 1 = 0;
   if (yrDataPoint?.symbol_code.includes('night')) {
     isDay = 0;
@@ -87,4 +85,3 @@ export function combineDataSources(meteoData: WeatherDataPoint[], yrData: Weathe
 
   return result;
 }
-

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
@@ -40,66 +40,72 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     };
   }, []);
 
-
   return (
     <>
       {/* Backdrop - positioned below navigation */}
       {isOpen && (
         <div
-          className="fixed top-[var(--nav-height,80px)] left-0 right-0 bottom-0 z-10"
+          className='fixed top-[var(--nav-height,80px)] left-0 right-0 bottom-0 z-10'
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      <div className="relative" ref={menuRef}>
+      <div className='relative' ref={menuRef}>
         <button
           onClick={toggleMenu}
           className={`p-2 rounded-md transition-all duration-200text-[var(--nav-text)]/80 cursor-pointer ${!isMobile ? 'hover:bg-[var(--nav-text)]/10' : ''}`}
-          aria-label="Åpne meny"
+          aria-label='Åpne meny'
           aria-expanded={isOpen}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
+          <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
+            />
           </svg>
         </button>
 
         <div
-          className={`absolute right-[-16px] top-[calc(var(--nav-height,80px)-16px)] w-64 bg-[var(--nav-bg)] rounded-b-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-            }`}
+          className={`absolute right-[-16px] top-[calc(var(--nav-height,80px)-16px)] w-64 bg-[var(--nav-bg)] rounded-b-md border border-[var(--nav-text)]/20 shadow-xl z-20 transition-all duration-300 ease-in-out transform origin-top-right ${
+            isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          }`}
         >
-          <ul className="py-1">
+          <ul className='py-1'>
             {links.map(({ href, label, description, external }) => (
               <li key={href}>
                 <Link
                   href={href}
                   target={external ? '_blank' : '_self'}
                   rel={external ? 'noopener noreferrer' : ''}
-                  className={`block px-4 py-2 text-sm transition-all duration-200 flex items-center select-none ${pathname === href
-                    ? "bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium"
-                    : "text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]"
-                    }`}
+                  className={`block px-4 py-2 text-sm transition-all duration-200 flex items-center select-none ${
+                    pathname === href
+                      ? 'bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium'
+                      : 'text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]'
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
-                  <div className="flex items-center">
+                  <div className='flex items-center'>
                     <span>{label}</span>
                     {external && (
-                      <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      <svg className='w-3 h-3 ml-1 flex-shrink-0' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+                        />
                       </svg>
                     )}
-                    {description && (
-                      <span className="text-xs text-[var(--nav-text)]/50 ml-1">
-                        {description}
-                      </span>
-                    )}
-
+                    {description && <span className='text-xs text-[var(--nav-text)]/50 ml-1'>{description}</span>}
                   </div>
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="border-t border-[var(--nav-text)]/20 my-1"></div>
-          <div className="px-1 py-1">
+          <div className='border-t border-[var(--nav-text)]/20 my-1'></div>
+          <div className='px-1 py-1'>
             <LoginButton />
           </div>
         </div>

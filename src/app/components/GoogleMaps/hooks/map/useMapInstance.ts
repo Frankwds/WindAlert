@@ -5,7 +5,7 @@ import { useThermalsLayer, useSkywaysLayer, useOSMMapType } from './useMapLayers
 const MAP_CONFIG = {
   DEFAULT_CENTER: { lat: 60.5, lng: 8.5 },
   DEFAULT_ZOOM: 5,
-  MAP_ID: 'WindLordMapID'
+  MAP_ID: 'WindLordMapID',
 } as const;
 
 interface MapState {
@@ -23,7 +23,15 @@ interface UseMapInstanceProps {
   initialMapType?: 'terrain' | 'satellite' | 'osm';
 }
 
-export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSkywaysLayer = false, showThermalsLayer = false, onMapPositionChange, initialMapType = 'terrain' }: UseMapInstanceProps) => {
+export const useMapInstance = ({
+  initialMapState,
+  onMapReady,
+  onMapClick,
+  showSkywaysLayer = false,
+  showThermalsLayer = false,
+  onMapPositionChange,
+  initialMapType = 'terrain',
+}: UseMapInstanceProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,7 +55,6 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
     onMapClickRef.current = onMapClick;
   }, [onMapClick]);
 
-
   useEffect(() => {
     const initMap = async () => {
       try {
@@ -56,24 +63,27 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
 
         const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
         if (!apiKey || apiKey === 'GOOGLE_MAPS_API_KEY') {
-          throw new Error('Google Maps API key is not configured. Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your environment variables.');
+          throw new Error(
+            'Google Maps API key is not configured. Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your environment variables.'
+          );
         }
 
         const loader = new Loader({
           apiKey,
           version: 'weekly',
-          libraries: ['places', 'marker']
+          libraries: ['places', 'marker'],
         });
 
         const google = await loader.load();
 
         if (!mapRef.current) return;
 
-        const mapTypeId = initialMapType === 'osm'
-          ? 'osm'
-          : initialMapType === 'satellite'
-            ? google.maps.MapTypeId.HYBRID
-            : google.maps.MapTypeId.TERRAIN;
+        const mapTypeId =
+          initialMapType === 'osm'
+            ? 'osm'
+            : initialMapType === 'satellite'
+              ? google.maps.MapTypeId.HYBRID
+              : google.maps.MapTypeId.TERRAIN;
 
         const map = new google.maps.Map(mapRef.current, {
           center: initialMapState?.center ?? MAP_CONFIG.DEFAULT_CENTER,
@@ -85,7 +95,7 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
           fullscreenControl: false,
           zoomControl: false,
           clickableIcons: false,
-          scrollwheel: true
+          scrollwheel: true,
         });
 
         map.addListener('click', () => onMapClickRef.current());
@@ -106,18 +116,14 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
             const center = map.getCenter();
             const zoom = map.getZoom();
             if (center && zoom) {
-              onMapPositionChange(
-                { lat: center.lat(), lng: center.lng() },
-                zoom
-              );
+              onMapPositionChange({ lat: center.lat(), lng: center.lng() }, zoom);
             }
-          }
+          };
 
           // Listen for zoom and pan changes
           map.addListener('zoom_changed', savePosition);
           map.addListener('dragend', savePosition);
         }
-
       } catch (err) {
         console.error('Error initializing Google Maps:', err);
         setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
@@ -188,6 +194,6 @@ export const useMapInstance = ({ initialMapState, onMapReady, onMapClick, showSk
     mapRef,
     mapInstance,
     isLoading,
-    error
+    error,
   };
 };

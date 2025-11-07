@@ -19,5 +19,4 @@ export interface AlertRule {
   MIN_LIFTED_INDEX: number;
   MAX_LIFTED_INDEX: number;
   MIN_CONVECTIVE_INHIBITION: number;
-
 }

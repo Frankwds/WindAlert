@@ -14,7 +14,7 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({
   map,
   className = '',
   initialMapType = 'terrain',
-  onMapTypeChange
+  onMapTypeChange,
 }) => {
   const [currentMapType, setCurrentMapType] = useState<'terrain' | 'satellite' | 'osm'>(initialMapType);
 
@@ -34,17 +34,14 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({
   const handleToggle = () => {
     if (!map) return;
 
-    const nextMapType = currentMapType === 'terrain'
-      ? 'satellite'
-      : currentMapType === 'satellite'
-        ? 'osm'
-        : 'terrain';
+    const nextMapType = currentMapType === 'terrain' ? 'satellite' : currentMapType === 'satellite' ? 'osm' : 'terrain';
 
-    const mapTypeId = nextMapType === 'osm'
-      ? 'osm'
-      : nextMapType === 'satellite'
-        ? google.maps.MapTypeId.HYBRID
-        : google.maps.MapTypeId.TERRAIN;
+    const mapTypeId =
+      nextMapType === 'osm'
+        ? 'osm'
+        : nextMapType === 'satellite'
+          ? google.maps.MapTypeId.HYBRID
+          : google.maps.MapTypeId.TERRAIN;
 
     map.setMapTypeId(mapTypeId);
     setCurrentMapType(nextMapType);
@@ -54,48 +51,23 @@ export const MapLayerToggle: React.FC<MapLayerToggleProps> = ({
   if (!map) return null;
 
   const getNextMapType = () => {
-    return currentMapType === 'terrain'
-      ? 'satellite'
-      : currentMapType === 'satellite'
-        ? 'osm'
-        : 'terrain';
+    return currentMapType === 'terrain' ? 'satellite' : currentMapType === 'satellite' ? 'osm' : 'terrain';
   };
 
   const nextMapType = getNextMapType();
 
   return (
     <div className={`absolute bottom-3 left-3 z-10 ${className}`}>
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         <button
           onClick={handleToggle}
-          className="relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)] select-none transition-all duration-200 hover:scale-105"
+          className='relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer ring-2 ring-[var(--accent)] select-none transition-all duration-200 hover:scale-105'
         >
-          {nextMapType === 'terrain' && (
-            <Image
-              src="/terrain.png"
-              alt="Terrain"
-              fill
-              sizes="64px"
-            />
-          )}
-          {nextMapType === 'satellite' && (
-            <Image
-              src="/satellite.png"
-              alt="Satellite"
-              fill
-              sizes="64px"
-            />
-          )}
-          {nextMapType === 'osm' && (
-            <Image
-              src="/osm.png"
-              alt="OpenStreetMap"
-              fill
-              sizes="64px"
-            />
-          )}
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-            <span className="text-white text-xs font-bold">
+          {nextMapType === 'terrain' && <Image src='/terrain.png' alt='Terrain' fill sizes='64px' />}
+          {nextMapType === 'satellite' && <Image src='/satellite.png' alt='Satellite' fill sizes='64px' />}
+          {nextMapType === 'osm' && <Image src='/osm.png' alt='OpenStreetMap' fill sizes='64px' />}
+          <div className='absolute inset-0 bg-black/20 flex items-center justify-center'>
+            <span className='text-white text-xs font-bold'>
               {nextMapType === 'terrain' ? 'Terrain' : nextMapType === 'satellite' ? 'Satellite' : 'OSM'}
             </span>
           </div>

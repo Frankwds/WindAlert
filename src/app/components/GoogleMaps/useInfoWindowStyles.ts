@@ -114,8 +114,8 @@ export const useInfoWindowStyles = () => {
     applyStyles();
 
     // Listen for theme changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
           // Small delay to ensure theme variables are updated
           setTimeout(applyStyles, 50);
@@ -126,7 +126,7 @@ export const useInfoWindowStyles = () => {
     // Start observing the document for theme changes
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme']
+      attributeFilter: ['data-theme'],
     });
 
     return () => {

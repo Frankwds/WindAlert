@@ -9,23 +9,21 @@ export const useInfoWindows = () => {
     }
   }, []);
 
-
-  const openInfoWindow = useCallback((
-    mapInstance: google.maps.Map,
-    marker: google.maps.marker.AdvancedMarkerElement,
-    content: string | HTMLElement
-  ) => {
-    if (infoWindowRef.current && mapInstance) {
-      // Close any existing info window first
-      infoWindowRef.current.close();
-      infoWindowRef.current.setContent(content);
-      infoWindowRef.current.open(mapInstance, marker);
-    }
-  }, []);
+  const openInfoWindow = useCallback(
+    (mapInstance: google.maps.Map, marker: google.maps.marker.AdvancedMarkerElement, content: string | HTMLElement) => {
+      if (infoWindowRef.current && mapInstance) {
+        // Close any existing info window first
+        infoWindowRef.current.close();
+        infoWindowRef.current.setContent(content);
+        infoWindowRef.current.open(mapInstance, marker);
+      }
+    },
+    []
+  );
 
   return {
     infoWindowRef,
     closeInfoWindow,
-    openInfoWindow
+    openInfoWindow,
   };
 };

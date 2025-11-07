@@ -1,10 +1,13 @@
 import { z } from 'zod';
 
-export const metFrostGeometrySchema = z.object({
-  '@type': z.string(), // Allow any string instead of strict literal
-  coordinates: z.tuple([z.number(), z.number()]), // [longitude, latitude]
-  nearest: z.boolean(),
-}).nullable().optional();
+export const metFrostGeometrySchema = z
+  .object({
+    '@type': z.string(), // Allow any string instead of strict literal
+    coordinates: z.tuple([z.number(), z.number()]), // [longitude, latitude]
+    nearest: z.boolean(),
+  })
+  .nullable()
+  .optional();
 
 export const metFrostStationSchema = z.object({
   '@type': z.string(), // Allow any string instead of strict literal

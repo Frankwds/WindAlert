@@ -24,7 +24,8 @@ export interface ParaglidingLocation {
   landing_altitude?: number;
 }
 
-export type MinimalParaglidingLocation = Pick<ParaglidingLocation,
+export type MinimalParaglidingLocation = Pick<
+  ParaglidingLocation,
   | 'id'
   | 'latitude'
   | 'longitude'

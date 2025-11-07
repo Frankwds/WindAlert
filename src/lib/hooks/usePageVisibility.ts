@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
  * @returns A ref that indicates whether the page is currently visible
  */
 export const usePageVisibility = () => {
-
   const isVisibleRef = useRef<boolean>(true);
   const [isVisibleState, setIsVisibleState] = useState<boolean>(true);
 

@@ -5,7 +5,8 @@ import { mapHolfuyToStationData } from './mapping';
 import { StationData, WeatherStation } from '../supabase/types';
 
 export async function fetchHolfuyData(): Promise<{
-  stationData: Omit<StationData, 'id'>[], holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[]
+  stationData: Omit<StationData, 'id'>[];
+  holfuyStation: Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[];
 }> {
   const proxyUrl = process.env.FIXIE_URL;
   const apiKey = process.env.HOLFUY_API_KEY;
@@ -29,8 +30,8 @@ export async function fetchHolfuyData(): Promise<{
       protocol: 'http',
       host: fixieUrl.hostname,
       port: parseInt(fixieUrl.port),
-      auth: { username: fixieAuth[0], password: fixieAuth[1] }
-    }
+      auth: { username: fixieAuth[0], password: fixieAuth[1] },
+    },
   });
 
   // Validate and parse the response data

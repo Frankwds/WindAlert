@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface GoogleMapsProps {
   latitude: number;
@@ -57,10 +57,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing_la
 
   if (loading) {
     return (
-      <div className="p-4 flex flex-col items-center">
-        <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
-        <div className="flex justify-center items-center min-h-[400px]">
-          <p className="text-[var(--foreground)]">Loading map...</p>
+      <div className='p-4 flex flex-col items-center'>
+        <h4 className='text-lg font-bold mb-2 text-[var(--foreground)]'>Google Maps</h4>
+        <div className='flex justify-center items-center min-h-[400px]'>
+          <p className='text-[var(--foreground)]'>Loading map...</p>
         </div>
       </div>
     );
@@ -68,34 +68,34 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ latitude, longitude, landing_la
 
   if (error || !mapUrls) {
     return (
-      <div className="p-4 flex flex-col items-center">
-        <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
-        <div className="flex justify-center items-center min-h-[400px]">
-          <p className="text-red-600">{error || 'Failed to load map'}</p>
+      <div className='p-4 flex flex-col items-center'>
+        <h4 className='text-lg font-bold mb-2 text-[var(--foreground)]'>Google Maps</h4>
+        <div className='flex justify-center items-center min-h-[400px]'>
+          <p className='text-red-600'>{error || 'Failed to load map'}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 flex flex-col items-center">
-      <h4 className="text-lg font-bold mb-2 text-[var(--foreground)]">Google Maps</h4>
-      <div className="flex gap-4 flex-wrap justify-center">
+    <div className='p-4 flex flex-col items-center'>
+      <h4 className='text-lg font-bold mb-2 text-[var(--foreground)]'>Google Maps</h4>
+      <div className='flex gap-4 flex-wrap justify-center'>
         <Image
           width={640}
           height={640}
-          className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
+          className='w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]'
           src={mapUrls.hybrid}
-          alt="Map showing location"
+          alt='Map showing location'
           unoptimized // Required for dynamic URLs
           priority
         />
         <Image
           width={640}
           height={640}
-          className="w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]"
+          className='w-full h-auto max-w-[400px] rounded-lg shadow-[var(--shadow-lg)]'
           src={mapUrls.terrain}
-          alt="Map showing location"
+          alt='Map showing location'
           unoptimized // Required for dynamic URLs
           priority
         />

@@ -3,7 +3,6 @@ import { metObservationsResponseSchema } from './zod';
 import { mapMetObservationsToStationData } from './mapping';
 import { StationData } from '../../supabase/types';
 
-
 // Query parameters constants
 const QUERY_PARAMS = {
   // Base URL for MET Frost observations API
@@ -13,13 +12,7 @@ const QUERY_PARAMS = {
   TIME_RANGE: 'latest',
 
   // Elements to fetch
-  ELEMENTS: [
-    'wind_speed',
-    'wind_from_direction',
-    'max(wind_speed_of_gust PT10M)',
-    'air_temperature'
-  ],
-
+  ELEMENTS: ['wind_speed', 'wind_from_direction', 'max(wind_speed_of_gust PT10M)', 'air_temperature'],
 } as const;
 
 /**
@@ -52,9 +45,9 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
       params,
       timeout: 30000, // 30 second timeout
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'User-Agent': 'WindAlert/1.0',
-        'Authorization': `Basic ${authHeader}`,
+        Authorization: `Basic ${authHeader}`,
       },
     });
 
@@ -66,7 +59,6 @@ export async function fetchMetStationData(stationIds: string[]): Promise<Omit<St
 
     console.log(`Fetched ${stationData.length} records from MET API`);
     return stationData;
-
   } catch (error) {
     console.error('Error fetching MET station data:', error);
 

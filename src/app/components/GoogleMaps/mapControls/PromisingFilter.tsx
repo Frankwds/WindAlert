@@ -13,9 +13,21 @@ export const WEATHER_CONDITIONS: WeatherCondition[] = ['clearsky_day', 'fair_day
 
 interface PromisingFilterProps {
   isExpanded: boolean;
-  onFilterChange: (filter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number, selectedWeatherConditions: WeatherCondition[] } | null) => void;
+  onFilterChange: (
+    filter: {
+      selectedDay: number;
+      selectedTimeRange: [number, number];
+      minPromisingHours: number;
+      selectedWeatherConditions: WeatherCondition[];
+    } | null
+  ) => void;
   setIsExpanded: (isExpanded: boolean) => void;
-  initialFilter: { selectedDay: number; selectedTimeRange: [number, number], minPromisingHours: number, selectedWeatherConditions: WeatherCondition[] } | null;
+  initialFilter: {
+    selectedDay: number;
+    selectedTimeRange: [number, number];
+    minPromisingHours: number;
+    selectedWeatherConditions: WeatherCondition[];
+  } | null;
   closeOverlays: (options?: { keep?: string }) => void;
 }
 
@@ -29,9 +41,13 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const isMobile = useIsMobile();
   const currentHour = useMemo(() => new Date().getHours(), []);
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
-  const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
+  const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(
+    initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]
+  );
   const [minPromisingHours, setMinPromisingHours] = useState(initialFilter?.minPromisingHours ?? 3);
-  const [selectedWeatherConditions, setSelectedWeatherConditions] = useState<WeatherCondition[]>(initialFilter?.selectedWeatherConditions ?? []);
+  const [selectedWeatherConditions, setSelectedWeatherConditions] = useState<WeatherCondition[]>(
+    initialFilter?.selectedWeatherConditions ?? []
+  );
   const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
 
   const dayLabels = useMemo(() => {
@@ -43,7 +59,6 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   }, []);
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
-
 
   const handleApply = () => {
     onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions });
@@ -79,7 +94,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   }, [isExpanded, initialFilter, currentHour]);
 
   return (
-    <div className="absolute top-3 right-3 z-10">
+    <div className='absolute top-3 right-3 z-10'>
       <button
         onClick={() => {
           if (!isExpanded) {
@@ -87,39 +102,43 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           }
           setIsExpanded(!isExpanded);
         }}
-        className="w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer select-none"
+        className='w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer select-none'
       >
-        <div className="relative">
-          <Image src="/weather-icons/clearsky_day.svg" alt="Filter promising sites" width={32} height={32} />
+        <div className='relative'>
+          <Image src='/weather-icons/clearsky_day.svg' alt='Filter promising sites' width={32} height={32} />
           {isFilterActive && (
             <Image
-              src="/weather-icons/checkbox.svg"
-              alt="Filter active"
+              src='/weather-icons/checkbox.svg'
+              alt='Filter active'
               width={32}
               height={32}
-              className="absolute inset-0 opacity-70"
+              className='absolute inset-0 opacity-70'
             />
           )}
         </div>
       </button>
 
       {isExpanded && (
-        <div className="absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80">
-          <div className="mb-4">
-            <h3 className="font-bold mb-2">Vis starter med lovende vær:</h3>
-            <div className="flex w-full bg-[var(--border)] p-1 rounded-lg">
+        <div className='absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80'>
+          <div className='mb-4'>
+            <h3 className='font-bold mb-2'>Vis starter med lovende vær:</h3>
+            <div className='flex w-full bg-[var(--border)] p-1 rounded-lg'>
               {dayLabels.map((label, index) => (
                 <button
                   key={index}
-                  type="button"
+                  type='button'
                   onClick={() => setSelectedDay(index)}
-                  className={`flex-1 py-1.5 px-3 text-sm font-medium cursor-pointer ${index === 0 ? "rounded-l-md" : ""
-                    } ${index === dayLabels.length - 1 ? "rounded-r-md" : ""
-                    } ${index > 0 ? "border-l border-[var(--background)]/20" : ""
-                    } ${selectedDay === index
-                      ? "bg-[var(--background)] shadow-[var(--shadow-sm)]"
-                      : !isMobile ? "hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50" : ""
-                    }`}
+                  className={`flex-1 py-1.5 px-3 text-sm font-medium cursor-pointer ${
+                    index === 0 ? 'rounded-l-md' : ''
+                  } ${index === dayLabels.length - 1 ? 'rounded-r-md' : ''} ${
+                    index > 0 ? 'border-l border-[var(--background)]/20' : ''
+                  } ${
+                    selectedDay === index
+                      ? 'bg-[var(--background)] shadow-[var(--shadow-sm)]'
+                      : !isMobile
+                        ? 'hover:shadow-[var(--shadow-sm)] hover:bg-[var(--background)]/50'
+                        : ''
+                  }`}
                 >
                   {label}
                 </button>
@@ -127,16 +146,18 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
 
-          <div className="mb-4">
-            <h3 className="font-bold mb-2">{formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}</h3>
-            <div className="p-2">
+          <div className='mb-4'>
+            <h3 className='font-bold mb-2'>
+              {formatHour(selectedTimeRange[0])} - {formatHour(selectedTimeRange[1])}
+            </h3>
+            <div className='p-2'>
               <Slider
                 range
                 min={selectedDay === 0 ? currentHour : 0}
                 max={24}
                 defaultValue={[selectedDay === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
                 value={selectedTimeRange}
-                onChange={(value) => setSelectedTimeRange(value as [number, number])}
+                onChange={value => setSelectedTimeRange(value as [number, number])}
                 marks={(() => {
                   const marks: Record<number, string> = {};
                   if (selectedDay === 0) {
@@ -162,46 +183,54 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
               />
             </div>
           </div>
-          <div className="mb-2">
-            <h3 className="font-bold mb-2">Minst {minPromisingHours} timer i strekk</h3>
-            <div className="p-2 flex items-center">
-              <button onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">-</button>
-              <div className="flex-grow px-4">
+          <div className='mb-2'>
+            <h3 className='font-bold mb-2'>Minst {minPromisingHours} timer i strekk</h3>
+            <div className='p-2 flex items-center'>
+              <button
+                onClick={() => setMinPromisingHours(prev => Math.max(1, prev - 1))}
+                className='w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg'
+              >
+                -
+              </button>
+              <div className='flex-grow px-4'>
                 <Slider
                   min={1}
                   max={6}
                   value={minPromisingHours}
-                  onChange={(value) => setMinPromisingHours(value as number)}
+                  onChange={value => setMinPromisingHours(value as number)}
                   step={1}
                 />
               </div>
-              <button onClick={() => setMinPromisingHours(prev => Math.min(6, prev + 1))} className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg">+</button>
+              <button
+                onClick={() => setMinPromisingHours(prev => Math.min(6, prev + 1))}
+                className='w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-lg'
+              >
+                +
+              </button>
             </div>
           </div>
 
-          <div className="mb-2">
-            <div className="flex gap-2">
-              {WEATHER_CONDITIONS.map((condition) => (
+          <div className='mb-2'>
+            <div className='flex gap-2'>
+              {WEATHER_CONDITIONS.map(condition => (
                 <button
                   key={condition}
-                  type="button"
+                  type='button'
                   onClick={() => {
                     setSelectedWeatherConditions(prev =>
-                      prev.includes(condition)
-                        ? prev.filter(c => c !== condition)
-                        : [...prev, condition]
+                      prev.includes(condition) ? prev.filter(c => c !== condition) : [...prev, condition]
                     );
                   }}
-                  className="relative flex-1 h-12 bg-[var(--background)]/50 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-sm)] flex items-center justify-center cursor-pointer select-none hover:bg-[var(--background)]/70 hover:shadow-[var(--shadow-md)] hover:scale-105 transition-all duration-200"
+                  className='relative flex-1 h-12 bg-[var(--background)]/50 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-sm)] flex items-center justify-center cursor-pointer select-none hover:bg-[var(--background)]/70 hover:shadow-[var(--shadow-md)] hover:scale-105 transition-all duration-200'
                 >
                   <Image src={`/weather-icons/${condition}.svg`} alt={condition} width={32} height={32} />
                   {selectedWeatherConditions.includes(condition) && (
                     <Image
-                      src="/weather-icons/checkbox.svg"
-                      alt="Selected"
+                      src='/weather-icons/checkbox.svg'
+                      alt='Selected'
                       width={32}
                       height={32}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70"
+                      className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70'
                     />
                   )}
                 </button>
@@ -209,19 +238,9 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <ButtonNeutral
-              onClick={handleReset}
-              title="Tilbakestill"
-              className="flex-1"
-              isMobile={isMobile}
-            />
-            <ButtonAccept
-              onClick={handleApply}
-              title="Bruk"
-              className="flex-1"
-              isMobile={isMobile}
-            />
+          <div className='flex gap-2'>
+            <ButtonNeutral onClick={handleReset} title='Tilbakestill' className='flex-1' isMobile={isMobile} />
+            <ButtonAccept onClick={handleApply} title='Bruk' className='flex-1' isMobile={isMobile} />
           </div>
         </div>
       )}

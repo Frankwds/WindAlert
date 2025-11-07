@@ -1,7 +1,6 @@
 import { Server } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
-
 export async function GET(request: NextRequest) {
   const token = request.headers.get('token');
   const expectedToken = process.env.CRON_SECRET;
@@ -24,7 +23,6 @@ export async function GET(request: NextRequest) {
       ${data.compressed_records} compressed records, for 
       ${data.stations_processed} unique stations`,
     });
-
   } catch (error) {
     console.error('Error compressing Holfuy data:', error);
     return NextResponse.json({ error: 'Error compressing Holfuy data' }, { status: 500 });

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface WindCompassProps {
   allowedDirections: string[];
 }
 
 const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
-  const directions = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
+  const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
   const radius = 100;
@@ -34,7 +34,7 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
   };
 
   return (
-    <svg viewBox="0 0 210 210">
+    <svg viewBox='0 0 210 210'>
       {directions.map((dir, i) => {
         const isAllowed = allowedDirections.includes(dir);
         const textPos = getTextPosition(i);
@@ -42,14 +42,14 @@ const WindCompass: React.FC<WindCompassProps> = ({ allowedDirections }) => {
           <g key={dir}>
             <path
               d={getPath(i)}
-              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isAllowed ? "fill-[var(--success)]" : ""}`}
+              className={`fill-[var(--border)] stroke-[var(--background)] stroke-[1px] ${isAllowed ? 'fill-[var(--success)]' : ''}`}
             />
             <text
               x={textPos.x}
               y={textPos.y}
-              className="text-base font-sans fill-[var(--foreground)]"
-              textAnchor="middle"
-              alignmentBaseline="middle"
+              className='text-base font-sans fill-[var(--foreground)]'
+              textAnchor='middle'
+              alignmentBaseline='middle'
             >
               {dir.toUpperCase()}
             </text>

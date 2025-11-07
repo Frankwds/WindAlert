@@ -18,9 +18,9 @@ export async function fetchMetFrostStations(): Promise<Omit<WeatherStation, 'id'
     const response = await axios.get('https://frost.met.no/sources/v0.jsonld', {
       timeout: 30000, // 30 second timeout
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'User-Agent': 'WindAlert/1.0',
-        'Authorization': `Basic ${authHeader}`,
+        Authorization: `Basic ${authHeader}`,
       },
     });
 

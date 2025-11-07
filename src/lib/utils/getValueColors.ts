@@ -26,7 +26,7 @@ export function getWindSpeedColor(windSpeed: number): string {
 export function getTemperatureOpacity(temperature: number): number {
   const baseOpacity = 0.1; // Minimum opacity
   const opacityPerDegree = 0.03;
-  const calculatedOpacity = baseOpacity + (Math.abs(temperature) * opacityPerDegree);
+  const calculatedOpacity = baseOpacity + Math.abs(temperature) * opacityPerDegree;
 
   return Math.min(calculatedOpacity, 1.0);
 }

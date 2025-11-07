@@ -9,12 +9,7 @@ interface ButtonNeutralProps {
   isMobile?: boolean;
 }
 
-export const ButtonNeutral: React.FC<ButtonNeutralProps> = ({
-  onClick,
-  title,
-  className = '',
-  isMobile = false
-}) => {
+export const ButtonNeutral: React.FC<ButtonNeutralProps> = ({ onClick, title, className = '', isMobile = false }) => {
   return (
     <button
       onClick={onClick}

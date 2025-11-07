@@ -2,7 +2,7 @@ import { isWindDirectionGood } from '@/app/api/cron/_lib/validate/validateWindDi
 import { windDirectionMapping as dirMap } from '@/lib/utils/getWindDirection';
 
 // Test all directions
-const dir = { 'N': 0, 'NE': 45, 'E': 90, 'SE': 135, 'S': 180, 'SW': 225, 'W': 270, 'NW': 315 };
+const dir = { N: 0, NE: 45, E: 90, SE: 135, S: 180, SW: 225, W: 270, NW: 315 };
 for (const [direction, angle] of Object.entries(dir)) {
   it(`should return true for ${direction} direction`, () => {
     expect(isWindDirectionGood(angle, [direction])).toBe(true);
@@ -69,7 +69,4 @@ describe('isWindDirectionGood', () => {
     expect(isWindDirectionGood(dirMap.N.min - 0.1, ['N'])).toBe(false);
     expect(isWindDirectionGood(dirMap.N.max + 0.1, ['N'])).toBe(false);
   });
-
-
-
 });

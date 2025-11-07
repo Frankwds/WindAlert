@@ -7,7 +7,6 @@ Det kan da automatiseres.
 
 Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert enkelt sted. Du kan også enkelt se alle flysteder som er egnet for valgte vind retninger.
 
-
 ## ✨ Hovedfunksjoner
 
 - **Google Maps**: Kart med værstasjoner og paragliding starter.
@@ -20,12 +19,12 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 
 - **Tilpassbart**: (Kommer senere) Tilpass hva du definerer som lovende.
 
-
 ## 📊 Datakilder
 
 ### Vær-APIer
 
 #### 1. Open-Meteo API
+
 - **URL**: https://api.open-meteo.com/v1/forecast
 - **Formål**: Primær værdata-kilde for detaljerte atmosfæriske forhold
 - **Datapunkter**: Vindhastighet/retning (flere høyder), temperatur, nedbør, skydekke, CAPE, lifted index, konvektiv inhibisjon
@@ -33,6 +32,7 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 - **Attribusjon**: Data levert av Open-Meteo
 
 #### 2. YR.no (Meteorologisk institutt)
+
 - **URL**: https://api.met.no/weatherapi/locationforecast/2.0/complete
 - **Formål**: Sekundær værdata for validering og sammenligning
 - **Datapunkter**: Steds-spesifikke prognoser med norsk meteorologisk ekspertise
@@ -40,6 +40,7 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 - **Attribusjon**: Værdata fra Meteorologisk institutt (MET Norway)
 
 #### 3. Windy.com
+
 - **URL**: https://www.windy.com/ og https://embed.windy.com/
 - **Formål**: Interaktiv værvisualisering
 - **Funksjoner**: Flere værmodeller (ICON-EU, ECMWF, GFS), vind/termisk overlegg
@@ -49,6 +50,7 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 ### Lokasjonsdata
 
 #### 1. FlightLog.org
+
 - **Kilde**: www.flightlog.org
 - **Formål**: Paragliding-avgangssteder og stedsinformasjon
 - **Data**: Stedsnavn, koordinater, beskrivelser, vindretningspreferanser
@@ -56,6 +58,7 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 - **Attribusjon**: Paragliding-steder fra FlightLog.org-felleskapet
 
 #### 2. Værstasjoner
+
 - **Kilde**: www.Holfuy.com
 - **Formål**: Bakkenivå værobservasjoner
 - **Data**: Stasjonskoordinater, identifikatorer og værdata

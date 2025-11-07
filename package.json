@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.10",
@@ -41,6 +43,7 @@
     "eslint-config-next": "15.4.6",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.1",
     "typescript": "^5"

@@ -18,7 +18,7 @@ const getInitialState = (): MapState | null => {
         ...parsedState,
         selectedWindDirections: [],
         promisingFilter: null,
-        timestamp: now
+        timestamp: now,
       };
 
       // Save the cleared state back to localStorage to avoid infinite loops
@@ -39,31 +39,55 @@ export const useMapState = () => {
       const updatedState = {
         ...prevState,
         ...newState,
-        timestamp: Date.now() // Always update timestamp when saving
+        timestamp: Date.now(), // Always update timestamp when saving
       };
       updateMapState(updatedState);
       return updatedState;
     });
   }, []);
 
-  const updateMapPosition = useCallback((center: { lat: number; lng: number }, zoom: number) => {
-    saveState({ center, zoom });
-  }, [saveState]);
+  const updateMapPosition = useCallback(
+    (center: { lat: number; lng: number }, zoom: number) => {
+      saveState({ center, zoom });
+    },
+    [saveState]
+  );
 
-  const updateFilters = useCallback((filters: Partial<Pick<MapState, 'showParaglidingMarkers' | 'showWeatherStationMarkers' | 'showLandingsLayer' | 'selectedWindDirections' | 'windFilterAndOperator' | 'promisingFilter' | 'showSkywaysLayer' | 'showThermalsLayer' | 'mapType'>>) => {
-    saveState(filters);
-  }, [saveState]);
+  const updateFilters = useCallback(
+    (
+      filters: Partial<
+        Pick<
+          MapState,
+          | 'showParaglidingMarkers'
+          | 'showWeatherStationMarkers'
+          | 'showLandingsLayer'
+          | 'selectedWindDirections'
+          | 'windFilterAndOperator'
+          | 'promisingFilter'
+          | 'showSkywaysLayer'
+          | 'showThermalsLayer'
+          | 'mapType'
+        >
+      >
+    ) => {
+      saveState(filters);
+    },
+    [saveState]
+  );
 
-  const updateMapType = useCallback((mapType: 'terrain' | 'satellite' | 'osm') => {
-    saveState({ mapType });
-  }, [saveState]);
+  const updateMapType = useCallback(
+    (mapType: 'terrain' | 'satellite' | 'osm') => {
+      saveState({ mapType });
+    },
+    [saveState]
+  );
 
   return {
     mapState,
     updateMapPosition,
     updateFilters,
     updateMapType,
-    saveState
+    saveState,
   };
 };
 

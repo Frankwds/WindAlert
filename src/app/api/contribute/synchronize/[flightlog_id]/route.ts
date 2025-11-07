@@ -15,7 +15,10 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ flight
     const response = await fetch(url);
 
     if (!response.ok) {
-      return NextResponse.json({ error: `Failed to fetch data from flightlog.org: ${response.status}` }, { status: 500 });
+      return NextResponse.json(
+        { error: `Failed to fetch data from flightlog.org: ${response.status}` },
+        { status: 500 }
+      );
     }
 
     const html = await response.text();

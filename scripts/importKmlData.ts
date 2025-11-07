@@ -1,7 +1,6 @@
 // import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
 // import { ParaglidingLocation } from "@/lib/supabase/types";
 
-
 // interface KmlPlacemark {
 //   name: string;
 //   description: string | null;
@@ -61,12 +60,6 @@
 
 //   throw new Error(`Invalid coordinates format: ${coordinatesStr}`);
 // }
-
-
-
-
-
-
 
 // /**
 //  * Extract flightlog ID from description

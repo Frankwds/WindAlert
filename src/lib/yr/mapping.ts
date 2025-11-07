@@ -1,8 +1,6 @@
 import { metNoResponseSchema, hourlySchema, sixHourlySchema } from './zod';
 import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from './types';
 
-
-
 export function mapYrData(rawData: any): WeatherDataYr {
   const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
   const slicedHourlyData = rawData.properties.timeseries.slice(0, firstMissingIndex - 6);
@@ -46,7 +44,7 @@ export function mapYrData(rawData: any): WeatherDataYr {
     location: {
       latitude,
       longitude,
-    }
+    },
   };
 }
 

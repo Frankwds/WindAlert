@@ -15,14 +15,14 @@ export const useContributeMap = ({
   longitude,
   landingLatitude,
   landingLongitude,
-  onLandingChange
+  onLandingChange,
 }: UseContributeMapProps) => {
   const { mapRef, mapInstance, isLoading, error } = useMapInstance({
     latitude,
     longitude,
     onMapReady: useCallback(() => {
       // Map is ready, markers will be initialized by useContributeMarkers
-    }, [])
+    }, []),
   });
 
   const { addLandingMarker } = useMarkers({
@@ -31,7 +31,7 @@ export const useContributeMap = ({
     longitude,
     landingLatitude,
     landingLongitude,
-    onLandingChange
+    onLandingChange,
   });
 
   // Update the map click handler to use addLandingMarker
@@ -55,6 +55,6 @@ export const useContributeMap = ({
     mapRef,
     mapInstance,
     isLoading,
-    error
+    error,
   };
 };

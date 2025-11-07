@@ -1,6 +1,5 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
 
-
 export const DEFAULT_ALERT_RULE: AlertRule = {
   id: 1,
 

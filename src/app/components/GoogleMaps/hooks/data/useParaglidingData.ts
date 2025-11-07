@@ -11,14 +11,14 @@ interface UseParaglidingDataProps {
 export const useParaglidingData = ({ variant }: UseParaglidingDataProps) => {
   const loadParaglidingData = useCallback(async () => {
     try {
-      let paraglidingLocations = variant === 'main'
-        ? await dataCache.getParaglidingLocations()
-        : await dataCache.getAllParaglidingLocations();
+      let paraglidingLocations =
+        variant === 'main' ? await dataCache.getParaglidingLocations() : await dataCache.getAllParaglidingLocations();
 
       if (!paraglidingLocations) {
-        paraglidingLocations = variant === 'main'
-          ? await ParaglidingLocationService.getAllMainLocationsWithForecast()
-          : await ParaglidingLocationService.getAllActiveLocations();
+        paraglidingLocations =
+          variant === 'main'
+            ? await ParaglidingLocationService.getAllMainLocationsWithForecast()
+            : await ParaglidingLocationService.getAllActiveLocations();
         paraglidingLocations = paraglidingLocations || [];
 
         if (variant === 'main') {
@@ -36,6 +36,6 @@ export const useParaglidingData = ({ variant }: UseParaglidingDataProps) => {
   }, [variant]);
 
   return {
-    loadParaglidingData
+    loadParaglidingData,
   };
 };

@@ -3,7 +3,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 
 const MAP_CONFIG = {
   DEFAULT_ZOOM: 13,
-  MAP_ID: 'WindLordContributeMapID'
+  MAP_ID: 'WindLordContributeMapID',
 } as const;
 
 interface UseMapInstanceProps {
@@ -12,11 +12,7 @@ interface UseMapInstanceProps {
   onMapReady: (map: google.maps.Map) => void;
 }
 
-export const useMapInstance = ({
-  latitude,
-  longitude,
-  onMapReady
-}: UseMapInstanceProps) => {
+export const useMapInstance = ({ latitude, longitude, onMapReady }: UseMapInstanceProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
@@ -46,7 +42,7 @@ export const useMapInstance = ({
         const loader = new Loader({
           apiKey,
           version: 'weekly',
-          libraries: ['places', 'marker']
+          libraries: ['places', 'marker'],
         });
 
         const google = await loader.load();
@@ -64,7 +60,7 @@ export const useMapInstance = ({
           zoomControl: false,
           clickableIcons: false,
           scrollwheel: true,
-          gestureHandling: 'greedy'
+          gestureHandling: 'greedy',
         });
         map.setOptions({ scaleControl: true });
 
@@ -88,6 +84,6 @@ export const useMapInstance = ({
     mapRef,
     mapInstance,
     isLoading,
-    error
+    error,
   };
 };

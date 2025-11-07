@@ -1,11 +1,11 @@
-import { MetadataRoute } from 'next'
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
+import { MetadataRoute } from 'next';
+import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 
 // Cache sitemap for 24 hours using Next.js built-in caching
-export const revalidate = 86400
+export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://windlord.no'
+  const baseUrl = 'https://windlord.no';
 
   // Static pages
   const staticPages = [
@@ -33,23 +33,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     },
-  ]
+  ];
 
   // Get all active locations for sitemap
-  let locationPages: MetadataRoute.Sitemap = []
+  let locationPages: MetadataRoute.Sitemap = [];
   try {
-    const locations = await ParaglidingLocationService.getAllActiveLocations()
-    locationPages = locations.map((location) => ({
+    const locations = await ParaglidingLocationService.getAllActiveLocations();
+    locationPages = locations.map(location => ({
       url: `${baseUrl}/locations/${location.flightlog_id}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.9,
-    }))
+    }));
   } catch (error) {
-    console.error('Error fetching locations for sitemap:', error)
+    console.error('Error fetching locations for sitemap:', error);
     // Fallback to empty array if there's an error
-    locationPages = []
+    locationPages = [];
   }
 
-  return [...staticPages, ...locationPages]
+  return [...staticPages, ...locationPages];
 }

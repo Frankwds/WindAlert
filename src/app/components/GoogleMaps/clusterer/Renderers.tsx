@@ -1,7 +1,11 @@
-import { Cluster, Renderer } from "@googlemaps/markerclusterer";
-import { createParaglidingMarkerElementWithDirection, createWeatherStationClusterElement, createLandingMarkerElement } from "../../shared/Markers";
-import { ParaglidingLocationWithForecast } from "@/lib/supabase/types";
-import { getDominantWind } from "./util";
+import { Cluster, Renderer } from '@googlemaps/markerclusterer';
+import {
+  createParaglidingMarkerElementWithDirection,
+  createWeatherStationClusterElement,
+  createLandingMarkerElement,
+} from '../../shared/Markers';
+import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import { getDominantWind } from './util';
 
 export class WeatherStationClusterRenderer implements Renderer {
   public render(cluster: Cluster) {

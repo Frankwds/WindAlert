@@ -8,7 +8,7 @@ interface MapLoadingIndicatorProps {
 
 export const MapLoadingIndicator: React.FC<MapLoadingIndicatorProps> = ({
   isLoadingParagliding,
-  isLoadingWeatherStations
+  isLoadingWeatherStations,
 }) => {
   const paraglidingIconRef = useRef<HTMLDivElement>(null);
   const weatherStationIconRef = useRef<HTMLDivElement>(null);
@@ -45,24 +45,14 @@ export const MapLoadingIndicator: React.FC<MapLoadingIndicatorProps> = ({
   }
 
   return (
-    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-      <div className="bg-white/5 backdrop-blur-sm rounded-lg flex items-center gap-2 text-sm font-medium text-gray-700">
+    <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20'>
+      <div className='bg-white/5 backdrop-blur-sm rounded-lg flex items-center gap-2 text-sm font-medium text-gray-700'>
         {/* Paragliding icon */}
-        {isLoadingParagliding && (
-          <div 
-            ref={paraglidingIconRef}
-            className="flex items-center justify-center"
-          />
-        )}
-        
+        {isLoadingParagliding && <div ref={paraglidingIconRef} className='flex items-center justify-center' />}
+
         {/* Weather station icon */}
-        {isLoadingWeatherStations && (
-          <div 
-            ref={weatherStationIconRef}
-            className="flex items-center justify-center"
-          />
-        )}
-        
+        {isLoadingWeatherStations && <div ref={weatherStationIconRef} className='flex items-center justify-center' />}
+
         {/* Loading text */}
         <span>Laster...</span>
       </div>

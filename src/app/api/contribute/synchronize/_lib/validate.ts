@@ -39,7 +39,9 @@ export function validateAltitude(altitude: number): void {
   }
 
   if (altitude > 10000) {
-    throw new ValidationError(`Ugyldig høyde: ${altitude}. Høyde ser ut til å være for høy. Må være mellom 0 og 10000 moh.`);
+    throw new ValidationError(
+      `Ugyldig høyde: ${altitude}. Høyde ser ut til å være for høy. Må være mellom 0 og 10000 moh.`
+    );
   }
 }
 
@@ -48,11 +50,15 @@ export function validateAltitude(altitude: number): void {
  */
 export function validateHtmlContent(html: string): void {
   if (!html || html.trim().length === 0) {
-    throw new ValidationError('Mottok tom HTML-respons fra flightlog.org. Sjekk at du har skrevet inn riktig flightlog ID');
+    throw new ValidationError(
+      'Mottok tom HTML-respons fra flightlog.org. Sjekk at du har skrevet inn riktig flightlog ID'
+    );
   }
 
   if (html.length < 100) {
-    throw new ValidationError('HTML-responsen ser ut til å være for kort eller ufullstendig. Sjekk at du har skrevet inn riktig flightlog ID');
+    throw new ValidationError(
+      'HTML-responsen ser ut til å være for kort eller ufullstendig. Sjekk at du har skrevet inn riktig flightlog ID'
+    );
   }
 }
 
@@ -65,27 +71,40 @@ export function validateFlightlogId(flightlog_id: string): void {
   }
 
   if (!/^\d+$/.test(flightlog_id)) {
-    throw new ValidationError(`Ugyldig flightlog ID: ${flightlog_id}. Må være et tall. Sjekk at du har skrevet inn riktig flightlog ID`);
+    throw new ValidationError(
+      `Ugyldig flightlog ID: ${flightlog_id}. Må være et tall. Sjekk at du har skrevet inn riktig flightlog ID`
+    );
   }
 }
 
 /**
  * Validate the location data returned from processHTML
  */
-export function validateLocationData(locationData: Omit<ParaglidingLocation, 'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'>): void {
+export function validateLocationData(
+  locationData: Omit<
+    ParaglidingLocation,
+    'id' | 'created_at' | 'updated_at' | 'landing_latitude' | 'landing_longitude' | 'landing_altitude' | 'is_main'
+  >
+): void {
   // Validate flightlog_id
   if (!locationData.flightlog_id || locationData.flightlog_id.trim().length === 0) {
     throw new ValidationError('Dette er nok en feil på windlord, venligst meld ifra på mail.');
   }
 
   // if the whole locationData object is empty, throw an error
-  if (Object.values(locationData).every(value => value === null || value === undefined || value === '' || value === false || value === 0)) {
+  if (
+    Object.values(locationData).every(
+      value => value === null || value === undefined || value === '' || value === false || value === 0
+    )
+  ) {
     throw new ValidationError('Kunne ikke finne starten, venligst sjekk at du har skrevet en gyldig flightlog ID');
   }
 
   // Validate name
   if (!locationData.name || locationData.name.trim().length === 0) {
-    throw new ValidationError('Kunne ikke finne navn på starten, venligst sjekk at navn er satt korrekt på flightlog.org');
+    throw new ValidationError(
+      'Kunne ikke finne navn på starten, venligst sjekk at navn er satt korrekt på flightlog.org'
+    );
   }
 
   // Validate coordinates
@@ -96,11 +115,15 @@ export function validateLocationData(locationData: Omit<ParaglidingLocation, 'id
 
   // Validate country
   if (!locationData.country || locationData.country.trim().length === 0) {
-    throw new ValidationError('Land ble ikke funnet for den aktuelle starten, venligst sjekk at land er satt korrekt på flightlog.org');
+    throw new ValidationError(
+      'Land ble ikke funnet for den aktuelle starten, venligst sjekk at land er satt korrekt på flightlog.org'
+    );
   }
 
   // Validate description
   if (!locationData.description || locationData.description.trim().length === 0) {
-    throw new ValidationError('Kunne ikke finne beskrivelse på starten, venligst sjekk at beskrivelse er satt korrekt på flightlog.org');
+    throw new ValidationError(
+      'Kunne ikke finne beskrivelse på starten, venligst sjekk at beskrivelse er satt korrekt på flightlog.org'
+    );
   }
 }

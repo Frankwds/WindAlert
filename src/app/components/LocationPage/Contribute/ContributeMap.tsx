@@ -19,48 +19,32 @@ export const ContributeMap: React.FC<ContributeMapProps> = ({
   longitude,
   landingLatitude,
   landingLongitude,
-  onLandingChange
+  onLandingChange,
 }) => {
-
-  const {
-    mapRef,
-    mapInstance,
-    isLoading,
-    error
-  } = useContributeMap({
+  const { mapRef, mapInstance, isLoading, error } = useContributeMap({
     latitude,
     longitude,
     landingLatitude,
     landingLongitude,
-    onLandingChange
+    onLandingChange,
   });
 
   if (error) {
-    return (
-      <ErrorState
-        error={error}
-        title="Failed to load map"
-        showRetry={false}
-      />
-    );
+    return <ErrorState error={error} title='Failed to load map' showRetry={false} />;
   }
 
   return (
-    <div className="relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border)]">
-      {isLoading && <LoadingSpinner size="lg" text="Laster kart..." overlay />}
+    <div className='relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border)]'>
+      {isLoading && <LoadingSpinner size='lg' text='Laster kart...' overlay />}
 
-      <div
-        ref={mapRef}
-        className="w-full h-full"
-      />
+      <div ref={mapRef} className='w-full h-full' />
 
       {mapInstance && (
         <>
-          <MapLayerToggle map={mapInstance} initialMapType="satellite" />
+          <MapLayerToggle map={mapInstance} initialMapType='satellite' />
           <ZoomControls map={mapInstance} />
         </>
       )}
-
     </div>
   );
 };

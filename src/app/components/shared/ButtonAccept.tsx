@@ -15,16 +15,17 @@ export const ButtonAccept: React.FC<ButtonAcceptProps> = ({
   title,
   className = '',
   isMobile = false,
-  disabled = false
+  disabled = false,
 }) => {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 min-w-35 rounded-md font-medium ${disabled
-        ? 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'
-        : `bg-blue-600 text-white shadow cursor-pointer ${!isMobile ? 'hover:bg-blue-700' : ''}`
-        } ${className}`}
+      className={`px-4 py-2 min-w-35 rounded-md font-medium ${
+        disabled
+          ? 'bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed'
+          : `bg-blue-600 text-white shadow cursor-pointer ${!isMobile ? 'hover:bg-blue-700' : ''}`
+      } ${className}`}
     >
       {title}
     </button>

@@ -2,9 +2,6 @@ import { supabase } from './client';
 import { ForecastCache1hr } from './types';
 
 export class ForecastCacheService {
-
-
-
   /**
    * Get the last updated forecast data (oldest date in the cache)
    */
@@ -28,10 +25,7 @@ export class ForecastCacheService {
    * Get locations with oldest forecast data (for staggered updates)
    */
   static async getLocationsWithOldestForecastData(limit: number): Promise<string[]> {
-    const { data, error } = await supabase
-      .from('locations_with_oldest_forecast')
-      .select('location_id')
-      .limit(limit);
+    const { data, error } = await supabase.from('locations_with_oldest_forecast').select('location_id').limit(limit);
 
     if (error) {
       console.error('Error fetching locations with oldest forecast data:', error);
@@ -47,10 +41,7 @@ export class ForecastCacheService {
    * Get locations with no forecast data
    */
   static async getLocationsWithNoForecastData(limit: number): Promise<string[]> {
-    const { data, error } = await supabase
-      .from('locations_without_forecast')
-      .select('location_id')
-      .limit(limit);
+    const { data, error } = await supabase.from('locations_without_forecast').select('location_id').limit(limit);
 
     if (error) {
       console.error('Error fetching locations with no forecast data:', error);

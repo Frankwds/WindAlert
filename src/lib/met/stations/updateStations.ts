@@ -50,9 +50,7 @@ export async function updateMetFrostStations(): Promise<{
     }
 
     // Step 3: Filter stations to only include missing ones
-    const stationsToUpsert = allStations.filter(station =>
-      missingStationIds.includes(station.station_id)
-    );
+    const stationsToUpsert = allStations.filter(station => missingStationIds.includes(station.station_id));
 
     console.log(`🔄 Upserting ${stationsToUpsert.length} missing stations...`);
 
@@ -103,7 +101,6 @@ export async function updateMetFrostStations(): Promise<{
       upsertedCount: totalUpserted,
       errors,
     };
-
   } catch (error) {
     const errorMsg = `Failed to update Met Frost stations: ${error instanceof Error ? error.message : 'Unknown error'}`;
     console.error(`\n💥 ${errorMsg}`);

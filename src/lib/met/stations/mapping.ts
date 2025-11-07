@@ -4,7 +4,9 @@ import { WeatherStation } from '../../supabase/types';
 /**
  * Maps Met Frost API response data to WeatherStation format for database storage
  */
-export function mapMetFrostToWeatherStation(metFrostData: MetFrostStation[]): Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[] {
+export function mapMetFrostToWeatherStation(
+  metFrostData: MetFrostStation[]
+): Omit<WeatherStation, 'id' | 'created_at' | 'updated_at'>[] {
   return metFrostData
     .filter(station => {
       // Filter out stations with invalid or missing coordinates
@@ -13,9 +15,9 @@ export function mapMetFrostToWeatherStation(metFrostData: MetFrostStation[]): Om
       }
 
       const [longitude, latitude] = station.geometry.coordinates;
-      return longitude !== 0 && latitude !== 0 &&
-        latitude >= -90 && latitude <= 90 &&
-        longitude >= -180 && longitude <= 180;
+      return (
+        longitude !== 0 && latitude !== 0 && latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180
+      );
     })
     .map(station => {
       const [longitude, latitude] = station.geometry!.coordinates;

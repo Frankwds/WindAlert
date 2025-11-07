@@ -16,7 +16,7 @@ const createBaseLayerConfig = (config: LayerConfig) => ({
   minZoom: 1,
   name: config.name,
   alt: config.alt,
-  releaseTile: () => { },
+  releaseTile: () => {},
   projection: null,
   radius: 6378137,
 });
@@ -24,12 +24,7 @@ const createBaseLayerConfig = (config: LayerConfig) => ({
 /**
  * Creates a tile element for native zoom levels
  */
-const createNativeTile = (
-  coord: google.maps.Point,
-  zoom: number,
-  ownerDocument: Document,
-  tilePath: string
-) => {
+const createNativeTile = (coord: google.maps.Point, zoom: number, ownerDocument: Document, tilePath: string) => {
   const img = ownerDocument.createElement('img');
   if (!coord) return img;
 
@@ -94,7 +89,7 @@ const createThermalLayer = (config: LayerConfig) => {
         return createNativeTile(coord, zoom, ownerDocument, config.tilePath);
       }
       return createScaledTile(coord, zoom, ownerDocument, config.tilePath, config.maxNativeZoom);
-    }
+    },
   };
 };
 
@@ -108,7 +103,7 @@ export const useThermalsLayer = () => {
       name: 'Thermals',
       alt: 'Thermals thermal data layer',
       tilePath: 'thermals_all_all',
-      maxNativeZoom: 12
+      maxNativeZoom: 12,
     });
   }, []);
 
@@ -125,7 +120,7 @@ export const useSkywaysLayer = () => {
       name: 'Skyways',
       alt: 'Skyways thermal data layer',
       tilePath: 'skyways_all_all',
-      maxNativeZoom: 13
+      maxNativeZoom: 13,
     });
   }, []);
 
@@ -147,7 +142,7 @@ export const useOSMMapType = () => {
       maxZoom: 19,
       minZoom: 1,
       name: 'OpenStreetMap',
-      alt: 'OpenStreetMap tiles'
+      alt: 'OpenStreetMap tiles',
     });
   }, []);
 

@@ -17,7 +17,17 @@ interface LocationHeaderProps {
   isMain: boolean;
 }
 
-export default function LocationHeader({ name, description, windDirections, locationId, latitude, longitude, altitude, flightlog_id, isMain }: LocationHeaderProps) {
+export default function LocationHeader({
+  name,
+  description,
+  windDirections,
+  locationId,
+  latitude,
+  longitude,
+  altitude,
+  flightlog_id,
+  isMain,
+}: LocationHeaderProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -39,9 +49,15 @@ export default function LocationHeader({ name, description, windDirections, loca
         <WindCompass allowedDirections={windDirections} />
       </div>
       <div className='relative'>
-        <div className={`break-words break-long transition-all duration-300 ${isExpanded ? 'max-h-none' : 'max-h-64 md:max-h-96 overflow-hidden'}`} dangerouslySetInnerHTML={{ __html: description }} />
+        <div
+          className={`break-words break-long transition-all duration-300 ${isExpanded ? 'max-h-none' : 'max-h-64 md:max-h-96 overflow-hidden'}`}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         {description.length > 800 && (
-          <div className={`cursor-pointer relative ${isExpanded ? 'hidden' : 'block'}`} onClick={() => setIsExpanded(true)}>
+          <div
+            className={`cursor-pointer relative ${isExpanded ? 'hidden' : 'block'}`}
+            onClick={() => setIsExpanded(true)}
+          >
             <div className='absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--background)] to-transparent' />
             <button
               onClick={() => setIsExpanded(true)}

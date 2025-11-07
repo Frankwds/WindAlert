@@ -42,12 +42,14 @@ const MapStateSchema = z.object({
   showLandingsLayer: z.boolean(),
   selectedWindDirections: z.array(z.string()),
   windFilterAndOperator: z.boolean(),
-  promisingFilter: z.object({
-    selectedDay: z.number(),
-    selectedTimeRange: z.tuple([z.number(), z.number()]),
-    minPromisingHours: z.number(),
-    selectedWeatherConditions: z.array(z.enum(WEATHER_CONDITIONS)),
-  }).nullable(),
+  promisingFilter: z
+    .object({
+      selectedDay: z.number(),
+      selectedTimeRange: z.tuple([z.number(), z.number()]),
+      minPromisingHours: z.number(),
+      selectedWeatherConditions: z.array(z.enum(WEATHER_CONDITIONS)),
+    })
+    .nullable(),
   showSkywaysLayer: z.boolean(),
   showThermalsLayer: z.boolean(),
   isFullscreen: z.boolean(),
@@ -68,7 +70,7 @@ const DEFAULT_MAP_STATE: MapState = {
   showSkywaysLayer: false,
   showThermalsLayer: false,
   isFullscreen: false,
-  timestamp: Date.now()
+  timestamp: Date.now(),
 };
 
 // Utility function to safely access localStorage
@@ -97,7 +99,7 @@ const safeLocalStorage = {
     } catch (error) {
       console.warn(`Failed to remove localStorage item "${key}":`, error);
     }
-  }
+  },
 };
 
 // Map state methods
@@ -137,7 +139,7 @@ export const updateMapState = (updates: Partial<MapState>): void => {
   const updatedState = {
     ...currentState,
     ...updates,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   };
   setMapState(updatedState);
 };

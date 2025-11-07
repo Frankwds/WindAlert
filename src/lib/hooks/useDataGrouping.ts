@@ -23,23 +23,26 @@ export function useDataGrouping<T extends DataWithTime>({
   data,
   timezone,
   timeField,
-  sortOrder = 'desc'
+  sortOrder = 'desc',
 }: UseDataGroupingProps<T>): UseDataGroupingReturn<T> {
   const [sortedData, setSortedData] = useState<T[]>(data);
   const [activeDay, setActiveDay] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const getFirstDayFromSorted = useCallback((data: T[]) => {
-    if (data && data.length > 0) {
-      const timeValue = data[0][timeField] as string;
-      const firstDay = new Date(timeValue).toLocaleDateString([], {
-        weekday: 'short',
-        timeZone: timezone,
-      });
-      return firstDay;
-    }
-    return null;
-  }, [timeField, timezone]);
+  const getFirstDayFromSorted = useCallback(
+    (data: T[]) => {
+      if (data && data.length > 0) {
+        const timeValue = data[0][timeField] as string;
+        const firstDay = new Date(timeValue).toLocaleDateString([], {
+          weekday: 'short',
+          timeZone: timezone,
+        });
+        return firstDay;
+      }
+      return null;
+    },
+    [timeField, timezone]
+  );
 
   // Sort data based on time field
   useEffect(() => {
@@ -73,18 +76,21 @@ export function useDataGrouping<T extends DataWithTime>({
   }, [activeDay, sortedData, getFirstDayFromSorted]);
 
   // Group data by day
-  const groupedByDay = sortedData.reduce((acc, item) => {
-    const timeValue = item[timeField] as string;
-    const day = new Date(timeValue).toLocaleDateString([], {
-      weekday: 'short',
-      timeZone: timezone,
-    });
-    if (!acc[day]) {
-      acc[day] = [];
-    }
-    acc[day].push(item);
-    return acc;
-  }, {} as Record<string, T[]>);
+  const groupedByDay = sortedData.reduce(
+    (acc, item) => {
+      const timeValue = item[timeField] as string;
+      const day = new Date(timeValue).toLocaleDateString([], {
+        weekday: 'short',
+        timeZone: timezone,
+      });
+      if (!acc[day]) {
+        acc[day] = [];
+      }
+      acc[day].push(item);
+      return acc;
+    },
+    {} as Record<string, T[]>
+  );
 
   return {
     sortedData,

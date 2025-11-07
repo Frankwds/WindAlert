@@ -9,18 +9,18 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'md',
   text = 'Loading...',
   className = '',
-  overlay = false
+  overlay = false,
 }) => {
   const sizeClasses = {
     sm: 'h-4 w-4',
     md: 'h-6 w-6',
-    lg: 'h-12 w-12'
+    lg: 'h-12 w-12',
   };
 
   const textSizes = {
     sm: 'text-sm',
     md: 'text-base',
-    lg: 'text-lg'
+    lg: 'text-lg',
   };
 
   const spinner = (
@@ -32,9 +32,11 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
   if (overlay) {
     return (
-      <div className="absolute inset-0 bg-[var(--background)]/90 backdrop-blur-sm flex items-center justify-center z-10">
-        <div className="text-center">
-          <div className={`animate-spin rounded-full border-b-2 border-[var(--accent)] ${sizeClasses[size]} mx-auto mb-2`}></div>
+      <div className='absolute inset-0 bg-[var(--background)]/90 backdrop-blur-sm flex items-center justify-center z-10'>
+        <div className='text-center'>
+          <div
+            className={`animate-spin rounded-full border-b-2 border-[var(--accent)] ${sizeClasses[size]} mx-auto mb-2`}
+          ></div>
           {text && <p className={`text-[var(--foreground)]/70 ${textSizes[size]}`}>{text}</p>}
         </div>
       </div>

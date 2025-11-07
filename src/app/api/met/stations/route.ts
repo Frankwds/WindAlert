@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
           fetched: 0,
           upserted: 0,
         },
-        message: 'No stations fetched from Met Frost API'
+        message: 'No stations fetched from Met Frost API',
       });
     }
 
@@ -59,9 +59,8 @@ export async function GET(request: NextRequest) {
         errors: errors.length,
       },
       message: `Successfully upserted ${totalUpserted} out of ${allStations.length} Met Frost stations`,
-      ...(errors.length > 0 && { errorDetails: errors })
+      ...(errors.length > 0 && { errorDetails: errors }),
     });
-
   } catch (error) {
     console.error('Error processing Met Frost stations:', error);
 
@@ -69,7 +68,7 @@ export async function GET(request: NextRequest) {
       {
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error occurred',
-        message: 'Failed to process Met Frost stations'
+        message: 'Failed to process Met Frost stations',
       },
       { status: 500 }
     );

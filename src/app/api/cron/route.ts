@@ -16,10 +16,9 @@ import { Server } from '@/lib/supabase/server';
 const BATCH_SIZE = 50;
 
 async function processBatch(locations: MinimalParaglidingLocation[]) {
-
   // Fetch OpenMeteo data for all locations in bulk
-  const latitudes = locations.map((location) => location.latitude);
-  const longitudes = locations.map((location) => location.longitude);
+  const latitudes = locations.map(location => location.latitude);
+  const longitudes = locations.map(location => location.longitude);
   const rawMeteoDataArray = await fetchMeteoData(latitudes, longitudes);
 
   // Process each location individually
@@ -30,46 +29,37 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
       const meteoData = mapOpenMeteoData(validatedData);
 
       // Fetch YR data for takeoff location
-      const yrTakeoffData = await fetchYrData(
-        location.latitude,
-        location.longitude
-      );
+      const yrTakeoffData = await fetchYrData(location.latitude, location.longitude);
       const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
-
       // Combine data sources
-      let combinedData = combineDataSources(
-        meteoData,
-        mappedYrTakeoffData.weatherDataYrHourly
-      );
+      let combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly);
 
       // Fetch YR data for landing location if it exists
       if (location.landing_latitude && location.landing_longitude) {
         console.log(`Fetching YR data for landing data for location ${location.id}`);
-        const yrLandingData = await fetchYrData(
-          location.landing_latitude,
-          location.landing_longitude
-        );
+        const yrLandingData = await fetchYrData(location.landing_latitude, location.landing_longitude);
 
         const mappedYrLandingData = mapYrData(yrLandingData);
 
-        combinedData = combinedData.map((dataPoint) => {
-          const landingDataPoint =
-            mappedYrLandingData.weatherDataYrHourly.find(
-              (landingPoint) => landingPoint.time === dataPoint.time
-            );
+        combinedData = combinedData.map(dataPoint => {
+          const landingDataPoint = mappedYrLandingData.weatherDataYrHourly.find(
+            landingPoint => landingPoint.time === dataPoint.time
+          );
 
           return {
             ...dataPoint,
             landing_wind: landingDataPoint?.wind_speed,
             landing_gust: landingDataPoint?.wind_speed_of_gust,
-            landing_wind_direction: landingDataPoint?.wind_from_direction ? Math.round(landingDataPoint?.wind_from_direction) : undefined,
+            landing_wind_direction: landingDataPoint?.wind_from_direction
+              ? Math.round(landingDataPoint?.wind_from_direction)
+              : undefined,
           };
         });
       }
 
       // Validate forecast data
-      const validatedForecastData: ForecastCache1hr[] = combinedData.map((dataPoint) => {
+      const validatedForecastData: ForecastCache1hr[] = combinedData.map(dataPoint => {
         const { isGood } = isGoodParaglidingCondition(
           dataPoint,
           DEFAULT_ALERT_RULE,
@@ -153,7 +143,5 @@ export async function GET(request: NextRequest) {
     console.error('Background forecast update failed:', error);
   }
 
-
   return NextResponse.json({ message: 'Forecast updates in background' });
 }
-

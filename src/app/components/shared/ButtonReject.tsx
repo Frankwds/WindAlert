@@ -8,11 +8,7 @@ interface ButtonRejectProps {
   className?: string;
 }
 
-export const ButtonReject: React.FC<ButtonRejectProps> = ({
-  onClick,
-  title,
-  className = ''
-}) => {
+export const ButtonReject: React.FC<ButtonRejectProps> = ({ onClick, title, className = '' }) => {
   return (
     <button
       onClick={onClick}

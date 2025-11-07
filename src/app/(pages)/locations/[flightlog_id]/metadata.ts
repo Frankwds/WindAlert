@@ -1,15 +1,13 @@
-import { ParaglidingLocationService } from "@/lib/supabase/paraglidingLocations";
-import type { Metadata } from "next";
+import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
+import type { Metadata } from 'next';
 
-export async function generateLocationMetadata(
-  flightlogId: string
-): Promise<Metadata> {
+export async function generateLocationMetadata(flightlogId: string): Promise<Metadata> {
   const location = await ParaglidingLocationService.getByFlightlogId(flightlogId);
 
   if (!location) {
     return {
-      title: "Location Not Found - WindLord",
-      description: "The requested paragliding location could not be found.",
+      title: 'Location Not Found - WindLord',
+      description: 'The requested paragliding location could not be found.',
     };
   }
 
@@ -25,12 +23,12 @@ export async function generateLocationMetadata(
     openGraph: {
       title,
       description,
-      type: "website",
-      locale: "no_NO",
+      type: 'website',
+      locale: 'no_NO',
       url: `https://windlord.no/locations/${flightlogId}`,
       images: [
         {
-          url: "/windlord.png",
+          url: '/windlord.png',
           width: 1200,
           height: 630,
           alt: `WindLord - ${location.name} Paragliding Vær`,
@@ -38,10 +36,10 @@ export async function generateLocationMetadata(
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
-      images: ["/windlord.png"],
+      images: ['/windlord.png'],
     },
   };
 }

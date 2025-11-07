@@ -11,4 +11,3 @@ export interface WeatherStation {
   updated_at: string;
   is_main: boolean;
 }
-

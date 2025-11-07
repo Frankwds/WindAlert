@@ -30,7 +30,7 @@ export const useMarkerFiltering = ({
   showLandingsLayer,
   selectedWindDirections,
   windFilterAndOperator,
-  promisingFilter
+  promisingFilter,
 }: UseMarkerFilteringProps) => {
   /**
    * Filters paragliding markers based on promising weather conditions
@@ -71,7 +71,9 @@ export const useMarkerFiltering = ({
       let currentConsecutive = 0;
 
       for (const f of relevantForecasts) {
-        const isGoodWeather = selectedWeatherConditions.length === 0 || selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
+        const isGoodWeather =
+          selectedWeatherConditions.length === 0 ||
+          selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
 
         if (f.is_promising && isGoodWeather) {
           currentConsecutive++;
@@ -85,15 +87,22 @@ export const useMarkerFiltering = ({
     });
   };
 
-  const filterParaglidingMarkersByWindDirection = (markers: google.maps.marker.AdvancedMarkerElement[], windDirections: string[]) => {
+  const filterParaglidingMarkersByWindDirection = (
+    markers: google.maps.marker.AdvancedMarkerElement[],
+    windDirections: string[]
+  ) => {
     if (windDirections.length === 0) return markers;
 
     return markers.filter(marker => {
       const locationData = (marker as any).locationData as ParaglidingLocationWithForecast;
       if (windFilterAndOperator) {
-        return windDirections.every(direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]);
+        return windDirections.every(
+          direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]
+        );
       } else {
-        return windDirections.some(direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]);
+        return windDirections.some(
+          direction => locationData[direction.toLowerCase() as keyof ParaglidingLocationWithForecast]
+        );
       }
     });
   };
@@ -118,6 +127,6 @@ export const useMarkerFiltering = ({
     filteredWeatherStationMarkers,
     filteredLandingMarkers,
     filterParaglidingMarkersByPromising,
-    filterParaglidingMarkersByWindDirection
+    filterParaglidingMarkersByWindDirection,
   };
 };

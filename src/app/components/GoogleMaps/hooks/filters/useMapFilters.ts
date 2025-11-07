@@ -27,7 +27,7 @@ export const useMapFilters = ({
   initialWindFilterAndOperator = true,
   initialPromisingFilter = null,
   initialShowSkywaysLayer = false,
-  initialShowThermalsLayer = false
+  initialShowThermalsLayer = false,
 }: UseMapFiltersProps = {}) => {
   const [showParaglidingMarkers, setShowParaglidingMarkers] = useState(initialShowParaglidingMarkers);
   const [showWeatherStationMarkers, setShowWeatherStationMarkers] = useState(initialShowWeatherStationMarkers);
@@ -90,6 +90,6 @@ export const useMapFilters = ({
     // Handlers
     handleWindDirectionChange,
     handleWindFilterLogicChange,
-    resetFilters
+    resetFilters,
   };
 };

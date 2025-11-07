@@ -25,7 +25,7 @@ const safeLocalStorage = {
     } catch (error) {
       console.warn(`Failed to set localStorage item "${key}":`, error);
     }
-  }
+  },
 };
 
 // Theme methods

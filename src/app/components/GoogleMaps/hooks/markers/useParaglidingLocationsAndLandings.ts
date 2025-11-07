@@ -7,16 +7,22 @@ type Variant = 'main' | 'all';
 
 interface UseParaglidingLocationsAndLandingsProps {
   mapInstance: google.maps.Map | null;
-  onParaglidingMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
-  onLandingMarkerClick: (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => void;
+  onParaglidingMarkerClick: (
+    marker: google.maps.marker.AdvancedMarkerElement,
+    location: ParaglidingLocationWithForecast
+  ) => void;
+  onLandingMarkerClick: (
+    marker: google.maps.marker.AdvancedMarkerElement,
+    location: ParaglidingLocationWithForecast
+  ) => void;
   variant: Variant;
 }
 
-export const useParaglidingLocationsAndLandings = ({ 
-  mapInstance, 
-  onParaglidingMarkerClick, 
-  onLandingMarkerClick, 
-  variant 
+export const useParaglidingLocationsAndLandings = ({
+  mapInstance,
+  onParaglidingMarkerClick,
+  onLandingMarkerClick,
+  variant,
 }: UseParaglidingLocationsAndLandingsProps) => {
   const [paraglidingMarkers, setParaglidingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [landingMarkers, setLandingMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
@@ -33,7 +39,7 @@ export const useParaglidingLocationsAndLandings = ({
       setMarkersError(null);
 
       const paraglidingLocations = await loadParaglidingData();
-      
+
       // Create paragliding markers
       const paraglidingMarkersArray = createParaglidingMarkers(paraglidingLocations, onParaglidingMarkerClick);
       setParaglidingMarkers(paraglidingMarkersArray);
@@ -45,7 +51,7 @@ export const useParaglidingLocationsAndLandings = ({
 
       const landingMarkersArray = locationsWithLandings.map(location => {
         const marker = createLandingMarker(location);
-        
+
         // Add click handler
         const markerElement = marker.content as HTMLElement;
         markerElement.addEventListener('click', (event: Event) => {
@@ -76,6 +82,6 @@ export const useParaglidingLocationsAndLandings = ({
     landingMarkers,
     loadMarkers,
     isLoadingMarkers,
-    markersError
+    markersError,
   };
 };

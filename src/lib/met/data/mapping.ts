@@ -6,14 +6,17 @@ import { StationData } from '../../supabase/types';
  * Groups observations by station and time, extracting the latest values for each parameter
  */
 export function mapMetObservationsToStationData(observationsData: MetObservationsData[]): Omit<StationData, 'id'>[] {
-  const stationDataMap = new Map<string, {
-    station_id: string;
-    wind_speed?: number;
-    wind_gust?: number;
-    direction?: number;
-    temperature?: number;
-    updated_at: string;
-  }>();
+  const stationDataMap = new Map<
+    string,
+    {
+      station_id: string;
+      wind_speed?: number;
+      wind_gust?: number;
+      direction?: number;
+      temperature?: number;
+      updated_at: string;
+    }
+  >();
 
   // Process each data point
   observationsData.forEach(dataPoint => {
@@ -77,7 +80,9 @@ export function mapMetObservationsToStationData(observationsData: MetObservation
       updated_at: data.updated_at,
     }));
 
-  console.log(`Mapped ${stationDataArray.length} valid station data records from ${observationsData.length} data points`);
+  console.log(
+    `Mapped ${stationDataArray.length} valid station data records from ${observationsData.length} data points`
+  );
 
   return stationDataArray;
 }

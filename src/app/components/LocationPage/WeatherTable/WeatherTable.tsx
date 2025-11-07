@@ -1,10 +1,10 @@
 'use client';
 
-import { ForecastCache1hr } from "@/lib/supabase/types";
-import Day from "./Day";
-import { ParaglidingLocation } from "@/lib/supabase/types";
-import { locationToWindDirectionSymbols } from "@/lib/utils/getWindDirection";
-import { useState } from "react";
+import { ForecastCache1hr } from '@/lib/supabase/types';
+import Day from './Day';
+import { ParaglidingLocation } from '@/lib/supabase/types';
+import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
+import { useState } from 'react';
 
 interface WeatherTableProps {
   groupedByDay: Record<string, ForecastCache1hr[]>;
@@ -30,26 +30,23 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
     }
   };
 
-  const hasValidData = groupedByDay &&
+  const hasValidData =
+    groupedByDay &&
     Object.keys(groupedByDay).length > 0 &&
     Object.values(groupedByDay).some(forecasts => forecasts && forecasts.length > 0);
 
   if (!hasValidData) {
     return (
-      <div className="bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]">
-        <div className="text-center py-8">
-          <div className="text-[var(--foreground)] mb-4">
-            Ingen time-for-time værdata tilgjengelig.
-          </div>
+      <div className='bg-[var(--background)] rounded-lg shadow-[var(--shadow-lg)] p-4 border border-[var(--border)]'>
+        <div className='text-center py-8'>
+          <div className='text-[var(--foreground)] mb-4'>Ingen time-for-time værdata tilgjengelig.</div>
         </div>
       </div>
     );
   }
 
-
   return (
-
-    <div className="space-y-4 mx-2" >
+    <div className='space-y-4 mx-2'>
       {Object.entries(groupedByDay).map(([weekdayName, dailyForecast]) => (
         <Day
           key={weekdayName}
@@ -64,7 +61,6 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
         />
       ))}
     </div>
-
   );
 };
 

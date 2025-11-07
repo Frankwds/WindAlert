@@ -53,7 +53,6 @@ export interface WeatherDataPoint {
   geopotentialHeight700hPa: number;
 }
 
-
 export interface HourlyData {
   isGood: boolean;
   weatherData: ForecastCache1hr;

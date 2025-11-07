@@ -16,7 +16,7 @@ export const useMarkers = ({
   longitude,
   landingLatitude,
   landingLongitude,
-  onLandingChange
+  onLandingChange,
 }: UseMarkersProps) => {
   const onLandingChangeRef = useRef(onLandingChange);
   const [, setLandingMarker] = useState<google.maps.marker.AdvancedMarkerElement | null>(null); // We use the ref
@@ -26,25 +26,28 @@ export const useMarkers = ({
     onLandingChangeRef.current = onLandingChange;
   }, [onLandingChange]);
 
-  const createTakeoffMarker = useCallback((map: google.maps.Map) => {
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: { lat: latitude, lng: longitude },
-      title: 'Takeoff Location'
-    });
+  const createTakeoffMarker = useCallback(
+    (map: google.maps.Map) => {
+      const marker = new google.maps.marker.AdvancedMarkerElement({
+        map,
+        position: { lat: latitude, lng: longitude },
+        title: 'Takeoff Location',
+      });
 
-    // Create red pin element
-    const markerElement = createParaglidingMarkerElement();
-    marker.content = markerElement;
-    return marker;
-  }, [latitude, longitude]);
+      // Create red pin element
+      const markerElement = createParaglidingMarkerElement();
+      marker.content = markerElement;
+      return marker;
+    },
+    [latitude, longitude]
+  );
 
   const createLandingMarker = useCallback((map: google.maps.Map, lat: number, lng: number) => {
     const marker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat, lng },
       title: 'Landing Location',
-      gmpDraggable: true
+      gmpDraggable: true,
     });
 
     // Create green pin element
@@ -54,33 +57,36 @@ export const useMarkers = ({
     return marker;
   }, []);
 
-  const addLandingMarker = useCallback((lat: number, lng: number) => {
-    const map = mapInstance;
-    if (!map) return;
+  const addLandingMarker = useCallback(
+    (lat: number, lng: number) => {
+      const map = mapInstance;
+      if (!map) return;
 
-    // Remove existing landing marker
-    setLandingMarker(prev => {
-      if (prev) {
-        prev.map = null;
-      }
-      return null;
-    });
+      // Remove existing landing marker
+      setLandingMarker(prev => {
+        if (prev) {
+          prev.map = null;
+        }
+        return null;
+      });
 
-    const newLandingMarker = createLandingMarker(map, lat, lng);
-    setLandingMarker(newLandingMarker);
-    onLandingChangeRef.current?.(lat, lng);
+      const newLandingMarker = createLandingMarker(map, lat, lng);
+      setLandingMarker(newLandingMarker);
+      onLandingChangeRef.current?.(lat, lng);
 
-    // Add drag listener
-    newLandingMarker.addListener('dragend', () => {
-      const position = newLandingMarker.position;
-      if (position) {
-        // position is a LatLngLiteral with lat/lng as numbers, not functions
-        const lat = typeof position.lat === 'function' ? position.lat() : position.lat;
-        const lng = typeof position.lng === 'function' ? position.lng() : position.lng;
-        onLandingChangeRef.current?.(lat, lng);
-      }
-    });
-  }, [mapInstance, createLandingMarker]);
+      // Add drag listener
+      newLandingMarker.addListener('dragend', () => {
+        const position = newLandingMarker.position;
+        if (position) {
+          // position is a LatLngLiteral with lat/lng as numbers, not functions
+          const lat = typeof position.lat === 'function' ? position.lat() : position.lat;
+          const lng = typeof position.lng === 'function' ? position.lng() : position.lng;
+          onLandingChangeRef.current?.(lat, lng);
+        }
+      });
+    },
+    [mapInstance, createLandingMarker]
+  );
 
   // Initialize takeoff marker when map is ready
   useEffect(() => {
@@ -115,6 +121,6 @@ export const useMarkers = ({
   }, [mapInstance, createTakeoffMarker, createLandingMarker, landingLatitude, landingLongitude]);
 
   return {
-    addLandingMarker
+    addLandingMarker,
   };
 };

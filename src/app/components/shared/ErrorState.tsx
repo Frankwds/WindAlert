@@ -13,18 +13,15 @@ export const ErrorState: React.FC<ErrorStateProps> = ({
   retryText = 'Retry',
   onRetry,
   className = '',
-  showRetry = true
+  showRetry = true,
 }) => {
   return (
     <div className={`p-6 text-center ${className}`}>
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-        <p className="text-red-800 font-medium mb-2">{title}</p>
-        <p className="text-red-600 text-sm mb-4">{error}</p>
+      <div className='bg-red-50 border border-red-200 rounded-lg p-4'>
+        <p className='text-red-800 font-medium mb-2'>{title}</p>
+        <p className='text-red-600 text-sm mb-4'>{error}</p>
         {showRetry && onRetry && (
-          <button
-            onClick={onRetry}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-          >
+          <button onClick={onRetry} className='px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700'>
             {retryText}
           </button>
         )}

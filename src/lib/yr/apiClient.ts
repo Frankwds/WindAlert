@@ -1,5 +1,5 @@
 export const API_URL_CONFIG = {
-  baseURL: "https://api.met.no/weatherapi/locationforecast/2.0/complete"
+  baseURL: 'https://api.met.no/weatherapi/locationforecast/2.0/complete',
 };
 
 export async function fetchYrData(latitude: number, longitude: number): Promise<any> {

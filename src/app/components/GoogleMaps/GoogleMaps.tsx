@@ -3,10 +3,21 @@
 import React, { useMemo } from 'react';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { ErrorState } from '../shared/ErrorState';
-import { MapLayerToggle, ZoomControls, MyLocation, FilterControl, WindFilterCompass, FullscreenControl } from '@/app/components/GoogleMaps/mapControls';
+import {
+  MapLayerToggle,
+  ZoomControls,
+  MyLocation,
+  FilterControl,
+  WindFilterCompass,
+  FullscreenControl,
+} from '@/app/components/GoogleMaps/mapControls';
 import PromisingFilter from './mapControls/PromisingFilter';
 import { Clusterer } from './clusterer';
-import { ParaglidingClusterRenderer, WeatherStationClusterRenderer, LandingClusterRenderer } from './clusterer/Renderers';
+import {
+  ParaglidingClusterRenderer,
+  WeatherStationClusterRenderer,
+  LandingClusterRenderer,
+} from './clusterer/Renderers';
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMaps } from './hooks/useGoogleMaps';
 import { MapLoadingIndicator } from './MapLoadingIndicator';
@@ -17,17 +28,19 @@ interface GoogleMapsProps {
   variant: 'main' | 'all';
 }
 
-const getParaglidingClustererOptions = (variant: 'main' | 'all') => ({
-  radius: variant === 'main' ? 60 : 125,
-  maxZoom: 15,
-  minPoints: 2
-} as const);
+const getParaglidingClustererOptions = (variant: 'main' | 'all') =>
+  ({
+    radius: variant === 'main' ? 60 : 125,
+    maxZoom: 15,
+    minPoints: 2,
+  }) as const;
 
-const getWeatherStationClustererOptions = () => ({
-  radius: 40,
-  maxZoom: 15,
-  minPoints: 2
-} as const);
+const getWeatherStationClustererOptions = () =>
+  ({
+    radius: 40,
+    maxZoom: 15,
+    minPoints: 2,
+  }) as const;
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen, variant }) => {
   useInfoWindowStyles();
@@ -67,7 +80,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     handleWindDirectionChange,
     handleWindFilterLogicChange,
     closeOverlays,
-    currentLandingMarker
+    currentLandingMarker,
   } = useGoogleMaps({ variant });
 
   // Create stable renderer instances to prevent recreation on every render
@@ -76,36 +89,58 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
   const landingRenderer = useMemo(() => new LandingClusterRenderer(), []);
 
   // Memoized components to prevent unnecessary re-renders
-  const memoizedFilterControl = useMemo(() => (
-    <FilterControl
-      showParagliding={showParaglidingMarkers}
-      showWeatherStations={showWeatherStationMarkers}
-      showLandings={showLandingsLayer}
-      showSkyways={showSkywaysLayer}
-      showThermals={showThermalsLayer}
-      onParaglidingFilterChange={setShowParaglidingMarkers}
-      onWeatherStationFilterChange={setShowWeatherStationMarkers}
-      onLandingsFilterChange={setShowLandingsLayer}
-      onSkywaysFilterChange={setShowSkywaysLayer}
-      onThermalsFilterChange={setShowThermalsLayer}
-      isOpen={isFilterControlOpen}
-      onToggle={setIsFilterControlOpen}
-      closeOverlays={closeOverlays}
-    />
-  ), [showParaglidingMarkers, showWeatherStationMarkers, showLandingsLayer, showSkywaysLayer, showThermalsLayer, isFilterControlOpen, closeOverlays]);
+  const memoizedFilterControl = useMemo(
+    () => (
+      <FilterControl
+        showParagliding={showParaglidingMarkers}
+        showWeatherStations={showWeatherStationMarkers}
+        showLandings={showLandingsLayer}
+        showSkyways={showSkywaysLayer}
+        showThermals={showThermalsLayer}
+        onParaglidingFilterChange={setShowParaglidingMarkers}
+        onWeatherStationFilterChange={setShowWeatherStationMarkers}
+        onLandingsFilterChange={setShowLandingsLayer}
+        onSkywaysFilterChange={setShowSkywaysLayer}
+        onThermalsFilterChange={setShowThermalsLayer}
+        isOpen={isFilterControlOpen}
+        onToggle={setIsFilterControlOpen}
+        closeOverlays={closeOverlays}
+      />
+    ),
+    [
+      showParaglidingMarkers,
+      showWeatherStationMarkers,
+      showLandingsLayer,
+      showSkywaysLayer,
+      showThermalsLayer,
+      isFilterControlOpen,
+      closeOverlays,
+    ]
+  );
 
-  const memoizedWindFilterCompass = useMemo(() => (
-    <WindFilterCompass
-      onWindDirectionChange={handleWindDirectionChange}
-      selectedDirections={selectedWindDirections}
-      isExpanded={windFilterExpanded}
-      setIsExpanded={setWindFilterExpanded}
-      windFilterAndOperator={windFilterAndOperator}
-      onFilterLogicChange={handleWindFilterLogicChange}
-      closeOverlays={closeOverlays}
-      variant={variant}
-    />
-  ), [selectedWindDirections, windFilterExpanded, windFilterAndOperator, handleWindDirectionChange, handleWindFilterLogicChange, closeOverlays, variant]);
+  const memoizedWindFilterCompass = useMemo(
+    () => (
+      <WindFilterCompass
+        onWindDirectionChange={handleWindDirectionChange}
+        selectedDirections={selectedWindDirections}
+        isExpanded={windFilterExpanded}
+        setIsExpanded={setWindFilterExpanded}
+        windFilterAndOperator={windFilterAndOperator}
+        onFilterLogicChange={handleWindFilterLogicChange}
+        closeOverlays={closeOverlays}
+        variant={variant}
+      />
+    ),
+    [
+      selectedWindDirections,
+      windFilterExpanded,
+      windFilterAndOperator,
+      handleWindDirectionChange,
+      handleWindFilterLogicChange,
+      closeOverlays,
+      variant,
+    ]
+  );
 
   const memoizedPromisingFilter = useMemo(() => {
     if (variant !== 'main') return null;
@@ -156,26 +191,16 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     );
   }, [mapInstance, landingMarkers, landingRenderer, variant]);
 
-
   if (error) {
-    return (
-      <ErrorState
-        error={error}
-        title="Failed to load map"
-        showRetry={false}
-      />
-    );
+    return <ErrorState error={error} title='Failed to load map' showRetry={false} />;
   }
 
   return (
-    <div className={"w-full h-full"}>
-      <div className="relative w-full h-full">
-        {isLoading && <LoadingSpinner size="lg" text="Laster kart..." overlay />}
+    <div className={'w-full h-full'}>
+      <div className='relative w-full h-full'>
+        {isLoading && <LoadingSpinner size='lg' text='Laster kart...' overlay />}
 
-        <div
-          ref={mapRef}
-          className="w-full h-full"
-        />
+        <div ref={mapRef} className='w-full h-full' />
 
         {memoizedParaglidingClusterer}
         {memoizedWeatherStationClusterer}
@@ -188,12 +213,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
                 {/* Landing marker is automatically rendered by Google Maps when added to map */}
               </div>
             )}
-            <MapLayerToggle
-              map={mapInstance}
-              initialMapType={mapType}
-              onMapTypeChange={onMapTypeChange}
-            />
-            <div className="absolute bottom-3 right-3 z-10 flex flex-row gap-2">
+            <MapLayerToggle map={mapInstance} initialMapType={mapType} onMapTypeChange={onMapTypeChange} />
+            <div className='absolute bottom-3 right-3 z-10 flex flex-row gap-2'>
               <FullscreenControl isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} />
               <ZoomControls map={mapInstance} />
             </div>

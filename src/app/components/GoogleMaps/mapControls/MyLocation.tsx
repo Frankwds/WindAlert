@@ -157,7 +157,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
     if (!isTracking || !map || !navigator.geolocation) return;
 
     const watchId = navigator.geolocation.watchPosition(
-      (position) => {
+      position => {
         const location = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -171,7 +171,7 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
           map.setCenter(location);
         }
       },
-      (error) => {
+      error => {
         console.error('Tracking error:', error);
         stopTracking();
       },
@@ -204,22 +204,25 @@ export const MyLocation: React.FC<MyLocationProps> = ({ map, closeOverlays }) =>
     };
   }, [map, isFollowing]);
 
-
   if (!map) return null;
 
   return (
-    <div className="absolute bottom-24 right-3 z-10">
-      <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]">
+    <div className='absolute bottom-24 right-3 z-10'>
+      <div className='bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)]'>
         <button
           onClick={handleMyLocationClick}
           className={`w-8 h-8 bg-transparent ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} border-none rounded-md cursor-pointer text-[var(--foreground)] flex items-center justify-center font-bold text-lg select-none`}
           title={
-            (isFollowing ? "Follow location (Right-click to clear cache)" : "Follow location (Right-click to clear cache)")
+            isFollowing
+              ? 'Follow location (Right-click to clear cache)'
+              : 'Follow location (Right-click to clear cache)'
           }
         >
           <Image
-            src={isFollowing ? '/myLocationBlue.png' : (theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png')}
-            alt="My Location"
+            src={
+              isFollowing ? '/myLocationBlue.png' : theme === 'dark' ? '/myLocationDark.png' : '/myLocationLight.png'
+            }
+            alt='My Location'
             width={24}
             height={24}
           />

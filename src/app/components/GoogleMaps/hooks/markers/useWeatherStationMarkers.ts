@@ -100,13 +100,16 @@ export const useWeatherStationMarkers = ({
         updateMarkersWithLatestData();
 
         // Now start the regular 5-minute interval
-        intervalRef.current = setInterval(() => {
-          // skip if tab is not in use
-          if (!isVisibleRef.current) {
-            return;
-          }
-          updateMarkersWithLatestData();
-        }, 5 * 60 * 1000); // 5 minutes
+        intervalRef.current = setInterval(
+          () => {
+            // skip if tab is not in use
+            if (!isVisibleRef.current) {
+              return;
+            }
+            updateMarkersWithLatestData();
+          },
+          5 * 60 * 1000
+        ); // 5 minutes
       }, delay);
 
       // Cleanup timeout and interval on unmount or when dependencies change

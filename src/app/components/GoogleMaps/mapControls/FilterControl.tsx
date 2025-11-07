@@ -102,107 +102,121 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   };
 
   return (
-    <div className="absolute top-3 left-3 z-10">
-      <div className="bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg shadow-[var(--shadow-md)]">
+    <div className='absolute top-3 left-3 z-10'>
+      <div className='bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg shadow-[var(--shadow-md)]'>
         {/* Toggle Button */}
         <button
           onClick={toggleDropdown}
           className={`flex items-center gap-4 p-2 ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} rounded-lg cursor-pointer min-w-[72px] select-none`}
-          aria-label="Toggle filters"
+          aria-label='Toggle filters'
         >
           {/* Filters Icon */}
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-[var(--foreground)]"
+            width='20'
+            height='20'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className='text-[var(--foreground)]'
           >
-            <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3" />
+            <polygon points='22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3' />
           </svg>
 
           {/* Arrow Icon */}
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={`text-[var(--muted)] ${isOpen ? 'rotate-180' : ''
-              }`}
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className={`text-[var(--muted)] ${isOpen ? 'rotate-180' : ''}`}
           >
-            <polyline points="6,9 12,15 18,9" />
+            <polyline points='6,9 12,15 18,9' />
           </svg>
         </button>
 
         {/* Dropdown Content */}
         {isOpen && (
-          <div className="border-t border-[var(--border)] p-1">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="paragliding" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+          <div className='border-t border-[var(--border)] p-1'>
+            <div className='flex flex-col gap-1'>
+              <label
+                htmlFor='paragliding'
+                className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}
+              >
                 <input
-                  type="checkbox"
-                  id="paragliding"
+                  type='checkbox'
+                  id='paragliding'
                   checked={showParagliding}
                   onChange={handleParaglidingChange}
-                  className="mr-2 h-4 w-4 cursor-pointer"
+                  className='mr-2 h-4 w-4 cursor-pointer'
                 />
-                <Image src="/paraglider.png" alt="Paragliding" width={24} height={24} className="w-6 h-6" />
+                <Image src='/paraglider.png' alt='Paragliding' width={24} height={24} className='w-6 h-6' />
               </label>
 
-              <label htmlFor="weatherStation" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+              <label
+                htmlFor='weatherStation'
+                className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}
+              >
                 <input
-                  type="checkbox"
-                  id="weatherStation"
+                  type='checkbox'
+                  id='weatherStation'
                   checked={showWeatherStations}
                   onChange={handleWeatherStationChange}
-                  className="mr-2 h-4 w-4 cursor-pointer"
+                  className='mr-2 h-4 w-4 cursor-pointer'
                 />
-                <div className="w-6 h-6 flex items-center justify-center ">
+                <div className='w-6 h-6 flex items-center justify-center '>
                   <WindArrowIcon />
                 </div>
               </label>
 
-              <label htmlFor="landings" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+              <label
+                htmlFor='landings'
+                className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}
+              >
                 <input
-                  type="checkbox"
-                  id="landings"
+                  type='checkbox'
+                  id='landings'
                   checked={showLandings}
                   onChange={handleLandingsChange}
-                  className="mr-2 h-4 w-4 cursor-pointer"
+                  className='mr-2 h-4 w-4 cursor-pointer'
                 />
-                <div className="w-6 h-6 flex items-center justify-center">
+                <div className='w-6 h-6 flex items-center justify-center'>
                   <LandingIcon />
                 </div>
               </label>
 
-              <label htmlFor="skyways" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+              <label
+                htmlFor='skyways'
+                className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}
+              >
                 <input
-                  type="checkbox"
-                  id="skyways"
+                  type='checkbox'
+                  id='skyways'
                   checked={showSkyways}
                   onChange={handleSkywaysChange}
-                  className="mr-2 h-4 w-4 cursor-pointer"
+                  className='mr-2 h-4 w-4 cursor-pointer'
                 />
-                <Image src="/thermalkk7.webp" alt="Skyways" width={24} height={24} className="w-6 h-6" />
+                <Image src='/thermalkk7.webp' alt='Skyways' width={24} height={24} className='w-6 h-6' />
               </label>
 
-              <label htmlFor="thermals" className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}>
+              <label
+                htmlFor='thermals'
+                className={`flex items-center cursor-pointer ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} p-2 rounded select-none`}
+              >
                 <input
-                  type="checkbox"
-                  id="thermals"
+                  type='checkbox'
+                  id='thermals'
                   checked={showThermals}
                   onChange={handleThermalsChange}
-                  className="mr-2 h-4 w-4 cursor-pointer"
+                  className='mr-2 h-4 w-4 cursor-pointer'
                 />
-                <Image src="/cumulonimbus.png" alt="Thermals" width={24} height={24} className="px-0.5 w-6 h-6" />
+                <Image src='/cumulonimbus.png' alt='Thermals' width={24} height={24} className='px-0.5 w-6 h-6' />
               </label>
             </div>
           </div>

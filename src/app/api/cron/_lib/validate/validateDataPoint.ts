@@ -1,10 +1,7 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
 import { ForecastCache1hr } from '@/lib/supabase/types';
 
-function isWindDirectionGood(
-  windDirection: number,
-  location: string[]
-): boolean {
+function isWindDirectionGood(windDirection: number, location: string[]): boolean {
   const directions = [
     { key: 'n', min: 337.5, max: 22.5 },
     { key: 'ne', min: 22.5, max: 67.5 },
@@ -37,10 +34,7 @@ function isWindDirectionGood(
  * Checks if the difference between ground wind direction and altitude wind direction
  * is within acceptable limits (less than 90 degrees)
  */
-function isWindShearAcceptable(
-  groundDirection: number,
-  altitudeDirection: number
-): boolean {
+function isWindShearAcceptable(groundDirection: number, altitudeDirection: number): boolean {
   // Calculate the absolute difference between wind directions
   let difference = Math.abs(groundDirection - altitudeDirection);
   // Normalize the difference to handle the circular nature of degrees (0-360)
@@ -67,12 +61,7 @@ export function isGoodParaglidingCondition(
   }
 
   // Visual and precipitation conditions
-  const good_weather = [
-    'clearsky_day',
-    'fair_day',
-    'partlycloudy_day',
-    'cloudy',
-  ];
+  const good_weather = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'];
   const isBadWeather = !good_weather.includes(dp.weather_code);
 
   const isLowWind = dp.wind_speed < alert_rule.MIN_WIND_SPEED;
@@ -91,8 +80,11 @@ export function isGoodParaglidingCondition(
   const isWindShear1500m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_850hpa);
   const isWindShear3000m = !isWindShearAcceptable(dp.wind_direction, dp.wind_direction_700hpa);
 
-  const isMaybeRain = dp.precipitation_max !== undefined && dp.precipitation_min !== undefined &&
-    dp.precipitation_max > alert_rule.MAX_PRECIPITATION && dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
+  const isMaybeRain =
+    dp.precipitation_max !== undefined &&
+    dp.precipitation_min !== undefined &&
+    dp.precipitation_max > alert_rule.MAX_PRECIPITATION &&
+    dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
   const isRain = dp.precipitation_min !== undefined && dp.precipitation_min > alert_rule.MAX_PRECIPITATION;
 
   // Weather symbol

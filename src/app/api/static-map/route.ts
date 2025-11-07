@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       hybrid: mapSrc,
       terrain: mapSrcTerrain,
-      googleMapsUrl: `https://maps.google.com/?q=${lat},${lon}&z=12&t=k`
+      googleMapsUrl: `https://maps.google.com/?q=${lat},${lon}&z=12&t=k`,
     });
   } catch (error) {
     console.error('Error generating static map URLs:', error);

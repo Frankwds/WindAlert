@@ -73,7 +73,11 @@ export default function LocationPage({ params }: Props) {
 
         // Add validation data to forecast
         const validatedForecast = filteredForecast.map(hour => {
-          const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(hour, DEFAULT_ALERT_RULE, locationToWindDirectionSymbols(locationData));
+          const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
+            hour,
+            DEFAULT_ALERT_RULE,
+            locationToWindDirectionSymbols(locationData)
+          );
           return {
             ...hour,
             location_id: locationData.id,
@@ -142,10 +146,20 @@ export default function LocationPage({ params }: Props) {
         isMain={location.is_main}
       />
 
-      <WeatherTable groupedByDay={groupedByDay} sixHourSymbolsByDay={sixHourSymbolsByDay} location={location} showValidation={true} />
+      <WeatherTable
+        groupedByDay={groupedByDay}
+        sixHourSymbolsByDay={sixHourSymbolsByDay}
+        location={location}
+        showValidation={true}
+      />
 
       <WindyWidget lat={location.latitude} long={location.longitude} />
-      <GoogleMaps latitude={location.latitude} longitude={location.longitude} landing_latitude={landingLatitude} landing_longitude={landingLongitude} />
+      <GoogleMaps
+        latitude={location.latitude}
+        longitude={location.longitude}
+        landing_latitude={landingLatitude}
+        landing_longitude={landingLongitude}
+      />
 
       <Contribute
         locationId={location.id}

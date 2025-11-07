@@ -1,4 +1,5 @@
-export type MinimalForecast = Pick<ForecastCache1hr,
+export type MinimalForecast = Pick<
+  ForecastCache1hr,
   | 'time'
   | 'is_day'
   | 'weather_code'
@@ -37,7 +38,6 @@ export interface ForecastCache1hr {
   is_promising: boolean;
   validation_failures: string;
   validation_warnings: string;
-
 
   // Landing conditions
   landing_wind?: number;
