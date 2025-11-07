@@ -12,7 +12,13 @@ const QUERY_PARAMS = {
   TIME_RANGE: 'latest',
 
   // Elements to fetch
-  ELEMENTS: ['wind_speed', 'wind_from_direction', 'max(wind_speed_of_gust PT10M)', 'air_temperature'],
+  ELEMENTS: [
+    'wind_speed',
+    'wind_from_direction',
+    'max(wind_speed_of_gust PT10M)', // 10-minute resolution (preferred, but not available for all stations)
+    'max(wind_speed_of_gust PT1H)', // Hourly resolution (fallback for stations without PT10M)
+    'air_temperature',
+  ],
 } as const;
 
 /**

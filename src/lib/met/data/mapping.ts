@@ -49,7 +49,14 @@ export function mapMetObservationsToStationData(observationsData: MetObservation
           stationData.wind_speed = value;
           break;
         case 'max(wind_speed_of_gust PT10M)':
+          // Prefer 10-minute resolution gust data (more granular)
           stationData.wind_gust = value;
+          break;
+        case 'max(wind_speed_of_gust PT1H)':
+          // Use hourly resolution gust data as fallback (if PT10M not available)
+          if (stationData.wind_gust === undefined) {
+            stationData.wind_gust = value;
+          }
           break;
         case 'wind_from_direction':
           stationData.direction = value;
