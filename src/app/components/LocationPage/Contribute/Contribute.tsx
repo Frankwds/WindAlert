@@ -48,29 +48,10 @@ export const Contribute: React.FC<ContributeProps> = ({
 
       // Update the cache with the new location data (without forecast)
       try {
-        const locationWithForecast: ParaglidingLocationWithForecast = {
-          id: updatedLocation.id,
-          name: updatedLocation.name,
-          latitude: updatedLocation.latitude,
-          longitude: updatedLocation.longitude,
-          altitude: updatedLocation.altitude,
-          flightlog_id: updatedLocation.flightlog_id,
-          is_main: updatedLocation.is_main,
-          n: updatedLocation.n,
-          e: updatedLocation.e,
-          s: updatedLocation.s,
-          w: updatedLocation.w,
-          ne: updatedLocation.ne,
-          se: updatedLocation.se,
-          sw: updatedLocation.sw,
-          nw: updatedLocation.nw,
-          landing_latitude: updatedLocation.landing_latitude,
-          landing_longitude: updatedLocation.landing_longitude,
-          landing_altitude: updatedLocation.landing_altitude,
-          // forecast_cache is optional and not included
-        };
-
-        await dataCache.updateParaglidingLocationById(updatedLocation.id, locationWithForecast);
+        await dataCache.updateParaglidingLocationById(
+          updatedLocation.id,
+          updatedLocation as ParaglidingLocationWithForecast
+        );
       } catch (cacheError) {
         console.warn('Failed to update cache:', cacheError);
         // Fall back to clearing cache
