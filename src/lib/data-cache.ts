@@ -6,7 +6,7 @@ interface Cache<T> {
 }
 
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
-const CACHE_DURATION_ALL_PARAGLIDING = 24 * 60 * 60 * 1000; // 1 day
+const CACHE_DURATION_ALL_PARAGLIDING = 60 * 60 * 1000; // 1 day
 
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
@@ -143,13 +143,7 @@ class DataCache {
     const cached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
 
     // Check if cache exists and is newer than the hardcoded minimum timestamp
-    if (
-      cached &&
-      cached.data &&
-      cached.timestamp &&
-      cached.timestamp >= ALL_PARAGLIDING_MIN_TIMESTAMP &&
-      this.isCacheValid(cached.timestamp, CACHE_DURATION_ALL_PARAGLIDING)
-    ) {
+    if (cached && this.isCacheValid(cached.timestamp, CACHE_DURATION_ALL_PARAGLIDING)) {
       return cached.data;
     }
 
