@@ -94,7 +94,7 @@ class DataCache {
     }
   }
 
-  private async setToStorage(key: string, data: any): Promise<void> {
+  private async setToStorage(key: string, data: any, timestamp: number): Promise<void> {
     if (typeof window === 'undefined') {
       return;
     }
@@ -107,7 +107,7 @@ class DataCache {
       const cacheData = {
         key,
         data,
-        timestamp: Date.now(),
+        timestamp,
       };
 
       await new Promise<void>((resolve, reject) => {
@@ -136,7 +136,7 @@ class DataCache {
   }
 
   async setParaglidingLocations(data: ParaglidingLocationWithForecast[]): Promise<void> {
-    await this.setToStorage(this.PARAGLIDING_KEY, data);
+    await this.setToStorage(this.PARAGLIDING_KEY, data, Date.now());
   }
 
   async getAllParaglidingLocations(): Promise<ParaglidingLocationWithForecast[] | null> {
@@ -158,7 +158,7 @@ class DataCache {
   }
 
   async setAllParaglidingLocations(data: ParaglidingLocationWithForecast[]): Promise<void> {
-    await this.setToStorage(this.ALL_PARAGLIDING_KEY, data);
+    await this.setToStorage(this.ALL_PARAGLIDING_KEY, data, Date.now());
   }
 
   async updateParaglidingLocationById(
@@ -171,7 +171,7 @@ class DataCache {
       const updatedData = cached.data.map((location: ParaglidingLocationWithForecast) =>
         location.id === locationId ? { ...location, ...updates } : location
       );
-      await this.setToStorage(this.PARAGLIDING_KEY, updatedData);
+      await this.setToStorage(this.PARAGLIDING_KEY, updatedData, cached.timestamp ?? Date.now());
     }
 
     // Update in the all paragliding locations cache
@@ -180,7 +180,7 @@ class DataCache {
       const updatedAllData = allCached.data.map((location: ParaglidingLocationWithForecast) =>
         location.id === locationId ? { ...location, ...updates } : location
       );
-      await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData);
+      await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData, allCached.timestamp ?? Date.now());
     }
   }
 
@@ -198,10 +198,10 @@ class DataCache {
         // Update existing location
         const updatedData = [...cached.data];
         updatedData[existingIndex] = { ...updatedData[existingIndex], ...location };
-        await this.setToStorage(this.PARAGLIDING_KEY, updatedData);
+        await this.setToStorage(this.PARAGLIDING_KEY, updatedData, cached.timestamp ?? Date.now());
       } else {
         // Add new location
-        await this.setToStorage(this.PARAGLIDING_KEY, [...cached.data, location]);
+        await this.setToStorage(this.PARAGLIDING_KEY, [...cached.data, location], cached.timestamp ?? Date.now());
       }
     }
 
@@ -214,10 +214,14 @@ class DataCache {
         // Update existing location
         const updatedAllData = [...allCached.data];
         updatedAllData[existingIndex] = { ...updatedAllData[existingIndex], ...location };
-        await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData);
+        await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData, allCached.timestamp ?? Date.now());
       } else {
         // Add new location
-        await this.setToStorage(this.ALL_PARAGLIDING_KEY, [...allCached.data, location]);
+        await this.setToStorage(
+          this.ALL_PARAGLIDING_KEY,
+          [...allCached.data, location],
+          allCached.timestamp ?? Date.now()
+        );
       }
     }
   }
