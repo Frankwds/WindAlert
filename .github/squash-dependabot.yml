@@ -1,0 +1,29 @@
+name: Auto-squash Dependabot
+
+on:
+  pull_request:
+    types: [opened]
+    branches: ['*']
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  squash:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Squash to single commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BASE=$(git merge-base HEAD origin/${{ github.event.pull_request.base.ref }})
+          git reset --soft $BASE
+          git commit -m "chore: update dependencies"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }} --force
