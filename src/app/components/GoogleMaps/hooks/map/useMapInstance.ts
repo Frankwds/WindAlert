@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
 import { useThermalsLayer, useSkywaysLayer, useOSMMapType } from './useMapLayers';
 
 const MAP_CONFIG = {
@@ -68,13 +68,21 @@ export const useMapInstance = ({
           );
         }
 
-        const loader = new Loader({
-          apiKey,
+        // Set options for loading the API (only needs to be called once, but safe to call multiple times)
+        setOptions({
+          key: apiKey,
           version: 'weekly',
           libraries: ['places', 'marker'],
         });
 
-        const google = await loader.load();
+        // Load the required libraries
+        await importLibrary('maps');
+        await importLibrary('places');
+        await importLibrary('marker');
+
+        // Access google from the global namespace
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const google = (window as any).google as typeof google;
 
         if (!mapRef.current) return;
 
