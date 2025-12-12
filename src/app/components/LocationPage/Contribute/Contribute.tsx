@@ -11,6 +11,7 @@ interface ContributeProps {
   startId: string;
   latitude: number;
   longitude: number;
+  takeoffAltitude: number;
   landingLatitude?: number;
   landingLongitude?: number;
   landingAltitude?: number;
@@ -22,6 +23,7 @@ export const Contribute: React.FC<ContributeProps> = ({
   startId,
   latitude,
   longitude,
+  takeoffAltitude,
   landingLatitude,
   landingLongitude,
   landingAltitude,
@@ -76,6 +78,7 @@ export const Contribute: React.FC<ContributeProps> = ({
         locationId={locationId}
         latitude={latitude}
         longitude={longitude}
+        takeoffAltitude={takeoffAltitude}
         landingLatitude={landingLatitude}
         landingLongitude={landingLongitude}
         landingAltitude={landingAltitude}

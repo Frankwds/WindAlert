@@ -166,6 +166,7 @@ export default function LocationPage({ params }: Props) {
         startId={location.flightlog_id}
         latitude={location.latitude}
         longitude={location.longitude}
+        takeoffAltitude={location.altitude}
         landingLatitude={landingLatitude}
         landingLongitude={landingLongitude}
         landingAltitude={landingAltitude}

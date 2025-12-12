@@ -5,11 +5,13 @@ import Collapsible from '../../shared/Collapsible';
 import { ContributeMap } from './ContributeMap';
 import { ButtonAccept } from '../../shared';
 import { dataCache } from '@/lib/data-cache';
+import { useElevation } from './hooks/useElevation';
 
 interface ContributeLandingProps {
   locationId: string;
   latitude: number;
   longitude: number;
+  takeoffAltitude: number;
   landingLatitude?: number;
   landingLongitude?: number;
   landingAltitude?: number;
@@ -20,6 +22,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   locationId,
   latitude,
   longitude,
+  takeoffAltitude,
   landingLatitude: intialLandingLatitude,
   landingLongitude: initialLandingLongitude,
   landingAltitude: initialLandingAltitude,
@@ -29,8 +32,27 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
   const [currentLandingLng, setCurrentLandingLng] = useState<number | undefined>(initialLandingLongitude);
   const [currentLandingAltitude, setCurrentLandingAltitude] = useState<number | undefined>(initialLandingAltitude);
+  const [isManualAltitude, setIsManualAltitude] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const contributeRef = useRef<HTMLDivElement>(null);
+
+  // Fetch elevation when landing coordinates change
+  const {
+    altitude: fetchedAltitude,
+    isLoading: isFetchingAltitude,
+    error: elevationError,
+  } = useElevation({
+    latitude: currentLandingLat,
+    longitude: currentLandingLng,
+    enabled: isOpen && !isManualAltitude,
+  });
+
+  // Update altitude when elevation is fetched (unless manually set)
+  useEffect(() => {
+    if (!isManualAltitude && fetchedAltitude !== undefined && currentLandingLat && currentLandingLng) {
+      setCurrentLandingAltitude(fetchedAltitude);
+    }
+  }, [fetchedAltitude, isManualAltitude, currentLandingLat, currentLandingLng]);
 
   // Scroll to the bottom of the contribute section when it opens
   useEffect(() => {
@@ -48,12 +70,18 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   const handleLandingChange = useCallback((lat: number, lng: number) => {
     setCurrentLandingLat(lat);
     setCurrentLandingLng(lng);
+    // Reset manual altitude flag when landing position changes to allow auto-fetch
+    setIsManualAltitude(false);
 
     setError(null); // Clear any previous errors when landing changes
   }, []);
 
-  const handleAltitudeChange = useCallback((altitude: number) => {
+  const handleAltitudeChange = useCallback((altitude: number | undefined) => {
     setCurrentLandingAltitude(altitude);
+    // Mark as manual if user starts typing
+    if (altitude !== undefined) {
+      setIsManualAltitude(true);
+    }
   }, []);
 
   const handleSave = useCallback(async () => {
@@ -78,6 +106,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
             locationId,
             takeoffLatitude: latitude,
             takeoffLongitude: longitude,
+            takeoffAltitude,
             landingLatitude: currentLandingLat,
             landingLongitude: currentLandingLng,
             landingAltitude: currentLandingAltitude,
@@ -114,7 +143,16 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
         );
       }
     }
-  }, [locationId, latitude, longitude, currentLandingLat, currentLandingLng, currentLandingAltitude, onSave]);
+  }, [
+    locationId,
+    latitude,
+    longitude,
+    takeoffAltitude,
+    currentLandingLat,
+    currentLandingLng,
+    currentLandingAltitude,
+    onSave,
+  ]);
 
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);
@@ -154,27 +192,38 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
                   <label htmlFor='altitude-input' className='text-sm font-medium text-[var(--foreground)]'>
                     Høyde:
                   </label>
-                  <input
-                    id='altitude-input'
-                    type='number'
-                    min='0'
-                    step='1'
-                    value={currentLandingAltitude || ''}
-                    onChange={e => {
-                      const value = e.target.value;
-                      if (value === '') {
-                        handleAltitudeChange(undefined as any);
-                      } else {
-                        const numValue = parseInt(value, 10);
-                        if (!isNaN(numValue)) {
-                          handleAltitudeChange(numValue);
+                  <div className='relative'>
+                    <input
+                      id='altitude-input'
+                      type='number'
+                      min='0'
+                      step='1'
+                      value={currentLandingAltitude || ''}
+                      onChange={e => {
+                        const value = e.target.value;
+                        if (value === '') {
+                          handleAltitudeChange(undefined);
+                        } else {
+                          const numValue = parseInt(value, 10);
+                          if (!isNaN(numValue)) {
+                            handleAltitudeChange(numValue);
+                          }
                         }
-                      }
-                    }}
-                    className='w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]'
-                    placeholder='0'
-                  />
+                      }}
+                      className='w-20 px-2 py-1 text-sm border border-[var(--border)] rounded bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]'
+                      placeholder='0'
+                      disabled={isFetchingAltitude}
+                    />
+                    {isFetchingAltitude && (
+                      <div className='absolute right-2 top-1/2 -translate-y-1/2'>
+                        <div className='w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin opacity-50'></div>
+                      </div>
+                    )}
+                  </div>
                   <span className='text-xs text-[var(--muted)]'>moh.</span>
+                  {elevationError && !isManualAltitude && (
+                    <span className='text-xs text-[var(--muted)] italic'>({elevationError})</span>
+                  )}
                 </div>
 
                 <ButtonAccept

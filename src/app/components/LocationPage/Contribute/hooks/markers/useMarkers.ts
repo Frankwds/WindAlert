@@ -75,13 +75,9 @@ export const useMarkers = ({
       onLandingChangeRef.current?.(lat, lng);
 
       // Add drag listener
-      newLandingMarker.addListener('dragend', () => {
-        const position = newLandingMarker.position;
-        if (position) {
-          // position is a LatLngLiteral with lat/lng as numbers, not functions
-          const lat = typeof position.lat === 'function' ? position.lat() : position.lat;
-          const lng = typeof position.lng === 'function' ? position.lng() : position.lng;
-          onLandingChangeRef.current?.(lat, lng);
+      newLandingMarker.addListener('dragend', (event: google.maps.MapMouseEvent) => {
+        if (event.latLng) {
+          onLandingChangeRef.current?.(event.latLng.lat(), event.latLng.lng());
         }
       });
     },
@@ -108,13 +104,9 @@ export const useMarkers = ({
       setLandingMarker(landingMarker);
 
       // Add drag listener
-      landingMarker.addListener('dragend', () => {
-        const position = landingMarker.position;
-        if (position) {
-          // position is a LatLngLiteral with lat/lng as numbers, not functions
-          const lat = typeof position.lat === 'function' ? position.lat() : position.lat;
-          const lng = typeof position.lng === 'function' ? position.lng() : position.lng;
-          onLandingChangeRef.current?.(lat, lng);
+      landingMarker.addListener('dragend', (event: google.maps.MapMouseEvent) => {
+        if (event.latLng) {
+          onLandingChangeRef.current?.(event.latLng.lat(), event.latLng.lng());
         }
       });
     }

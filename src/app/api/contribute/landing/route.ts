@@ -5,7 +5,15 @@ import { calculateDistance } from '@/lib/utils/calculateDistance';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { locationId, takeoffLatitude, takeoffLongitude, landingLatitude, landingLongitude, landingAltitude } = body;
+    const {
+      locationId,
+      takeoffLatitude,
+      takeoffLongitude,
+      takeoffAltitude,
+      landingLatitude,
+      landingLongitude,
+      landingAltitude,
+    } = body;
 
     // Validate required fields
     if (!locationId || !takeoffLatitude || !takeoffLongitude || !landingLatitude || !landingLongitude) {
@@ -36,24 +44,54 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Koordinatene er ugyldige' }, { status: 400 });
     }
 
-    // Validate altitude if provided
+    // Validate takeoff altitude if provided
+    if (takeoffAltitude !== undefined && takeoffAltitude !== null) {
+      if (typeof takeoffAltitude !== 'number' || takeoffAltitude < 0) {
+        return NextResponse.json({ error: 'Ugyldig takeoff-høyde. (Det må være et positivt tall)' }, { status: 400 });
+      }
+    }
+
+    // Validate landing altitude if provided
     if (landingAltitude !== undefined && landingAltitude !== null) {
       if (typeof landingAltitude !== 'number' || landingAltitude < 0) {
-        return NextResponse.json({ error: 'Ugyldig høyde. (Det må være et positivt tall)' }, { status: 400 });
+        return NextResponse.json({ error: 'Ugyldig landing-høyde. (Det må være et positivt tall)' }, { status: 400 });
       }
     }
 
     // Check distance between takeoff and landing
     const distance = calculateDistance(takeoffLatitude, takeoffLongitude, landingLatitude, landingLongitude);
-    if (distance > 5000) {
-      return NextResponse.json(
-        {
-          error: `Det er useriøst å legge til en landing ${Math.round(distance)} meter fra takeoff. 
-        Maksimal avstand er 5000 meter. 
+
+    // Validate using glide ratio if both altitudes are provided
+    if (
+      takeoffAltitude !== undefined &&
+      takeoffAltitude !== null &&
+      landingAltitude !== undefined &&
+      landingAltitude !== null
+    ) {
+      const heightDifference = takeoffAltitude - landingAltitude;
+      const maxGlideDistance = heightDifference * 10;
+
+      if (distance > maxGlideDistance) {
+        return NextResponse.json(
+          {
+            error: `Landingen er ${Math.round(distance)} meter fra takeoff, men med høydeforskjell på ${Math.round(heightDifference)} meter og glidetallet 10, er maksimal glidedistanse ${Math.round(maxGlideDistance)} meter. 
         Vær grei å ikke ødelegg for alle andre.`,
-        },
-        { status: 400 }
-      );
+          },
+          { status: 400 }
+        );
+      }
+    } else {
+      // Fallback to old validation if altitudes are not provided
+      if (distance > 10000) {
+        return NextResponse.json(
+          {
+            error: `Det er useriøst å legge til en landing ${Math.round(distance)} meter fra takeoff.
+        Maksimal avstand er 10000 meter. 
+        Vær grei å ikke ødelegg for alle andre.`,
+          },
+          { status: 400 }
+        );
+      }
     }
 
     // Update the landing coordinates
