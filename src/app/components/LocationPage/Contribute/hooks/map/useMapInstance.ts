@@ -42,7 +42,7 @@ export const useMapInstance = ({ latitude, longitude, onMapReady }: UseMapInstan
         // Set options for loading the API (only needs to be called once, but safe to call multiple times)
         setOptions({
           key: apiKey,
-          version: 'weekly',
+          v: 'weekly',
           libraries: ['places', 'marker'],
         });
 
@@ -53,7 +53,7 @@ export const useMapInstance = ({ latitude, longitude, onMapReady }: UseMapInstan
 
         // Access google from the global namespace
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const google = (window as any).google as typeof google;
+        const google = (window as any).google;
 
         if (!mapRef.current) return;
 
