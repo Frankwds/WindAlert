@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
+import { useOSMMapType } from '@/app/components/GoogleMaps/hooks/map/useMapLayers';
 
 const MAP_CONFIG = {
   DEFAULT_ZOOM: 13,
@@ -21,6 +22,9 @@ export const useMapInstance = ({ latitude, longitude, onMapReady }: UseMapInstan
 
   // Use refs to avoid dependency issues
   const onMapReadyRef = useRef(onMapReady);
+
+  // Layer hooks
+  const { createOSMMapType } = useOSMMapType();
 
   // Update refs when callbacks change
   useEffect(() => {
@@ -72,6 +76,10 @@ export const useMapInstance = ({ latitude, longitude, onMapReady }: UseMapInstan
           gestureHandling: 'greedy',
         });
         map.setOptions({ scaleControl: true });
+
+        // Register OSM map type
+        const osmMapType = createOSMMapType();
+        map.mapTypes.set('osm', osmMapType);
 
         // Map click listener will be added by the parent hook
 
