@@ -53,20 +53,27 @@ function parseWindDirections(
  */
 function extractLocationName(html: string): string {
   // Look for the last italic span without a link in the breadcrumb
+  // Handle both single and double quotes, and HTML entity -&gt;
   const breadcrumbMatch = html.match(
-    /<span style='font-style:italic;'><a[^>]*>([^<]+)<\/a><\/span> <span style='font-family:Courier'>-><\/span> <span style='font-style:italic;'>([^<]+)<\/span>/
+    /<span style=["']font-style:italic;["']><a[^>]*>([^<]+)<\/a><\/span> <span style=["']font-family:Courier["']>-&gt;<\/span> <span style=["']font-style:italic;["']>([^<]+)<\/span>/
   );
   if (breadcrumbMatch) {
     return breadcrumbMatch[2];
   }
 
-  // Fallback: look for any italic span without a link
-  const fallbackMatch = html.match(/<span style='font-style:italic;'>([^<]+)<\/span>/g);
+  // Fallback: look for any italic span without a link (handles both quote styles)
+  const fallbackMatch = html.match(/<span style=["']font-style:italic;["']>([^<]+)<\/span>/g);
   if (fallbackMatch && fallbackMatch.length > 0) {
-    const lastMatch = fallbackMatch[fallbackMatch.length - 1];
-    const nameMatch = lastMatch.match(/<span style='font-style:italic;'>([^<]+)<\/span>/);
-    if (nameMatch) {
-      return nameMatch[1];
+    // Find the last span that doesn't contain a link
+    for (let i = fallbackMatch.length - 1; i >= 0; i--) {
+      const match = fallbackMatch[i];
+      // Check if this span doesn't contain an <a> tag
+      if (!match.includes('<a')) {
+        const nameMatch = match.match(/<span style=["']font-style:italic;["']>([^<]+)<\/span>/);
+        if (nameMatch) {
+          return nameMatch[1];
+        }
+      }
     }
   }
 
@@ -193,7 +200,7 @@ const COUNTRY_ID_MAP: Record<number, string> = {
 function extractCountry(html: string): string {
   // Look for country_id in the "show in google earth" link
   // Example: <a href='...map=google_earth&country_id=144&...'>'show in google earth'</a>
-  const googleEarthMatch = html.match(/map=google_earth[^']*country_id=(\d+)/);
+  const googleEarthMatch = html.match(/map=google_earth[^"']*country_id=(\d+)/);
   if (googleEarthMatch) {
     const countryId = parseInt(googleEarthMatch[1], 10);
     const countryName = COUNTRY_ID_MAP[countryId];
@@ -243,20 +250,26 @@ function extractLocationData(
   locationData.country = extractCountry(html);
 
   // Find the main data table
-  const tableMatch = html.match(/<table cellspacing='1' cellpadding='3' bgcolor='black'>([\s\S]*?)<\/table>/);
+  const tableMatch = html.match(
+    /<table cellspacing=["']1["'] cellpadding=["']3["'] bgcolor=["']black["']>([\s\S]*?)<\/table>/
+  );
   if (!tableMatch) {
     return locationData;
   }
 
   const tableContent = tableMatch[1];
-  const rows = tableContent.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/g);
+  const rows = tableContent.match(
+    /<tr><td bgcolor=["']white["']>([^<]+)<\/td><td bgcolor=["']white["']>([\s\S]*?)<\/td><\/tr>/g
+  );
 
   if (!rows) {
     return locationData;
   }
 
   for (const row of rows) {
-    const match = row.match(/<tr><td bgcolor='white'>([^<]+)<\/td><td bgcolor='white'>([\s\S]*?)<\/td><\/tr>/);
+    const match = row.match(
+      /<tr><td bgcolor=["']white["']>([^<]+)<\/td><td bgcolor=["']white["']>([\s\S]*?)<\/td><\/tr>/
+    );
     if (!match) continue;
 
     const [, label, value] = match;
@@ -279,13 +292,21 @@ function extractLocationData(
         locationData.description = value;
 
         // Find wind direction image
-        const windImageMatch = value.match(/<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*alt='([^']*)'/);
-        if (windImageMatch) {
-          parseWindDirections(windImageMatch[1], locationData);
+        // Match img tag that contains rqtid=17&w= in src attribute
+        // Handles attributes in any order and HTML entities (& or &amp;)
+        const windImageTagMatch = value.match(/<img[^>]*\/fl\.html\?rqtid=17(&amp;|&)w=[^>]*>/);
+        if (windImageTagMatch) {
+          const imgTag = windImageTagMatch[0];
+
+          // Extract alt text from the img tag (handles attributes in any order)
+          const altMatch = imgTag.match(/alt=["']([^"']*)["']/);
+          if (altMatch) {
+            parseWindDirections(altMatch[1], locationData);
+          }
 
           // Remove the wind direction image from description
           locationData.description = locationData.description.replace(
-            /<img[^>]*src='\/fl\.html\?rqtid=17&w=[^']*'[^>]*>/g,
+            /<img[^>]*\/fl\.html\?rqtid=17(&amp;|&)w=[^>]*>/g,
             ''
           );
         }
@@ -319,13 +340,13 @@ function processDescription(description: string): string {
 
   // Fix relative photo links by prepending flightlog.org domain and add target="_blank"
   processedDescription = processedDescription.replace(
-    /href='\/fl\.html\?([^']*)'/g,
+    /href=["']\/fl\.html\?([^"']*)["']/g,
     "href='https://www.flightlog.org/fl.html?$1' target='_blank'"
   );
 
   // Fix relative image sources by prepending flightlog.org domain
   processedDescription = processedDescription.replace(
-    /src='\/fl\.html\?([^']*)'/g,
+    /src=["']\/fl\.html\?([^"']*)["']/g,
     "src='https://www.flightlog.org/fl.html?$1'"
   );
 
