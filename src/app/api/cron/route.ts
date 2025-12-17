@@ -37,7 +37,6 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
 
       // Fetch YR data for landing location if it exists
       if (location.landing_latitude && location.landing_longitude) {
-        console.log(`Fetching YR data for landing data for location ${location.id}`);
         const yrLandingData = await fetchYrData(location.landing_latitude, location.landing_longitude);
 
         const mappedYrLandingData = mapYrData(yrLandingData);
