@@ -42,11 +42,12 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
     if (hours.length <= 1) {
       return;
     }
+
     // Check if day has begun (first hour is not 00:00)
     const firstHourLocal = getLocalHour(hours[0].time, timezone);
-    const hoursFromLastSixHourlyDataPoint = hours.length % 6;
-    if ((firstHourLocal !== 0 && hoursFromLastSixHourlyDataPoint > 4) || hours.length <= 4) {
-      // day has begun and is more than 2 hours till next six hourly data point
+    const hoursFromLastSixHourlyDataPoint = firstHourLocal % 6;
+    if ((firstHourLocal !== 0 && hoursFromLastSixHourlyDataPoint < 4) || hours.length <= 5) {
+      // day has begun and is more than 2 hours till next six hourly data point - or the day includes only the hours 19 to 23.
       sixHourSymbolsByDay[day].push(hours[1].next_6_hours_symbol_code);
     }
     hours.forEach(hour => {
