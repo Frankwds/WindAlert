@@ -41,7 +41,7 @@ export class ParaglidingLocationService {
     const { data, error } = await supabase
       .from('all_paragliding_locations')
       .select(
-        'id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude'
+        'id, latitude, longitude, n, e, s, w, ne, se, sw, nw, landing_latitude, landing_longitude, landing_altitude, timezone'
       )
       .in('id', ids)
       .eq('is_active', true)
@@ -65,7 +65,7 @@ export class ParaglidingLocationService {
       .select(
         `
         id, name, latitude, flightlog_id, longitude, altitude, n, e, s, w, ne, se, sw, nw,
-        landing_latitude, landing_longitude, landing_altitude,
+        landing_latitude, landing_longitude, landing_altitude, timezone,
         forecast_cache(
           time,
           is_day,
@@ -112,7 +112,7 @@ export class ParaglidingLocationService {
         .select(
           `
           id, name, latitude, longitude, altitude, flightlog_id, n, e, s, w, ne, se, sw, nw, is_main, 
-          landing_latitude, landing_longitude, landing_altitude
+          landing_latitude, landing_longitude, landing_altitude, timezone
         `
         )
         .eq('is_active', true)

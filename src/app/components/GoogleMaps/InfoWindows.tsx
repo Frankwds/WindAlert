@@ -23,7 +23,7 @@ interface LandingInfoWindowProps {
 }
 
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
-  return <LocationCard location={location} timezone='Europe/Oslo' />;
+  return <LocationCard location={location} timezone={location.timezone} />;
 };
 
 export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> = ({ location }) => {
