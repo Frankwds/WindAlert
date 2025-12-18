@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering to prevent stale cache on first load
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const lat = searchParams.get('lat');
@@ -15,13 +18,8 @@ export async function GET(request: NextRequest) {
     const response = await fetch(url, {
       headers: {
         'User-Agent': 'windlord (https://windalert.vercel.app/)',
-        'Cache-Control': 'public, max-age=300, must-revalidate',
       },
-      cache: 'force-cache',
-      next: {
-        revalidate: 300,
-        tags: ['yr-weather'],
-      },
+      cache: 'no-store', // Always fetch fresh data to prevent stale cache on first load
     });
 
     if (!response.ok) {
