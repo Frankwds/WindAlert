@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Server } from '@/lib/supabase/server';
 import { processHTML } from '../_lib/processHTML';
 import { ValidationError, validateHtmlContent, validateFlightlogId, validateLocationData } from '../_lib/validate';
+import { fetchTimezone } from '@/lib/googleMaps/timezone';
 import puppeteerCore from 'puppeteer-core';
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ flightlog_id: string }> }) {
@@ -61,6 +62,9 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ flight
 
     // Validate the location data
     validateLocationData(locationData);
+
+    // Fetch timezone from Google Maps Time Zone API
+    locationData.timezone = await fetchTimezone(locationData.latitude, locationData.longitude);
 
     // Upsert to database
     const savedLocation = await Server.upsertParaglidingLocation(locationData);

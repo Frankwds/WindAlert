@@ -37,6 +37,7 @@ export type ParaglidingLocationWithForecast = Pick<
   | 'altitude'
   | 'flightlog_id'
   | 'is_main'
+  | 'timezone'
   | 'n'
   | 'e'
   | 's'

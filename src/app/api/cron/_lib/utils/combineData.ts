@@ -73,7 +73,7 @@ function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: Weat
 }
 
 export function combineDataSources(meteoData: WeatherDataPoint[], yrData: WeatherDataPointYr1h[]): ForecastCache1hr[] {
-  const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp]));
+  const yrDataMap = new Map(yrData.map(dp => [dp.time.slice(0, 16), dp])); // Remove the last 4 characters indicating timezone
   const result = meteoData.map(meteoDp => {
     const yrDp = yrDataMap.get(meteoDp.time);
     if (yrDp) {

@@ -6,6 +6,7 @@ export interface ParaglidingLocation {
   latitude: number;
   altitude: number;
   country: string;
+  timezone: string;
   flightlog_id: string;
   is_active: boolean;
   is_main: boolean;
@@ -29,6 +30,7 @@ export type MinimalParaglidingLocation = Pick<
   | 'id'
   | 'latitude'
   | 'longitude'
+  | 'timezone'
   | 'n'
   | 'e'
   | 's'

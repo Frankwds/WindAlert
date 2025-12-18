@@ -229,6 +229,7 @@ function extractLocationData(
   > = {
     name: '',
     country: '',
+    timezone: '',
     altitude: 0,
     description: '',
     latitude: 0,
