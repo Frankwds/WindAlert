@@ -1,6 +1,19 @@
 import { WeatherDataPointYr1h, WeatherDataYr } from '@/lib/yr/types';
 import { ForecastCache1hr } from '@/lib/supabase/types';
 
+/**
+ * Extracts the local hour (0-23) from a UTC ISO string for a given timezone
+ */
+function getLocalHour(utcTime: string, timezone: string): number {
+  const utcDate = new Date(utcTime);
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    hour12: false,
+  });
+  return parseInt(formatter.format(utcDate), 10);
+}
+
 export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string = 'Europe/Oslo') {
   const sixHourSymbolsByDay: Record<string, string[]> = {};
 
@@ -29,27 +42,31 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
     if (hours.length <= 1) {
       return;
     }
-    if (!hours[0].time.includes('T21:00:00Z')) {
-      // day has begun
+    // Check if day has begun (first hour is not 00:00)
+    const firstHourLocal = getLocalHour(hours[0].time, timezone);
+    const hoursFromLastSixHourlyDataPoint = hours.length % 6;
+    if ((firstHourLocal !== 0 && hoursFromLastSixHourlyDataPoint > 4) || hours.length <= 4) {
+      // day has begun and is more than 2 hours till next six hourly data point
       sixHourSymbolsByDay[day].push(hours[1].next_6_hours_symbol_code);
     }
     hours.forEach(hour => {
-      if (hour.time.includes('T21:00:00Z')) {
+      const localHour = getLocalHour(hour.time, timezone);
+      if (localHour === 0) {
         // first hour of the night
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
       }
-      if (hour.time.includes('T03:00:00Z')) {
+      if (localHour === 6) {
         // first hour of the morning
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
       }
-      if (hour.time.includes('T9:00:00Z')) {
+      if (localHour === 12) {
         // first hour of the day
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
       }
-      if (hour.time.includes('T15:00:00Z') && hours.length > 7) {
+      if (localHour === 18 && hours.length > 7) {
         // first hour of the afternoon && has more than 7 hours left
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
@@ -57,6 +74,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
     });
   });
 
+  // For the far future, yr does not give hourly data, so we must use the six hourly data point instead here.
   yrdata.weatherDataYrSixHourly.slice(0, 6).forEach(hour => {
     const utcDate = new Date(hour.time);
     const formatter = new Intl.DateTimeFormat('nb-NO', {

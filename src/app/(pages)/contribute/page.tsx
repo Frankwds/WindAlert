@@ -62,6 +62,7 @@ export default function ContributePage() {
           landing_latitude: newLocation.landing_latitude,
           landing_longitude: newLocation.landing_longitude,
           landing_altitude: newLocation.landing_altitude,
+          timezone: newLocation.timezone,
           // forecast_cache is optional and not included
         };
 
