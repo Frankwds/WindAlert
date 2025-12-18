@@ -16,6 +16,7 @@ interface HourProps {
   showValidation?: boolean;
   isExpanded: boolean;
   onToggle: () => void;
+  timezone: string;
 }
 
 const Hour: React.FC<HourProps> = ({
@@ -25,6 +26,7 @@ const Hour: React.FC<HourProps> = ({
   showValidation = false,
   isExpanded,
   onToggle,
+  timezone,
 }) => {
   const isMobile = useIsMobile();
   const weatherIcon = getWeatherIcon(hour.weather_code);
@@ -75,7 +77,13 @@ const Hour: React.FC<HourProps> = ({
               <div className='w-4 h-4'></div>
             )}
           </div>
-          {new Date(hour.time).getHours().toString().padStart(2, '0')}
+          {new Intl.DateTimeFormat('en-US', {
+            timeZone: timezone,
+            hour: '2-digit',
+            hour12: false,
+          })
+            .formatToParts(new Date(hour.time))
+            .find(part => part.type === 'hour')?.value || '00'}
         </div>
 
         {/* Weather icon column */}

@@ -17,6 +17,7 @@ interface DayProps {
   showValidation?: boolean;
   isExpanded: boolean;
   onToggle: () => void;
+  timezone: string;
 }
 
 const Day: React.FC<DayProps> = ({
@@ -28,6 +29,7 @@ const Day: React.FC<DayProps> = ({
   showValidation = false,
   isExpanded,
   onToggle,
+  timezone,
 }) => {
   const isMobile = useIsMobile();
   const [expandedHour, setExpandedHour] = useState<string | null>(null);
@@ -109,6 +111,7 @@ const Day: React.FC<DayProps> = ({
               showValidation={showValidation}
               isExpanded={expandedHour === hour.time}
               onToggle={() => handleHourToggle(hour.time)}
+              timezone={timezone}
             />
           ))}
         </div>

@@ -87,8 +87,9 @@ export default function LocationPage({ params }: Props) {
           };
         });
 
-        const sixHourSymbols = getSixHourSymbolsByDay(mappedYrTakeoffData);
-        const grouped = groupForecastByDay(validatedForecast);
+        const timezone = locationData.timezone || 'Europe/Oslo';
+        const sixHourSymbols = getSixHourSymbolsByDay(mappedYrTakeoffData, timezone);
+        const grouped = groupForecastByDay(validatedForecast, timezone);
 
         setSixHourSymbolsByDay(sixHourSymbols);
         setGroupedByDay(grouped);
@@ -151,6 +152,7 @@ export default function LocationPage({ params }: Props) {
         sixHourSymbolsByDay={sixHourSymbolsByDay}
         location={location}
         showValidation={true}
+        timezone={location.timezone || 'Europe/Oslo'}
       />
 
       <WindyWidget lat={location.latitude} long={location.longitude} />

@@ -1,14 +1,14 @@
 import { WeatherDataPointYr1h, WeatherDataYr } from '@/lib/yr/types';
 import { ForecastCache1hr } from '@/lib/supabase/types';
 
-export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
+export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string = 'Europe/Oslo') {
   const sixHourSymbolsByDay: Record<string, string[]> = {};
 
   const yrdataGroupedByDay = yrdata.weatherDataYrHourly.reduce(
     (acc, hour) => {
       const utcDate = new Date(hour.time);
       const formatter = new Intl.DateTimeFormat('nb-NO', {
-        timeZone: 'Europe/Oslo',
+        timeZone: timezone,
         weekday: 'long',
       });
       const day = formatter.format(utcDate).toLowerCase();
@@ -60,7 +60,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
   yrdata.weatherDataYrSixHourly.slice(0, 6).forEach(hour => {
     const utcDate = new Date(hour.time);
     const formatter = new Intl.DateTimeFormat('nb-NO', {
-      timeZone: 'Europe/Oslo',
+      timeZone: timezone,
       weekday: 'long',
     });
     const day = formatter.format(utcDate).toLowerCase();
@@ -75,12 +75,12 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr) {
   return sixHourSymbolsByDay;
 }
 
-export function groupForecastByDay(forecast: ForecastCache1hr[]) {
+export function groupForecastByDay(forecast: ForecastCache1hr[], timezone: string = 'Europe/Oslo') {
   const groupedByDay = forecast.reduce(
     (acc, hour) => {
       const utcDate = new Date(hour.time);
       const formatter = new Intl.DateTimeFormat('nb-NO', {
-        timeZone: 'Europe/Oslo',
+        timeZone: timezone,
         weekday: 'long',
       });
       const day = formatter.format(utcDate).toLowerCase();

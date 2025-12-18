@@ -11,6 +11,7 @@ interface WeatherTableProps {
   sixHourSymbolsByDay: Record<string, string[]>;
   location: ParaglidingLocation;
   showValidation?: boolean;
+  timezone: string;
 }
 
 const WeatherTable: React.FC<WeatherTableProps> = ({
@@ -18,6 +19,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
   sixHourSymbolsByDay,
   location,
   showValidation = false,
+  timezone,
 }) => {
   const { altitude } = location;
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
@@ -58,6 +60,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
           showValidation={showValidation}
           isExpanded={expandedDay === weekdayName}
           onToggle={() => handleDayToggle(weekdayName)}
+          timezone={timezone}
         />
       ))}
     </div>
