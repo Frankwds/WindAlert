@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: Debug Development Full Stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "pattern": "Local:.*(http://localhost:3000)",
+        "uriFormat": "%s"
+      }
+    },
+    {
+      "name": "Next.js: Debug Production Full Stack",
+      "type": "node-terminal", 
+      "request": "launch",
+      "command": "npm run prod",
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "pattern": "Local:.*(http://localhost:3000)",
+        "uriFormat": "%s"
+      }
+    }
+  ]
+}
