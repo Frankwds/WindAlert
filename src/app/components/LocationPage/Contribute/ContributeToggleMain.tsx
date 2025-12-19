@@ -72,12 +72,9 @@ export const ContributeToggleMain: React.FC<ContributeToggleMainProps> = ({ loca
       const responseData = await response.json();
       const updatedLocation: ParaglidingLocation = responseData.location;
 
-      // Update the cache with the new location data (without forecast)
+      // Update the cache - this will add/remove from main cache based on is_main
       try {
-        await dataCache.updateParaglidingLocationById(
-          updatedLocation.id,
-          updatedLocation as ParaglidingLocationWithForecast
-        );
+        await dataCache.updateLocationIsMain(updatedLocation as ParaglidingLocationWithForecast);
       } catch (cacheError) {
         console.warn('Failed to update cache:', cacheError);
         // Fall back to clearing cache

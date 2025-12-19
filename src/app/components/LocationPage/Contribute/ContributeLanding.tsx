@@ -9,6 +9,7 @@ import { useElevation } from './hooks/useElevation';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginButton from '../../Navigation/LoginButton';
 import { supabase } from '@/lib/supabase/client';
+import { ParaglidingLocation, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 
 interface ContributeLandingProps {
   locationId: string;
@@ -146,13 +147,16 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
           return;
         }
 
-        // Update the cache with the new landing coordinates
+        // Get the updated location data
+        const responseData = await response.json();
+        const updatedLocation: ParaglidingLocation = responseData.location;
+
+        // Update the cache with the new location data
         try {
-          await dataCache.updateParaglidingLocationById(locationId, {
-            landing_latitude: currentLandingLat,
-            landing_longitude: currentLandingLng,
-            landing_altitude: currentLandingAltitude,
-          });
+          await dataCache.updateParaglidingLocationById(
+            updatedLocation.id,
+            updatedLocation as ParaglidingLocationWithForecast
+          );
         } catch (cacheError) {
           console.warn('Failed to update cache:', cacheError);
           // Fall back to clearing cache

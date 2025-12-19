@@ -179,6 +179,49 @@ class DataCache {
   }
 
   /**
+   * Update location when is_main changes.
+   * If is_main is true, add/update in main cache.
+   * If is_main is false, remove from main cache.
+   * Always update in all paragliding locations cache.
+   */
+  async updateLocationIsMain(location: ParaglidingLocationWithForecast): Promise<void> {
+    const locationId = location.id;
+    const isMain = location.is_main;
+
+    // Handle main paragliding locations cache (PARAGLIDING_KEY)
+    const cached = await this.getFromStorage(this.PARAGLIDING_KEY);
+    if (cached && cached.data) {
+      if (isMain) {
+        // Add or update in main cache
+        const existingIndex = cached.data.findIndex((loc: ParaglidingLocationWithForecast) => loc.id === locationId);
+
+        if (existingIndex >= 0) {
+          // Update existing location
+          const updatedData = [...cached.data];
+          updatedData[existingIndex] = location;
+          await this.setToStorage(this.PARAGLIDING_KEY, updatedData, cached.timestamp ?? Date.now());
+        } else {
+          // Add new location to main cache
+          await this.setToStorage(this.PARAGLIDING_KEY, [...cached.data, location], cached.timestamp ?? Date.now());
+        }
+      } else {
+        // Remove from main cache
+        const filteredData = cached.data.filter((loc: ParaglidingLocationWithForecast) => loc.id !== locationId);
+        await this.setToStorage(this.PARAGLIDING_KEY, filteredData, cached.timestamp ?? Date.now());
+      }
+    }
+
+    // Also update in the all paragliding locations cache, in case we in the future need the property to not be stale.
+    const allCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
+    if (allCached && allCached.data) {
+      const updatedAllData = allCached.data.map((loc: ParaglidingLocationWithForecast) =>
+        loc.id === locationId ? location : loc
+      );
+      await this.setToStorage(this.ALL_PARAGLIDING_KEY, updatedAllData, allCached.timestamp ?? Date.now());
+    }
+  }
+
+  /**
    * Add a new location to both caches, but only if the caches exist and have data.
    * If the location already exists (by id), it will be updated instead.
    */
