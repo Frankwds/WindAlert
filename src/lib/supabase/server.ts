@@ -38,6 +38,33 @@ export class Server {
   }
 
   /**
+   * Update is_main status for a paragliding location
+   */
+  static async updateLocationIsMain(
+    locationId: string,
+    is_main: boolean
+  ): Promise<ParaglidingLocation | null> {
+    const updateData: Partial<ParaglidingLocation> = {
+      is_main,
+      updated_at: new Date().toISOString(),
+    };
+
+    const { data, error } = await supabaseServer
+      .from('all_paragliding_locations')
+      .update(updateData)
+      .eq('id', locationId)
+      .select('*')
+      .single();
+
+    if (error) {
+      console.error(`Error updating is_main for location ${locationId}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
    * Upsert multiple weather stations
    */
   static async upsertManyWeatherStation(

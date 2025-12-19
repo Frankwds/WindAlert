@@ -89,5 +89,3 @@ export const ContributeSynchronize: React.FC<ContributeSynchronizeProps> = ({ st
     </div>
   );
 };
-
-

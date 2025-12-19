@@ -4,6 +4,8 @@ import React from 'react';
 import { ContributeLanding } from './ContributeLanding';
 import { ContributeSynchronize } from './ContributeSynchronize';
 
+import { ContributeToggleMain } from './ContributeToggleMain';
+
 interface ContributeProps {
   locationId: string;
   startId: string;
@@ -13,6 +15,7 @@ interface ContributeProps {
   landingLatitude?: number;
   landingLongitude?: number;
   landingAltitude?: number;
+  is_main: boolean;
   onSave: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
@@ -25,6 +28,7 @@ export const Contribute: React.FC<ContributeProps> = ({
   landingLatitude,
   landingLongitude,
   landingAltitude,
+  is_main,
   onSave,
 }) => {
   return (
@@ -43,6 +47,7 @@ export const Contribute: React.FC<ContributeProps> = ({
       />
 
       <ContributeSynchronize startId={startId} />
+      <ContributeToggleMain locationId={locationId} is_main={is_main} />
     </div>
   );
 };

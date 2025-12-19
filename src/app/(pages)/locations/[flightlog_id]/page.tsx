@@ -172,16 +172,12 @@ export default function LocationPage({ params }: Props) {
         landingLatitude={landingLatitude}
         landingLongitude={landingLongitude}
         landingAltitude={landingAltitude}
+        is_main={location.is_main}
         onSave={(landingLat, landingLng, landingAltitude) => {
           // Update the state so GoogleMapsStatic reflects the changes
           setLandingLatitude(landingLat);
           setLandingLongitude(landingLng);
           setLandingAltitude(landingAltitude);
-          console.log('Landing coordinates saved:', {
-            landingLat,
-            landingLng,
-            landingAltitude,
-          });
         }}
       />
     </div>
