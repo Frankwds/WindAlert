@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { dataCache } from '@/lib/data-cache';
 import { ParaglidingLocation } from '@/lib/supabase/types';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import Collapsible from '@/app/components/shared/Collapsible';
 
 export default function ContributePage() {
   const [startId, setStartId] = useState('');
@@ -86,64 +87,106 @@ export default function ContributePage() {
   return (
     <div className='bg-[var(--background)] text-[var(--foreground)] min-h-screen p-4 sm:p-6 md:p-8'>
       <div className='max-w-2xl mx-auto'>
-        <h1 className='text-3xl sm:text-4xl font-bold mb-6'>Legg til start</h1>
+        <h1 className='text-3xl sm:text-4xl font-bold mb-6'>Bidra</h1>
+        <p className='text-base sm:text-lg mb-6'>
+          Takk for at du vil bidra til WindLord! Her kan du legge til nye starter og redigere landing og velge hva som
+          skal brukes som hovedstarter i kartet.
+        </p>
+        <div className='space-y-4'>
+          <Collapsible
+            title='Legg til en ny start'
+            defaultOpen={false}
+            className='bg-[var(--card)] border border-[var(--border)] rounded-lg'
+          >
+            <div className='p-6 space-y-6'>
+              <p className='text-base sm:text-lg'>Skriv inn flightlog ID-en for stedet du vil legge til.</p>
 
-        <div className='bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 shadow-[var(--shadow-md)]'>
-          <p className='text-base sm:text-lg mb-6'>
-            Legg til en ny paragliding-start fra flightlog.org til WindLord. Skriv inn flightlog ID-en for stedet du vil
-            legge til.
-          </p>
-
-          <form onSubmit={handleSubmit} className='space-y-4'>
-            <div>
-              <label htmlFor='startId' className='block text-sm font-medium mb-2'>
-                Flightlog ID
-              </label>
-              <input
-                type='text'
-                id='startId'
-                value={startId}
-                onChange={e => setStartId(e.target.value)}
-                placeholder='f.eks. 1347'
-                disabled={isLoading}
-                className='w-full px-3 py-2 border border-[var(--border)] rounded-md bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-50'
-              />
-              <p className='text-sm text-[var(--muted)] mt-1'>
-                Du finner flightlog ID-en i URL-en på flightlog.org siden for stedet
-              </p>
-            </div>
-
-            <button
-              type='submit'
-              disabled={isLoading}
-              className='w-full bg-[var(--accent)] text-white py-2 px-4 rounded-md hover:bg-[var(--accent)]/90 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors'
-            >
-              {isLoading ? (
-                <div className='flex items-center justify-center'>
-                  <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2'></div>
-                  Synkroniserer...
+              <form onSubmit={handleSubmit} className='space-y-4'>
+                <div>
+                  <label htmlFor='startId' className='block text-sm font-medium mb-2'>
+                    Flightlog ID
+                  </label>
+                  <input
+                    type='text'
+                    id='startId'
+                    value={startId}
+                    onChange={e => setStartId(e.target.value)}
+                    placeholder='f.eks. 1347'
+                    disabled={isLoading}
+                    className='w-full px-3 py-2 border border-[var(--border)] rounded-md bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-50'
+                  />
+                  <p className='text-sm text-[var(--muted)] mt-1'>
+                    Du finner flightlog ID-en i URL-en på flightlog.org siden for stedet
+                  </p>
                 </div>
-              ) : (
-                'Legg til start'
+
+                <button
+                  type='submit'
+                  disabled={isLoading}
+                  className='w-full bg-[var(--accent)] text-white py-2 px-4 rounded-md hover:bg-[var(--accent)]/90 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors'
+                >
+                  {isLoading ? (
+                    <div className='flex items-center justify-center'>
+                      <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2'></div>
+                      Synkroniserer...
+                    </div>
+                  ) : (
+                    'Legg til start'
+                  )}
+                </button>
+              </form>
+
+              {error && (
+                <div className='mt-4 p-3 bg-[var(--error)]/10 border border-[var(--error)]/20 rounded-md'>
+                  <p className='text-sm text-[var(--error)]'>{error}</p>
+                </div>
               )}
-            </button>
-          </form>
 
-          {error && (
-            <div className='mt-4 p-3 bg-[var(--error)]/10 border border-[var(--error)]/20 rounded-md'>
-              <p className='text-sm text-[var(--error)]'>{error}</p>
+              <div className='mt-6'>
+                <h2 className='text-xl font-semibold mb-3'>Hvordan finner jeg flightlog ID?</h2>
+                <ol className='list-decimal list-inside space-y-2 text-sm'>
+                  <li>Gå til flightlog.org og finn stedet du vil legge til</li>
+                  <li>Se på URL-en i nettleseren</li>
+                  <li>ID-en er tallet etter &quot;start_id=&quot; i URL-en</li>
+                  <li>
+                    F.eks. hvis URL-en er &quot;fl.html?l=2&a=22&country_id=160&start_id=1347&quot;, så er ID-en 1347
+                  </li>
+                </ol>
+              </div>
             </div>
-          )}
-        </div>
+          </Collapsible>
 
-        <div className='mt-8 bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 shadow-[var(--shadow-md)]'>
-          <h2 className='text-xl font-semibold mb-3'>Hvordan finner jeg flightlog ID?</h2>
-          <ol className='list-decimal list-inside space-y-2 text-sm'>
-            <li>Gå til flightlog.org og finn stedet du vil legge til</li>
-            <li>Se på URL-en i nettleseren</li>
-            <li>ID-en er tallet etter &quot;start_id=&quot; i URL-en</li>
-            <li>F.eks. hvis URL-en er &quot;fl.html?l=2&a=22&country_id=160&start_id=1347&quot;, så er ID-en 1347</li>
-          </ol>
+          <Collapsible
+            title='Legg til / rediger landing'
+            className='bg-[var(--card)] border border-[var(--border)] rounded-lg'
+          >
+            <div className='p-6'>
+              <p className='text-base sm:text-lg mb-3'>For å legge til eller redigere landing:</p>
+              <ol className='list-decimal list-inside space-y-2 text-sm text-[var(--foreground)]'>
+                <li>Gå til den enkelte starten gjennom kartet.</li>
+                <li>Inne på starten, bla til bunnen av siden og klikk på &quot;Rediger Landing&quot;.</li>
+                <li>Der kan du redigere landingen med et interaktivt kart.</li>
+                <li>Dette vil påvirke alle som bruker WindLord. Du må være innlogget for å bidra.</li>
+              </ol>
+            </div>
+          </Collapsible>
+
+          <Collapsible
+            title='Legg til / skjul hovedstart'
+            className='bg-[var(--card)] border border-[var(--border)] rounded-lg'
+          >
+            <div className='p-6'>
+              <p className='text-base sm:text-lg mb-3'>For å legge til eller skjule en start fra hovedstarter:</p>
+              <ol className='list-decimal list-inside space-y-2 text-sm text-[var(--foreground)]'>
+                <li>Gå til den enkelte starten gjennom kartet. </li>
+                <li>
+                  Inne på starten, bla til bunnen av siden og klikk på &quot;Legg til /skjul fra Hovedstarter&quot;.
+                </li>
+                <li>Der kan du trykke på &quot;Legg til / Skjul fra Hovedstarter&quot; knappen.</li>
+                <li>Dette vil påvirke alle som bruker WindLord. Du må være innlogget for å bidra.</li>
+              </ol>
+            </div>
+          </Collapsible>
         </div>
       </div>
     </div>
