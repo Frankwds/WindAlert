@@ -3,6 +3,9 @@
 import React, { useState, useCallback } from 'react';
 import { dataCache } from '@/lib/data-cache';
 import { ParaglidingLocation, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginButton from '../../Navigation/LoginButton';
+import { supabase } from '@/lib/supabase/client';
 
 interface ContributeToggleMainProps {
   locationId: string;
@@ -12,8 +15,14 @@ interface ContributeToggleMainProps {
 export const ContributeToggleMain: React.FC<ContributeToggleMainProps> = ({ locationId, is_main }) => {
   const [toggleError, setToggleError] = useState<string | null>(null);
   const [isToggling, setIsToggling] = useState(false);
+  const { user, loading: authLoading } = useAuth();
 
   const handleToggle = useCallback(async () => {
+    if (!user) {
+      alert('Du må være innlogget for å bidra');
+      return;
+    }
+
     const newIsMain = !is_main;
     const confirmationMessage = newIsMain
       ? 'Er du sikker på at du vil sette dette som hovedstart? Dette vil påvirke alle som bruker windlord.'
@@ -29,10 +38,23 @@ export const ContributeToggleMain: React.FC<ContributeToggleMainProps> = ({ loca
     setToggleError(null);
 
     try {
+      // Get the session token to pass in Authorization header
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const authToken = session?.access_token;
+
+      if (!authToken) {
+        setToggleError('Du må være innlogget for å bidra. Vennligst logg inn og prøv igjen.');
+        setIsToggling(false);
+        return;
+      }
+
       const response = await fetch('/api/contribute/is-main', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify({
           locationId,
@@ -71,17 +93,30 @@ export const ContributeToggleMain: React.FC<ContributeToggleMainProps> = ({ loca
     } finally {
       setIsToggling(false);
     }
-  }, [locationId, is_main]);
+  }, [locationId, is_main, user]);
 
   const buttonText = is_main ? 'Skjul fra hovedstarter' : 'Sett som hovedstart';
   const loadingText = is_main ? 'Nedgraderer...' : 'Oppgraderer...';
+
+  if (!user && !authLoading) {
+    return (
+      <div className='mt-4'>
+        <div className='rounded-lg p-4 bg-[var(--card)] border border-[var(--border)] rounded-lg'>
+          <p className='text-sm text-[var(--foreground)] text-center mb-3'>Du må være innlogget for å bidra</p>
+          <div className='flex justify-center'>
+            <LoginButton />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='mt-4'>
       <div className='rounded-lg'>
         <button
           onClick={handleToggle}
-          disabled={isToggling}
+          disabled={isToggling || !user}
           className='w-full text-left p-4 focus:outline-none cursor-pointer hover:shadow-[var(--shadow-sm)] hover:brightness-95 relative group bg-[var(--card)] border border-[var(--border)] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed'
         >
           <div className='flex items-center w-full relative z-10'>

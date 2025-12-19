@@ -5,3 +5,5 @@ export * from './database';
 export * from './favouriteLocation';
 export * from './stationData';
 export * from './combinedDataTypes';
+export * from './changelogLanding';
+export * from './changelogIsMain';

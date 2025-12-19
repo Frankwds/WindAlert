@@ -3,6 +3,8 @@ import { FavouriteLocation } from './favouriteLocation';
 import { WeatherStation } from './weatherStation';
 import { StationData } from './stationData';
 import { ForecastCache1hr } from './forecastCache';
+import { ChangelogLanding } from './changelogLanding';
+import { ChangelogIsMain } from './changelogIsMain';
 
 export type Database = {
   public: {
@@ -31,6 +33,16 @@ export type Database = {
         Row: StationData;
         Insert: Omit<StationData, 'id'>;
         Update: Partial<Omit<StationData, 'id'>>;
+      };
+      changelog_landings: {
+        Row: ChangelogLanding;
+        Insert: Omit<ChangelogLanding, 'id' | 'created_at'>;
+        Update: Partial<Omit<ChangelogLanding, 'id' | 'created_at'>>;
+      };
+      changelog_is_main: {
+        Row: ChangelogIsMain;
+        Insert: Omit<ChangelogIsMain, 'id' | 'created_at'>;
+        Update: Partial<Omit<ChangelogIsMain, 'id' | 'created_at'>>;
       };
     };
     Views: {

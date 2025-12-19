@@ -1,9 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Server } from '@/lib/supabase/server';
 import { calculateDistance } from '@/lib/utils/calculateDistance';
+import { getAuthenticatedUser } from '@/lib/supabase/auth';
 
 export async function POST(request: NextRequest) {
   try {
+    // Authenticate user
+    let user;
+    try {
+      const authHeader = request.headers.get('authorization');
+      user = await getAuthenticatedUser(authHeader);
+    } catch (authError) {
+      return NextResponse.json(
+        {
+          error: 'Du må være innlogget for å bidra. Vennligst logg inn og prøv igjen.',
+        },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const {
       locationId,
@@ -94,6 +109,23 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Fetch current location state to capture previous values
+    const currentLocation = await Server.getLocationById(locationId);
+    if (!currentLocation) {
+      return NextResponse.json(
+        {
+          error:
+            'Av en eller annen grunn fant vi ikke stedet. Meld gjerne fra om feilen via. mail. Legg ved stedets ID som du finner i URLen.',
+        },
+        { status: 404 }
+      );
+    }
+
+    // Store previous state
+    const previousLandingLatitude = currentLocation.landing_latitude ?? null;
+    const previousLandingLongitude = currentLocation.landing_longitude ?? null;
+    const previousLandingAltitude = currentLocation.landing_altitude ?? null;
+
     // Update the landing coordinates
     const updatedLocation = await Server.updateLocationLanding(
       locationId,
@@ -110,6 +142,24 @@ export async function POST(request: NextRequest) {
         },
         { status: 404 }
       );
+    }
+
+    // Insert changelog record (don't fail the request if this fails, but log the error)
+    try {
+      await Server.insertLandingChangelog({
+        location_id: locationId,
+        flightlog_id: currentLocation.flightlog_id,
+        user_id: user.id,
+        previous_landing_latitude: previousLandingLatitude,
+        previous_landing_longitude: previousLandingLongitude,
+        previous_landing_altitude: previousLandingAltitude,
+        new_landing_latitude: landingLatitude,
+        new_landing_longitude: landingLongitude,
+        new_landing_altitude: landingAltitude ?? null,
+      });
+    } catch (changelogError) {
+      console.error('Error inserting landing changelog:', changelogError);
+      // Continue even if changelog insert fails
     }
 
     return NextResponse.json({

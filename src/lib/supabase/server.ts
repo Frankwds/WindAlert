@@ -1,7 +1,64 @@
 import { supabaseServer } from './serverClient';
-import { ForecastCache1hr, ParaglidingLocation, StationData, WeatherStation } from './types';
+import {
+  ForecastCache1hr,
+  ParaglidingLocation,
+  StationData,
+  WeatherStation,
+  ChangelogLanding,
+  ChangelogIsMain,
+} from './types';
 
 export class Server {
+  /**
+   * Get a paragliding location by ID
+   */
+  static async getLocationById(locationId: string): Promise<ParaglidingLocation | null> {
+    const { data, error } = await supabaseServer
+      .from('all_paragliding_locations')
+      .select('*')
+      .eq('id', locationId)
+      .single();
+
+    if (error) {
+      console.error(`Error fetching location with id ${locationId}:`, error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
+   * Insert a landing changelog record
+   */
+  static async insertLandingChangelog(
+    changelog: Omit<ChangelogLanding, 'id' | 'created_at'>
+  ): Promise<ChangelogLanding | null> {
+    const { data, error } = await supabaseServer.from('changelog_landings').insert(changelog).select('*').single();
+
+    if (error) {
+      console.error('Error inserting landing changelog:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  /**
+   * Insert an is_main changelog record
+   */
+  static async insertIsMainChangelog(
+    changelog: Omit<ChangelogIsMain, 'id' | 'created_at'>
+  ): Promise<ChangelogIsMain | null> {
+    const { data, error } = await supabaseServer.from('changelog_is_main').insert(changelog).select('*').single();
+
+    if (error) {
+      console.error('Error inserting is_main changelog:', error);
+      return null;
+    }
+
+    return data;
+  }
+
   /**
    * Update landing coordinates for a paragliding location
    */
@@ -40,10 +97,7 @@ export class Server {
   /**
    * Update is_main status for a paragliding location
    */
-  static async updateLocationIsMain(
-    locationId: string,
-    is_main: boolean
-  ): Promise<ParaglidingLocation | null> {
+  static async updateLocationIsMain(locationId: string, is_main: boolean): Promise<ParaglidingLocation | null> {
     const updateData: Partial<ParaglidingLocation> = {
       is_main,
       updated_at: new Date().toISOString(),
