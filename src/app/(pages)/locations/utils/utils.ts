@@ -45,10 +45,9 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
 
     // Check if day has begun (first hour is not 00:00)
     const firstHourLocal = getLocalHour(hours[0].time, timezone);
-    const hoursFromLastSixHourlyDataPoint = firstHourLocal % 6;
-    if ((firstHourLocal !== 0 && hoursFromLastSixHourlyDataPoint < 4) || hours.length <= 5) {
-      // day has begun and is more than 2 hours till next six hourly data point - or the day includes only the hours 19 to 23.
-      sixHourSymbolsByDay[day].push(hours[1].next_6_hours_symbol_code);
+    if (firstHourLocal !== 0 && firstHourLocal % 6 !== 0) {
+      // day has begun and first hour is not a six hourly data point
+      sixHourSymbolsByDay[day].push(hours[1].symbol_code);
     }
     hours.forEach(hour => {
       const localHour = getLocalHour(hour.time, timezone);
@@ -67,8 +66,8 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
       }
-      if (localHour === 18 && hours.length > 7) {
-        // first hour of the afternoon && has more than 7 hours left
+      if (localHour === 18) {
+        // first hour of the afternoon
         sixHourSymbolsByDay[day].push(hour.next_6_hours_symbol_code);
         return;
       }
