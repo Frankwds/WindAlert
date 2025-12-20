@@ -1,8 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
+import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
 import { createWeatherStationClusterElement, createLandingMarkerElement } from '../../shared/Markers';
 
 // Wind arrow icon component for filter control
@@ -69,6 +71,14 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   closeOverlays: onCloseOverlays,
 }) => {
   const isMobile = useIsMobile();
+  const shouldPulse = useOnboardingPulse('FilterControl');
+
+  // Track when control is opened
+  useEffect(() => {
+    if (isOpen) {
+      setOnboardingInteractionTrue('FilterControl');
+    }
+  }, [isOpen]);
 
   const handleParaglidingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onParaglidingFilterChange(e.target.checked);
@@ -102,7 +112,7 @@ export const FilterControl: React.FC<FilterControlProps> = ({
   };
 
   return (
-    <div className='absolute top-3 left-3 z-10'>
+    <div className={`absolute top-3 left-3 z-10 ${shouldPulse ? 'onboarding-pulse' : ''}`}>
       <div className='bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg shadow-[var(--shadow-md)]'>
         {/* Toggle Button */}
         <button

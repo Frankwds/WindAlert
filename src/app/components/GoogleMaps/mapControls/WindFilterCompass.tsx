@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
+import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
 
 interface WindFilterCompassProps {
   onWindDirectionChange: (directions: string[]) => void;
@@ -25,6 +27,7 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
   variant,
 }) => {
   const isMobile = useIsMobile();
+  const shouldPulse = useOnboardingPulse('WindFilterCompass');
   const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
   const numSegments = directions.length;
   const angleStep = 360 / numSegments;
@@ -52,9 +55,16 @@ const WindFilterCompass: React.FC<WindFilterCompassProps> = ({
     onWindDirectionChange(newSelected);
   };
 
+  // Track when control is expanded
+  useEffect(() => {
+    if (isExpanded) {
+      setOnboardingInteractionTrue('WindFilterCompass');
+    }
+  }, [isExpanded]);
+
   return (
     <div
-      className={`absolute top-3 ${variant === 'all' ? 'right-3' : 'right-16'} z-10 cursor-pointer`}
+      className={`absolute top-3 ${variant === 'all' ? 'right-3' : 'right-16'} z-10 cursor-pointer ${shouldPulse ? 'onboarding-pulse' : ''}`}
       onClick={() => {
         if (!isExpanded) {
           onCloseOverlays({ keep: 'windfilter' });

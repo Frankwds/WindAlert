@@ -189,3 +189,20 @@ body {
 .animate-fly {
   animation: fly 0.4s ease-in-out;
 }
+
+/* Onboarding pulse animation */
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-md);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.onboarding-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
+import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
 import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
 
 export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
@@ -39,6 +41,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   closeOverlays: onCloseOverlays,
 }) => {
   const isMobile = useIsMobile();
+  const shouldPulse = useOnboardingPulse('PromisingFilter');
   const currentHour = useMemo(() => new Date().getHours(), []);
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
   const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(
@@ -93,6 +96,13 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     }
   }, [isExpanded, initialFilter, currentHour]);
 
+  // Track when control is expanded
+  useEffect(() => {
+    if (isExpanded) {
+      setOnboardingInteractionTrue('PromisingFilter');
+    }
+  }, [isExpanded]);
+
   return (
     <div className='absolute top-3 right-3 z-10'>
       <button
@@ -102,7 +112,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
           }
           setIsExpanded(!isExpanded);
         }}
-        className='w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer select-none'
+        className={`w-11 h-11 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-1 shadow-[var(--shadow-md)] flex items-center justify-center cursor-pointer select-none ${shouldPulse ? 'onboarding-pulse' : ''}`}
       >
         <div className='relative'>
           <Image src='/weather-icons/clearsky_day.svg' alt='Filter promising sites' width={32} height={32} />
