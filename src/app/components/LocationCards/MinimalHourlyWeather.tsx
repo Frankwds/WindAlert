@@ -6,13 +6,15 @@ import Image from 'next/image';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
 import { useDataGrouping } from '@/lib/hooks/useDataGrouping';
 import { useMemo } from 'react';
+import { isForecastPromising } from '@/lib/utils/validateMinimalForecast';
 
 interface MinimalHourlyWeatherProps {
   forecast: MinimalForecast[];
   timezone: string;
+  locationWindDirections: string[];
 }
 
-const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, timezone }) => {
+const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, timezone, locationWindDirections }) => {
   // Filter to future hours on the client to avoid SSR hydration mismatches
   const filteredForecast = useMemo(() => {
     const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
@@ -39,10 +41,11 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
     const segments = [];
     for (const hour of relevantHours) {
       const isSunny = ['clearsky_day', 'fair_day', 'partlycloudy_day'].includes(hour.weather_code);
+      const isPromising = isForecastPromising(hour, locationWindDirections);
       segments.push(
         <div
           key={hour.time}
-          className={`h-1.5 flex-1 ${isSunny && hour.is_promising ? 'bg-[var(--wind-light)]' : hour.is_promising ? 'bg-[var(--wind-calm)]' : 'bg-red-500'} 
+          className={`h-1.5 flex-1 ${isSunny && isPromising ? 'bg-[var(--wind-light)]' : isPromising ? 'bg-[var(--wind-calm)]' : 'bg-red-500'} 
             }`}
         />
       );

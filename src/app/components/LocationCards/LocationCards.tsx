@@ -29,7 +29,11 @@ export default function LocationCard({ location, timezone = 'Europe/Oslo' }: Loc
       {location.altitude ? <p className='text-center text-sm text-gray-600'>Høyde: {location.altitude}moh</p> : null}
       <hr className='mt-2 mb-4' />
       {location.forecast_cache && location.forecast_cache.length > 0 ? (
-        <MinimalHourlyWeather forecast={location.forecast_cache} timezone={timezone} />
+        <MinimalHourlyWeather
+          forecast={location.forecast_cache}
+          timezone={timezone}
+          locationWindDirections={allowedDirections}
+        />
       ) : (
         <p className='mt-2 text-[var(--muted)]'>Ingen værmeldinger tilgjengelig.</p>
       )}
