@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { type WeatherCondition } from '../../mapControls/PromisingFilter';
+import { isForecastPromising } from '@/lib/utils/validateMinimalForecast';
+import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 interface PromisingFilter {
   selectedDay: number;
@@ -42,9 +44,14 @@ export const useMarkerFiltering = ({
       const locationData = (marker as any).locationData as ParaglidingLocationWithForecast;
       const forecast = locationData.forecast_cache;
 
-      if (!forecast) return false;
+      if (!forecast) {
+        return false;
+      }
 
       const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions } = promisingFilter;
+
+      // Get wind direction symbols for this location
+      const locationWindDirections = locationToWindDirectionSymbols(locationData);
 
       // Calculate the target date based on day offset
       const dayOffset = selectedDay === 0 ? 0 : selectedDay === 1 ? 1 : 2;
@@ -75,7 +82,10 @@ export const useMarkerFiltering = ({
           selectedWeatherConditions.length === 0 ||
           selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
 
-        if (f.is_promising && isGoodWeather) {
+        // Use client-side validation instead of f.is_promising
+        const isPromising = isForecastPromising(f, locationWindDirections);
+
+        if (isPromising && isGoodWeather) {
           currentConsecutive++;
           maxConsecutivePromising = Math.max(maxConsecutivePromising, currentConsecutive);
         } else {
