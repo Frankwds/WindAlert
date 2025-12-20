@@ -1,5 +1,5 @@
 import { MinimalForecast } from '@/lib/supabase/types';
-import { DEFAULT_ALERT_RULE } from '@/app/api/cron/_lib/validate/alert-rules';
+import { DEFAULT_ALERT_RULE } from '@/lib/utils/alert-rules';
 
 /**
  * Checks if wind direction is good for the location
@@ -42,7 +42,7 @@ function isWindDirectionGood(windDirection: number, locationDirections: string[]
  * @param locationWindDirections - Array of wind direction symbols (e.g., ['n', 'e', 's'])
  * @returns true if all validations pass, false otherwise
  */
-export function isForecastPromising(forecast: MinimalForecast, locationWindDirections: string[]): boolean {
+export function validateMinimalForecast(forecast: MinimalForecast, locationWindDirections: string[]): boolean {
   // Check if it's night time
   if (forecast.is_day === 0) {
     return false;

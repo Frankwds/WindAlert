@@ -1,6 +1,6 @@
-import { WeatherDataPointYr1h } from '../../../../../lib/yr/types';
-import { WeatherDataPoint } from '../../../../../lib/openMeteo/types';
-import { ForecastCache1hr } from '../../../../../lib/supabase/types';
+import { WeatherDataPointYr1h } from '../yr/types';
+import { WeatherDataPoint } from '../openMeteo/types';
+import { ForecastCache1hr } from '../supabase/types';
 
 function combineWeatherData(meteoDataPoint: WeatherDataPoint, yrDataPoint?: WeatherDataPointYr1h): ForecastCache1hr {
   let isDay: 0 | 1 = 0;

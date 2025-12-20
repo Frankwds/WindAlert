@@ -6,7 +6,7 @@ import Image from 'next/image';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
 import { useDataGrouping } from '@/lib/hooks/useDataGrouping';
 import { useMemo } from 'react';
-import { isForecastPromising } from '@/lib/utils/validateMinimalForecast';
+import { validateMinimalForecast } from '@/lib/utils/validateMinimalForecast';
 
 interface MinimalHourlyWeatherProps {
   forecast: MinimalForecast[];
@@ -41,7 +41,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
     const segments = [];
     for (const hour of relevantHours) {
       const isSunny = ['clearsky_day', 'fair_day', 'partlycloudy_day'].includes(hour.weather_code);
-      const isPromising = isForecastPromising(hour, locationWindDirections);
+      const isPromising = validateMinimalForecast(hour, locationWindDirections);
       segments.push(
         <div
           key={hour.time}

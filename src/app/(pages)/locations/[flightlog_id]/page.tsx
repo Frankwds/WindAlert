@@ -11,12 +11,12 @@ import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations'
 import { fetchMeteoDataClient } from '@/lib/openMeteo/apiClient';
 import { openMeteoResponseSchema } from '@/lib/openMeteo/zod';
 import { mapOpenMeteoData } from '@/lib/openMeteo/mapping';
-import { combineDataSources } from '@/app/api/cron/_lib/utils/combineData';
+import { combineDataSources } from '@/lib/utils/combineData';
 import { fetchYrDataClient } from '@/lib/yr/apiClient';
 import { mapYrData } from '@/lib/yr/mapping';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-import { DEFAULT_ALERT_RULE } from '@/app/api/cron/_lib/validate/alert-rules';
-import { isGoodParaglidingCondition } from '@/app/api/cron/_lib/validate/validateDataPoint';
+import { DEFAULT_ALERT_RULE } from '@/lib/utils/alert-rules';
+import { isGoodParaglidingCondition } from '@/lib/utils/validateDataPoint';
 import { getSixHourSymbolsByDay } from '../utils/utils';
 import { groupForecastByDay } from '../utils/utils';
 import { LoadingSpinner } from '@/app/components/shared';

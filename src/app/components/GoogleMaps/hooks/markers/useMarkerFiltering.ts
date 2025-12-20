@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { type WeatherCondition } from '../../mapControls/PromisingFilter';
-import { isForecastPromising } from '@/lib/utils/validateMinimalForecast';
+import { validateMinimalForecast } from '@/lib/utils/validateMinimalForecast';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 interface PromisingFilter {
@@ -83,7 +83,7 @@ export const useMarkerFiltering = ({
           selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
 
         // Use client-side validation instead of f.is_promising
-        const isPromising = isForecastPromising(f, locationWindDirections);
+        const isPromising = validateMinimalForecast(f, locationWindDirections);
 
         if (isPromising && isGoodWeather) {
           currentConsecutive++;

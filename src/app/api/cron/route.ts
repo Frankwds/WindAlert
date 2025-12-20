@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { openMeteoResponseSchema } from '../../../lib/openMeteo/zod';
 import { mapOpenMeteoData } from '../../../lib/openMeteo/mapping';
 import { mapYrData } from '../../../lib/yr/mapping';
-import { combineDataSources } from './_lib/utils/combineData';
+import { combineDataSources } from '../../../lib/utils/combineData';
 import { fetchMeteoData } from '@/lib/openMeteo/apiClient';
 import { fetchYrData } from '@/lib/yr/apiClient';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
