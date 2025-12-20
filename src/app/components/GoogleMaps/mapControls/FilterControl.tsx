@@ -108,21 +108,17 @@ export const FilterControl: React.FC<FilterControlProps> = ({
         <button
           onClick={toggleDropdown}
           className={`flex items-center gap-4 p-2 ${!isMobile ? 'hover:bg-[var(--accent)]/10' : ''} rounded-lg cursor-pointer min-w-[72px] select-none`}
-          aria-label='Toggle filters'
+          aria-label='Toggle visibility'
         >
-          {/* Filters Icon */}
-          <svg
-            width='20'
-            height='20'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            strokeWidth='2'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            className='text-[var(--foreground)]'
-          >
-            <polygon points='22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3' />
+          {/* Eye Icon */}
+          <svg width='30' height='30' viewBox='0 0 100 100' fill='none' className='text-[var(--foreground)]'>
+            <path
+              d='M50 20C30 20 10 50 10 50C10 50 30 80 50 80C70 80 90 50 90 50C90 50 70 20 50 20ZM50 70C38.9543 70 30 61.0457 30 50C30 38.9543 38.9543 30 50 30C61.0457 30 70 38.9543 70 50C70 61.0457 61.0457 70 50 70Z'
+              fill='currentColor'
+            />
+
+            <circle cx='50' cy='50' r='15' fill='currentColor' strokeWidth='20' />
+            <circle cx='55' cy='47' r='6' fill='var(--background)' strokeWidth='20' />
           </svg>
 
           {/* Arrow Icon */}
