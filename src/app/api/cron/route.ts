@@ -67,7 +67,6 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
         return {
           ...dataPoint,
           location_id: location.id,
-          is_promising: isGood,
         };
       });
 

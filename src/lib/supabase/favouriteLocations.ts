@@ -18,8 +18,7 @@ export class FavouriteLocationService {
               temperature,
               wind_speed,
               wind_gusts,
-              wind_direction,
-              is_promising
+              wind_direction
             )
           )
         `
