@@ -6,7 +6,7 @@ import Image from 'next/image';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
 import { useDataGrouping } from '@/lib/hooks/useDataGrouping';
 import { useMemo } from 'react';
-import { validateMinimalForecast } from '@/lib/utils/validateMinimalForecast';
+import { validateMinimalForecast } from '@/lib/utils/validateDataPoint';
 
 interface MinimalHourlyWeatherProps {
   forecast: MinimalForecast[];

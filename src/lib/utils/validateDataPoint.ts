@@ -1,7 +1,15 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
-import { ForecastCache1hr, LocationPageForecast } from '@/lib/supabase/types';
+import { ForecastCache1hr, LocationPageForecast, MinimalForecast } from '@/lib/supabase/types';
+import { DEFAULT_ALERT_RULE } from '@/lib/utils/alert-rules';
 
-function isWindDirectionGood(windDirection: number, location: string[]): boolean {
+// Shared constants
+const GOOD_WEATHER_CODES = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'] as const;
+
+/**
+ * Checks if wind direction is good for the location
+ * Shared utility function used by both validation functions
+ */
+export function isWindDirectionGood(windDirection: number, location: string[]): boolean {
   const directions = [
     { key: 'n', min: 337.5, max: 22.5 },
     { key: 'ne', min: 22.5, max: 67.5 },
@@ -51,6 +59,95 @@ function isWindShearAcceptable(groundDirection: number, altitudeDirection: numbe
 }
 
 /**
+ * Shared validation logic for basic conditions
+ * Returns validation results that can be used by both functions
+ */
+interface BasicValidationResult {
+  isValid: boolean;
+  failures: string[];
+  warnings: string[];
+}
+
+function validateBasicConditions(
+  forecast: MinimalForecast,
+  alertRule: AlertRule,
+  locationDirections: string[]
+): BasicValidationResult {
+  const failures: string[] = [];
+  const warnings: string[] = [];
+
+  // Night check
+  if (forecast.is_day === 0) {
+    failures.push(fail_reasons.night);
+  }
+
+  // Weather code check
+  const isBadWeather = !GOOD_WEATHER_CODES.includes(forecast.weather_code as (typeof GOOD_WEATHER_CODES)[number]);
+  if (isBadWeather && forecast.is_day) {
+    failures.push(fail_reasons.bad_weather);
+  }
+
+  // Wind direction check
+  if (locationDirections.length === 0) {
+    failures.push(fail_reasons.direction_wrong);
+  } else {
+    const isWrongWindDirection = !isWindDirectionGood(forecast.wind_direction, locationDirections);
+    if (isWrongWindDirection) {
+      failures.push(fail_reasons.direction_wrong);
+    }
+  }
+
+  // Wind speed checks
+  const isLowWind = forecast.wind_speed < alertRule.MIN_WIND_SPEED;
+  const isMaxWind = forecast.wind_speed > alertRule.MAX_WIND_SPEED;
+
+  if (isLowWind) {
+    failures.push(fail_reasons.wind_low);
+  }
+  if (isMaxWind) {
+    failures.push(fail_reasons.wind_high);
+  }
+
+  // Wind gust checks
+  if (forecast.wind_gusts !== undefined) {
+    const isMaxGust = forecast.wind_gusts > alertRule.MAX_GUST;
+    if (isMaxGust && !isMaxWind) {
+      failures.push(fail_reasons.gust_high);
+    }
+
+    const isMuchWind = forecast.wind_speed >= alertRule.MUCH_WIND;
+    const isMuchGust = forecast.wind_gusts >= alertRule.MUCH_GUST;
+    if (isMuchWind && isMuchGust && !isMaxGust && !isMaxWind) {
+      failures.push(fail_reasons.much_wind);
+    }
+  }
+
+  return {
+    isValid: failures.length === 0,
+    failures,
+    warnings,
+  };
+}
+
+/**
+ * Validates MinimalForecast - simplified validation for basic forecast data
+ * This is a simplified version that only uses fields available in MinimalForecast
+ *
+ * @param forecast - The forecast data point to validate
+ * @param locationWindDirections - Array of wind direction symbols (e.g., ['n', 'e', 's'])
+ * @param alertRule - Optional alert rule, defaults to DEFAULT_ALERT_RULE
+ * @returns true if all validations pass, false otherwise
+ */
+export function validateMinimalForecast(
+  forecast: MinimalForecast,
+  locationWindDirections: string[],
+  alertRule: AlertRule = DEFAULT_ALERT_RULE
+): boolean {
+  const result = validateBasicConditions(forecast, alertRule, locationWindDirections);
+  return result.isValid;
+}
+
+/**
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
  * Returns LocationPageForecast with is_promising set based on validation results
  */
@@ -59,25 +156,12 @@ export function isGoodParaglidingCondition(
   alert_rule: AlertRule,
   location: string[]
 ): LocationPageForecast {
-  const failures: string[] = [];
-  const warnings: string[] = [];
+  // Start with basic validation
+  const basicResult = validateBasicConditions(dp, alert_rule, location);
+  const failures = [...basicResult.failures];
+  const warnings = [...basicResult.warnings];
 
-  if (dp.is_day === 0) {
-    failures.push(fail_reasons.night);
-  }
-
-  // Visual and precipitation conditions
-  const good_weather = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'];
-  const isBadWeather = !good_weather.includes(dp.weather_code);
-
-  const isLowWind = dp.wind_speed < alert_rule.MIN_WIND_SPEED;
-  const isMaxWind = dp.wind_speed > alert_rule.MAX_WIND_SPEED;
-  const isMaxGust = dp.wind_gusts !== undefined && dp.wind_gusts > alert_rule.MAX_GUST;
-  const isWrongWindDirection = !isWindDirectionGood(dp.wind_direction, location);
-
-  const isMuchWind = dp.wind_speed >= alert_rule.MUCH_WIND;
-  const isMuchGust = dp.wind_gusts !== undefined && dp.wind_gusts >= alert_rule.MUCH_GUST;
-
+  // Additional checks only available in ForecastCache1hr
   const isTooWindy800m = dp.wind_speed_925hpa > alert_rule.MAX_WIND_SPEED_925hPa;
   const isTooWindy1500m = dp.wind_speed_850hpa > alert_rule.MAX_WIND_SPEED_850hPa;
   const isTooWindy3000m = dp.wind_speed_700hpa > alert_rule.MAX_WIND_SPEED_700hPa;
@@ -93,29 +177,6 @@ export function isGoodParaglidingCondition(
     dp.precipitation_min <= alert_rule.MAX_PRECIPITATION;
   const isRain = dp.precipitation_min !== undefined && dp.precipitation_min > alert_rule.MAX_PRECIPITATION;
 
-  // Weather symbol
-  if (isBadWeather && dp.is_day) {
-    failures.push(fail_reasons.bad_weather);
-  }
-  // Surface wind conditions
-  if (isLowWind) {
-    failures.push(fail_reasons.wind_low);
-  }
-  if (isMaxWind) {
-    failures.push(fail_reasons.wind_high);
-  }
-  if (isMaxGust && !isMaxWind) {
-    failures.push(fail_reasons.gust_high);
-  }
-
-  if (isMuchWind && isMuchGust && !isMaxGust && !isMaxWind) {
-    failures.push(fail_reasons.much_wind);
-  }
-
-  if (isWrongWindDirection) {
-    failures.push(fail_reasons.direction_wrong);
-  }
-
   // Precipitation
   if (isRain) {
     failures.push(fail_reasons.rain);
@@ -124,7 +185,7 @@ export function isGoodParaglidingCondition(
     warnings.push(warn_reasons.rain);
   }
 
-  // Upper atmosphere wind conditions
+  // Upper atmosphere wind conditions (warnings only)
   if (isTooWindy800m) {
     warnings.push(warn_reasons.WIND_SPEED_925_HIGH(dp.geopotential_height_925hpa));
   }
@@ -135,7 +196,7 @@ export function isGoodParaglidingCondition(
     warnings.push(warn_reasons.WIND_SPEED_700_HIGH(dp.geopotential_height_700hpa));
   }
 
-  // Wind shear warnings (not failures)
+  // Wind shear warnings
   if (isWindShear800m) {
     warnings.push(warn_reasons.WIND_SHEAR_925(dp.geopotential_height_925hpa));
   }

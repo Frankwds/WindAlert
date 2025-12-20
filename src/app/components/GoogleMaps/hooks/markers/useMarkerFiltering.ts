@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { type WeatherCondition } from '../../mapControls/PromisingFilter';
-import { validateMinimalForecast } from '@/lib/utils/validateMinimalForecast';
+import { validateMinimalForecast } from '@/lib/utils/validateDataPoint';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 
 interface PromisingFilter {
