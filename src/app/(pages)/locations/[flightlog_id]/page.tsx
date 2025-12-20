@@ -20,8 +20,7 @@ import { isGoodParaglidingCondition } from '@/app/api/cron/_lib/validate/validat
 import { getSixHourSymbolsByDay } from '../utils/utils';
 import { groupForecastByDay } from '../utils/utils';
 import { LoadingSpinner } from '@/app/components/shared';
-import { ParaglidingLocation } from '@/lib/supabase/types';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { ParaglidingLocation, LocationPageForecast } from '@/lib/supabase/types';
 
 interface Props {
   params: Promise<{ flightlog_id: string }>;
@@ -29,7 +28,7 @@ interface Props {
 
 export default function LocationPage({ params }: Props) {
   const [location, setLocation] = useState<ParaglidingLocation | null>(null);
-  const [groupedByDay, setGroupedByDay] = useState<Record<string, ForecastCache1hr[]>>({});
+  const [groupedByDay, setGroupedByDay] = useState<Record<string, LocationPageForecast[]>>({});
   const [sixHourSymbolsByDay, setSixHourSymbolsByDay] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -73,18 +72,12 @@ export default function LocationPage({ params }: Props) {
 
         // Add validation data to forecast
         const validatedForecast = filteredForecast.map(hour => {
-          const { isGood, validation_failures, validation_warnings } = isGoodParaglidingCondition(
-            hour,
+          const validated = isGoodParaglidingCondition(
+            { ...hour, location_id: locationData.id },
             DEFAULT_ALERT_RULE,
             locationToWindDirectionSymbols(locationData)
           );
-          return {
-            ...hour,
-            location_id: locationData.id,
-            is_promising: isGood,
-            validation_failures,
-            validation_warnings,
-          };
+          return validated;
         });
 
         const timezone = locationData.timezone || 'Europe/Oslo';

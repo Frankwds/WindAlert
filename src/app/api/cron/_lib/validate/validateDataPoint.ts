@@ -1,5 +1,5 @@
 import { AlertRule } from '@/lib/common/types/alertRule';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { ForecastCache1hr, LocationPageForecast } from '@/lib/supabase/types';
 
 function isWindDirectionGood(windDirection: number, location: string[]): boolean {
   const directions = [
@@ -52,12 +52,13 @@ function isWindShearAcceptable(groundDirection: number, altitudeDirection: numbe
 
 /**
  * Validates if weather conditions are suitable for paragliding based on multiple criteria
+ * Returns LocationPageForecast with is_promising set based on validation results
  */
 export function isGoodParaglidingCondition(
   dp: ForecastCache1hr,
   alert_rule: AlertRule,
   location: string[]
-): { isGood: boolean; validation_failures: string; validation_warnings: string } {
+): LocationPageForecast {
   const failures: string[] = [];
   const warnings: string[] = [];
 
@@ -146,7 +147,8 @@ export function isGoodParaglidingCondition(
   }
 
   return {
-    isGood: failures.length === 0,
+    ...dp,
+    is_promising: failures.length === 0,
     validation_failures: failures.join(','),
     validation_warnings: warnings.join(','),
   };

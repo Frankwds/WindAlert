@@ -1,6 +1,6 @@
 'use client';
 
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { LocationPageForecast } from '@/lib/supabase/types';
 import { getWeatherIcon } from '@/lib/utils/getWeatherIcons';
 import Image from 'next/image';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
@@ -10,7 +10,7 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useRef, useEffect } from 'react';
 
 interface HourProps {
-  hour: ForecastCache1hr;
+  hour: LocationPageForecast;
   windDirections: string[];
   altitude: number;
   showValidation?: boolean;

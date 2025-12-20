@@ -1,13 +1,13 @@
 'use client';
 
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { LocationPageForecast } from '@/lib/supabase/types';
 import Day from './Day';
 import { ParaglidingLocation } from '@/lib/supabase/types';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 import { useState } from 'react';
 
 interface WeatherTableProps {
-  groupedByDay: Record<string, ForecastCache1hr[]>;
+  groupedByDay: Record<string, LocationPageForecast[]>;
   sixHourSymbolsByDay: Record<string, string[]>;
   location: ParaglidingLocation;
   showValidation?: boolean;

@@ -34,7 +34,6 @@ export interface ForecastCache1hr {
   is_yr_data: boolean;
 
   // Validation
-  is_promising: boolean;
   validation_failures: string;
   validation_warnings: string;
 
@@ -77,4 +76,12 @@ export interface ForecastCache1hr {
   geopotential_height_925hpa: number;
   geopotential_height_850hpa: number;
   geopotential_height_700hpa: number;
+}
+
+/**
+ * Extended forecast type for location page with validation result
+ * Extends ForecastCache1hr and adds is_promising field for client-side validation display
+ */
+export interface LocationPageForecast extends ForecastCache1hr {
+  is_promising: boolean;
 }

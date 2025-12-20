@@ -6,11 +6,8 @@ import { combineDataSources } from './_lib/utils/combineData';
 import { fetchMeteoData } from '@/lib/openMeteo/apiClient';
 import { fetchYrData } from '@/lib/yr/apiClient';
 import { ForecastCacheService } from '@/lib/supabase/forecastCache';
-import { isGoodParaglidingCondition } from './_lib/validate/validateDataPoint';
 import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import { ForecastCache1hr, MinimalParaglidingLocation } from '@/lib/supabase/types';
-import { DEFAULT_ALERT_RULE } from './_lib/validate/alert-rules';
-import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
 import { Server } from '@/lib/supabase/server';
 
 const BATCH_SIZE = 50;
@@ -57,21 +54,8 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
         });
       }
 
-      // Validate forecast data
-      const validatedForecastData: ForecastCache1hr[] = combinedData.map(dataPoint => {
-        const { isGood } = isGoodParaglidingCondition(
-          dataPoint,
-          DEFAULT_ALERT_RULE,
-          locationToWindDirectionSymbols(location)
-        );
-        return {
-          ...dataPoint,
-          location_id: location.id,
-        };
-      });
-
       // Upsert forecast data
-      await Server.upsertForecastCache(validatedForecastData);
+      await Server.upsertForecastCache(combinedData);
     } catch (error) {
       console.error(`Failed to process location ${location.id}:`, error);
     }

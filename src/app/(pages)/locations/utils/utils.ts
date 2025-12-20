@@ -1,5 +1,5 @@
 import { WeatherDataPointYr1h, WeatherDataYr } from '@/lib/yr/types';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { LocationPageForecast } from '@/lib/supabase/types';
 
 /**
  * Extracts the local hour (0-23) from a UTC ISO string for a given timezone
@@ -93,7 +93,7 @@ export function getSixHourSymbolsByDay(yrdata: WeatherDataYr, timezone: string =
   return sixHourSymbolsByDay;
 }
 
-export function groupForecastByDay(forecast: ForecastCache1hr[], timezone: string = 'Europe/Oslo') {
+export function groupForecastByDay(forecast: LocationPageForecast[], timezone: string = 'Europe/Oslo') {
   const groupedByDay = forecast.reduce(
     (acc, hour) => {
       const utcDate = new Date(hour.time);
@@ -108,7 +108,7 @@ export function groupForecastByDay(forecast: ForecastCache1hr[], timezone: strin
       acc[day].push(hour);
       return acc;
     },
-    {} as Record<string, ForecastCache1hr[]>
+    {} as Record<string, LocationPageForecast[]>
   );
 
   if (Object.keys(groupedByDay).length > 0) {

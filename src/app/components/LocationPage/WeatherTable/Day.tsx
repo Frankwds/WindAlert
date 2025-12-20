@@ -1,6 +1,6 @@
 'use client';
 
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { LocationPageForecast } from '@/lib/supabase/types';
 import { getWeatherIcon } from '@/lib/utils/getWeatherIcons';
 import Image from 'next/image';
 import Collapsible from '@/app/components/shared/Collapsible';
@@ -10,7 +10,7 @@ import { useState, useRef, useEffect } from 'react';
 
 interface DayProps {
   weekdayName: string;
-  dailyForecast: ForecastCache1hr[];
+  dailyForecast: LocationPageForecast[];
   sixHourSymbols: string[];
   windDirections: string[];
   altitude: number;

@@ -5,14 +5,14 @@ import { getWindDirection } from '@/lib/utils/getWindDirection';
 import { getWeatherIcon } from '@/lib/utils/getWeatherIcons';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
 import TinyWindCompass from '@/app/components/GoogleMaps/TinyWindCompass';
-import { ForecastCache1hr } from '@/lib/supabase/types';
+import { LocationPageForecast } from '@/lib/supabase/types';
 
 const Details = ({
   hour,
   windDirections,
   altitude,
 }: {
-  hour: ForecastCache1hr;
+  hour: LocationPageForecast;
   windDirections: string[];
   altitude: number;
 }) => {
