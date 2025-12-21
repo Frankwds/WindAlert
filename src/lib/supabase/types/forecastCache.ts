@@ -33,10 +33,6 @@ export interface ForecastCache1hr {
   is_day: 0 | 1;
   is_yr_data: boolean;
 
-  // Validation
-  validation_failures: string;
-  validation_warnings: string;
-
   // Landing conditions
   landing_wind?: number;
   landing_gust?: number;
@@ -84,4 +80,6 @@ export interface ForecastCache1hr {
  */
 export interface LocationPageForecast extends ForecastCache1hr {
   is_promising: boolean;
+  validation_failures: string;
+  validation_warnings: string;
 }

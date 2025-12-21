@@ -30,7 +30,7 @@ async function processBatch(locations: MinimalParaglidingLocation[]) {
       const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
       // Combine data sources
-      let combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly);
+      let combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly, location.id);
 
       // Fetch YR data for landing location if it exists
       if (location.landing_latitude && location.landing_longitude) {

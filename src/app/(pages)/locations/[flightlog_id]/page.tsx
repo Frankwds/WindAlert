@@ -65,7 +65,7 @@ export default function LocationPage({ params }: Props) {
         const yrTakeoffData = await fetchYrDataClient(locationData.latitude, locationData.longitude);
         const mappedYrTakeoffData = mapYrData(yrTakeoffData);
 
-        const combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly);
+        const combinedData = combineDataSources(meteoData, mappedYrTakeoffData.weatherDataYrHourly, locationData.id);
 
         const cutoff = Date.now() - 60 * 60 * 1000; // include previous hour
         const filteredForecast = combinedData.filter(f => new Date(f.time).getTime() >= cutoff);
