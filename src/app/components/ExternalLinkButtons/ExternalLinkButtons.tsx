@@ -92,7 +92,7 @@ interface FlightlogButtonProps {
 export function FlightlogButton({ flightlogId }: FlightlogButtonProps) {
   return (
     <Link
-      href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
+      href={`https://flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
       target='_blank'
       rel='noopener noreferrer'
       className='flex items-center justify-center max-w-36 min-w-28 gap-1.5 py-2.5 px-6 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)]  cursor-pointer flex-1 min-w-0'
@@ -112,7 +112,7 @@ interface CompactFlightlogButtonProps {
 export function CompactFlightlogButton({ flightlogId }: CompactFlightlogButtonProps) {
   return (
     <Link
-      href={`https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
+      href={`https://flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlogId}`}
       target='_blank'
       rel='noopener noreferrer'
       className='flex items-center row px-2 py-2 mr-2 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer select-none'

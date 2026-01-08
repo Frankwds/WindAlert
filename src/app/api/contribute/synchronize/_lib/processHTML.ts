@@ -342,13 +342,13 @@ function processDescription(description: string): string {
   // Fix relative photo links by prepending flightlog.org domain and add target="_blank"
   processedDescription = processedDescription.replace(
     /href=["']\/fl\.html\?([^"']*)["']/g,
-    "href='https://www.flightlog.org/fl.html?$1' target='_blank'"
+    "href='https://flightlog.org/fl.html?$1' target='_blank'"
   );
 
   // Fix relative image sources by prepending flightlog.org domain
   processedDescription = processedDescription.replace(
     /src=["']\/fl\.html\?([^"']*)["']/g,
-    "src='https://www.flightlog.org/fl.html?$1'"
+    "src='https://flightlog.org/fl.html?$1'"
   );
 
   return processedDescription;

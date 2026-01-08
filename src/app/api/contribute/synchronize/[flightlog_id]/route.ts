@@ -14,7 +14,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ flight
     validateFlightlogId(flightlog_id);
 
     // Fetch HTML from flightlog.org
-    const url = `https://www.flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`;
+    const url = `https://flightlog.org/fl.html?l=2&a=22&country_id=160&start_id=${flightlog_id}`;
 
     // Get Browserless API token from environment variables
     const browserlessToken = process.env.BROWSERLESS_API_KEY;
@@ -33,7 +33,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ flight
     await page.setViewport({ width: 1920, height: 1080 });
 
     // First, visit the homepage to establish a session
-    await page.goto('https://www.flightlog.org/', {
+    await page.goto('https://flightlog.org/', {
       waitUntil: 'networkidle2',
       timeout: 30000,
     });
@@ -46,7 +46,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ flight
 
     // Check if we got redirected to homepage
     const currentUrl = page.url();
-    if (currentUrl === 'https://www.flightlog.org/' || currentUrl === 'https://www.flightlog.org') {
+    if (currentUrl === 'https://www.flightlog.org/' || currentUrl === 'https://flightlog.org') {
       console.warn(`Warning: Redirected to homepage for flightlog_id: ${flightlog_id}`);
       throw new Error('Site redirected to homepage');
     }
