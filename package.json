@@ -17,7 +17,7 @@
     "@googlemaps/markerclusterer": "^2.6.2",
     "@heroicons/react": "^2.2.0",
     "@supabase/ssr": "^0.8.0",
-    "@supabase/supabase-js": "^2.89.0",
+    "@supabase/supabase-js": "^2.90.0",
     "@types/google.maps": "^3.58.1",
     "axios": "^1.13.2",
     "next": "16.1.1",
@@ -26,7 +26,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-scrollbar": "^4.0.2",
-    "zod": "^4.3.4"
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
