@@ -19,7 +19,6 @@ interface ContributeLandingProps {
   landingLatitude?: number;
   landingLongitude?: number;
   landingAltitude?: number;
-  onSave: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
 export const ContributeLanding: React.FC<ContributeLandingProps> = ({
@@ -30,7 +29,6 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   landingLatitude: intialLandingLatitude,
   landingLongitude: initialLandingLongitude,
   landingAltitude: initialLandingAltitude,
-  onSave,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLandingLat, setCurrentLandingLat] = useState<number | undefined>(intialLandingLatitude);
@@ -163,7 +161,6 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
           await dataCache.clearCache();
         }
 
-        onSave(currentLandingLat, currentLandingLng, currentLandingAltitude);
         setError(null);
         setIsOpen(false);
         alert('Landingen er lagret! Takk for bidraget.');
@@ -182,7 +179,6 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
     currentLandingLat,
     currentLandingLng,
     currentLandingAltitude,
-    onSave,
     user,
   ]);
 
@@ -222,8 +218,8 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
                 <ContributeMap
                   latitude={latitude}
                   longitude={longitude}
-                  landingLatitude={intialLandingLatitude}
-                  landingLongitude={initialLandingLongitude}
+                  landingLatitude={currentLandingLat}
+                  landingLongitude={currentLandingLng}
                   onLandingChange={handleLandingChange}
                 />
               </>

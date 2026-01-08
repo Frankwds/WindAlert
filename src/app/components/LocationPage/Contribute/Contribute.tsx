@@ -16,7 +16,6 @@ interface ContributeProps {
   landingLongitude?: number;
   landingAltitude?: number;
   is_main: boolean;
-  onSave: (landingLat: number, landingLng: number, landingAltitude?: number) => void;
 }
 
 export const Contribute: React.FC<ContributeProps> = ({
@@ -29,7 +28,6 @@ export const Contribute: React.FC<ContributeProps> = ({
   landingLongitude,
   landingAltitude,
   is_main,
-  onSave,
 }) => {
   return (
     <div className='mt-6 center justify-center'>
@@ -43,7 +41,6 @@ export const Contribute: React.FC<ContributeProps> = ({
         landingLatitude={landingLatitude}
         landingLongitude={landingLongitude}
         landingAltitude={landingAltitude}
-        onSave={onSave}
       />
 
       <ContributeSynchronize startId={startId} />
