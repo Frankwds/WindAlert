@@ -351,6 +351,9 @@ function processDescription(description: string): string {
     "src='https://flightlog.org/fl.html?$1'"
   );
 
+  // Replace alt text "photo of start" with " Bilde fra flightlog" (using &nbsp; for space)
+  processedDescription = processedDescription.replace(/alt=["']photo of start["']/g, "alt='&nbsp;Bilde fra flightlog'");
+
   return processedDescription;
 }
 
