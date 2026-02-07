@@ -66,6 +66,12 @@ export default function AboutPage() {
     </Link>
   );
 
+  const bidraLink = (
+    <Link href='/contribute' className={linkStyle}>
+      bidra
+    </Link>
+  );
+
   return (
     <div className='bg-[var(--background)] text-white min-h-screen p-4 sm:p-6 md:p-8'>
       <div className='max-w-4xl mx-auto'>
@@ -75,7 +81,7 @@ export default function AboutPage() {
             🦅 WindLord (Gwaihir)
           </h2>
           <p className='text-base sm:text-lg leading-relaxed'>
-            Alle paragliding starter fra {flightlogLink} med værmelding fra {yrLink} i samme kart som vindmålere og heatmap fra {kk7Link}.
+            Alle paragliding starter fra {flightlogLink} med værmelding fra {yrLink} i samme kart som heatmap fra {kk7Link} og vindmålere fra ulike kilder.
           </p>
         </section>
 
@@ -90,7 +96,7 @@ export default function AboutPage() {
             <div className='flex items-start gap-3'>
               <span className='text-xl flex-shrink-0'>☀️</span>
               <p className='text-base sm:text-lg'>
-                Vis kun starter der yr melder riktig vindretning og mindre enn 12m/s vind.
+                Vis kun starter der yr melder riktig vindretning og mindre enn 8m/s vind.
               </p>
             </div>
 
@@ -117,7 +123,7 @@ export default function AboutPage() {
             <div className='flex items-start gap-3'>
               <Image src='/paraglider.png' alt='Paragliding' width={20} height={20} className='w-5 h-5 mt-0.5 flex-shrink-0' />
               <p className='text-base sm:text-lg'>
-                Paragliding-startplasser fra flightlog.org og værmelding fra yr.no.
+                Paraglidingstarter fra flightlog.org og værmelding fra yr.no.
               </p>
             </div>
 
@@ -133,7 +139,7 @@ export default function AboutPage() {
                 />
               </svg>
               <p className='text-base sm:text-lg'>
-                Værstasjoner viser sanntids vind fra ulike kilder.
+                Værstasjoner med sanntids vinddata fra ulike kilder.
               </p>
             </div>
 
@@ -155,7 +161,7 @@ export default function AboutPage() {
                 </text>
               </svg>
               <p className='text-base sm:text-lg'>
-                Landingsplasser registrert som velkomne bidrag fra ulike brukere i windlord.
+                Landingsplasser registrert som velkomne bidrag fra ulike brukere av WindLord.
               </p>
             </div>
 
@@ -163,7 +169,7 @@ export default function AboutPage() {
             <div className='flex items-start gap-3'>
               <Image src='/thermalkk7.webp' alt='Skyways' width={20} height={20} className='w-5 h-5 mt-0.5 flex-shrink-0' />
               <p className='text-base sm:text-lg'>
-                Heatmap (skyways) fra thermal.kk7.ch. Basert på data fra 3.4 millioner fly turer, alle over 10km!
+                Heatmap (skyways) fra thermal.kk7.ch. Basert på data fra 3.4 millioner flyturer, alle over 10km!
               </p>
             </div>
 
@@ -171,7 +177,7 @@ export default function AboutPage() {
             <div className='flex items-start gap-3'>
               <Image src='/cumulonimbus.png' alt='Thermals' width={20} height={20} className='w-5 h-5 mt-0.5 flex-shrink-0' />
               <p className='text-base sm:text-lg'>
-                Termikkprediksjon basert på samme datasett som Skyways.
+                Termikk basert på samme datasett som Skyways.
               </p>
             </div>
           </div>
@@ -185,16 +191,16 @@ export default function AboutPage() {
           </h3>
           <div className='space-y-3 ml-1'>
             <p className='text-base sm:text-lg'>
-              I menyen kan du velge mellom {hovedstarterLink} og {alleStarterLink}.
+              Velg imellom {hovedstarterLink} og {alleStarterLink}.
             </p>
             <p className='text-base sm:text-lg'>
               Alle starter viser ca. 4750 starter. Her kan du gjøre alt, unntatt å filtrere på værmelding.
             </p>
             <p className='text-base sm:text-lg'>
-              Hovedstarter viser ca. 650 starter. Her kan du se ogfiltrere på værmelding rett i kartet.
+              Hovedstarter viser ca. 650 utvalgte/populærestarter.
             </p>
             <p className='text-base sm:text-lg'>
-              Du kan selv bidra ved å legge til starter du liker, via starten sin egen side.
+              Du kan selv {bidraLink} ved å legge starter til hovedstarter.
             </p>
           </div>
         </section>
