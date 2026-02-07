@@ -17,16 +17,16 @@
     "@googlemaps/markerclusterer": "^2.6.2",
     "@heroicons/react": "^2.2.0",
     "@supabase/ssr": "^0.8.0",
-    "@supabase/supabase-js": "^2.90.0",
+    "@supabase/supabase-js": "^2.95.3",
     "@types/google.maps": "^3.58.1",
-    "axios": "^1.13.2",
+    "axios": "^1.13.4",
     "next": "^16.1.6",
-    "puppeteer-core": "^24.34.0",
+    "puppeteer-core": "^24.37.2",
     "rc-slider": "^11.1.9",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "tailwind-scrollbar": "^4.0.2",
-    "zod": "^4.3.5"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
