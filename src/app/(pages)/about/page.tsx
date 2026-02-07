@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { aboutMetadata } from './metadata';
 import TinyWindCompass from '@/app/components/GoogleMaps/TinyWindCompass';
 
@@ -53,6 +54,18 @@ export default function AboutPage() {
     </a>
   );
 
+  const hovedstarterLink = (
+    <Link href='/' className={linkStyle}>
+      Hovedstarter
+    </Link>
+  );
+
+  const alleStarterLink = (
+    <Link href='/locations/all' className={linkStyle}>
+      Alle starter
+    </Link>
+  );
+
   return (
     <div className='bg-[var(--background)] text-white min-h-screen p-4 sm:p-6 md:p-8'>
       <div className='max-w-4xl mx-auto'>
@@ -62,7 +75,7 @@ export default function AboutPage() {
             🦅 WindLord (Gwaihir)
           </h2>
           <p className='text-lg sm:text-xl leading-relaxed'>
-            Se alle paragliding starter fra {flightlogLink} med værmelding fra {yrLink} i kart med heatmap fra {kk7Link} og vindmålere.
+            Alle paragliding starter fra {flightlogLink} med værmelding fra {yrLink} i samme kart som vindmålere og heatmap fra {kk7Link}.
           </p>
         </section>
 
@@ -87,7 +100,7 @@ export default function AboutPage() {
                 <TinyWindCompass allowedDirections={['n', 'ne', 'nw']} />
               </div>
               <p className='text-sm sm:text-base'>
-                Vis kun starter med valgte vindretninger.
+                Vis kun starter med valgte vindretninger. 
               </p>
             </div>
           </div>
@@ -150,7 +163,7 @@ export default function AboutPage() {
             <div className='flex items-start gap-3'>
               <Image src='/thermalkk7.webp' alt='Skyways' width={20} height={20} className='w-5 h-5 mt-0.5 flex-shrink-0' />
               <p className='text-sm sm:text-base'>
-                Heatmap (skyways) fra thermal.kk7.ch. Basert på data fra 3.4 millioner turer, alle over 10km!
+                Heatmap (skyways) fra thermal.kk7.ch. Basert på data fra 3.4 millioner fly turer, alle over 10km!
               </p>
             </div>
 
@@ -161,6 +174,28 @@ export default function AboutPage() {
                 Termikkprediksjon basert på samme datasett som Skyways.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Hovedstarter Section */}
+        <section className='mb-10'>
+          <h3 className='text-xl sm:text-2xl font-semibold border-b border-[var(--border)] pb-2 mb-4 flex items-center gap-3'>
+            <span className='text-2xl'>🏆</span>
+            Velg
+          </h3>
+          <div className='space-y-3 ml-1'>
+            <p className='text-sm sm:text-base'>
+              I menyen kan du velge mellom {hovedstarterLink} og {alleStarterLink}.
+            </p>
+            <p className='text-sm sm:text-base'>
+              Alle starter viser ca. 4750 starter. Her kan du gjøre alt, unntatt å filtrere på værmelding.
+            </p>
+            <p className='text-sm sm:text-base'>
+              Hovedstarter viser ca. 650 starter. Her kan du se ogfiltrere på værmelding rett i kartet.
+            </p>
+            <p className='text-sm sm:text-base'>
+              Du kan selv bidra ved å legge til starter du liker, via starten sin egen side.
+            </p>
           </div>
         </section>
 
