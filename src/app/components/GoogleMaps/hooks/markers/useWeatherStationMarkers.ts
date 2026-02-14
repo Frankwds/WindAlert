@@ -57,10 +57,12 @@ export const useWeatherStationMarkers = ({
       if (weatherStations) {
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
+        setMarkersError(null); // Clear any previous error on success
       }
     } catch (err) {
+      // Only log the error - don't set a fatal error for background refresh failures.
+      // The existing markers are still valid and displayed on the map.
       console.error('Error updating weather station markers with latest data:', err);
-      setMarkersError(err instanceof Error ? err.message : 'Failed to update weather station markers');
     } finally {
       isLoadingRef.current = false;
     }
@@ -79,10 +81,14 @@ export const useWeatherStationMarkers = ({
     }
   }, [mapInstance, loadMarkers]);
 
-  // Load markers on page visibility change
+  // Load markers on page visibility change (with delay for mobile network recovery)
   useEffect(() => {
     if (isVisibleState && hasLoadedInitialMarkers.current) {
-      updateMarkersWithLatestData();
+      // Small delay to allow mobile network to reconnect after page unfreeze
+      const timeoutId = setTimeout(() => {
+        updateMarkersWithLatestData();
+      }, 1000);
+      return () => clearTimeout(timeoutId);
     }
   }, [updateMarkersWithLatestData, isVisibleState]);
 
