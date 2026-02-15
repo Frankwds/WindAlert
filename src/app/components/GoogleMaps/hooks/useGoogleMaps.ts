@@ -154,8 +154,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       setTimeout(() => {
         // Reset flag after a short delay to allow the landing marker to be set
         isParaglidingMarkerClickRef.current = false;
-        // Offset the map so the marker appears in the lower half of the screen
-        mapInstance.panBy(0, -450);
       }, 100);
     },
     [mapInstance, openInfoWindow, variant, showLandingMarker, clearLandingMarker]
