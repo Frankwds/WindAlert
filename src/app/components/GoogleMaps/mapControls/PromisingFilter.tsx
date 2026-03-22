@@ -7,6 +7,7 @@ import 'rc-slider/assets/index.css';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
 import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
 import {
   clampPromisingFilterWindRange,
@@ -17,6 +18,13 @@ import {
 export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
 
 export const WEATHER_CONDITIONS: WeatherCondition[] = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'];
+
+const WEATHER_CONDITION_DESCRIPTION_NB: Record<WeatherCondition, string> = {
+  clearsky_day: 'klarvær',
+  fair_day: 'lettskyet',
+  partlycloudy_day: 'delvis skyet',
+  cloudy: 'skyet',
+};
 
 export type PromisingFilterState = {
   selectedDay: number;
@@ -56,6 +64,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE)
   );
   const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -66,6 +75,39 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   }, []);
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
+
+  const helpSummaryText = useMemo(() => {
+    const [wMin, wMax] = clampPromisingFilterWindRange(windRange);
+    const minWindStr = wMin.toFixed(1);
+    const maxWindStr = wMax.toFixed(1);
+
+    const dayPhrase =
+      selectedDay === 0
+        ? 'i dag'
+        : selectedDay === 1
+          ? 'i morgen'
+          : `på ${dayLabels[selectedDay].toLowerCase()}`;
+
+    const windSentence =
+      wMin > 0
+        ? `Det skal heller ikke blåse mindre enn ${minWindStr} m/s eller mer enn ${maxWindStr} m/s`
+        : `Det skal heller ikke blåse mer enn ${maxWindStr} m/s`;
+
+    const weatherPhrase =
+      selectedWeatherConditions.length === 0 ||
+      selectedWeatherConditions.length === WEATHER_CONDITIONS.length
+        ? 'tørt'
+        : selectedWeatherConditions.map(c => WEATHER_CONDITION_DESCRIPTION_NB[c]).join(' eller ');
+
+    return `Ved å bruke dette filteret viser du kun starter hvor det ikke er meldt regn og vindretningen er riktig i minst ${minPromisingHours} timer i strekk ${dayPhrase} imellom klokken ${formatHour(selectedTimeRange[0])} – ${formatHour(selectedTimeRange[1])}. ${windSentence} og ellers være ${weatherPhrase}.`;
+  }, [
+    windRange,
+    selectedDay,
+    dayLabels,
+    minPromisingHours,
+    selectedTimeRange,
+    selectedWeatherConditions,
+  ]);
 
   const handleApply = () => {
     const clampedWind = clampPromisingFilterWindRange(windRange);
@@ -114,6 +156,8 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   useEffect(() => {
     if (isExpanded) {
       setOnboardingInteractionTrue('PromisingFilter');
+    } else {
+      setHelpOpen(false);
     }
   }, [isExpanded]);
 
@@ -145,7 +189,21 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       {isExpanded && (
         <div className='absolute top-12 right-0 bg-[var(--background)]/90 backdrop-blur-md border border-[var(--border)] rounded-lg p-4 shadow-[var(--shadow-md)] w-72 sm:w-80'>
           <div className='mb-4'>
-            <h3 className='font-bold mb-2'>Vis starter med lovende vær:</h3>
+            <div className='flex items-start justify-between gap-2 mb-2'>
+              <h3 className='font-bold flex-1 min-w-0 leading-tight'>Vis starter med lovende vær:</h3>
+              <button
+                type='button'
+                onClick={() => setHelpOpen(v => !v)}
+                aria-expanded={helpOpen}
+                aria-label='Forklaring av filteret'
+                className='shrink-0 -mt-0.5 p-0.5 rounded-md border border-transparent text-[var(--foreground)]/70 hover:text-[var(--foreground)] hover:bg-[var(--background)]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] cursor-pointer'
+              >
+                <QuestionMarkCircleIcon className='w-5 h-5' aria-hidden />
+              </button>
+            </div>
+            {helpOpen && (
+              <p className='text-sm text-[var(--foreground)]/80 mb-3 leading-snug'>{helpSummaryText}</p>
+            )}
             <div className='flex w-full bg-[var(--border)] p-1 rounded-lg'>
               {dayLabels.map((label, index) => (
                 <button
