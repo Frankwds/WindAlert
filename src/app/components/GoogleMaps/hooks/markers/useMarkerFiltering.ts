@@ -1,15 +1,9 @@
 import { useMemo } from 'react';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
-import { type WeatherCondition } from '../../mapControls/PromisingFilter';
+import { type PromisingFilterState, type WeatherCondition } from '../../mapControls/PromisingFilter';
 import { validateMinimalForecast } from '@/lib/utils/validateDataPoint';
 import { locationToWindDirectionSymbols } from '@/lib/utils/getWindDirection';
-
-interface PromisingFilter {
-  selectedDay: number;
-  selectedTimeRange: [number, number];
-  minPromisingHours: number;
-  selectedWeatherConditions: WeatherCondition[];
-}
+import { createPromisingFilterAlertRule } from '@/lib/utils/alert-rules';
 
 interface UseMarkerFilteringProps {
   paraglidingMarkers: google.maps.marker.AdvancedMarkerElement[];
@@ -20,7 +14,7 @@ interface UseMarkerFilteringProps {
   showLandingsLayer: boolean;
   selectedWindDirections: string[];
   windFilterAndOperator: boolean;
-  promisingFilter: PromisingFilter | null;
+  promisingFilter: PromisingFilterState | null;
 }
 
 export const useMarkerFiltering = ({
@@ -48,7 +42,10 @@ export const useMarkerFiltering = ({
         return false;
       }
 
-      const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions } = promisingFilter;
+      const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions, windRange } =
+        promisingFilter;
+
+      const alertRule = createPromisingFilterAlertRule(windRange[0], windRange[1]);
 
       // Get wind direction symbols for this location
       const locationWindDirections = locationToWindDirectionSymbols(locationData);
@@ -83,7 +80,7 @@ export const useMarkerFiltering = ({
           selectedWeatherConditions.includes(f.weather_code as WeatherCondition);
 
         // Use client-side validation instead of f.is_promising
-        const isPromising = validateMinimalForecast(f, locationWindDirections);
+        const isPromising = validateMinimalForecast(f, locationWindDirections, alertRule);
 
         if (isPromising && isGoodWeather) {
           currentConsecutive++;

@@ -8,28 +8,29 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
 import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
 import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
+import {
+  clampPromisingFilterWindRange,
+  DEFAULT_PROMISING_WIND_RANGE,
+  PROMISING_WIND_SLIDER_MAX,
+} from '@/lib/utils/alert-rules';
 
 export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
 
 export const WEATHER_CONDITIONS: WeatherCondition[] = ['clearsky_day', 'fair_day', 'partlycloudy_day', 'cloudy'];
 
+export type PromisingFilterState = {
+  selectedDay: number;
+  selectedTimeRange: [number, number];
+  minPromisingHours: number;
+  selectedWeatherConditions: WeatherCondition[];
+  windRange: [number, number];
+};
+
 interface PromisingFilterProps {
   isExpanded: boolean;
-  onFilterChange: (
-    filter: {
-      selectedDay: number;
-      selectedTimeRange: [number, number];
-      minPromisingHours: number;
-      selectedWeatherConditions: WeatherCondition[];
-    } | null
-  ) => void;
+  onFilterChange: (filter: PromisingFilterState | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
-  initialFilter: {
-    selectedDay: number;
-    selectedTimeRange: [number, number];
-    minPromisingHours: number;
-    selectedWeatherConditions: WeatherCondition[];
-  } | null;
+  initialFilter: PromisingFilterState | null;
   closeOverlays: (options?: { keep?: string }) => void;
 }
 
@@ -51,6 +52,9 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const [selectedWeatherConditions, setSelectedWeatherConditions] = useState<WeatherCondition[]>(
     initialFilter?.selectedWeatherConditions ?? []
   );
+  const [windRange, setWindRange] = useState<[number, number]>(
+    clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE)
+  );
   const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
 
   const dayLabels = useMemo(() => {
@@ -64,7 +68,15 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
 
   const handleApply = () => {
-    onFilterChange({ selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions });
+    const clampedWind = clampPromisingFilterWindRange(windRange);
+    setWindRange(clampedWind);
+    onFilterChange({
+      selectedDay,
+      selectedTimeRange,
+      minPromisingHours,
+      selectedWeatherConditions,
+      windRange: clampedWind,
+    });
     setIsFilterActive(true);
     setIsExpanded(false);
   };
@@ -76,6 +88,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     setSelectedDay(0);
     setSelectedTimeRange([6, 18]);
     setSelectedWeatherConditions([]);
+    setWindRange([...DEFAULT_PROMISING_WIND_RANGE]);
   };
 
   useEffect(() => {
@@ -93,6 +106,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       setSelectedTimeRange(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
       setMinPromisingHours(initialFilter?.minPromisingHours ?? 3);
       setSelectedWeatherConditions(initialFilter?.selectedWeatherConditions ?? []);
+      setWindRange(clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE));
     }
   }, [isExpanded, initialFilter, currentHour]);
 
@@ -193,6 +207,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
               />
             </div>
           </div>
+
           <div className='mb-2'>
             <h3 className='font-bold mb-2'>Minst {minPromisingHours} timer i strekk</h3>
             <div className='p-2 flex items-center'>
@@ -217,6 +232,28 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
               >
                 +
               </button>
+            </div>
+          </div>
+
+          <div className='mb-4'>
+            <h3 className='font-bold mb-2'>
+              Vind: {windRange[0].toFixed(1)} – {windRange[1].toFixed(1)} m/s
+            </h3>
+            <div className='p-2'>
+              <Slider
+                range
+                min={0}
+                max={PROMISING_WIND_SLIDER_MAX}
+                step={0.5}
+                value={windRange}
+                onChange={value => setWindRange(clampPromisingFilterWindRange(value as [number, number]))}
+                marks={{
+                  0: '0',
+                  5: '5',
+                  10: '10',
+                  15: '15',
+                }}
+              />
             </div>
           </div>
 

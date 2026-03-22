@@ -1,12 +1,5 @@
 import { useState, useCallback } from 'react';
-import { type WeatherCondition } from '../../mapControls/PromisingFilter';
-
-interface PromisingFilter {
-  selectedDay: number;
-  selectedTimeRange: [number, number];
-  minPromisingHours: number;
-  selectedWeatherConditions: WeatherCondition[];
-}
+import { type PromisingFilterState } from '../../mapControls/PromisingFilter';
 
 interface UseMapFiltersProps {
   initialShowParaglidingMarkers?: boolean;
@@ -14,7 +7,7 @@ interface UseMapFiltersProps {
   initialShowLandingsLayer?: boolean;
   initialSelectedWindDirections?: string[];
   initialWindFilterAndOperator?: boolean;
-  initialPromisingFilter?: PromisingFilter | null;
+  initialPromisingFilter?: PromisingFilterState | null;
   initialShowSkywaysLayer?: boolean;
   initialShowThermalsLayer?: boolean;
 }
