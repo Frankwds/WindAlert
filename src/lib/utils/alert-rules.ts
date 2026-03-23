@@ -25,8 +25,8 @@ export const DEFAULT_ALERT_RULE: AlertRule = {
 /** Upper bound for promising-filter wind range slider (m/s). */
 export const PROMISING_WIND_SLIDER_MAX = 15;
 
-/** Gusts are not considered for the map promising filter (see `createPromisingFilterAlertRule`). */
-const PROMISING_FILTER_SKIP_GUST_CHECKS = Number.MAX_SAFE_INTEGER;
+/** Default upper bound for promising-filter gust slider (m/s). */
+export const DEFAULT_PROMISING_GUST_MAX = 10;
 
 export const DEFAULT_PROMISING_WIND_RANGE: [number, number] = [
   DEFAULT_ALERT_RULE.MIN_WIND_SPEED,
@@ -44,13 +44,18 @@ export function clampPromisingFilterWindRange(range: [number, number]): [number,
   return [a, b];
 }
 
-export function createPromisingFilterAlertRule(windMin: number, windMax: number): AlertRule {
+export function clampPromisingFilterGustMax(gustMax: number): number {
+  return Math.min(Math.max(gustMax, 0), PROMISING_WIND_SLIDER_MAX);
+}
+
+export function createPromisingFilterAlertRule(windMin: number, windMax: number, gustMax: number): AlertRule {
   const [lo, hi] = clampPromisingFilterWindRange([windMin, windMax]);
+  const gust = Math.max(hi, clampPromisingFilterGustMax(gustMax));
   return {
     ...DEFAULT_ALERT_RULE,
     MIN_WIND_SPEED: lo,
     MAX_WIND_SPEED: hi,
-    MAX_GUST: PROMISING_FILTER_SKIP_GUST_CHECKS,
+    MAX_GUST: gust,
     MUCH_WIND: PROMISING_FILTER_MUCH_DISABLED,
     MUCH_GUST: PROMISING_FILTER_MUCH_DISABLED,
   };

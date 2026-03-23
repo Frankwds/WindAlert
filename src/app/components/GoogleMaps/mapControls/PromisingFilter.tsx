@@ -10,7 +10,9 @@ import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStora
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { ButtonAccept, ButtonNeutral } from '@/app/components/shared';
 import {
+  clampPromisingFilterGustMax,
   clampPromisingFilterWindRange,
+  DEFAULT_PROMISING_GUST_MAX,
   DEFAULT_PROMISING_WIND_RANGE,
   PROMISING_WIND_SLIDER_MAX,
 } from '@/lib/utils/alert-rules';
@@ -26,12 +28,16 @@ const WEATHER_CONDITION_DESCRIPTION_NB: Record<WeatherCondition, string> = {
   cloudy: 'skyet',
 };
 
+const GUST_MIN_GAP = 0.5;
+const PROMISING_WIND_MAX_HANDLE_MAX = PROMISING_WIND_SLIDER_MAX - GUST_MIN_GAP;
+
 export type PromisingFilterState = {
   selectedDay: number;
   selectedTimeRange: [number, number];
   minPromisingHours: number;
   selectedWeatherConditions: WeatherCondition[];
   windRange: [number, number];
+  gustMax: number;
 };
 
 interface PromisingFilterProps {
@@ -63,6 +69,12 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const [windRange, setWindRange] = useState<[number, number]>(
     clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE)
   );
+  const [gustMax, setGustMax] = useState(
+    Math.max(
+      clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE)[1],
+      clampPromisingFilterGustMax(initialFilter?.gustMax ?? DEFAULT_PROMISING_GUST_MAX)
+    )
+  );
   const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
   const [helpOpen, setHelpOpen] = useState(false);
 
@@ -76,18 +88,34 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
 
+  const normalizeWindAndGust = (
+    nextWindRange: [number, number],
+    nextGustMax: number
+  ): { wind: [number, number]; gust: number } => {
+    const [rawMin, rawMax] = clampPromisingFilterWindRange(nextWindRange);
+    const windMin = Math.min(rawMin, PROMISING_WIND_MAX_HANDLE_MAX);
+    const windMax = Math.min(Math.max(rawMax, windMin), PROMISING_WIND_MAX_HANDLE_MAX);
+    const gustFloor = windMax + GUST_MIN_GAP;
+    const gust = Math.min(PROMISING_WIND_SLIDER_MAX, Math.max(gustFloor, clampPromisingFilterGustMax(nextGustMax)));
+    return { wind: [windMin, windMax], gust };
+  };
+
   const helpSummaryText = useMemo(() => {
-    const [wMin, wMax] = clampPromisingFilterWindRange(windRange);
+    const {
+      wind: [wMin, wMax],
+      gust,
+    } = normalizeWindAndGust(windRange, gustMax);
     const minWindStr = wMin.toFixed(1);
     const maxWindStr = wMax.toFixed(1);
+    const gustStr = gust.toFixed(1);
 
     const dayPhrase =
       selectedDay === 0 ? 'i dag' : selectedDay === 1 ? 'i morgen' : `på ${dayLabels[selectedDay].toLowerCase()}`;
 
     const windSentence =
       wMin > 0
-        ? `Det skal heller ikke blåse mindre enn ${minWindStr} m/s eller mer enn ${maxWindStr} m/s`
-        : `Det skal heller ikke blåse mer enn ${maxWindStr} m/s`;
+        ? `Det skal heller ikke blåse mindre enn ${minWindStr} m/s eller mer enn ${maxWindStr} (${gustStr}) m/s`
+        : `Det skal heller ikke blåse mer enn ${maxWindStr} (${gustStr}) m/s`;
 
     const weatherPhrase =
       selectedWeatherConditions.length === 0 || selectedWeatherConditions.length === WEATHER_CONDITIONS.length
@@ -95,17 +123,27 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
         : 'være ' + selectedWeatherConditions.map(c => WEATHER_CONDITION_DESCRIPTION_NB[c]).join(' eller ');
 
     return `Der vindretningen er riktig i minst ${minPromisingHours} timer i strekk ${dayPhrase} fra klokken ${formatHour(selectedTimeRange[0])}-${formatHour(selectedTimeRange[1])}. ${windSentence} og ${weatherPhrase}.`;
-  }, [windRange, selectedDay, dayLabels, minPromisingHours, selectedTimeRange, selectedWeatherConditions]);
+  }, [windRange, gustMax, selectedDay, dayLabels, minPromisingHours, selectedTimeRange, selectedWeatherConditions]);
+
+  const windAndGustSliderValue = useMemo<[number, number, number]>(() => {
+    const {
+      wind: [wMin, wMax],
+      gust,
+    } = normalizeWindAndGust(windRange, gustMax);
+    return [wMin, wMax, gust];
+  }, [windRange, gustMax]);
 
   const handleApply = () => {
-    const clampedWind = clampPromisingFilterWindRange(windRange);
+    const { wind: clampedWind, gust: clampedGust } = normalizeWindAndGust(windRange, gustMax);
     setWindRange(clampedWind);
+    setGustMax(clampedGust);
     onFilterChange({
       selectedDay,
       selectedTimeRange,
       minPromisingHours,
       selectedWeatherConditions,
       windRange: clampedWind,
+      gustMax: clampedGust,
     });
     setIsFilterActive(true);
     setIsExpanded(false);
@@ -119,6 +157,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
     setSelectedTimeRange([6, 18]);
     setSelectedWeatherConditions([]);
     setWindRange([...DEFAULT_PROMISING_WIND_RANGE]);
+    setGustMax(DEFAULT_PROMISING_GUST_MAX);
   };
 
   useEffect(() => {
@@ -136,7 +175,12 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       setSelectedTimeRange(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
       setMinPromisingHours(initialFilter?.minPromisingHours ?? 3);
       setSelectedWeatherConditions(initialFilter?.selectedWeatherConditions ?? []);
-      setWindRange(clampPromisingFilterWindRange(initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE));
+      const normalized = normalizeWindAndGust(
+        initialFilter?.windRange ?? DEFAULT_PROMISING_WIND_RANGE,
+        initialFilter?.gustMax ?? DEFAULT_PROMISING_GUST_MAX
+      );
+      setWindRange(normalized.wind);
+      setGustMax(normalized.gust);
     }
   }, [isExpanded, initialFilter, currentHour]);
 
@@ -282,16 +326,26 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 
             <div className='mb-4'>
               <h3 className='font-bold mb-2'>
-                Vind: {windRange[0].toFixed(1)} – {windRange[1].toFixed(1)} m/s
+                Vind: {windAndGustSliderValue[0].toFixed(1)} – {windAndGustSliderValue[1].toFixed(1)} (
+                {windAndGustSliderValue[2].toFixed(1)}) m/s
               </h3>
               <div className='p-2'>
                 <Slider
                   range
+                  count={2}
+                  allowCross={false}
+                  pushable={GUST_MIN_GAP}
                   min={0}
                   max={PROMISING_WIND_SLIDER_MAX}
                   step={0.5}
-                  value={windRange}
-                  onChange={value => setWindRange(clampPromisingFilterWindRange(value as [number, number]))}
+                  value={windAndGustSliderValue}
+                  onChange={value => {
+                    const [nextMinRaw, nextMaxRaw, nextGustRaw] = value as number[];
+                    const normalized = normalizeWindAndGust([nextMinRaw, nextMaxRaw], nextGustRaw);
+                    setWindRange(normalized.wind);
+                    setGustMax(normalized.gust);
+                  }}
+                  handleStyle={[{}, {}, { borderColor: '#f59e0b', backgroundColor: '#f59e0b' }]}
                   marks={{
                     0: '0',
                     5: '5',

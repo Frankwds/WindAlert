@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { WEATHER_CONDITIONS, type WeatherCondition } from '@/app/components/GoogleMaps/mapControls/PromisingFilter';
-import { DEFAULT_PROMISING_WIND_RANGE } from '@/lib/utils/alert-rules';
+import { DEFAULT_PROMISING_GUST_MAX, DEFAULT_PROMISING_WIND_RANGE } from '@/lib/utils/alert-rules';
 
 // Type definition
 export type MapState = {
@@ -21,6 +21,7 @@ export type MapState = {
     minPromisingHours: number;
     selectedWeatherConditions: WeatherCondition[];
     windRange: [number, number];
+    gustMax: number;
   } | null;
   showSkywaysLayer: boolean;
   showThermalsLayer: boolean;
@@ -51,6 +52,7 @@ const MapStateSchema = z.object({
       minPromisingHours: z.number(),
       selectedWeatherConditions: z.array(z.enum(WEATHER_CONDITIONS)),
       windRange: z.tuple([z.number(), z.number()]),
+      gustMax: z.number(),
     })
     .nullable(),
   showSkywaysLayer: z.boolean(),
@@ -120,6 +122,10 @@ export const getMapState = (): MapState => {
 
     if (rawData.promisingFilter && !rawData.promisingFilter.hasOwnProperty('windRange')) {
       rawData.promisingFilter.windRange = [...DEFAULT_PROMISING_WIND_RANGE];
+    }
+
+    if (rawData.promisingFilter && !rawData.promisingFilter.hasOwnProperty('gustMax')) {
+      rawData.promisingFilter.gustMax = DEFAULT_PROMISING_GUST_MAX;
     }
 
     const parsedState = MapStateSchema.parse(rawData);

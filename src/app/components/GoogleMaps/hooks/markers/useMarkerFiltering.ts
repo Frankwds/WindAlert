@@ -42,10 +42,10 @@ export const useMarkerFiltering = ({
         return false;
       }
 
-      const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions, windRange } =
+      const { selectedDay, selectedTimeRange, minPromisingHours, selectedWeatherConditions, windRange, gustMax } =
         promisingFilter;
 
-      const alertRule = createPromisingFilterAlertRule(windRange[0], windRange[1]);
+      const alertRule = createPromisingFilterAlertRule(windRange[0], windRange[1], gustMax);
 
       // Get wind direction symbols for this location
       const locationWindDirections = locationToWindDirectionSymbols(locationData);
