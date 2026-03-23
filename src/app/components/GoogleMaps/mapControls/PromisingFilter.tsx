@@ -222,16 +222,16 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
         <div className='pointer-events-auto absolute top-[3.75rem] right-3 max-h-[calc(100%-4.5rem)] w-72 overflow-y-auto rounded-lg border border-[var(--border)] bg-[var(--background)]/90 shadow-[var(--shadow-md)] sm:w-80'>
           <div className='p-4'>
             <div className='mb-4'>
-              <div className='flex items-start justify-between gap-2 mb-2'>
-                <h3 className='font-bold flex-1 min-w-0 leading-tight'>Vis starter med lovende vær:</h3>
+              <div className='flex items-center justify-between gap-1 mb-2'>
+                <h3 className='font-bold flex-1 min-w-0 leading-tight whitespace-nowrap'>Vis starter med lovende vær:</h3>
                 <button
                   type='button'
                   onClick={() => setHelpOpen(v => !v)}
                   aria-expanded={helpOpen}
                   aria-label='Forklaring av filteret'
-                  className='shrink-0 -mt-0.5 p-0.5 rounded-md border border-transparent text-[var(--foreground)]/70 hover:text-[var(--foreground)] hover:bg-[var(--background)]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] cursor-pointer'
+                  className='shrink-0 -ml-0.5 p-0 rounded-md border border-transparent text-[var(--foreground)]/70 hover:text-[var(--foreground)] hover:bg-[var(--background)]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] cursor-pointer'
                 >
-                  <QuestionMarkCircleIcon className='w-5 h-5' aria-hidden />
+                  <QuestionMarkCircleIcon className='w-4 h-4' aria-hidden />
                 </button>
               </div>
               {helpOpen && <p className='text-sm text-[var(--foreground)]/80 mb-3 leading-snug'>{helpSummaryText}</p>}
