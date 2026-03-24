@@ -64,23 +64,26 @@ export function WindyButton({ latitude, longitude }: WindyButtonProps) {
 interface YrButtonProps {
   latitude: number;
   longitude: number;
+  iconOnly?: boolean;
 }
 
-export function YrButton({ latitude, longitude }: YrButtonProps) {
+export function YrButton({ latitude, longitude, iconOnly = false }: YrButtonProps) {
   return (
     <Link
       href={`https://www.yr.no/nb/værvarsel/daglig-tabell/${latitude.toFixed(3)},${longitude.toFixed(3)}`}
       target='_blank'
       rel='noopener noreferrer'
-      className='flex flex-1 items-center max-w-24 min-w-20 justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[var(--border)] bg-[var(--background)]  hover:bg-[var(--border)] cursor-pointer '
+      className={`flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] cursor-pointer ${
+        iconOnly ? 'h-11 w-11 p-0' : 'flex-1 max-w-24 min-w-20 gap-1.5 py-2.5 px-3'
+      }`}
       title='View on Yr.no'
     >
       <div className='flex flex-shrink-0'>
-        <CloudIcon className='w-5 h-5' />
-        <SunIcon className='w-5 h-5 ml-[-13px]' />
+        <CloudIcon className={`${iconOnly ? 'w-6 h-6' : 'w-5 h-5'}`} />
+        <SunIcon className={`${iconOnly ? 'w-6 h-6 ml-[-15px]' : 'w-5 h-5 ml-[-13px]'}`} />
       </div>
-      <span className='text-sm font-medium whitespace-nowrap'>Yr</span>
-      <ExternalLinkIcon className='w-4 h-4 flex-shrink-0' />
+      {!iconOnly && <span className='text-sm font-medium whitespace-nowrap'>Yr</span>}
+      {!iconOnly && <ExternalLinkIcon className='w-4 h-4 flex-shrink-0' />}
     </Link>
   );
 }
@@ -127,9 +130,10 @@ export function CompactFlightlogButton({ flightlogId }: CompactFlightlogButtonPr
 interface GoogleMapsButtonProps {
   latitude: number;
   longitude: number;
+  iconOnly?: boolean;
 }
 
-export function GoogleMapsButton({ latitude, longitude }: GoogleMapsButtonProps) {
+export function GoogleMapsButton({ latitude, longitude, iconOnly = false }: GoogleMapsButtonProps) {
   const googleMapsUrl = `https://maps.google.com/?q=${latitude},${longitude}&z=12&t=k`;
 
   return (
@@ -137,12 +141,14 @@ export function GoogleMapsButton({ latitude, longitude }: GoogleMapsButtonProps)
       href={googleMapsUrl}
       target='_blank'
       rel='noopener noreferrer'
-      className='flex flex-1 items-center max-w-40 min-w-36 justify-center gap-1.5 px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer flex-1 min-w-0'
+      className={`flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--background)] hover:bg-[var(--border)] hover:shadow-[var(--shadow-hover)] cursor-pointer ${
+        iconOnly ? 'h-11 w-11 p-0' : 'flex-1 max-w-40 min-w-36 gap-1.5 px-3 py-2.5 min-w-0'
+      }`}
       title='View on Google Maps'
     >
-      <MapIcon className='w-5 h-5 flex-shrink-0' />
-      <span className='text-sm font-medium whitespace-nowrap'>Google Maps</span>
-      <ExternalLinkIcon className='w-4 h-4 flex-shrink-0' />
+      <MapIcon className={`${iconOnly ? 'w-6 h-6' : 'w-5 h-5'} flex-shrink-0`} />
+      {!iconOnly && <span className='text-sm font-medium whitespace-nowrap'>Google Maps</span>}
+      {!iconOnly && <ExternalLinkIcon className='w-4 h-4 flex-shrink-0' />}
     </Link>
   );
 }

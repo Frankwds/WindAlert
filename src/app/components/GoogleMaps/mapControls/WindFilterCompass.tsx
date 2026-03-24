@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
 import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
+import type { CloseOverlaysFn } from '../hooks/controls';
 
 interface WindFilterCompassProps {
   onWindDirectionChange: (directions: string[]) => void;
@@ -12,7 +13,7 @@ interface WindFilterCompassProps {
   setIsExpanded: (expanded: boolean) => void;
   windFilterAndOperator: boolean;
   onFilterLogicChange: () => void;
-  closeOverlays: (options?: { keep?: string }) => void;
+  closeOverlays: CloseOverlaysFn;
   variant: 'main' | 'all';
 }
 

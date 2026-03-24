@@ -6,6 +6,7 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useOnboardingPulse } from '@/lib/hooks/useOnboardingPulse';
 import { setOnboardingInteractionTrue } from '@/lib/localstorage/onboardingStorage';
 import { createWeatherStationClusterElement, createLandingMarkerElement } from '../../shared/Markers';
+import type { CloseOverlaysFn } from '../hooks/controls';
 
 // Wind arrow icon component for filter control
 const WindArrowIcon = () => {
@@ -52,7 +53,7 @@ interface FilterControlProps {
   onThermalsFilterChange?: (isVisible: boolean) => void;
   isOpen: boolean;
   onToggle: (isOpen: boolean) => void;
-  closeOverlays: (options?: { keep?: string }) => void;
+  closeOverlays: CloseOverlaysFn;
 }
 
 export const FilterControl: React.FC<FilterControlProps> = ({

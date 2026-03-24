@@ -22,6 +22,17 @@ export const useInfoWindowStyles = () => {
           max-width: 400px !important;
           min-width: 300px !important;
         }
+
+        /* Compact map-click popup: allow narrow width despite global min-width */
+        .gm-style-iw:has(.map-click-links-infowindow) {
+          min-width: 0 !important;
+          max-width: 140px !important;
+        }
+
+        .gm-style-iw:has(.map-click-links-infowindow) .gm-style-iw-d {
+          line-height: 1 !important;
+          overflow: hidden !important;
+        }
         
         /* InfoWindow arrow/tail */
         .gm-style .gm-style-iw-tc::after {
@@ -103,6 +114,11 @@ export const useInfoWindowStyles = () => {
           .gm-style-iw {
             max-width: 90vw !important;
             min-width: 280px !important;
+          }
+
+          .gm-style-iw:has(.map-click-links-infowindow) {
+            min-width: 0 !important;
+            max-width: 140px !important;
           }
         }
       `;

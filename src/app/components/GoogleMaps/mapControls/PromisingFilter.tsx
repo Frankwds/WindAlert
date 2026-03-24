@@ -16,6 +16,7 @@ import {
   DEFAULT_PROMISING_WIND_RANGE,
   PROMISING_WIND_SLIDER_MAX,
 } from '@/lib/utils/alert-rules';
+import type { CloseOverlaysFn } from '../hooks/controls';
 
 export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
 
@@ -45,7 +46,7 @@ interface PromisingFilterProps {
   onFilterChange: (filter: PromisingFilterState | null) => void;
   setIsExpanded: (isExpanded: boolean) => void;
   initialFilter: PromisingFilterState | null;
-  closeOverlays: (options?: { keep?: string }) => void;
+  closeOverlays: CloseOverlaysFn;
 }
 
 const PromisingFilter: FC<PromisingFilterProps> = ({

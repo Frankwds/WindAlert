@@ -1,5 +1,14 @@
 import { useCallback } from 'react';
 
+/** Passed to `closeOverlays({ keep })` so named UI stays open while the rest dismisses. */
+export type OverlayCloseKeep =
+  | 'infowindow'
+  | 'promisingfilter'
+  | 'windfilter'
+  | 'filtercontrol';
+
+export type CloseOverlaysFn = (options?: { keep?: OverlayCloseKeep }) => void;
+
 interface UseOverlayManagementProps {
   setWindFilterExpanded: (expanded: boolean) => void;
   setIsPromisingFilterExpanded: (expanded: boolean) => void;
@@ -13,8 +22,8 @@ export const useOverlayManagement = ({
   setIsFilterControlOpen,
   closeInfoWindow,
 }: UseOverlayManagementProps) => {
-  const closeOverlays = useCallback(
-    ({ keep = '' }: { keep?: string } = {}) => {
+  const closeOverlays = useCallback<CloseOverlaysFn>(
+    ({ keep } = {}) => {
       if (keep !== 'promisingfilter') {
         setIsPromisingFilterExpanded(false);
       }

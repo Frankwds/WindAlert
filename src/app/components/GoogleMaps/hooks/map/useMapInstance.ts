@@ -16,7 +16,6 @@ interface MapState {
 interface UseMapInstanceProps {
   initialMapState: MapState | null;
   onMapReady: (map: google.maps.Map) => void;
-  onMapClick: () => void;
   showSkywaysLayer: boolean;
   showThermalsLayer: boolean;
   onMapPositionChange: (center: { lat: number; lng: number }, zoom: number) => void;
@@ -26,7 +25,6 @@ interface UseMapInstanceProps {
 export const useMapInstance = ({
   initialMapState,
   onMapReady,
-  onMapClick,
   showSkywaysLayer = false,
   showThermalsLayer = false,
   onMapPositionChange,
@@ -39,7 +37,6 @@ export const useMapInstance = ({
 
   // Use refs to avoid dependency issues
   const onMapReadyRef = useRef(onMapReady);
-  const onMapClickRef = useRef(onMapClick);
 
   // Layer hooks
   const { createThermalsLayer } = useThermalsLayer();
@@ -50,10 +47,6 @@ export const useMapInstance = ({
   useEffect(() => {
     onMapReadyRef.current = onMapReady;
   }, [onMapReady]);
-
-  useEffect(() => {
-    onMapClickRef.current = onMapClick;
-  }, [onMapClick]);
 
   useEffect(() => {
     const initMap = async () => {
@@ -106,7 +99,6 @@ export const useMapInstance = ({
           scrollwheel: true,
         });
 
-        map.addListener('click', () => onMapClickRef.current());
         map.setOptions({ scaleControl: true });
 
         // Register OSM map type

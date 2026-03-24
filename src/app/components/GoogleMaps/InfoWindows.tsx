@@ -22,6 +22,11 @@ interface LandingInfoWindowProps {
   location: ParaglidingLocationWithForecast;
 }
 
+interface MapClickLinksInfoWindowProps {
+  latitude: number;
+  longitude: number;
+}
+
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
   return <LocationCard location={location} timezone={location.timezone} />;
 };
@@ -122,6 +127,23 @@ export const LandingInfoWindow: React.FC<LandingInfoWindowProps> = ({ location }
   );
 };
 
+export const MapClickLinksInfoWindow: React.FC<MapClickLinksInfoWindowProps> = ({ latitude, longitude }) => {
+  return (
+    <div className='map-click-links-infowindow pl-1.5 pt-[11px] pr-[30px] pb-[8px]'>
+      <div className='flex gap-2 items-start justify-center pl-4'>
+        <div className='flex flex-col items-center gap-1'>
+          <YrButton latitude={latitude} longitude={longitude} iconOnly />
+          <span className='text-[10px] leading-none text-[var(--foreground)]/70'>Yr</span>
+        </div>
+        <div className='flex flex-col items-center gap-1'>
+          <GoogleMapsButton latitude={latitude} longitude={longitude} iconOnly />
+          <span className='text-[10px] leading-none text-[var(--foreground)]/70'>Kart</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const getWeatherStationInfoWindow = (location: WeatherStationWithLatestData) => {
   return <WeatherStationInfoWindow location={location} />;
 };
@@ -136,4 +158,8 @@ export const getAllParaglidingInfoWindow = (location: ParaglidingLocationWithFor
 
 export const getLandingInfoWindow = (location: ParaglidingLocationWithForecast) => {
   return <LandingInfoWindow location={location} />;
+};
+
+export const getMapClickLinksInfoWindow = (latitude: number, longitude: number) => {
+  return <MapClickLinksInfoWindow latitude={latitude} longitude={longitude} />;
 };
