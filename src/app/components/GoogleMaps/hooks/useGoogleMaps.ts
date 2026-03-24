@@ -1,6 +1,5 @@
-import type { ReactElement } from 'react';
 import { useCallback, useEffect, useRef, useMemo } from 'react';
-import { createInfoWindowReactContent } from '../createInfoWindowReactContent';
+import { useOpenAnchorInfoWindowWithTerrainCoordination } from './openAnchorInfoWindowWithTerrainCoordination';
 import { useMapInstance, useMapState } from './map';
 import {
   useWeatherStationMarkers,
@@ -93,24 +92,13 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     isInfoWindowOpen,
   });
 
-  const openAnchorInfoWindow = useCallback(
-    (
-      marker: google.maps.marker.AdvancedMarkerElement,
-      content: ReactElement,
-      options?: { closeFilterOverlays?: boolean }
-    ) => {
-      if (!mapInstance) return;
-      const closeFilterOverlays = options?.closeFilterOverlays !== false;
-      clearPendingTerrainTap();
-      if (closeFilterOverlays) {
-        closeOverlays();
-      }
-      const { container, dispose } = createInfoWindowReactContent(content);
-      openInfoWindow(mapInstance, marker, container, { disposeContent: dispose });
-      markMarkerInfoWindowOpened();
-    },
-    [mapInstance, clearPendingTerrainTap, closeOverlays, openInfoWindow, markMarkerInfoWindowOpened]
-  );
+  const openAnchorInfoWindow = useOpenAnchorInfoWindowWithTerrainCoordination({
+    mapInstance,
+    clearPendingTerrainTap,
+    closeOverlays,
+    openInfoWindow,
+    markMarkerInfoWindowOpened,
+  });
 
   const onWeatherStationMarkerClick = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithLatestData) => {
