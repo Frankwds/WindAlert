@@ -123,8 +123,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     (marker: google.maps.marker.AdvancedMarkerElement, location: ParaglidingLocationWithForecast) => {
       if (!mapInstance) return;
 
-      clearPendingTerrainTap();
-
       // Set flag to prevent filter change effects from clearing landing marker
       isParaglidingMarkerClickRef.current = true;
 

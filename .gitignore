@@ -44,5 +44,8 @@ npm_output.log
 .turbo/
 .prettierrc
 
+# TypeScript incremental (avoid committing churn)
+tsconfig.tsbuildinfo
+
 # other
 prompts.txt

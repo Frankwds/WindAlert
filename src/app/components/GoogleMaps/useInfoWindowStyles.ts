@@ -46,7 +46,6 @@ export const useInfoWindowStyles = () => {
           color: var(--foreground) !important;
           font-family: var(--font-geist-sans), system-ui, sans-serif !important;
           line-height: 1.6 !important;
-          margin-top: -15x !important; /* Pull content up into header area */
         }
         
         /* InfoWindow scrollbar styling */

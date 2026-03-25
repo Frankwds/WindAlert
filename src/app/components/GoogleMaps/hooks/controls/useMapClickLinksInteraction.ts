@@ -84,7 +84,7 @@ export function useMapClickLinksInteraction({
       if (isInfoWindowOpenRef.current()) {
         clearPendingSingleTap();
         const msSinceMarkerOpen = Date.now() - lastMarkerInfoWindowOpenedAtRef.current;
-        if (msSinceMarkerOpen >= 0 && msSinceMarkerOpen < MARKER_INFO_WINDOW_OPEN_GUARD_MS) {
+        if (msSinceMarkerOpen < MARKER_INFO_WINDOW_OPEN_GUARD_MS) {
           return;
         }
         closeOverlaysRef.current();
@@ -129,14 +129,12 @@ export function useMapClickLinksInteraction({
     if (!mapInstance) return;
 
     const clickListener = mapInstance.addListener('click', (event: google.maps.MapMouseEvent) => {
-      if (event.latLng) {
-        handleMapClickRef.current({
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng(),
-        });
-        return;
-      }
-      handleMapClickRef.current();
+      // No position → cannot anchor the links popup; skip (avoids arming delay + closeOverlays churn).
+      if (!event.latLng) return;
+      handleMapClickRef.current({
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      });
     });
     const dblClickListener = mapInstance.addListener('dblclick', () => {
       handleMapDoubleClickRef.current();
