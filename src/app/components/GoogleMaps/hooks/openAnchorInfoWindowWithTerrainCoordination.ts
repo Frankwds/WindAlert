@@ -12,8 +12,10 @@ export interface UseOpenAnchorInfoWindowWithTerrainCoordinationParams {
 }
 
 /**
- * Opens an AdvancedMarker-anchored info window with React content, coordinated with the
- * map-background “terrain links” tap delay and marker-open guard (`useMapClickLinksInteraction`).
+ * Preferred entry point for marker-anchored React info windows on this map: clears the terrain
+ * tap delay, optionally closes filter overlays, mounts content via `createInfoWindowReactContent`,
+ * opens the shared `InfoWindow`, and updates the marker-open guard used by
+ * `useMapClickLinksInteraction`.
  */
 export function useOpenAnchorInfoWindowWithTerrainCoordination({
   mapInstance,

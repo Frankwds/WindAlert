@@ -42,7 +42,13 @@ export const useInfoWindows = () => {
     }
   }, [disposePreviousReactContent]);
 
-  /** True while the window is attached to a map (Maps API exposes internal `map` via `get`). */
+  /**
+   * True while the shared InfoWindow is attached to a map.
+   *
+   * Implemented with `infoWindow.get('map')`, which is widely used with the Maps JS API but is not
+   * documented as a stable public contract. If Google changes internals, switch to a supported
+   * signal (e.g. track open/close via `closeclick` and explicit `open`/`close` paths).
+   */
   const isInfoWindowOpen = useCallback(() => {
     return Boolean(infoWindowRef.current?.get('map'));
   }, []);

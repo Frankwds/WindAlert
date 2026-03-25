@@ -23,9 +23,17 @@ interface UseGoogleMapsProps {
   variant: Variant;
 }
 
+/**
+ * Lets paragliding marker handling (landing marker, overlays) finish before filter-change effects
+ * may clear the landing marker. Not coupled to terrain tap timings in `useMapClickLinksInteraction`.
+ */
+const PARAGLIDING_CLICK_FLAG_RESET_MS = 100;
+
 export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
+  // --- Map position / persisted filter state
   const { mapState, updateFilters, updateMapPosition, updateMapType } = useMapState();
 
+  // --- Local filter UI state (wind, promising, control panel, layers)
   const filters = useMapFilters({
     initialShowParaglidingMarkers: mapState.showParaglidingMarkers,
     initialShowWeatherStationMarkers: mapState.showWeatherStationMarkers,
@@ -37,6 +45,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     initialShowThermalsLayer: mapState.showThermalsLayer,
   });
 
+  // --- Shared InfoWindow + overlay stack
   const { infoWindowRef, closeInfoWindow, isInfoWindowOpen, openInfoWindow } = useInfoWindows();
 
   const { closeOverlays } = useOverlayManagement({
@@ -52,7 +61,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     [filters.windFilterExpanded, filters.isPromisingFilterExpanded, filters.isFilterControlOpen]
   );
 
-  // Ref to track when we're in the middle of a paragliding marker click to not clear the landing marker on filter changes
+  // --- Paragliding click guard (see PARAGLIDING_CLICK_FLAG_RESET_MS)
   const isParaglidingMarkerClickRef = useRef(false);
 
   const onMapPositionChangeRef = useRef(updateMapPosition);
@@ -61,6 +70,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     onMapPositionChangeRef.current = updateMapPosition;
   }, [updateMapPosition]);
 
+  // --- Loader: Map instance, skyways/thermals, position persistence
   const initialMapState = useMemo(
     () => ({
       center: mapState.center,
@@ -84,6 +94,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     initialMapType: mapState.mapType,
   });
 
+  // --- Terrain background tap + marker / overlay coordination
   const { clearPendingTerrainTap, markMarkerInfoWindowOpened } = useMapClickLinksInteraction({
     mapInstance,
     overlaysOpen: filterOverlaysOpen,
@@ -100,6 +111,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     markMarkerInfoWindowOpened,
   });
 
+  // --- Marker click handlers (delegate to openAnchorInfoWindow)
   const onWeatherStationMarkerClick = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithLatestData) => {
       openAnchorInfoWindow(marker, getWeatherStationInfoWindow(location));
@@ -114,6 +126,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     [openAnchorInfoWindow]
   );
 
+  // --- Landing marker (paired with paragliding flow below)
   const { currentLandingMarker, clearLandingMarker, showLandingMarker } = useLandingMarker({
     mapInstance,
     onLandingMarkerClick,
@@ -152,13 +165,13 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
       );
 
       setTimeout(() => {
-        // Reset flag after a short delay to allow the landing marker to be set
         isParaglidingMarkerClickRef.current = false;
-      }, 100);
+      }, PARAGLIDING_CLICK_FLAG_RESET_MS);
     },
     [mapInstance, variant, showLandingMarker, clearLandingMarker, closeOverlays, openAnchorInfoWindow]
   );
 
+  // --- Marker data + map objects (weather, paragliding, landings)
   const {
     weatherStationMarkers,
     isLoadingMarkers: isLoadingWeatherStationMarkers,
@@ -181,7 +194,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     variant,
   });
 
-  // Clear landing marker when filter controls change
+  // --- Effects: skip clearing landing marker briefly after paragliding click (see flag + constant above)
   useEffect(() => {
     if (!isParaglidingMarkerClickRef.current) {
       clearLandingMarker();
@@ -202,6 +215,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     }
   }, [filters.isPromisingFilterExpanded, clearLandingMarker]);
 
+  // --- Derived marker lists (wind / promising filters)
   const filteredMarkers = useMarkerFiltering({
     paraglidingMarkers: paraglidingMarkers,
     weatherStationMarkers: weatherStationMarkers,
@@ -214,6 +228,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     promisingFilter: variant === 'main' ? filters.promisingFilter : null,
   });
 
+  // --- Persist filter toggles into map state
   useEffect(() => {
     updateFilters({
       showParaglidingMarkers: filters.showParaglidingMarkers,
@@ -245,6 +260,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     [updateMapType]
   );
 
+  // --- Public API for map UI
   return {
     mapRef,
     mapInstance,

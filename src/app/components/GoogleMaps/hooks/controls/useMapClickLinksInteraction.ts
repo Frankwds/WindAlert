@@ -32,8 +32,10 @@ interface UseMapClickLinksInteractionProps {
  * coordinates with double-tap zoom, filter overlays, and marker-driven info windows (mobile ordering).
  *
  * Owns `click` / `dblclick` listeners on `mapInstance` so the map bootstrap hook stays unaware of this feature.
- * Marker handlers should call `clearPendingTerrainTap` before opening an anchor info window and
- * `markMarkerInfoWindowOpened` after, so terrain vs marker flows do not fight.
+ *
+ * For marker-anchored React info windows, use `useOpenAnchorInfoWindowWithTerrainCoordination`; it calls
+ * `clearPendingTerrainTap` and `markMarkerInfoWindowOpened` in the right order. Call those yourself only
+ * if you open via `openInfoWindow` without that hook (rare).
  */
 export function useMapClickLinksInteraction({
   mapInstance,
@@ -60,7 +62,7 @@ export function useMapClickLinksInteraction({
   const pendingSingleTapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastMarkerInfoWindowOpenedAtRef = useRef(0);
 
-  const clearPendingSingleTap = useCallback(() => {
+  const clearPendingTerrainTap = useCallback(() => {
     if (pendingSingleTapTimeoutRef.current) {
       clearTimeout(pendingSingleTapTimeoutRef.current);
       pendingSingleTapTimeoutRef.current = null;
@@ -69,20 +71,20 @@ export function useMapClickLinksInteraction({
 
   useEffect(() => {
     return () => {
-      clearPendingSingleTap();
+      clearPendingTerrainTap();
     };
-  }, [clearPendingSingleTap]);
+  }, [clearPendingTerrainTap]);
 
   const handleMapClick = useCallback(
     (position?: google.maps.LatLngLiteral) => {
       if (overlaysOpenRef.current) {
-        clearPendingSingleTap();
+        clearPendingTerrainTap();
         closeOverlaysRef.current();
         return;
       }
 
       if (isInfoWindowOpenRef.current()) {
-        clearPendingSingleTap();
+        clearPendingTerrainTap();
         const msSinceMarkerOpen = Date.now() - lastMarkerInfoWindowOpenedAtRef.current;
         if (msSinceMarkerOpen < MARKER_INFO_WINDOW_OPEN_GUARD_MS) {
           return;
@@ -92,7 +94,7 @@ export function useMapClickLinksInteraction({
       }
 
       if (pendingSingleTapTimeoutRef.current) {
-        clearPendingSingleTap();
+        clearPendingTerrainTap();
         return;
       }
 
@@ -113,12 +115,12 @@ export function useMapClickLinksInteraction({
         });
       }, SINGLE_TAP_DELAY_MS);
     },
-    [clearPendingSingleTap]
+    [clearPendingTerrainTap]
   );
 
   const handleMapDoubleClick = useCallback(() => {
-    clearPendingSingleTap();
-  }, [clearPendingSingleTap]);
+    clearPendingTerrainTap();
+  }, [clearPendingTerrainTap]);
 
   const handleMapClickRef = useRef(handleMapClick);
   const handleMapDoubleClickRef = useRef(handleMapDoubleClick);
@@ -145,10 +147,6 @@ export function useMapClickLinksInteraction({
       dblClickListener.remove();
     };
   }, [mapInstance]);
-
-  const clearPendingTerrainTap = useCallback(() => {
-    clearPendingSingleTap();
-  }, [clearPendingSingleTap]);
 
   const markMarkerInfoWindowOpened = useCallback(() => {
     lastMarkerInfoWindowOpenedAtRef.current = Date.now();

@@ -1,3 +1,10 @@
+/**
+ * Map bootstrap for the main `GoogleMaps` stack (`src/app/components/GoogleMaps`).
+ *
+ * There is a separate `useMapInstance` under `LocationPage/Contribute/hooks/map/` with a
+ * different API and behavior. Keep fixes and listener patterns in sync only when both maps
+ * should match—otherwise treat them as independent.
+ */
 import { useEffect, useRef, useState } from 'react';
 import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
 import { useThermalsLayer, useSkywaysLayer, useOSMMapType } from './useMapLayers';
