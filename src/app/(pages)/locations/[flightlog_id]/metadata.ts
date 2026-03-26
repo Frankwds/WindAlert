@@ -1,20 +1,28 @@
-import { ParaglidingLocationService } from '@/lib/supabase/paraglidingLocations';
 import type { Metadata } from 'next';
+import { getCachedLocationByFlightlogId } from './locationPageCache';
+import {
+  buildLocationDescription,
+  buildLocationKeywords,
+  buildLocationOgAlt,
+  buildLocationTitle,
+} from './locationSeo';
 
 export async function generateLocationMetadata(flightlogId: string): Promise<Metadata> {
-  const location = await ParaglidingLocationService.getByFlightlogId(flightlogId);
+  const location = await getCachedLocationByFlightlogId(flightlogId);
 
   if (!location) {
     return {
-      title: 'Location Not Found - WindLord',
-      description: 'The requested paragliding location could not be found.',
+      title: 'Fant ikke sted – WindLord',
+      description: 'Paragliding-starteren finnes ikke eller er ikke lenger aktiv.',
+      robots: { index: false, follow: true },
     };
   }
 
-  const title = `${location.name} - Paragliding Vær | WindLord`;
-  const description = location.description
-    ? `${location.description.substring(0, 150)}...`
-    : `Se værmelding og flyvær for ${location.name}. Oppdatert værmelding med vind, temperatur og atmosfæriske forhold.`;
+  const title = buildLocationTitle(location, flightlogId);
+  const description = buildLocationDescription(location, flightlogId);
+  const keywords = buildLocationKeywords(location);
+  const ogAlt = buildLocationOgAlt(location);
+  const pageUrl = `https://windlord.no/locations/${flightlogId}`;
 
   return {
     title,
@@ -22,19 +30,20 @@ export async function generateLocationMetadata(flightlogId: string): Promise<Met
     alternates: {
       canonical: `/locations/${flightlogId}`,
     },
-    keywords: `paragliding, ${location.name}, værmelding, vind, flyvær, WindLord, Norge`,
+    keywords,
     openGraph: {
       title,
       description,
       type: 'website',
       locale: 'no_NO',
-      url: `https://windlord.no/locations/${flightlogId}`,
+      url: pageUrl,
+      siteName: 'WindLord',
       images: [
         {
           url: '/windlord.png',
           width: 1200,
           height: 630,
-          alt: `WindLord - ${location.name} Paragliding Vær`,
+          alt: ogAlt,
         },
       ],
     },
