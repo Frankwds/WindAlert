@@ -16,6 +16,41 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+/** JSON-LD must be a real script tag; `metadata.other['application/ld+json']` becomes a meta tag and crawlers ignore it as structured data. */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://windlord.no/#organization',
+      name: 'WindLord',
+      url: 'https://windlord.no',
+      logo: 'https://windlord.no/windlord.png',
+      sameAs: ['https://github.com/Frankwds/WindAlert'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://windlord.no/#website',
+      url: 'https://windlord.no',
+      name: 'WindLord',
+      description:
+        'Den beste appen for å finne paragliding starter i Norge. Se hvor du kan fly basert på været.',
+      publisher: { '@id': 'https://windlord.no/#organization' },
+    },
+    {
+      '@type': 'WebApplication',
+      name: 'WindLord',
+      description:
+        'Et gratis, åpen kildekode-kartverktøy for paraglidere. Finn og filtrer startsteder i Norge ved hjelp av sanntids værmeldinger og data fra vindstasjoner.',
+      url: 'https://windlord.no',
+      applicationCategory: 'SportsApplication',
+      operatingSystem: 'Any (Web browser)',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      provider: { '@id': 'https://windlord.no/#organization' },
+    },
+  ],
+} as const;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://windlord.no'),
   title: 'WindLord',
@@ -60,25 +95,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://windlord.no',
   },
-  other: {
-    'application/ld+json': JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: 'WindLord',
-      description:
-        'Et gratis, åpen kildekode-kartverktøy for paraglidere. Finn og filtrer startsteder i Norge ved hjelp av sanntids værmeldinger og data fra vindstasjoner.',
-      url: 'https://windlord.no',
-      applicationCategory: ['Sports', 'Maps', 'Weather', 'Travel', 'Navigation'],
-      operatingSystem: 'Any (Web browser)',
-      provider: {
-        '@type': 'Organization',
-        name: 'WindLord',
-        url: 'https://windlord.no',
-        logo: 'https://windlord.no/windlord.png',
-        sameAs: ['https://github.com/Frankwds/WindAlert'],
-      },
-    }),
-  },
 };
 
 export default function RootLayout({
@@ -91,6 +107,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[var(--background)] text-[var(--foreground)]`}
       >
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <AuthProvider>
           <ThemeProvider>
             <ConditionalMain>{children}</ConditionalMain>
