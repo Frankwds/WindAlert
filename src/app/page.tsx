@@ -1,14 +1,12 @@
-'use client';
+import type { Metadata } from 'next';
+import HomePageClient from './HomePageClient';
 
-import GoogleMaps from './components/GoogleMaps/GoogleMaps';
-import { useFullscreen } from '@/lib/hooks/useFullscreen';
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
-  const { isFullscreen, toggleFullscreen } = useFullscreen();
-
-  return (
-    <main className='flex-1 w-full h-full '>
-      <GoogleMaps isFullscreen={isFullscreen} toggleFullscreen={toggleFullscreen} variant='main' />
-    </main>
-  );
+  return <HomePageClient />;
 }

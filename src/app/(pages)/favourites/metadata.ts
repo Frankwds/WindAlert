@@ -4,6 +4,9 @@ export const favouritesMetadata: Metadata = {
   title: 'Mine Favoritter - WindLord',
   description:
     'Se dine favoritt paragliding starter og værmeldinger på ett sted. Hold deg oppdatert på flyværet for dine foretrukne steder.',
+  alternates: {
+    canonical: '/favourites',
+  },
   keywords: 'favoritter, paragliding, værmelding, mine starter, WindLord',
   openGraph: {
     title: 'Mine Favoritter - WindLord',

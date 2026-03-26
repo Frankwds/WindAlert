@@ -53,8 +53,9 @@ const jsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://windlord.no'),
-  title: 'WindLord',
-  description: 'Hvor kan jeg fly?',
+  title: 'WindLord – Paragliding vær og starter i Norge',
+  description:
+    'Den beste appen for å finne paragliding-starter i Norge. Sanntids værmelding, vind og kart — se hvor du kan fly.',
   keywords:
     'paragliding, værmelding, Norge, flyvær, WindLord, Gwaihir, paragliding starter, vindmelding, værstasjoner, Finn hvor du kan fly, Paragliding starter, filtrer på vindretning, lovende vær, vindretning, værmelding, værstasjoner',
   authors: [{ name: 'Frank Daniels' }],
@@ -92,9 +93,6 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/manifest.webmanifest',
-  alternates: {
-    canonical: 'https://windlord.no',
-  },
 };
 
 export default function RootLayout({

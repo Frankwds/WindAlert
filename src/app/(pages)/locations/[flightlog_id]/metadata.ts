@@ -19,6 +19,9 @@ export async function generateLocationMetadata(flightlogId: string): Promise<Met
   return {
     title,
     description,
+    alternates: {
+      canonical: `/locations/${flightlogId}`,
+    },
     keywords: `paragliding, ${location.name}, værmelding, vind, flyvær, WindLord, Norge`,
     openGraph: {
       title,

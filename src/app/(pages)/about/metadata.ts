@@ -4,6 +4,9 @@ export const aboutMetadata: Metadata = {
   title: 'Om - WindLord',
   description:
     'Lær om WindLord (Gwaihir) - den beste appen for paragliding værmelding i Norge. Se hvor du kan fly basert på været med detaljerte værmeldinger.',
+  alternates: {
+    canonical: '/about',
+  },
   keywords: 'paragliding, værmelding, Norge, flyvær, WindLord, Gwaihir, paragliding starter, vindmelding',
   openGraph: {
     title: 'Om WindLord',
