@@ -16,6 +16,11 @@ import {
   DEFAULT_PROMISING_WIND_RANGE,
   PROMISING_WIND_SLIDER_MAX,
 } from '@/lib/utils/alert-rules';
+import {
+  getDefaultPromisingTimeRangeForDay,
+  getPromisingHourBoundsForDay,
+  isPromisingFilterSelectionWithinBounds,
+} from '@/lib/utils/promisingFilterTimeWindow';
 import type { CloseOverlaysFn } from '../hooks/controls';
 
 export type WeatherCondition = 'clearsky_day' | 'fair_day' | 'partlycloudy_day' | 'cloudy';
@@ -58,10 +63,16 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const shouldPulse = useOnboardingPulse('PromisingFilter');
-  const currentHour = useMemo(() => new Date().getHours(), []);
+  const now = useMemo(() => new Date(), []);
   const [selectedDay, setSelectedDay] = useState(initialFilter?.selectedDay ?? 0);
+  const initialTimeRange = useMemo<[number, number]>(() => {
+    if (initialFilter && isPromisingFilterSelectionWithinBounds(initialFilter, now)) {
+      return initialFilter.selectedTimeRange;
+    }
+    return getDefaultPromisingTimeRangeForDay(initialFilter?.selectedDay ?? 0, now);
+  }, [initialFilter, now]);
   const [selectedTimeRange, setSelectedTimeRange] = useState<[number, number]>(
-    initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]
+    initialTimeRange
   );
   const [minPromisingHours, setMinPromisingHours] = useState(initialFilter?.minPromisingHours ?? 3);
   const [selectedWeatherConditions, setSelectedWeatherConditions] = useState<WeatherCondition[]>(
@@ -76,8 +87,11 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       clampPromisingFilterGustMax(initialFilter?.gustMax ?? DEFAULT_PROMISING_GUST_MAX)
     )
   );
-  const [isFilterActive, setIsFilterActive] = useState(!!initialFilter);
+  const [isFilterActive, setIsFilterActive] = useState(
+    !!(initialFilter && isPromisingFilterSelectionWithinBounds(initialFilter, now))
+  );
   const [helpOpen, setHelpOpen] = useState(false);
+  const timeBounds = useMemo(() => getPromisingHourBoundsForDay(selectedDay, now), [selectedDay, now]);
 
   const dayLabels = useMemo(() => {
     const now = new Date();
@@ -162,18 +176,14 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   };
 
   useEffect(() => {
-    if (initialFilter) return;
-    if (selectedDay === 0) {
-      setSelectedTimeRange([currentHour + 1, Math.min(24, currentHour + 7)]);
-    } else {
-      setSelectedTimeRange([12, 18]);
-    }
-  }, [selectedDay, currentHour, initialFilter]);
-
-  useEffect(() => {
     if (!isExpanded) {
+      const nextSelectedDay = initialFilter?.selectedDay ?? 0;
       setSelectedDay(initialFilter?.selectedDay ?? 0);
-      setSelectedTimeRange(initialFilter?.selectedTimeRange ?? [currentHour + 1, Math.min(24, currentHour + 7)]);
+      setSelectedTimeRange(
+        initialFilter && isPromisingFilterSelectionWithinBounds(initialFilter, now)
+          ? initialFilter.selectedTimeRange
+          : getDefaultPromisingTimeRangeForDay(nextSelectedDay, now)
+      );
       setMinPromisingHours(initialFilter?.minPromisingHours ?? 3);
       setSelectedWeatherConditions(initialFilter?.selectedWeatherConditions ?? []);
       const normalized = normalizeWindAndGust(
@@ -183,7 +193,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
       setWindRange(normalized.wind);
       setGustMax(normalized.gust);
     }
-  }, [isExpanded, initialFilter, currentHour]);
+  }, [isExpanded, initialFilter, now]);
 
   // Track when control is expanded
   useEffect(() => {
@@ -241,7 +251,10 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                   <button
                     key={index}
                     type='button'
-                    onClick={() => setSelectedDay(index)}
+                    onClick={() => {
+                      setSelectedDay(index);
+                      setSelectedTimeRange(getDefaultPromisingTimeRangeForDay(index, now));
+                    }}
                     className={`flex-1 py-1.5 px-3 text-sm font-medium cursor-pointer ${
                       index === 0 ? 'rounded-l-md' : ''
                     } ${index === dayLabels.length - 1 ? 'rounded-r-md' : ''} ${
@@ -267,29 +280,28 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
               <div className='p-2'>
                 <Slider
                   range
-                  min={selectedDay === 0 ? currentHour : 0}
-                  max={24}
-                  defaultValue={[selectedDay === 0 ? currentHour + 1 : 0, Math.min(24, currentHour + 7)]}
+                  min={timeBounds.min}
+                  max={timeBounds.max}
                   value={selectedTimeRange}
                   onChange={value => setSelectedTimeRange(value as [number, number])}
                   marks={(() => {
                     const marks: Record<number, string> = {};
                     if (selectedDay === 0) {
                       // For today, only show marks from current hour onwards
-                      for (let i = Math.ceil(currentHour / 6) * 6; i <= 24; i += 6) {
-                        if (i >= currentHour) {
+                      for (let i = Math.ceil(timeBounds.min / 6) * 6; i <= timeBounds.max; i += 6) {
+                        if (i >= timeBounds.min) {
                           marks[i] = formatHour(i);
                         }
                       }
                       // Always show the current hour mark
-                      marks[currentHour] = formatHour(currentHour);
+                      marks[timeBounds.min] = formatHour(timeBounds.min);
                     } else {
                       // For other days, show standard marks
                       marks[0] = '00:00';
-                      marks[6] = '06:00';
-                      marks[12] = '12:00';
-                      marks[18] = '18:00';
-                      marks[24] = '24:00';
+                      if (timeBounds.max >= 6) marks[6] = '06:00';
+                      if (timeBounds.max >= 12) marks[12] = '12:00';
+                      if (timeBounds.max >= 18) marks[18] = '18:00';
+                      marks[timeBounds.max] = formatHour(timeBounds.max);
                     }
                     return marks;
                   })()}

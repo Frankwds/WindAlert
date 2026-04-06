@@ -1,5 +1,6 @@
 import { getMapState, MapState, updateMapState } from '@/lib/localstorage/mapStorage';
 import { useCallback, useState } from 'react';
+import { isPromisingFilterSelectionWithinBounds } from '@/lib/utils/promisingFilterTimeWindow';
 
 const TTL_MINUTES = 30; // 30 minutes TTL for selected filters
 
@@ -24,6 +25,16 @@ const getInitialState = (): MapState | null => {
       // Save the cleared state back to localStorage to avoid infinite loops
       updateMapState(clearedState);
       return clearedState;
+    }
+
+    if (parsedState.promisingFilter && !isPromisingFilterSelectionWithinBounds(parsedState.promisingFilter)) {
+      const clearedOutOfRangePromisingFilter: MapState = {
+        ...parsedState,
+        promisingFilter: null,
+        timestamp: now,
+      };
+      updateMapState(clearedOutOfRangePromisingFilter);
+      return clearedOutOfRangePromisingFilter;
     }
 
     return parsedState;
