@@ -27,6 +27,17 @@ interface MapClickLinksInfoWindowProps {
   longitude: number;
 }
 
+const getWeatherStationUrl = ({ provider, station_id }: Pick<WeatherStationWithLatestData, 'provider' | 'station_id'>) => {
+  switch (provider) {
+    case 'Holfuy':
+      return `https://holfuy.com/en/weather/${station_id}`;
+    case 'PortWind':
+      return `https://portwind.no/#${station_id}`;
+    default:
+      return 'https://seklima.met.no/stations/';
+  }
+};
+
 export const ParaglidingInfoWindow: React.FC<ParaglidingInfoWindowProps> = ({ location }) => {
   return <LocationCard location={location} timezone={location.timezone} />;
 };
@@ -59,11 +70,7 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
       <div className='mb-4'>
         <div className='flex flex-col items-center'>
           <a
-            href={
-              location.provider === 'Holfuy'
-                ? `https://holfuy.com/en/weather/${location.station_id}`
-                : `https://klimaservicesenter.no/`
-            }
+            href={getWeatherStationUrl(location)}
             target='_blank'
             rel='noopener noreferrer'
             className='flex-1'
