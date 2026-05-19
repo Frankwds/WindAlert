@@ -78,7 +78,7 @@ export const WeatherStationInfoWindow: React.FC<WeatherStationInfoWindowProps> =
             <h3 className='font-bold gap-2 text-lg text-center text-[var(--accent)] hover:underline'>
               🌤️{location.name}({location.provider})
             </h3>
-            {location.altitude && <p className='text-center text-sm text-gray-600'>Høyde: {location.altitude}moh</p>}
+            {location.altitude ? <p className='text-center text-sm text-gray-600'>Høyde: {location.altitude}moh</p> : null}
           </a>
         </div>
       </div>
