@@ -5,7 +5,8 @@ import { getWeatherIcon } from '@/lib/utils/getWeatherIcons';
 import Image from 'next/image';
 import WindDirectionArrow from '@/app/components/shared/WindDirectionArrow';
 import { useDataGrouping } from '@/lib/hooks/useDataGrouping';
-import { useMemo } from 'react';
+import { FORECAST_RANGE_DAY_COUNT } from '@/lib/utils/forecastRange';
+import { useEffect, useMemo } from 'react';
 import { validateMinimalForecast } from '@/lib/utils/validateDataPoint';
 
 interface MinimalHourlyWeatherProps {
@@ -27,6 +28,20 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
     timeField: 'time',
     sortOrder: 'asc',
   });
+
+  const visibleDays = useMemo(
+    () =>
+      Object.keys(groupedByDay)
+        .filter(day => groupedByDay[day].length > 0)
+        .slice(0, FORECAST_RANGE_DAY_COUNT),
+    [groupedByDay]
+  );
+
+  useEffect(() => {
+    if (activeDay && !visibleDays.includes(activeDay) && visibleDays.length > 0) {
+      setActiveDay(visibleDays[0]);
+    }
+  }, [activeDay, visibleDays, setActiveDay]);
 
   // Create visual representation of promising hours (10:00-22:00)
   const getPromisingHoursVisual = (day: string) => {
@@ -82,14 +97,12 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
   return (
     <div className='bg-[var(--background)] rounded-lg'>
       <div className='flex w-full bg-[var(--border)] p-1 rounded-lg'>
-        {Object.keys(groupedByDay).map(
-          (day, index) =>
-            groupedByDay[day].length > 2 && (
+        {visibleDays.map((day, index) => (
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
                 className={`flex-1 py-1.5 px-3 cursor-pointer capitalize ${index === 0 ? 'rounded-l-md' : ''} ${
-                  index === Object.keys(groupedByDay).length - 1 ? 'rounded-r-md' : ''
+                  index === visibleDays.length - 1 ? 'rounded-r-md' : ''
                 } ${index > 0 ? 'border-l border-[var(--background)]/20' : ''} ${
                   activeDay === day
                     ? 'bg-[var(--background)] shadow-[var(--shadow-sm)] font-medium'
@@ -101,11 +114,10 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
                   <div className='flex w-full'>{getPromisingHoursVisual(day)}</div>
                 </div>
               </button>
-            )
-        )}
+        ))}
       </div>
 
-      {activeDay && (
+      {activeDay && visibleDays.includes(activeDay) && (
         <div ref={scrollContainerRef} className='overflow-x-auto overflow-y-hidden scrollbar-thin '>
           <table className='min-w-full text-sm text-center'>
             <thead>
