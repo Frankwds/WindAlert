@@ -1,3 +1,4 @@
+import { getForecastRangeEnd } from '@/lib/utils/forecastRange';
 import { supabase } from './client';
 import { ParaglidingLocation, MinimalParaglidingLocation, ParaglidingLocationWithForecast } from './types';
 
@@ -56,10 +57,12 @@ export class ParaglidingLocationService {
   }
 
   /**
-   * Get all active paragliding locations optimized for markers, with the next 12 hours of forecast data
+   * Get all active paragliding locations optimized for markers, with forecast data
+   * for today and the next three calendar days (app forecast range).
    */
   static async getAllMainLocationsWithForecast(): Promise<ParaglidingLocationWithForecast[]> {
     const now = new Date();
+    const forecastEnd = getForecastRangeEnd(now);
     const { data, error } = await supabase
       .from('all_paragliding_locations')
       .select(
@@ -82,7 +85,8 @@ export class ParaglidingLocationService {
       )
       .eq('is_active', true)
       .eq('is_main', true)
-      .gte('forecast_cache.time', now.toISOString());
+      .gte('forecast_cache.time', now.toISOString())
+      .lt('forecast_cache.time', forecastEnd.toISOString());
 
     if (error) {
       console.error('Error fetching active locations for markers with forecast:', error);

@@ -1,3 +1,4 @@
+import { getForecastRangeEnd } from '@/lib/utils/forecastRange';
 import { supabase } from './client';
 import { FavouriteLocation, ParaglidingLocationWithForecast } from './types';
 
@@ -5,6 +6,7 @@ export class FavouriteLocationService {
   static async getAllForUserWithForecast(userId: string): Promise<ParaglidingLocationWithForecast[]> {
     try {
       const now = new Date();
+      const forecastEnd = getForecastRangeEnd(now);
       const { data, error } = await supabase
         .from('favourite_locations')
         .select(
@@ -24,7 +26,8 @@ export class FavouriteLocationService {
         `
         )
         .eq('user_id', userId)
-        .gte('all_paragliding_locations.forecast_cache.time', now.toISOString());
+        .gte('all_paragliding_locations.forecast_cache.time', now.toISOString())
+        .lt('all_paragliding_locations.forecast_cache.time', forecastEnd.toISOString());
 
       if (error) {
         console.error('Error fetching favourite locations with forecast:', error);
