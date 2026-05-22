@@ -51,7 +51,7 @@ export const useMarkerFiltering = ({
       const locationWindDirections = locationToWindDirectionSymbols(locationData);
 
       // Calculate the target date based on day offset
-      const dayOffset = selectedDay === 0 ? 0 : selectedDay === 1 ? 1 : 2;
+      const dayOffset = selectedDay;
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + dayOffset);
 

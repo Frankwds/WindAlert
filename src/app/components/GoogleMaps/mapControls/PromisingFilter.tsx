@@ -94,11 +94,25 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
   const timeBounds = useMemo(() => getPromisingHourBoundsForDay(selectedDay, now), [selectedDay, now]);
 
   const dayLabels = useMemo(() => {
+    const formatShortWeekday = (date: Date) => {
+      const weekday = date.toLocaleDateString('nb-NO', { weekday: 'long' });
+      return weekday.charAt(0).toUpperCase() + weekday.slice(1, 3) + '.';
+    };
+
     const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
     const inTwoDays = new Date(now);
     inTwoDays.setDate(now.getDate() + 2);
-    const weekday = inTwoDays.toLocaleDateString('nb-NO', { weekday: 'long' });
-    return ['I dag', 'I morgen', weekday.charAt(0).toUpperCase() + weekday.slice(1)];
+    const inThreeDays = new Date(now);
+    inThreeDays.setDate(now.getDate() + 3);
+
+    return [
+      'I dag',
+      formatShortWeekday(tomorrow),
+      formatShortWeekday(inTwoDays),
+      formatShortWeekday(inThreeDays),
+    ];
   }, []);
 
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`;
@@ -255,7 +269,7 @@ const PromisingFilter: FC<PromisingFilterProps> = ({
                       setSelectedDay(index);
                       setSelectedTimeRange(getDefaultPromisingTimeRangeForDay(index, now));
                     }}
-                    className={`flex-1 py-1.5 px-3 text-sm font-medium cursor-pointer ${
+                    className={`flex-1 min-w-0 whitespace-nowrap py-1.5 px-2 text-xs sm:px-3 sm:text-sm font-medium cursor-pointer ${
                       index === 0 ? 'rounded-l-md' : ''
                     } ${index === dayLabels.length - 1 ? 'rounded-r-md' : ''} ${
                       index > 0 ? 'border-l border-[var(--background)]/20' : ''
