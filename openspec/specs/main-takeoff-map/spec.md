@@ -30,7 +30,7 @@ The system SHALL fail with an error state rather than a partially initialized ma
 ### Requirement: Main map SHALL load the curated takeoff dataset
 The system SHALL populate the main map with active main takeoff locations, using client-side cache when available.
 
-Main takeoffs SHALL come from `all_paragliding_locations` where `is_active=true` and `is_main=true` with future `forecast_cache` rows attached.
+Main takeoffs SHALL come from `all_paragliding_locations` where `is_active=true` and `is_main=true` with `forecast_cache` rows attached within the app forecast range (`FORECAST_RANGE_DAY_COUNT = 4` in `src/lib/utils/forecastRange.ts`).
 
 #### Scenario: Cached main takeoffs avoid an immediate refetch
 - **GIVEN** the client-side cache contains a valid main-takeoff dataset
@@ -62,6 +62,8 @@ The system SHALL filter takeoff markers by the selected wind directions and opti
 Wind filtering SHALL use the takeoff direction flags stored on each location and SHALL support both AND and OR semantics.
 
 The promising-weather filter SHALL exist only on the main map and SHALL evaluate forecast hours client-side using the selected day, time window, minimum consecutive hours, weather-code constraints, wind range, and gust maximum.
+
+The promising filter day selector SHALL expose four day offsets (0–3: today plus the next three calendar days), matching `FORECAST_RANGE_DAY_COUNT`.
 
 #### Scenario: Wind-direction filter narrows takeoffs with AND semantics
 - **GIVEN** the user has enabled paragliding markers on the main map
@@ -103,6 +105,37 @@ The system SHALL restore the main map from persisted local state when available 
 The system SHALL let users inspect takeoff and landing markers from the main map without forcing navigation away from the homepage.
 
 Main-map takeoff popups SHALL reuse the `LocationCard` variant that includes minimal hourly forecast content. When a selected takeoff has landing coordinates, the map SHALL create a landing marker aligned to that takeoff.
+
+### Requirement: Compact forecast UI SHALL use the app forecast range and Norwegian day tabs
+The system SHALL render compact hourly forecast widgets (`MinimalHourlyWeather` via `LocationCard`, and `LandingWeatherTable` in landing popups) from the cached `forecast_cache` payload loaded within the app forecast range.
+
+Compact forecast widgets SHALL group hours by local weekday in each location's timezone through `useDataGrouping`.
+
+Day tab labels SHALL use Norwegian three-letter weekday abbreviations (`nb-NO`, e.g. Fre, Lør, Søn, Man), matching the promising filter label style.
+
+`MinimalHourlyWeather` SHALL show every grouped local day that has at least one forecast hour after client-side filtering, including today when only a few hours remain.
+
+`MinimalHourlyWeather` SHALL render at most `FORECAST_RANGE_DAY_COUNT` day tabs so the compact popup layout does not exceed four tabs.
+
+The location weather detail page uses a separate grouping rule (it may omit only the final grouped day when that day has fewer than three hours); that rule SHALL NOT be applied to compact forecast popups.
+
+#### Scenario: Late evening still shows today's compact forecast tab
+- **GIVEN** a main takeoff popup is open for a location in its stored timezone
+- **AND** local time is late evening with only two future forecast hours left today
+- **WHEN** `MinimalHourlyWeather` renders day tabs
+- **THEN** today's tab SHALL still appear
+- **AND** the hourly table SHALL list those remaining hours
+
+#### Scenario: Compact forecast shows at most four day tabs
+- **GIVEN** embedded forecast data spans the full app forecast range
+- **WHEN** `MinimalHourlyWeather` renders day tabs
+- **THEN** the widget SHALL show at most four day tabs
+- **AND** the tabs SHALL correspond to the earliest local weekdays present in the filtered data
+
+#### Scenario: Compact forecast day tabs use Norwegian labels
+- **GIVEN** a compact forecast widget groups forecast hours by weekday
+- **WHEN** day tabs are rendered
+- **THEN** tab labels SHALL use Norwegian three-letter weekday abbreviations rather than browser-default English short names
 
 #### Scenario: Selecting a main takeoff opens the forecast-rich card
 - **GIVEN** the user clicks a main takeoff marker

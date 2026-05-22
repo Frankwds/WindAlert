@@ -3,6 +3,11 @@
 ## Purpose
 This capability provides the client-side IndexedDB cache for paragliding location datasets used by the Google Maps views. It lives in `src/lib/data-cache.ts`, is read through `useParaglidingData`, and is updated by front-end contribution flows so the map can reuse previously fetched location data without waiting on Supabase every time. It owns only the cached paragliding location lists for the map variants; it does not own favourites, auth state, or the single-location weather page.
 
+Operational context:
+- App forecast range bounds live in `src/lib/utils/forecastRange.ts` as `FORECAST_RANGE_DAY_COUNT` (4) and `getForecastRangeEnd()`.
+- The range is today plus the next three calendar days: from `now` through the exclusive end at local midnight after the last included day.
+- `ParaglidingLocationService.getAllMainLocationsWithForecast` applies this range when embedding `forecast_cache` rows (`time >= now` and `time < getForecastRangeEnd(now)`).
+
 ## Requirements
 
 ### Requirement: Cache map datasets by view variant
@@ -18,7 +23,15 @@ The system SHALL maintain separate cached datasets for the two map variants: a m
 - **GIVEN** the home map loads with the `main` variant
 - **WHEN** the cached main dataset is missing or invalid
 - **THEN** the system fetches `all_paragliding_locations` joined with future `forecast_cache` rows through `ParaglidingLocationService.getAllMainLocationsWithForecast`
+- **AND** each location's embedded forecast SHALL contain only rows within the app forecast range
 - **AND** it stores the fetched result in the main cache before returning it to marker creation
+
+#### Scenario: Main map forecast embed respects the four-day cap
+- **GIVEN** the client requests the main takeoff dataset from Supabase
+- **WHEN** `getAllMainLocationsWithForecast` embeds `forecast_cache` rows
+- **THEN** the query SHALL return rows with `time` at or after the request time
+- **AND** the query SHALL return rows with `time` strictly before `getForecastRangeEnd(now)`
+- **AND** the included calendar days SHALL span at most `FORECAST_RANGE_DAY_COUNT` days starting from today in the browser's local calendar
 
 #### Scenario: All-takeoff map reads and fills the broad dataset cache
 - **GIVEN** the `/locations/all` map loads through `useParaglidingData` with the `all` variant

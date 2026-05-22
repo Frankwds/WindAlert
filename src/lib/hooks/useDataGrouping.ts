@@ -3,11 +3,20 @@ import { MinimalForecast, StationData } from '@/lib/supabase/types';
 
 type DataWithTime = MinimalForecast | StationData;
 
+const DEFAULT_DAY_TAB_LOCALE = 'nb-NO';
+
+function formatDayTabLabel(date: Date, timezone: string, locale: string): string {
+  const weekday = date.toLocaleDateString(locale, { weekday: 'long', timeZone: timezone });
+  return weekday.charAt(0).toUpperCase() + weekday.slice(1, 3);
+}
+
 interface UseDataGroupingProps<T extends DataWithTime> {
   data: T[];
   timezone: string;
   timeField: keyof T;
   sortOrder?: 'asc' | 'desc';
+  /** Weekday tab labels; defaults to Norwegian (matches PromisingFilter). */
+  locale?: string;
 }
 
 interface UseDataGroupingReturn<T extends DataWithTime> {
@@ -24,6 +33,7 @@ export function useDataGrouping<T extends DataWithTime>({
   timezone,
   timeField,
   sortOrder = 'desc',
+  locale = DEFAULT_DAY_TAB_LOCALE,
 }: UseDataGroupingProps<T>): UseDataGroupingReturn<T> {
   const [sortedData, setSortedData] = useState<T[]>(data);
   const [activeDay, setActiveDay] = useState<string | null>(null);
@@ -33,15 +43,11 @@ export function useDataGrouping<T extends DataWithTime>({
     (data: T[]) => {
       if (data && data.length > 0) {
         const timeValue = data[0][timeField] as string;
-        const firstDay = new Date(timeValue).toLocaleDateString([], {
-          weekday: 'short',
-          timeZone: timezone,
-        });
-        return firstDay;
+        return formatDayTabLabel(new Date(timeValue), timezone, locale);
       }
       return null;
     },
-    [timeField, timezone]
+    [timeField, timezone, locale]
   );
 
   // Sort data based on time field
@@ -79,10 +85,7 @@ export function useDataGrouping<T extends DataWithTime>({
   const groupedByDay = sortedData.reduce(
     (acc, item) => {
       const timeValue = item[timeField] as string;
-      const day = new Date(timeValue).toLocaleDateString([], {
-        weekday: 'short',
-        timeZone: timezone,
-      });
+      const day = formatDayTabLabel(new Date(timeValue), timezone, locale);
       if (!acc[day]) {
         acc[day] = [];
       }

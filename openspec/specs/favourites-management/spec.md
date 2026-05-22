@@ -37,6 +37,7 @@ The system SHALL load favourited locations for the authenticated user from `favo
 
 Operational context:
 - `FavouriteLocationService.getAllForUserWithForecast` joins `favourite_locations` to `all_paragliding_locations` and embeds filtered future `forecast_cache` rows.
+- The embedded forecast filter uses the same app forecast range as the main map (`src/lib/utils/forecastRange.ts`: `time >= now` and `time < getForecastRangeEnd(now)`).
 - The embedded forecast filter narrows the nested forecast array, not the top-level favourite row, so locations without current forecast still remain renderable.
 - The page chooses `LocationCard` for `is_main` locations and `LocationCardAll` for non-main locations.
 
