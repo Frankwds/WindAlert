@@ -48,6 +48,7 @@ export const useWeatherStationMarkers = ({
   const hasLoadedInitialMarkers = useRef<boolean>(false);
   const weatherStationMarkerRegistryRef = useRef<Map<string, WeatherStationMarkerEntry>>(new Map());
   const onWeatherStationMarkerClickRef = useRef(onWeatherStationMarkerClick);
+  const syncMarkersFromLatestDataRef = useRef<((showLoading: boolean) => Promise<void>) | null>(null);
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   useEffect(() => {
@@ -67,9 +68,15 @@ export const useWeatherStationMarkers = ({
       const weatherStationsWithLatestData = await loadLatestWeatherStationData();
       const markerRegistry = weatherStationMarkerRegistryRef.current;
       const activeStationIds = new Set<string>();
+      const observationKeysBeforeSync = new Map<string, string>();
+      for (const [stationId, entry] of markerRegistry.entries()) {
+        observationKeysBeforeSync.set(stationId, entry.observationKey);
+      }
 
-      const openWeatherStationId = getOpenWeatherStationId?.() ?? null;
-      const previousOpenMarker = openWeatherStationId ? markerRegistry.get(openWeatherStationId)?.marker : null;
+      const openWeatherStationIdAtStart = getOpenWeatherStationId?.() ?? null;
+      const previousOpenMarker = openWeatherStationIdAtStart
+        ? markerRegistry.get(openWeatherStationIdAtStart)?.marker
+        : null;
       let markerMembershipChanged = false;
 
       for (const station of weatherStationsWithLatestData) {
@@ -114,20 +121,33 @@ export const useWeatherStationMarkers = ({
         setWeatherStationMarkers(nextMarkers);
       }
 
-      const nextOpenMarker = openWeatherStationId ? markerRegistry.get(openWeatherStationId)?.marker : null;
-      const shouldReopenOpenStationInfoWindow =
-        Boolean(openWeatherStationId) &&
+      const openWeatherStationIdAtEnd = getOpenWeatherStationId?.() ?? null;
+      const openEntryAtEnd = openWeatherStationIdAtEnd ? markerRegistry.get(openWeatherStationIdAtEnd) : null;
+      const openObservationKeyBefore = openWeatherStationIdAtEnd
+        ? observationKeysBeforeSync.get(openWeatherStationIdAtEnd)
+        : undefined;
+      const openObservationKeyAfter = openEntryAtEnd?.observationKey;
+      const openStationObservationChanged =
+        Boolean(openWeatherStationIdAtEnd) &&
+        Boolean(openEntryAtEnd) &&
+        openObservationKeyBefore !== openObservationKeyAfter;
+
+      const nextOpenMarker = openEntryAtEnd?.marker ?? null;
+      const markerWasRecreated =
+        Boolean(openWeatherStationIdAtEnd) &&
         Boolean(previousOpenMarker) &&
         Boolean(nextOpenMarker) &&
-        previousOpenMarker !== nextOpenMarker &&
-        Boolean(isInfoWindowOpen?.()) &&
-        Boolean(reopenWeatherStationInfoWindow);
+        previousOpenMarker !== nextOpenMarker;
+      const infoWindowOpen = Boolean(isInfoWindowOpen?.());
+      const shouldRefreshOpenStationInfoWindow =
+        Boolean(openWeatherStationIdAtEnd) &&
+        Boolean(nextOpenMarker) &&
+        infoWindowOpen &&
+        Boolean(reopenWeatherStationInfoWindow) &&
+        (markerWasRecreated || openStationObservationChanged);
 
-      if (shouldReopenOpenStationInfoWindow && nextOpenMarker && openWeatherStationId) {
-        const nextEntry = markerRegistry.get(openWeatherStationId);
-        if (nextEntry) {
-          reopenWeatherStationInfoWindow?.(nextOpenMarker, nextEntry.location);
-        }
+      if (shouldRefreshOpenStationInfoWindow && nextOpenMarker && openWeatherStationIdAtEnd && openEntryAtEnd) {
+        reopenWeatherStationInfoWindow?.(nextOpenMarker, openEntryAtEnd.location);
       }
 
       setMarkersError(null);
@@ -148,6 +168,10 @@ export const useWeatherStationMarkers = ({
       }
     }
   }, [getOpenWeatherStationId, isInfoWindowOpen, loadLatestWeatherStationData, reopenWeatherStationInfoWindow]);
+
+  useEffect(() => {
+    syncMarkersFromLatestDataRef.current = syncMarkersFromLatestData;
+  }, [syncMarkersFromLatestData]);
 
   // Load markers on page load with a 2-second delay to prevent simultaneous database queries
   useEffect(() => {
@@ -184,7 +208,7 @@ export const useWeatherStationMarkers = ({
       const delay = minutesToNext * 60 * 1000;
 
       const timeoutId = setTimeout(() => {
-        syncMarkersFromLatestData(false);
+        syncMarkersFromLatestDataRef.current?.(false);
 
         // Now start the regular 5-minute interval
         intervalRef.current = setInterval(
@@ -193,7 +217,7 @@ export const useWeatherStationMarkers = ({
             if (!isVisibleRef.current) {
               return;
             }
-            syncMarkersFromLatestData(false);
+            syncMarkersFromLatestDataRef.current?.(false);
           },
           5 * 60 * 1000
         ); // 5 minutes
@@ -207,7 +231,7 @@ export const useWeatherStationMarkers = ({
         }
       };
     }
-  }, [mapInstance, weatherStationMarkers.length, syncMarkersFromLatestData, isVisibleRef]);
+  }, [mapInstance, weatherStationMarkers.length, isVisibleRef]);
 
   useEffect(() => {
     return () => {

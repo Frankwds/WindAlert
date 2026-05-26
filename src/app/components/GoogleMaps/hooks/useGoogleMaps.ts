@@ -8,7 +8,12 @@ import {
   useParaglidingLocationsAndLandings,
 } from './markers';
 import { useMapFilters } from './filters';
-import { useInfoWindows, useOverlayManagement, useMapClickLinksInteraction } from './controls';
+import {
+  useInfoWindows,
+  useOverlayManagement,
+  useMapClickLinksInteraction,
+  InfoWindowWithWeatherStationId,
+} from './controls';
 import {
   getMainParaglidingInfoWindow,
   getAllParaglidingInfoWindow,
@@ -49,10 +54,26 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   const { infoWindowRef, closeInfoWindow, isInfoWindowOpen, openInfoWindow } = useInfoWindows();
   const openWeatherStationIdRef = useRef<string | null>(null);
 
-  const closeInfoWindowAndClearOpenWeatherStation = useCallback(() => {
+  const clearOpenWeatherStationTracking = useCallback(() => {
     openWeatherStationIdRef.current = null;
+    const infoWindow = infoWindowRef.current as InfoWindowWithWeatherStationId | null;
+    if (infoWindow) {
+      delete infoWindow.__weatherStationId;
+    }
+  }, [infoWindowRef]);
+
+  const closeInfoWindowAndClearOpenWeatherStation = useCallback(() => {
+    clearOpenWeatherStationTracking();
     closeInfoWindow();
-  }, [closeInfoWindow]);
+  }, [clearOpenWeatherStationTracking, closeInfoWindow]);
+
+  const getOpenWeatherStationId = useCallback(() => {
+    return (
+      openWeatherStationIdRef.current ??
+      (infoWindowRef.current as InfoWindowWithWeatherStationId | null)?.__weatherStationId ??
+      null
+    );
+  }, [infoWindowRef]);
 
   const { closeOverlays } = useOverlayManagement({
     setWindFilterExpanded: filters.setWindFilterExpanded,
@@ -120,16 +141,16 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   // --- Marker click handlers (delegate to openAnchorInfoWindow)
   const onWeatherStationMarkerClick = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithLatestData) => {
-      openWeatherStationIdRef.current = location.station_id;
       openAnchorInfoWindow(marker, getWeatherStationInfoWindow(location));
+      openWeatherStationIdRef.current = location.station_id;
     },
     [openAnchorInfoWindow]
   );
 
   const reopenWeatherStationInfoWindow = useCallback(
     (marker: google.maps.marker.AdvancedMarkerElement, location: WeatherStationWithLatestData) => {
-      openWeatherStationIdRef.current = location.station_id;
       openAnchorInfoWindow(marker, getWeatherStationInfoWindow(location));
+      openWeatherStationIdRef.current = location.station_id;
     },
     [openAnchorInfoWindow]
   );
@@ -197,7 +218,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     mapInstance,
     onWeatherStationMarkerClick,
     isMain: variant === 'main',
-    getOpenWeatherStationId: () => openWeatherStationIdRef.current,
+    getOpenWeatherStationId,
     isInfoWindowOpen,
     reopenWeatherStationInfoWindow,
   });
@@ -207,13 +228,13 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     if (!infoWindow) return;
 
     const closeClickListener = infoWindow.addListener('closeclick', () => {
-      openWeatherStationIdRef.current = null;
+      clearOpenWeatherStationTracking();
     });
 
     return () => {
       closeClickListener.remove();
     };
-  }, [mapInstance, infoWindowRef]);
+  }, [clearOpenWeatherStationTracking, mapInstance, infoWindowRef]);
 
   const {
     paraglidingMarkers,

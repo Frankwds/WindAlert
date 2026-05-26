@@ -113,11 +113,18 @@ export const updateWeatherStationMarker = (
   marker.title = location.name;
 
   const markerContent = marker.content;
-  if (!(markerContent instanceof HTMLElement)) {
+  const contentElement =
+    markerContent instanceof HTMLElement
+      ? markerContent
+      : markerContent instanceof Element
+        ? (markerContent as HTMLElement)
+        : null;
+
+  if (!contentElement) {
     return;
   }
 
-  refreshWeatherStationWindMarkerContent(markerContent, [location.station_data]);
+  refreshWeatherStationWindMarkerContent(contentElement, [location.station_data]);
 };
 
 export const createLandingMarker = (

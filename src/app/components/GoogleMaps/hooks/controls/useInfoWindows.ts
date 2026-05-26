@@ -15,6 +15,18 @@ export type OpenInfoWindowFn = (
   options?: OpenInfoWindowOptions
 ) => void;
 
+export type InfoWindowWithWeatherStationId = google.maps.InfoWindow & {
+  __weatherStationId?: string;
+};
+
+const isWeatherStationMarkerAnchor = (anchor: InfoWindowAnchor): anchor is google.maps.marker.AdvancedMarkerElement => {
+  if (typeof anchor !== 'object' || anchor === null || 'lat' in anchor) {
+    return false;
+  }
+  const locationData = (anchor as { locationData?: { station_data?: unknown; station_id?: string } }).locationData;
+  return Boolean(locationData?.station_data && locationData.station_id);
+};
+
 export const useInfoWindows = () => {
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
   const isLatLngLiteral = (value: unknown): value is google.maps.LatLngLiteral => {
@@ -35,12 +47,20 @@ export const useInfoWindows = () => {
     disposePreviousReactContentRef.current = null;
   }, []);
 
+  const clearWeatherStationTracking = useCallback(() => {
+    const infoWindow = infoWindowRef.current as InfoWindowWithWeatherStationId | null;
+    if (infoWindow) {
+      delete infoWindow.__weatherStationId;
+    }
+  }, []);
+
   const closeInfoWindow = useCallback(() => {
     disposePreviousReactContent();
+    clearWeatherStationTracking();
     if (infoWindowRef.current) {
       infoWindowRef.current.close();
     }
-  }, [disposePreviousReactContent]);
+  }, [clearWeatherStationTracking, disposePreviousReactContent]);
 
   /**
    * True while the shared InfoWindow is attached to a map.
@@ -68,6 +88,7 @@ export const useInfoWindows = () => {
           maxWidth: options?.maxWidth,
         });
         if (isLatLngLiteral(anchor)) {
+          clearWeatherStationTracking();
           infoWindowRef.current.setPosition(anchor);
           infoWindowRef.current.open({
             map: mapInstance,
@@ -80,9 +101,16 @@ export const useInfoWindows = () => {
           anchor,
           shouldFocus: false,
         });
+        const infoWindow = infoWindowRef.current as InfoWindowWithWeatherStationId;
+        if (isWeatherStationMarkerAnchor(anchor)) {
+          const locationData = (anchor as { locationData?: { station_id: string } }).locationData;
+          infoWindow.__weatherStationId = locationData!.station_id;
+        } else {
+          delete infoWindow.__weatherStationId;
+        }
       }
     },
-    [disposePreviousReactContent]
+    [clearWeatherStationTracking, disposePreviousReactContent]
   );
 
   return {
