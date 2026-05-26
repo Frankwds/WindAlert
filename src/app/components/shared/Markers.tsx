@@ -166,22 +166,43 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
   container.style.userSelect = 'none';
   container.style.transform = 'translate(0%, 50%)';
 
-  if (stationData.length === 0) {
+  refreshWeatherStationWindMarkerContent(container, stationData);
+
+  return container;
+};
+
+const getLatestStationData = (stationData: StationData[]): StationData | null => {
+  if (stationData.length === 0) return null;
+
+  return stationData.reduce((latest, current) => {
+    const latestTime = new Date(latest.updated_at).getTime();
+    const currentTime = new Date(current.updated_at).getTime();
+    return currentTime > latestTime ? current : latest;
+  });
+};
+
+export const refreshWeatherStationWindMarkerContent = (container: HTMLElement, stationData: StationData[]) => {
+  container.replaceChildren();
+
+  const latestData = getLatestStationData(stationData);
+
+  if (!latestData) {
     const svg = createHollowWindTriangleSVG(true, 0, getWindArrowColor(0));
     container.appendChild(svg);
-    return container;
+    delete container.dataset.windSpeed;
+    delete container.dataset.windDirection;
+    return;
   }
-
-  const latestData = stationData.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
 
   const windColor = getWindArrowColor(latestData.wind_speed);
   const svg = createHollowWindTriangleSVG(false, latestData.direction, windColor);
   const textOverlay = createTextOverlay(latestData.wind_speed);
 
+  container.dataset.windSpeed = latestData.wind_speed.toString();
+  container.dataset.windDirection = latestData.direction.toString();
+
   container.appendChild(svg);
   container.appendChild(textOverlay);
-
-  return container;
 };
 
 // Create non-rotating text overlay

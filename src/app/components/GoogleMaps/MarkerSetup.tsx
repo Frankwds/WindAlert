@@ -2,6 +2,7 @@ import { WeatherStationWithLatestData, ParaglidingLocationWithForecast } from '@
 import {
   createParaglidingMarkerElementWithDirection,
   createWeatherStationWindMarkerElement,
+  refreshWeatherStationWindMarkerContent,
   createLandingMarkerElement,
 } from '../shared/Markers';
 
@@ -13,6 +14,10 @@ type onWeatherStationMarkerClickHandler = (
   marker: google.maps.marker.AdvancedMarkerElement,
   location: WeatherStationWithLatestData
 ) => void;
+
+type WeatherStationMarkerWithData = google.maps.marker.AdvancedMarkerElement & {
+  locationData?: WeatherStationWithLatestData;
+};
 
 export const createParaglidingMarkers = (
   paraglidingLocations: ParaglidingLocationWithForecast[],
@@ -73,19 +78,12 @@ export const createWeatherStationMarker = (
 ) => {
   const markerElement = createWeatherStationWindMarkerElement([location.station_data]);
 
-  // Store wind data in the marker element for cluster access
-  const latestData = location.station_data;
-
-  if (latestData && latestData.wind_speed !== null && latestData.direction !== null) {
-    markerElement.dataset.windSpeed = latestData.wind_speed.toString();
-    markerElement.dataset.windDirection = latestData.direction.toString();
-  }
-
   const marker = new google.maps.marker.AdvancedMarkerElement({
     position: { lat: location.latitude!, lng: location.longitude! },
     title: location.name,
     content: markerElement,
-  });
+  }) as WeatherStationMarkerWithData;
+  marker.locationData = location;
 
   markerElement.addEventListener('mouseenter', () => {
     markerElement.style.transform = 'scale(1.1) translate(0%, 45%)';
@@ -98,11 +96,28 @@ export const createWeatherStationMarker = (
   markerElement.addEventListener('click', (event: Event) => {
     // Prevent the click event from bubbling up to the map
     event.stopPropagation();
-    onMarkerClick(marker, location);
+    if (!marker.locationData) return;
+    onMarkerClick(marker, marker.locationData);
   });
   marker.zIndex = 2000;
 
   return marker;
+};
+
+export const updateWeatherStationMarker = (
+  marker: google.maps.marker.AdvancedMarkerElement,
+  location: WeatherStationWithLatestData
+) => {
+  const markerWithData = marker as WeatherStationMarkerWithData;
+  markerWithData.locationData = location;
+  marker.title = location.name;
+
+  const markerContent = marker.content;
+  if (!(markerContent instanceof HTMLElement)) {
+    return;
+  }
+
+  refreshWeatherStationWindMarkerContent(markerContent, [location.station_data]);
 };
 
 export const createLandingMarker = (
