@@ -94,10 +94,8 @@ export const createWeatherStationMarker = (
   });
 
   markerElement.addEventListener('click', (event: Event) => {
-    // Prevent the click event from bubbling up to the map
     event.stopPropagation();
-    if (!marker.locationData) return;
-    onMarkerClick(marker, marker.locationData);
+    onMarkerClick(marker, location);
   });
   marker.zIndex = 2000;
 
@@ -112,19 +110,9 @@ export const updateWeatherStationMarker = (
   markerWithData.locationData = location;
   marker.title = location.name;
 
-  const markerContent = marker.content;
-  const contentElement =
-    markerContent instanceof HTMLElement
-      ? markerContent
-      : markerContent instanceof Element
-        ? (markerContent as HTMLElement)
-        : null;
-
-  if (!contentElement) {
-    return;
+  if (marker.content instanceof HTMLElement) {
+    refreshWeatherStationWindMarkerContent(marker.content, [location.station_data]);
   }
-
-  refreshWeatherStationWindMarkerContent(contentElement, [location.station_data]);
 };
 
 export const createLandingMarker = (

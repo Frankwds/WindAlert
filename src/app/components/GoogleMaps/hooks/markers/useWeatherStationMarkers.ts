@@ -3,7 +3,6 @@ import { createWeatherStationMarker, updateWeatherStationMarker } from '../../Ma
 import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
-import { stationLatestObservationKey } from '@/lib/supabase/stationObservationKey';
 
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
@@ -14,20 +13,11 @@ interface UseWeatherStationMarkersProps {
   isMain: boolean;
   getOpenWeatherStationId?: () => string | null;
   isInfoWindowOpen?: () => boolean;
-  reopenWeatherStationInfoWindow?: (
-    marker: google.maps.marker.AdvancedMarkerElement,
-    location: WeatherStationWithLatestData
-  ) => void;
 }
 
-type WeatherStationMarkerEntry = {
+type MarkerEntry = {
   marker: google.maps.marker.AdvancedMarkerElement;
-  observationKey: string;
   location: WeatherStationWithLatestData;
-};
-
-const sortStationIds = (ids: string[]) => {
-  return [...ids].sort((a, b) => a.localeCompare(b));
 };
 
 export const useWeatherStationMarkers = ({
@@ -36,7 +26,6 @@ export const useWeatherStationMarkers = ({
   isMain,
   getOpenWeatherStationId,
   isInfoWindowOpen,
-  reopenWeatherStationInfoWindow,
 }: UseWeatherStationMarkersProps) => {
   const [weatherStationMarkers, setWeatherStationMarkers] = useState<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [isLoadingMarkers, setIsLoadingMarkers] = useState(false);
@@ -46,202 +35,138 @@ export const useWeatherStationMarkers = ({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const hasLoadedInitialMarkers = useRef<boolean>(false);
-  const weatherStationMarkerRegistryRef = useRef<Map<string, WeatherStationMarkerEntry>>(new Map());
-  const onWeatherStationMarkerClickRef = useRef(onWeatherStationMarkerClick);
-  const syncMarkersFromLatestDataRef = useRef<((showLoading: boolean) => Promise<void>) | null>(null);
+  const registryRef = useRef<Map<string, MarkerEntry>>(new Map());
+  const onMarkerClickRef = useRef(onWeatherStationMarkerClick);
+  const syncRef = useRef<(showLoading: boolean) => Promise<void>>(async () => {});
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   useEffect(() => {
-    onWeatherStationMarkerClickRef.current = onWeatherStationMarkerClick;
+    onMarkerClickRef.current = onWeatherStationMarkerClick;
   }, [onWeatherStationMarkerClick]);
 
-  const syncMarkersFromLatestData = useCallback(async (showLoading: boolean) => {
-    if (isLoadingRef.current) return;
+  const syncMarkers = useCallback(
+    async (showLoading: boolean) => {
+      if (isLoadingRef.current) return;
 
-    try {
-      isLoadingRef.current = true;
-      if (showLoading) {
-        setIsLoadingMarkers(true);
+      try {
+        isLoadingRef.current = true;
+        if (showLoading) {
+          setIsLoadingMarkers(true);
+          setMarkersError(null);
+        }
+
+        const stations = await loadLatestWeatherStationData();
+        const registry = registryRef.current;
+        const activeIds = new Set<string>();
+        const updatedAtBefore = new Map<string, string>();
+        for (const [stationId, entry] of registry.entries()) {
+          updatedAtBefore.set(stationId, entry.location.station_data.updated_at);
+        }
+
+        let membershipChanged = false;
+
+        for (const station of stations) {
+          const stationId = station.station_id;
+          activeIds.add(stationId);
+
+          const existing = registry.get(stationId);
+          if (!existing) {
+            registry.set(stationId, {
+              marker: createWeatherStationMarker(station, (marker, location) => {
+                onMarkerClickRef.current(marker, location);
+              }),
+              location: station,
+            });
+            membershipChanged = true;
+            continue;
+          }
+
+          if (existing.location.station_data.updated_at !== station.station_data.updated_at) {
+            updateWeatherStationMarker(existing.marker, station);
+          }
+          existing.location = station;
+        }
+
+        for (const [stationId, entry] of registry.entries()) {
+          if (activeIds.has(stationId)) continue;
+          entry.marker.map = null;
+          registry.delete(stationId);
+          membershipChanged = true;
+        }
+
+        if (membershipChanged) {
+          setWeatherStationMarkers(Array.from(registry.values(), entry => entry.marker));
+        }
+
+        const openStationId = getOpenWeatherStationId?.() ?? null;
+        const openEntry = openStationId ? registry.get(openStationId) : null;
+        if (
+          openStationId &&
+          openEntry &&
+          isInfoWindowOpen?.() &&
+          updatedAtBefore.get(openStationId) !== openEntry.location.station_data.updated_at
+        ) {
+          onMarkerClickRef.current(openEntry.marker, openEntry.location);
+        }
+
         setMarkersError(null);
-      }
-
-      const weatherStationsWithLatestData = await loadLatestWeatherStationData();
-      const markerRegistry = weatherStationMarkerRegistryRef.current;
-      const activeStationIds = new Set<string>();
-      const observationKeysBeforeSync = new Map<string, string>();
-      for (const [stationId, entry] of markerRegistry.entries()) {
-        observationKeysBeforeSync.set(stationId, entry.observationKey);
-      }
-
-      const openWeatherStationIdAtStart = getOpenWeatherStationId?.() ?? null;
-      const previousOpenMarker = openWeatherStationIdAtStart
-        ? markerRegistry.get(openWeatherStationIdAtStart)?.marker
-        : null;
-      let markerMembershipChanged = false;
-
-      for (const station of weatherStationsWithLatestData) {
-        const stationId = station.station_id;
-        activeStationIds.add(stationId);
-
-        const nextObservationKey = stationLatestObservationKey(station.station_data);
-        const existingEntry = markerRegistry.get(stationId);
-
-        if (!existingEntry) {
-          const marker = createWeatherStationMarker(station, (selectedMarker, selectedLocation) => {
-            onWeatherStationMarkerClickRef.current(selectedMarker, selectedLocation);
-          });
-          markerRegistry.set(stationId, {
-            marker,
-            observationKey: nextObservationKey,
-            location: station,
-          });
-          markerMembershipChanged = true;
-          continue;
+        hasLoadedInitialMarkers.current = true;
+      } catch (err) {
+        if (showLoading) {
+          console.error('Error loading weather station markers:', err);
+          setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
+        } else {
+          console.error('Error updating weather station markers with latest data:', err);
         }
-
-        if (existingEntry.observationKey !== nextObservationKey) {
-          updateWeatherStationMarker(existingEntry.marker, station);
-          existingEntry.observationKey = nextObservationKey;
+      } finally {
+        isLoadingRef.current = false;
+        if (showLoading) {
+          setIsLoadingMarkers(false);
         }
-
-        existingEntry.location = station;
       }
+    },
+    [getOpenWeatherStationId, isInfoWindowOpen, loadLatestWeatherStationData]
+  );
 
-      for (const [stationId, entry] of markerRegistry.entries()) {
-        if (activeStationIds.has(stationId)) continue;
-        entry.marker.map = null;
-        markerRegistry.delete(stationId);
-        markerMembershipChanged = true;
-      }
+  syncRef.current = syncMarkers;
 
-      if (markerMembershipChanged) {
-        const nextMarkers = sortStationIds(Array.from(markerRegistry.keys())).map(stationId => {
-          return markerRegistry.get(stationId)!.marker;
-        });
-        setWeatherStationMarkers(nextMarkers);
-      }
-
-      const openWeatherStationIdAtEnd = getOpenWeatherStationId?.() ?? null;
-      const openEntryAtEnd = openWeatherStationIdAtEnd ? markerRegistry.get(openWeatherStationIdAtEnd) : null;
-      const openObservationKeyBefore = openWeatherStationIdAtEnd
-        ? observationKeysBeforeSync.get(openWeatherStationIdAtEnd)
-        : undefined;
-      const openObservationKeyAfter = openEntryAtEnd?.observationKey;
-      const openStationObservationChanged =
-        Boolean(openWeatherStationIdAtEnd) &&
-        Boolean(openEntryAtEnd) &&
-        openObservationKeyBefore !== openObservationKeyAfter;
-
-      const nextOpenMarker = openEntryAtEnd?.marker ?? null;
-      const markerWasRecreated =
-        Boolean(openWeatherStationIdAtEnd) &&
-        Boolean(previousOpenMarker) &&
-        Boolean(nextOpenMarker) &&
-        previousOpenMarker !== nextOpenMarker;
-      const infoWindowOpen = Boolean(isInfoWindowOpen?.());
-      const shouldRefreshOpenStationInfoWindow =
-        Boolean(openWeatherStationIdAtEnd) &&
-        Boolean(nextOpenMarker) &&
-        infoWindowOpen &&
-        Boolean(reopenWeatherStationInfoWindow) &&
-        (markerWasRecreated || openStationObservationChanged);
-
-      if (shouldRefreshOpenStationInfoWindow && nextOpenMarker && openWeatherStationIdAtEnd && openEntryAtEnd) {
-        reopenWeatherStationInfoWindow?.(nextOpenMarker, openEntryAtEnd.location);
-      }
-
-      setMarkersError(null);
-      hasLoadedInitialMarkers.current = true;
-    } catch (err) {
-      if (showLoading) {
-        console.error('Error loading weather station markers:', err);
-        setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
-      } else {
-        // Only log the error - don't set a fatal error for background refresh failures.
-        // The existing markers are still valid and displayed on the map.
-        console.error('Error updating weather station markers with latest data:', err);
-      }
-    } finally {
-      isLoadingRef.current = false;
-      if (showLoading) {
-        setIsLoadingMarkers(false);
-      }
-    }
-  }, [getOpenWeatherStationId, isInfoWindowOpen, loadLatestWeatherStationData, reopenWeatherStationInfoWindow]);
-
-  useEffect(() => {
-    syncMarkersFromLatestDataRef.current = syncMarkersFromLatestData;
-  }, [syncMarkersFromLatestData]);
-
-  // Load markers on page load with a 2-second delay to prevent simultaneous database queries
   useEffect(() => {
     if (mapInstance && !hasLoadedInitialMarkers.current) {
-      const timeoutId = setTimeout(() => {
-        syncMarkersFromLatestData(true);
-      }, 2000); // 2-second delay to allow paragliding locations to load first
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [mapInstance, syncMarkersFromLatestData]);
-
-  // Load markers on page visibility change (with delay for mobile network recovery)
-  useEffect(() => {
-    if (isVisibleState && hasLoadedInitialMarkers.current) {
-      // Small delay to allow mobile network to reconnect after page unfreeze
-      const timeoutId = setTimeout(() => {
-        syncMarkersFromLatestData(false);
-      }, 1000);
+      const timeoutId = setTimeout(() => syncRef.current(true), 2000);
       return () => clearTimeout(timeoutId);
     }
-  }, [syncMarkersFromLatestData, isVisibleState]);
+  }, [mapInstance]);
 
-  // Set up 5-minute live updates starting at the next 5-minute mark
   useEffect(() => {
-    if (mapInstance && weatherStationMarkers.length > 0) {
-      const now = new Date();
-      const currentMinutes = now.getMinutes();
-
-      // Calculate minutes to next 5-minute mark (1, 6, 11, 16, etc.)
-      const minutesToNext = 5 - (currentMinutes % 5) + 1;
-      const delay = minutesToNext * 60 * 1000;
-
-      const timeoutId = setTimeout(() => {
-        syncMarkersFromLatestDataRef.current?.(false);
-
-        // Now start the regular 5-minute interval
-        intervalRef.current = setInterval(
-          () => {
-            // skip if tab is not in use
-            if (!isVisibleRef.current) {
-              return;
-            }
-            syncMarkersFromLatestDataRef.current?.(false);
-          },
-          5 * 60 * 1000
-        ); // 5 minutes
-      }, delay);
-
-      // Cleanup timeout and interval on unmount or when dependencies change
-      return () => {
-        clearTimeout(timeoutId);
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
+    if (isVisibleState && hasLoadedInitialMarkers.current) {
+      const timeoutId = setTimeout(() => syncRef.current(false), 1000);
+      return () => clearTimeout(timeoutId);
     }
-  }, [mapInstance, weatherStationMarkers.length, isVisibleRef]);
+  }, [isVisibleState]);
 
   useEffect(() => {
+    if (!mapInstance || weatherStationMarkers.length === 0) return;
+
+    const now = new Date();
+    const minutesToNext = 5 - (now.getMinutes() % 5) + 1;
+    const delay = minutesToNext * 60 * 1000;
+
+    const timeoutId = setTimeout(() => {
+      syncRef.current(false);
+      intervalRef.current = setInterval(() => {
+        if (isVisibleRef.current) {
+          syncRef.current(false);
+        }
+      }, 5 * 60 * 1000);
+    }, delay);
+
     return () => {
-      const markerRegistry = weatherStationMarkerRegistryRef.current;
-      for (const entry of markerRegistry.values()) {
-        entry.marker.map = null;
+      clearTimeout(timeoutId);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
-      markerRegistry.clear();
     };
-  }, []);
+  }, [mapInstance, weatherStationMarkers.length, isVisibleRef]);
 
   return {
     weatherStationMarkers,

@@ -1,10 +1,5 @@
 export { useInfoWindows } from './useInfoWindows';
-export type {
-  InfoWindowAnchor,
-  OpenInfoWindowFn,
-  OpenInfoWindowOptions,
-  InfoWindowWithWeatherStationId,
-} from './useInfoWindows';
+export type { InfoWindowAnchor, OpenInfoWindowFn, OpenInfoWindowOptions } from './useInfoWindows';
 export { useOverlayManagement } from './useOverlayManagement';
 export type { OverlayCloseKeep, CloseOverlaysFn } from './useOverlayManagement';
 export {
