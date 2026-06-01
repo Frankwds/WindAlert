@@ -9,8 +9,8 @@ export const useWeatherStationData = (isMain: boolean) => {
       // Fetch weather stations metadata
       const weatherStations = await WeatherStationService.getAllActive(isMain);
 
-      // Fetch latest data points for all stations
-      const latestData = await StationDataService.getLatestStationData();
+      // Fetch latest data points for the active map scope
+      const latestData = await StationDataService.getLatestStationData(isMain);
 
       // Create a map of station_id to latest data for efficient lookup
       const latestDataMap = new Map(latestData.map(data => [data.station_id, data]));

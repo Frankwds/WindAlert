@@ -1,23 +1,27 @@
 import { supabase } from './client';
 import { StationData } from './types';
 
+type LatestStationDataSource = 'latest_station_data' | 'latest_main_station_data';
+
 export class StationDataService {
   /**
-   * Get latest data for all stations from latest_station_data table with pagination
+   * Get latest data for all stations from the configured latest-station source with pagination.
    * Automatically fetches all pages like weatherStations.ts
+   * @param isMain - If true, fetches from the main-map scoped view
    * @param pageSize - Number of records per page (defaults to 1000)
    */
-  static async getLatestStationData(pageSize: number = 1000): Promise<StationData[]> {
+  static async getLatestStationData(isMain: boolean, pageSize: number = 1000): Promise<StationData[]> {
     let allStationData: StationData[] = [];
     let page = 0;
     let hasMoreData = true;
+    const source: LatestStationDataSource = isMain ? 'latest_main_station_data' : 'latest_station_data';
 
     while (hasMoreData) {
       const from = page * pageSize;
       const to = from + pageSize - 1;
 
       const { data, error } = await supabase
-        .from('latest_station_data')
+        .from(source)
         .select(
           `
           station_id,
@@ -50,7 +54,7 @@ export class StationDataService {
       }
     }
 
-    console.log(`Fetched ${allStationData.length} latest station data points`);
+    console.log(`Fetched ${allStationData.length} latest station data points from ${source}`);
     return allStationData;
   }
 

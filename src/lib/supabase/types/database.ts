@@ -46,6 +46,11 @@ export type Database = {
       };
     };
     Views: {
+      latest_main_station_data: {
+        Row: Pick<StationData, 'station_id' | 'wind_speed' | 'wind_gust' | 'direction' | 'temperature' | 'updated_at'>;
+        Insert: never;
+        Update: never;
+      };
       locations_with_oldest_forecast: {
         Row: { id: string };
         Insert: never;
