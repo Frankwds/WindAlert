@@ -4,6 +4,26 @@ import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
 
+const getLatestObservationMap = (weatherStations: WeatherStationWithLatestData[]): Map<string, string> =>
+  new Map(weatherStations.map(station => [station.station_id, station.station_data.updated_at]));
+
+const hasLatestObservationChanges = (
+  previousObservations: Map<string, string>,
+  nextObservations: Map<string, string>
+): boolean => {
+  if (previousObservations.size !== nextObservations.size) {
+    return true;
+  }
+
+  for (const [stationId, updatedAt] of nextObservations) {
+    if (previousObservations.get(stationId) !== updatedAt) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 interface UseWeatherStationMarkersProps {
   mapInstance: google.maps.Map | null;
   onWeatherStationMarkerClick: (
@@ -26,6 +46,7 @@ export const useWeatherStationMarkers = ({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const hasLoadedInitialMarkers = useRef<boolean>(false);
+  const latestObservationsRef = useRef<Map<string, string>>(new Map());
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
@@ -36,6 +57,7 @@ export const useWeatherStationMarkers = ({
       setMarkersError(null);
 
       const weatherStations = await loadLatestWeatherStationData();
+      latestObservationsRef.current = getLatestObservationMap(weatherStations);
 
       const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
       setWeatherStationMarkers(markers);
@@ -55,6 +77,14 @@ export const useWeatherStationMarkers = ({
       isLoadingRef.current = true;
       const weatherStations = await loadLatestWeatherStationData();
       if (weatherStations) {
+        const nextObservations = getLatestObservationMap(weatherStations);
+
+        if (!hasLatestObservationChanges(latestObservationsRef.current, nextObservations)) {
+          setMarkersError(null);
+          return;
+        }
+
+        latestObservationsRef.current = nextObservations;
         const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
         setWeatherStationMarkers(markers);
         setMarkersError(null); // Clear any previous error on success

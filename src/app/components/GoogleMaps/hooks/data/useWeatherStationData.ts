@@ -2,15 +2,15 @@ import { useCallback } from 'react';
 import { dataCache } from '@/lib/data-cache';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { StationDataService } from '@/lib/supabase/stationData';
-import { WeatherStationWithLatestData } from '@/lib/supabase/types';
+import { StationData, WeatherStation, WeatherStationWithLatestData } from '@/lib/supabase/types';
 
 export const useWeatherStationData = (isMain: boolean) => {
   const loadLatestWeatherStationData = useCallback(async (): Promise<WeatherStationWithLatestData[]> => {
     try {
       const cachedWeatherStations = await dataCache.getWeatherStations(isMain);
 
-      let weatherStations = cachedWeatherStations;
-      let latestData;
+      let weatherStations: WeatherStation[] = cachedWeatherStations ?? [];
+      let latestData: StationData[] = [];
 
       if (cachedWeatherStations) {
         latestData = await StationDataService.getLatestStationData(isMain);
