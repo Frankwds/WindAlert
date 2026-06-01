@@ -1,4 +1,4 @@
-import { ParaglidingLocationWithForecast } from './supabase/types';
+import { ParaglidingLocationWithForecast, WeatherStation } from './supabase/types';
 
 interface Cache<T> {
   data: T | null;
@@ -7,6 +7,7 @@ interface Cache<T> {
 
 const CACHE_DURATION_PARAGLIDING_WITH_FORECAST = 30 * 60 * 1000; // 30 minutes
 const CACHE_DURATION_ALL_PARAGLIDING = 60 * 60 * 1000; // 1 day
+const CACHE_DURATION_WEATHER_STATIONS = 12 * 60 * 60 * 1000; // 12 hours
 
 const DB_NAME = 'WindLordCache';
 const DB_VERSION = 1;
@@ -19,7 +20,13 @@ const ALL_PARAGLIDING_MIN_TIMESTAMP = new Date(ALL_PARAGLIDING_MIN_DATETIME).get
 class DataCache {
   private readonly PARAGLIDING_KEY = 'windlord_cache_paragliding';
   private readonly ALL_PARAGLIDING_KEY = 'windlord_cache_all_paragliding';
+  private readonly MAIN_WEATHER_STATIONS_KEY = 'windlord_cache_main_weather_stations';
+  private readonly ALL_WEATHER_STATIONS_KEY = 'windlord_cache_all_weather_stations';
   private db: IDBDatabase | null = null;
+
+  private getWeatherStationsKey(isMain: boolean): string {
+    return isMain ? this.MAIN_WEATHER_STATIONS_KEY : this.ALL_WEATHER_STATIONS_KEY;
+  }
 
   private async initDB(): Promise<IDBDatabase> {
     if (this.db) {
@@ -155,6 +162,20 @@ class DataCache {
     await this.setToStorage(this.ALL_PARAGLIDING_KEY, data, Date.now());
   }
 
+  async getWeatherStations(isMain: boolean): Promise<WeatherStation[] | null> {
+    const cached = await this.getFromStorage(this.getWeatherStationsKey(isMain));
+
+    if (cached && this.isCacheValid(cached.timestamp, CACHE_DURATION_WEATHER_STATIONS)) {
+      return cached.data;
+    }
+
+    return null;
+  }
+
+  async setWeatherStations(isMain: boolean, data: WeatherStation[]): Promise<void> {
+    await this.setToStorage(this.getWeatherStationsKey(isMain), data, Date.now());
+  }
+
   async updateParaglidingLocationById(
     locationId: string,
     updates: Partial<ParaglidingLocationWithForecast>
@@ -272,23 +293,27 @@ class DataCache {
       const db = await this.initDB();
       const transaction = db.transaction([STORE_NAME], 'readwrite');
       const store = transaction.objectStore(STORE_NAME);
+      const cacheKeys = [
+        this.PARAGLIDING_KEY,
+        this.ALL_PARAGLIDING_KEY,
+        this.MAIN_WEATHER_STATIONS_KEY,
+        this.ALL_WEATHER_STATIONS_KEY,
+      ];
 
       await new Promise<void>((resolve, reject) => {
-        const deleteParagliding = store.delete(this.PARAGLIDING_KEY);
-        const deleteAllParagliding = store.delete(this.ALL_PARAGLIDING_KEY);
-
         let completed = 0;
         const onComplete = () => {
           completed++;
-          if (completed === 2) {
+          if (completed === cacheKeys.length) {
             resolve();
           }
         };
 
-        deleteParagliding.onsuccess = onComplete;
-        deleteParagliding.onerror = () => reject(deleteParagliding.error);
-        deleteAllParagliding.onsuccess = onComplete;
-        deleteAllParagliding.onerror = () => reject(deleteAllParagliding.error);
+        cacheKeys.forEach(key => {
+          const request = store.delete(key);
+          request.onsuccess = onComplete;
+          request.onerror = () => reject(request.error);
+        });
       });
     } catch (error) {
       console.warn('Failed to clear cache:', error);
@@ -301,9 +326,14 @@ class DataCache {
     }
 
     try {
-      const paraglidingCached = await this.getFromStorage(this.PARAGLIDING_KEY);
-      const allParaglidingCached = await this.getFromStorage(this.ALL_PARAGLIDING_KEY);
-      return paraglidingCached !== null || allParaglidingCached !== null;
+      const cachedEntries = await Promise.all([
+        this.getFromStorage(this.PARAGLIDING_KEY),
+        this.getFromStorage(this.ALL_PARAGLIDING_KEY),
+        this.getFromStorage(this.MAIN_WEATHER_STATIONS_KEY),
+        this.getFromStorage(this.ALL_WEATHER_STATIONS_KEY),
+      ]);
+
+      return cachedEntries.some(entry => entry !== null);
     } catch (error) {
       console.warn('Failed to check cache status:', error);
       return false;

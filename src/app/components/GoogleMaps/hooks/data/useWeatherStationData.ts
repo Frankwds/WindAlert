@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { dataCache } from '@/lib/data-cache';
 import { WeatherStationService } from '@/lib/supabase/weatherStations';
 import { StationDataService } from '@/lib/supabase/stationData';
 import { WeatherStationWithLatestData } from '@/lib/supabase/types';
@@ -6,11 +7,21 @@ import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 export const useWeatherStationData = (isMain: boolean) => {
   const loadLatestWeatherStationData = useCallback(async (): Promise<WeatherStationWithLatestData[]> => {
     try {
-      // Fetch weather stations metadata
-      const weatherStations = await WeatherStationService.getAllActive(isMain);
+      const cachedWeatherStations = await dataCache.getWeatherStations(isMain);
 
-      // Fetch latest data points for the active map scope
-      const latestData = await StationDataService.getLatestStationData(isMain);
+      let weatherStations = cachedWeatherStations;
+      let latestData;
+
+      if (cachedWeatherStations) {
+        latestData = await StationDataService.getLatestStationData(isMain);
+      } else {
+        [weatherStations, latestData] = await Promise.all([
+          WeatherStationService.getAllActive(isMain),
+          StationDataService.getLatestStationData(isMain),
+        ]);
+
+        await dataCache.setWeatherStations(isMain, weatherStations);
+      }
 
       // Create a map of station_id to latest data for efficient lookup
       const latestDataMap = new Map(latestData.map(data => [data.station_id, data]));
