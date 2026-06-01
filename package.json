@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "staging": "node --env-file=.env.staging ./node_modules/next/dist/bin/next dev",
     "prod": "next build && next start",
     "prod:debug": "node --inspect --env-file=.env.production.local ./node_modules/next/dist/bin/next dev",
     "build": "next build",
