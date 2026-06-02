@@ -64,7 +64,7 @@ export const useWeatherStationMarkers = ({
       hasLoadedInitialMarkers.current = true;
     } catch (err) {
       console.error('Error loading weather station markers:', err);
-      setMarkersError(err instanceof Error ? err.message : 'Failed to load weather station markers');
+      setMarkersError(err instanceof Error ? err.message : 'Det skjedde en feil ved innlastning av værstasjoner');
     } finally {
       isLoadingRef.current = false;
       setIsLoadingMarkers(false);
