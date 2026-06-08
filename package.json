@@ -21,6 +21,7 @@
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.95.3",
     "@types/google.maps": "^3.58.1",
+    "@vercel/analytics": "^2.0.1",
     "axios": "^1.13.4",
     "next": "^16.1.6",
     "puppeteer-core": "^24.37.2",
