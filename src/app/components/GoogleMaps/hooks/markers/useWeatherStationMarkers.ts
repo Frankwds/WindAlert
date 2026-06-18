@@ -1,27 +1,12 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { createWeatherStationMarkers } from '../../MarkerSetup';
+import { createWeatherStationMarker, updateWeatherStationMarker } from '../../MarkerSetup';
 import { WeatherStationWithLatestData } from '@/lib/supabase/types';
 import { useWeatherStationData } from '../data/useWeatherStationData';
 import { usePageVisibility } from '@/lib/hooks/usePageVisibility';
 
-const getLatestObservationMap = (weatherStations: WeatherStationWithLatestData[]): Map<string, string> =>
-  new Map(weatherStations.map(station => [station.station_id, station.station_data.updated_at]));
-
-const hasLatestObservationChanges = (
-  previousObservations: Map<string, string>,
-  nextObservations: Map<string, string>
-): boolean => {
-  if (previousObservations.size !== nextObservations.size) {
-    return true;
-  }
-
-  for (const [stationId, updatedAt] of nextObservations) {
-    if (previousObservations.get(stationId) !== updatedAt) {
-      return true;
-    }
-  }
-
-  return false;
+type WeatherStationMarkerEntry = {
+  marker: google.maps.marker.AdvancedMarkerElement;
+  observationKey: string;
 };
 
 interface UseWeatherStationMarkersProps {
@@ -46,7 +31,7 @@ export const useWeatherStationMarkers = ({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const hasLoadedInitialMarkers = useRef<boolean>(false);
-  const latestObservationsRef = useRef<Map<string, string>>(new Map());
+  const markerRegistryRef = useRef<Map<string, WeatherStationMarkerEntry>>(new Map());
   const { isVisibleRef, isVisibleState } = usePageVisibility();
 
   const loadMarkers = useCallback(async () => {
@@ -57,9 +42,14 @@ export const useWeatherStationMarkers = ({
       setMarkersError(null);
 
       const weatherStations = await loadLatestWeatherStationData();
-      latestObservationsRef.current = getLatestObservationMap(weatherStations);
 
-      const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
+      const registry = new Map<string, WeatherStationMarkerEntry>();
+      const markers = weatherStations.map(location => {
+        const marker = createWeatherStationMarker(location, onWeatherStationMarkerClick);
+        registry.set(location.station_id, { marker, observationKey: location.station_data.updated_at });
+        return marker;
+      });
+      markerRegistryRef.current = registry;
       setWeatherStationMarkers(markers);
       hasLoadedInitialMarkers.current = true;
     } catch (err) {
@@ -77,16 +67,45 @@ export const useWeatherStationMarkers = ({
       isLoadingRef.current = true;
       const weatherStations = await loadLatestWeatherStationData();
       if (weatherStations) {
-        const nextObservations = getLatestObservationMap(weatherStations);
+        const registry = markerRegistryRef.current;
+        const nextStationIds = new Set<string>();
+        let membershipChanged = false;
 
-        if (!hasLatestObservationChanges(latestObservationsRef.current, nextObservations)) {
-          setMarkersError(null);
-          return;
+        for (const location of weatherStations) {
+          nextStationIds.add(location.station_id);
+          const observationKey = location.station_data.updated_at;
+          const existing = registry.get(location.station_id);
+
+          if (!existing) {
+            // New station entered the live dataset: create a marker for it.
+            const marker = createWeatherStationMarker(location, onWeatherStationMarkerClick);
+            registry.set(location.station_id, { marker, observationKey });
+            membershipChanged = true;
+          } else if (existing.observationKey !== observationKey) {
+            // Latest observation changed: update the existing marker's DOM in place
+            // so its instance (and any anchored info window) is preserved.
+            updateWeatherStationMarker(existing.marker, location);
+            existing.observationKey = observationKey;
+          }
+          // Unchanged observation: skip entirely.
         }
 
-        latestObservationsRef.current = nextObservations;
-        const markers = createWeatherStationMarkers(weatherStations, onWeatherStationMarkerClick);
-        setWeatherStationMarkers(markers);
+        // Remove markers for stations no longer present in the live dataset.
+        for (const [stationId, entry] of registry) {
+          if (!nextStationIds.has(stationId)) {
+            entry.marker.map = null;
+            registry.delete(stationId);
+            membershipChanged = true;
+          }
+        }
+
+        // Only replace the markers array (which re-runs the clusterer) when
+        // markers are added or removed. Pure in-place observation updates leave
+        // React state and the clusterer untouched.
+        if (membershipChanged) {
+          setWeatherStationMarkers(Array.from(registry.values(), entry => entry.marker));
+        }
+
         setMarkersError(null); // Clear any previous error on success
       }
     } catch (err) {

@@ -158,18 +158,20 @@ export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWi
   return container;
 };
 
-export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {
-  const container = document.createElement('div');
-  container.className =
-    'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
-  container.style.cursor = 'pointer';
-  container.style.userSelect = 'none';
-  container.style.transform = 'translate(0%, 50%)';
+// Render (or re-render) the wind visuals for a weather-station marker into an
+// existing container. Only the children and `dataset` are replaced so the
+// container node — and any event listeners attached to it — is preserved.
+export const refreshWeatherStationWindMarkerContent = (container: HTMLElement, stationData: StationData[]): void => {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
 
   if (stationData.length === 0) {
     const svg = createHollowWindTriangleSVG(true, 0, getWindArrowColor(0));
     container.appendChild(svg);
-    return container;
+    delete container.dataset.windSpeed;
+    delete container.dataset.windDirection;
+    return;
   }
 
   const latestData = stationData.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
@@ -180,6 +182,25 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
 
   container.appendChild(svg);
   container.appendChild(textOverlay);
+
+  if (latestData.wind_speed !== null && latestData.direction !== null) {
+    container.dataset.windSpeed = latestData.wind_speed.toString();
+    container.dataset.windDirection = latestData.direction.toString();
+  } else {
+    delete container.dataset.windSpeed;
+    delete container.dataset.windDirection;
+  }
+};
+
+export const createWeatherStationWindMarkerElement = (stationData: StationData[]): HTMLElement => {
+  const container = document.createElement('div');
+  container.className =
+    'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.style.cursor = 'pointer';
+  container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
+
+  refreshWeatherStationWindMarkerContent(container, stationData);
 
   return container;
 };
