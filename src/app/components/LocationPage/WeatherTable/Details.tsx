@@ -118,14 +118,18 @@ const Details = ({
         {/* Basic Weather Conditions */}
         <div className='mb-4'>
           <div className='space-y-1 text-sm'>
-            <div className='flex justify-between'>
-              <span>Trykk ved havnivå:</span>
-              <span className='font-medium'>{hour.pressure_msl} hPa</span>
-            </div>
-            <div className='flex justify-between'>
-              <span>Sannsynlighet for nedbør:</span>
-              <span className='font-medium'>{hour.precipitation_probability}%</span>
-            </div>
+            {hour.pressure_msl != null && (
+              <div className='flex justify-between'>
+                <span>Trykk ved havnivå:</span>
+                <span className='font-medium'>{hour.pressure_msl} hPa</span>
+              </div>
+            )}
+            {hour.precipitation_probability != null && (
+              <div className='flex justify-between'>
+                <span>Sannsynlighet for nedbør:</span>
+                <span className='font-medium'>{hour.precipitation_probability}%</span>
+              </div>
+            )}
             {hour.freezing_level_height != null && (
               <div className='flex justify-between'>
                 <span>Frysetemperatur:</span>
@@ -139,24 +143,30 @@ const Details = ({
         <div className='mb-4'>
           <h5 className='font-semibold text-sm mb-2 text-[var(--foreground)] opacity-80'>Atmosfærisk stabilitet</h5>
           <div className='space-y-1 text-sm'>
-            <div className='flex justify-between'>
-              <span>Konvektiv hemming:</span>
-              <span className='font-medium'>{hour.convective_inhibition} J/kg</span>
-            </div>
-            <div className='flex justify-between'>
-              <span>Grenselagshøyde:</span>
-              <span className='font-medium'>{hour.boundary_layer_height} m</span>
-            </div>
+            {hour.convective_inhibition != null && (
+              <div className='flex justify-between'>
+                <span>Konvektiv hemming:</span>
+                <span className='font-medium'>{hour.convective_inhibition} J/kg</span>
+              </div>
+            )}
+            {hour.boundary_layer_height != null && (
+              <div className='flex justify-between'>
+                <span>Grenselagshøyde:</span>
+                <span className='font-medium'>{hour.boundary_layer_height} m</span>
+              </div>
+            )}
             {hour.lifted_index != null && (
               <div className='flex justify-between'>
                 <span>Løftet indeks:</span>
                 <span className='font-medium'>{hour.lifted_index}</span>
               </div>
             )}
-            <div className='flex justify-between'>
-              <span>CAPE:</span>
-              <span className='font-medium'>{hour.cape} J/kg</span>
-            </div>
+            {hour.cape != null && (
+              <div className='flex justify-between'>
+                <span>CAPE:</span>
+                <span className='font-medium'>{hour.cape} J/kg</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -164,18 +174,24 @@ const Details = ({
         <div>
           <h5 className='font-semibold text-sm mb-2 text-[var(--foreground)] opacity-80'>Skydekke</h5>
           <div className='space-y-1 text-sm'>
-            <div className='flex justify-between'>
-              <span>Lavt skydekke:</span>
-              <span className='font-medium'>{hour.cloud_cover_low}%</span>
-            </div>
-            <div className='flex justify-between'>
-              <span>Middels skydekke:</span>
-              <span className='font-medium'>{hour.cloud_cover_mid}%</span>
-            </div>
-            <div className='flex justify-between'>
-              <span>Høyt skydekke:</span>
-              <span className='font-medium'>{hour.cloud_cover_high}%</span>
-            </div>
+            {hour.cloud_cover_low != null && (
+              <div className='flex justify-between'>
+                <span>Lavt skydekke:</span>
+                <span className='font-medium'>{hour.cloud_cover_low}%</span>
+              </div>
+            )}
+            {hour.cloud_cover_mid != null && (
+              <div className='flex justify-between'>
+                <span>Middels skydekke:</span>
+                <span className='font-medium'>{hour.cloud_cover_mid}%</span>
+              </div>
+            )}
+            {hour.cloud_cover_high != null && (
+              <div className='flex justify-between'>
+                <span>Høyt skydekke:</span>
+                <span className='font-medium'>{hour.cloud_cover_high}%</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

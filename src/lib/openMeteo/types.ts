@@ -12,8 +12,8 @@ export interface WeatherDataPoint {
   windDirection10m: number;
   windGusts10m: number;
   precipitation: number;
-  precipitationProbability: number;
-  pressureMsl: number;
+  precipitationProbability: number | null;
+  pressureMsl: number | null;
   weatherCode: string;
   isDay: 0 | 1;
 
@@ -35,15 +35,15 @@ export interface WeatherDataPoint {
 
   // Atmospheric conditions - Cloud cover
   cloudCover: number;
-  cloudCoverLow: number;
-  cloudCoverMid: number;
-  cloudCoverHigh: number;
+  cloudCoverLow: number | null;
+  cloudCoverMid: number | null;
+  cloudCoverHigh: number | null;
 
   // Atmospheric conditions - Stability and convection
-  cape: number;
-  convectiveInhibition: number;
+  cape: number | null;
+  convectiveInhibition: number | null;
   liftedIndex: number | null;
-  boundaryLayerHeight: number;
+  boundaryLayerHeight: number | null;
   freezingLevelHeight: number | null;
 
   // Atmospheric conditions - Geopotential heights

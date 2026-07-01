@@ -27,8 +27,8 @@ export interface ForecastCache1hr {
   precipitation: number;
   precipitation_max?: number;
   precipitation_min?: number;
-  precipitation_probability?: number;
-  pressure_msl: number;
+  precipitation_probability?: number | null;
+  pressure_msl: number | null;
   weather_code: string;
   is_day: 0 | 1;
   is_yr_data: boolean;
@@ -56,15 +56,15 @@ export interface ForecastCache1hr {
 
   // Atmospheric conditions - Cloud cover
   cloud_cover: number;
-  cloud_cover_low: number;
-  cloud_cover_mid: number;
-  cloud_cover_high: number;
+  cloud_cover_low: number | null;
+  cloud_cover_mid: number | null;
+  cloud_cover_high: number | null;
 
   // Atmospheric conditions - Stability and convection
-  cape: number;
-  convective_inhibition: number;
+  cape: number | null;
+  convective_inhibition: number | null;
   lifted_index: number | null;
-  boundary_layer_height: number;
+  boundary_layer_height: number | null;
   freezing_level_height: number | null;
 
   // Atmospheric conditions - Geopotential heights
