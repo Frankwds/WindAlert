@@ -42,9 +42,9 @@ export interface WeatherDataPoint {
   // Atmospheric conditions - Stability and convection
   cape: number;
   convectiveInhibition: number;
-  liftedIndex: number;
+  liftedIndex: number | null;
   boundaryLayerHeight: number;
-  freezingLevelHeight: number;
+  freezingLevelHeight: number | null;
 
   // Atmospheric conditions - Geopotential heights
   geopotentialHeight1000hPa: number;

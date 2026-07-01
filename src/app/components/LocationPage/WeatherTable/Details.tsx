@@ -126,10 +126,12 @@ const Details = ({
               <span>Sannsynlighet for nedbør:</span>
               <span className='font-medium'>{hour.precipitation_probability}%</span>
             </div>
-            <div className='flex justify-between'>
-              <span>Frysetemperatur:</span>
-              <span className='font-medium'>{hour.freezing_level_height} m</span>
-            </div>
+            {hour.freezing_level_height != null && (
+              <div className='flex justify-between'>
+                <span>Frysetemperatur:</span>
+                <span className='font-medium'>{hour.freezing_level_height} m</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -145,10 +147,12 @@ const Details = ({
               <span>Grenselagshøyde:</span>
               <span className='font-medium'>{hour.boundary_layer_height} m</span>
             </div>
-            <div className='flex justify-between'>
-              <span>Løftet indeks:</span>
-              <span className='font-medium'>{hour.lifted_index}</span>
-            </div>
+            {hour.lifted_index != null && (
+              <div className='flex justify-between'>
+                <span>Løftet indeks:</span>
+                <span className='font-medium'>{hour.lifted_index}</span>
+              </div>
+            )}
             <div className='flex justify-between'>
               <span>CAPE:</span>
               <span className='font-medium'>{hour.cape} J/kg</span>

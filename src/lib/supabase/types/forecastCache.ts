@@ -63,9 +63,9 @@ export interface ForecastCache1hr {
   // Atmospheric conditions - Stability and convection
   cape: number;
   convective_inhibition: number;
-  lifted_index: number;
+  lifted_index: number | null;
   boundary_layer_height: number;
-  freezing_level_height: number;
+  freezing_level_height: number | null;
 
   // Atmospheric conditions - Geopotential heights
   geopotential_height_1000hpa: number;

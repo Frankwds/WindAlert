@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+// `freezing_level_height` and `lifted_index` are not always provided by the model
+// selected by Open-Meteo's `best_match`, so they can be `null`. Preserve `null` here
+// so the UI can conditionally hide them instead of showing a misleading `0`.
+const nullableNumberArray = z.array(z.number().nullable());
+
 export const openMeteoResponseSchema = z.object({
   elevation: z.number(),
   hourly: z.object({
@@ -30,9 +35,9 @@ export const openMeteoResponseSchema = z.object({
     cloud_cover_mid: z.array(z.number()),
     cloud_cover_high: z.array(z.number()),
     is_day: z.array(z.union([z.literal(0), z.literal(1)])),
-    freezing_level_height: z.array(z.number()),
+    freezing_level_height: nullableNumberArray,
     cape: z.array(z.number()),
-    lifted_index: z.array(z.number()),
+    lifted_index: nullableNumberArray,
     boundary_layer_height: z.array(z.number()),
     geopotential_height_1000hPa: z.array(z.number()),
     geopotential_height_925hPa: z.array(z.number()),
