@@ -20,6 +20,7 @@ const StationDataTable: React.FC<StationDataTableProps> = ({ stationData, timezo
 
   const dataRows = [
     {
+      hasData: () => true,
       getValue: (data: StationData) => {
         const time = new Date(data.updated_at).toLocaleTimeString(['nb-NO'], {
           hour: '2-digit',
@@ -36,14 +37,15 @@ const StationDataTable: React.FC<StationDataTableProps> = ({ stationData, timezo
     },
 
     {
+      hasData: (rows: StationData[]) => rows.some(d => d.wind_speed !== null || d.wind_gust !== null),
       getValue: (data: StationData) => {
-        const windColor = getWindSpeedColor(data.wind_speed);
+        const windColor = data.wind_speed !== null ? getWindSpeedColor(data.wind_speed) : 'var(--wind-none)';
         return (
           <div className='relative rounded'>
             <div className='flex flex-col items-center'>
               <div className='relative rounded  w-11 flex items-center justify-center'>
                 <div className='absolute inset-0 rounded-t opacity-70' style={{ backgroundColor: windColor }} />
-                <span className='relative font-medium'>{data.wind_speed}</span>
+                <span className='relative font-medium'>{data.wind_speed !== null ? data.wind_speed : '–'}</span>
               </div>
               <hr />
               {data.wind_gust !== null ? (
@@ -64,13 +66,18 @@ const StationDataTable: React.FC<StationDataTableProps> = ({ stationData, timezo
     },
 
     {
-      getValue: (data: StationData) => (
-        <WindDirectionArrow direction={data.direction} size={24} className='mx-auto' color='var(--foreground)' />
-      ),
+      hasData: (rows: StationData[]) => rows.some(d => d.direction !== null),
+      getValue: (data: StationData) =>
+        data.direction !== null ? (
+          <WindDirectionArrow direction={data.direction} size={24} className='mx-auto' color='var(--foreground)' />
+        ) : (
+          <span className='text-xs text-[var(--foreground)]/50'>–</span>
+        ),
     },
     {
+      hasData: (rows: StationData[]) => rows.some(d => d.temperature != null),
       getValue: (data: StationData) => {
-        if (!data.temperature) return null;
+        if (data.temperature == null) return null;
         const temperature = Math.round(data.temperature);
         const opacity = temperature ? getTemperatureOpacity(temperature) : 0;
 
@@ -116,17 +123,19 @@ const StationDataTable: React.FC<StationDataTableProps> = ({ stationData, timezo
         <div ref={scrollContainerRef} className='overflow-x-auto overflow-y-hidden scrollbar-thin '>
           <table className='min-w-full text-sm text-center'>
             <tbody>
-              {dataRows.map((row, rowIndex) => (
-                <tr key={rowIndex} className={`border-b border-[var(--border)] last:border-b-0`}>
-                  {groupedByDay[activeDay].map((data, colIndex) => (
-                    <td key={colIndex} className=' py-1 whitespace-nowrap bg-[var(--background)]'>
-                      <div className={`flex pl-1 items-center justify-center  ${rowIndex === 0 ? 'font-bold' : ''}`}>
-                        {row.getValue(data)}
-                      </div>
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {dataRows
+                .filter(row => row.hasData(groupedByDay[activeDay]))
+                .map((row, rowIndex) => (
+                  <tr key={rowIndex} className={`border-b border-[var(--border)] last:border-b-0`}>
+                    {groupedByDay[activeDay].map((data, colIndex) => (
+                      <td key={colIndex} className=' py-1 whitespace-nowrap bg-[var(--background)]'>
+                        <div className={`flex pl-1 items-center justify-center  ${rowIndex === 0 ? 'font-bold' : ''}`}>
+                          {row.getValue(data)}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

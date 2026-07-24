@@ -142,6 +142,29 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
   return svg;
 };
 
+// Marker used when a station reports data but no wind direction. A hollow
+// circle communicates "measurement present, direction unknown" without
+// implying a misleading heading.
+const createNoDirectionSVG = (isClustered: boolean, color: string = '#d8d8d8') => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '42');
+  svg.setAttribute('height', '42');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.style.transform = isClustered ? 'scale(0.8)' : '';
+  svg.style.transformOrigin = 'center';
+
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.setAttribute('cx', '12');
+  circle.setAttribute('cy', '12');
+  circle.setAttribute('r', '8');
+  circle.setAttribute('fill', color);
+  circle.setAttribute('stroke', 'black');
+  circle.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
+  svg.appendChild(circle);
+
+  return svg;
+};
+
 export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWindDirection: number): HTMLElement => {
   const container = document.createElement('div');
   container.className =
@@ -176,15 +199,22 @@ export const refreshWeatherStationWindMarkerContent = (container: HTMLElement, s
 
   const latestData = stationData.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())[0];
 
-  const windColor = getWindArrowColor(latestData.wind_speed);
-  const svg = createHollowWindTriangleSVG(false, latestData.direction, windColor);
-  const textOverlay = createTextOverlay(latestData.wind_speed);
+  // Fall back to gust when the station reports no mean wind speed. Stations
+  // always publish at least one of speed/gust, so this keeps the marker useful.
+  const displaySpeed = latestData.wind_speed ?? latestData.wind_gust;
+
+  const windColor = getWindArrowColor(displaySpeed ?? 0);
+  const svg =
+    latestData.direction !== null
+      ? createHollowWindTriangleSVG(false, latestData.direction, windColor)
+      : createNoDirectionSVG(false, windColor);
+  const textOverlay = createTextOverlay(displaySpeed);
 
   container.appendChild(svg);
   container.appendChild(textOverlay);
 
-  if (latestData.wind_speed !== null && latestData.direction !== null) {
-    container.dataset.windSpeed = latestData.wind_speed.toString();
+  if (displaySpeed !== null && latestData.direction !== null) {
+    container.dataset.windSpeed = displaySpeed.toString();
     container.dataset.windDirection = latestData.direction.toString();
   } else {
     delete container.dataset.windSpeed;
@@ -206,7 +236,7 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
 };
 
 // Create non-rotating text overlay
-const createTextOverlay = (windSpeed: number): HTMLElement => {
+const createTextOverlay = (windSpeed: number | null): HTMLElement => {
   const textOverlay = document.createElement('div');
   textOverlay.style.position = 'absolute';
   textOverlay.style.top = '50%';
@@ -220,7 +250,7 @@ const createTextOverlay = (windSpeed: number): HTMLElement => {
   textOverlay.style.textShadow = '0px 0px 1px rgba(255,255,255,1),0px 0px 3px rgba(255,255,255,1)';
   textOverlay.style.lineHeight = '1';
   textOverlay.style.zIndex = '10';
-  textOverlay.textContent = `${Math.round(windSpeed)}`;
+  textOverlay.textContent = windSpeed !== null ? `${Math.round(windSpeed)}` : '–';
 
   return textOverlay;
 };

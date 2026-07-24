@@ -71,19 +71,26 @@ export function mapMetObservationsToStationData(observationsData: MetObservation
     });
   });
 
-  // Convert map to array and filter out incomplete records
+  // Convert map to array and filter out records with no useful measurements
   const stationDataArray = Array.from(stationDataMap.values())
     .filter(data => {
-      // Only include records that have at least wind_speed and direction
-      return data.wind_speed !== undefined && data.direction !== undefined;
+      // Keep records that carry at least one useful measurement. Partial data
+      // (e.g. wind without direction, or temperature only) is still worth
+      // surfacing to the frontend.
+      return (
+        data.wind_speed !== undefined ||
+        data.wind_gust !== undefined ||
+        data.direction !== undefined ||
+        data.temperature !== undefined
+      );
     })
     .map(data => ({
       station_id: data.station_id,
-      wind_speed: data.wind_speed!,
+      wind_speed: data.wind_speed ?? null,
       wind_gust: data.wind_gust ?? null,
       wind_min_speed: null,
-      direction: data.direction!,
-      temperature: data.temperature,
+      direction: data.direction ?? null,
+      temperature: data.temperature ?? null,
       updated_at: data.updated_at,
     }));
 
