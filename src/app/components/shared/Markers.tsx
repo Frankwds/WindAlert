@@ -156,7 +156,7 @@ const createNoDirectionSVG = (isClustered: boolean, color: string = '#d8d8d8') =
   const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circle.setAttribute('cx', '12');
   circle.setAttribute('cy', '12');
-  circle.setAttribute('r', '8');
+  circle.setAttribute('r', '7');
   circle.setAttribute('fill', color);
   circle.setAttribute('stroke', 'black');
   circle.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
