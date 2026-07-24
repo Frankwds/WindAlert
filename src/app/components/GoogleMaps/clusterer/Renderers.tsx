@@ -2,6 +2,7 @@ import { Cluster, Renderer } from '@googlemaps/markerclusterer';
 import {
   createParaglidingMarkerElementWithDirection,
   createWeatherStationClusterElement,
+  createWeatherStationClusterCircleElement,
   createLandingMarkerElement,
 } from '../../shared/Markers';
 import { ParaglidingLocationWithForecast } from '@/lib/supabase/types';
@@ -13,10 +14,13 @@ export class WeatherStationClusterRenderer implements Renderer {
     const markers = cluster.markers;
 
     // Calculate mean wind data from clustered markers
-    const { windSpeed, windDirection } = getDominantWind(markers);
+    const { windSpeed, windDirection, hasDirection } = getDominantWind(markers);
 
-    // Create cluster element with mean wind data (no text, just arrow)
-    const markerElement = createWeatherStationClusterElement(windSpeed, windDirection);
+    // Directional groups get the wind arrow; direction-less groups get a circle
+    // coloured by the strongest wind in the cluster.
+    const markerElement = hasDirection
+      ? createWeatherStationClusterElement(windSpeed, windDirection)
+      : createWeatherStationClusterCircleElement(windSpeed);
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position,

@@ -181,6 +181,23 @@ export const createWeatherStationClusterElement = (meanWindSpeed: number, meanWi
   return container;
 };
 
+// Cluster element used when every clustered station lacks a wind direction.
+// Renders a hollow circle coloured by the highest wind speed in the group.
+export const createWeatherStationClusterCircleElement = (maxWindSpeed: number): HTMLElement => {
+  const container = document.createElement('div');
+  container.className =
+    'flex flex-col items-center cursor-pointer transition-transform duration-200 ease-in-out select-none';
+  container.style.cursor = 'pointer';
+  container.style.userSelect = 'none';
+  container.style.transform = 'translate(0%, 50%)';
+
+  const windColor = getWindArrowColor(maxWindSpeed);
+  const svg = createNoDirectionSVG(true, windColor);
+  container.appendChild(svg);
+
+  return container;
+};
+
 // Render (or re-render) the wind visuals for a weather-station marker into an
 // existing container. Only the children and `dataset` are replaced so the
 // container node — and any event listeners attached to it — is preserved.
@@ -213,11 +230,18 @@ export const refreshWeatherStationWindMarkerContent = (container: HTMLElement, s
   container.appendChild(svg);
   container.appendChild(textOverlay);
 
-  if (displaySpeed !== null && latestData.direction !== null) {
+  // Always expose the wind speed so clusters can colour themselves, even when
+  // direction is unknown. Only publish windDirection when we actually have one
+  // so the clusterer can tell arrow-capable markers from circle-only markers.
+  if (displaySpeed !== null) {
     container.dataset.windSpeed = displaySpeed.toString();
-    container.dataset.windDirection = latestData.direction.toString();
   } else {
     delete container.dataset.windSpeed;
+  }
+
+  if (latestData.direction !== null) {
+    container.dataset.windDirection = latestData.direction.toString();
+  } else {
     delete container.dataset.windDirection;
   }
 };
