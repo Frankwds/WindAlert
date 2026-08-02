@@ -265,7 +265,10 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     mapRef,
     mapInstance,
     isLoading: isLoading,
-    error: error || markersErrorParaglidingAndLandingMarkers || markersErrorWeatherStationMarkers,
+    // Marker data failures must not unmount the map (useMapInstance only inits once).
+    // Surface them separately so the map stays mounted while markers retry.
+    error,
+    markersError: markersErrorParaglidingAndLandingMarkers || markersErrorWeatherStationMarkers,
 
     // Individual marker loading states
     isLoadingParaglidingMarkers: isLoadingParaglidingAndLandingMarkers,
