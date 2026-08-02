@@ -59,14 +59,27 @@ export class ParaglidingLocationService {
   /**
    * Get all active paragliding locations optimized for markers, with forecast data
    * for today and the next three calendar days (app forecast range).
+   *
+   * Paginated: a single nested forecast embed for all main locations is ~12MB and
+   * intermittently hits Postgres statement_timeout under load. Pages of 100 stay
+   * well under that budget.
    */
   static async getAllMainLocationsWithForecast(): Promise<ParaglidingLocationWithForecast[]> {
+    const PAGE_SIZE = 100;
     const now = new Date();
     const forecastEnd = getForecastRangeEnd(now);
-    const { data, error } = await supabase
-      .from('all_paragliding_locations')
-      .select(
-        `
+    let allLocations: ParaglidingLocationWithForecast[] = [];
+    let page = 0;
+    let hasMoreData = true;
+
+    while (hasMoreData) {
+      const from = page * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+
+      const { data, error } = await supabase
+        .from('all_paragliding_locations')
+        .select(
+          `
         id, name, latitude, flightlog_id, longitude, altitude, n, e, s, w, ne, se, sw, nw,
         landing_latitude, landing_longitude, landing_altitude, timezone,
         forecast_cache(
@@ -82,19 +95,31 @@ export class ParaglidingLocationService {
           landing_wind_direction
         )
       `
-      )
-      .eq('is_active', true)
-      .eq('is_main', true)
-      .gte('forecast_cache.time', now.toISOString())
-      .lt('forecast_cache.time', forecastEnd.toISOString());
+        )
+        .eq('is_active', true)
+        .eq('is_main', true)
+        .gte('forecast_cache.time', now.toISOString())
+        .lt('forecast_cache.time', forecastEnd.toISOString())
+        .range(from, to);
 
-    if (error) {
-      console.error('Error fetching active locations for markers with forecast:', error);
-      throw error;
+      if (error) {
+        console.error(`Error fetching active locations with forecast on page ${page}:`, error);
+        throw error;
+      }
+
+      if (data && data.length > 0) {
+        allLocations = [...allLocations, ...(data as ParaglidingLocationWithForecast[])];
+        page++;
+        if (data.length < PAGE_SIZE) {
+          hasMoreData = false;
+        }
+      } else {
+        hasMoreData = false;
+      }
     }
-    console.log(`Fetched ${data?.length} active locations with forecast`);
 
-    return (data as ParaglidingLocationWithForecast[]) || [];
+    console.log(`Fetched ${allLocations.length} active locations with forecast`);
+    return allLocations;
   }
 
   /**
