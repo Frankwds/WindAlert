@@ -65,7 +65,7 @@ export class ParaglidingLocationService {
    * well under that budget.
    */
   static async getAllMainLocationsWithForecast(): Promise<ParaglidingLocationWithForecast[]> {
-    const PAGE_SIZE = 100;
+    const PAGE_SIZE = 999;
     const now = new Date();
     const forecastEnd = getForecastRangeEnd(now);
     let allLocations: ParaglidingLocationWithForecast[] = [];
