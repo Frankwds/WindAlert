@@ -120,7 +120,12 @@ const getWindArrowColor = (speed: number): string => {
   return 'var(--wind-strong)';
 };
 
-const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, color: string = '#d8d8d8') => {
+const createHollowWindTriangleSVG = (
+  isClustered: boolean,
+  direction: number,
+  color: string = '#d8d8d8',
+  dashed: boolean = false
+) => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '42');
   svg.setAttribute('height', '42');
@@ -137,6 +142,10 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
   windArrow.setAttribute('stroke', 'black');
   windArrow.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
   windArrow.setAttribute('stroke-linecap', 'round');
+  // A dashed outline flags a gust-only reading (no mean wind speed reported).
+  if (dashed) {
+    windArrow.setAttribute('stroke-dasharray', '1.5 1');
+  }
   svg.appendChild(windArrow);
 
   return svg;
@@ -145,7 +154,7 @@ const createHollowWindTriangleSVG = (isClustered: boolean, direction: number, co
 // Marker used when a station reports data but no wind direction. A hollow
 // circle communicates "measurement present, direction unknown" without
 // implying a misleading heading.
-const createNoDirectionSVG = (isClustered: boolean, color: string = '#d8d8d8') => {
+const createNoDirectionSVG = (isClustered: boolean, color: string = '#d8d8d8', dashed: boolean = false) => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '42');
   svg.setAttribute('height', '42');
@@ -160,6 +169,10 @@ const createNoDirectionSVG = (isClustered: boolean, color: string = '#d8d8d8') =
   circle.setAttribute('fill', color);
   circle.setAttribute('stroke', 'black');
   circle.setAttribute('stroke-width', isClustered ? '0.8' : '0.5');
+  // A dashed outline flags a gust-only reading (no mean wind speed reported).
+  if (dashed) {
+    circle.setAttribute('stroke-dasharray', '1.5 1');
+  }
   svg.appendChild(circle);
 
   return svg;
@@ -220,12 +233,16 @@ export const refreshWeatherStationWindMarkerContent = (container: HTMLElement, s
   // always publish at least one of speed/gust, so this keeps the marker useful.
   const displaySpeed = latestData.wind_speed ?? latestData.wind_gust;
 
+  // Gust-only stations report a gust but no mean wind speed. Flag them so the
+  // marker (dashed outline + "G" label) doesn't read as a mean-wind value.
+  const isGustOnly = latestData.wind_speed === null && latestData.wind_gust !== null;
+
   const windColor = getWindArrowColor(displaySpeed ?? 0);
   const svg =
     latestData.direction !== null
-      ? createHollowWindTriangleSVG(false, latestData.direction, windColor)
-      : createNoDirectionSVG(false, windColor);
-  const textOverlay = createTextOverlay(displaySpeed);
+      ? createHollowWindTriangleSVG(false, latestData.direction, windColor, isGustOnly)
+      : createNoDirectionSVG(false, windColor, isGustOnly);
+  const textOverlay = createTextOverlay(displaySpeed, isGustOnly);
 
   container.appendChild(svg);
   container.appendChild(textOverlay);
@@ -260,7 +277,7 @@ export const createWeatherStationWindMarkerElement = (stationData: StationData[]
 };
 
 // Create non-rotating text overlay
-const createTextOverlay = (windSpeed: number | null): HTMLElement => {
+const createTextOverlay = (windSpeed: number | null, isGustOnly: boolean = false): HTMLElement => {
   const textOverlay = document.createElement('div');
   textOverlay.style.position = 'absolute';
   textOverlay.style.top = '50%';
@@ -274,7 +291,10 @@ const createTextOverlay = (windSpeed: number | null): HTMLElement => {
   textOverlay.style.textShadow = '0px 0px 1px rgba(255,255,255,1),0px 0px 3px rgba(255,255,255,1)';
   textOverlay.style.lineHeight = '1';
   textOverlay.style.zIndex = '10';
-  textOverlay.textContent = windSpeed !== null ? `${Math.round(windSpeed)}` : '–';
+  // Wrap gust-only readings in parentheses to match how gusts are shown
+  // elsewhere on the site, so they aren't mistaken for mean wind.
+  const label = windSpeed !== null ? `${Math.round(windSpeed)}` : '–';
+  textOverlay.textContent = windSpeed !== null && isGustOnly ? `(${label})` : label;
 
   return textOverlay;
 };
