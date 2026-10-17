@@ -64,7 +64,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
       setTimeout(() => {
         contributeRef.current?.scrollIntoView({
           behavior: 'smooth',
-          block: 'end',
+          block: 'start',
         });
       }, 100);
     }
@@ -187,7 +187,7 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
   }, [isOpen]);
 
   return (
-    <div ref={contributeRef}>
+    <div ref={contributeRef} className='mt-4'>
       <Collapsible
         title='Rediger Landing'
         isOpen={isOpen}
@@ -195,12 +195,16 @@ export const ContributeLanding: React.FC<ContributeLandingProps> = ({
         className='bg-[var(--card)] border border-[var(--border)] rounded-lg'
       >
         {isOpen ? (
-          <div className='space-y-4'>
+          <div className='space-y-4 px-3'>
+            <p className='text-sm text-[var(--foreground)]'>
+              Her kan du legge til eller flytte landingstedet for starten. Endringen vises for alle som bruker
+              WindLord.
+            </p>
             {!user && !authLoading ? (
               <div className='space-y-3 p-4 bg-[var(--card)] border border-[var(--border)] rounded-lg'>
                 <p className='text-sm text-[var(--foreground)] text-center'>Du må være innlogget for å bidra</p>
                 <div className='flex justify-center'>
-                  <LoginButton />
+                  <LoginButton variant='content' />
                 </div>
               </div>
             ) : (

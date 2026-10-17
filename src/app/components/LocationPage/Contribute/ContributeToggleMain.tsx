@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import Collapsible from '../../shared/Collapsible';
+import { ButtonAccept } from '../../shared';
 import { dataCache } from '@/lib/data-cache';
 import { ParaglidingLocation, ParaglidingLocationWithForecast } from '@/lib/supabase/types';
 import { useAuth } from '@/contexts/AuthContext';
@@ -92,57 +94,37 @@ export const ContributeToggleMain: React.FC<ContributeToggleMainProps> = ({ loca
     }
   }, [locationId, is_main, user]);
 
+  const title = is_main ? 'Skjul fra hovedstarter' : 'Legg til i hovedstarter';
   const buttonText = is_main ? 'Skjul fra hovedstarter' : 'Sett som hovedstart';
-  const loadingText = is_main ? 'Nedgraderer...' : 'Oppgraderer...';
-
-  if (!user && !authLoading) {
-    return (
-      <div className='mt-4'>
-        <div className='rounded-lg p-4 bg-[var(--card)] border border-[var(--border)] rounded-lg'>
-          <p className='text-sm text-[var(--foreground)] text-center mb-3'>Du må være innlogget for å bidra</p>
-          <div className='flex justify-center'>
-            <LoginButton />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const loadingText = is_main ? 'Skjuler...' : 'Legger til...';
+  const description = is_main
+    ? 'Denne starten er en hovedstart og vises i kartet på forsiden. Hvis du skjuler den, vises den kun på «Alle starter»-kartet for alle som bruker WindLord.'
+    : 'Denne starten er skjult fra hovedstarter. Hvis du setter den som hovedstart, vises den i kartet på forsiden for alle som bruker WindLord.';
 
   return (
     <div className='mt-4'>
-      <div className='rounded-lg'>
-        <button
-          onClick={handleToggle}
-          disabled={isToggling || !user}
-          className='w-full text-left p-4 focus:outline-none cursor-pointer hover:shadow-[var(--shadow-sm)] hover:brightness-95 relative group bg-[var(--card)] border border-[var(--border)] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed'
-        >
-          <div className='flex items-center w-full relative z-10'>
-            <div className='flex items-center flex-1'>
-              {isToggling ? (
-                <>
-                  <div className='w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2'></div>
-                  {loadingText}
-                </>
-              ) : (
-                <>{buttonText}</>
-              )}
-            </div>
+      <Collapsible title={title} className='bg-[var(--card)] border border-[var(--border)] rounded-lg'>
+        <div className='space-y-4 px-3'>
+          <p className='text-sm text-[var(--foreground)]'>{description}</p>
 
-            <div className='text-[var(--muted)] flex-shrink-0 ml-2'>
-              <svg className='w-4 h-4 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                {is_main ? (
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 14l-7 7m0 0l-7-7m7 7V3' />
-                ) : (
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 10l7-7m0 0l7 7m-7-7v18' />
-                )}
-              </svg>
+          {!user && !authLoading ? (
+            <div className='space-y-3 p-4 bg-[var(--card)] border border-[var(--border)] rounded-lg'>
+              <p className='text-sm text-[var(--foreground)] text-center'>Du må være innlogget for å bidra</p>
+              <div className='flex justify-center'>
+                <LoginButton variant='content' />
+              </div>
             </div>
-          </div>
-          <div className='absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none rounded-lg'></div>
-        </button>
-      </div>
+          ) : (
+            <ButtonAccept
+              onClick={handleToggle}
+              title={isToggling ? loadingText : buttonText}
+              disabled={isToggling || !user || authLoading}
+            />
+          )}
 
-      {toggleError && <div className='mt-2 text-sm text-[var(--error)] text-center'>{toggleError}</div>}
+          {toggleError && <div className='text-sm text-[var(--error)]'>{toggleError}</div>}
+        </div>
+      </Collapsible>
     </div>
   );
 };

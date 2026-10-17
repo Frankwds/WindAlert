@@ -33,6 +33,8 @@ export const Contribute: React.FC<ContributeProps> = ({
     <div className='mt-6 center justify-center'>
       <h1 className='text-2xl font-bold'>Bidra:</h1>
 
+      <ContributeSynchronize startId={startId} />
+
       <ContributeLanding
         locationId={locationId}
         latitude={latitude}
@@ -43,7 +45,6 @@ export const Contribute: React.FC<ContributeProps> = ({
         landingAltitude={landingAltitude}
       />
 
-      <ContributeSynchronize startId={startId} />
       <ContributeToggleMain locationId={locationId} is_main={is_main} />
     </div>
   );

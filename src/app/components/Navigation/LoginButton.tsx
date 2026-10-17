@@ -3,11 +3,24 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
-export default function LoginButton() {
+interface LoginButtonProps {
+  /** Use `content` on page surfaces (cards); `nav` (default) for the hamburger menu. */
+  variant?: 'nav' | 'content';
+}
+
+export default function LoginButton({ variant = 'nav' }: LoginButtonProps) {
   const { user, loading, signInWithGoogle, signOut } = useAuth();
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const textClass =
+    variant === 'content'
+      ? 'text-[var(--foreground)]/70 hover:bg-[var(--foreground)]/10 hover:text-[var(--foreground)]'
+      : 'text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]';
+  const mutedTextClass = variant === 'content' ? 'text-[var(--foreground)]/50 hover:text-[var(--foreground)]/70' : 'text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]/70';
+  const pulseClass = variant === 'content' ? 'bg-[var(--foreground)]/10' : 'bg-[var(--nav-text)]/10';
+  const pulseBarClass = variant === 'content' ? 'bg-[var(--foreground)]/20' : 'bg-[var(--nav-text)]/20';
 
   const handleSignIn = async () => {
     setIsSigningIn(true);
@@ -45,8 +58,8 @@ export default function LoginButton() {
   if (loading) {
     return (
       <div className='flex items-center justify-center'>
-        <div className='animate-pulse bg-[var(--nav-text)]/10 rounded px-4 py-2 w-full'>
-          <div className='w-16 h-4 bg-[var(--nav-text)]/20 rounded mx-auto'></div>
+        <div className={`animate-pulse ${pulseClass} rounded px-4 py-2 w-full`}>
+          <div className={`w-16 h-4 ${pulseBarClass} rounded mx-auto`}></div>
         </div>
       </div>
     );
@@ -57,10 +70,7 @@ export default function LoginButton() {
     return (
       <div className='flex flex-col items-center justify-center gap-2'>
         <div className='text-red-500 text-xs text-center px-2'>{error}</div>
-        <button
-          onClick={() => setError(null)}
-          className='text-xs text-[var(--nav-text)]/50 hover:text-[var(--nav-text)]/70'
-        >
+        <button onClick={() => setError(null)} className={`text-xs ${mutedTextClass}`}>
           Prøv igjen
         </button>
       </div>
@@ -78,7 +88,7 @@ export default function LoginButton() {
           aria-label='Logg ut'
           onClick={handleSignOut}
           disabled={isSigningOut}
-          className='group flex items-center gap-3 w-full px-4 py-2 text-sm text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none disabled:opacity-50'
+          className={`group flex items-center gap-3 w-full px-4 py-2 text-sm ${textClass} cursor-pointer rounded select-none disabled:opacity-50`}
         >
           <div className='flex items-center justify-center bg-[var(--accent)] text-white font-bold rounded-full w-6 h-6 text-xs'>
             {initials}
@@ -97,7 +107,7 @@ export default function LoginButton() {
         aria-label='Logg inn med Google'
         onClick={handleSignIn}
         disabled={isSigningIn}
-        className='group flex items-center gap-3 w-full px-4 py-2 text-sm text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)] cursor-pointer rounded select-none disabled:opacity-50'
+        className={`group flex items-center gap-3 w-full px-4 py-2 text-sm ${textClass} cursor-pointer rounded select-none disabled:opacity-50`}
       >
         <div className='flex items-center justify-center bg-white w-6 h-6 rounded-full'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' className='w-4 h-4'>
