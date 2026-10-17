@@ -74,6 +74,16 @@ const TimeSeriesSchema1Hour = z.object({
   }),
 });
 
+const MinimalHourlyTimeSeriesSchema = z.object({
+  time: z.string(),
+  data: z.object({
+    instant: z.object({
+      details: InstantDetailsSchema1Hour,
+    }),
+    next_1_hours: Next1HoursSchema,
+  }),
+});
+
 const TimeSeriesSchema6Hours = z.object({
   time: z.string(),
   data: z.object({
@@ -97,4 +107,5 @@ export const metNoResponseSchema = z.object({
 });
 
 export const hourlySchema = z.array(TimeSeriesSchema1Hour);
+export const minimalHourlySchema = z.array(MinimalHourlyTimeSeriesSchema);
 export const sixHourlySchema = z.array(TimeSeriesSchema6Hours);

@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { ParaglidingLocationWithForecast, WeatherStationWithLatestData, StationData } from '@/lib/supabase/types';
+import {
+  MinimalForecast,
+  ParaglidingLocationWithForecast,
+  WeatherStationWithLatestData,
+  StationData,
+} from '@/lib/supabase/types';
 import LocationCard, { LocationCardAll } from '../LocationCards/LocationCards';
+import MinimalHourlyWeather from '../LocationCards/MinimalHourlyWeather';
 import StationDataTable from './StationDataTable';
 import LandingWeatherTable from './LandingWeatherTable';
 import { GoogleMapsButton, YrButton } from '../ExternalLinkButtons';
 import { StationDataService } from '@/lib/supabase/stationData';
+import { fetchYrDataClient } from '@/lib/yr/apiClient';
+import { mapYrRawHourlyToMinimalForecast } from '@/lib/yr/mapping';
 
 interface ParaglidingInfoWindowProps {
   location: ParaglidingLocationWithForecast;
@@ -135,17 +143,58 @@ export const LandingInfoWindow: React.FC<LandingInfoWindowProps> = ({ location }
 };
 
 export const MapClickLinksInfoWindow: React.FC<MapClickLinksInfoWindowProps> = ({ latitude, longitude }) => {
+  const [forecast, setForecast] = useState<MinimalForecast[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    const loadForecast = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const rawData = await fetchYrDataClient(latitude, longitude);
+        const hourlyForecast = mapYrRawHourlyToMinimalForecast(rawData);
+
+        if (isCurrent) {
+          setForecast(hourlyForecast);
+        }
+      } catch (error) {
+        console.error('Error fetching Yr weather data:', error);
+        if (isCurrent) {
+          setError('Kunne ikke laste værdata.');
+        }
+      } finally {
+        if (isCurrent) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadForecast();
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [latitude, longitude]);
+
   return (
-    <div className='map-click-links-infowindow pl-1.5 pt-[11px] pr-[30px] pb-[8px]'>
-      <div className='flex gap-2 items-start justify-center pl-4'>
-        <div className='flex flex-col items-center gap-1'>
-          <YrButton latitude={latitude} longitude={longitude} iconOnly />
-          <span className='text-[10px] leading-none text-[var(--foreground)]/70'>Yr</span>
-        </div>
-        <div className='flex flex-col items-center gap-1'>
-          <GoogleMapsButton latitude={latitude} longitude={longitude} iconOnly />
-          <span className='text-[10px] leading-none text-[var(--foreground)]/70'>Kart</span>
-        </div>
+    <div className='map-click-weather-infowindow p-4 max-w-sm'>
+      <div className='mb-4 grid w-full grid-cols-2 gap-2'>
+        <YrButton latitude={latitude} longitude={longitude} variant='map-popup' />
+        <GoogleMapsButton latitude={latitude} longitude={longitude} variant='map-popup' />
+      </div>
+      <div>
+        {isLoading ? (
+          <p className='py-4 text-center text-sm text-[var(--foreground)]/70'>Laster værdata...</p>
+        ) : error ? (
+          <p className='py-4 text-center text-sm text-red-600'>{error}</p>
+        ) : forecast.length > 0 ? (
+          <MinimalHourlyWeather forecast={forecast} timezone='Europe/Oslo' />
+        ) : (
+          <p className='py-4 text-center text-sm text-[var(--foreground)]/70'>Ingen time-for-time værdata tilgjengelig.</p>
+        )}
       </div>
     </div>
   );

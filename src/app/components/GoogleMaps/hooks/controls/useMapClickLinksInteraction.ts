@@ -13,9 +13,9 @@ const SINGLE_TAP_DELAY_MS = 260;
  */
 const MARKER_INFO_WINDOW_OPEN_GUARD_MS = 180;
 
-export const MAP_CLICK_LINKS_INFO_WINDOW_SIZE = {
-  minWidth: 96,
-  maxWidth: 120,
+export const MAP_CLICK_FORECAST_INFO_WINDOW_SIZE = {
+  minWidth: 300,
+  maxWidth: 400,
 } as const;
 
 interface UseMapClickLinksInteractionProps {
@@ -28,7 +28,7 @@ interface UseMapClickLinksInteractionProps {
 }
 
 /**
- * Map background tap: delayed single-tap opens a compact Yr / Google Maps links info window;
+ * Map background tap: delayed single-tap opens a Yr forecast info window;
  * coordinates with double-tap zoom, filter overlays, and marker-driven info windows (mobile ordering).
  *
  * Owns `click` / `dblclick` listeners on `mapInstance` so the map bootstrap hook stays unaware of this feature.
@@ -110,7 +110,7 @@ export function useMapClickLinksInteraction({
           getMapClickLinksInfoWindow(position.lat, position.lng)
         );
         openInfoWindowRef.current(map, position, container, {
-          ...MAP_CLICK_LINKS_INFO_WINDOW_SIZE,
+          ...MAP_CLICK_FORECAST_INFO_WINDOW_SIZE,
           disposeContent: dispose,
         });
       }, SINGLE_TAP_DELAY_MS);

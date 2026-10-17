@@ -12,7 +12,7 @@ import { validateMinimalForecast } from '@/lib/utils/validateDataPoint';
 interface MinimalHourlyWeatherProps {
   forecast: MinimalForecast[];
   timezone: string;
-  locationWindDirections: string[];
+  locationWindDirections?: string[];
 }
 
 const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, timezone, locationWindDirections }) => {
@@ -111,7 +111,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
               >
                 <div className='flex flex-col items-center'>
                   <div className='mb-1'>{day}</div>
-                  <div className='flex w-full'>{getPromisingHoursVisual(day)}</div>
+                  {locationWindDirections && <div className='flex w-full'>{getPromisingHoursVisual(day)}</div>}
                 </div>
               </button>
         ))}

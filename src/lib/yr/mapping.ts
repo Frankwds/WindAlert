@@ -1,5 +1,6 @@
-import { metNoResponseSchema, hourlySchema, sixHourlySchema } from './zod';
+import { metNoResponseSchema, hourlySchema, minimalHourlySchema, sixHourlySchema } from './zod';
 import { WeatherDataYr, WeatherDataPointYr1h, WeatherDataPointYr6h } from './types';
+import { MinimalForecast } from '../supabase/types';
 
 export function mapYrData(rawData: any): WeatherDataYr {
   const firstMissingIndex = findFirstMissingNext1HoursIndex(rawData.properties.timeseries);
@@ -46,6 +47,22 @@ export function mapYrData(rawData: any): WeatherDataYr {
       longitude,
     },
   };
+}
+
+export function mapYrRawHourlyToMinimalForecast(rawData: any): MinimalForecast[] {
+  const hourlyData = minimalHourlySchema.parse(
+    rawData.properties.timeseries.filter((item: any) => item.data?.next_1_hours)
+  );
+
+  return hourlyData.map(hour => ({
+    time: hour.time,
+    is_day: hour.data.next_1_hours.summary.symbol_code.includes('_night') ? 0 : 1,
+    weather_code: hour.data.next_1_hours.summary.symbol_code,
+    temperature: hour.data.instant.details.air_temperature,
+    wind_speed: hour.data.instant.details.wind_speed,
+    wind_gusts: hour.data.instant.details.wind_speed_of_gust,
+    wind_direction: hour.data.instant.details.wind_from_direction,
+  }));
 }
 
 function findFirstMissingNext1HoursIndex(timeseries: any[]): number {
