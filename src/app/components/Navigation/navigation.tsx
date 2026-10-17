@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import HamburgerMenu from './HamburgerMenu';
+import { getLuftromUrl, getThermalKk7Url } from './externalMapLinks';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useState } from 'react';
 
@@ -13,8 +14,20 @@ const links = [
   { href: '/favourites', label: 'Favoritter' },
   { href: '/about', label: 'Om' },
   { href: '/contact', label: 'Kontakt' },
-  { href: 'https://luftrom.info/viewer', label: 'Luftrom.info', description: ' - Sjekk før du flyr!!', external: true },
-  { href: 'https://thermal.kk7.ch/#64.2,17,4', label: 'Thermal.kk7', description: ' - Takk! <3', external: true },
+  {
+    href: 'https://luftrom.info/viewer',
+    label: 'Luftrom.info',
+    description: ' - Sjekk før du flyr!!',
+    external: true,
+    resolveHref: getLuftromUrl,
+  },
+  {
+    href: 'https://thermal.kk7.ch',
+    label: 'Thermal.kk7',
+    description: ' - Takk! <3',
+    external: true,
+    resolveHref: getThermalKk7Url,
+  },
   { href: '/contribute', label: 'Bidra! 💪', description: ' - Legg til ny start' },
 ];
 

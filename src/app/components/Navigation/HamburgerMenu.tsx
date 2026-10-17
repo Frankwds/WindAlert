@@ -11,6 +11,7 @@ interface LinkItem {
   label: string;
   description?: string;
   external?: boolean;
+  resolveHref?: () => string;
 }
 
 interface HamburgerMenuProps {
@@ -73,7 +74,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
           }`}
         >
           <ul className='py-1'>
-            {links.map(({ href, label, description, external }) => (
+            {links.map(({ href, label, description, external, resolveHref }) => (
               <li key={href}>
                 <Link
                   href={href}
@@ -84,7 +85,13 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                       ? 'bg-[var(--nav-text)]/10 text-[var(--nav-text)] font-medium'
                       : 'text-[var(--nav-text)]/70 hover:bg-[var(--nav-text)]/10 hover:text-[var(--nav-text)]'
                   }`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(event) => {
+                    if (resolveHref) {
+                      event.preventDefault();
+                      window.open(resolveHref(), '_blank', 'noopener,noreferrer');
+                    }
+                    setIsOpen(false);
+                  }}
                 >
                   <div className='flex items-center'>
                     <span>{label}</span>
