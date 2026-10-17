@@ -9,3 +9,10 @@ export function getLuftromUrl(): string {
   const { center, zoom } = getMapState();
   return `https://luftrom.info/viewer#${Math.round(zoom)}/${center.lat.toFixed(4)}/${center.lng.toFixed(4)}`;
 }
+
+export function getWindyUrl(): string {
+  const { center, zoom } = getMapState();
+  const lat = center.lat.toFixed(3);
+  const lng = center.lng.toFixed(3);
+  return `https://www.windy.com/${lat}/${lng}?${lat},${lng},${Math.round(zoom)},p:wind`;
+}

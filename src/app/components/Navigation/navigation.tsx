@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import HamburgerMenu from './HamburgerMenu';
-import { getLuftromUrl, getThermalKk7Url } from './externalMapLinks';
+import { getLuftromUrl, getThermalKk7Url, getWindyUrl } from './externalMapLinks';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { useState } from 'react';
 
@@ -14,6 +14,13 @@ const links = [
   { href: '/favourites', label: 'Favoritter' },
   { href: '/about', label: 'Om' },
   { href: '/contact', label: 'Kontakt' },
+  {
+    href: 'https://www.windy.com',
+    label: 'Windy',
+    description: ' - Sjekk høydevind',
+    external: true,
+    resolveHref: getWindyUrl,
+  },
   {
     href: 'https://luftrom.info/viewer',
     label: 'Luftrom.info',
