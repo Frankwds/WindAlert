@@ -6,6 +6,7 @@ import './globals.css';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import ConditionalMain from './ConditionalMain';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { GlideMeasurementModeProvider } from '@/contexts/GlideMeasurementModeContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,8 +35,7 @@ const jsonLd = {
       '@id': 'https://windlord.no/#website',
       url: 'https://windlord.no',
       name: 'WindLord',
-      description:
-        'Den beste appen for å finne paragliding starter i Norge. Se hvor du kan fly basert på været.',
+      description: 'Den beste appen for å finne paragliding starter i Norge. Se hvor du kan fly basert på været.',
       publisher: { '@id': 'https://windlord.no/#organization' },
     },
     {
@@ -106,13 +106,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[var(--background)] text-[var(--foreground)]`}
       >
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <AuthProvider>
           <ThemeProvider>
-            <ConditionalMain>{children}</ConditionalMain>
+            <GlideMeasurementModeProvider>
+              <ConditionalMain>{children}</ConditionalMain>
+            </GlideMeasurementModeProvider>
           </ThemeProvider>
         </AuthProvider>
         <Analytics />

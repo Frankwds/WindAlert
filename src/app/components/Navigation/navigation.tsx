@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useGlideMeasurementMode } from '@/contexts/GlideMeasurementModeContext';
 import HamburgerMenu from './HamburgerMenu';
 import { getLuftromUrl, getThermalKk7Url, getWindyUrl } from './externalMapLinks';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const links = [
   { href: '/', label: 'Hovedstarter', description: ' - Med filter på vær' },
@@ -40,9 +41,25 @@ const links = [
 
 export default function Navigation() {
   const router = useRouter();
+  const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const {
+    disarmMeasurement,
+    isMeasurementActive,
+    isMeasurementArmed,
+    requestMeasurementClear,
+    toggleMeasurementArmed,
+  } = useGlideMeasurementMode();
   const isMobile = useIsMobile();
   const [isFlying, setIsFlying] = useState(false);
+  const isMapPage = pathname === '/' || pathname === '/locations/all';
+  const isMeasurementToolSelected = isMeasurementArmed || isMeasurementActive;
+
+  useEffect(() => {
+    if (!isMapPage) {
+      disarmMeasurement();
+    }
+  }, [disarmMeasurement, isMapPage]);
 
   return (
     <nav className='px-4 bg-[var(--nav-bg)] text-[var(--nav-text)] shadow-[var(--shadow-md)]'>
@@ -94,6 +111,37 @@ export default function Navigation() {
               </svg>
             )}
           </button>
+          {isMapPage && (
+            <button
+              aria-label={
+                isMeasurementActive
+                  ? 'Fjern aktiv måling'
+                  : isMeasurementArmed
+                    ? 'Avbryt måleverktøy'
+                    : 'Aktiver måleverktøy'
+              }
+              aria-pressed={isMeasurementToolSelected}
+              className={`cursor-pointer rounded-md p-2 transition-all duration-200 ${
+                isMeasurementToolSelected
+                  ? 'bg-[var(--nav-text)]/20 text-[var(--nav-text)]'
+                  : `text-[var(--nav-text)]/80 ${!isMobile ? 'hover:bg-[var(--nav-text)]/10' : ''}`
+              }`}
+              title={
+                isMeasurementActive
+                  ? 'Fjern aktiv måling'
+                  : isMeasurementArmed
+                    ? 'Avbryt måleverktøy'
+                    : 'Aktiver måleverktøy'
+              }
+              type='button'
+              onClick={isMeasurementActive ? requestMeasurementClear : toggleMeasurementArmed}
+            >
+              <svg aria-hidden='true' className='size-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='m14 3 7 7L10 21l-7-7L14 3Z' />
+                <path strokeLinecap='round' strokeWidth={2} d='m12 7 3 3m-6 0 3 3m-6 0 3 3' />
+              </svg>
+            </button>
+          )}
           <HamburgerMenu links={links} />
         </div>
       </div>

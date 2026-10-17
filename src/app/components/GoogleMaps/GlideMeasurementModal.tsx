@@ -275,8 +275,20 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
         </header>
 
         <div className='mt-6'>
-          <h3 className='font-semibold'>Glideforhold</h3>
-          <div className='mt-4 px-2'>
+          <div className='flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold text-slate-800'>
+            <span>Valgte glideforhold:</span>
+            {[
+              ['bg-green-600', glideThresholds[0]],
+              ['bg-yellow-500', glideThresholds[1]],
+              ['bg-red-600', glideThresholds[2]],
+            ].map(([colorClass, threshold], index) => (
+              <span className='inline-flex items-center gap-1' key={index}>
+                <span className={`size-2.5 rounded-full ${colorClass}`} />
+                {threshold}:1
+              </span>
+            ))}
+          </div>
+          <div className='mt-3 px-2'>
             <Slider
               allowCross={false}
               ariaLabelForHandle={['Grønn glidegrense', 'Gul glidegrense', 'Rød glidegrense']}

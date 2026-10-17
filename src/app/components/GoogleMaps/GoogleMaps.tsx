@@ -202,7 +202,10 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
       <div className='relative w-full h-full'>
         {isLoading && <LoadingSpinner size='lg' text='Laster kart...' overlay />}
 
-        <div ref={mapRef} className='w-full h-full' />
+        <div
+          ref={mapRef}
+          className={`w-full h-full ${glideMeasurement.isMeasurementArmed ? 'glide-measurement-armed' : ''}`}
+        />
 
         {memoizedParaglidingClusterer}
         {memoizedWeatherStationClusterer}

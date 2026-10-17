@@ -20,6 +20,7 @@ describe('getWindAdjustedGlideThresholds', () => {
     const thresholds = getWindAdjustedGlideThresholds(
       {
         ...DEFAULT_GLIDE_CONDITIONS,
+        glideThresholds: [6, 8, 10],
         wind: { directionDegrees: 180, speedMps: 2 },
       },
       0
@@ -32,6 +33,7 @@ describe('getWindAdjustedGlideThresholds', () => {
     const thresholds = getWindAdjustedGlideThresholds(
       {
         ...DEFAULT_GLIDE_CONDITIONS,
+        glideThresholds: [6, 8, 10],
         wind: { directionDegrees: 0, speedMps: 2 },
       },
       0
@@ -44,6 +46,7 @@ describe('getWindAdjustedGlideThresholds', () => {
     const thresholds = getWindAdjustedGlideThresholds(
       {
         ...DEFAULT_GLIDE_CONDITIONS,
+        glideThresholds: [6, 8, 10],
         wind: { directionDegrees: 90, speedMps: 6 },
       },
       0
@@ -59,6 +62,12 @@ describe('getWindAdjustedGlideThresholds', () => {
     };
 
     expect(getWindAdjustedGlideThresholds(conditions, 0)).toBeNull();
+  });
+});
+
+describe('default glide conditions', () => {
+  it('starts with the recommended 7:1, 9:1, and 11:1 thresholds', () => {
+    expect(DEFAULT_GLIDE_CONDITIONS.glideThresholds).toEqual([7, 9, 11]);
   });
 });
 

@@ -14,6 +14,7 @@ import {
   getGlideMeasurementConditions,
   setGlideMeasurementConditions,
 } from '@/lib/localstorage/glideMeasurementStorage';
+import { useGlideMeasurementMode } from '@/contexts/GlideMeasurementModeContext';
 
 const LONG_PRESS_DURATION_MS = 2_000;
 const ELEVATION_SAMPLE_SPACING_METERS = 100;
@@ -172,6 +173,8 @@ interface UseGlideMeasurementProps {
 }
 
 export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeasurementProps) => {
+  const { clearMeasurementRequestId, disarmMeasurement, isMeasurementArmed, setMeasurementActive } =
+    useGlideMeasurementMode();
   const [points, setPoints] = useState<MeasurementPoint[]>([]);
   const [conditions, setConditions] = useState<GlideConditions>(() => getGlideMeasurementConditions());
   const [isConditionsDialogOpen, setIsConditionsDialogOpen] = useState(false);
@@ -189,6 +192,7 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
   const suppressNextMapClickRef = useRef(false);
   const suppressNextPointClickRef = useRef(false);
   const suppressNextMapRightClickRef = useRef(false);
+  const lastClearMeasurementRequestIdRef = useRef(clearMeasurementRequestId);
   const pointMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
   const routePolylinesRef = useRef<google.maps.Polyline[]>([]);
   const distanceMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
@@ -200,6 +204,16 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
   useEffect(() => {
     isConditionsDialogOpenRef.current = isConditionsDialogOpen;
   }, [isConditionsDialogOpen]);
+
+  useEffect(() => {
+    setMeasurementActive(points.length > 0);
+  }, [points.length, setMeasurementActive]);
+
+  useEffect(() => {
+    return () => {
+      setMeasurementActive(false);
+    };
+  }, [setMeasurementActive]);
 
   const clearPointMarkers = useCallback(() => {
     pointMarkersRef.current.forEach(marker => {
@@ -228,13 +242,21 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     cancelLongPress();
     elevationRequestRef.current += 1;
     isMeasuringRef.current = false;
+    setMeasurementActive(false);
     pendingStartPositionRef.current = null;
     clearPointMarkers();
     clearRouteOverlays();
     setPoints([]);
     setIsCalculating(false);
     setMeasurementError(null);
-  }, [cancelLongPress, clearPointMarkers, clearRouteOverlays]);
+  }, [cancelLongPress, clearPointMarkers, clearRouteOverlays, setMeasurementActive]);
+
+  useEffect(() => {
+    if (clearMeasurementRequestId === lastClearMeasurementRequestIdRef.current) return;
+
+    lastClearMeasurementRequestIdRef.current = clearMeasurementRequestId;
+    clearMeasurement();
+  }, [clearMeasurement, clearMeasurementRequestId]);
 
   const openConditionsDialog = useCallback(
     (position: MapPosition) => {
@@ -338,6 +360,12 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
         return true;
       }
 
+      if (isMeasurementArmed) {
+        disarmMeasurement();
+        openConditionsDialog(position);
+        return true;
+      }
+
       if (!isMeasuringRef.current) {
         return false;
       }
@@ -345,43 +373,47 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
       addPoint(position);
       return true;
     },
-    [addPoint, cancelLongPress]
+    [addPoint, cancelLongPress, disarmMeasurement, isMeasurementArmed, openConditionsDialog]
   );
 
-  const handleApplyConditions = useCallback((nextConditions: GlideConditions) => {
-    if (conditionsDialogModeRef.current === 'edit' && isMeasuringRef.current) {
+  const handleApplyConditions = useCallback(
+    (nextConditions: GlideConditions) => {
+      if (conditionsDialogModeRef.current === 'edit' && isMeasuringRef.current) {
+        const savedConditions = setGlideMeasurementConditions(nextConditions);
+        setConditions(savedConditions);
+        conditionsDialogModeRef.current = 'start';
+        setIsConditionsDialogOpen(false);
+        isConditionsDialogOpenRef.current = false;
+        setMeasurementError(null);
+        return;
+      }
+
+      const startPosition = pendingStartPositionRef.current;
+      if (!startPosition) {
+        setIsConditionsDialogOpen(false);
+        isConditionsDialogOpenRef.current = false;
+        return;
+      }
+
       const savedConditions = setGlideMeasurementConditions(nextConditions);
+      const firstPoint: MeasurementPoint = {
+        id: `glide-measurement-${pointIdRef.current++}`,
+        position: startPosition,
+      };
+
       setConditions(savedConditions);
+      pointsRef.current = [firstPoint];
+      isMeasuringRef.current = true;
+      setMeasurementActive(true);
+      pendingStartPositionRef.current = null;
       conditionsDialogModeRef.current = 'start';
-      setIsConditionsDialogOpen(false);
       isConditionsDialogOpenRef.current = false;
+      setPoints([firstPoint]);
+      setIsConditionsDialogOpen(false);
       setMeasurementError(null);
-      return;
-    }
-
-    const startPosition = pendingStartPositionRef.current;
-    if (!startPosition) {
-      setIsConditionsDialogOpen(false);
-      isConditionsDialogOpenRef.current = false;
-      return;
-    }
-
-    const savedConditions = setGlideMeasurementConditions(nextConditions);
-    const firstPoint: MeasurementPoint = {
-      id: `glide-measurement-${pointIdRef.current++}`,
-      position: startPosition,
-    };
-
-    setConditions(savedConditions);
-    pointsRef.current = [firstPoint];
-    isMeasuringRef.current = true;
-    pendingStartPositionRef.current = null;
-    conditionsDialogModeRef.current = 'start';
-    isConditionsDialogOpenRef.current = false;
-    setPoints([firstPoint]);
-    setIsConditionsDialogOpen(false);
-    setMeasurementError(null);
-  }, []);
+    },
+    [setMeasurementActive]
+  );
 
   const handleCancelConditions = useCallback(() => {
     pendingStartPositionRef.current = null;
@@ -681,6 +713,7 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     handleMapClick,
     isCalculating,
     isConditionsDialogOpen,
+    isMeasurementArmed,
     isMeasuring: points.length > 0,
     measurementError,
   };

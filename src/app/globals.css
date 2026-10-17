@@ -118,6 +118,14 @@ body {
   line-height: 1.6;
 }
 
+.glide-measurement-armed,
+.glide-measurement-armed * {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5 5 19 19M19 5 5 19' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
+      12 12,
+    crosshair !important;
+}
+
 /* Custom Scrollbar Styling */
 .scrollbar-thin::-webkit-scrollbar {
   height: 8px;

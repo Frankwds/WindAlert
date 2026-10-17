@@ -21,7 +21,7 @@ export const WIND_SPEED_MIN_MPS = 0;
 export const WIND_SPEED_MAX_MPS = 20;
 
 export const DEFAULT_GLIDE_CONDITIONS: GlideConditions = {
-  glideThresholds: [6, 8, 10],
+  glideThresholds: [7, 9, 11],
   airspeedMps: 10,
   wind: {
     directionDegrees: 0,
