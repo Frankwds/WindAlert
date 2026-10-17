@@ -56,7 +56,7 @@ const MinimalHourlyWeather: React.FC<MinimalHourlyWeatherProps> = ({ forecast, t
     const segments = [];
     for (const hour of relevantHours) {
       const isSunny = ['clearsky_day', 'fair_day', 'partlycloudy_day'].includes(hour.weather_code);
-      const isPromising = validateMinimalForecast(hour, locationWindDirections);
+      const isPromising = validateMinimalForecast(hour, locationWindDirections ?? []);
       segments.push(
         <div
           key={hour.time}
