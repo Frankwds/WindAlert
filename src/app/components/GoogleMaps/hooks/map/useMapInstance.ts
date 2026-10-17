@@ -72,13 +72,14 @@ export const useMapInstance = ({
         setOptions({
           key: apiKey,
           v: 'weekly',
-          libraries: ['places', 'marker'],
+          libraries: ['places', 'marker', 'geometry'],
         });
 
         // Load the required libraries
         await importLibrary('maps');
         await importLibrary('places');
         await importLibrary('marker');
+        await importLibrary('geometry');
 
         // Access google from the global namespace
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

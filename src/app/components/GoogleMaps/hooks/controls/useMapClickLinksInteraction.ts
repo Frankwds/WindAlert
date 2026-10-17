@@ -25,6 +25,8 @@ interface UseMapClickLinksInteractionProps {
   closeOverlays: CloseOverlaysFn;
   openInfoWindow: OpenInfoWindowFn;
   isInfoWindowOpen: () => boolean;
+  /** Lets higher-priority map modes consume a background click before forecast links are considered. */
+  onMapClick?: (position: google.maps.LatLngLiteral) => boolean;
 }
 
 /**
@@ -43,6 +45,7 @@ export function useMapClickLinksInteraction({
   closeOverlays,
   openInfoWindow,
   isInfoWindowOpen,
+  onMapClick,
 }: UseMapClickLinksInteractionProps) {
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   mapInstanceRef.current = mapInstance;
@@ -51,13 +54,15 @@ export function useMapClickLinksInteraction({
   const closeOverlaysRef = useRef(closeOverlays);
   const openInfoWindowRef = useRef<OpenInfoWindowFn>(openInfoWindow);
   const isInfoWindowOpenRef = useRef(isInfoWindowOpen);
+  const onMapClickRef = useRef(onMapClick);
 
   useEffect(() => {
     overlaysOpenRef.current = overlaysOpen;
     closeOverlaysRef.current = closeOverlays;
     openInfoWindowRef.current = openInfoWindow;
     isInfoWindowOpenRef.current = isInfoWindowOpen;
-  }, [overlaysOpen, closeOverlays, openInfoWindow, isInfoWindowOpen]);
+    onMapClickRef.current = onMapClick;
+  }, [overlaysOpen, closeOverlays, openInfoWindow, isInfoWindowOpen, onMapClick]);
 
   const pendingSingleTapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastMarkerInfoWindowOpenedAtRef = useRef(0);
@@ -77,6 +82,11 @@ export function useMapClickLinksInteraction({
 
   const handleMapClick = useCallback(
     (position?: google.maps.LatLngLiteral) => {
+      if (position && onMapClickRef.current?.(position)) {
+        clearPendingTerrainTap();
+        return;
+      }
+
       if (overlaysOpenRef.current) {
         clearPendingTerrainTap();
         closeOverlaysRef.current();

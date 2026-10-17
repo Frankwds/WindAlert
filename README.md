@@ -12,6 +12,7 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 - **Google Maps**: Kart med værstasjoner og paragliding starter.
 - **Lovende...**: Vis bare starter med lovende værmelding for valgt tid og dag.
 - **Vindretning**: Vis bare starter med egnet for valgt vindretning.
+- **Glidemåling**: Høyreklikk på kartet, eller hold inne i to sekunder på mobil, for å planlegge en rute med terrenghøyder, vind og egne glidegrenser. Dra målepunkter for å justere ruten. Ruten er grønn, gul og rød frem til de respektive glidegrensene, og sort etter den røde grensen. Fargene er bare en planleggingsindikasjon og erstatter ikke pilotens vurdering av terreng, vær eller sikker høyde.
 
 - **Oversikt**: Trykk på en start og få opp yr og windy på samme side.
 
@@ -46,6 +47,12 @@ Windlord hjelper med å finne steder å fly, basert på værmeldingen for hvert 
 - **Funksjoner**: Flere værmodeller (ICON-EU, ECMWF, GFS), vind/termisk overlegg
 - **Lisens**: Innebygd widget med attribusjon
 - **Attribusjon**: Værdata og visualisering fra Windy.com
+
+#### 4. Google Maps Elevation API
+
+- **Kilde**: Google Maps Platform
+- **Formål**: Henter terrenghøyder langs planlagte glideruter på kartet
+- **Lisens**: Google Maps Platform Terms of Service
 
 ### Lokasjonsdata
 

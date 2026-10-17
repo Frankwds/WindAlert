@@ -21,6 +21,7 @@ import {
 import { useInfoWindowStyles } from './useInfoWindowStyles';
 import { useGoogleMaps } from './hooks/useGoogleMaps';
 import { MapLoadingIndicator } from './MapLoadingIndicator';
+import { GlideMeasurementModal } from './GlideMeasurementModal';
 
 interface GoogleMapsProps {
   isFullscreen: boolean;
@@ -81,6 +82,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
     handleWindFilterLogicChange,
     closeOverlays,
     currentLandingMarker,
+    glideMeasurement,
   } = useGoogleMaps({ variant });
 
   // Create stable renderer instances to prevent recreation on every render
@@ -226,8 +228,22 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ isFullscreen, toggleFullscreen,
               isLoadingParagliding={isLoadingParaglidingMarkers}
               isLoadingWeatherStations={isLoadingWeatherStationMarkers}
             />
+            {glideMeasurement.measurementError && (
+              <div
+                className='absolute bottom-3 left-3 z-10 max-w-xs rounded-xl border border-red-300 bg-white/95 px-3 py-2 text-xs font-medium text-red-700 shadow-md backdrop-blur'
+                role='alert'
+              >
+                {glideMeasurement.measurementError}
+              </div>
+            )}
           </>
         )}
+        <GlideMeasurementModal
+          initialConditions={glideMeasurement.conditions}
+          isOpen={glideMeasurement.isConditionsDialogOpen}
+          onApply={glideMeasurement.handleApplyConditions}
+          onCancel={glideMeasurement.handleCancelConditions}
+        />
       </div>
     </div>
   );

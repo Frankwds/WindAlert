@@ -9,6 +9,7 @@ import {
 } from './markers';
 import { useMapFilters } from './filters';
 import { useInfoWindows, useOverlayManagement, useMapClickLinksInteraction } from './controls';
+import { useGlideMeasurement } from './useGlideMeasurement';
 import {
   getMainParaglidingInfoWindow,
   getAllParaglidingInfoWindow,
@@ -56,8 +57,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
   });
 
   const filterOverlaysOpen = useMemo(
-    () =>
-      filters.windFilterExpanded || filters.isPromisingFilterExpanded || filters.isFilterControlOpen,
+    () => filters.windFilterExpanded || filters.isPromisingFilterExpanded || filters.isFilterControlOpen,
     [filters.windFilterExpanded, filters.isPromisingFilterExpanded, filters.isFilterControlOpen]
   );
 
@@ -81,17 +81,25 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
 
   const { mapRef, mapInstance, isLoading, error } = useMapInstance({
     initialMapState,
-    onMapReady: useCallback((_map: google.maps.Map) => {
-      if (!infoWindowRef.current) {
-        infoWindowRef.current = new google.maps.InfoWindow();
-      }
-    }, [infoWindowRef]),
+    onMapReady: useCallback(
+      (_map: google.maps.Map) => {
+        if (!infoWindowRef.current) {
+          infoWindowRef.current = new google.maps.InfoWindow();
+        }
+      },
+      [infoWindowRef]
+    ),
     showSkywaysLayer: filters.showSkywaysLayer,
     showThermalsLayer: filters.showThermalsLayer,
     onMapPositionChange: useCallback((center: { lat: number; lng: number }, zoom: number) => {
       onMapPositionChangeRef.current(center, zoom);
     }, []),
     initialMapType: mapState.mapType,
+  });
+
+  const glideMeasurement = useGlideMeasurement({
+    mapInstance,
+    closeOverlays,
   });
 
   // --- Terrain background tap + marker / overlay coordination
@@ -101,6 +109,7 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     closeOverlays,
     openInfoWindow,
     isInfoWindowOpen,
+    onMapClick: glideMeasurement.handleMapClick,
   });
 
   const openAnchorInfoWindow = useOpenAnchorInfoWindowWithTerrainCoordination({
@@ -290,5 +299,6 @@ export const useGoogleMaps = ({ variant }: UseGoogleMapsProps) => {
     currentLandingMarker,
     clearLandingMarker,
     showLandingMarker,
+    glideMeasurement,
   };
 };
