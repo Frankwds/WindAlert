@@ -48,6 +48,29 @@ const toMapPosition = (position: google.maps.LatLng): MapPosition => ({
 
 const asLatLng = (position: MapPosition) => new google.maps.LatLng(position.lat, position.lng);
 
+const offsetPositionByScreenPixels = (
+  map: google.maps.Map,
+  position: MapPosition,
+  horizontalPixels: number
+): MapPosition => {
+  const projection = map.getProjection();
+  const zoom = map.getZoom();
+  if (!projection || zoom === undefined) return position;
+
+  const worldPosition = projection.fromLatLngToPoint(asLatLng(position));
+  if (!worldPosition) return position;
+
+  const screenRightBearingRadians = (((map.getHeading() ?? 0) + 90) * Math.PI) / 180;
+  const scale = 2 ** zoom;
+  const offsetWorldPosition = new google.maps.Point(
+    worldPosition.x + (horizontalPixels * Math.sin(screenRightBearingRadians)) / scale,
+    worldPosition.y - (horizontalPixels * Math.cos(screenRightBearingRadians)) / scale
+  );
+
+  const offsetPosition = projection.fromPointToLatLng(offsetWorldPosition);
+  return offsetPosition ? toMapPosition(offsetPosition) : position;
+};
+
 const requestElevationAlongPath = (
   elevationService: google.maps.ElevationService,
   path: MapPosition[],
@@ -621,7 +644,7 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
           new google.maps.marker.AdvancedMarkerElement({
             content: destinationLabelContent,
             map: mapInstance,
-            position: destinationPoint.position,
+            position: offsetPositionByScreenPixels(mapInstance, destinationPoint.position, 32),
             zIndex: 500,
           })
         );
