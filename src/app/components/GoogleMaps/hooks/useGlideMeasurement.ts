@@ -196,6 +196,7 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
   const pointMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
   const routePolylinesRef = useRef<google.maps.Polyline[]>([]);
   const distanceMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
+  const dragGuidePolylinesRef = useRef<google.maps.Polyline[]>([]);
 
   useEffect(() => {
     pointsRef.current = points;
@@ -231,6 +232,45 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     distanceMarkersRef.current = [];
   }, []);
 
+  const clearDragGuides = useCallback(() => {
+    dragGuidePolylinesRef.current.forEach(polyline => polyline.setMap(null));
+    dragGuidePolylinesRef.current = [];
+  }, []);
+
+  const drawDragGuides = useCallback(
+    (pointIndex: number, position: MapPosition) => {
+      clearDragGuides();
+      if (!mapInstance) return;
+
+      const adjacentPoints = [pointsRef.current[pointIndex - 1], pointsRef.current[pointIndex + 1]].filter(
+        (point): point is MeasurementPoint => Boolean(point)
+      );
+
+      dragGuidePolylinesRef.current = adjacentPoints.map(
+        adjacentPoint =>
+          new google.maps.Polyline({
+            clickable: false,
+            icons: [
+              {
+                icon: {
+                  path: 'M 0,-1 0,1',
+                  strokeColor: '#111827',
+                  strokeOpacity: 0.95,
+                  strokeWeight: 2,
+                },
+                repeat: '12px',
+              },
+            ],
+            map: mapInstance,
+            path: [position, adjacentPoint.position],
+            strokeOpacity: 0,
+            zIndex: 350,
+          })
+      );
+    },
+    [clearDragGuides, mapInstance]
+  );
+
   const cancelLongPress = useCallback(() => {
     if (longPressTimeoutRef.current) {
       clearTimeout(longPressTimeoutRef.current);
@@ -246,10 +286,11 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     pendingStartPositionRef.current = null;
     clearPointMarkers();
     clearRouteOverlays();
+    clearDragGuides();
     setPoints([]);
     setIsCalculating(false);
     setMeasurementError(null);
-  }, [cancelLongPress, clearPointMarkers, clearRouteOverlays, setMeasurementActive]);
+  }, [cancelLongPress, clearDragGuides, clearPointMarkers, clearRouteOverlays, setMeasurementActive]);
 
   useEffect(() => {
     if (clearMeasurementRequestId === lastClearMeasurementRequestIdRef.current) return;
@@ -463,7 +504,7 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     clearPointMarkers();
     if (!mapInstance) return;
 
-    points.forEach(point => {
+    points.forEach((point, pointIndex) => {
       let hasDragged = false;
       const markerContent = document.createElement('div');
       markerContent.setAttribute('aria-hidden', 'true');
@@ -507,9 +548,16 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
       marker.addListener('dragstart', () => {
         hasDragged = true;
         cancelLongPress();
+        drawDragGuides(pointIndex, point.position);
+      });
+      marker.addListener('drag', (event: google.maps.MapMouseEvent) => {
+        if (event.latLng) {
+          drawDragGuides(pointIndex, toMapPosition(event.latLng));
+        }
       });
       marker.addListener('dragend', (event: google.maps.MapMouseEvent) => {
         cancelLongPress();
+        clearDragGuides();
         if (event.latLng) {
           movePoint(point.id, toMapPosition(event.latLng));
         }
@@ -522,7 +570,18 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     });
 
     return clearPointMarkers;
-  }, [armLongPress, cancelLongPress, clearMeasurement, clearPointMarkers, mapInstance, movePoint, points, removePoint]);
+  }, [
+    armLongPress,
+    cancelLongPress,
+    clearDragGuides,
+    clearMeasurement,
+    clearPointMarkers,
+    drawDragGuides,
+    mapInstance,
+    movePoint,
+    points,
+    removePoint,
+  ]);
 
   useEffect(() => {
     const requestId = ++elevationRequestRef.current;
@@ -700,10 +759,11 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
     return () => {
       cancelLongPress();
       elevationRequestRef.current += 1;
+      clearDragGuides();
       clearPointMarkers();
       clearRouteOverlays();
     };
-  }, [cancelLongPress, clearPointMarkers, clearRouteOverlays]);
+  }, [cancelLongPress, clearDragGuides, clearPointMarkers, clearRouteOverlays]);
 
   return {
     clearMeasurement,
