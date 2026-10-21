@@ -66,8 +66,8 @@ describe('getWindAdjustedGlideThresholds', () => {
 });
 
 describe('default glide conditions', () => {
-  it('starts with the recommended 7:1, 9:1, and 11:1 thresholds', () => {
-    expect(DEFAULT_GLIDE_CONDITIONS.glideThresholds).toEqual([7, 9, 11]);
+  it('starts with the recommended 8:1, 9:1, and 11:1 thresholds', () => {
+    expect(DEFAULT_GLIDE_CONDITIONS.glideThresholds).toEqual([8, 9, 11]);
   });
 });
 

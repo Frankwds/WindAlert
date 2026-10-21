@@ -49,29 +49,6 @@ const toMapPosition = (position: google.maps.LatLng): MapPosition => ({
 
 const asLatLng = (position: MapPosition) => new google.maps.LatLng(position.lat, position.lng);
 
-const offsetPositionByScreenPixels = (
-  map: google.maps.Map,
-  position: MapPosition,
-  horizontalPixels: number
-): MapPosition => {
-  const projection = map.getProjection();
-  const zoom = map.getZoom();
-  if (!projection || zoom === undefined) return position;
-
-  const worldPosition = projection.fromLatLngToPoint(asLatLng(position));
-  if (!worldPosition) return position;
-
-  const screenRightBearingRadians = (((map.getHeading() ?? 0) + 90) * Math.PI) / 180;
-  const scale = 2 ** zoom;
-  const offsetWorldPosition = new google.maps.Point(
-    worldPosition.x + (horizontalPixels * Math.sin(screenRightBearingRadians)) / scale,
-    worldPosition.y - (horizontalPixels * Math.cos(screenRightBearingRadians)) / scale
-  );
-
-  const offsetPosition = projection.fromPointToLatLng(offsetWorldPosition);
-  return offsetPosition ? toMapPosition(offsetPosition) : position;
-};
-
 const requestElevationAlongPath = (
   elevationService: google.maps.ElevationService,
   path: MapPosition[],
@@ -509,7 +486,8 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
       const markerContent = document.createElement('div');
       markerContent.setAttribute('aria-hidden', 'true');
       markerContent.className =
-        'size-4 cursor-grab rounded-full border-2 border-slate-950 bg-white p-0 shadow-md transition-transform hover:scale-125 active:cursor-grabbing focus-visible:scale-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
+        'size-6 cursor-grab rounded-full border-2 border-slate-950 bg-white p-0 shadow-md transition-transform hover:scale-125 active:cursor-grabbing focus-visible:scale-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600';
+      markerContent.style.translate = '0 50%';
 
       const marker = new google.maps.marker.AdvancedMarkerElement({
         content: markerContent,
@@ -727,15 +705,21 @@ export const useGlideMeasurement = ({ mapInstance, closeOverlays }: UseGlideMeas
         }
 
         const destinationPoint = points[points.length - 1];
-        const destinationLabelContent = document.createElement('span');
-        destinationLabelContent.className =
-          'pointer-events-none whitespace-nowrap rounded bg-white/95 px-1.5 py-0.5 text-xs font-bold text-slate-950 shadow-md';
-        destinationLabelContent.textContent = formatDistance(totalDistanceMeters);
+        const destinationLabel = document.createElement('span');
+        destinationLabel.className =
+          'whitespace-nowrap rounded bg-white/95 px-1.5 py-0.5 text-xs font-bold text-slate-950 shadow-md';
+        destinationLabel.textContent = formatDistance(totalDistanceMeters);
+        // The marker anchors its content at bottom-center, so the left padding shifts the label 32px right
+        // of the knob in screen pixels and the translate centers it vertically on the point.
+        const destinationLabelContent = document.createElement('div');
+        destinationLabelContent.className = 'pointer-events-none pl-16';
+        destinationLabelContent.style.translate = '0 50%';
+        destinationLabelContent.appendChild(destinationLabel);
         distanceMarkers.push(
           new google.maps.marker.AdvancedMarkerElement({
             content: destinationLabelContent,
             map: mapInstance,
-            position: offsetPositionByScreenPixels(mapInstance, destinationPoint.position, 32),
+            position: destinationPoint.position,
             zIndex: 500,
           })
         );

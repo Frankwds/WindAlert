@@ -214,3 +214,39 @@ body {
 .onboarding-pulse {
   animation: subtle-pulse 2s ease-in-out infinite;
 }
+
+.glide-airspeed-slider {
+  appearance: none;
+  height: 1.5rem;
+  background: transparent;
+}
+
+.glide-airspeed-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+}
+
+.glide-airspeed-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+}
+
+.glide-airspeed-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -9px;
+  border-radius: 9999px;
+  border: 0;
+  background: #2563eb;
+}
+
+.glide-airspeed-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  border: 0;
+  background: #2563eb;
+}

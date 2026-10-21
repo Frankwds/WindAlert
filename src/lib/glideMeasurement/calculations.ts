@@ -13,15 +13,15 @@ export type GlideConditions = {
   wind: WindConditions;
 };
 
-export const GLIDE_THRESHOLD_MIN = 5;
-export const GLIDE_THRESHOLD_MAX = 15;
+export const GLIDE_THRESHOLD_MIN = 6;
+export const GLIDE_THRESHOLD_MAX = 13;
 export const AIRSPEED_MIN_MPS = 6;
 export const AIRSPEED_MAX_MPS = 16;
 export const WIND_SPEED_MIN_MPS = 0;
 export const WIND_SPEED_MAX_MPS = 20;
 
 export const DEFAULT_GLIDE_CONDITIONS: GlideConditions = {
-  glideThresholds: [7, 9, 11],
+  glideThresholds: [8, 9, 11],
   airspeedMps: 10,
   wind: {
     directionDegrees: 0,

@@ -25,6 +25,8 @@ const DIRECTION_LABELS = ['N', 'NØ', 'Ø', 'SØ', 'S', 'SV', 'V', 'NV'];
 const WIND_SPEED_WHEEL_VALUES = Array.from({ length: WIND_SPEED_MAX_MPS + 1 }, (_, speed) => speed);
 const WIND_SPEED_ROW_HEIGHT_PX = 32;
 
+const handleSize = { width: 21, height: 21, marginTop: -7 };
+
 const clampWindSpeed = (speed: number) => Math.min(Math.max(Math.round(speed), 0), WIND_SPEED_MAX_MPS);
 
 const getDirectionLabel = (directionDegrees: number) => {
@@ -265,7 +267,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
       <section
         aria-labelledby='glide-measurement-dialog-title'
         aria-modal='true'
-        className='max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto rounded-3xl bg-slate-50 p-5 text-slate-950 shadow-2xl sm:p-6'
+        className='max-h-[calc(100dvh-1.5rem)] w-fit min-w-[19rem] max-w-full overflow-y-auto rounded-3xl bg-slate-50 p-5 text-slate-950 shadow-2xl sm:p-6'
         role='dialog'
       >
         <header>
@@ -295,9 +297,9 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
               className='cursor-pointer'
               dotStyle={{ borderColor: '#94a3b8' }}
               handleStyle={[
-                { borderColor: '#16a34a', backgroundColor: '#16a34a', cursor: 'pointer', opacity: 1 },
-                { borderColor: '#eab308', backgroundColor: '#eab308', cursor: 'pointer', opacity: 1 },
-                { borderColor: '#dc2626', backgroundColor: '#dc2626', cursor: 'pointer', opacity: 1 },
+                { ...handleSize, borderColor: '#16a34a', backgroundColor: '#16a34a', cursor: 'pointer', opacity: 1 },
+                { ...handleSize, borderColor: '#eab308', backgroundColor: '#eab308', cursor: 'pointer', opacity: 1 },
+                { ...handleSize, borderColor: '#dc2626', backgroundColor: '#dc2626', cursor: 'pointer', opacity: 1 },
               ]}
               marks={{
                 [GLIDE_THRESHOLD_MIN]: `${GLIDE_THRESHOLD_MIN}:1`,
@@ -318,7 +320,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
           </div>
         </div>
 
-        <div className='mt-7 grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center'>
+        <div className='mt-7 flex justify-center'>
           <div className='mx-auto'>
             <h3 className='mb-3 text-center font-semibold'>Vindretning</h3>
             <div
@@ -379,7 +381,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
               </svg>
               <span
                 aria-hidden='true'
-                className='pointer-events-none absolute z-20 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-slate-950 bg-white shadow-sm'
+                className='pointer-events-none absolute z-20 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-slate-950 bg-white shadow-sm'
                 style={{ left: `${knobLeft}%`, top: `${knobTop}%` }}
               />
               <div className='pointer-events-none absolute inset-0 flex items-center justify-center'>
@@ -387,13 +389,14 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
               </div>
             </div>
           </div>
+        </div>
 
-          <div className='rounded-2xl border border-slate-200 bg-white p-4 text-sm shadow-sm'>
-            <p className='font-semibold'>Flyfart</p>
-            <label className='mt-3 block' htmlFor='glide-airspeed'>
-              <span className='sr-only'>Flyfart i meter per sekund</span>
+        <footer className='mt-7 flex items-center justify-end gap-3 border-t border-slate-200 pt-5'>
+          <div className='min-w-0 flex-1 text-sm'>
+            <label className='block' htmlFor='glide-airspeed'>
+              <span className='font-semibold'>Flyfart: {airspeedMps.toFixed(1)} m/s</span>
               <input
-                className='w-full cursor-pointer accent-blue-600'
+                className='glide-airspeed-slider mt-1 block w-full cursor-pointer accent-blue-600'
                 id='glide-airspeed'
                 max={AIRSPEED_MAX_MPS}
                 min={AIRSPEED_MIN_MPS}
@@ -403,11 +406,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
                 onChange={event => setAirspeedMps(Number(event.target.value))}
               />
             </label>
-            <p className='mt-2 text-center text-2xl font-bold'>{airspeedMps.toFixed(1)} m/s</p>
           </div>
-        </div>
-
-        <footer className='mt-7 flex justify-end gap-3 border-t border-slate-200 pt-5'>
           <button
             className='cursor-pointer rounded-lg border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             type='button'
