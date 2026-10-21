@@ -29,9 +29,29 @@ const handleSize = { width: 21, height: 21, marginTop: -7 };
 
 const clampWindSpeed = (speed: number) => Math.min(Math.max(Math.round(speed), 0), WIND_SPEED_MAX_MPS);
 
+const PRECISE_DIRECTION_LABELS = [
+  'N',
+  'NNØ',
+  'NØ',
+  'ØNØ',
+  'Ø',
+  'ØSØ',
+  'SØ',
+  'SSØ',
+  'S',
+  'SSV',
+  'SV',
+  'VSV',
+  'V',
+  'VNV',
+  'NV',
+  'NNV',
+];
+
 const getDirectionLabel = (directionDegrees: number) => {
-  const directionIndex = Math.round(normalizeDirectionDegrees(directionDegrees) / 45) % DIRECTION_LABELS.length;
-  return DIRECTION_LABELS[directionIndex];
+  const directionIndex =
+    Math.round(normalizeDirectionDegrees(directionDegrees) / 22.5) % PRECISE_DIRECTION_LABELS.length;
+  return PRECISE_DIRECTION_LABELS[directionIndex];
 };
 
 const WindSpeedWheel = ({ speedMps, onChange }: { speedMps: number; onChange: (speedMps: number) => void }) => {
@@ -259,7 +279,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
 
   return (
     <div
-      className='fixed inset-0 z-50 flex items-end justify-center bg-slate-950/55 p-3 sm:items-center'
+      className='fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 p-3'
       onMouseDown={event => {
         if (event.target === event.currentTarget) onCancel();
       }}
@@ -278,7 +298,7 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
 
         <div className='mt-6'>
           <div className='flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold text-slate-800'>
-            <span>Valgte glideforhold:</span>
+            <span>Glideforhold:</span>
             {[
               ['bg-green-600', glideThresholds[0]],
               ['bg-yellow-500', glideThresholds[1]],
@@ -320,9 +340,11 @@ export const GlideMeasurementModal = ({ isOpen, initialConditions, onApply, onCa
           </div>
         </div>
 
-        <div className='mt-7 flex justify-center'>
-          <div className='mx-auto'>
-            <h3 className='mb-3 text-center font-semibold'>Vindretning</h3>
+        <div className='mt-7 border-t border-slate-200 pt-5'>
+          <h3 className='mb-3 text-center font-semibold'>
+            Vind: {windSpeedMps} m/s{windSpeedMps > 0 && ` fra ${getDirectionLabel(windDirectionDegrees)}`}
+          </h3>
+          <div className='flex justify-center'>
             <div
               aria-label={`Vind fra ${getDirectionLabel(windDirectionDegrees)}, ${Math.round(windDirectionDegrees)} grader`}
               aria-valuemax={359}
