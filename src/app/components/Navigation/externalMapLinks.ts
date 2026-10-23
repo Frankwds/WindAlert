@@ -14,5 +14,5 @@ export function getWindyUrl(): string {
   const { center, zoom } = getMapState();
   const lat = center.lat.toFixed(3);
   const lng = center.lng.toFixed(3);
-  return `https://www.windy.com/${lat}/${lng}?${lat},${lng},${Math.round(zoom)},p:wind`;
+  return `https://www.windy.com/?850h,${lat},${lng},${Math.round(zoom)},p:wind`;
 }
